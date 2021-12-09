@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search> 
+  
+  
+    
+    <entry>
+      <title>hello world</title>
+      <link href="/2021/12/07/hello-world/"/>
+      <url>/2021/12/07/hello-world/</url>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Hexo-Theme-Snail</title>
+      <link href="/2019/11/01/Hexo-Theme-Snail/"/>
+      <url>/2019/11/01/Hexo-Theme-Snail/</url>
+      
+      
+      <categories>
+          
+          <category> hexo </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> hexo-theme-snail-0 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+  
+  
+</search>
