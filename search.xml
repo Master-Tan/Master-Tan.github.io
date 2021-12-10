@@ -4,18 +4,26 @@
   
     
     <entry>
-      <title>hello world</title>
+      <title>Hello World</title>
       <link href="/2021/12/07/hello-world/"/>
       <url>/2021/12/07/hello-world/</url>
       
       
+      
+        <tags>
+            
+            <tag> 碎碎念 </tag>
+            
+            <tag> 日常 </tag>
+            
+        </tags>
       
     </entry>
     
     
     
     <entry>
-      <title>Hexo-Theme-Snail</title>
+      <title>Hexo-Theme-Snail主题博客搭建过程</title>
       <link href="/2019/11/01/Hexo-Theme-Snail/"/>
       <url>/2019/11/01/Hexo-Theme-Snail/</url>
       
