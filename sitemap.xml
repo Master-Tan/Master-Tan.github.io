@@ -4,7 +4,7 @@
 
     <sitemap>
         <loc>https://github.com/Master-Tan/Master-Tan.github.io.git/post-sitemap.xml</loc>
-        <lastmod>2021-12-10T11:39:08.572Z</lastmod>
+        <lastmod>2021-12-10T11:52:18.862Z</lastmod>
     </sitemap>
 
     <sitemap>
@@ -13,13 +13,8 @@
     </sitemap>
 
     <sitemap>
-        <loc>https://github.com/Master-Tan/Master-Tan.github.io.git/category-sitemap.xml</loc>
-        <lastmod>2021-12-10T09:08:44.276Z</lastmod>
-    </sitemap>
-
-    <sitemap>
         <loc>https://github.com/Master-Tan/Master-Tan.github.io.git/tag-sitemap.xml</loc>
-        <lastmod>2021-12-10T11:39:08.572Z</lastmod>
+        <lastmod>2021-12-10T11:52:18.862Z</lastmod>
     </sitemap>
 
 </sitemapindex>
