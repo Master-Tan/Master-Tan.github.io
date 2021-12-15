@@ -16,11 +16,11 @@
     <!--<link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>-->
     <title>
         
-          P7 - Tan&#39;s Blog
+          CO - P6 - Tan&#39;s Blog
         
     </title>
 
-    <link rel="canonical" href="https://github.com/Master-Tan/Master-Tan.github.io.git/2021/12/16/P7/">
+    <link rel="canonical" href="https://github.com/Master-Tan/Master-Tan.github.io.git/2021/12/10/CO - P6/">
 
     <!-- Bootstrap Core CSS -->
     
@@ -111,11 +111,11 @@
                               <a class="tag" href="/tags/#CO" title="CO">CO</a>
                             
                         </div>
-                        <h1>P7</h1>
-                        <h2 class="subheading">我的P7的课上题目</h2>
+                        <h1>CO - P6</h1>
+                        <h2 class="subheading">我的P6的课上题目</h2>
                         <span class="meta">
                             Posted by Tan on
-                            2021-12-16
+                            2021-12-10
                         </span>
 
                         
@@ -128,7 +128,7 @@
 	            <div class="blank_box"></div>
                             <div class="blank_box"></div>
                             <span class="meta">
-                                214 Words <span class="post-count"></span>
+                                382 Words <span class="post-count"></span>
                             </span>
                         
 
@@ -183,6 +183,13 @@
 
                         
                         	<li>
+                          	  <a href="/about/">About Tan</a>
+                        	</li>
+                        
+                    
+
+                        
+                        	<li>
                           	  <a href="/archive/">Archives</a>
                         	</li>
                         
@@ -194,13 +201,6 @@
                         
                         	<li>
                           	  <a href="/tags/">Tags</a>
-                        	</li>
-                        
-                    
-
-                        
-                        	<li>
-                          	  <a href="/about/">About Tan</a>
                         	</li>
                         
                     
@@ -258,34 +258,129 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <p>P7课上为<b> 4 </b>道题</p>
-<p>第<strong>1</strong>题为必做题<br>第<strong>2~4</strong>题为选做题，做出其中两道即达到通过条件</p>
-<p>&nbsp;</p>
+                <p>P6课上为<b> 3 </b>道题</p>
+<p>第<b> 1~3 </b>题，做出其中两道即达到通过条件</p>
 <p>题目如下：</p>
-<p>&nbsp;<br>&nbsp;<br>&nbsp;<br>&nbsp;</p>
-<p>第<strong>1</strong>题：P6所有指令 &amp; mfc0 &amp; mtc0 &emsp;&emsp;&emsp;<strong>功能强测</strong></p>
-<p>第<strong>2</strong>题： 第一题 &amp; 异常检测 &emsp;&emsp; &emsp; &emsp;&emsp;&emsp;<strong>异常强测</strong></p>
-<p>第<strong>3</strong>题： 第一题 &amp; 中断检测 &emsp;&emsp; &emsp; &emsp;&emsp;&emsp;<strong>中断强测</strong></p>
-<p>&nbsp;<br>&nbsp;<br>&nbsp;<br>&nbsp;</p>
-<!-- 而且，别心存侥幸，只要你有bug，就一定会被强测测出来。（现场的助教打包票的） -->
-<p>第<strong>4</strong>题： 加判断异常指令 ↓</p>
-<h1 id="P7-L1-tltiu"><a href="#P7-L1-tltiu" class="headerlink" title="P7_L1_tltiu"></a>P7_L1_tltiu</h1><h2 id="tltiu"><a href="#tltiu" class="headerlink" title="tltiu"></a>tltiu</h2><p>编码：</p>
+<h1 id="P6-L1-bds"><a href="#P6-L1-bds" class="headerlink" title="P6_L1_bds"></a>P6_L1_bds</h1><h2 id="bds"><a href="#bds" class="headerlink" title="bds"></a>bds</h2><p>编码：</p>
 <div class="table-container">
 <table>
 <thead>
 <tr>
-<th style="text-align:center">31&nbsp;&nbsp;&nbsp;26</th>
+<th style="text-align:center">31&nbsp;&nbsp;&nbsp;&nbsp;26</th>
 <th style="text-align:center">25&nbsp;&nbsp;21</th>
 <th style="text-align:center">20&nbsp;&nbsp;16</th>
-<th style="text-align:center">15&nbsp;&nbsp; &emsp; &emsp; &emsp;0</th>
+<th style="text-align:center">15&nbsp;&nbsp;11</th>
+<th style="text-align:center">10&nbsp;&nbsp;&nbsp;&nbsp;6</th>
+<th style="text-align:center">5&nbsp;&nbsp;&nbsp;&nbsp;0</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align:center">REGIMM<br>000000</td>
+<td style="text-align:center">speical<br>000000</td>
 <td style="text-align:center">rs</td>
-<td style="text-align:center">TLTIU<br>01011</td>
-<td style="text-align:center">immediate</td>
+<td style="text-align:center">rt</td>
+<td style="text-align:center">rd</td>
+<td style="text-align:center">0<br>00000</td>
+<td style="text-align:center">bds<br>001010</td>
+</tr>
+<tr>
+<td style="text-align:center">6</td>
+<td style="text-align:center">5</td>
+<td style="text-align:center">5</td>
+<td style="text-align:center">5</td>
+<td style="text-align:center">5</td>
+<td style="text-align:center">6</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>格式：</p>
+<pre><code>bds rs, rt
+</code></pre><p>描述：</p>
+<pre><code>无符号大数除以小数
+</code></pre><p>操作：</p>
+<pre><code>Condition &lt;- (0||GPR[rs]) &gt;= (0||GPR[rt])
+If Condition :
+    LO &lt;- (0||GPR[rs]) div (0||GPR[rt])
+    HI &lt;- (0||GPR[rs]) mod (0||GPR[rt])
+else:
+    LO &lt;- (0||GPR[rt]) div (0||GPR[rs])
+    HI &lt;- (0||GPR[rt]) mod (0||GPR[rs])
+</code></pre><p>实例：</p>
+<pre><code>bds $t1, $t2
+</code></pre><p>其他：</p>
+<pre><code>该指令乘除阻塞周期与除法相同
+</code></pre><p>&nbsp;<br>&nbsp;</p>
+<h1 id="P6-L2-bezal"><a href="#P6-L2-bezal" class="headerlink" title="P6_L2_bezal"></a>P6_L2_bezal</h1><h2 id="bezal"><a href="#bezal" class="headerlink" title="bezal"></a>bezal</h2><p>编码：</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">31&nbsp;&nbsp;&nbsp;&nbsp;26</th>
+<th style="text-align:center">25&nbsp;&nbsp;21</th>
+<th style="text-align:center">20&nbsp;&nbsp;16</th>
+<th style="text-align:center">15&nbsp;&nbsp;11</th>
+<th style="text-align:center">10&nbsp;&nbsp;&nbsp;&nbsp;6</th>
+<th style="text-align:center">5&nbsp;&nbsp;&nbsp;&nbsp;0</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">special<br>000000</td>
+<td style="text-align:center">rs</td>
+<td style="text-align:center">rt</td>
+<td style="text-align:center">rd</td>
+<td style="text-align:center">0<br>00000</td>
+<td style="text-align:center">bezal<br>110001</td>
+</tr>
+<tr>
+<td style="text-align:center">6</td>
+<td style="text-align:center">5</td>
+<td style="text-align:center">5</td>
+<td style="text-align:center">5</td>
+<td style="text-align:center">5</td>
+<td style="text-align:center">6</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>格式：</p>
+<pre><code>bezal rs, rt
+</code></pre><p>描述：</p>
+<pre><code>若 GPR[rt] == 0 跳转至 GPR[rs] 并 Link
+</code></pre><p>操作：</p>
+<pre><code>I:
+    Condition &lt;- GPR[rt] = 0
+    temp &lt;- GPR[rs]
+    If Condition:
+        GPR[31] &lt;- PC + 8
+    endif
+I+1:
+    If Condition:
+        PC &lt;- temp
+    endif
+</code></pre><p>实例：</p>
+<pre><code>bezal $t1, $t2
+</code></pre><p>其他：</p>
+<pre><code>注意延时槽
+</code></pre><p>&nbsp;<br>&nbsp;</p>
+<h1 id="P6-L6-lwmx"><a href="#P6-L6-lwmx" class="headerlink" title="P6_L6_lwmx"></a>P6_L6_lwmx</h1><h2 id="lwmx"><a href="#lwmx" class="headerlink" title="lwmx"></a>lwmx</h2><p>编码：</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">31&nbsp;&nbsp;&nbsp;&nbsp;26</th>
+<th style="text-align:center">25&nbsp;&nbsp;21</th>
+<th style="text-align:center">20&nbsp;&nbsp;16</th>
+<th style="text-align:center">&nbsp;&nbsp;15&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">lwmx<br>101010</td>
+<td style="text-align:center">base</td>
+<td style="text-align:center">rt</td>
+<td style="text-align:center">offset<br></td>
 </tr>
 <tr>
 <td style="text-align:center">6</td>
@@ -297,17 +392,20 @@
 </table>
 </div>
 <p>格式：</p>
-<pre><code>tltiu rs, immediate
+<pre><code>lwmx rs, offset(base)
 </code></pre><p>描述：</p>
-<pre><code>如果 GPR[rs] 小于立即数，则产生Trap异常 (ExcCode = 5&#39;d13)
+<pre><code>内存大于寄存器值时写入5号寄存器，否则写入4号寄存器
 </code></pre><p>操作：</p>
-<pre><code>If (0||GPR[rs]) &lt; (0||sign_extend(immediate)) then
-    SignalException(Trap)
-endif
+<pre><code>Vaddr &lt;- GPR[base] + sign_extend(offset)
+Condition &lt;- GPR[rt] &lt; Memory[Vaddr]
+If Condition:
+    GPR[5] &lt;- Memory[Vaddr]
+else:
+    GPR[4] &lt;- Memory[Vaddr]
 </code></pre><p>实例：</p>
-<pre><code>tltiu $t1, 20
+<pre><code>lwmx $t5, -100($0)
 </code></pre><p>其他：</p>
-<pre><code>MIPS英文指令集与原版MARS中均包含该指令
+<pre><code>无
 </code></pre><p>&nbsp;<br>&nbsp;</p>
 
                 
@@ -316,17 +414,17 @@ endif
                 <ul class="pager">
                     
                     <li class="previous">
-                        <a href="/2021/12/16/计组实验总结/" data-toggle="tooltip" data-placement="top" title="计组实验总结">&larr; Previous Post
+                        <a href="/2021/12/16/CO - P7/" data-toggle="tooltip" data-placement="top" title="CO - P7">&larr; Previous Post
 		<br>
-		<span><font size="2" face="Calibri" color="grey">计组实验总结</font></span>
+		<span><font size="2" face="Calibri" color="grey">CO - P7</font></span>
 	       </a>
                     </li>
                     
                     
                     <li class="next">
-                        <a href="/2021/12/10/P6/" data-toggle="tooltip" data-placement="top" title="P6">Next Post &rarr;
+                        <a href="/2021/12/07/hello-world/" data-toggle="tooltip" data-placement="top" title="Hello World">Next Post &rarr;
 		<br>
-		<span><font size="2" face="Calibri" color="grey">P6</font></span>
+		<span><font size="2" face="Calibri" color="grey">Hello World</font></span>
 	        </a>
                     </li>
                     
@@ -375,7 +473,7 @@ endif
           <strong class="toc-title">Contents</strong>
           
             
-              <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#P7-L1-tltiu"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">P7_L1_tltiu</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#tltiu"><span class="toc-nav-number">1.1.</span> <span class="toc-nav-text">tltiu</span></a></li></ol></li></ol>
+              <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#P6-L1-bds"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">P6_L1_bds</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#bds"><span class="toc-nav-number">1.1.</span> <span class="toc-nav-text">bds</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#P6-L2-bezal"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">P6_L2_bezal</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#bezal"><span class="toc-nav-number">2.1.</span> <span class="toc-nav-text">bezal</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#P6-L6-lwmx"><span class="toc-nav-number">3.</span> <span class="toc-nav-text">P6_L6_lwmx</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#lwmx"><span class="toc-nav-number">3.1.</span> <span class="toc-nav-text">lwmx</span></a></li></ol></li></ol>
             
           
           </div>
@@ -628,6 +726,21 @@ endif
     
         <script src="/js/ribbonDynamic.js"></script>
     
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 </body>
 
 </html>

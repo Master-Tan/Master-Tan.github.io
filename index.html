@@ -160,6 +160,13 @@
 
                         
                         	<li>
+                          	  <a href="/about/">About Tan</a>
+                        	</li>
+                        
+                    
+
+                        
+                        	<li>
                           	  <a href="/archive/">Archives</a>
                         	</li>
                         
@@ -171,13 +178,6 @@
                         
                         	<li>
                           	  <a href="/tags/">Tags</a>
-                        	</li>
-                        
-                    
-
-                        
-                        	<li>
-                          	  <a href="/about/">About Tan</a>
                         	</li>
                         
                     
@@ -265,7 +265,11 @@
                     P0 - P7 计组实验上机一些经历
                 </h3>
                 <div class="post-content-preview">
-                    ...
+                    
+
+PreP0P1P2P3P4P5P6P7P6课上与P5大体相似（毕竟框架没变），也是一个计算指令、一个条件跳转并连接指令、一个条件写指令。
+而且，别心存侥幸，只要你有bug，就一定会被强测测出来。（现场的助教打包票的）
+...
                 </div>
             </a>
             
@@ -274,6 +278,8 @@
                     2021-12-16
                 </p>
                 <div class="tags">
+                    
+                      <a href="/tags/#碎碎念" title="碎碎念">碎碎念</a>
                     
                       <a href="/tags/#CO" title="CO">CO</a>
                     
@@ -289,21 +295,20 @@
 
         <div class="post-preview">
 
-            <a href="/2021/12/16/P7/">
+            <a href="/2021/12/16/CO - P7/">
                 <h2 class="post-title">
-                    P7
+                    CO - P7
                 </h2>
                 <h3 class="post-subtitle">
                     我的P7的课上题目
                 </h3>
                 <div class="post-content-preview">
                     P7课上为 4 道题
-第1题为必做题第2~4题为选做题，做出其中两道即达到通过条件
-&nbsp;
+第 1 题为必做题第 2~4 题为选做题，做出其中两道即达到通过条件
 题目如下：
-&nbsp;&nbsp;&nbsp;&nbsp;
 第1题：P6所有指令 &amp; mfc0 &amp; mtc0 &emsp;&emsp;&emsp;功能强测
-第2题： 第一题 &amp; 异常检测 &emsp;&emsp; &emsp; &emsp;&emsp;&emsp;异常强......
+第2题： 第1题 &amp; 异常检测 &emsp;&emsp; &emsp; &emsp;&emsp;&emsp;异常强测
+第3题： 第1题 &amp; 中断检测 &emsp;......
                 </div>
             </a>
             
@@ -327,18 +332,17 @@
 
         <div class="post-preview">
 
-            <a href="/2021/12/10/P6/">
+            <a href="/2021/12/10/CO - P6/">
                 <h2 class="post-title">
-                    P6
+                    CO - P6
                 </h2>
                 <h3 class="post-subtitle">
                     我的P6的课上题目
                 </h3>
                 <div class="post-content-preview">
-                    P6课上与P5大体相似（毕竟框架没变），也是一个计算指令、一个条件跳转并连接指令、一个条件写指令。
-&nbsp;&nbsp;
+                    P6课上为 3 道题
+第 1~3 题，做出其中两道即达到通过条件
 题目如下：
-&nbsp;&nbsp;
 P6_L1_bdsbds编码：
 
 
@@ -348,7 +352,12 @@ P6_L1_bdsbds编码：
 25&nbsp;&nbsp;21
 20&nbsp;&nbsp;16
 15&nbsp;&nbsp;11
-10&nbsp;&nbsp;&......
+10&nbsp;&nbsp;&nbsp;&nbsp;6
+5&nbsp;&nbsp;&nbsp;&nbsp;0
+
+
+
+......
                 </div>
             </a>
             
@@ -391,8 +400,6 @@ P6_L1_bdsbds编码：
                 <div class="tags">
                     
                       <a href="/tags/#碎碎念" title="碎碎念">碎碎念</a>
-                    
-                      <a href="/tags/#日常" title="日常">日常</a>
                     
                 </div>
             
@@ -465,19 +472,15 @@ Hexo-theme-snail is a succinct hexo theme. It has two colors, light and star, th
     <div class="tags">
         
             
-            <a href="/tags/#碎碎念" title="碎碎念" rel="1">碎碎念</a>
+            <a href="/tags/#hexo-theme-snail" title="hexo-theme-snail" rel="1">hexo-theme-snail</a>
             
         
             
-            <a href="/tags/#日常" title="日常" rel="1">日常</a>
+            <a href="/tags/#碎碎念" title="碎碎念" rel="2">碎碎念</a>
             
         
             
             <a href="/tags/#CO" title="CO" rel="3">CO</a>
-            
-        
-            
-            <a href="/tags/#hexo-theme-snail" title="hexo-theme-snail" rel="1">hexo-theme-snail</a>
             
         
     </div>
@@ -763,6 +766,21 @@ Hexo-theme-snail is a succinct hexo theme. It has two colors, light and star, th
     
         <script src="/js/ribbonDynamic.js"></script>
     
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 </body>
 
 </html>
