@@ -126,7 +126,7 @@
 	            <div class="blank_box"></div>
                             <div class="blank_box"></div>
                             <span class="meta">
-                                0 Words <span class="post-count"></span>
+                                322 Words <span class="post-count"></span>
                             </span>
                         
 
@@ -180,6 +180,10 @@
                     
 
                         
+                        	<li>
+                          	  <a href="/about/">About Tan</a>
+                        	</li>
+                        
                     
 
                         
@@ -189,10 +193,6 @@
                         
                     
 
-                        
-                        	<li>
-                          	  <a href="/about/">About Tan</a>
-                        	</li>
                         
                     
 
@@ -256,7 +256,135 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                
+                <p>P6课上为<b> 3 </b>道题</p>
+<p>第<b> 1~3 </b>题，做出其中两道即达到通过条件</p>
+<p>题目如下：</p>
+<h1 id="P4-L1-rlb"><a href="#P4-L1-rlb" class="headerlink" title="P4_L1_rlb"></a>P4_L1_rlb</h1><h2 id="rlb"><a href="#rlb" class="headerlink" title="rlb"></a>rlb</h2><p>编码：</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">31&nbsp;&nbsp;&nbsp;&nbsp;26</th>
+<th style="text-align:center">25&nbsp;&nbsp;21</th>
+<th style="text-align:center">20&nbsp;&nbsp;16</th>
+<th style="text-align:center">15&nbsp;&emsp;&emsp;&emsp;0</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">rlb<br>101010</td>
+<td style="text-align:center">rs</td>
+<td style="text-align:center">rt</td>
+<td style="text-align:center">imm</td>
+</tr>
+<tr>
+<td style="text-align:center">6</td>
+<td style="text-align:center">5</td>
+<td style="text-align:center">5</td>
+<td style="text-align:center">16</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>格式：</p>
+<pre><code>rlb rs, rt, imm
+</code></pre><p>描述：</p>
+<pre><code>指定位数取反
+</code></pre><p>操作：</p>
+<p>&emsp;&emsp;temp &lt;- GPR[rs]<sub>imm-1…0</sub><br>&emsp;&emsp;GPR[rt] &lt;- (GPR[rs]<sub>31…imm</sub> || ~temp)</p>
+<p>实例：</p>
+<pre><code>rlb $t1, $t2, 5
+</code></pre><p>其他：</p>
+<pre><code>无
+</code></pre><p>&nbsp;<br>&nbsp;</p>
+<h1 id="P4-L2-bnezalc"><a href="#P4-L2-bnezalc" class="headerlink" title="P4_L2_bnezalc"></a>P4_L2_bnezalc</h1><h2 id="bnezalc"><a href="#bnezalc" class="headerlink" title="bnezalc"></a>bnezalc</h2><p>编码：</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">31&nbsp;&nbsp;&nbsp;&nbsp;26</th>
+<th style="text-align:center">25&nbsp;&nbsp;21</th>
+<th style="text-align:center">20&nbsp;&nbsp;16</th>
+<th style="text-align:center">15&nbsp;&nbsp;&emsp;&emsp;&emsp;0</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">regimm<br>000001</td>
+<td style="text-align:center">rs</td>
+<td style="text-align:center">bnezalc<br>11001</td>
+<td style="text-align:center">offset</td>
+</tr>
+<tr>
+<td style="text-align:center">6</td>
+<td style="text-align:center">5</td>
+<td style="text-align:center">5</td>
+<td style="text-align:center">5</td>
+<td>5</td>
+<td>6</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>格式：</p>
+<pre><code>bnezalc rs, offset
+</code></pre><p>描述：</p>
+<pre><code>若 GPR[rs] != 0 跳转 并 Link
+</code></pre><p>操作：</p>
+<pre><code>I:
+    target_offset &lt;- sign_extend(offset||00)
+    condition &lt;- GPR[rs] != 0
+    If Condition:
+        GPR[31] &lt;- PC + 8
+    endif
+I+1:
+    If Condition:
+        PC ← PC + target_offset
+    endif
+</code></pre><p>实例：</p>
+<pre><code>bnezalc $t1, -1
+</code></pre><p>其他：</p>
+<pre><code>不跳转则不Link，视为nop
+</code></pre><p>&nbsp;<br>&nbsp;</p>
+<h1 id="P4-L3-lwrr"><a href="#P4-L3-lwrr" class="headerlink" title="P4_L3_lwrr"></a>P4_L3_lwrr</h1><h2 id="lwrr"><a href="#lwrr" class="headerlink" title="lwrr"></a>lwrr</h2><p>编码：</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">31&nbsp;&nbsp;&nbsp;&nbsp;26</th>
+<th style="text-align:center">25&nbsp;&nbsp;21</th>
+<th style="text-align:center">20&nbsp;&nbsp;16</th>
+<th style="text-align:center">&nbsp;&nbsp;15&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">lwrr<br>000011</td>
+<td style="text-align:center">base</td>
+<td style="text-align:center">rt</td>
+<td style="text-align:center">offset</td>
+</tr>
+<tr>
+<td style="text-align:center">6</td>
+<td style="text-align:center">5</td>
+<td style="text-align:center">5</td>
+<td style="text-align:center">16</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>格式：</p>
+<pre><code>lwrr rt, offset(base)
+</code></pre><p>描述：</p>
+<pre><code>根据内存后两位，循环右移后存入对应寄存器中
+</code></pre><p>操作：</p>
+<p>&emsp;&emsp;addr &lt;- GPR[base] + sign_extend(offset)<br>&emsp;&emsp;Paddr &lt;- Memory[(addr<sub>31…2</sub> || 0<sup>2</sup>)]<br>&emsp;&emsp;temp &lt;- addr<sub>1…0</sub><br>&emsp;&emsp;Vaddr &lt;- (Paddr<sub>temp…0</sub> || Paddr<sub>31…temp+1</sub>)<br>&emsp;&emsp;GPR[rt] &lt;- Vaddr</p>
+<p>实例：</p>
+<pre><code>lwrr $t5, 1($0)
+</code></pre><p>其他：</p>
+<pre><code>无
+</code></pre><p>&nbsp;<br>&nbsp;</p>
+
                 
                 <hr>
                 <!-- Pager -->
@@ -316,6 +444,17 @@
             <!-- Table of Contents -->
 
     
+      
+        <aside id="sidebar">
+          <div id="toc" class="toc-article">
+          <strong class="toc-title">Contents</strong>
+          
+            
+              <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#P4-L1-rlb"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">P4_L1_rlb</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#rlb"><span class="toc-nav-number">1.1.</span> <span class="toc-nav-text">rlb</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#P4-L2-bnezalc"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">P4_L2_bnezalc</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#bnezalc"><span class="toc-nav-number">2.1.</span> <span class="toc-nav-text">bnezalc</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#P4-L3-lwrr"><span class="toc-nav-number">3.</span> <span class="toc-nav-text">P4_L3_lwrr</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#lwrr"><span class="toc-nav-number">3.1.</span> <span class="toc-nav-text">lwrr</span></a></li></ol></li></ol>
+            
+          
+          </div>
+        </aside>
       
     
 
