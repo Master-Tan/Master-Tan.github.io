@@ -108,9 +108,9 @@
                     <div class="post-heading">
                         <div class="tags">
                             
-                              <a class="tag" href="/tags/#CO" title="CO">CO</a>
-                            
                               <a class="tag" href="/tags/#碎碎念" title="碎碎念">碎碎念</a>
+                            
+                              <a class="tag" href="/tags/#CO" title="CO">CO</a>
                             
                         </div>
                         <h1>计组实验总结</h1>
@@ -348,9 +348,9 @@
                     <h5><a href="/tags/">FEATURED TAGS</a></h5>
                     <div class="tags">
                        
-                          <a class="tag" href="/tags/#CO" title="CO">CO</a>
-                        
                           <a class="tag" href="/tags/#碎碎念" title="碎碎念">碎碎念</a>
+                        
+                          <a class="tag" href="/tags/#CO" title="CO">CO</a>
                         
                     </div>
                 </section>
@@ -581,6 +581,21 @@
     
         <script src="/js/ribbonDynamic.js"></script>
     
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 </body>
 
 </html>
