@@ -20,7 +20,7 @@
         
     </title>
 
-    <link rel="canonical" href="https://github.com/Master-Tan/Master-Tan.github.io.git/2021/11/25/CO-P4/">
+    <link rel="canonical" href="https://github.com/Master-Tan/Master-Tan.github.io.git/2021/11/25/CO - P4/">
 
     <!-- Bootstrap Core CSS -->
     
@@ -121,7 +121,7 @@
 	       
                             <div class="blank_box"></div>
                             <span class="meta">
-                                 <span class="post-count">320</span> Words
+                                 <span class="post-count">346</span> Words
                             </span>
                             <div class="blank_box"></div>
                             <!-- 不蒜子统计 start -->
@@ -181,6 +181,15 @@
                     
 
                         
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
                         	<li>
                           	  <a href="/about/">About Tan</a>
                         	</li>
@@ -198,12 +207,6 @@
                         	<li>
                           	  <a href="/tags/">Tags</a>
                         	</li>
-                        
-                    
-
-                        
-                    
-
                         
                     
                     
@@ -292,11 +295,11 @@
 </code></pre><p>描述：</p>
 <pre><code>指定位数取反
 </code></pre><p>操作：</p>
-<p>&emsp;&emsp;temp &lt;- GPR[rs]<sub>imm-1…0</sub><br>&emsp;&emsp;GPR[rt] &lt;- (GPR[rs]<sub>31…imm</sub> || ~temp)</p>
+<p>&emsp;&emsp;temp &lt;- GPR[rs]<sub>imm-1…0</sub><br>&emsp;&emsp;GPR[rt] &lt;- ( GPR[rs]<sub>31…imm</sub> || ~temp )</p>
 <p>实例：</p>
 <pre><code>rlb $t1, $t2, 5
 </code></pre><p>其他：</p>
-<pre><code>无
+<pre><code>保证 imm 的范围在 0 ~ 31 之间
 </code></pre><p>&nbsp;<br>&nbsp;</p>
 <h1 id="P4-L2-bnezalc"><a href="#P4-L2-bnezalc" class="headerlink" title="P4_L2_bnezalc"></a>P4_L2_bnezalc</h1><h2 id="bnezalc"><a href="#bnezalc" class="headerlink" title="bnezalc"></a>bnezalc</h2><p>编码：</p>
 <div class="table-container">
@@ -328,7 +331,7 @@
 <p>格式：</p>
 <pre><code>bnezalc rs, offset
 </code></pre><p>描述：</p>
-<pre><code>若 GPR[rs] != 0 跳转 并 Link
+<pre><code>若 GPR[rs] != 0 跳转并 Link
 </code></pre><p>操作：</p>
 <pre><code>I:
     target_offset &lt;- sign_extend(offset||00)
@@ -377,7 +380,7 @@ I+1:
 </code></pre><p>描述：</p>
 <pre><code>根据内存后两位，循环右移后存入对应寄存器中
 </code></pre><p>操作：</p>
-<p>&emsp;&emsp;addr &lt;- GPR[base] + sign_extend(offset)<br>&emsp;&emsp;Paddr &lt;- Memory[(addr<sub>31…2</sub> || 0<sup>2</sup>)]<br>&emsp;&emsp;temp &lt;- addr<sub>1…0</sub><br>&emsp;&emsp;Vaddr &lt;- (Paddr<sub>temp…0</sub> || Paddr<sub>31…temp+1</sub>)<br>&emsp;&emsp;GPR[rt] &lt;- Vaddr</p>
+<p>&emsp;&emsp;addr &lt;- GPR[base] + sign_extend(offset)<br>&emsp;&emsp;Paddr &lt;- Memory[ addr ]<br>&emsp;&emsp;temp &lt;- Paddr<sub>1…0</sub><br>&emsp;&emsp;if temp != 0：<br>&emsp;&emsp;&emsp;&emsp;Vaddr &lt;- ( Paddr<sub>(temp-1)…0</sub> || Paddr<sub>31…temp</sub> )<br>&emsp;&emsp;else：<br>&emsp;&emsp;&emsp;&emsp;Vaddr &lt;- Paddr<br>&emsp;&emsp;GPR[rt] &lt;- Vaddr</p>
 <p>实例：</p>
 <pre><code>lwrr $t5, 1($0)
 </code></pre><p>其他：</p>
@@ -390,7 +393,7 @@ I+1:
                 <ul class="pager">
                     
                     <li class="previous">
-                        <a href="/2021/12/03/CO-P5/" data-toggle="tooltip" data-placement="top" title="CO - P5">&larr; Previous Post
+                        <a href="/2021/12/03/CO - P5/" data-toggle="tooltip" data-placement="top" title="CO - P5">&larr; Previous Post
 		<br>
 		<span><font size="2" face="Calibri" color="grey">CO - P5</font></span>
 	       </a>
