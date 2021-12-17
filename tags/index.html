@@ -166,13 +166,6 @@
                     
 
                         
-                        	<li>
-                          	  <a href="/archive/">Archives</a>
-                        	</li>
-                        
-                    
-
-                        
                     
 
                         
@@ -182,6 +175,13 @@
                         
                     
 
+                        
+                    
+
+                        
+                        	<li>
+                          	  <a href="/archive/">Archives</a>
+                        	</li>
                         
                     
 
@@ -234,9 +234,9 @@
             <!-- 标签云 -->
             <div id='tag_clouds' class="tags">
                 
-                    <a href="#碎碎念" title="碎碎念" rel="2">碎碎念</a>
-                
                     <a href="#hexo-theme-snail" title="hexo-theme-snail" rel="1">hexo-theme-snail</a>
+                
+                    <a href="#碎碎念" title="碎碎念" rel="2">碎碎念</a>
                 
                     <a href="#CO" title="CO" rel="5">CO</a>
                 
@@ -244,6 +244,36 @@
 
             <!-- 标签列表 -->
 
+            
+            <div class="one-tag-list">
+                <span class="fa fa-tag listing-seperator" id="hexo-theme-snail">
+                    <span class="tag-text">hexo-theme-snail</span>
+                </span>
+                
+                  <!-- <li class="listing-item">
+                  <time datetime="{{ post.date | date:"%Y-%m-%d" }}">{{ post.date | date:"%Y-%m-%d" }}</time>
+                  <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
+                  </li> -->
+
+     	 
+                 <div class="post-preview">
+                     <a href="/2021/10/01/Hexo-Theme-Snail/">
+                        <h2 class="post-title">
+                            Hexo主题博客搭建过程
+                        </h2>
+                        
+                            <h3 class="post-subtitle">
+                                How to build a blog
+                            </h3>
+                        
+                    </a>
+                    <!-- <p class="post-meta">{{ post.date | date:"%Y-%m-%d" }}</p> -->
+                </div>
+                <hr>
+	
+
+                
+            </div>
             
             <div class="one-tag-list">
                 <span class="fa fa-tag listing-seperator" id="碎碎念">
@@ -283,36 +313,6 @@
                         
                             <h3 class="post-subtitle">
                                 P0 - P7 计组实验上机一些经历
-                            </h3>
-                        
-                    </a>
-                    <!-- <p class="post-meta">{{ post.date | date:"%Y-%m-%d" }}</p> -->
-                </div>
-                <hr>
-	
-
-                
-            </div>
-            
-            <div class="one-tag-list">
-                <span class="fa fa-tag listing-seperator" id="hexo-theme-snail">
-                    <span class="tag-text">hexo-theme-snail</span>
-                </span>
-                
-                  <!-- <li class="listing-item">
-                  <time datetime="{{ post.date | date:"%Y-%m-%d" }}">{{ post.date | date:"%Y-%m-%d" }}</time>
-                  <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
-                  </li> -->
-
-     	 
-                 <div class="post-preview">
-                     <a href="/2021/10/01/Hexo-Theme-Snail/">
-                        <h2 class="post-title">
-                            Hexo主题博客搭建过程
-                        </h2>
-                        
-                            <h3 class="post-subtitle">
-                                How to build a blog
                             </h3>
                         
                     </a>
@@ -382,6 +382,29 @@
 
      	 
                  <div class="post-preview">
+                     <a href="/2021/12/16/计组实验总结/">
+                        <h2 class="post-title">
+                            计组实验总结
+                        </h2>
+                        
+                            <h3 class="post-subtitle">
+                                P0 - P7 计组实验上机一些经历
+                            </h3>
+                        
+                    </a>
+                    <!-- <p class="post-meta">{{ post.date | date:"%Y-%m-%d" }}</p> -->
+                </div>
+                <hr>
+	
+
+                
+                  <!-- <li class="listing-item">
+                  <time datetime="{{ post.date | date:"%Y-%m-%d" }}">{{ post.date | date:"%Y-%m-%d" }}</time>
+                  <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
+                  </li> -->
+
+     	 
+                 <div class="post-preview">
                      <a href="/2021/12/10/CO - P6/">
                         <h2 class="post-title">
                             CO - P6
@@ -412,29 +435,6 @@
                         
                             <h3 class="post-subtitle">
                                 我的P7的课上题目
-                            </h3>
-                        
-                    </a>
-                    <!-- <p class="post-meta">{{ post.date | date:"%Y-%m-%d" }}</p> -->
-                </div>
-                <hr>
-	
-
-                
-                  <!-- <li class="listing-item">
-                  <time datetime="{{ post.date | date:"%Y-%m-%d" }}">{{ post.date | date:"%Y-%m-%d" }}</time>
-                  <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
-                  </li> -->
-
-     	 
-                 <div class="post-preview">
-                     <a href="/2021/12/16/计组实验总结/">
-                        <h2 class="post-title">
-                            计组实验总结
-                        </h2>
-                        
-                            <h3 class="post-subtitle">
-                                P0 - P7 计组实验上机一些经历
                             </h3>
                         
                     </a>
@@ -631,21 +631,6 @@
     
         <script src="/js/ribbonDynamic.js"></script>
     
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
-            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-            processEscapes: true
-        }
-    });
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax();
-        for (var i = 0; i < all.length; ++i)
-            all[i].SourceElement().parentNode.className += ' has-jax';
-    });
-</script>
-<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 </body>
 
 </html>
