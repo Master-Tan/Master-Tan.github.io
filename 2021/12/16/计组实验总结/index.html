@@ -123,7 +123,7 @@
 	       
                             <div class="blank_box"></div>
                             <span class="meta">
-                                 <span class="post-count">2.2k</span> Words
+                                 <span class="post-count">2.3k</span> Words
                             </span>
                             <div class="blank_box"></div>
                             <!-- 不蒜子统计 start -->
@@ -183,12 +183,12 @@
                     
 
                         
+                    
+
+                        
                         	<li>
                           	  <a href="/archive/">Archives</a>
                         	</li>
-                        
-                    
-
                         
                     
 
@@ -200,15 +200,15 @@
                     
 
                         
+                    
+
+                        
+                    
+
+                        
                         	<li>
                           	  <a href="/tags/">Tags</a>
                         	</li>
-                        
-                    
-
-                        
-                    
-
                         
                     
                     
@@ -276,7 +276,7 @@
 <h1 id="P1"><a href="#P1" class="headerlink" title="P1"></a>P1</h1><h2 id="课下：-2"><a href="#课下：-2" class="headerlink" title="课下："></a>课下：</h2><h2 id="课上：-2"><a href="#课上：-2" class="headerlink" title="课上："></a>课上：</h2><p>&emsp;  </p>
 <h1 id="P2"><a href="#P2" class="headerlink" title="P2"></a>P2</h1><h2 id="课下：-3"><a href="#课下：-3" class="headerlink" title="课下："></a>课下：</h2><h2 id="课上：-3"><a href="#课上：-3" class="headerlink" title="课上："></a>课上：</h2><p>&emsp;  </p>
 <h1 id="P3"><a href="#P3" class="headerlink" title="P3"></a>P3</h1><h2 id="课下：-4"><a href="#课下：-4" class="headerlink" title="课下："></a>课下：</h2><h2 id="课上：-4"><a href="#课上：-4" class="headerlink" title="课上："></a>课上：</h2><p>&emsp;  </p>
-<h1 id="P4"><a href="#P4" class="headerlink" title="P4"></a>P4</h1><h2 id="课下：-5"><a href="#课下：-5" class="headerlink" title="课下："></a>课下：</h2><h2 id="课上：-5"><a href="#课上：-5" class="headerlink" title="课上："></a>课上：</h2><p>&emsp;&emsp;单周期 CPU 的加指令其实就是 P3 加指令的代码化，在搭建 P4 的课下的过程中基本上我们对数据通路的实现已基本熟悉，这里建议在课下提交的 zip 文件中附上 P3 的 logisim 文件，课上的时候可以对照 logisim 先想好要加哪些通路和控制信号，在代码中实现即可。这里建议在 Control Unit 中额外留出一个端口专门处理课上新增的信号，然后由这个端口控制顶层模块中的模块行为，此外注意课上的时候该跳题就跳题，不要执着于某一道题，因为某一道题的考点可能特别阴间，由于是第一次 verilog 的CPU上机，有些 verilog 语法有可能还不是太熟悉，所以遇到不确定的或者完全不会的题目要求果断跳过！<br>&emsp;  </p>
+<h1 id="P4"><a href="#P4" class="headerlink" title="P4"></a>P4</h1><h2 id="课下：-5"><a href="#课下：-5" class="headerlink" title="课下："></a>课下：</h2><h2 id="课上：-5"><a href="#课上：-5" class="headerlink" title="课上："></a>课上：</h2><p>&emsp;&emsp;单周期 CPU 的加指令其实就是 P3 加指令的代码化，在搭建 P4 的课下的过程中基本上我们对数据通路的实现已基本熟悉，这里建议在课下提交的 zip 文件中附上 P3 的 logisim 文件，课上的时候可以对照 logisim 先想好要加哪些通路和控制信号，在代码中实现即可。<br>&emsp;&emsp;这里建议在 Control Unit 中额外留出一个端口专门处理课上新增的信号，然后由这个端口控制顶层模块中的模块行为，此外注意课上的时候该跳题就跳题，不要执着于某一道题，因为某一道题的考点可能特别阴间；（我就是这么挂的嘤）由于是第一次 verilog 的 CPU 上机，有些 verilog 语法有可能还不是太熟悉（我挂 P4 的就是因为死磕第一题计算类的可变数的循环移位指令然后就寄了），所以遇到不确定的或者完全不会的题目要求或描述果断跳过！<br>&emsp;&emsp;课后问答主要是看你的课上编写的验证的测试程序 (mars) &amp; 要求你讲述课上的加指令的思路 &amp; 如果你写了课下测评程序的话会让你去 5 号实验室答辩（讲解思路&amp;实现细节问答）<br>&emsp;  </p>
 <h1 id="P5"><a href="#P5" class="headerlink" title="P5"></a>P5</h1><h2 id="课下：-6"><a href="#课下：-6" class="headerlink" title="课下："></a>课下：</h2><h2 id="课上：-6"><a href="#课上：-6" class="headerlink" title="课上："></a>课上：</h2><p>总结一下流水线课上<b>加指令流程</b>( P5 &amp; P6 )：<br>&emsp;&emsp;1.构建数据通路<br>&emsp;&emsp;2.加控制信号<br>&emsp;&emsp;3.加暂停、转发条件<br>所有加指令都离不开上面这三步，课上的时候只要条理清晰，按部就班的分析指令的操作，一步一步的把指令加入你的流水线中即可。</p>
 <p>&emsp;&emsp;第一次的 P5 很难，绝大多数人挂了，课上还临时延长了半小时做题时间，据说是因为通过率太低，但多的这半个小时在大多数同学口中就是多坐了半小时的牢（◐ˍ◑），所以 P5 第一次的通过人数可以说低到令人发指（挂了一次 P4 的小菜鸡表示幸好本人没赶上这次堪称变态的考试）<br>&emsp;&emsp;第二次 P5 的指令相对而言就正常很多了，三条指令分别为一个计算指令、一个条件跳转并连接指令、一个条件写指令。<br>&emsp;&emsp;计算指令的控制信号与其他的计算指令完全相似，数据通路不变，控制信号只需要更改ALU_Control信号，并且在ALU中加入对应操作，然后在转发&amp;暂停中把它并入cal_r/cal_i型指令即可。10min中之内可以解决。<br>&emsp;&emsp;条件跳转并连接指令也与其他跳转指令大抵相同，但这次的清空延迟槽操作十分有难度，清空延迟槽操作就是在不跳转的时候不执行下一条指令（延迟槽中的指令）而是执行下下条指令，那么这种情况就需要我们在不跳的时候在上升沿清空F级到D级的寄存器，相当于使延迟槽中指令变为nop，但要注意当该条跳转类指令被阻塞在D级的时候不能清空延迟槽，因为是否跳转的结果还没被计算出来，无法判断是否需要清空。所以在D级的reset信号<b>或</b>一个是该条跳转指令并且不阻塞不跳转的判断即可。<br>&emsp;&emsp;条件写指令与其他写指令的不同之处在于，它具体写哪个寄存器是根据从内存中取出来的数的某些特征判断而得的，也就是在M级才知道要写哪个寄存器，对于条件存储类指令，我们只有到M级才知道写入目标是什么，这对会我们的转发和暂停造成影响。我们需要对stall信号的生成逻辑进行修改，即：如果 D 级的指令要读寄存器，而且后面的新指令可能要写这个寄存器，那么就stall。此外我们还需要在M级根据DM取出的值修改A3（GRF写入地址），然后再传入下一级流水寄存器W_REG和Hazard_Unit即可。<br>&emsp;&emsp;课后问答的话，助教会先让你讲课上题目的加指令的方法&amp;转发/暂停思路，然后极快速的浏览一遍你的文档，让你讲思考题其中一题你是怎么想的，如果你写了自动测试程序，会先大致浏览一遍你的程序，然后问你数据是怎么构造的，要考虑哪几种情况balabala……然后会让你到5号实验室，那里会有专门的助教问你的测序程序的思路，但是，只要你把你的测试程序打包成一个可正确执行的exe（务必注意路径问题！），他就不会问你（也问不了） 并且算你通过嘿嘿嘿(º﹃º)<br>&emsp;&emsp;本人做的 P5 为第二次 P5，所以还算简单（相对而言），但是条件跳转的转发少考虑了一种情况导致耽误了很久…，最后只能做两题勉强通关…（分数—）。<br>&emsp;  </p>
 <h1 id="P6"><a href="#P6" class="headerlink" title="P6"></a>P6</h1><h2 id="课下：-7"><a href="#课下：-7" class="headerlink" title="课下："></a>课下：</h2><h2 id="课上：-7"><a href="#课上：-7" class="headerlink" title="课上："></a>课上：</h2><p>&emsp;&emsp;P6课上与P5大体相似（毕竟框架没变），也是一个计算指令、一个条件跳转并连接指令、一个条件写指令。所加的方法也基本没变，再次就不再赘述了。<br>&emsp;&emsp;本人上机时第一题做的很顺利，但是第二题改了原本的输出控制信号忘记改写对外DM的写寄存器控制信号，导致我花费了很久时间debug…然后条件写就基本没啥时间看了…然后匆忙加完一直过不了，好气啊啊啊（最终还是没做出来条件写www，一直报WA，我也不知道为什么了……o(╥﹏╥)o ）<br>&emsp;&emsp;问答的话与P5大抵相同，也就不再重复了。<br>&emsp;  </p>
@@ -595,6 +595,21 @@
     
         <script src="/js/ribbonDynamic.js"></script>
     
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 </body>
 
 </html>
