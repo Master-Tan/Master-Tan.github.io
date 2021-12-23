@@ -121,7 +121,7 @@
 	       
                             <div class="blank_box"></div>
                             <span class="meta">
-                                 <span class="post-count">536</span> Words
+                                 <span class="post-count">533</span> Words
                             </span>
                             <div class="blank_box"></div>
                             <!-- 不蒜子统计 start -->
@@ -182,13 +182,6 @@
 
                         
                         	<li>
-                          	  <a href="/about/">About Tan</a>
-                        	</li>
-                        
-                    
-
-                        
-                        	<li>
                           	  <a href="/archive/">Archives</a>
                         	</li>
                         
@@ -196,7 +189,7 @@
 
                         
                         	<li>
-                          	  <a href="/tags/">Tags</a>
+                          	  <a href="/about/">About Tan</a>
                         	</li>
                         
                     
@@ -207,6 +200,13 @@
                         
                     
 
+                        
+                    
+
+                        
+                        	<li>
+                          	  <a href="/tags/">Tags</a>
+                        	</li>
                         
                     
                     
@@ -385,7 +385,7 @@ I+1:
 </code></pre><p>描述：</p>
 <pre><code>根据内存取出半字执行对应存取操作，判断这个半字中是1多还是0多，1多执行存储lh操作，0多执行往31号寄存器存PC + 4操作
 </code></pre><p>操作：</p>
-<p>&emsp;&emsp;Vaddr &lt;- GPR[base] + sign_extend(offset)<br>&emsp;&emsp;byte &lt;- Vaddr<sub>1</sub><br>&emsp;&emsp;memword &lt;- Memory[ ( Vaddr<sub>31:2</sub> || 0<sup>2</sup> ) ]<sub>15+16*byte…16*byte</sub><br>&emsp;&emsp;Cnt0 &lt;- memword contains ‘0’<br>&emsp;&emsp;Cnt1 &lt;- memword contains ‘1’<br>&emsp;&emsp;Condition &lt;- Cnt1 &gt; Cnt0<br>&emsp;&emsp;If Condition:<br>&emsp;&emsp;&emsp;&emsp;GPR[rt] &lt;- zero_ext(memword)&lt;/sub&gt;<br>&emsp;&emsp;else:<br>&emsp;&emsp;&emsp;&emsp;GPR[31] &lt;- PC + 4</p>
+<p>&emsp;&emsp;Vaddr &lt;- GPR[base] + sign_extend(offset)<br>&emsp;&emsp;byte &lt;- Vaddr<sub>1</sub><br>&emsp;&emsp;memword &lt;- Memory[ ( Vaddr<sub>31:2</sub> || 0<sup>2</sup> ) ]<sub>15+16*byte…16*byte</sub><br>&emsp;&emsp;Cnt0 &lt;- memword contains ‘0’<br>&emsp;&emsp;Cnt1 &lt;- memword contains ‘1’<br>&emsp;&emsp;Condition &lt;- Cnt1 &gt; Cnt0<br>&emsp;&emsp;If Condition:<br>&emsp;&emsp;&emsp;&emsp;GPR[rt] &lt;- zero_ext(memword)<br>&emsp;&emsp;else:<br>&emsp;&emsp;&emsp;&emsp;GPR[31] &lt;- PC + 4</p>
 <p>实例：</p>
 <pre><code>lhogez $t5, -100($0)
 </code></pre><p>其他：</p>
@@ -710,21 +710,6 @@ I+1:
     
         <script src="/js/ribbonDynamic.js"></script>
     
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
-            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-            processEscapes: true
-        }
-    });
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax();
-        for (var i = 0; i < all.length; ++i)
-            all[i].SourceElement().parentNode.className += ' has-jax';
-    });
-</script>
-<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 </body>
 
 </html>
