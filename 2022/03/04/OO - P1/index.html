@@ -184,17 +184,6 @@
                     
 
                         
-                        	<li>
-                          	  <a href="/archive/">Archives</a>
-                        	</li>
-                        
-                    
-
-                        
-                        	<li>
-                          	  <a href="/tags/">Tags</a>
-                        	</li>
-                        
                     
 
                         
@@ -205,8 +194,19 @@
                     
 
                         
+                        	<li>
+                          	  <a href="/archive/">Archives</a>
+                        	</li>
+                        
                     
 
+                        
+                    
+
+                        
+                        	<li>
+                          	  <a href="/tags/">Tags</a>
+                        	</li>
                         
                     
                     
@@ -283,8 +283,8 @@
 <li><p>简单介绍一下递归下降算法：</p>
 <p>递归下降是一种根据形式化语法对字符串进行解析的算法。</p>
 <p>递归下降的思想是对于每一个语法元素，都用单独的函数对其进行读取。其中难点在于因子的解析，使用递归下降时只要直接调用对应的解析函数 parseXXX() 即可。</p>
-<p>parseXXX() 的要点在于，调用时要只要保证当前位置恰好在 XXX 的开头，而且调用完他就能解析完这个元素，而具体这些儿子部分是怎么解析的就交给对应的方法。可以看出这个方法比较像分治。</p>
-</li>
+<p>parseXXX() 的要点在于，调用时要只要保证当前位置恰好在 XXX 的开头，而且调用完他就能解析完这个元素，而具体这些儿子部分是怎么解析的就交给对应的方法。这个方法比较像分治。  </p>
+<br></li>
 <li><p>首先对表达式进行预处理</p>
 <ol>
 <li><p>去除所有<strong>空白</strong>字符</p>
@@ -296,12 +296,26 @@
 <li><p>在表达式中 <code>**</code> 后面<strong>紧跟着</strong>的 <code>+</code> 号，删除之</p>
 </li>
 </ol>
-</li>
+<br></li>
 <li><p>通过利用形式化表述定义，将表达式分成了四个层次：因子（常量或变量）、基本项（幂）、项（乘除）、表达式（加减），这三种结构对应了三种对象。我们下面分别进行讨论对这些对象的解析：</p>
+<br>
+
 <ul>
 <li>对于因子（常量或变量）的解析：若下一个字符为单目运算符或者是数字或者是变量 x ，则不断看下一个字符是否是数字。如果不是数字，那么说明下一个符号不属于因子，即对因子的解析结束。</li>
+</ul>
+<br>
+
+<ul>
 <li>对基本项（幂）的解析：基本项由因子的幂次方组成，即为 <code>[加减] 因子 ** 带符号整数</code> 。当解析到一个因子后，若下一个解析到的为 <code>**</code> ，那么读入这个符号并做处理，然后下一个符号一定是一个带符号整数，否则，说明基本项的解析结束了。</li>
+</ul>
+<br>
+
+<ul>
 <li>对项（乘除）的解析：项由基本项或因子和乘除符号组成，即为 <code>[加减] 因子 | 项 * 因子</code> ，处理方法与基本项相似。</li>
+</ul>
+<br>
+
+<ul>
 <li>对表达式（加减）的解析：表达式由项和加减符号组成，即为：<br>通过题目所给的形式化表述可以表叫容易地建立层次，并且通过方法的互相调用完成解析。递归下降方法的好处在于，它可以通过方法之间的间接递归调用，非常自然地处理嵌套的表达式（即带嵌套括号的表达式）。</li>
 </ul>
 <br></li>
@@ -309,14 +323,25 @@
 </li>
 <li><p><code>2.</code>后缀表达式计算</p>
 <ul>
-<li>第<strong>1</strong>步中所得的后缀表达式中，运算符为 <code>+/-/*/**</code> ，操作数为 <code>带符号整数 / 变量x</code>。</li>
-<li>把所有操作数和运算结果视为一系列单项式之和（多项式）</li>
-<li>则：<ul>
+<li><p>第<strong>1</strong>步中所得的后缀表达式中，运算符为 <code>+/-/*/**</code> ，操作数为 <code>带符号整数 / 变量x</code>。</p>
+<br>
+</li>
+<li><p>把所有操作数和运算结果视为一系列单项式之和（多项式）</p>
+<br>
+</li>
+<li><p>则：</p>
+<ul>
 <li>对于 <code>带符号整数</code> ，视为指数为零，系数为带符号整数的值的单项式</li>
+</ul>
+<br>
+
+<ul>
 <li>对于 <code>变量x</code> ，视为指数和系数均为 1 的单项式</li>
 </ul>
+<br>
 </li>
-<li>由于后缀表达式的便利性，因此我们每读到一个运算符，就对最近的两个多项式进行对应运算并返回一个多项式即可</li>
+<li><p>由于后缀表达式的便利性，因此我们每读到一个运算符，就对最近的两个多项式进行对应运算并返回一个多项式即可</p>
+</li>
 </ul>
 </li>
 </ul>
@@ -701,21 +726,6 @@
     
         <script src="/js/ribbonDynamic.js"></script>
     
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
-            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-            processEscapes: true
-        }
-    });
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax();
-        for (var i = 0; i < all.length; ++i)
-            all[i].SourceElement().parentNode.className += ' has-jax';
-    });
-</script>
-<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 </body>
 
 </html>
