@@ -184,9 +184,6 @@
                     
 
                         
-                    
-
-                        
                         	<li>
                           	  <a href="/about/">About Tan</a>
                         	</li>
@@ -207,6 +204,9 @@
                         	<li>
                           	  <a href="/tags/">Tags</a>
                         	</li>
+                        
+                    
+
                         
                     
                     
@@ -269,8 +269,8 @@
 <hr>
 <h3 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h3><p>我们要做的是对单变量多项式的括号展开，并且化简输出，所以我的思路为分为两步：</p>
 <ul>
-<li>$1.$ 将输入表达式转化为后缀表达式 <b>（展开括号）</b></li>
-<li>$2.$ 将后缀表达式计算并化简为顺序结果 <b>（计算结果）</b></li>
+<li><b>1.</b> 将输入表达式转化为后缀表达式 <b>（展开括号）</b></li>
+<li><b>2.</b> 将后缀表达式计算并化简为顺序结果 <b>（计算结果）</b></li>
 </ul>
 <p>首先，用递归下降法解析输入，将输入的表达式进行化简和拆解，得到一个不含括号的后缀表达式字符串。接着再按照多项式运算规则进行运算并合并同类项，最后结果进行排序，最后输出结果。</p>
 <br>
@@ -726,6 +726,21 @@
     
         <script src="/js/ribbonDynamic.js"></script>
     
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 </body>
 
 </html>
