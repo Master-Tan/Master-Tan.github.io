@@ -121,7 +121,7 @@
 	       
                             <div class="blank_box"></div>
                             <span class="meta">
-                                 <span class="post-count">189</span> Words
+                                 <span class="post-count">1.3k</span> Words
                             </span>
                             <div class="blank_box"></div>
                             <!-- 不蒜子统计 start -->
@@ -181,6 +181,9 @@
                     
 
                         
+                    
+
+                        
                         	<li>
                           	  <a href="/archive/">Archives</a>
                         	</li>
@@ -188,18 +191,15 @@
                     
 
                         
-                    
-
-                        
                         	<li>
-                          	  <a href="/about/">About Tan</a>
+                          	  <a href="/tags/">Tags</a>
                         	</li>
                         
                     
 
                         
                         	<li>
-                          	  <a href="/tags/">Tags</a>
+                          	  <a href="/about/">About Tan</a>
                         	</li>
                         
                     
@@ -260,10 +260,12 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <h1 id="面向对象第一次作业"><a href="#面向对象第一次作业" class="headerlink" title="面向对象第一次作业"></a>面向对象第一次作业</h1><h4 id="表达式展开"><a href="#表达式展开" class="headerlink" title="表达式展开"></a>表达式展开</h4><p>&emsp;</p>
+                <h1 id="面向对象第一次作业"><a href="#面向对象第一次作业" class="headerlink" title="面向对象第一次作业"></a>面向对象第一次作业</h1><h4 id="表达式展开"><a href="#表达式展开" class="headerlink" title="表达式展开"></a>表达式展开</h4><br>
+
 <hr>
 <h3 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h3><p><a href="../OO-P1-Question">题目链接</a></p>
-<p>&emsp;</p>
+<br>
+
 <hr>
 <h3 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h3><p>我们要做的是对单变量多项式的括号展开，并且化简输出，所以我的思路为分为两步：</p>
 <ul>
@@ -271,11 +273,115 @@
 <li>$2.$ 将后缀表达式计算并化简为顺序结果 <b>（计算结果）</b></li>
 </ul>
 <p>首先，用递归下降法解析输入，将输入的表达式进行化简和拆解，得到一个不含括号的后缀表达式字符串。接着再按照多项式运算规则进行运算并合并同类项，最后结果进行排序，最后输出结果。</p>
-<p>&emsp;</p>
+<br>
+
 <hr>
-<h3 id="架构"><a href="#架构" class="headerlink" title="架构"></a>架构</h3><p>代码UML类图如下：</p>
-<p>&emsp;</p>
+<h3 id="基本思路"><a href="#基本思路" class="headerlink" title="基本思路"></a>基本思路</h3><p>我的代码分为了两大部分，分别实现两种相互独立的功能，并用main函数实现连接</p>
+<ul>
+<li><p><code>1.</code>递归下降法求后缀表达式</p>
+<ul>
+<li><p>简单介绍一下递归下降算法：</p>
+<p>递归下降是一种根据形式化语法对字符串进行解析的算法。</p>
+<p>递归下降的思想是对于每一个语法元素，都用单独的函数对其进行读取。其中难点在于因子的解析，使用递归下降时只要直接调用对应的解析函数 parseXXX() 即可。</p>
+<p>parseXXX() 的要点在于，调用时要只要保证当前位置恰好在 XXX 的开头，而且调用完他就能解析完这个元素，而具体这些儿子部分是怎么解析的就交给对应的方法。可以看出这个方法比较像分治。</p>
+</li>
+<li><p>首先对表达式进行预处理</p>
+<ol>
+<li><p>去除所有<strong>空白</strong>字符</p>
+</li>
+<li><p>若<strong>第一项</strong>为符号，则在表达式开头补 0</p>
+</li>
+<li><p>在表达式中连续的 <code>+/-</code> 号，整合成<strong>一个</strong> <code>+/-</code> 号</p>
+</li>
+<li><p>在表达式中 <code>**</code> 后面<strong>紧跟着</strong>的 <code>+</code> 号，删除之</p>
+</li>
+</ol>
+</li>
+<li><p>通过利用形式化表述定义，将表达式分成了四个层次：因子（常量或变量）、基本项（幂）、项（乘除）、表达式（加减），这三种结构对应了三种对象。我们下面分别进行讨论对这些对象的解析：</p>
+<ul>
+<li>对于因子（常量或变量）的解析：若下一个字符为单目运算符或者是数字或者是变量 x ，则不断看下一个字符是否是数字。如果不是数字，那么说明下一个符号不属于因子，即对因子的解析结束。</li>
+<li>对基本项（幂）的解析：基本项由因子的幂次方组成，即为 <code>[加减] 因子 ** 带符号整数</code> 。当解析到一个因子后，若下一个解析到的为 <code>**</code> ，那么读入这个符号并做处理，然后下一个符号一定是一个带符号整数，否则，说明基本项的解析结束了。</li>
+<li>对项（乘除）的解析：项由基本项或因子和乘除符号组成，即为 <code>[加减] 因子 | 项 * 因子</code> ，处理方法与基本项相似。</li>
+<li>对表达式（加减）的解析：表达式由项和加减符号组成，即为：<br>通过题目所给的形式化表述可以表叫容易地建立层次，并且通过方法的互相调用完成解析。递归下降方法的好处在于，它可以通过方法之间的间接递归调用，非常自然地处理嵌套的表达式（即带嵌套括号的表达式）。</li>
+</ul>
+<br></li>
+</ul>
+</li>
+<li><p><code>2.</code>后缀表达式计算</p>
+<ul>
+<li>第<strong>1</strong>步中所得的后缀表达式中，运算符为 <code>+/-/*/**</code> ，操作数为 <code>带符号整数 / 变量x</code>。</li>
+<li>把所有操作数和运算结果视为一系列单项式之和（多项式）</li>
+<li>则：<ul>
+<li>对于 <code>带符号整数</code> ，视为指数为零，系数为带符号整数的值的单项式</li>
+<li>对于 <code>变量x</code> ，视为指数和系数均为 1 的单项式</li>
+</ul>
+</li>
+<li>由于后缀表达式的便利性，因此我们每读到一个运算符，就对最近的两个多项式进行对应运算并返回一个多项式即可</li>
+</ul>
+</li>
+</ul>
+<br>
+
 <hr>
+<h3 id="具体实现"><a href="#具体实现" class="headerlink" title="具体实现"></a>具体实现</h3><h4 id="总UML类图："><a href="#总UML类图：" class="headerlink" title="总UML类图："></a>总UML类图：</h4><img src="MainClass.png"  alt="2" />
+
+<ul>
+<li><h4 id="读取处理类-Lexer"><a href="#读取处理类-Lexer" class="headerlink" title="读取处理类 Lexer"></a>读取处理类 <code>Lexer</code></h4><img src="1.png"  alt="2" />  
+
+<ul>
+<li>对字符串进行必要的预处理</li>
+<li>读取数字需要判断正负（即该数前面的 <code>+/-</code> 号（如果有）是否是单目运算符）</li>
+</ul>
+</li>
+<li><h4 id="解析类-Parser"><a href="#解析类-Parser" class="headerlink" title="解析类 Parser"></a>解析类 <code>Parser</code></h4><img src="2.png"  alt="2" />  
+
+<ul>
+<li>使用递归下降法处理表达式</li>
+<li>若是识别到左括号 <code>(</code> 则递归调用 <code>parseExpression()</code> 先处理括号内的内容即可</li>
+</ul>
+</li>
+<li><h4 id="多项式类-Item"><a href="#多项式类-Item" class="headerlink" title="多项式类 Item"></a>多项式类 <code>Item</code></h4><img src="3.png"  alt="2" />  
+
+<ul>
+<li>对于多项式的 <code>+/-/*/**</code> 操作均在该类中使用公开函数实现，需要时根据运算符类型调用即可</li>
+</ul>
+</li>
+<li><h4 id="因子类接口-Factor"><a href="#因子类接口-Factor" class="headerlink" title="因子类接口 Factor"></a>因子类接口 <code>Factor</code></h4><img src="4.png"  alt="2" />  
+
+<ul>
+<li><h5 id="表达式（加减）类-Expression"><a href="#表达式（加减）类-Expression" class="headerlink" title="表达式（加减）类 Expression"></a>表达式（加减）类 <code>Expression</code></h5><img src="5.png"  alt="2" />  
+
+<ul>
+<li>由于 <code>+</code> 和 <code>-</code> 地位相同，所以让该类自带一个队列（此处用    <code>ArrayList</code> 实现，并用 <code>flag</code> 标记队首</li>
+<li>重写 <code>toString</code> 方法，把保存在该类中的数逐个输出并用 <code>+/-(队首元素)</code> 相连</li>
+</ul>
+</li>
+<li><h5 id="项（乘除）类-Term"><a href="#项（乘除）类-Term" class="headerlink" title="项（乘除）类 Term"></a>项（乘除）类 <code>Term</code></h5><img src="6.png"  alt="2" />  
+
+<ul>
+<li>重写 <code>toString</code> 方法，把保存在该类中的数逐个输出并用 <code>*</code> 相连</li>
+</ul>
+</li>
+<li><h5 id="基本项（幂）类-Basic"><a href="#基本项（幂）类-Basic" class="headerlink" title="基本项（幂）类 Basic"></a>基本项（幂）类 <code>Basic</code></h5><img src="7.png"  alt="2" />  
+
+<ul>
+<li>重写 <code>toString</code> 方法，把保存在该类中的数逐个输出并用 <code>**</code> 相连</li>
+</ul>
+</li>
+<li><h5 id="常量类-Constant"><a href="#常量类-Constant" class="headerlink" title="常量类 Constant"></a>常量类 <code>Constant</code></h5><img src="8.png"  alt="2" />  </li>
+<li><h5 id="变量类-Variable"><a href="#变量类-Variable" class="headerlink" title="变量类 Variable"></a>变量类 <code>Variable</code></h5><img src="9.png"  alt="2" /></li>
+</ul>
+</li>
+</ul>
+<br>
+
+<hr>
+<p>优化小方法：  </p>
+<ol>
+<li>把 <code>x**2</code> 用 <code>x*x</code> 替换</li>
+<li>把多项式的首个<strong>非负项</strong>放在表达式首位显示</li>
+<li>……</li>
+</ol>
 
                 
                 <hr>
@@ -283,7 +389,7 @@
                 <ul class="pager">
                     
                     <li class="previous">
-                        <a href="/2022/03/04/OO-P1-Question/" data-toggle="tooltip" data-placement="top" title="OO - P1 - Question">&larr; Previous Post
+                        <a href="/2022/03/04/OO - P1 - Question/" data-toggle="tooltip" data-placement="top" title="OO - P1 - Question">&larr; Previous Post
 		<br>
 		<span><font size="2" face="Calibri" color="grey">OO - P1 - Question</font></span>
 	       </a>
@@ -342,7 +448,7 @@
           <strong class="toc-title">Contents</strong>
           
             
-              <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#面向对象第一次作业"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">面向对象第一次作业</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#表达式展开"><span class="toc-nav-number">1.0.0.1.</span> <span class="toc-nav-text">表达式展开</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#题目"><span class="toc-nav-number">1.0.1.</span> <span class="toc-nav-text">题目</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#分析"><span class="toc-nav-number">1.0.2.</span> <span class="toc-nav-text">分析</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#架构"><span class="toc-nav-number">1.0.3.</span> <span class="toc-nav-text">架构</span></a></li></ol></li></ol></li></ol>
+              <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#面向对象第一次作业"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">面向对象第一次作业</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#表达式展开"><span class="toc-nav-number">1.0.0.1.</span> <span class="toc-nav-text">表达式展开</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#题目"><span class="toc-nav-number">1.0.1.</span> <span class="toc-nav-text">题目</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#分析"><span class="toc-nav-number">1.0.2.</span> <span class="toc-nav-text">分析</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#基本思路"><span class="toc-nav-number">1.0.3.</span> <span class="toc-nav-text">基本思路</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#具体实现"><span class="toc-nav-number">1.0.4.</span> <span class="toc-nav-text">具体实现</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#总UML类图："><span class="toc-nav-number">1.0.4.1.</span> <span class="toc-nav-text">总UML类图：</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#读取处理类-Lexer"><span class="toc-nav-number">1.0.4.2.</span> <span class="toc-nav-text">读取处理类 Lexer</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#解析类-Parser"><span class="toc-nav-number">1.0.4.3.</span> <span class="toc-nav-text">解析类 Parser</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#多项式类-Item"><span class="toc-nav-number">1.0.4.4.</span> <span class="toc-nav-text">多项式类 Item</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#因子类接口-Factor"><span class="toc-nav-number">1.0.4.5.</span> <span class="toc-nav-text">因子类接口 Factor</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#表达式（加减）类-Expression"><span class="toc-nav-number">1.0.4.5.1.</span> <span class="toc-nav-text">表达式（加减）类 Expression</span></a></li><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#项（乘除）类-Term"><span class="toc-nav-number">1.0.4.5.2.</span> <span class="toc-nav-text">项（乘除）类 Term</span></a></li><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#基本项（幂）类-Basic"><span class="toc-nav-number">1.0.4.5.3.</span> <span class="toc-nav-text">基本项（幂）类 Basic</span></a></li><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#常量类-Constant"><span class="toc-nav-number">1.0.4.5.4.</span> <span class="toc-nav-text">常量类 Constant</span></a></li><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#变量类-Variable"><span class="toc-nav-number">1.0.4.5.5.</span> <span class="toc-nav-text">变量类 Variable</span></a></li></ol></li></ol></li></ol></li></ol></li></ol>
             
           
           </div>
