@@ -181,12 +181,12 @@
                     
 
                         
-                    
-
-                        
                         	<li>
                           	  <a href="/about/">About Tan</a>
                         	</li>
+                        
+                    
+
                         
                     
 
@@ -198,12 +198,12 @@
                     
 
                         
-                    
-
-                        
                         	<li>
                           	  <a href="/tags/">Tags</a>
                         	</li>
+                        
+                    
+
                         
                     
 
@@ -284,6 +284,7 @@
 <p>递归下降是一种根据形式化语法对字符串进行解析的算法。</p>
 <p>递归下降的思想是对于每一个语法元素，都用单独的函数对其进行读取。其中难点在于因子的解析，使用递归下降时只要直接调用对应的解析函数 parseXXX() 即可。</p>
 <p>parseXXX() 的要点在于，调用时要只要保证当前位置恰好在 XXX 的开头，而且调用完他就能解析完这个元素，而具体这些儿子部分是怎么解析的就交给对应的方法。这个方法比较像分治。  </p>
+<p><font size="1">– （此段介绍来自roife’s blog）</font></p>
 <br></li>
 <li><p>首先对表达式进行预处理</p>
 <ol>
@@ -297,7 +298,7 @@
 </li>
 </ol>
 <br></li>
-<li><p>通过利用形式化表述定义，将表达式分成了四个层次：因子（常量或变量）、基本项（幂）、项（乘除）、表达式（加减），这三种结构对应了三种对象。我们下面分别进行讨论对这些对象的解析：</p>
+<li><p>通过利用形式化表述定义，将表达式分成了四个层次：<strong>因子</strong>（常量或变量）、<strong>基本项</strong>（幂）、<strong>项</strong>（乘除）、<strong>表达式</strong>（加减），这四种结构对应了四种对象。我们下面分别进行讨论对这些对象的解析：</p>
 <br>
 
 <ul>
@@ -316,7 +317,10 @@
 <br>
 
 <ul>
-<li>对表达式（加减）的解析：表达式由项和加减符号组成，即为：<br>通过题目所给的形式化表述可以表叫容易地建立层次，并且通过方法的互相调用完成解析。递归下降方法的好处在于，它可以通过方法之间的间接递归调用，非常自然地处理嵌套的表达式（即带嵌套括号的表达式）。</li>
+<li><p>对表达式（加减）的解析：表达式由项和加减符号组成，即为：<code>[加减] 项 | 表达式 加减 项</code>  </p>
+</li>
+<li><p>通过题目所给的形式化表述可以表叫容易地建立层次，并且通过方法的互相调用完成解析。递归下降方法的好处在于，它可以通过方法之间的间接递归调用，非常自然地处理嵌套的表达式（即带嵌套括号的表达式）。</p>
+</li>
 </ul>
 <br></li>
 </ul>
@@ -726,21 +730,6 @@
     
         <script src="/js/ribbonDynamic.js"></script>
     
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
-            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-            processEscapes: true
-        }
-    });
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax();
-        for (var i = 0; i < all.length; ++i)
-            all[i].SourceElement().parentNode.className += ' has-jax';
-    });
-</script>
-<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 </body>
 
 </html>
