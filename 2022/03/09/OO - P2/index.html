@@ -181,12 +181,12 @@
                     
 
                         
-                    
-
-                        
                         	<li>
                           	  <a href="/archive/">Archives</a>
                         	</li>
+                        
+                    
+
                         
                     
 
@@ -198,15 +198,15 @@
                     
 
                         
-                    
-
-                        
-                    
-
-                        
                         	<li>
                           	  <a href="/tags/">Tags</a>
                         	</li>
+                        
+                    
+
+                        
+                    
+
                         
                     
                     
@@ -267,7 +267,7 @@
 <br>
 
 <hr>
-<h3 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h3><p>本次作业是在<a href="../../04/OO - P1">第一次作业</a>的基础之上对多项式的括号展开，并且化简输出，相比于第一次作业，本次作业新增了三种函数，以及拓展了一些数据显示或者实现上的细节，因此，在第一次作业的基础上，进行迭代开发，将新增要求一一实现即可。</p>
+<h3 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h3><p>本次作业是在<a href="../../../../2022/03/04/OO - P1">第一次作业</a>的基础之上对多项式的括号展开，并且化简输出，相比于第一次作业，本次作业新增了三种函数，以及拓展了一些数据显示或者实现上的细节，因此，在第一次作业的基础上，进行迭代开发，将新增要求一一实现即可。</p>
 <br>
 
 <hr>
@@ -305,7 +305,7 @@
 <li><h4 id="求和函数类-SumFun"><a href="#求和函数类-SumFun" class="headerlink" title="求和函数类 SumFun"></a>求和函数类 <code>SumFun</code></h4><img src="1.png"  alt="2" />  
 
 <ul>
-<li>该类带有一个处理方法，用于字符串的预处理，将输入字符串中所有的 <strong>sum 函数</strong>展开并返回处理后的字符串</li>
+<li>该类带有一个处理方法，用于字符串的预处理，将输入字符串中所有的 <strong>sum 函数</strong>展开，返回处理后的字符串</li>
 <li>如： <code>sum(i, 1, 3, (i*x))</code> 处理为 <code>((1*x)+(2*x)+(3*x))</code></li>
 </ul>
 </li>
@@ -321,7 +321,7 @@
 <li><h4 id="三角函数类-TriFun"><a href="#三角函数类-TriFun" class="headerlink" title="三角函数类 TriFun"></a>三角函数类 <code>TriFun</code></h4><img src="3.png"  alt="2" />  
 
 <ul>
-<li>该类在递归下降算法中位于<code>experssion</code>之上，具有<code>addExpression</code>方法用于递归</li>
+<li>该类在递归下降算法中位于 <code>Experssion类</code> 之上，具有 <code>addExpression</code> 方法用于递归</li>
 <li>使用一个字符串用于记录三角函数具体类型（ <code>sin</code> &#x2F; <code>cos</code> ）</li>
 <li>重写 <code>toString</code> 方法，把保存在该类中存储的表达式并输出三角函数类型（视为单目运算符）</li>
 </ul>
@@ -334,14 +334,14 @@
 </ul>
 </li>
 <li><h4 id="解析类-Parser"><a href="#解析类-Parser" class="headerlink" title="解析类 Parser"></a>解析类 <code>Parser</code></h4><ul>
-<li>递归下降算法输出后缀表达式时加入三角函数类，输出时将其视为单目运算符（即增加 <code>parseTriFun</code> 方法）</li>
+<li>递归下降算法输出后缀表达式时加入三角函数类，输出时将三角函数视为单目运算符（即增加 <code>parseTriFun</code> 方法）</li>
 <li>变更识别变量 <code>x</code> 为识别所有自变量</li>
 </ul>
 </li>
 <li><h4 id="多项式类-Item"><a href="#多项式类-Item" class="headerlink" title="多项式类 Item"></a>多项式类 <code>Item</code></h4><ul>
 <li>需要重构： 该类在第一次作业中只涉及变量 <code>x</code> 的计算，在本次作业中要涉及多变量计算（把三角函数作用于表达式后的<strong>整体</strong>视作一个自变量（原因：无法与 <code>x</code> 合并，具有自己独立的系数和指数） ）</li>
-<li>以 <code>HashMap&lt;HashMap&lt;String, BigInteger&gt;, BigInteger&gt;</code> 的形式保存于该类中</li>
-<li>如：<code>5*x*sin(x**2)**2</code> 保存为 <code>HashMap&lt;HashMap(&lt;x,1&gt;&amp;&lt;sin(x**2),2&gt;),5&gt;</code></li>
+<li>将多项式以 <code>HashMap&lt;HashMap&lt;String, BigInteger&gt;, BigInteger&gt;</code> 的形式保存于该类中</li>
+<li>如：<code>5*x*sin(x**2)**2</code> 保存为 <code>HashMap&lt;HashMap(&lt;x,1&gt; &amp; &lt;sin(x**2),2&gt;),5&gt;</code></li>
 <li>根据新类型重构 <code>add/sub/mul/pow (+/-/*/**)</code> 方法</li>
 <li>新增 <code>sin/cos</code> 方法，作用为把表达式用 <code>sin()/cos()</code> 包裹并定义为新自变量</li>
 </ul>
