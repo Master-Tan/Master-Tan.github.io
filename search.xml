@@ -32,18 +32,18 @@
     
     
     <entry>
-      <title>Tags</title>
-      <link href="/tags/index.html"/>
-      <url>/tags/index.html</url>
+      <title>Archives</title>
+      <link href="/archive/index.html"/>
+      <url>/archive/index.html</url>
       
     </entry>
     
     
     
     <entry>
-      <title>Archives</title>
-      <link href="/archive/index.html"/>
-      <url>/archive/index.html</url>
+      <title>Tags</title>
+      <link href="/tags/index.html"/>
+      <url>/tags/index.html</url>
       
     </entry>
     
