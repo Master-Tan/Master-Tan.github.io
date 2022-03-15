@@ -121,7 +121,7 @@
 	       
                             <div class="blank_box"></div>
                             <span class="meta">
-                                 <span class="post-count">382</span> Words
+                                 <span class="post-count">448</span> Words
                             </span>
                             <div class="blank_box"></div>
                             <!-- 不蒜子统计 start -->
@@ -181,15 +181,12 @@
                     
 
                         
+                    
+
+                        
                         	<li>
                           	  <a href="/archive/">Archives</a>
                         	</li>
-                        
-                    
-
-                        
-                    
-
                         
                     
 
@@ -204,6 +201,9 @@
                         	<li>
                           	  <a href="/tags/">Tags</a>
                         	</li>
+                        
+                    
+
                         
                     
 
@@ -264,43 +264,41 @@
 <p>第<b> 1~3 </b>题，做出其中两道即达到通过条件</p>
 <p>题目如下：</p>
 <h1 id="P6-L1-bds"><a href="#P6-L1-bds" class="headerlink" title="P6_L1_bds"></a>P6_L1_bds</h1><h2 id="bds"><a href="#bds" class="headerlink" title="bds"></a>bds</h2><p>编码：</p>
-<div class="table-container">
 <table>
 <thead>
 <tr>
-<th style="text-align:center">31&emsp;&emsp;&emsp;&emsp;26</th>
-<th style="text-align:center">25&emsp;&emsp;21</th>
-<th style="text-align:center">20&emsp;&emsp;16</th>
-<th style="text-align:center">15&emsp;&emsp;11</th>
-<th style="text-align:center">10&emsp;&emsp;&emsp;&emsp;6</th>
-<th style="text-align:center">5&emsp;&emsp;&emsp;&emsp;0</th>
+<th align="center">31&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;26</th>
+<th align="center">25&amp;emsp;&amp;emsp;21</th>
+<th align="center">20&amp;emsp;&amp;emsp;16</th>
+<th align="center">15&amp;emsp;&amp;emsp;11</th>
+<th align="center">10&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;6</th>
+<th align="center">5&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;0</th>
 </tr>
 </thead>
-<tbody>
-<tr>
-<td style="text-align:center">speical<br>000000</td>
-<td style="text-align:center">rs</td>
-<td style="text-align:center">rt</td>
-<td style="text-align:center">rd</td>
-<td style="text-align:center">0<br>00000</td>
-<td style="text-align:center">bds<br>001010</td>
+<tbody><tr>
+<td align="center">speical<br>000000</td>
+<td align="center">rs</td>
+<td align="center">rt</td>
+<td align="center">rd</td>
+<td align="center">0<br>00000</td>
+<td align="center">bds<br>001010</td>
 </tr>
 <tr>
-<td style="text-align:center">6</td>
-<td style="text-align:center">5</td>
-<td style="text-align:center">5</td>
-<td style="text-align:center">5</td>
-<td style="text-align:center">5</td>
-<td style="text-align:center">6</td>
+<td align="center">6</td>
+<td align="center">5</td>
+<td align="center">5</td>
+<td align="center">5</td>
+<td align="center">5</td>
+<td align="center">6</td>
 </tr>
-</tbody>
-</table>
-</div>
+</tbody></table>
 <p>格式：</p>
 <pre><code>bds rs, rt
-</code></pre><p>描述：</p>
+</code></pre>
+<p>描述：</p>
 <pre><code>无符号大数除以小数
-</code></pre><p>操作：</p>
+</code></pre>
+<p>操作：</p>
 <pre><code>Condition &lt;- (0||GPR[rs]) &gt;= (0||GPR[rt])
 If Condition :
     LO &lt;- (0||GPR[rs]) div (0||GPR[rt])
@@ -308,49 +306,50 @@ If Condition :
 else:
     LO &lt;- (0||GPR[rt]) div (0||GPR[rs])
     HI &lt;- (0||GPR[rt]) mod (0||GPR[rs])
-</code></pre><p>实例：</p>
+</code></pre>
+<p>实例：</p>
 <pre><code>bds $t1, $t2
-</code></pre><p>其他：</p>
+</code></pre>
+<p>其他：</p>
 <pre><code>该指令乘除阻塞周期与除法相同
-</code></pre><p>&emsp;<br>&emsp;</p>
+</code></pre>
+<p>&amp;emsp;<br>&amp;emsp;</p>
 <h1 id="P6-L2-bezal"><a href="#P6-L2-bezal" class="headerlink" title="P6_L2_bezal"></a>P6_L2_bezal</h1><h2 id="bezal"><a href="#bezal" class="headerlink" title="bezal"></a>bezal</h2><p>编码：</p>
-<div class="table-container">
 <table>
 <thead>
 <tr>
-<th style="text-align:center">31&emsp;&emsp;&emsp;&emsp;26</th>
-<th style="text-align:center">25&emsp;&emsp;21</th>
-<th style="text-align:center">20&emsp;&emsp;16</th>
-<th style="text-align:center">15&emsp;&emsp;11</th>
-<th style="text-align:center">10&emsp;&emsp;&emsp;&emsp;6</th>
-<th style="text-align:center">5&emsp;&emsp;&emsp;&emsp;0</th>
+<th align="center">31&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;26</th>
+<th align="center">25&amp;emsp;&amp;emsp;21</th>
+<th align="center">20&amp;emsp;&amp;emsp;16</th>
+<th align="center">15&amp;emsp;&amp;emsp;11</th>
+<th align="center">10&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;6</th>
+<th align="center">5&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;0</th>
 </tr>
 </thead>
-<tbody>
-<tr>
-<td style="text-align:center">special<br>000000</td>
-<td style="text-align:center">rs</td>
-<td style="text-align:center">rt</td>
-<td style="text-align:center">rd</td>
-<td style="text-align:center">0<br>00000</td>
-<td style="text-align:center">bezal<br>110001</td>
+<tbody><tr>
+<td align="center">special<br>000000</td>
+<td align="center">rs</td>
+<td align="center">rt</td>
+<td align="center">rd</td>
+<td align="center">0<br>00000</td>
+<td align="center">bezal<br>110001</td>
 </tr>
 <tr>
-<td style="text-align:center">6</td>
-<td style="text-align:center">5</td>
-<td style="text-align:center">5</td>
-<td style="text-align:center">5</td>
-<td style="text-align:center">5</td>
-<td style="text-align:center">6</td>
+<td align="center">6</td>
+<td align="center">5</td>
+<td align="center">5</td>
+<td align="center">5</td>
+<td align="center">5</td>
+<td align="center">6</td>
 </tr>
-</tbody>
-</table>
-</div>
+</tbody></table>
 <p>格式：</p>
 <pre><code>bezal rs, rt
-</code></pre><p>描述：</p>
+</code></pre>
+<p>描述：</p>
 <pre><code>若 GPR[rt] == 0 跳转至 GPR[rs] 并 Link
-</code></pre><p>操作：</p>
+</code></pre>
+<p>操作：</p>
 <pre><code>I:
     Condition &lt;- GPR[rt] = 0
     temp &lt;- GPR[rs]
@@ -361,54 +360,58 @@ I+1:
     If Condition:
         PC &lt;- temp
     endif
-</code></pre><p>实例：</p>
+</code></pre>
+<p>实例：</p>
 <pre><code>bezal $t1, $t2
-</code></pre><p>其他：</p>
+</code></pre>
+<p>其他：</p>
 <pre><code>注意延时槽
-</code></pre><p>&emsp;<br>&emsp;</p>
+</code></pre>
+<p>&amp;emsp;<br>&amp;emsp;</p>
 <h1 id="P6-L6-lwmx"><a href="#P6-L6-lwmx" class="headerlink" title="P6_L6_lwmx"></a>P6_L6_lwmx</h1><h2 id="lwmx"><a href="#lwmx" class="headerlink" title="lwmx"></a>lwmx</h2><p>编码：</p>
-<div class="table-container">
 <table>
 <thead>
 <tr>
-<th style="text-align:center">31&emsp;&emsp;&emsp;&emsp;26</th>
-<th style="text-align:center">25&emsp;&emsp;21</th>
-<th style="text-align:center">20&emsp;&emsp;16</th>
-<th style="text-align:center">&emsp;&emsp;15&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;0</th>
+<th align="center">31&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;26</th>
+<th align="center">25&amp;emsp;&amp;emsp;21</th>
+<th align="center">20&amp;emsp;&amp;emsp;16</th>
+<th align="center">&amp;emsp;&amp;emsp;15&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;0</th>
 </tr>
 </thead>
-<tbody>
-<tr>
-<td style="text-align:center">lwmx<br>101010</td>
-<td style="text-align:center">base</td>
-<td style="text-align:center">rt</td>
-<td style="text-align:center">offset<br></td>
+<tbody><tr>
+<td align="center">lwmx<br>101010</td>
+<td align="center">base</td>
+<td align="center">rt</td>
+<td align="center">offset<br></td>
 </tr>
 <tr>
-<td style="text-align:center">6</td>
-<td style="text-align:center">5</td>
-<td style="text-align:center">5</td>
-<td style="text-align:center">16</td>
+<td align="center">6</td>
+<td align="center">5</td>
+<td align="center">5</td>
+<td align="center">16</td>
 </tr>
-</tbody>
-</table>
-</div>
+</tbody></table>
 <p>格式：</p>
 <pre><code>lwmx rt, offset(base)
-</code></pre><p>描述：</p>
+</code></pre>
+<p>描述：</p>
 <pre><code>内存大于寄存器值时写入5号寄存器，否则写入4号寄存器
-</code></pre><p>操作：</p>
+</code></pre>
+<p>操作：</p>
 <pre><code>Vaddr &lt;- GPR[base] + sign_extend(offset)
 Condition &lt;- GPR[rt] &lt; Memory[Vaddr]
 If Condition:
     GPR[5] &lt;- Memory[Vaddr]
 else:
     GPR[4] &lt;- Memory[Vaddr]
-</code></pre><p>实例：</p>
+</code></pre>
+<p>实例：</p>
 <pre><code>lwmx $t5, -100($0)
-</code></pre><p>其他：</p>
+</code></pre>
+<p>其他：</p>
 <pre><code>无
-</code></pre><p>&emsp;<br>&emsp;</p>
+</code></pre>
+<p>&amp;emsp;<br>&amp;emsp;</p>
 
                 
                 <hr>
