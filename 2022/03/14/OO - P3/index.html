@@ -121,7 +121,7 @@
 	       
                             <div class="blank_box"></div>
                             <span class="meta">
-                                 <span class="post-count">1.4k</span> Words
+                                 <span class="post-count">437</span> Words
                             </span>
                             <div class="blank_box"></div>
                             <!-- 不蒜子统计 start -->
@@ -181,9 +181,6 @@
                     
 
                         
-                    
-
-                        
                         	<li>
                           	  <a href="/archive/">Archives</a>
                         	</li>
@@ -194,6 +191,9 @@
                         	<li>
                           	  <a href="/about/">About Tan</a>
                         	</li>
+                        
+                    
+
                         
                     
 
@@ -267,98 +267,40 @@
 <br>
 
 <hr>
-<h3 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h3><p>本次作业是在<a href="../../../../2022/03/04/OO - P1">第一次作业</a><a href="../../../../2022/03/04/OO - P2">第二次作业</a>和的基础之上对多项式的括号展开，并且化简输出，相比于第一次作业，本次作业新增了三种函数，以及拓展了一些数据显示或者实现上的细节。因此，在第一次作业的基础上，进行迭代开发，将新增要求一一实现即可。</p>
+<h3 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h3><p>本次作业是在<a href="../../../../2022/03/04/OO - P1">第一次作业</a>和 <a href="../../../../2022/03/04/OO - P2">第二次作业</a>和的基础之上新增了一些琐碎的小功能，算是比较小的一次迭代（甚至如果你前几次扩展性写得好可以认为甚至不是一次迭代）</p>
 <br>
 
 <hr>
 <h3 id="需求变更"><a href="#需求变更" class="headerlink" title="需求变更"></a>需求变更</h3><h4 id="新增内容"><a href="#新增内容" class="headerlink" title="新增内容:"></a>新增内容:</h4><ul>
-<li><p><strong>三角函数：</strong>  </p>
-<ul>
-<li>三角函数 $\rightarrow$ ‘sin’ 空白项 ‘(‘ 空白项 因子 空白项 ‘)’ [空白项 指数] | ‘cos’ 空白项 ‘(‘ 空白项 因子 空白项 ‘)’ [空白项 指数]</li>
-</ul>
-</li>
-<li><p><strong>自定义函数</strong>  </p>
-<ul>
-<li>自定义函数<strong>定义</strong> $\rightarrow$ 自定义函数名 ‘(‘ 空白项 函数自变量 空白项 [‘,’ 空白项 函数自变量 空白项 [‘,’ 空白项 函数自变量 空白项]] ‘)’ 空白项 ‘&#x3D;’ 空白项 函数表达式</li>
-</ul>
-<ul>
-<li>函数自变量 $\rightarrow$ ‘x’ | ‘y’ | ‘z’</li>
-<li>自定义函数<strong>调用</strong> $\rightarrow$ 自定义函数名 空白项 ‘(‘ 空白项 因子 空白项 [‘,’ 空白项 因子 空白项 [‘,’ 空白项 因子 空白项]] ‘)’</li>
-<li>自定义函数名 $\rightarrow$ ‘f’ | ‘g’ | ‘h’</li>
-</ul>
-</li>
-<li><p><strong>求和函数</strong></p>
-<ul>
-<li>求和函数 $\rightarrow$ ‘sum’ ‘(‘ 空白项 i 空白项’,’ 空白项 常数因子 空白项 ‘,’ 空白项 常数因子 空白项 ‘,’ 空白项 求和表达式 空白项 ‘)’</li>
-</ul>
-</li>
+<li>无</li>
 </ul>
 <h4 id="数据限制变更"><a href="#数据限制变更" class="headerlink" title="数据限制变更:"></a>数据限制变更:</h4><ul>
-<li><p>指数变更：</p>
+<li><p>三角因子嵌套：</p>
 <ul>
-<li>指数<strong>输入、计算过程中和最终计算结果</strong>最高次为 <strong>8</strong>  $\rightarrow$ 指数<strong>输入</strong>最高次为 <strong>8</strong>  且 <strong>互测</strong>对指数<strong>无要求</strong>  （已于第一次作业开发完成）</li>
+<li>支持因子嵌套在三角函数里面，并<strong>整体</strong>作为一个因子</li>
 </ul>
 </li>
-<li><p>括号嵌套：</p>
+<li><p>函数嵌套</p>
 <ul>
-<li>本次作业可能会存在<strong>多层括号嵌套</strong>  （已于第一次作业开发完成）</li>
+<li>支持函数当做因子使用，并随意嵌套</li>
+</ul>
+</li>
+<li><p>数据量增加：</p>
+<ul>
+<li>互测数据限制：<code>Cost &lt;= 1000</code> $\rightarrow$ <code>Cost &lt;= 100000</code>, 允许出现求和函数</li>
 </ul>
 </li>
 </ul>
 <h3 id="迭代开发"><a href="#迭代开发" class="headerlink" title="迭代开发"></a>迭代开发</h3><h4 id="总UML类图："><a href="#总UML类图：" class="headerlink" title="总UML类图："></a>总UML类图：</h4><img src="MainClass.png"  alt="MainClass" />
 
-<h4 id="新增："><a href="#新增：" class="headerlink" title="新增："></a>新增：</h4><ul>
-<li><h4 id="求和函数类-SumFun"><a href="#求和函数类-SumFun" class="headerlink" title="求和函数类 SumFun"></a>求和函数类 <code>SumFun</code></h4><img src="1.png"  alt="1" />  
+<h4 id="新增类："><a href="#新增类：" class="headerlink" title="新增类："></a>新增类：</h4><ul>
+<li>无</li>
+</ul>
+<h4 id="修改类："><a href="#修改类：" class="headerlink" title="修改类："></a>修改类：</h4><ul>
+<li><h4 id="自定义函数类-SelfDefineFun"><a href="#自定义函数类-SelfDefineFun" class="headerlink" title="自定义函数类 SelfDefineFun"></a>自定义函数类 <code>SelfDefineFun</code></h4><img src="1.png"  alt="1" />  
 
 <ul>
-<li>该类带有一个处理方法，用于字符串的预处理，将输入字符串中所有的 <strong>sum 函数</strong>展开，返回处理后的字符串</li>
-<li>如： <code>sum(i, 1, 3, (i*x))</code> 处理为 <code>((1*x)+(2*x)+(3*x))</code></li>
-<li>tips: 直接 <code>replaceAll</code> 的小心 <code>&quot;sin&quot;</code> 里面也有个<code>&quot;i&quot;</code> </li>
-<li>tips: <code>sum</code> 的上下限需要用 <code>BigInter</code></li>
-</ul>
-</li>
-<li><h4 id="自定义函数类-SelfDefineFun"><a href="#自定义函数类-SelfDefineFun" class="headerlink" title="自定义函数类 SelfDefineFun"></a>自定义函数类 <code>SelfDefineFun</code></h4><img src="2.png"  alt="2" />  
-
-<ul>
-<li>该类的<code>addFun</code>方法读入一个自定义函数表达式，以 <code>HashMap&lt;String, ArrayList&lt;String&gt;&gt;</code> 的形式保存于该类中</li>
-<li>如： <code>f(x,y,z)=x+y**2+z**3</code> 存储为 <code>HashMap&lt;f,[x, y, z, (x+y**2+z**3)]&gt;</code></li>
-<li>该类亦带有一个处理方法，同样用于字符串的预处理，将本类中所存的所有<strong>自定义函数</strong>都代入输入字符串中，并返回处理后的字符串</li>
-<li>如： <code>自定义函数为：f(x,y,z)=x+y**2+z**3 ; 待处理表达式为：f(sin(x)**2,cos(x),x) ; </code> 处理为 <code>((sin(x)**2)+(cos(x))**2+(x)**3)</code></li>
-<li>tips: 需要先替换 <code>x</code> 以免出现 <code>x</code> 的重复代入</li>
-</ul>
-</li>
-<li><h4 id="三角函数类-TriFun"><a href="#三角函数类-TriFun" class="headerlink" title="三角函数类 TriFun"></a>三角函数类 <code>TriFun</code></h4><img src="3.png"  alt="3" />  
-
-<ul>
-<li>该类在递归下降算法中位于 <code>Experssion类</code> 之上，具有 <code>addExpression</code> 方法用于递归</li>
-<li>使用一个字符串用于记录三角函数具体类型（ <code>sin</code> &#x2F; <code>cos</code> ）</li>
-<li>重写 <code>toString</code> 方法，把保存在该类中存储的表达式并输出三角函数类型（视为<strong>单目</strong>运算符）</li>
-</ul>
-</li>
-<li><h4 id="三角函数化简类-TriSimplify"><a href="#三角函数化简类-TriSimplify" class="headerlink" title="三角函数化简类 TriSimplify"></a>三角函数化简类 <code>TriSimplify</code></h4><img src="4.png"  alt="4" />
-
-<ul>
-<li>该类用于将一个 <code>Item</code> 类中符合三角函数化简规则的项进行运算并化简，返回一个处理后的 <code>Item</code> 类</li>
-</ul>
-</li>
-</ul>
-<h4 id="修改："><a href="#修改：" class="headerlink" title="修改："></a>修改：</h4><ul>
-<li><h4 id="读取处理类-Lexer"><a href="#读取处理类-Lexer" class="headerlink" title="读取处理类 Lexer"></a>读取处理类 <code>Lexer</code></h4><ul>
-<li>增加 <code>sin</code> 和 <code>cos</code> 识别</li>
-<li>变更识别变量 <code>x</code> 为识别<strong>所有</strong>自变量、</li>
-</ul>
-</li>
-<li><h4 id="解析类-Parser"><a href="#解析类-Parser" class="headerlink" title="解析类 Parser"></a>解析类 <code>Parser</code></h4><ul>
-<li>递归下降算法输出后缀表达式时加入三角函数类，输出时将三角函数视为单目运算符（即增加 <code>parseTriFun</code> 方法）</li>
-<li>变更识别变量 <code>x</code> 为识别所有自变量</li>
-</ul>
-</li>
-<li><h4 id="多项式类-Item"><a href="#多项式类-Item" class="headerlink" title="多项式类 Item"></a>多项式类 <code>Item</code></h4><ul>
-<li>需要重构： 该类在第一次作业中只涉及变量 <code>x</code> 的计算，在本次作业中要涉及多变量计算（把三角函数作用于表达式后的<strong>整体</strong>视作一个自变量（原因：无法与 <code>x</code> 合并，具有自己独立的系数和指数） ）</li>
-<li>将多项式以 <code>HashMap&lt;HashMap&lt;String, BigInteger&gt;, BigInteger&gt;</code> 的形式保存于该类中</li>
-<li>如：<code>5*x*sin(x**2)**2</code> 保存为 <code>HashMap&lt;HashMap(&lt;x,1&gt; &amp; &lt;sin(x**2),2&gt;),5&gt;</code></li>
-<li>根据新类型重构 <code>add/sub/mul/pow (+/-/*/**)</code> 方法</li>
-<li>新增 <code>sin/cos</code> 方法，作用为把表达式用 <code>sin()/cos()</code> 包裹并定义为新自变量</li>
+<li>新增该类的 <code>check</code> 方法用于检测并处理自定义函数调用中出现的递归调用问题</li>
 </ul>
 </li>
 </ul>
@@ -367,7 +309,7 @@
 <hr>
 <p>优化小方法：  </p>
 <ol>
-<li>若 <code>&lt;因子&gt;</code> 的长度为 <code>1</code> , 则把 <code>&lt;因子&gt;**2</code> 用 <code>&lt;因子&gt;*&lt;因子&gt;</code> 替换。  <code>（Warning:若是三角函数中 &quot;&lt;因子&gt;**2&quot; 则不能应用此变换，原因为不符合本次作业中的形式化表述）</code></li>
+<li>若 <code>&lt;因子&gt;</code> 的长度为 <code>1</code> , 则把 <code>&lt;因子&gt;**2</code> 用 <code>&lt;因子&gt;*&lt;因子&gt;</code> 替换。  </li>
 <li>把多项式的首个<strong>非负项</strong>放在表达式首位显示</li>
 <li>三角函数恒等变形（变形需要能使表达式长度缩减）<ul>
 <li><code>项*sin(&lt;因子&gt;)**2 + 项*cos(&lt;因子&gt;)**2 </code>  $\rightarrow$  <code>项</code> </li>
@@ -446,7 +388,7 @@
           <strong class="toc-title">Contents</strong>
           
             
-              <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#面向对象设计与构造第一单元第三次作业"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">面向对象设计与构造第一单元第三次作业</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#表达式展开"><span class="toc-nav-number">1.0.0.1.</span> <span class="toc-nav-text">表达式展开</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#题目"><span class="toc-nav-number">1.0.1.</span> <span class="toc-nav-text">题目</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#分析"><span class="toc-nav-number">1.0.2.</span> <span class="toc-nav-text">分析</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#需求变更"><span class="toc-nav-number">1.0.3.</span> <span class="toc-nav-text">需求变更</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#新增内容"><span class="toc-nav-number">1.0.3.1.</span> <span class="toc-nav-text">新增内容:</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#数据限制变更"><span class="toc-nav-number">1.0.3.2.</span> <span class="toc-nav-text">数据限制变更:</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#迭代开发"><span class="toc-nav-number">1.0.4.</span> <span class="toc-nav-text">迭代开发</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#总UML类图："><span class="toc-nav-number">1.0.4.1.</span> <span class="toc-nav-text">总UML类图：</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#新增："><span class="toc-nav-number">1.0.4.2.</span> <span class="toc-nav-text">新增：</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#求和函数类-SumFun"><span class="toc-nav-number">1.0.4.3.</span> <span class="toc-nav-text">求和函数类 SumFun</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#自定义函数类-SelfDefineFun"><span class="toc-nav-number">1.0.4.4.</span> <span class="toc-nav-text">自定义函数类 SelfDefineFun</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#三角函数类-TriFun"><span class="toc-nav-number">1.0.4.5.</span> <span class="toc-nav-text">三角函数类 TriFun</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#三角函数化简类-TriSimplify"><span class="toc-nav-number">1.0.4.6.</span> <span class="toc-nav-text">三角函数化简类 TriSimplify</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#修改："><span class="toc-nav-number">1.0.4.7.</span> <span class="toc-nav-text">修改：</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#读取处理类-Lexer"><span class="toc-nav-number">1.0.4.8.</span> <span class="toc-nav-text">读取处理类 Lexer</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#解析类-Parser"><span class="toc-nav-number">1.0.4.9.</span> <span class="toc-nav-text">解析类 Parser</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#多项式类-Item"><span class="toc-nav-number">1.0.4.10.</span> <span class="toc-nav-text">多项式类 Item</span></a></li></ol></li></ol></li></ol></li></ol>
+              <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#面向对象设计与构造第一单元第三次作业"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">面向对象设计与构造第一单元第三次作业</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#表达式展开"><span class="toc-nav-number">1.0.0.1.</span> <span class="toc-nav-text">表达式展开</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#题目"><span class="toc-nav-number">1.0.1.</span> <span class="toc-nav-text">题目</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#分析"><span class="toc-nav-number">1.0.2.</span> <span class="toc-nav-text">分析</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#需求变更"><span class="toc-nav-number">1.0.3.</span> <span class="toc-nav-text">需求变更</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#新增内容"><span class="toc-nav-number">1.0.3.1.</span> <span class="toc-nav-text">新增内容:</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#数据限制变更"><span class="toc-nav-number">1.0.3.2.</span> <span class="toc-nav-text">数据限制变更:</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#迭代开发"><span class="toc-nav-number">1.0.4.</span> <span class="toc-nav-text">迭代开发</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#总UML类图："><span class="toc-nav-number">1.0.4.1.</span> <span class="toc-nav-text">总UML类图：</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#新增类："><span class="toc-nav-number">1.0.4.2.</span> <span class="toc-nav-text">新增类：</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#修改类："><span class="toc-nav-number">1.0.4.3.</span> <span class="toc-nav-text">修改类：</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#自定义函数类-SelfDefineFun"><span class="toc-nav-number">1.0.4.4.</span> <span class="toc-nav-text">自定义函数类 SelfDefineFun</span></a></li></ol></li></ol></li></ol></li></ol>
             
           
           </div>
