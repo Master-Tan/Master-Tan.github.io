@@ -1,0 +1,1014 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="baidu-site-verification" content="093lY4ziMu" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="description" content="Tan&#39;s Blog">
+    <meta name="keyword"  content="Hello world">
+    <link rel="shortcut icon" href="/img/ironman-draw.png">
+    <!-- Place this tag in your head or just before your close body tag. -->
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+    <!--<link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>-->
+    <title>
+        
+          OO - 第一单元总结 - Tan&#39;s Blog
+        
+    </title>
+
+    <link rel="canonical" href="https://github.com/Master-Tan/Master-Tan.github.io.git/2022/03/21/OO - 第一单元总结/">
+
+    <!-- Bootstrap Core CSS -->
+    
+<link rel="stylesheet" href="/css/bootstrap.min.css">
+
+
+    <!-- Custom CSS --> 
+    
+        
+<link rel="stylesheet" href="/css/dusign-light.css">
+
+        
+<link rel="stylesheet" href="/css/dusign-common-light.css">
+
+        
+<link rel="stylesheet" href="/css/font-awesome.css">
+
+        
+<link rel="stylesheet" href="/css/toc.css">
+
+        <!-- background effects end -->
+    
+    
+    <!-- Pygments Highlight CSS -->
+    
+<link rel="stylesheet" href="/css/highlight.css">
+
+
+    
+<link rel="stylesheet" href="/css/widget.css">
+
+
+    
+<link rel="stylesheet" href="/css/rocket.css">
+
+
+    
+<link rel="stylesheet" href="/css/signature.css">
+
+
+    
+<link rel="stylesheet" href="/css/fonts.googleapis.css">
+
+
+    <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.3.0/css/font-awesome.min.css">
+
+    <!-- photography -->
+    
+<link rel="stylesheet" href="/css/photography.css">
+
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+
+    <!-- background effects start -->
+    
+    <!-- background effects end -->
+
+	<!-- Modified by Yu-Hsuan Yen -->
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        
+            
+                background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('../../../../img/default.jpg')
+                /*post*/
+            
+        
+    }
+    
+</style>
+
+<header class="intro-header" >
+    <!-- Signature -->
+    <div id="signature">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                
+                    <div class="post-heading">
+                        <div class="tags">
+                            
+                              <a class="tag" href="/tags/#OO" title="OO">OO</a>
+                            
+                        </div>
+                        <h1>OO - 第一单元总结</h1>
+                        <h2 class="subheading">OO第一单元总结</h2>
+                        <span class="meta">
+                            Posted by Tan on
+                            2022-03-21
+                        </span>
+
+	       
+                            <div class="blank_box"></div>
+                            <span class="meta">
+                                 <span class="post-count">3.3k</span> Words
+                            </span>
+                            <div class="blank_box"></div>
+                            <!-- 不蒜子统计 start -->
+                            <span class="meta">
+                                Viewed <span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span> Times
+                            </span>
+                            <!-- 不蒜子统计 end -->
+                        
+
+                    </div>
+                
+
+                </div>
+            </div>
+        </div>      
+    </div>
+
+    
+    <div class="waveWrapper">
+        <div class="wave wave_before" style="background-image: url('/img/wave-light.png')"></div>
+        <div class="wave wave_after" style="background-image: url('/img/wave-light.png')"></div>
+    </div>
+    
+</header>
+
+	
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Tan&#39;s Blog</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+
+                    
+
+                        
+                    
+
+                        
+                        	<li>
+                          	  <a href="/archive/">Archives</a>
+                        	</li>
+                        
+                    
+
+                        
+                        	<li>
+                          	  <a href="/about/">About Tan</a>
+                        	</li>
+                        
+                    
+
+                        
+                        	<li>
+                          	  <a href="/tags/">Tags</a>
+                        	</li>
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+    <!-- Main Content -->
+    <!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+            <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <h1 id="OO第一单元总结"><a href="#OO第一单元总结" class="headerlink" title="OO第一单元总结"></a>OO第一单元总结</h1><hr>
+<h2 id="要求"><a href="#要求" class="headerlink" title="要求"></a>要求</h2><p><a href="../../../../2022/03/22/OO - 第一单元总结%20-%20Requirement">单元总结要求</a></p>
+<br>
+
+<hr>
+<h2 id="第一次作业总结"><a href="#第一次作业总结" class="headerlink" title="第一次作业总结"></a>第一次作业总结</h2><h3 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h3><p>我们要做的是对单变量多项式的括号展开，并且化简输出，所以我的思路为分为两步：</p>
+<ul>
+<li><b>1.</b> 将输入表达式转化为后缀表达式 <b>（展开括号）</b></li>
+<li><b>2.</b> 将后缀表达式计算并化简为顺序结果 <b>（计算结果）</b></li>
+</ul>
+<p>首先，用递归下降法解析输入，将输入的表达式进行化简和拆解，得到一个不含括号的后缀表达式字符串。接着再按照多项式运算规则进行运算并合并同类项，最后结果进行排序，最后输出结果。</p>
+<br>
+
+<hr>
+<h3 id="基本思路"><a href="#基本思路" class="headerlink" title="基本思路"></a>基本思路</h3><p>我的代码分为了两大部分，分别实现两种相互独立的功能，并用main函数实现连接</p>
+<ul>
+<li><p><code>1.</code>递归下降法求后缀表达式</p>
+<ul>
+<li><p>首先对表达式进行预处理</p>
+<ol>
+<li><p>去除所有<strong>空白</strong>字符</p>
+</li>
+<li><p>若<strong>第一项</strong>为符号，则在表达式开头补 0</p>
+</li>
+<li><p>在表达式中连续的 <code>+/-</code> 号，整合成<strong>一个</strong> <code>+/-</code> 号</p>
+</li>
+<li><p>在表达式中 <code>**</code> 后面<strong>紧跟着</strong>的 <code>+</code> 号，删除之</p>
+</li>
+</ol>
+<br></li>
+<li><p>通过利用形式化表述定义，将表达式分成了四个层次：<strong>因子</strong>（常量或变量）、<strong>基本项</strong>（幂）、<strong>项</strong>（乘除）、<strong>表达式</strong>（加减），这四种结构对应了四种对象。我们下面分别进行讨论对这些对象的解析：</p>
+<br>
+
+<ul>
+<li>对于因子（常量或变量）的解析：若下一个字符为单目运算符或者是数字或者是变量 x ，则不断看下一个字符是否是数字。如果不是数字，那么说明下一个符号不属于因子，即对因子的解析结束。</li>
+</ul>
+<br>
+
+<ul>
+<li>对基本项（幂）的解析：基本项由因子的幂次方组成，即为 <code>[加减] 因子 ** 带符号整数</code> 。当解析到一个因子后，若下一个解析到的为 <code>**</code> ，那么读入这个符号并做处理，然后下一个符号一定是一个带符号整数，否则，说明基本项的解析结束了。</li>
+</ul>
+<br>
+
+<ul>
+<li>对项（乘除）的解析：项由基本项或因子和乘除符号组成，即为 <code>[加减] 因子 | 项 * 因子</code> ，处理方法与基本项相似。</li>
+</ul>
+<br>
+
+<ul>
+<li><p>对表达式（加减）的解析：表达式由项和加减符号组成，即为：<code>[加减] 项 | 表达式 加减 项</code>  </p>
+</li>
+<li><p>通过题目所给的形式化表述可以表叫容易地建立层次，并且通过方法的互相调用完成解析。递归下降方法的好处在于，它可以通过方法之间的间接递归调用，非常自然地处理嵌套的表达式（即带嵌套括号的表达式）。</p>
+</li>
+</ul>
+<br></li>
+</ul>
+</li>
+<li><p><code>2.</code>后缀表达式计算</p>
+<ul>
+<li><p>第<strong>1</strong>步中所得的后缀表达式中，运算符为 <code>+/-/*/**</code> ，操作数为 <code>带符号整数 / 变量x</code>。</p>
+<br>
+</li>
+<li><p>把所有操作数和运算结果视为一系列单项式之和（多项式）</p>
+<br>
+</li>
+<li><p>则：</p>
+<ul>
+<li>对于 <code>带符号整数</code> ，视为指数为零，系数为带符号整数的值的单项式</li>
+</ul>
+<br>
+
+<ul>
+<li>对于 <code>变量x</code> ，视为指数和系数均为 1 的单项式</li>
+</ul>
+<br>
+</li>
+<li><p>由于后缀表达式的便利性，因此我们每读到一个运算符，就对最近的两个多项式进行对应运算并返回一个多项式即可</p>
+</li>
+</ul>
+</li>
+</ul>
+<br>
+
+<hr>
+<h3 id="具体实现"><a href="#具体实现" class="headerlink" title="具体实现"></a>具体实现</h3><ul>
+<li><h4 id="读取处理类-Lexer"><a href="#读取处理类-Lexer" class="headerlink" title="读取处理类 Lexer"></a>读取处理类 <code>Lexer</code></h4><img src="1-0-1.png"  alt="2" />  
+
+<ul>
+<li>该类主要目的是对原始表达式进行读取处理，使其按照需要每次使用都能输出一个 <code>操作数/运算符</code></li>
+<li>对字符串进行必要的预处理</li>
+<li>读取数字需要判断正负（即该数前面的 <code>+/-</code> 号（如果有）是否是单目运算符）</li>
+</ul>
+</li>
+<li><h4 id="解析类-Parser"><a href="#解析类-Parser" class="headerlink" title="解析类 Parser"></a>解析类 <code>Parser</code></h4><img src="1-0-2.png"  alt="2" />  
+
+<ul>
+<li>使用递归下降法处理表达式，递归地分别对表达式（Expression）、项（Term）、基本项（Basic）、因子（Factor）进行处理</li>
+<li>若是识别到左括号 <code>(</code> 则递归调用 <code>parseExpression()</code> 先处理括号内的内容即可</li>
+</ul>
+</li>
+<li><h4 id="多项式类-Item"><a href="#多项式类-Item" class="headerlink" title="多项式类 Item"></a>多项式类 <code>Item</code></h4><img src="1-0-3.png"  alt="2" />  
+
+<ul>
+<li>对于多项式的 <code>+/-/*/**</code> 操作均在该类中使用公开函数实现，需要时根据运算符类型调用即可</li>
+<li>重写 <code>toString</code> 方法，对保存在该类的各单项式对指数项进行排列后输出</li>
+</ul>
+</li>
+<li><h4 id="因子类接口-Factor"><a href="#因子类接口-Factor" class="headerlink" title="因子类接口 Factor"></a>因子类接口 <code>Factor</code></h4><img src="1-0-4.png"  alt="2" />  
+
+<ul>
+<li><h5 id="表达式（加减）类-Expression"><a href="#表达式（加减）类-Expression" class="headerlink" title="表达式（加减）类 Expression"></a>表达式（加减）类 <code>Expression</code></h5><img src="1-0-5.png"  alt="2" />  
+
+<ul>
+<li>储存 <code>表达式</code></li>
+<li>由于 <code>+</code> 和 <code>-</code> 地位相同，所以让该类自带一个队列（此处用    <code>ArrayList</code> 实现，并用 <code>flag</code> 标记队首</li>
+<li>重写 <code>toString</code> 方法，把保存在该类中的数逐个输出并用 <code>+/-(队首元素)</code> 相连</li>
+</ul>
+</li>
+<li><h5 id="项（乘除）类-Term"><a href="#项（乘除）类-Term" class="headerlink" title="项（乘除）类 Term"></a>项（乘除）类 <code>Term</code></h5><img src="1-0-6.png"  alt="2" />  
+
+<ul>
+<li>储存 <code>项</code></li>
+<li>重写 <code>toString</code> 方法，把保存在该类中的数逐个输出并用 <code>*</code> 相连</li>
+</ul>
+</li>
+<li><h5 id="基本项（幂）类-Basic"><a href="#基本项（幂）类-Basic" class="headerlink" title="基本项（幂）类 Basic"></a>基本项（幂）类 <code>Basic</code></h5><img src="1-0-7.png"  alt="2" />  
+
+<ul>
+<li>储存 <code>基本项</code></li>
+<li>重写 <code>toString</code> 方法，把保存在该类中的数逐个输出并用 <code>**</code> 相连</li>
+</ul>
+</li>
+<li><h5 id="常量类-Constant"><a href="#常量类-Constant" class="headerlink" title="常量类 Constant"></a>常量类 <code>Constant</code></h5><img src="1-0-8.png"  alt="2" />  
+
+<ul>
+<li>储存 <code>常量因子</code></li>
+</ul>
+</li>
+<li><h5 id="变量类-Variable"><a href="#变量类-Variable" class="headerlink" title="变量类 Variable"></a>变量类 <code>Variable</code></h5><img src="1-0-9.png"  alt="2" />  
+
+<ul>
+<li>储存 <code>变量因子</code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<br>
+
+<hr>
+<h3 id="基于度量的程序结构分析"><a href="#基于度量的程序结构分析" class="headerlink" title="基于度量的程序结构分析"></a>基于度量的程序结构分析</h3><ul>
+<li><p>总UML类图  </p>
+<img src="1-1.png"/>  
+</li>
+<li><p>代码规模分析  </p>
+<img src="1-2.png"/>  
+</li>
+<li><p>方法复杂度分析  </p>
+<img src="1-3-1.png"/>  
+<img src="1-3-2.png"/>  
+</li>
+<li><p>类复杂度分析  </p>
+<img src="1-4.png"/></li>
+</ul>
+<hr>
+<p>优化小方法：  </p>
+<ol>
+<li>把 <code>x**2</code> 用 <code>x*x</code> 替换</li>
+<li>把多项式的首个<strong>非负项</strong>放在表达式首位显示</li>
+</ol>
+<br>
+
+<hr>
+<h2 id="第二次作业总结"><a href="#第二次作业总结" class="headerlink" title="第二次作业总结"></a>第二次作业总结</h2><h3 id="分析-1"><a href="#分析-1" class="headerlink" title="分析"></a>分析</h3><p>本次作业是在<a href="../../../../2022/03/04/OO - P1">第一次作业</a>的基础之上对多项式的括号展开，并且化简输出，相比于第一次作业，本次作业新增了三种函数，以及拓展了一些数据显示或者实现上的细节。因此，在第一次作业的基础上，进行迭代开发，将新增要求一一实现即可。</p>
+<br>
+
+<hr>
+<h3 id="需求变更"><a href="#需求变更" class="headerlink" title="需求变更"></a>需求变更</h3><h4 id="新增内容"><a href="#新增内容" class="headerlink" title="新增内容:"></a>新增内容:</h4><ul>
+<li><p><strong>三角函数：</strong>  </p>
+<ul>
+<li>三角函数 $\rightarrow$ ‘sin’ 空白项 ‘(‘ 空白项 因子 空白项 ‘)’ [空白项 指数] | ‘cos’ 空白项 ‘(‘ 空白项 因子 空白项 ‘)’ [空白项 指数]</li>
+</ul>
+</li>
+<li><p><strong>自定义函数</strong>  </p>
+<ul>
+<li>自定义函数<strong>定义</strong> $\rightarrow$ 自定义函数名 ‘(‘ 空白项 函数自变量 空白项 [‘,’ 空白项 函数自变量 空白项 [‘,’ 空白项 函数自变量 空白项]] ‘)’ 空白项 ‘&#x3D;’ 空白项 函数表达式</li>
+</ul>
+<ul>
+<li>函数自变量 $\rightarrow$ ‘x’ | ‘y’ | ‘z’</li>
+<li>自定义函数<strong>调用</strong> $\rightarrow$ 自定义函数名 空白项 ‘(‘ 空白项 因子 空白项 [‘,’ 空白项 因子 空白项 [‘,’ 空白项 因子 空白项]] ‘)’</li>
+<li>自定义函数名 $\rightarrow$ ‘f’ | ‘g’ | ‘h’</li>
+</ul>
+</li>
+<li><p><strong>求和函数</strong></p>
+<ul>
+<li>求和函数 $\rightarrow$ ‘sum’ ‘(‘ 空白项 i 空白项’,’ 空白项 常数因子 空白项 ‘,’ 空白项 常数因子 空白项 ‘,’ 空白项 求和表达式 空白项 ‘)’</li>
+</ul>
+</li>
+</ul>
+<h4 id="数据限制变更"><a href="#数据限制变更" class="headerlink" title="数据限制变更:"></a>数据限制变更:</h4><ul>
+<li><p>指数变更：</p>
+<ul>
+<li>指数<strong>输入、计算过程中和最终计算结果</strong>最高次为 <strong>8</strong>  $\rightarrow$ 指数<strong>输入</strong>最高次为 <strong>8</strong>  且 <strong>互测</strong>对指数<strong>无要求</strong>  （已于第一次作业开发完成）</li>
+</ul>
+</li>
+<li><p>括号嵌套：</p>
+<ul>
+<li>本次作业可能会存在<strong>多层括号嵌套</strong>  （已于第一次作业开发完成）</li>
+</ul>
+</li>
+</ul>
+<h3 id="迭代开发"><a href="#迭代开发" class="headerlink" title="迭代开发"></a>迭代开发</h3><h4 id="新增："><a href="#新增：" class="headerlink" title="新增："></a>新增：</h4><ul>
+<li><h4 id="求和函数类-SumFun"><a href="#求和函数类-SumFun" class="headerlink" title="求和函数类 SumFun"></a>求和函数类 <code>SumFun</code></h4><img src="2-0-1.png"  alt="1" />  
+
+<ul>
+<li>该类带有一个处理方法，用于字符串的预处理，将输入字符串中所有的 <strong>sum 函数</strong>展开，返回处理后的字符串</li>
+<li>如： <code>sum(i, 1, 3, (i*x))</code> 处理为 <code>((1*x)+(2*x)+(3*x))</code></li>
+<li>tips: 直接 <code>replaceAll</code> 的小心 <code>&quot;sin&quot;</code> 里面也有个<code>&quot;i&quot;</code> </li>
+<li>tips: <code>sum</code> 的上下限需要用 <code>BigInter</code></li>
+</ul>
+</li>
+<li><h4 id="自定义函数类-SelfDefineFun"><a href="#自定义函数类-SelfDefineFun" class="headerlink" title="自定义函数类 SelfDefineFun"></a>自定义函数类 <code>SelfDefineFun</code></h4><img src="2-0-2.png"  alt="2" />  
+
+<ul>
+<li>该类的<code>addFun</code>方法读入一个自定义函数表达式，以 <code>HashMap&lt;String, ArrayList&lt;String&gt;&gt;</code> 的形式保存于该类中</li>
+<li>如： <code>f(x,y,z)=x+y**2+z**3</code> 存储为 <code>HashMap&lt;f,[x, y, z, (x+y**2+z**3)]&gt;</code></li>
+<li>该类亦带有一个处理方法，同样用于字符串的预处理，将本类中所存的所有<strong>自定义函数</strong>都代入输入字符串中，并返回处理后的字符串</li>
+<li>如： <code>自定义函数为：f(x,y,z)=x+y**2+z**3 ; 待处理表达式为：f(sin(x)**2,cos(x),x) ; </code> 处理为 <code>((sin(x)**2)+(cos(x))**2+(x)**3)</code></li>
+<li>tips: 需要先替换 <code>x</code> 以免出现 <code>x</code> 的重复代入</li>
+</ul>
+</li>
+<li><h4 id="三角函数类-TriFun"><a href="#三角函数类-TriFun" class="headerlink" title="三角函数类 TriFun"></a>三角函数类 <code>TriFun</code></h4><img src="2-0-3.png"  alt="3" />  
+
+<ul>
+<li>该类在递归下降算法中位于 <code>Experssion类</code> 之上，具有 <code>addExpression</code> 方法用于递归</li>
+<li>使用一个字符串用于记录三角函数具体类型（ <code>sin</code> &#x2F; <code>cos</code> ）</li>
+<li>重写 <code>toString</code> 方法，把保存在该类中存储的表达式并输出三角函数类型（视为<strong>单目</strong>运算符）</li>
+</ul>
+</li>
+<li><h4 id="三角函数化简类-TriSimplify"><a href="#三角函数化简类-TriSimplify" class="headerlink" title="三角函数化简类 TriSimplify"></a>三角函数化简类 <code>TriSimplify</code></h4><img src="2-0-4.png"  alt="4" />
+
+<ul>
+<li>该类用于将一个 <code>Item</code> 类中符合三角函数化简规则的项进行运算并化简，返回一个处理后的 <code>Item</code> 类</li>
+</ul>
+</li>
+</ul>
+<h4 id="修改："><a href="#修改：" class="headerlink" title="修改："></a>修改：</h4><ul>
+<li><h4 id="读取处理类-Lexer-1"><a href="#读取处理类-Lexer-1" class="headerlink" title="读取处理类 Lexer"></a>读取处理类 <code>Lexer</code></h4><ul>
+<li>增加 <code>sin</code> 和 <code>cos</code> 识别</li>
+<li>变更识别变量 <code>x</code> 为识别<strong>所有</strong>自变量、</li>
+</ul>
+</li>
+<li><h4 id="解析类-Parser-1"><a href="#解析类-Parser-1" class="headerlink" title="解析类 Parser"></a>解析类 <code>Parser</code></h4><ul>
+<li>递归下降算法输出后缀表达式时加入三角函数类，输出时将三角函数视为单目运算符（即增加 <code>parseTriFun</code> 方法）</li>
+<li>变更识别变量 <code>x</code> 为识别所有自变量</li>
+</ul>
+</li>
+<li><h4 id="多项式类-Item-1"><a href="#多项式类-Item-1" class="headerlink" title="多项式类 Item"></a>多项式类 <code>Item</code></h4><ul>
+<li>需要重构： 该类在第一次作业中只涉及变量 <code>x</code> 的计算，在本次作业中要涉及多变量计算（把三角函数作用于表达式后的<strong>整体</strong>视作一个自变量（原因：无法与 <code>x</code> 合并，具有自己独立的系数和指数） ）</li>
+<li>将多项式以 <code>HashMap&lt;HashMap&lt;String, BigInteger&gt;, BigInteger&gt;</code> 的形式保存于该类中</li>
+<li>如：<code>5*x*sin(x**2)**2</code> 保存为 <code>HashMap&lt;HashMap(&lt;x,1&gt; &amp; &lt;sin(x**2),2&gt;),5&gt;</code></li>
+<li>根据新类型重构 <code>add/sub/mul/pow (+/-/*/**)</code> 方法</li>
+<li>新增 <code>sin/cos</code> 方法，作用为把表达式用 <code>sin()/cos()</code> 包裹并定义为新自变量</li>
+</ul>
+</li>
+</ul>
+<br>
+
+<hr>
+<h3 id="基于度量的程序结构分析-1"><a href="#基于度量的程序结构分析-1" class="headerlink" title="基于度量的程序结构分析"></a>基于度量的程序结构分析</h3><ul>
+<li><p>总UML类图  </p>
+<img src="2-1.png"/>  
+</li>
+<li><p>代码规模分析  </p>
+<img src="2-2.png"/>  
+</li>
+<li><p>方法复杂度分析  </p>
+<img src="2-3-1.png"/>  
+<img src="2-3-2.png"/>  
+<img src="2-3-3.png"/>  
+</li>
+<li><p>类复杂度分析  </p>
+<img src="2-4.png"/></li>
+</ul>
+<hr>
+<p>优化小方法：  </p>
+<ol>
+<li>若 <code>&lt;因子&gt;</code> 的长度为 <code>1</code> , 则把 <code>&lt;因子&gt;**2</code> 用 <code>&lt;因子&gt;*&lt;因子&gt;</code> 替换。  <code>（Warning:若是三角函数中 &quot;&lt;因子&gt;**2&quot; 则不能应用此变换，原因为不符合本次作业中的形式化表述）</code></li>
+<li>把多项式的首个<strong>非负项</strong>放在表达式首位显示</li>
+<li>三角函数恒等变形（变形需要能使表达式长度缩减）<ul>
+<li><code>项*sin(&lt;因子&gt;)**2 + 项*cos(&lt;因子&gt;)**2 </code>  $\rightarrow$  <code>项</code> </li>
+<li><code>sin(0)</code>  $\rightarrow$  <code>0</code> ， <code>cos(0)</code>  $\rightarrow$  <code>1</code></li>
+<li><code>sin(-&lt;因子&gt;)</code> $\rightarrow$ <code>-sin(&lt;因子&gt;)</code> , <code>cos(-&lt;因子&gt;)</code> $\rightarrow$ <code>cos(&lt;因子&gt;)</code></li>
+<li><code>a + b*sin/cos(&lt;因子&gt;)**2</code> $\rightarrow$ <code>(a+b) - b*cos/sin(&lt;因子&gt;)**2</code></li>
+<li><code>2 * sin(&lt;常数因子&gt;) * cos(&lt;常数因子&gt;)</code> $\rightarrow$ <code>sin(&lt;常数因子&gt; * 2)</code></li>
+</ul>
+</li>
+</ol>
+<br>
+
+<hr>
+<h2 id="第三次作业总结"><a href="#第三次作业总结" class="headerlink" title="第三次作业总结"></a>第三次作业总结</h2><h3 id="分析-2"><a href="#分析-2" class="headerlink" title="分析"></a>分析</h3><p>本次作业是在<a href="../../../../2022/03/04/OO - P1">第一次作业</a>和 <a href="../../../../2022/03/04/OO - P2">第二次作业</a>的基础之上新增了一些琐碎的小功能，算是比较小的一次迭代（甚至如果你前几次扩展性写得好可以认为甚至不是一次迭代）</p>
+<br>
+
+<hr>
+<h3 id="需求变更-1"><a href="#需求变更-1" class="headerlink" title="需求变更"></a>需求变更</h3><h4 id="新增内容-1"><a href="#新增内容-1" class="headerlink" title="新增内容:"></a>新增内容:</h4><ul>
+<li>无</li>
+</ul>
+<h4 id="数据限制变更-1"><a href="#数据限制变更-1" class="headerlink" title="数据限制变更:"></a>数据限制变更:</h4><ul>
+<li><p>三角因子嵌套：</p>
+<ul>
+<li>支持因子嵌套在三角函数里面，并<strong>整体</strong>作为一个因子</li>
+</ul>
+</li>
+<li><p>函数嵌套</p>
+<ul>
+<li>支持函数当做因子使用，并随意嵌套</li>
+</ul>
+</li>
+<li><p>数据量增加：</p>
+<ul>
+<li>互测数据限制：<code>Cost &lt;= 1000</code> $\rightarrow$ <code>Cost &lt;= 100000</code>, 允许出现求和函数</li>
+</ul>
+</li>
+</ul>
+<h3 id="迭代开发-1"><a href="#迭代开发-1" class="headerlink" title="迭代开发"></a>迭代开发</h3><h4 id="新增类："><a href="#新增类：" class="headerlink" title="新增类："></a>新增类：</h4><ul>
+<li>无</li>
+</ul>
+<h4 id="修改类："><a href="#修改类：" class="headerlink" title="修改类："></a>修改类：</h4><ul>
+<li><h4 id="自定义函数类-SelfDefineFun-1"><a href="#自定义函数类-SelfDefineFun-1" class="headerlink" title="自定义函数类 SelfDefineFun"></a>自定义函数类 <code>SelfDefineFun</code></h4><img src="3-0-1.png"  alt="1" />  
+
+<ul>
+<li>新增该类的 <code>check</code> 方法用于检测并处理自定义函数调用中出现的递归调用问题</li>
+</ul>
+</li>
+</ul>
+<br>
+
+<hr>
+<h3 id="基于度量的程序结构分析-2"><a href="#基于度量的程序结构分析-2" class="headerlink" title="基于度量的程序结构分析"></a>基于度量的程序结构分析</h3><ul>
+<li><p>总UML类图  </p>
+<img src="3-1.png"/>  
+</li>
+<li><p>代码规模分析  </p>
+<img src="3-2.png"/>  
+</li>
+<li><p>方法复杂度分析  </p>
+<img src="3-3-1.png"/>  
+<img src="3-3-2.png"/>  
+<img src="3-3-3.png"/>  
+</li>
+<li><p>类复杂度分析  </p>
+<img src="3-4.png"/></li>
+</ul>
+<hr>
+<p>优化小方法：  </p>
+<ol>
+<li>若 <code>&lt;因子&gt;</code> 的长度为 <code>1</code> , 则把 <code>&lt;因子&gt;**2</code> 用 <code>&lt;因子&gt;*&lt;因子&gt;</code> 替换。  </li>
+<li>把多项式的首个<strong>非负项</strong>放在表达式首位显示</li>
+<li>三角函数恒等变形（变形需要能使表达式长度缩减）<ul>
+<li><code>项*sin(&lt;因子&gt;)**2 + 项*cos(&lt;因子&gt;)**2 </code>  $\rightarrow$  <code>项</code> </li>
+<li><code>sin(0)</code>  $\rightarrow$  <code>0</code> ， <code>cos(0)</code>  $\rightarrow$  <code>1</code></li>
+<li><code>sin(-&lt;因子&gt;)</code> $\rightarrow$ <code>-sin(&lt;因子&gt;)</code> , <code>cos(-&lt;因子&gt;)</code> $\rightarrow$ <code>cos(&lt;因子&gt;)</code></li>
+<li><code>a + b*sin/cos(&lt;因子&gt;)**2</code> $\rightarrow$ <code>(a+b) - b*cos/sin(&lt;因子&gt;)**2</code></li>
+<li><code>2 * sin(&lt;常数因子&gt;) * cos(&lt;常数因子&gt;)</code> $\rightarrow$ <code>sin(&lt;常数因子&gt; * 2)</code></li>
+</ul>
+</li>
+</ol>
+<br>
+
+<hr>
+<h2 id="分析自己程序的bug"><a href="#分析自己程序的bug" class="headerlink" title="分析自己程序的bug"></a>分析自己程序的bug</h2><ul>
+<li><p>本人三次作业强测及互测结果如图：</p>
+<ul>
+<li><p>第一次作业：  </p>
+<img src="1-5.png"/>  
+<img src="1-6.png"/>  
+</li>
+<li><p>第二次作业：  </p>
+<img src="2-5.png"/>  
+<img src="2-6.png"/>  
+</li>
+<li><p>第三次作业：  </p>
+<img src="3-5.png"/>  
+<img src="3-6.png"/></li>
+</ul>
+</li>
+<li><p>总共找出的 <code>bug</code> 数： <code>1</code> 个  </p>
+</li>
+<li><p>分别为：  </p>
+<ol>
+<li></li>
+</ol>
+<ul>
+<li>出错数据： <code>sin((sin(x)*x))</code></li>
+<li>错误答案： <code>sin(sin(x)*x)</code></li>
+<li>正确答案： <code>sin((sin(x)*x))</code></li>
+<li>出错原因： <code>计算时三角函数判定内部是否为表达式的方法 IsTerm()  判定条件错误</code><br></li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="分析自己发现别人程序bug所采用的策略"><a href="#分析自己发现别人程序bug所采用的策略" class="headerlink" title="分析自己发现别人程序bug所采用的策略"></a>分析自己发现别人程序bug所采用的策略</h2><ul>
+<li><p>根据形式化表述撰写 <code>python</code> 程序生成<strong>覆盖性</strong>测试数据对他人程序随机生成数据来进行<strong>黑盒测试</strong> </p>
+</li>
+<li><p>测试有效性： <strong>较佳</strong>，互测基本能覆盖所有人被找出的bug</p>
+</li>
+<li><p>是否结合被测程序的代码设计结构来设计测试用例： <strong>否</strong></p>
+</li>
+</ul>
+<br>
+
+<hr>
+<h2 id="心得体会"><a href="#心得体会" class="headerlink" title="心得体会"></a>心得体会</h2><p>本单元是表达式括号展开的从简到难的三次迭代过程，<br><br></p>
+<hr>
+
+                
+                <hr>
+                <!-- Pager -->
+                <ul class="pager">
+                    
+                    <li class="previous">
+                        <a href="/2022/03/22/OO - 第一单元总结 - Requirement/" data-toggle="tooltip" data-placement="top" title="OO - 第一单元总结 - Requirement">&larr; Previous Post
+		<br>
+		<span><font size="2" face="Calibri" color="grey">OO - 第一单元总结 - Requirement</font></span>
+	       </a>
+                    </li>
+                    
+                    
+                    <li class="next">
+                        <a href="/2022/03/18/OS - Lab1/" data-toggle="tooltip" data-placement="top" title="OS - Lab1">Next Post &rarr;
+		<br>
+		<span><font size="2" face="Calibri" color="grey">OS - Lab1</font></span>
+	        </a>
+                    </li>
+                    
+                </ul>
+
+                <!-- tip start -->
+                
+
+                
+                <div class="comment_notes">
+                    <p>
+                        by Tan
+                    </p>
+                </div>
+                
+                <!-- tip end -->
+
+                <!-- Music start-->
+                
+                <!-- Music end -->
+
+                <!-- Sharing -->
+                
+                <!-- Sharing -->
+
+                <!-- gitment start -->
+                
+                <!-- gitment end -->
+
+                <!-- 来必力City版安装代码 -->
+                
+                <!-- City版安装代码已完成 -->
+
+                <!-- disqus comment start -->
+                
+                <!-- disqus comment end -->
+            </div>
+            
+            <!-- Tabe of Content -->
+            <!-- Table of Contents -->
+
+    
+      
+        <aside id="sidebar">
+          <div id="toc" class="toc-article">
+          <strong class="toc-title">Contents</strong>
+          
+            
+              <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#OO第一单元总结"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">OO第一单元总结</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#要求"><span class="toc-nav-number">1.1.</span> <span class="toc-nav-text">要求</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#第一次作业总结"><span class="toc-nav-number">1.2.</span> <span class="toc-nav-text">第一次作业总结</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#分析"><span class="toc-nav-number">1.2.1.</span> <span class="toc-nav-text">分析</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#基本思路"><span class="toc-nav-number">1.2.2.</span> <span class="toc-nav-text">基本思路</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#具体实现"><span class="toc-nav-number">1.2.3.</span> <span class="toc-nav-text">具体实现</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#读取处理类-Lexer"><span class="toc-nav-number">1.2.3.1.</span> <span class="toc-nav-text">读取处理类 Lexer</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#解析类-Parser"><span class="toc-nav-number">1.2.3.2.</span> <span class="toc-nav-text">解析类 Parser</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#多项式类-Item"><span class="toc-nav-number">1.2.3.3.</span> <span class="toc-nav-text">多项式类 Item</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#因子类接口-Factor"><span class="toc-nav-number">1.2.3.4.</span> <span class="toc-nav-text">因子类接口 Factor</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#表达式（加减）类-Expression"><span class="toc-nav-number">1.2.3.4.1.</span> <span class="toc-nav-text">表达式（加减）类 Expression</span></a></li><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#项（乘除）类-Term"><span class="toc-nav-number">1.2.3.4.2.</span> <span class="toc-nav-text">项（乘除）类 Term</span></a></li><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#基本项（幂）类-Basic"><span class="toc-nav-number">1.2.3.4.3.</span> <span class="toc-nav-text">基本项（幂）类 Basic</span></a></li><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#常量类-Constant"><span class="toc-nav-number">1.2.3.4.4.</span> <span class="toc-nav-text">常量类 Constant</span></a></li><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#变量类-Variable"><span class="toc-nav-number">1.2.3.4.5.</span> <span class="toc-nav-text">变量类 Variable</span></a></li></ol></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#基于度量的程序结构分析"><span class="toc-nav-number">1.2.4.</span> <span class="toc-nav-text">基于度量的程序结构分析</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#第二次作业总结"><span class="toc-nav-number">1.3.</span> <span class="toc-nav-text">第二次作业总结</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#分析-1"><span class="toc-nav-number">1.3.1.</span> <span class="toc-nav-text">分析</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#需求变更"><span class="toc-nav-number">1.3.2.</span> <span class="toc-nav-text">需求变更</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#新增内容"><span class="toc-nav-number">1.3.2.1.</span> <span class="toc-nav-text">新增内容:</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#数据限制变更"><span class="toc-nav-number">1.3.2.2.</span> <span class="toc-nav-text">数据限制变更:</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#迭代开发"><span class="toc-nav-number">1.3.3.</span> <span class="toc-nav-text">迭代开发</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#新增："><span class="toc-nav-number">1.3.3.1.</span> <span class="toc-nav-text">新增：</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#求和函数类-SumFun"><span class="toc-nav-number">1.3.3.2.</span> <span class="toc-nav-text">求和函数类 SumFun</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#自定义函数类-SelfDefineFun"><span class="toc-nav-number">1.3.3.3.</span> <span class="toc-nav-text">自定义函数类 SelfDefineFun</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#三角函数类-TriFun"><span class="toc-nav-number">1.3.3.4.</span> <span class="toc-nav-text">三角函数类 TriFun</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#三角函数化简类-TriSimplify"><span class="toc-nav-number">1.3.3.5.</span> <span class="toc-nav-text">三角函数化简类 TriSimplify</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#修改："><span class="toc-nav-number">1.3.3.6.</span> <span class="toc-nav-text">修改：</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#读取处理类-Lexer-1"><span class="toc-nav-number">1.3.3.7.</span> <span class="toc-nav-text">读取处理类 Lexer</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#解析类-Parser-1"><span class="toc-nav-number">1.3.3.8.</span> <span class="toc-nav-text">解析类 Parser</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#多项式类-Item-1"><span class="toc-nav-number">1.3.3.9.</span> <span class="toc-nav-text">多项式类 Item</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#基于度量的程序结构分析-1"><span class="toc-nav-number">1.3.4.</span> <span class="toc-nav-text">基于度量的程序结构分析</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#第三次作业总结"><span class="toc-nav-number">1.4.</span> <span class="toc-nav-text">第三次作业总结</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#分析-2"><span class="toc-nav-number">1.4.1.</span> <span class="toc-nav-text">分析</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#需求变更-1"><span class="toc-nav-number">1.4.2.</span> <span class="toc-nav-text">需求变更</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#新增内容-1"><span class="toc-nav-number">1.4.2.1.</span> <span class="toc-nav-text">新增内容:</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#数据限制变更-1"><span class="toc-nav-number">1.4.2.2.</span> <span class="toc-nav-text">数据限制变更:</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#迭代开发-1"><span class="toc-nav-number">1.4.3.</span> <span class="toc-nav-text">迭代开发</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#新增类："><span class="toc-nav-number">1.4.3.1.</span> <span class="toc-nav-text">新增类：</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#修改类："><span class="toc-nav-number">1.4.3.2.</span> <span class="toc-nav-text">修改类：</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#自定义函数类-SelfDefineFun-1"><span class="toc-nav-number">1.4.3.3.</span> <span class="toc-nav-text">自定义函数类 SelfDefineFun</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#基于度量的程序结构分析-2"><span class="toc-nav-number">1.4.4.</span> <span class="toc-nav-text">基于度量的程序结构分析</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#分析自己程序的bug"><span class="toc-nav-number">1.5.</span> <span class="toc-nav-text">分析自己程序的bug</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#分析自己发现别人程序bug所采用的策略"><span class="toc-nav-number">1.6.</span> <span class="toc-nav-text">分析自己发现别人程序bug所采用的策略</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#心得体会"><span class="toc-nav-number">1.7.</span> <span class="toc-nav-text">心得体会</span></a></li></ol></li></ol>
+            
+          
+          </div>
+        </aside>
+      
+    
+
+                
+            <!-- Sidebar Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                       
+                          <a class="tag" href="/tags/#OO" title="OO">OO</a>
+                        
+                    </div>
+                </section>
+                
+
+            </div>
+        </div>
+    </div>
+</article>
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("https://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'hover',
+          placement: 'left',
+          icon: 'ℬ'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+
+
+<style  type="text/css">
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
+
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+
+                
+                    <li>
+                        <a target="_blank"  href="https://github.com/Master-Tan">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+                    <li>
+                        <a target="_blank" href="https://twitter.com/None">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+                    <li>
+                        <a target="_blank" href="https://www.facebook.com/None">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                
+
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; Tan 2022 | Powered by 
+                    <a href="https://github.com/Master-Tan/Master-Tan.github.io">
+                        <i>Tan's Blog</i>
+                    </a>
+                </p>
+            </div>
+        </div>
+    </div>
+
+</footer>
+
+<!-- jQuery -->
+
+<script src="/js/jquery.min.js"></script>
+
+
+<!-- Bootstrap Core JavaScript -->
+
+<script src="/js/bootstrap.min.js"></script>
+
+
+<!-- Custom Theme JavaScript -->
+
+<script src="/js/hux-blog.min.js"></script>
+
+
+<!-- Search -->
+
+<script src="/js/search.js"></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("https://github.com/Master-Tan/Master-Tan.github.io.git/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("https://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+<script>
+    // dynamic User by Hux
+    var _gaId = 'UA-XXXXXXXX-X';
+    var _gaDomain = 'yoursite';
+
+    // Originial
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', _gaId, _gaDomain);
+    ga('send', 'pageview');
+</script>
+
+
+
+
+<!-- Baidu Tongji -->
+
+
+<!-- Search -->
+
+    <script type="text/javascript">      
+        var search_path = "search.xml";
+        if (search_path.length == 0) {
+            search_path = "search.xml";
+        }
+    var path = "/" + search_path;
+    searchFunc(path, 'local-search-input', 'local-search-result');
+    </script>
+
+
+<!-- busuanzi -->
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+
+	<a id="rocket" href="#top" class=""></a>
+	<script type="text/javascript" src="/js/totop.js?v=1.0.0" async=""></script>
+    <script type="text/javascript" src="/js/toc.js?v=1.0.0" async=""></script>
+
+    
+        <!-- background effects line -->
+        
+
+        
+
+        <!-- background effects end -->
+    
+
+    <!--<script size="50" alpha='0.3' zIndex="-999" src="/js/ribbonStatic.js"></script>-->
+    
+        <script src="/js/ribbonDynamic.js"></script>
+    
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+
+</html>
