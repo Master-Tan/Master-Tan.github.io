@@ -3,17 +3,17 @@
 
 
     <sitemap>
-        <loc>https://github.com/Master-Tan/Master-Tan.github.io.git/post-sitemap.xml</loc>
+        <loc>http://Master-Tan.github.io/post-sitemap.xml</loc>
         <lastmod>2022-03-27T09:31:19.561Z</lastmod>
     </sitemap>
 
     <sitemap>
-        <loc>https://github.com/Master-Tan/Master-Tan.github.io.git/page-sitemap.xml</loc>
+        <loc>http://Master-Tan.github.io/page-sitemap.xml</loc>
         <lastmod>2022-03-27T17:52:48.562Z</lastmod>
     </sitemap>
 
     <sitemap>
-        <loc>https://github.com/Master-Tan/Master-Tan.github.io.git/tag-sitemap.xml</loc>
+        <loc>http://Master-Tan.github.io/tag-sitemap.xml</loc>
         <lastmod>2022-03-27T09:31:19.561Z</lastmod>
     </sitemap>
 
