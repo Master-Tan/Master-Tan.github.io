@@ -181,6 +181,10 @@
                     
 
                         
+                        	<li>
+                          	  <a href="/archive/">Archives</a>
+                        	</li>
+                        
                     
 
                         
@@ -191,22 +195,18 @@
                     
 
                         
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
                         	<li>
                           	  <a href="/tags/">Tags</a>
                         	</li>
-                        
-                    
-
-                        
-                        	<li>
-                          	  <a href="/archive/">Archives</a>
-                        	</li>
-                        
-                    
-
-                        
-                    
-
                         
                     
                     
@@ -249,45 +249,52 @@
 
 
     <!-- Main Content -->
-    <!-- Main Content -->
-<div class="container">
-    <div class="row">
-        
+    <!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
 
-    <!-- Post Container -->
+            <!-- Post Container -->
             <div class="
-                col-lg-8 col-lg-offset-1
-                col-md-8 col-md-offset-1
-                col-sm-12
-                col-xs-12
-                post-container
-            ">
-                <h1 id="OS-Lab1"><a href="#OS-Lab1" class="headerlink" title="OS - Lab1"></a>OS - Lab1</h1><h2 id="课下"><a href="#课下" class="headerlink" title="课下"></a>课下</h2><h3 id="Lab1-实验报告"><a href="#Lab1-实验报告" class="headerlink" title="Lab1 实验报告"></a>Lab1 实验报告</h3><p><br></p>
-<h3 id="一-思考题"><a href="#一-思考题" class="headerlink" title="一. 思考题"></a>一. 思考题</h3><p><br></p>
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <h1 id="OS-Lab1"><a href="#OS-Lab1" class="headerlink" title="OS - Lab1"></a>OS - Lab1</h1><h2 id="课下"><a href="#课下" class="headerlink" title="课下"></a>课下</h2><h3 id="Lab1-实验报告"><a href="#Lab1-实验报告" class="headerlink" title="Lab1 实验报告"></a>Lab1 实验报告</h3><br>
+
+<h3 id="一-思考题"><a href="#一-思考题" class="headerlink" title="一. 思考题"></a>一. 思考题</h3><br>
+
 <h4 id="Thinking-1-1"><a href="#Thinking-1-1" class="headerlink" title="Thinking 1.1"></a>Thinking 1.1</h4><ul>
 <li>请查阅并给出前述 <code>objdump</code> 中使用的参数的含义。使用其它体系结构的编译器（如课程平台的 <code>MIPS</code> 交叉编译器）重复上述各步编译过程，观察并在实验报告中提交相应结果。</li>
 </ul>
 <h4 id="答："><a href="#答：" class="headerlink" title="答："></a>答：</h4><ul>
-<li><p><code>objdump</code> 指令使用参数如下如图：<br><img align="middle" src='1.png'>  </p>
+<li><p><code>objdump</code> 指令使用参数如下如图：  </p>
+<img align="middle" src='1.png'>  
 </li>
-<li><p>对于文件 <code>test.c</code> ,使用课程平台的 <code>MIPS</code> 交叉编译器编译为 <code>test.o</code> 文件<br><img align="middle" src='4.png'></p>
+<li><p>对于文件 <code>test.c</code> ,使用课程平台的 <code>MIPS</code> 交叉编译器编译为 <code>test.o</code> 文件  </p>
+<img align="middle" src='4.png'>
 </li>
-<li><p>再编辑链接器配置文件 <code>test.lds</code><br><img align="middle" src='5.png'></p>
+<li><p>再编辑链接器配置文件 <code>test.lds</code>  </p>
+<img align="middle" src='5.png'>
 </li>
-<li><p>最后通过链接器编译得到 <code>test</code> 可执行文件<br><img align="middle" src='6.png'></p>
-</li>
+<li><p>最后通过链接器编译得到 <code>test</code> 可执行文件  </p>
+<img align="middle" src='6.png'></li>
 </ul>
-<p><br></p>
+<br>
+
 <h4 id="Thinking-1-2"><a href="#Thinking-1-2" class="headerlink" title="Thinking 1.2"></a>Thinking 1.2</h4><ul>
 <li>也许你会发现我们的 <code>readelf</code> 程序是不能解析之前生成的内核文件(内核文件是可执行文件)的，而我们之后将要介绍的工具 <code>readelf</code> 则可以解析，这是为什么呢？(提示：尝试使用 <code>readelf -h</code> ，观察不同)</li>
 </ul>
 <h4 id="答：-1"><a href="#答：-1" class="headerlink" title="答："></a>答：</h4><ul>
-<li><p><code>readelf -h vmlinux</code> 和 <code>readelf -h testELF</code> 的结果为<br><img align="middle" src='2.png'><br><img align="middle" src='3.png'>  </p>
+<li><p><code>readelf -h vmlinux</code> 和 <code>readelf -h testELF</code> 的结果为  </p>
+<img align="middle" src='2.png'>  
+<img align="middle" src='3.png'>  
 </li>
 <li><p>由此可见，我们自己写的 <code>readelf</code> 程序和 <code>testELF</code> 文件都是在小端 <code>（little endian）</code> 环境下运行，而 <code>vmlinux</code> 是大端 <code>（big endian）</code> 格式存储，在大端环境下运行的。因此我们自己的程序无法解析 <code>vmlinux</code> 内核文件，而 <code>linux</code> 默认的 <code>readelf</code> 指令有识别大小端并按相应方式处理的代解析程序能力</p>
 </li>
 </ul>
-<p><br></p>
+<br>
+
 <h4 id="Thinking-1-3"><a href="#Thinking-1-3" class="headerlink" title="Thinking 1.3"></a>Thinking 1.3</h4><ul>
 <li><p>在理论课上我们了解到， <code>MIPS</code> 体系结构上电时，启动入口地址为 <code>0xBFC00000</code> （其实启动入口地址是根据具体型号而定的，由硬件逻辑确定，也有可能不是这个地址，但一定是一个确定的地址），但实验操作系统的内核入口并没有放在上电启动地址，而是按照内存布局图放置。思考为什么这样放置内核还能保证内核入口被正确跳转到？</p>
 </li>
@@ -297,7 +304,8 @@
 <h4 id="答：-2"><a href="#答：-2" class="headerlink" title="答："></a>答：</h4><ul>
 <li><code>MIPS</code> 系统加电起动后， <code>MIPS</code> 处理器默认的程序入口是 <code>0xBFC00000</code> ，此地址在无缓存的 <code>KSEG1</code> 的地址区域内，对应的物理地址是 <code>0x1FC00000</code> ，即 <code>CPU</code> 从 <code>0x1FC00000</code> 开始取第一条指令，这个地址在硬件上已经确定为 <code>FLASH</code> 的位置，然后 <code>Bootloader</code> 执行功能，加载内核到内存（ <code>Linux</code> 内核镜像文件拷贝到 <code>RAM</code> 中某个空闲地址（ <code>LOAD</code> 地址）处），之后在本系统中将 <code>./tools/scse0_3.lds</code> 传给链接器 <code>ld</code> ， <code>ld</code> 会将 <code>.text</code> 节的地址链接到 <code>0x80010000</code> （即内存布局图中内核代码开始处）。关于内核 <code>ELF</code> 文件的入口地址 <code>(Entry point)</code> ，即 <code>bootloader</code> 移动完内核后，直接跳转到的地址，由 <code>ld</code> 写入 <code>ELF</code> 的头中，在本系统中通过 <code>ENTRY(_start)</code> 指明并跳转至内核启动代码 <code>./boot/start.S</code> 处</li>
 </ul>
-<p><br></p>
+<br>
+
 <h4 id="Thinking-1-4"><a href="#Thinking-1-4" class="headerlink" title="Thinking 1.4"></a>Thinking 1.4</h4><ul>
 <li><p><code>sg_size</code> 和 <code>bin_size</code> 的区别它的开始加载位置并非页对齐，同时 <code>bin_size</code> 的结束位置 <code>(va+i)</code> 也并非页对齐，最终整个段加载完毕的 <code>sg_size</code> 末尾的位置也并非页对齐，请思考，为了保证页面不冲突（不重复为同一地址申请多个页，以及页上数据尽可能减少冲突），这样一个程序段应该怎样加载内存空间中。</p>
 </li>
@@ -305,16 +313,21 @@
 </li>
 </ul>
 <h4 id="答：-3"><a href="#答：-3" class="headerlink" title="答："></a>答：</h4><ul>
-<li><p>系统内核加载程序段地址分配为:<br><img align="middle" src='14.png'><br><img align="middle" src='12.png'>  </p>
+<li><p>系统内核加载程序段地址分配为:  </p>
+<img align="middle" src='14.png'>  
+<img align="middle" src='12.png'>  
 </li>
-<li><p>实验代码（自己编写的一个实例程序）的加载程序段地址分配为：<br><img align="middle" src='15.png'><br><img align="middle" src='13.png'>  </p>
+<li><p>实验代码（自己编写的一个实例程序）的加载程序段地址分配为：  </p>
+<img align="middle" src='15.png'>  
+<img align="middle" src='13.png'>  
 </li>
 <li><p>由两个程序加载后的段地址可知，可见，系统内核在加载程序段时能保证进行内核加载时为<strong>页对齐</strong>的，而自己编写的程序并<strong>不能</strong>保证加载时页对齐，想要自己的程序在加载时页对齐，需要自定义或修改链接器在连接时的行为</p>
 </li>
 </ul>
-<p><br></p>
+<br>
+
 <h4 id="Thinking-1-5"><a href="#Thinking-1-5" class="headerlink" title="Thinking 1.5"></a>Thinking 1.5</h4><ul>
-<li>内核入口在什么地方？ <code>main</code> 函数在什么地方？我们是怎么让内核进入到想要的 <code>main</code> 函数的呢？又是怎么进行跨文件调用函数的呢？ </li>
+<li>内核入口在什么地方？ <code>main</code> 函数在什么地方？我们是怎么让内核进入到想要的 <code>main</code> 函数的呢？又是怎么进行跨文件调用函数的呢？</li>
 </ul>
 <h4 id="答：-4"><a href="#答：-4" class="headerlink" title="答："></a>答：</h4><ul>
 <li><p>内核入口位于 <code>start.S</code> 中的 <code>_start</code> 函数（标号使用 <code>LEAF</code> 宏定义，该宏完成初始化堆栈等工作，以辅助函数调用）</p>
@@ -326,36 +339,39 @@
 <li><p>跨文件调用时，跳转地址为一个标签，由链接器在连接过程中重定位至函数的真正地址</p>
 </li>
 </ul>
-<p><br></p>
-<h4 id="Thinking-1-6"><a href="#Thinking-1-6" class="headerlink" title="Thinking 1.6"></a>Thinking 1.6</h4><p>查阅 <code>《See MIPS Run Linux》</code> 一书相关章节，解释 <code>boot/start.S</code> 中下面几行对 <code>CP0</code> 协处理器寄存器进行读写的意义。具体而言，它们分别读/写了哪些寄存器的哪些特定位，从而达到什么目的？</p>
+<br>
+
+<h4 id="Thinking-1-6"><a href="#Thinking-1-6" class="headerlink" title="Thinking 1.6"></a>Thinking 1.6</h4><p>查阅 <code>《See MIPS Run Linux》 </code> 一书相关章节，解释 <code>boot/start.S</code> 中下面几行对 <code>CP0</code> 协处理器寄存器进行读写的意义。具体而言，它们分别读&#x2F;写了哪些寄存器的哪些特定位，从而达到什么目的？</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;* Disable interrupts *&#x2F;</span><br><span class="line">mtc0 zero, CP0_STATUS</span><br><span class="line">......</span><br><span class="line">&#x2F;* disable kernel mode cache *&#x2F;</span><br><span class="line">mfc0 t0, CP0_CONFIG</span><br><span class="line">and t0, ~0x7</span><br><span class="line">ori t0, 0x2</span><br><span class="line">mtc0 to, CP0_CONFIG</span><br></pre></td></tr></table></figure>
+
 <h4 id="答：-5"><a href="#答：-5" class="headerlink" title="答："></a>答：</h4><ul>
 <li><p>宏代换后的代码为</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;* Disable interrupts *&#x2F;</span><br><span class="line">mtc0 zero, $12</span><br><span class="line">......</span><br><span class="line">&#x2F;* disable kernel mode cache *&#x2F;</span><br><span class="line">mfc0 t0, $16</span><br><span class="line">and t0, ~0x7</span><br><span class="line">ori t0, 0x2</span><br><span class="line">mtc0 t0, $16</span><br></pre></td></tr></table></figure>
 </li>
 <li><p><code>mtc0 zero, $12</code></p>
 <ul>
-<li><p>读/写寄存器：<br>使状态寄存器 <strong>SR</strong> <code>(Status Register)</code> 全部位置 <code>0</code></p>
+<li><p>读&#x2F;写寄存器：<br>使状态寄存器 <strong>SR</strong> <code>(Status Register)</code> 全部位置 <code>0</code></p>
 </li>
 <li><p>达到目的：<br><strong>禁用了中断</strong>  </p>
 </li>
-<li><img align="middle" src='7.png'>  </li>
+<li><img align="middle" src='7.png'></li>
 </ul>
 </li>
 <li><p><code>mfc0 t0, $16</code><br><code>and t0, ~0x7</code><br><code>ori t0, 0x2</code><br><code>mtc0 t0, $16</code></p>
 <ul>
-<li><p>读/写寄存器：<br>取出 <code>CP0</code> 第16号寄存器 <code>Config</code>（CPU参数设置寄存器）,并将后三位置 <code>0</code>，再将第二位置 <code>1</code>，并写回 <code>Config</code> 寄存器</p>
+<li><p>读&#x2F;写寄存器：<br>取出 <code>CP0</code> 第16号寄存器 <code>Config</code>（CPU参数设置寄存器）,并将后三位置 <code>0</code>，再将第二位置 <code>1</code>，并写回 <code>Config</code> 寄存器</p>
 </li>
 <li><p>达到目的：<br><strong>禁用了内核模式缓存（Cache）</strong>  </p>
 </li>
 <li><img align="middle" src='8.png'>  </li>
 <li><img align="middle" src='9.png'>  </li>
 <li><img align="middle" src='10.png'>  </li>
-<li><img align="middle" src='11.png'>  </li>
+<li><img align="middle" src='11.png'></li>
 </ul>
 </li>
 </ul>
-<p><br></p>
+<br>
+
 <h3 id="二-实验难点："><a href="#二-实验难点：" class="headerlink" title="二. 实验难点："></a>二. 实验难点：</h3><ol>
 <li><p>大量C语言代码的阅读与理解</p>
 </li>
@@ -363,11 +379,11 @@
 </li>
 <li><p><code>ELF</code> 文件的自定义读取，<code>Linker Script</code> 链接器， <code>MIPS</code> 汇编语言等重难点的掌握</p>
 </li>
-<li><p>…  </p>
+<li><p>…</p>
 </li>
 </ol>
 <h3 id="三-体会与感想："><a href="#三-体会与感想：" class="headerlink" title="三. 体会与感想："></a>三. 体会与感想：</h3><ul>
-<li><p>难度评价：6/10</p>
+<li><p>难度评价：6&#x2F;10</p>
 </li>
 <li><p>实验用时：5h， 撰写实验报告用时：3h</p>
 </li>
@@ -377,160 +393,176 @@
 </ul>
 </li>
 </ul>
-<p><br></p>
+<br>
+
 <hr>
 <h2 id="课上"><a href="#课上" class="headerlink" title="课上"></a>课上</h2><h3 id="lab1-1-exam："><a href="#lab1-1-exam：" class="headerlink" title="lab1-1-exam："></a>lab1-1-exam：</h3><p>从原来的要求输出 <code>sh_addr</code> 变为要求输出 <code>sh_offset</code> 和 <code>sh_size</code> ，极其简单， <code>5min</code> 内解决</p>
-<p><br></p>
+<br>
+
 <h3 id="lab1-1-Extra："><a href="#lab1-1-Extra：" class="headerlink" title="lab1-1-Extra："></a>lab1-1-Extra：</h3><p>研究 <code>Program segment header</code> 中每一段的 <code>p_vaddr</code> 以及 <code>p_memsz</code> 来得到每一段在内存中存储位置，再假设页面大小是 <code>4KB</code> 并且严格页对齐然后研究每一段是否存在共用页和冲突页的情况，并且根据对应情况输出对应结果</p>
-<p><br></p>
-<h3 id="lab1-2-exam"><a href="#lab1-2-exam" class="headerlink" title="lab1-2-exam:"></a>lab1-2-exam:</h3><p><br></p>
-<h3 id="lab1-2-Extra"><a href="#lab1-2-Extra" class="headerlink" title="lab1-2-Extra:"></a>lab1-2-Extra:</h3><p><br></p>
+<br>
+
+<h3 id="lab1-2-exam"><a href="#lab1-2-exam" class="headerlink" title="lab1-2-exam:"></a>lab1-2-exam:</h3><br>
+
+<h3 id="lab1-2-Extra"><a href="#lab1-2-Extra" class="headerlink" title="lab1-2-Extra:"></a>lab1-2-Extra:</h3><br>
+
 <hr>
 
+                
+                <hr>
+                <!-- Pager -->
+                <ul class="pager">
+                    
+                    <li class="previous">
+                        <a href="/2022/03/21/OO - 第一单元总结/" data-toggle="tooltip" data-placement="top" title="OO - 第一单元总结">&larr; Previous Post
+		<br>
+		<span><font size="2" face="Calibri" color="grey">OO - 第一单元总结</font></span>
+	       </a>
+                    </li>
+                    
+                    
+                    <li class="next">
+                        <a href="/2022/03/14/OO - P3 - Question/" data-toggle="tooltip" data-placement="top" title="OO - P3 - Question">Next Post &rarr;
+		<br>
+		<span><font size="2" face="Calibri" color="grey">OO - P3 - Question</font></span>
+	        </a>
+                    </li>
+                    
+                </ul>
+
+                <!-- tip start -->
+                
+
+                
+                <div class="comment_notes">
+                    <p>
+                        by Tan
+                    </p>
+                </div>
+                
+                <!-- tip end -->
+
+                <!-- Music start-->
+                
+                <!-- Music end -->
+
+                <!-- Sharing -->
+                
+                <!-- Sharing -->
+
+                <!-- gitment start -->
+                
+                <!-- gitment end -->
+
+                <!-- 来必力City版安装代码 -->
+                
+                <!-- City版安装代码已完成 -->
+
+                <!-- disqus comment start -->
+                
+                <!-- disqus comment end -->
             </div>
+            
+            <!-- Tabe of Content -->
+            <!-- Table of Contents -->
 
+    
+      
+        <aside id="sidebar">
+          <div id="toc" class="toc-article">
+          <strong class="toc-title">Contents</strong>
+          
+            
+              <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#OS-Lab1"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">OS - Lab1</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#课下"><span class="toc-nav-number">1.1.</span> <span class="toc-nav-text">课下</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#Lab1-实验报告"><span class="toc-nav-number">1.1.1.</span> <span class="toc-nav-text">Lab1 实验报告</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#一-思考题"><span class="toc-nav-number">1.1.2.</span> <span class="toc-nav-text">一. 思考题</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#Thinking-1-1"><span class="toc-nav-number">1.1.2.1.</span> <span class="toc-nav-text">Thinking 1.1</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#答："><span class="toc-nav-number">1.1.2.2.</span> <span class="toc-nav-text">答：</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#Thinking-1-2"><span class="toc-nav-number">1.1.2.3.</span> <span class="toc-nav-text">Thinking 1.2</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#答：-1"><span class="toc-nav-number">1.1.2.4.</span> <span class="toc-nav-text">答：</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#Thinking-1-3"><span class="toc-nav-number">1.1.2.5.</span> <span class="toc-nav-text">Thinking 1.3</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#答：-2"><span class="toc-nav-number">1.1.2.6.</span> <span class="toc-nav-text">答：</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#Thinking-1-4"><span class="toc-nav-number">1.1.2.7.</span> <span class="toc-nav-text">Thinking 1.4</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#答：-3"><span class="toc-nav-number">1.1.2.8.</span> <span class="toc-nav-text">答：</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#Thinking-1-5"><span class="toc-nav-number">1.1.2.9.</span> <span class="toc-nav-text">Thinking 1.5</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#答：-4"><span class="toc-nav-number">1.1.2.10.</span> <span class="toc-nav-text">答：</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#Thinking-1-6"><span class="toc-nav-number">1.1.2.11.</span> <span class="toc-nav-text">Thinking 1.6</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#答：-5"><span class="toc-nav-number">1.1.2.12.</span> <span class="toc-nav-text">答：</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#二-实验难点："><span class="toc-nav-number">1.1.3.</span> <span class="toc-nav-text">二. 实验难点：</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#三-体会与感想："><span class="toc-nav-number">1.1.4.</span> <span class="toc-nav-text">三. 体会与感想：</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#课上"><span class="toc-nav-number">1.2.</span> <span class="toc-nav-text">课上</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#lab1-1-exam："><span class="toc-nav-number">1.2.1.</span> <span class="toc-nav-text">lab1-1-exam：</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#lab1-1-Extra："><span class="toc-nav-number">1.2.2.</span> <span class="toc-nav-text">lab1-1-Extra：</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#lab1-2-exam"><span class="toc-nav-number">1.2.3.</span> <span class="toc-nav-text">lab1-2-exam:</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#lab1-2-Extra"><span class="toc-nav-number">1.2.4.</span> <span class="toc-nav-text">lab1-2-Extra:</span></a></li></ol></li></ol></li></ol>
+            
+          
+          </div>
+        </aside>
+      
+    
+
+                
             <!-- Sidebar Container -->
-<div class="
-    col-lg-3 col-lg-offset-0
-    col-md-3 col-md-offset-0
-    col-sm-12
-    col-xs-12
-    sidebar-container
-">
-    
-        <!-- Featured Tags -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
 
-<section>
-    <!-- no hr -->
-    <h5><a href="/tags/">FEATURED TAGS</a></h5>
-    <div class="tags">
-        
-            
-            <a href="/tags/#CO" title="CO" rel="5">CO</a>
-            
-        
-            
-            <a href="/tags/#hexo-theme-snail" title="hexo-theme-snail" rel="1">hexo-theme-snail</a>
-            
-        
-            
-            <a href="/tags/#碎碎念" title="碎碎念" rel="2">碎碎念</a>
-            
-        
-            
-            <a href="/tags/#基物实验" title="基物实验" rel="1">基物实验</a>
-            
-        
-            
-            <a href="/tags/#OO" title="OO" rel="4">OO</a>
-            
-        
-            
-            <a href="/tags/#OS" title="OS" rel="2">OS</a>
-            
-        
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                       
+                          <a class="tag" href="/tags/#OS" title="OS">OS</a>
+                        
+                    </div>
+                </section>
+                
+
+            </div>
+			
+			<div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+				
+				<br>
+				<br>
+
+				<script src="https://utteranc.es/client.js"
+						repo="Master-Tan/Master-Tan.github.io"
+						issue-term="pathname"
+						label="Comment"
+						theme="github-light"
+						crossorigin="anonymous"
+						async>
+				</script>
+			</div>
+        </div>
     </div>
-</section>
+</article>
 
-        <hr>
-    
-        <!-- Short About -->
-<section class="visible-md visible-lg">
-    <h5><a href="/about/">ABOUT ME</a></h5>
-    <div class="short-about">
 
-        
-            <img id = "avatar_pic" src="/img/ironman-draw.png" />
-        
 
-        
-            <p>Welcome to visit, I&#39;m Tan!</p>
-        
 
-        <!-- SNS Link -->
-        <ul class="list-inline">
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("https://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'hover',
+          placement: 'left',
+          icon: 'ℬ'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
 
-            
-                <li>
-                    <a target="_blank"  href="https://github.com/Master-Tan">
-                        <span class="fa-stack fa-lg">
-                            <i class="fa fa-circle fa-stack-2x"></i>
-                            <i class="fa fa-github fa-stack-1x fa-inverse"></i>
-                        </span>
-                    </a>
-                </li>
-            
 
-            
-                <li>
-                    <a target="_blank" href="https://twitter.com/None">
-                        <span class="fa-stack fa-lg">
-                            <i class="fa fa-circle fa-stack-2x"></i>
-                            <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
-                        </span>
-                    </a>
-                </li>
-            
+<style  type="text/css">
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
 
-            
-                <li>
-                    <a target="_blank" href="https://www.facebook.com/None">
-                        <span class="fa-stack fa-lg">
-                            <i class="fa fa-circle fa-stack-2x"></i>
-                            <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
-                        </span>
-                    </a>
-                </li>
-            
-
-            
-
-            
-
-            
-
-            
-
-        </ul>
-    </div>
-</section>
-        <hr>
-    
-        
-  <h5>VISITORS</h5>
-  <div class="widget">
-    <span>
-    	Viewed <b><i><span id="busuanzi_value_site_pv"><i class="fa fa-spinner fa-spin"></i></span></i></b> Times
-	</span>
-	<br/>
-	<span>
-		<b><i><span id="busuanzi_value_site_uv"><i class="fa fa-spinner fa-spin"></i></span></i></b> Visitors In Total
-	</span>
-  </div>
-
-        <hr>
-    
-        <!-- Friends Blog -->
-
-<h5>FRIENDS</h5>
-<ul class="list-inline">
-
-    
-        <li><a href="https://trickeye.github.io" target="_blank">TrickEye&#39;s Blog</a></li>
-    
-        <li><a href="#" target="_blank">Tan&#39;s Web</a></li>
-    
-        <li><a href="https://github.com/Master-Tan" target="_blank">Tan&#39;s Github</a></li>
-    
-</ul>
-
-        <hr>
-    
-</div>
-
-        
-    </div>
-</div>
 
 
     <!-- Footer -->
