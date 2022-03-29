@@ -121,7 +121,7 @@
 	       
                             <div class="blank_box"></div>
                             <span class="meta">
-                                 <span class="post-count">635</span> Words
+                                 <span class="post-count">533</span> Words
                             </span>
                             <div class="blank_box"></div>
                             <!-- 不蒜子统计 start -->
@@ -198,15 +198,15 @@
                     
 
                         
+                    
+
+                        
+                    
+
+                        
                         	<li>
                           	  <a href="/tags/">Tags</a>
                         	</li>
-                        
-                    
-
-                        
-                    
-
                         
                     
                     
@@ -264,79 +264,81 @@
 <p>第<b> 1~3 </b>题，做出其中两道即达到通过条件</p>
 <p>题目如下：</p>
 <h1 id="P5-L1-swc"><a href="#P5-L1-swc" class="headerlink" title="P5_L1_swc"></a>P5_L1_swc</h1><h2 id="swc"><a href="#swc" class="headerlink" title="swc"></a>swc</h2><p>编码：</p>
+<div class="table-container">
 <table>
 <thead>
 <tr>
-<th align="center">31&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;26</th>
-<th align="center">25&amp;emsp;&amp;emsp;21</th>
-<th align="center">20&amp;emsp;&amp;emsp;16</th>
-<th align="center">15&amp;emsp;&amp;emsp;11</th>
-<th align="center">10&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;6</th>
-<th align="center">5&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;0</th>
+<th style="text-align:center">31&emsp;&emsp;&emsp;&emsp;26</th>
+<th style="text-align:center">25&emsp;&emsp;21</th>
+<th style="text-align:center">20&emsp;&emsp;16</th>
+<th style="text-align:center">15&emsp;&emsp;11</th>
+<th style="text-align:center">10&emsp;&emsp;&emsp;&emsp;6</th>
+<th style="text-align:center">5&emsp;&emsp;&emsp;&emsp;0</th>
 </tr>
 </thead>
-<tbody><tr>
-<td align="center">speical<br>000000</td>
-<td align="center">rs</td>
-<td align="center">rt</td>
-<td align="center">rd</td>
-<td align="center">0<br>00000</td>
-<td align="center">swc<br>001010</td>
+<tbody>
+<tr>
+<td style="text-align:center">speical<br>000000</td>
+<td style="text-align:center">rs</td>
+<td style="text-align:center">rt</td>
+<td style="text-align:center">rd</td>
+<td style="text-align:center">0<br>00000</td>
+<td style="text-align:center">swc<br>001010</td>
 </tr>
 <tr>
-<td align="center">6</td>
-<td align="center">5</td>
-<td align="center">5</td>
-<td align="center">5</td>
-<td align="center">5</td>
-<td align="center">6</td>
+<td style="text-align:center">6</td>
+<td style="text-align:center">5</td>
+<td style="text-align:center">5</td>
+<td style="text-align:center">5</td>
+<td style="text-align:center">5</td>
+<td style="text-align:center">6</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <p>格式：</p>
 <pre><code>swc rd, rs, rt
-</code></pre>
-<p>描述：</p>
+</code></pre><p>描述：</p>
 <pre><code>条件循环移位，如果寄存器值含奇数个零则循环左移，含偶数个零则循环右移
-</code></pre>
-<p>操作：</p>
-<p>&amp;emsp;&amp;emsp;Condition &lt;- GPR[rt]<sub>31</sub>+GPR[rt]<sub>30</sub>+…+GPR[rt]<sub>0</sub><br>&amp;emsp;&amp;emsp;temp &lt;- GPR[rt]<br>&amp;emsp;&amp;emsp;If Condition % 2 !&#x3D; 0:<br>&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;GPR[rd] &lt;- ( GPR[rs]<sub>(31-temp)…0</sub> || GPR[rs]<sub>31…(31-temp+1)</sub> )<br>&amp;emsp;&amp;emsp;else:<br>&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;GPR[rd] &lt;- ( GPR[rs]<sub>(temp-1)…0</sub> || GPR[rs]<sub>31…temp</sub> )  </p>
+</code></pre><p>操作：</p>
+<p>&emsp;&emsp;Condition &lt;- GPR[rt]<sub>31</sub>+GPR[rt]<sub>30</sub>+…+GPR[rt]<sub>0</sub><br>&emsp;&emsp;temp &lt;- GPR[rt]<br>&emsp;&emsp;If Condition % 2 != 0:<br>&emsp;&emsp;&emsp;&emsp;GPR[rd] &lt;- ( GPR[rs]<sub>(31-temp)…0</sub> || GPR[rs]<sub>31…(31-temp+1)</sub> )<br>&emsp;&emsp;else:<br>&emsp;&emsp;&emsp;&emsp;GPR[rd] &lt;- ( GPR[rs]<sub>(temp-1)…0</sub> || GPR[rs]<sub>31…temp</sub> )  </p>
 <p>实例：</p>
 <pre><code>swc $t1, $t2, $t3
-</code></pre>
-<p>其他：</p>
+</code></pre><p>其他：</p>
 <pre><code>若 GPR[rt] 值为 0 则相当于无操作
-</code></pre>
-<p>&amp;emsp;<br>&amp;emsp;</p>
+</code></pre><p>&emsp;<br>&emsp;</p>
 <h1 id="P5-L3-bonall"><a href="#P5-L3-bonall" class="headerlink" title="P5_L3_bonall"></a>P5_L3_bonall</h1><h2 id="bonall"><a href="#bonall" class="headerlink" title="bonall"></a>bonall</h2><p>编码：</p>
+<div class="table-container">
 <table>
 <thead>
 <tr>
-<th align="center">31&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;26</th>
-<th align="center">25&amp;emsp;&amp;emsp;21</th>
-<th align="center">20&amp;emsp;&amp;emsp;16</th>
-<th align="center">15&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;0</th>
+<th style="text-align:center">31&emsp;&emsp;&emsp;&emsp;26</th>
+<th style="text-align:center">25&emsp;&emsp;21</th>
+<th style="text-align:center">20&emsp;&emsp;16</th>
+<th style="text-align:center">15&emsp;&emsp;&emsp;&emsp;&emsp;0</th>
 </tr>
 </thead>
-<tbody><tr>
-<td align="center">special<br>010101</td>
-<td align="center">rs</td>
-<td align="center">rt</td>
-<td align="center">offset</td>
+<tbody>
+<tr>
+<td style="text-align:center">special<br>010101</td>
+<td style="text-align:center">rs</td>
+<td style="text-align:center">rt</td>
+<td style="text-align:center">offset</td>
 </tr>
 <tr>
-<td align="center">6</td>
-<td align="center">5</td>
-<td align="center">5</td>
-<td align="center">16</td>
+<td style="text-align:center">6</td>
+<td style="text-align:center">5</td>
+<td style="text-align:center">5</td>
+<td style="text-align:center">16</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <p>格式：</p>
 <pre><code>bonall rs, rt, offset
-</code></pre>
-<p>描述：</p>
+</code></pre><p>描述：</p>
 <pre><code>Link 后进行判断：如果两寄存器数值互为补码，进行16位立即数跳转，如果不是，清空延迟槽
-</code></pre>
-<p>操作：</p>
+</code></pre><p>操作：</p>
 <pre><code>I:
     GPR[31] &lt;- PC + 8
     Condition &lt;- GPR[rs] == ~GPR[rt]
@@ -345,54 +347,50 @@ I+1:
         PC &lt;- PC + 4 + sign_extend(offset||00)
     else:
         NullilyCurrentInstruction()
-    
-</code></pre>
-<p>实例：</p>
+</code></pre><p>实例：</p>
 <pre><code>bonall $t1, $t2, 1
-</code></pre>
-<p>其他：</p>
+</code></pre><p>其他：</p>
 <pre><code>1.无论是否跳转均需Link
 2.清空延迟槽即令延迟槽指令不产生任何影响
-</code></pre>
-<p>&amp;emsp;<br>&amp;emsp;</p>
+</code></pre><p>&emsp;<br>&emsp;</p>
 <h1 id="P5-L5-lhogez"><a href="#P5-L5-lhogez" class="headerlink" title="P5_L5_lhogez"></a>P5_L5_lhogez</h1><h2 id="lhogez"><a href="#lhogez" class="headerlink" title="lhogez"></a>lhogez</h2><p>编码：</p>
+<div class="table-container">
 <table>
 <thead>
 <tr>
-<th align="center">31&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;26</th>
-<th align="center">25&amp;emsp;&amp;emsp;21</th>
-<th align="center">20&amp;emsp;&amp;emsp;16</th>
-<th align="center">&amp;emsp;&amp;emsp;15&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;0</th>
+<th style="text-align:center">31&emsp;&emsp;&emsp;&emsp;26</th>
+<th style="text-align:center">25&emsp;&emsp;21</th>
+<th style="text-align:center">20&emsp;&emsp;16</th>
+<th style="text-align:center">&emsp;&emsp;15&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;0</th>
 </tr>
 </thead>
-<tbody><tr>
-<td align="center">lwmx<br>101010</td>
-<td align="center">base</td>
-<td align="center">rt</td>
-<td align="center">offset<br></td>
+<tbody>
+<tr>
+<td style="text-align:center">lwmx<br>101010</td>
+<td style="text-align:center">base</td>
+<td style="text-align:center">rt</td>
+<td style="text-align:center">offset<br></td>
 </tr>
 <tr>
-<td align="center">6</td>
-<td align="center">5</td>
-<td align="center">5</td>
-<td align="center">16</td>
+<td style="text-align:center">6</td>
+<td style="text-align:center">5</td>
+<td style="text-align:center">5</td>
+<td style="text-align:center">16</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <p>格式：</p>
 <pre><code>lhogez rt, offset(base)
-</code></pre>
-<p>描述：</p>
+</code></pre><p>描述：</p>
 <pre><code>根据内存取出半字执行对应存取操作，判断这个半字中是1多还是0多，1多执行存储lh操作，0多执行往31号寄存器存PC + 4操作
-</code></pre>
-<p>操作：</p>
-<p>&amp;emsp;&amp;emsp;Vaddr &lt;- GPR[base] + sign_extend(offset)<br>&amp;emsp;&amp;emsp;byte &lt;- Vaddr<sub>1</sub><br>&amp;emsp;&amp;emsp;memword &lt;- Memory[ ( Vaddr<sub>31:2</sub> || 0<sup>2</sup> ) ]<sub>15+16*byte…16*byte</sub><br>&amp;emsp;&amp;emsp;Cnt0 &lt;- memword contains ‘0’<br>&amp;emsp;&amp;emsp;Cnt1 &lt;- memword contains ‘1’<br>&amp;emsp;&amp;emsp;Condition &lt;- Cnt1 &gt; Cnt0<br>&amp;emsp;&amp;emsp;If Condition:<br>&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;GPR[rt] &lt;- zero_ext(memword)<br>&amp;emsp;&amp;emsp;else:<br>&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;GPR[31] &lt;- PC + 4</p>
+</code></pre><p>操作：</p>
+<p>&emsp;&emsp;Vaddr &lt;- GPR[base] + sign_extend(offset)<br>&emsp;&emsp;byte &lt;- Vaddr<sub>1</sub><br>&emsp;&emsp;memword &lt;- Memory[ ( Vaddr<sub>31:2</sub> || 0<sup>2</sup> ) ]<sub>15+16*byte…16*byte</sub><br>&emsp;&emsp;Cnt0 &lt;- memword contains ‘0’<br>&emsp;&emsp;Cnt1 &lt;- memword contains ‘1’<br>&emsp;&emsp;Condition &lt;- Cnt1 &gt; Cnt0<br>&emsp;&emsp;If Condition:<br>&emsp;&emsp;&emsp;&emsp;GPR[rt] &lt;- zero_ext(memword)<br>&emsp;&emsp;else:<br>&emsp;&emsp;&emsp;&emsp;GPR[31] &lt;- PC + 4</p>
 <p>实例：</p>
 <pre><code>lhogez $t5, -100($0)
-</code></pre>
-<p>其他：</p>
+</code></pre><p>其他：</p>
 <pre><code>无
-</code></pre>
-<p>&amp;emsp;<br>&amp;emsp;</p>
+</code></pre><p>&emsp;<br>&emsp;</p>
 <div style='font-size: 12px'><b>鸣谢：强生</b></div>
                 
                 <hr>
