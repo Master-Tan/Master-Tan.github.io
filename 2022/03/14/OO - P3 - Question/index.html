@@ -119,7 +119,7 @@
 	       
                             <div class="blank_box"></div>
                             <span class="meta">
-                                 <span class="post-count">5.8k</span> Words
+                                 <span class="post-count">5.9k</span> Words
                             </span>
                             <div class="blank_box"></div>
                             <!-- 不蒜子统计 start -->
@@ -186,25 +186,25 @@
                     
 
                         
-                        	<li>
-                          	  <a href="/about/">About Tan</a>
-                        	</li>
-                        
-                    
-
-                        
-                    
-
-                        
-                    
-
-                        
                     
 
                         
                         	<li>
                           	  <a href="/tags/">Tags</a>
                         	</li>
+                        
+                    
+
+                        
+                    
+
+                        
+                        	<li>
+                          	  <a href="/about/">About Tan</a>
+                        	</li>
+                        
+                    
+
                         
                     
                     
@@ -291,14 +291,14 @@
 </li>
 <li><strong>省略形式</strong> 当指数为 1 的时候，可以采用省略形式，省略指数符号 <code>**</code> 和指数部分，如：<code>sin(x)</code>。</li>
 <li>此种因子的完整例子有：<code>sin(x**2)**3</code>，<code>cos(sin(x))</code> ，<code>sin(x)</code>， <code>sin(sin(cos(cos(x**2))))**2</code> 以及 <code>cos((x**2 + 2*x))</code> 等。</li>
-<li>本指导书范围内的“三角函数”<strong>仅包含<code>sin</code>和<code>cos</code></strong>。</li>
+<li>本指导书范围内的“三角函数”**仅包含<code>sin</code>和<code>cos</code>**。</li>
 </ul>
 </li>
 <li><p><strong>自定义函数</strong></p>
 <ul>
 <li>自定义函数的<strong>定义</strong>形如 <code>f(x, y, z) = 函数表达式</code> ，比如 <code>f(y) = y**2</code>，<code>g(x, y) = sin(x)*cos(y)</code>，<code>h(x, y, z) = x + y + z</code> 。<ul>
-<li><code>f</code> 、<code>g</code>、<code>h</code> 是函数的<strong>函数名</strong>。在本次作业中，保证函数名<strong>只使用 <code>f</code> ，<code>g</code>，<code>h</code></strong>，且<strong>不出现同名函数的重复定义</strong>（因此每次最多只有 3 个自定义函数）。更具体的约束信息请看第六部分中的数据限制部分。</li>
-<li><code>x</code>、<code>y</code>、<code>z</code> 为函数的<strong>形参</strong>。在本次作业中，<strong>形参个数为 1~3 个</strong>。形参<strong>只使用 <code>x</code>，<code>y</code>，<code>z</code></strong>，且同一函数定义中不会出现重复使用的形参。</li>
+<li><code>f</code> 、<code>g</code>、<code>h</code> 是函数的<strong>函数名</strong>。在本次作业中，保证函数名<strong>只使用 <code>f</code> ，<code>g</code>，<code>h</code><strong>，且</strong>不出现同名函数的重复定义</strong>（因此每次最多只有 3 个自定义函数）。更具体的约束信息请看第六部分中的数据限制部分。</li>
+<li><code>x</code>、<code>y</code>、<code>z</code> 为函数的<strong>形参</strong>。在本次作业中，<strong>形参个数为 1~3 个</strong>。形参**只使用 <code>x</code>，<code>y</code>，<code>z</code>**，且同一函数定义中不会出现重复使用的形参。</li>
 <li>函数表达式为一个关于形参的表达式。函数表达式的一般形式参见<strong>形式化定义</strong>。</li>
 <li>自定义函数的<strong>调用</strong>形如 <code>f(因子, 因子, 因子)</code> ，比如 <code>f(x**2)</code>，<code>g(sin(x), cos(x))</code>，<code>h(1, 0, -1)</code> 。</li>
 <li><code>因子</code> 为函数调用时的<strong>实参</strong>，可能包含任意一种因子。</li>
@@ -309,7 +309,7 @@
 </li>
 <li><p><strong>求和函数</strong></p>
 <ul>
-<li>求和函数的一般形式为 <code>sum(i, s, e, t)</code>，其含义为 $\sum_{i=s}^e t$。<ul>
+<li>求和函数的一般形式为 <code>sum(i, s, e, t)</code>，其含义为 $\sum_{i&#x3D;s}^e t$。<ul>
 <li><code>i</code> 是<strong>循环变量</strong>，本次作业中循环变量只能是字符 <code>i</code> 。</li>
 <li><code>s</code> 与 <code>e</code> 为求和的下限和上限，二者都应该是<strong>常数因子</strong>。在循环时，循环变量 <code>i</code> 的初值为 <code>s</code>，每次迭代 <code>i</code> 自增 1 并计算表达式的值，当 <code>i</code> <strong>大于</strong> <code>e</code> 时停止计算，并将计算结果求和。（若初始 <code>s &gt; e</code>，则该函数结果为 <code>0</code>）。</li>
 <li>求和表达式 <code>t</code> 是一个因子，其中可以包含循环变量 <code>i</code> 。其具体形式请参考<strong>形式化定义</strong>。</li>
@@ -352,9 +352,9 @@
 <li>带符号的整数 $\rightarrow$ [加减] 允许前导零的整数</li>
 <li>允许前导零的整数 $\rightarrow$ (0|1|2|…|9){0|1|2|…|9}</li>
 <li>空白项 $\rightarrow$ {空白字符}</li>
-<li>空白字符 $\rightarrow$ <code>`（空格） |</code>\t`</li>
+<li>空白字符 $\rightarrow$ <code> </code>（空格） | <code>\t</code></li>
 <li>加减 $\rightarrow$ ‘+’ | ‘-‘</li>
-<li>自定义函数<strong>定义</strong> $\rightarrow$ 自定义函数名 空白项 ‘(‘ 空白项 函数自变量 空白项 [‘,’ 空白项 函数自变量 空白项 [‘,’ 空白项 函数自变量 空白项]] ‘)’ 空白项 ‘=’ 空白项 函数表达式</li>
+<li>自定义函数<strong>定义</strong> $\rightarrow$ 自定义函数名 空白项 ‘(‘ 空白项 函数自变量 空白项 [‘,’ 空白项 函数自变量 空白项 [‘,’ 空白项 函数自变量 空白项]] ‘)’ 空白项 ‘&#x3D;’ 空白项 函数表达式</li>
 <li>函数自变量 $\rightarrow$ ‘x’ | ‘y’ | ‘z’</li>
 <li>自定义函数<strong>调用</strong> $\rightarrow$ 自定义函数名 空白项 ‘(‘ 空白项 因子 空白项 [‘,’ 空白项 因子 空白项 [‘,’ 空白项 因子 空白项]] ‘)’</li>
 <li>自定义函数名 $\rightarrow$ ‘f’ | ‘g’ | ‘h’</li>
@@ -372,7 +372,7 @@
 </ul>
 <p>式子的具体含义参照其数学含义。</p>
 <p>若输入字符串能够由“表达式”推导得出，则输入字符串合法。具体推导方法请参阅 <strong>“第一单元形式化表述说明”文档</strong>。</p>
-<p>除了满足上述形式化表述之外，我们本次作业的输入数据的<strong>额外限制</strong>请参见<strong>第六部分：输入/输出说明 的数据限制部分</strong>。</p>
+<p>除了满足上述形式化表述之外，我们本次作业的输入数据的<strong>额外限制</strong>请参见<strong>第六部分：输入&#x2F;输出说明 的数据限制部分</strong>。</p>
 <hr>
 <h3 id="第四部分：题目描述"><a href="#第四部分：题目描述" class="headerlink" title="第四部分：题目描述"></a>第四部分：题目描述</h3><p>本次作业中需要完成的任务为：读入<strong>一系列自定义函数的定义</strong>以及一个包含幂函数、三角函数、自定义函数调用以及求和函数的<strong>表达式</strong>，输出<strong>恒等变形展开所有括号后</strong>的表达式。</p>
 <p>在本次作业中，<strong>展开所有括号</strong>的定义是：对原输入表达式 $E$ 做<strong>恒等变形</strong>，得到新表达式 $E’$。其中，$E’$ 中不再含有自定义函数与求和函数，且只包含<strong>必要的括号</strong>（定义见正确性判定部分）。</p>
@@ -390,7 +390,7 @@
 </li>
 </ul>
 <hr>
-<h3 id="第六部分：输入-输出说明"><a href="#第六部分：输入-输出说明" class="headerlink" title="第六部分：输入/输出说明"></a>第六部分：输入/输出说明</h3><h4 id="一、公测说明"><a href="#一、公测说明" class="headerlink" title="一、公测说明"></a>一、公测说明</h4><h5 id="输入格式"><a href="#输入格式" class="headerlink" title="输入格式"></a>输入格式</h5><p>本次作业的输入数据包含若干行：</p>
+<h3 id="第六部分：输入-x2F-输出说明"><a href="#第六部分：输入-x2F-输出说明" class="headerlink" title="第六部分：输入&#x2F;输出说明"></a>第六部分：输入&#x2F;输出说明</h3><h4 id="一、公测说明"><a href="#一、公测说明" class="headerlink" title="一、公测说明"></a>一、公测说明</h4><h5 id="输入格式"><a href="#输入格式" class="headerlink" title="输入格式"></a>输入格式</h5><p>本次作业的输入数据包含若干行：</p>
 <ul>
 <li>第一行为一个整数 $n\ (0 \le n \le 3)$ ，表示<strong>自定义函数定义的个数</strong>。</li>
 <li>第 $2$ 到第 $n+1$ 行，每行为一行字符串，表示一个自定义函数的定义。</li>
@@ -402,7 +402,70 @@
 <li><p><strong>一般读入模式</strong>会从标准输入中一次读入一行输入的自定义函数定义或者表达式，并原封不动地返回，其行为类似于使用 <code>Scanner</code> 从标准输入中读取一行字符串。</p>
 </li>
 <li><p><strong>预解析读入模式</strong>会从标准输入中读入输入的自定义函数定义以及表达式，接着对该表达式以及自定义函数定义<strong>预先做一定的解析</strong>以方便同学们之后的处理。通过调用官方包提供的方法得到<strong>若干行</strong>，表示解析后得到的<strong>子表达式个数</strong>以及<strong>每个子表达式字符串</strong>。其中，解析后的每个<strong>子表达式</strong>的格式形如  <code>标签 运算符 若干操作数或已有的标签</code> 。<strong>标签</strong>指的是每行字符串的唯一的 id，保证每行字符串的标签不同；<strong>运算符</strong>用字符串表示，涉及到的所有运算符的定义如下：</p>
-<p>| 运算符        | 原表达式   | 运算符字符串表示   | 操作数 |<br>| ————— | ——— | ————— | —- |<br>| +          | x + 1  | add        | x 1 |<br>| +          | + x    | pos        | x   |<br>| -          | x - x  | sub        | x x |<br>| -          | - x    | neg        | x   |<br>| *         | x <em> x  | mul        | x x |<br>| \</em>*       | x ** 3 | pow        | x 3 |<br>| sin        | sin(x) | sin        | x   |<br>| cos        | cos(x) | cos        | x   |<br>| null(无运算符) | 193    | null(无运算符) | 193 |</p>
+<table>
+<thead>
+<tr>
+<th>运算符</th>
+<th>原表达式</th>
+<th>运算符字符串表示</th>
+<th>操作数</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>+</td>
+<td>x + 1</td>
+<td>add</td>
+<td>x 1</td>
+</tr>
+<tr>
+<td>+</td>
+<td>+ x</td>
+<td>pos</td>
+<td>x</td>
+</tr>
+<tr>
+<td>-</td>
+<td>x - x</td>
+<td>sub</td>
+<td>x x</td>
+</tr>
+<tr>
+<td>-</td>
+<td>- x</td>
+<td>neg</td>
+<td>x</td>
+</tr>
+<tr>
+<td>*</td>
+<td>x * x</td>
+<td>mul</td>
+<td>x x</td>
+</tr>
+<tr>
+<td>**</td>
+<td>x ** 3</td>
+<td>pow</td>
+<td>x 3</td>
+</tr>
+<tr>
+<td>sin</td>
+<td>sin(x)</td>
+<td>sin</td>
+<td>x</td>
+</tr>
+<tr>
+<td>cos</td>
+<td>cos(x)</td>
+<td>cos</td>
+<td>x</td>
+</tr>
+<tr>
+<td>null(无运算符)</td>
+<td>193</td>
+<td>null(无运算符)</td>
+<td>193</td>
+</tr>
+</tbody></table>
 <p>（官方包预解析模式本次已经把求和函数 <code>sum</code> 做了展开，因此上表中没有求和函数运算符）</p>
 <p>操作数可以是 <code>x</code>，也可以是带符号整数。保证已有标签值小于当前标签值，即已有标签在当前子表达式之前已出现。<strong>最后</strong>一个标签（<code>fn</code>）对应的值即为需要求解的值。</p>
 <p>预解析读入模式对读入的自定义函数以及表达式处理后得到的完整输出的例子请见<strong>样例部分</strong>。</p>
@@ -458,23 +521,53 @@
 <li>例如 <code>sin(1)</code> 与 <code>sin((1))</code> 均为展开形式，但 <code>sin(((1)))</code> 不是，因为后者除了函数调用和三角嵌套表达式因子的一层括号外，还包括了表达式内嵌套表达式的括号</li>
 </ul>
 </li>
-<li>本次作业中对于恒等的定义：设 $f(x)$ 的定义域为 $D_1$，$D_1$ 包含于 $R$，$g(x)$ 的定义域为 $D_2$，$D_2$ 包含于 $R$，对任意 $x\in D_1\cap D_2$，$f(x)=g(x)$ 成立。</li>
+<li>本次作业中对于恒等的定义：设 $f(x)$ 的定义域为 $D_1$，$D_1$ 包含于 $R$，$g(x)$ 的定义域为 $D_2$，$D_2$ 包含于 $R$，对任意 $x\in D_1\cap D_2$，$f(x)&#x3D;g(x)$ 成立。</li>
 </ul>
 </li>
 <li><p>性能判定：</p>
 <ul>
 <li><p>在本次作业中，性能分的唯一评判依据是<strong>输出结果的有效长度</strong>，有效长度的定义在<strong>数据限制部分</strong>已经给出。</p>
 </li>
-<li><p>设某同学给出的<strong>正确答案</strong>的有效长度为 $L<em>p$ ，目前<strong>所有人</strong>给出的正确答案中有效长度<strong>最小的</strong>为 $L</em>{min}$ 。</p>
-<p>记 $x = \frac{L<em>p}{L</em>{min}}$ ，则该同学<strong>性能分百分比</strong>为：</p>
-<script type="math/tex; mode=display">
-r(x)= 100 \% \cdot
-\begin{cases}
-1 & x = 1 \\\\
--31.8239x^4+155.9038x^3-279.2180x^2+214.0743x-57.9370 & 1 < x \leq 1.5 \\\\
-0 & x > 1.5
-\end{cases}</script><p>举例来说，就是这样：</p>
-<p>| $x$    | $r\left(x\right)$ |<br>|:———:|:————————-:|<br>| $1.0$  | $100.0\%$         |<br>| $1.05$ | $79.9\%$          |<br>| $1.1$  | $60.5\%$          |<br>| $1.2$  | $29.0\%$          |<br>| $1.3$  | $10.9\%$          |<br>| $1.4$  | $4.5\%$           |<br>| $1.5$  | $0.0\%$           |</p>
+<li><p>设某同学给出的<strong>正确答案</strong>的有效长度为 $L_p$ ，目前<strong>所有人</strong>给出的正确答案中有效长度<strong>最小的</strong>为 $L_{min}$ 。</p>
+<p>记 $x &#x3D; \frac{L_p}{L_{min}}$ ，则该同学<strong>性能分百分比</strong>为：</p>
+<p>$$<br>r(x)&#x3D; 100 % \cdot<br>\begin{cases}<br>1 &amp; x &#x3D; 1 \\<br>-31.8239x^4+155.9038x^3-279.2180x^2+214.0743x-57.9370 &amp; 1 &lt; x \leq 1.5 \\<br>0 &amp; x &gt; 1.5<br>\end{cases}<br>$$</p>
+<p>举例来说，就是这样：</p>
+<table>
+<thead>
+<tr>
+<th align="center">$x$</th>
+<th align="center">$r\left(x\right)$</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">$1.0$</td>
+<td align="center">$100.0%$</td>
+</tr>
+<tr>
+<td align="center">$1.05$</td>
+<td align="center">$79.9%$</td>
+</tr>
+<tr>
+<td align="center">$1.1$</td>
+<td align="center">$60.5%$</td>
+</tr>
+<tr>
+<td align="center">$1.2$</td>
+<td align="center">$29.0%$</td>
+</tr>
+<tr>
+<td align="center">$1.3$</td>
+<td align="center">$10.9%$</td>
+</tr>
+<tr>
+<td align="center">$1.4$</td>
+<td align="center">$4.5%$</td>
+</tr>
+<tr>
+<td align="center">$1.5$</td>
+<td align="center">$0.0%$</td>
+</tr>
+</tbody></table>
 <p>该答案得到的性能分即为 $r(x)\times 20$。</p>
 </li>
 </ul>
@@ -679,7 +772,7 @@ r(x)= 100 \% \cdot
           <strong class="toc-title">Contents</strong>
           
             
-              <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#面向对象设计与构造第三次作业"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">面向对象设计与构造第三次作业</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#第一部分：训练目标"><span class="toc-nav-number">1.1.</span> <span class="toc-nav-text">第一部分：训练目标</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#第二部分：预备知识"><span class="toc-nav-number">1.2.</span> <span class="toc-nav-text">第二部分：预备知识</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#第三部分：基本概念"><span class="toc-nav-number">1.3.</span> <span class="toc-nav-text">第三部分：基本概念</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#一、基本概念的声明"><span class="toc-nav-number">1.3.1.</span> <span class="toc-nav-text">一、基本概念的声明</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#二、设定的形式化表述"><span class="toc-nav-number">1.3.2.</span> <span class="toc-nav-text">二、设定的形式化表述</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#第四部分：题目描述"><span class="toc-nav-number">1.4.</span> <span class="toc-nav-text">第四部分：题目描述</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#第五部分：设计建议"><span class="toc-nav-number">1.5.</span> <span class="toc-nav-text">第五部分：设计建议</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#第六部分：输入-输出说明"><span class="toc-nav-number">1.6.</span> <span class="toc-nav-text">第六部分：输入&#x2F;输出说明</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#一、公测说明"><span class="toc-nav-number">1.6.1.</span> <span class="toc-nav-text">一、公测说明</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#输入格式"><span class="toc-nav-number">1.6.1.1.</span> <span class="toc-nav-text">输入格式</span></a></li><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#读入方法"><span class="toc-nav-number">1.6.1.2.</span> <span class="toc-nav-text">读入方法</span></a></li><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#输出格式"><span class="toc-nav-number">1.6.1.3.</span> <span class="toc-nav-text">输出格式</span></a></li><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#数据限制"><span class="toc-nav-number">1.6.1.4.</span> <span class="toc-nav-text">数据限制</span></a></li><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#基准思路"><span class="toc-nav-number">1.6.1.5.</span> <span class="toc-nav-text">基准思路</span></a></li><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#判定模式"><span class="toc-nav-number">1.6.1.6.</span> <span class="toc-nav-text">判定模式</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#二、互测说明"><span class="toc-nav-number">1.6.2.</span> <span class="toc-nav-text">二、互测说明</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#数据限制-1"><span class="toc-nav-number">1.6.2.1.</span> <span class="toc-nav-text">数据限制</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#三、样例"><span class="toc-nav-number">1.6.3.</span> <span class="toc-nav-text">三、样例</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#一般读入模式"><span class="toc-nav-number">1.6.3.1.</span> <span class="toc-nav-text">一般读入模式</span></a></li><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#预解析读入模式"><span class="toc-nav-number">1.6.3.2.</span> <span class="toc-nav-text">预解析读入模式</span></a></li></ol></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#第七部分：提示与警示"><span class="toc-nav-number">1.7.</span> <span class="toc-nav-text">第七部分：提示与警示</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#一、提示"><span class="toc-nav-number">1.7.1.</span> <span class="toc-nav-text">一、提示</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#二、警示"><span class="toc-nav-number">1.7.2.</span> <span class="toc-nav-text">二、警示</span></a></li></ol></li></ol></li></ol>
+              <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#面向对象设计与构造第三次作业"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">面向对象设计与构造第三次作业</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#第一部分：训练目标"><span class="toc-nav-number">1.1.</span> <span class="toc-nav-text">第一部分：训练目标</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#第二部分：预备知识"><span class="toc-nav-number">1.2.</span> <span class="toc-nav-text">第二部分：预备知识</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#第三部分：基本概念"><span class="toc-nav-number">1.3.</span> <span class="toc-nav-text">第三部分：基本概念</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#一、基本概念的声明"><span class="toc-nav-number">1.3.1.</span> <span class="toc-nav-text">一、基本概念的声明</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#二、设定的形式化表述"><span class="toc-nav-number">1.3.2.</span> <span class="toc-nav-text">二、设定的形式化表述</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#第四部分：题目描述"><span class="toc-nav-number">1.4.</span> <span class="toc-nav-text">第四部分：题目描述</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#第五部分：设计建议"><span class="toc-nav-number">1.5.</span> <span class="toc-nav-text">第五部分：设计建议</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#第六部分：输入-x2F-输出说明"><span class="toc-nav-number">1.6.</span> <span class="toc-nav-text">第六部分：输入&#x2F;输出说明</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#一、公测说明"><span class="toc-nav-number">1.6.1.</span> <span class="toc-nav-text">一、公测说明</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#输入格式"><span class="toc-nav-number">1.6.1.1.</span> <span class="toc-nav-text">输入格式</span></a></li><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#读入方法"><span class="toc-nav-number">1.6.1.2.</span> <span class="toc-nav-text">读入方法</span></a></li><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#输出格式"><span class="toc-nav-number">1.6.1.3.</span> <span class="toc-nav-text">输出格式</span></a></li><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#数据限制"><span class="toc-nav-number">1.6.1.4.</span> <span class="toc-nav-text">数据限制</span></a></li><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#基准思路"><span class="toc-nav-number">1.6.1.5.</span> <span class="toc-nav-text">基准思路</span></a></li><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#判定模式"><span class="toc-nav-number">1.6.1.6.</span> <span class="toc-nav-text">判定模式</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#二、互测说明"><span class="toc-nav-number">1.6.2.</span> <span class="toc-nav-text">二、互测说明</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#数据限制-1"><span class="toc-nav-number">1.6.2.1.</span> <span class="toc-nav-text">数据限制</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#三、样例"><span class="toc-nav-number">1.6.3.</span> <span class="toc-nav-text">三、样例</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#一般读入模式"><span class="toc-nav-number">1.6.3.1.</span> <span class="toc-nav-text">一般读入模式</span></a></li><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#预解析读入模式"><span class="toc-nav-number">1.6.3.2.</span> <span class="toc-nav-text">预解析读入模式</span></a></li></ol></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#第七部分：提示与警示"><span class="toc-nav-number">1.7.</span> <span class="toc-nav-text">第七部分：提示与警示</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#一、提示"><span class="toc-nav-number">1.7.1.</span> <span class="toc-nav-text">一、提示</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#二、警示"><span class="toc-nav-number">1.7.2.</span> <span class="toc-nav-text">二、警示</span></a></li></ol></li></ol></li></ol>
             
           
           </div>
@@ -706,6 +799,17 @@ r(x)= 100 \% \cdot
                 
 
             </div>
+			<div>
+				<script src="https://utteranc.es/client.js"
+						repo="master-tan/master-tan.github.io"
+						issue-term="pathname"
+						label="Comment"
+						theme="github-light"
+						crossorigin="anonymous"
+						async>
+				</script> 
+			</div>
+			      
         </div>
     </div>
 </article>
