@@ -188,6 +188,10 @@
                     
 
                         
+                        	<li>
+                          	  <a href="/archive/">Archives</a>
+                        	</li>
+                        
                     
 
                         
@@ -200,10 +204,6 @@
                         
                     
 
-                        
-                        	<li>
-                          	  <a href="/archive/">Archives</a>
-                        	</li>
                         
                     
 
@@ -262,8 +262,7 @@
 
                 <h1 id="OO第一单元总结"><a href="#OO第一单元总结" class="headerlink" title="OO第一单元总结"></a>OO第一单元总结</h1><hr>
 <h2 id="要求"><a href="#要求" class="headerlink" title="要求"></a>要求</h2><p><a href="../../../../2022/03/22/OO - 第一单元总结%20-%20Requirement">单元总结要求</a></p>
-<br>
-
+<p><br></p>
 <hr>
 <h2 id="第一次作业总结"><a href="#第一次作业总结" class="headerlink" title="第一次作业总结"></a>第一次作业总结</h2><h3 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h3><p>我们要做的是对单变量多项式的括号展开，并且化简输出，所以我的思路为分为两步：</p>
 <ul>
@@ -271,8 +270,7 @@
 <li><b>2.</b> 将后缀表达式计算并化简为顺序结果 <b>（计算结果）</b></li>
 </ul>
 <p>首先，用递归下降法解析输入，将输入的表达式进行化简和拆解，得到一个不含括号的后缀表达式字符串。接着再按照多项式运算规则进行运算并合并同类项，最后结果进行排序，最后输出结果。</p>
-<br>
-
+<p><br></p>
 <hr>
 <h3 id="基本思路"><a href="#基本思路" class="headerlink" title="基本思路"></a>基本思路</h3><p>我的代码分为了两大部分，分别实现两种相互独立的功能，并用main函数实现连接</p>
 <ul>
@@ -289,117 +287,104 @@
 <li><p>在表达式中 <code>**</code> 后面<strong>紧跟着</strong>的 <code>+</code> 号，删除之</p>
 </li>
 </ol>
-<br></li>
+<p><br></p>
+</li>
 <li><p>通过利用形式化表述定义，将表达式分成了四个层次：<strong>因子</strong>（常量或变量）、<strong>基本项</strong>（幂）、<strong>项</strong>（乘除）、<strong>表达式</strong>（加减），这四种结构对应了四种对象。我们下面分别进行讨论对这些对象的解析：</p>
-<br>
-
+<p><br></p>
 <ul>
 <li>对于因子（常量或变量）的解析：若下一个字符为单目运算符或者是数字或者是变量 x ，则不断看下一个字符是否是数字。如果不是数字，那么说明下一个符号不属于因子，即对因子的解析结束。</li>
 </ul>
-<br>
-
+<p><br></p>
 <ul>
 <li>对基本项（幂）的解析：基本项由因子的幂次方组成，即为 <code>[加减] 因子 ** 带符号整数</code> 。当解析到一个因子后，若下一个解析到的为 <code>**</code> ，那么读入这个符号并做处理，然后下一个符号一定是一个带符号整数，否则，说明基本项的解析结束了。</li>
 </ul>
-<br>
-
+<p><br></p>
 <ul>
 <li>对项（乘除）的解析：项由基本项或因子和乘除符号组成，即为 <code>[加减] 因子 | 项 * 因子</code> ，处理方法与基本项相似。</li>
 </ul>
-<br>
-
+<p><br></p>
 <ul>
 <li><p>对表达式（加减）的解析：表达式由项和加减符号组成，即为：<code>[加减] 项 | 表达式 加减 项</code>  </p>
 </li>
 <li><p>通过题目所给的形式化表述可以表叫容易地建立层次，并且通过方法的互相调用完成解析。递归下降方法的好处在于，它可以通过方法之间的间接递归调用，非常自然地处理嵌套的表达式（即带嵌套括号的表达式）。</p>
 </li>
 </ul>
-<br></li>
+<p><br></p>
+</li>
 </ul>
 </li>
 <li><p><code>2.</code>后缀表达式计算</p>
 <ul>
 <li><p>第<strong>1</strong>步中所得的后缀表达式中，运算符为 <code>+/-/*/**</code> ，操作数为 <code>带符号整数 / 变量x</code>。</p>
-<br>
+<p><br></p>
 </li>
 <li><p>把所有操作数和运算结果视为一系列单项式之和（多项式）</p>
-<br>
+<p><br></p>
 </li>
 <li><p>则：</p>
 <ul>
 <li>对于 <code>带符号整数</code> ，视为指数为零，系数为带符号整数的值的单项式</li>
 </ul>
-<br>
-
+<p><br></p>
 <ul>
 <li>对于 <code>变量x</code> ，视为指数和系数均为 1 的单项式</li>
 </ul>
-<br>
+<p><br></p>
 </li>
 <li><p>由于后缀表达式的便利性，因此我们每读到一个运算符，就对最近的两个多项式进行对应运算并返回一个多项式即可</p>
 </li>
 </ul>
 </li>
 </ul>
-<br>
-
+<p><br></p>
 <hr>
 <h3 id="具体实现"><a href="#具体实现" class="headerlink" title="具体实现"></a>具体实现</h3><ul>
-<li><h4 id="读取处理类-Lexer"><a href="#读取处理类-Lexer" class="headerlink" title="读取处理类 Lexer"></a>读取处理类 <code>Lexer</code></h4><img src="1-0-1.png"  alt="2" />  
-
+<li><h4 id="读取处理类-Lexer"><a href="#读取处理类-Lexer" class="headerlink" title="读取处理类 Lexer"></a>读取处理类 <code>Lexer</code></h4><p><img src="1-0-1.png"  alt="2" />  </p>
 <ul>
 <li>该类主要目的是对原始表达式进行读取处理，使其按照需要每次使用都能输出一个 <code>操作数/运算符</code></li>
 <li>对字符串进行必要的预处理</li>
 <li>读取数字需要判断正负（即该数前面的 <code>+/-</code> 号（如果有）是否是单目运算符）</li>
 </ul>
 </li>
-<li><h4 id="解析类-Parser"><a href="#解析类-Parser" class="headerlink" title="解析类 Parser"></a>解析类 <code>Parser</code></h4><img src="1-0-2.png"  alt="2" />  
-
+<li><h4 id="解析类-Parser"><a href="#解析类-Parser" class="headerlink" title="解析类 Parser"></a>解析类 <code>Parser</code></h4><p><img src="1-0-2.png"  alt="2" />  </p>
 <ul>
 <li>使用递归下降法处理表达式，递归地分别对表达式（Expression）、项（Term）、基本项（Basic）、因子（Factor）进行处理</li>
 <li>若是识别到左括号 <code>(</code> 则递归调用 <code>parseExpression()</code> 先处理括号内的内容即可</li>
 </ul>
 </li>
-<li><h4 id="多项式类-Item"><a href="#多项式类-Item" class="headerlink" title="多项式类 Item"></a>多项式类 <code>Item</code></h4><img src="1-0-3.png"  alt="2" />  
-
+<li><h4 id="多项式类-Item"><a href="#多项式类-Item" class="headerlink" title="多项式类 Item"></a>多项式类 <code>Item</code></h4><p><img src="1-0-3.png"  alt="2" />  </p>
 <ul>
 <li>对于多项式的 <code>+/-/*/**</code> 操作均在该类中使用公开函数实现，需要时根据运算符类型调用即可</li>
 <li>重写 <code>toString</code> 方法，对保存在该类的各单项式对指数项进行排列后输出</li>
 </ul>
 </li>
-<li><h4 id="因子类接口-Factor"><a href="#因子类接口-Factor" class="headerlink" title="因子类接口 Factor"></a>因子类接口 <code>Factor</code></h4><img src="1-0-4.png"  alt="2" />  
-
+<li><h4 id="因子类接口-Factor"><a href="#因子类接口-Factor" class="headerlink" title="因子类接口 Factor"></a>因子类接口 <code>Factor</code></h4><p><img src="1-0-4.png"  alt="2" />  </p>
 <ul>
-<li><h5 id="表达式（加减）类-Expression"><a href="#表达式（加减）类-Expression" class="headerlink" title="表达式（加减）类 Expression"></a>表达式（加减）类 <code>Expression</code></h5><img src="1-0-5.png"  alt="2" />  
-
+<li><h5 id="表达式（加减）类-Expression"><a href="#表达式（加减）类-Expression" class="headerlink" title="表达式（加减）类 Expression"></a>表达式（加减）类 <code>Expression</code></h5><p><img src="1-0-5.png"  alt="2" />  </p>
 <ul>
 <li>储存 <code>表达式</code></li>
 <li>由于 <code>+</code> 和 <code>-</code> 地位相同，所以让该类自带一个队列（此处用    <code>ArrayList</code> 实现，并用 <code>flag</code> 标记队首</li>
 <li>重写 <code>toString</code> 方法，把保存在该类中的数逐个输出并用 <code>+/-(队首元素)</code> 相连</li>
 </ul>
 </li>
-<li><h5 id="项（乘除）类-Term"><a href="#项（乘除）类-Term" class="headerlink" title="项（乘除）类 Term"></a>项（乘除）类 <code>Term</code></h5><img src="1-0-6.png"  alt="2" />  
-
+<li><h5 id="项（乘除）类-Term"><a href="#项（乘除）类-Term" class="headerlink" title="项（乘除）类 Term"></a>项（乘除）类 <code>Term</code></h5><p><img src="1-0-6.png"  alt="2" />  </p>
 <ul>
 <li>储存 <code>项</code></li>
 <li>重写 <code>toString</code> 方法，把保存在该类中的数逐个输出并用 <code>*</code> 相连</li>
 </ul>
 </li>
-<li><h5 id="基本项（幂）类-Basic"><a href="#基本项（幂）类-Basic" class="headerlink" title="基本项（幂）类 Basic"></a>基本项（幂）类 <code>Basic</code></h5><img src="1-0-7.png"  alt="2" />  
-
+<li><h5 id="基本项（幂）类-Basic"><a href="#基本项（幂）类-Basic" class="headerlink" title="基本项（幂）类 Basic"></a>基本项（幂）类 <code>Basic</code></h5><p><img src="1-0-7.png"  alt="2" />  </p>
 <ul>
 <li>储存 <code>基本项</code></li>
 <li>重写 <code>toString</code> 方法，把保存在该类中的数逐个输出并用 <code>**</code> 相连</li>
 </ul>
 </li>
-<li><h5 id="常量类-Constant"><a href="#常量类-Constant" class="headerlink" title="常量类 Constant"></a>常量类 <code>Constant</code></h5><img src="1-0-8.png"  alt="2" />  
-
+<li><h5 id="常量类-Constant"><a href="#常量类-Constant" class="headerlink" title="常量类 Constant"></a>常量类 <code>Constant</code></h5><p><img src="1-0-8.png"  alt="2" />  </p>
 <ul>
 <li>储存 <code>常量因子</code></li>
 </ul>
 </li>
-<li><h5 id="变量类-Variable"><a href="#变量类-Variable" class="headerlink" title="变量类 Variable"></a>变量类 <code>Variable</code></h5><img src="1-0-9.png"  alt="2" />  
-
+<li><h5 id="变量类-Variable"><a href="#变量类-Variable" class="headerlink" title="变量类 Variable"></a>变量类 <code>Variable</code></h5><p><img src="1-0-9.png"  alt="2" />  </p>
 <ul>
 <li>储存 <code>变量因子</code></li>
 </ul>
@@ -407,22 +392,17 @@
 </ul>
 </li>
 </ul>
-<br>
-
+<p><br></p>
 <hr>
 <h3 id="基于度量的程序结构分析"><a href="#基于度量的程序结构分析" class="headerlink" title="基于度量的程序结构分析"></a>基于度量的程序结构分析</h3><ul>
-<li><p>总UML类图  </p>
-<img src="1-1.png"/>  
+<li><p>总UML类图<br><img src="1-1.png"/>  </p>
 </li>
-<li><p>代码规模分析  </p>
-<img src="1-2.png"/>  
+<li><p>代码规模分析<br><img src="1-2.png"/>  </p>
 </li>
-<li><p>方法复杂度分析  </p>
-<img src="1-3-1.png"/>  
-<img src="1-3-2.png"/>  
+<li><p>方法复杂度分析<br><img src="1-3-1.png"/><br><img src="1-3-2.png"/>  </p>
 </li>
-<li><p>类复杂度分析  </p>
-<img src="1-4.png"/></li>
+<li><p>类复杂度分析<br><img src="1-4.png"/>  </p>
+</li>
 </ul>
 <hr>
 <p>优化小方法：  </p>
@@ -430,12 +410,10 @@
 <li>把 <code>x**2</code> 用 <code>x*x</code> 替换</li>
 <li>把多项式的首个<strong>非负项</strong>放在表达式首位显示</li>
 </ol>
-<br>
-
+<p><br></p>
 <hr>
 <h2 id="第二次作业总结"><a href="#第二次作业总结" class="headerlink" title="第二次作业总结"></a>第二次作业总结</h2><h3 id="分析-1"><a href="#分析-1" class="headerlink" title="分析"></a>分析</h3><p>本次作业是在<a href="../../../../2022/03/04/OO - P1">第一次作业</a>的基础之上对多项式的括号展开，并且化简输出，相比于第一次作业，本次作业新增了三种函数，以及拓展了一些数据显示或者实现上的细节。因此，在第一次作业的基础上，进行迭代开发，将新增要求一一实现即可。</p>
-<br>
-
+<p><br></p>
 <hr>
 <h3 id="需求变更"><a href="#需求变更" class="headerlink" title="需求变更"></a>需求变更</h3><h4 id="新增内容"><a href="#新增内容" class="headerlink" title="新增内容:"></a>新增内容:</h4><ul>
 <li><p><strong>三角函数：</strong>  </p>
@@ -445,7 +423,7 @@
 </li>
 <li><p><strong>自定义函数</strong>  </p>
 <ul>
-<li>自定义函数<strong>定义</strong> $\rightarrow$ 自定义函数名 ‘(‘ 空白项 函数自变量 空白项 [‘,’ 空白项 函数自变量 空白项 [‘,’ 空白项 函数自变量 空白项]] ‘)’ 空白项 ‘&#x3D;’ 空白项 函数表达式</li>
+<li>自定义函数<strong>定义</strong> $\rightarrow$ 自定义函数名 ‘(‘ 空白项 函数自变量 空白项 [‘,’ 空白项 函数自变量 空白项 [‘,’ 空白项 函数自变量 空白项]] ‘)’ 空白项 ‘=’ 空白项 函数表达式</li>
 </ul>
 <ul>
 <li>函数自变量 $\rightarrow$ ‘x’ | ‘y’ | ‘z’</li>
@@ -472,8 +450,7 @@
 </li>
 </ul>
 <h3 id="迭代开发"><a href="#迭代开发" class="headerlink" title="迭代开发"></a>迭代开发</h3><h4 id="新增："><a href="#新增：" class="headerlink" title="新增："></a>新增：</h4><ul>
-<li><h4 id="求和函数类-SumFun"><a href="#求和函数类-SumFun" class="headerlink" title="求和函数类 SumFun"></a>求和函数类 <code>SumFun</code></h4><img src="2-0-1.png"  alt="1" />  
-
+<li><h4 id="求和函数类-SumFun"><a href="#求和函数类-SumFun" class="headerlink" title="求和函数类 SumFun"></a>求和函数类 <code>SumFun</code></h4><p><img src="2-0-1.png"  alt="1" />  </p>
 <ul>
 <li>该类带有一个处理方法，用于字符串的预处理，将输入字符串中所有的 <strong>sum 函数</strong>展开，返回处理后的字符串</li>
 <li>如： <code>sum(i, 1, 3, (i*x))</code> 处理为 <code>((1*x)+(2*x)+(3*x))</code></li>
@@ -481,26 +458,23 @@
 <li>tips: <code>sum</code> 的上下限需要用 <code>BigInter</code></li>
 </ul>
 </li>
-<li><h4 id="自定义函数类-SelfDefineFun"><a href="#自定义函数类-SelfDefineFun" class="headerlink" title="自定义函数类 SelfDefineFun"></a>自定义函数类 <code>SelfDefineFun</code></h4><img src="2-0-2.png"  alt="2" />  
-
+<li><h4 id="自定义函数类-SelfDefineFun"><a href="#自定义函数类-SelfDefineFun" class="headerlink" title="自定义函数类 SelfDefineFun"></a>自定义函数类 <code>SelfDefineFun</code></h4><p><img src="2-0-2.png"  alt="2" />  </p>
 <ul>
 <li>该类的<code>addFun</code>方法读入一个自定义函数表达式，以 <code>HashMap&lt;String, ArrayList&lt;String&gt;&gt;</code> 的形式保存于该类中</li>
 <li>如： <code>f(x,y,z)=x+y**2+z**3</code> 存储为 <code>HashMap&lt;f,[x, y, z, (x+y**2+z**3)]&gt;</code></li>
 <li>该类亦带有一个处理方法，同样用于字符串的预处理，将本类中所存的所有<strong>自定义函数</strong>都代入输入字符串中，并返回处理后的字符串</li>
-<li>如： <code>自定义函数为：f(x,y,z)=x+y**2+z**3 ; 待处理表达式为：f(sin(x)**2,cos(x),x) ; </code> 处理为 <code>((sin(x)**2)+(cos(x))**2+(x)**3)</code></li>
+<li>如： <code>自定义函数为：f(x,y,z)=x+y**2+z**3 ; 待处理表达式为：f(sin(x)**2,cos(x),x) ;</code> 处理为 <code>((sin(x)**2)+(cos(x))**2+(x)**3)</code></li>
 <li>tips: 需要先替换 <code>x</code> 以免出现 <code>x</code> 的重复代入</li>
 </ul>
 </li>
-<li><h4 id="三角函数类-TriFun"><a href="#三角函数类-TriFun" class="headerlink" title="三角函数类 TriFun"></a>三角函数类 <code>TriFun</code></h4><img src="2-0-3.png"  alt="3" />  
-
+<li><h4 id="三角函数类-TriFun"><a href="#三角函数类-TriFun" class="headerlink" title="三角函数类 TriFun"></a>三角函数类 <code>TriFun</code></h4><p><img src="2-0-3.png"  alt="3" />  </p>
 <ul>
 <li>该类在递归下降算法中位于 <code>Experssion类</code> 之上，具有 <code>addExpression</code> 方法用于递归</li>
-<li>使用一个字符串用于记录三角函数具体类型（ <code>sin</code> &#x2F; <code>cos</code> ）</li>
+<li>使用一个字符串用于记录三角函数具体类型（ <code>sin</code> / <code>cos</code> ）</li>
 <li>重写 <code>toString</code> 方法，把保存在该类中存储的表达式并输出三角函数类型（视为<strong>单目</strong>运算符）</li>
 </ul>
 </li>
-<li><h4 id="三角函数化简类-TriSimplify"><a href="#三角函数化简类-TriSimplify" class="headerlink" title="三角函数化简类 TriSimplify"></a>三角函数化简类 <code>TriSimplify</code></h4><img src="2-0-4.png"  alt="4" />
-
+<li><h4 id="三角函数化简类-TriSimplify"><a href="#三角函数化简类-TriSimplify" class="headerlink" title="三角函数化简类 TriSimplify"></a>三角函数化简类 <code>TriSimplify</code></h4><p><img src="2-0-4.png"  alt="4" /></p>
 <ul>
 <li>该类用于将一个 <code>Item</code> 类中符合三角函数化简规则的项进行运算并化简，返回一个处理后的 <code>Item</code> 类</li>
 </ul>
@@ -526,23 +500,17 @@
 </ul>
 </li>
 </ul>
-<br>
-
+<p><br></p>
 <hr>
 <h3 id="基于度量的程序结构分析-1"><a href="#基于度量的程序结构分析-1" class="headerlink" title="基于度量的程序结构分析"></a>基于度量的程序结构分析</h3><ul>
-<li><p>总UML类图  </p>
-<img src="2-1.png"/>  
+<li><p>总UML类图<br><img src="2-1.png"/>  </p>
 </li>
-<li><p>代码规模分析  </p>
-<img src="2-2.png"/>  
+<li><p>代码规模分析<br><img src="2-2.png"/>  </p>
 </li>
-<li><p>方法复杂度分析  </p>
-<img src="2-3-1.png"/>  
-<img src="2-3-2.png"/>  
-<img src="2-3-3.png"/>  
+<li><p>方法复杂度分析<br><img src="2-3-1.png"/><br><img src="2-3-2.png"/><br><img src="2-3-3.png"/>  </p>
 </li>
-<li><p>类复杂度分析  </p>
-<img src="2-4.png"/></li>
+<li><p>类复杂度分析<br><img src="2-4.png"/>  </p>
+</li>
 </ul>
 <hr>
 <p>优化小方法：  </p>
@@ -550,7 +518,7 @@
 <li>若 <code>&lt;因子&gt;</code> 的长度为 <code>1</code> , 则把 <code>&lt;因子&gt;**2</code> 用 <code>&lt;因子&gt;*&lt;因子&gt;</code> 替换。  <code>（Warning:若是三角函数中 &quot;&lt;因子&gt;**2&quot; 则不能应用此变换，原因为不符合本次作业中的形式化表述）</code></li>
 <li>把多项式的首个<strong>非负项</strong>放在表达式首位显示</li>
 <li>三角函数恒等变形（变形需要能使表达式长度缩减）<ul>
-<li><code>项*sin(&lt;因子&gt;)**2 + 项*cos(&lt;因子&gt;)**2 </code>  $\rightarrow$  <code>项</code> </li>
+<li><code>项*sin(&lt;因子&gt;)**2 + 项*cos(&lt;因子&gt;)**2</code>  $\rightarrow$  <code>项</code> </li>
 <li><code>sin(0)</code>  $\rightarrow$  <code>0</code> ， <code>cos(0)</code>  $\rightarrow$  <code>1</code></li>
 <li><code>sin(-&lt;因子&gt;)</code> $\rightarrow$ <code>-sin(&lt;因子&gt;)</code> , <code>cos(-&lt;因子&gt;)</code> $\rightarrow$ <code>cos(&lt;因子&gt;)</code></li>
 <li><code>a + b*sin/cos(&lt;因子&gt;)**2</code> $\rightarrow$ <code>(a+b) - b*cos/sin(&lt;因子&gt;)**2</code></li>
@@ -558,12 +526,10 @@
 </ul>
 </li>
 </ol>
-<br>
-
+<p><br></p>
 <hr>
 <h2 id="第三次作业总结"><a href="#第三次作业总结" class="headerlink" title="第三次作业总结"></a>第三次作业总结</h2><h3 id="分析-2"><a href="#分析-2" class="headerlink" title="分析"></a>分析</h3><p>本次作业是在<a href="../../../../2022/03/04/OO - P1">第一次作业</a>和 <a href="../../../../2022/03/04/OO - P2">第二次作业</a>的基础之上新增了一些琐碎的小功能，算是比较小的一次迭代（甚至如果你前几次扩展性写得好可以认为甚至不是一次迭代）</p>
-<br>
-
+<p><br></p>
 <hr>
 <h3 id="需求变更-1"><a href="#需求变更-1" class="headerlink" title="需求变更"></a>需求变更</h3><h4 id="新增内容-1"><a href="#新增内容-1" class="headerlink" title="新增内容:"></a>新增内容:</h4><ul>
 <li>无</li>
@@ -589,30 +555,23 @@
 <li>无</li>
 </ul>
 <h4 id="修改类："><a href="#修改类：" class="headerlink" title="修改类："></a>修改类：</h4><ul>
-<li><h4 id="自定义函数类-SelfDefineFun-1"><a href="#自定义函数类-SelfDefineFun-1" class="headerlink" title="自定义函数类 SelfDefineFun"></a>自定义函数类 <code>SelfDefineFun</code></h4><img src="3-0-1.png"  alt="1" />  
-
+<li><h4 id="自定义函数类-SelfDefineFun-1"><a href="#自定义函数类-SelfDefineFun-1" class="headerlink" title="自定义函数类 SelfDefineFun"></a>自定义函数类 <code>SelfDefineFun</code></h4><p><img src="3-0-1.png"  alt="1" />  </p>
 <ul>
 <li>新增该类的 <code>check</code> 方法用于检测并处理自定义函数调用中出现的递归调用问题</li>
 </ul>
 </li>
 </ul>
-<br>
-
+<p><br></p>
 <hr>
 <h3 id="基于度量的程序结构分析-2"><a href="#基于度量的程序结构分析-2" class="headerlink" title="基于度量的程序结构分析"></a>基于度量的程序结构分析</h3><ul>
-<li><p>总UML类图  </p>
-<img src="3-1.png"/>  
+<li><p>总UML类图<br><img src="3-1.png"/>  </p>
 </li>
-<li><p>代码规模分析  </p>
-<img src="3-2.png"/>  
+<li><p>代码规模分析<br><img src="3-2.png"/>  </p>
 </li>
-<li><p>方法复杂度分析  </p>
-<img src="3-3-1.png"/>  
-<img src="3-3-2.png"/>  
-<img src="3-3-3.png"/>  
+<li><p>方法复杂度分析<br><img src="3-3-1.png"/><br><img src="3-3-2.png"/><br><img src="3-3-3.png"/>  </p>
 </li>
-<li><p>类复杂度分析  </p>
-<img src="3-4.png"/></li>
+<li><p>类复杂度分析<br><img src="3-4.png"/>  </p>
+</li>
 </ul>
 <hr>
 <p>优化小方法：  </p>
@@ -620,7 +579,7 @@
 <li>若 <code>&lt;因子&gt;</code> 的长度为 <code>1</code> , 则把 <code>&lt;因子&gt;**2</code> 用 <code>&lt;因子&gt;*&lt;因子&gt;</code> 替换。  </li>
 <li>把多项式的首个<strong>非负项</strong>放在表达式首位显示</li>
 <li>三角函数恒等变形（变形需要能使表达式长度缩减）<ul>
-<li><code>项*sin(&lt;因子&gt;)**2 + 项*cos(&lt;因子&gt;)**2 </code>  $\rightarrow$  <code>项</code> </li>
+<li><code>项*sin(&lt;因子&gt;)**2 + 项*cos(&lt;因子&gt;)**2</code>  $\rightarrow$  <code>项</code> </li>
 <li><code>sin(0)</code>  $\rightarrow$  <code>0</code> ， <code>cos(0)</code>  $\rightarrow$  <code>1</code></li>
 <li><code>sin(-&lt;因子&gt;)</code> $\rightarrow$ <code>-sin(&lt;因子&gt;)</code> , <code>cos(-&lt;因子&gt;)</code> $\rightarrow$ <code>cos(&lt;因子&gt;)</code></li>
 <li><code>a + b*sin/cos(&lt;因子&gt;)**2</code> $\rightarrow$ <code>(a+b) - b*cos/sin(&lt;因子&gt;)**2</code></li>
@@ -628,23 +587,17 @@
 </ul>
 </li>
 </ol>
-<br>
-
+<p><br></p>
 <hr>
 <h2 id="分析自己程序的bug"><a href="#分析自己程序的bug" class="headerlink" title="分析自己程序的bug"></a>分析自己程序的bug</h2><ul>
 <li><p>本人三次作业强测及互测结果如图：</p>
 <ul>
-<li><p>第一次作业：  </p>
-<img src="1-5.png"/>  
-<img src="1-6.png"/>  
+<li><p>第一次作业：<br><img src="1-5.png"/><br><img src="1-6.png"/>  </p>
 </li>
-<li><p>第二次作业：  </p>
-<img src="2-5.png"/>  
-<img src="2-6.png"/>  
+<li><p>第二次作业：<br><img src="2-5.png"/><br><img src="2-6.png"/>  </p>
 </li>
-<li><p>第三次作业：  </p>
-<img src="3-5.png"/>  
-<img src="3-6.png"/></li>
+<li><p>第三次作业：<br><img src="3-5.png"/><br><img src="3-6.png"/>  </p>
+</li>
 </ul>
 </li>
 <li><p>总共找出的 <code>bug</code> 数： <code>1</code> 个  </p>
@@ -657,7 +610,8 @@
 <li>出错数据： <code>sin((sin(x)*x))</code></li>
 <li>错误答案： <code>sin(sin(x)*x)</code></li>
 <li>正确答案： <code>sin((sin(x)*x))</code></li>
-<li>出错原因： <code>计算时三角函数判定内部是否为表达式的方法 IsTerm()  判定条件错误</code><br></li>
+<li>出错原因： <code>计算时三角函数判定内部是否为表达式的方法 IsTerm()
+判定条件错误</code><br><br></li>
 </ul>
 </li>
 </ul>
@@ -670,12 +624,10 @@
 <li><p>是否结合被测程序的代码设计结构来设计测试用例： <strong>否</strong></p>
 </li>
 </ul>
-<br>
-
+<p><br></p>
 <hr>
 <h2 id="心得体会"><a href="#心得体会" class="headerlink" title="心得体会"></a>心得体会</h2><p>本单元是表达式括号展开的从简到难的三次迭代过程，在这次作业中我的面向对象思维方法得以初步的建立：第一单元我掌握了 <code>gitlab</code> 的使用，熟悉了代码风格的检查，重视和逐步掌握了测试方法和技巧；第二单元我掌握了迭代设计，增量开发，意识到一个好的架构设计的重要性；第三单元使我掌握和应用继承、接口和多态机制，以统一的架构来整合了三次作业的功能，并且强化了我基于黑盒测试来定位程序<strong>bug</strong>的能力。三次作业均强调了鲁棒性设计和层次化设计，规范了我的代码书写风格，让我认识了 <code>&quot;坚持美观，灵活对待，符合编程的一般原则&quot;</code> 的广义代码风格，使我受益匪浅。</p>
-<br>
-
+<p><br></p>
 <hr>
 <h6>author: 20373864 谭立德</h6>
 
