@@ -182,17 +182,14 @@
 
                         
                         	<li>
-                          	  <a href="/about/">About Tan</a>
+                          	  <a href="/archive/">Archives</a>
                         	</li>
                         
                     
 
                         
-                    
-
-                        
                         	<li>
-                          	  <a href="/archive/">Archives</a>
+                          	  <a href="/about/">About Tan</a>
                         	</li>
                         
                     
@@ -207,6 +204,9 @@
                         	<li>
                           	  <a href="/tags/">Tags</a>
                         	</li>
+                        
+                    
+
                         
                     
                     
@@ -249,21 +249,25 @@
 
 
     <!-- Main Content -->
-    <!-- Post Content -->
-<article>
-    <div class="container">
-        <div class="row">
+    <!-- Main Content -->
+<div class="container">
+    <div class="row">
+        
 
-            <!-- Post Container -->
+    <!-- Post Container -->
             <div class="
-                col-lg-8 col-lg-offset-2
-                col-md-10 col-md-offset-1
-                post-container">
+                col-lg-8 col-lg-offset-1
+                col-md-8 col-md-offset-1
+                col-sm-12
+                col-xs-12
+                post-container
+            ">
+                <h1 id="面向对象设计与构造第一单元第一次作业"><a href="#面向对象设计与构造第一单元第一次作业" class="headerlink" title="面向对象设计与构造第一单元第一次作业"></a>面向对象设计与构造第一单元第一次作业</h1><h4 id="表达式展开"><a href="#表达式展开" class="headerlink" title="表达式展开"></a>表达式展开</h4><br>
 
-                <h1 id="面向对象设计与构造第一单元第一次作业"><a href="#面向对象设计与构造第一单元第一次作业" class="headerlink" title="面向对象设计与构造第一单元第一次作业"></a>面向对象设计与构造第一单元第一次作业</h1><h4 id="表达式展开"><a href="#表达式展开" class="headerlink" title="表达式展开"></a>表达式展开</h4><p><br></p>
 <hr>
 <h3 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h3><p><a href="../OO - P1 - Question">题目链接</a></p>
-<p><br></p>
+<br>
+
 <hr>
 <h3 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h3><p>我们要做的是对单变量多项式的括号展开，并且化简输出，所以我的思路为分为两步：</p>
 <ul>
@@ -271,7 +275,8 @@
 <li><b>2.</b> 将后缀表达式计算并化简为顺序结果 <b>（计算结果）</b></li>
 </ul>
 <p>首先，用递归下降法解析输入，将输入的表达式进行化简和拆解，得到一个不含括号的后缀表达式字符串。接着再按照多项式运算规则进行运算并合并同类项，最后结果进行排序，最后输出结果。</p>
-<p><br></p>
+<br>
+
 <hr>
 <h3 id="基本思路"><a href="#基本思路" class="headerlink" title="基本思路"></a>基本思路</h3><p>我的代码分为了两大部分，分别实现两种相互独立的功能，并用main函数实现连接</p>
 <ul>
@@ -281,10 +286,8 @@
 <p>递归下降是一种根据形式化语法对字符串进行解析的算法。</p>
 <p>递归下降的思想是对于每一个语法元素，都用单独的函数对其进行读取。其中难点在于因子的解析，使用递归下降时只要直接调用对应的解析函数 parseXXX() 即可。</p>
 <p>parseXXX() 的要点在于，调用时要只要保证当前位置恰好在 XXX 的开头，而且调用完他就能解析完这个元素，而具体这些儿子部分是怎么解析的就交给对应的方法。这个方法比较像分治。  </p>
-<font size="1">-- （此段介绍来自roife's blog）</font>
-
-<p><br></p>
-</li>
+<p><font size="1">– （此段介绍来自roife’s blog）</font></p>
+<br></li>
 <li><p>首先对表达式进行预处理</p>
 <ol>
 <li><p>去除所有<strong>空白</strong>字符</p>
@@ -296,105 +299,119 @@
 <li><p>在表达式中 <code>**</code> 后面<strong>紧跟着</strong>的 <code>+</code> 号，删除之</p>
 </li>
 </ol>
-<p><br></p>
-</li>
+<br></li>
 <li><p>通过利用形式化表述定义，将表达式分成了四个层次：<strong>因子</strong>（常量或变量）、<strong>基本项</strong>（幂）、<strong>项</strong>（乘除）、<strong>表达式</strong>（加减），这四种结构对应了四种对象。我们下面分别进行讨论对这些对象的解析：</p>
-<p><br></p>
+<br>
+
 <ul>
 <li>对于因子（常量或变量）的解析：若下一个字符为单目运算符或者是数字或者是变量 x ，则不断看下一个字符是否是数字。如果不是数字，那么说明下一个符号不属于因子，即对因子的解析结束。</li>
 </ul>
-<p><br></p>
+<br>
+
 <ul>
 <li>对基本项（幂）的解析：基本项由因子的幂次方组成，即为 <code>[加减] 因子 ** 带符号整数</code> 。当解析到一个因子后，若下一个解析到的为 <code>**</code> ，那么读入这个符号并做处理，然后下一个符号一定是一个带符号整数，否则，说明基本项的解析结束了。</li>
 </ul>
-<p><br></p>
+<br>
+
 <ul>
 <li>对项（乘除）的解析：项由基本项或因子和乘除符号组成，即为 <code>[加减] 因子 | 项 * 因子</code> ，处理方法与基本项相似。</li>
 </ul>
-<p><br></p>
+<br>
+
 <ul>
 <li><p>对表达式（加减）的解析：表达式由项和加减符号组成，即为：<code>[加减] 项 | 表达式 加减 项</code>  </p>
 </li>
 <li><p>通过题目所给的形式化表述可以表叫容易地建立层次，并且通过方法的互相调用完成解析。递归下降方法的好处在于，它可以通过方法之间的间接递归调用，非常自然地处理嵌套的表达式（即带嵌套括号的表达式）。</p>
 </li>
 </ul>
-<p><br></p>
-</li>
+<br></li>
 </ul>
 </li>
 <li><p><code>2.</code>后缀表达式计算</p>
 <ul>
 <li><p>第<strong>1</strong>步中所得的后缀表达式中，运算符为 <code>+/-/*/**</code> ，操作数为 <code>带符号整数 / 变量x</code>。</p>
-<p><br></p>
+<br>
 </li>
 <li><p>把所有操作数和运算结果视为一系列单项式之和（多项式）</p>
-<p><br></p>
+<br>
 </li>
 <li><p>则：</p>
 <ul>
 <li>对于 <code>带符号整数</code> ，视为指数为零，系数为带符号整数的值的单项式</li>
 </ul>
-<p><br></p>
+<br>
+
 <ul>
 <li>对于 <code>变量x</code> ，视为指数和系数均为 1 的单项式</li>
 </ul>
-<p><br></p>
+<br>
 </li>
 <li><p>由于后缀表达式的便利性，因此我们每读到一个运算符，就对最近的两个多项式进行对应运算并返回一个多项式即可</p>
 </li>
 </ul>
 </li>
 </ul>
-<p><br></p>
+<br>
+
 <hr>
-<h3 id="具体实现"><a href="#具体实现" class="headerlink" title="具体实现"></a>具体实现</h3><h4 id="总UML类图："><a href="#总UML类图：" class="headerlink" title="总UML类图："></a>总UML类图：</h4><p><img src="MainClass.png"  alt="2" /></p>
+<h3 id="具体实现"><a href="#具体实现" class="headerlink" title="具体实现"></a>具体实现</h3><h4 id="总UML类图："><a href="#总UML类图：" class="headerlink" title="总UML类图："></a>总UML类图：</h4><img src="MainClass.png"  alt="2" />
+
 <ul>
-<li><h4 id="读取处理类-Lexer"><a href="#读取处理类-Lexer" class="headerlink" title="读取处理类 Lexer"></a>读取处理类 <code>Lexer</code></h4><p><img src="1.png"  alt="2" />  </p>
+<li><h4 id="读取处理类-Lexer"><a href="#读取处理类-Lexer" class="headerlink" title="读取处理类 Lexer"></a>读取处理类 <code>Lexer</code></h4><img src="1.png"  alt="2" />  
+
 <ul>
 <li>该类主要目的是对原始表达式进行读取处理，使其按照需要每次使用都能输出一个 <code>操作数/运算符</code></li>
 <li>对字符串进行必要的预处理</li>
 <li>读取数字需要判断正负（即该数前面的 <code>+/-</code> 号（如果有）是否是单目运算符）</li>
 </ul>
 </li>
-<li><h4 id="解析类-Parser"><a href="#解析类-Parser" class="headerlink" title="解析类 Parser"></a>解析类 <code>Parser</code></h4><p><img src="2.png"  alt="2" />  </p>
+<li><h4 id="解析类-Parser"><a href="#解析类-Parser" class="headerlink" title="解析类 Parser"></a>解析类 <code>Parser</code></h4><img src="2.png"  alt="2" />  
+
 <ul>
 <li>使用递归下降法处理表达式，递归地分别对表达式（Expression）、项（Term）、基本项（Basic）、因子（Factor）进行处理</li>
 <li>若是识别到左括号 <code>(</code> 则递归调用 <code>parseExpression()</code> 先处理括号内的内容即可</li>
 </ul>
 </li>
-<li><h4 id="多项式类-Item"><a href="#多项式类-Item" class="headerlink" title="多项式类 Item"></a>多项式类 <code>Item</code></h4><p><img src="3.png"  alt="2" />  </p>
+<li><h4 id="多项式类-Item"><a href="#多项式类-Item" class="headerlink" title="多项式类 Item"></a>多项式类 <code>Item</code></h4><img src="3.png"  alt="2" />  
+
 <ul>
 <li>对于多项式的 <code>+/-/*/**</code> 操作均在该类中使用公开函数实现，需要时根据运算符类型调用即可</li>
 <li>重写 <code>toString</code> 方法，对保存在该类的各单项式对指数项进行排列后输出</li>
 </ul>
 </li>
-<li><h4 id="因子类接口-Factor"><a href="#因子类接口-Factor" class="headerlink" title="因子类接口 Factor"></a>因子类接口 <code>Factor</code></h4><p><img src="4.png"  alt="2" />  </p>
+<li><h4 id="因子类接口-Factor"><a href="#因子类接口-Factor" class="headerlink" title="因子类接口 Factor"></a>因子类接口 <code>Factor</code></h4><img src="4.png"  alt="2" />  
+
 <ul>
-<li><h5 id="表达式（加减）类-Expression"><a href="#表达式（加减）类-Expression" class="headerlink" title="表达式（加减）类 Expression"></a>表达式（加减）类 <code>Expression</code></h5><p><img src="5.png"  alt="2" />  </p>
+<li><h5 id="表达式（加减）类-Expression"><a href="#表达式（加减）类-Expression" class="headerlink" title="表达式（加减）类 Expression"></a>表达式（加减）类 <code>Expression</code></h5><img src="5.png"  alt="2" />  
+
 <ul>
 <li>储存 <code>表达式</code></li>
 <li>由于 <code>+</code> 和 <code>-</code> 地位相同，所以让该类自带一个队列（此处用    <code>ArrayList</code> 实现，并用 <code>flag</code> 标记队首</li>
 <li>重写 <code>toString</code> 方法，把保存在该类中的数逐个输出并用 <code>+/-(队首元素)</code> 相连</li>
 </ul>
 </li>
-<li><h5 id="项（乘除）类-Term"><a href="#项（乘除）类-Term" class="headerlink" title="项（乘除）类 Term"></a>项（乘除）类 <code>Term</code></h5><p><img src="6.png"  alt="2" />  </p>
+<li><h5 id="项（乘除）类-Term"><a href="#项（乘除）类-Term" class="headerlink" title="项（乘除）类 Term"></a>项（乘除）类 <code>Term</code></h5><img src="6.png"  alt="2" />  
+
 <ul>
 <li>储存 <code>项</code></li>
 <li>重写 <code>toString</code> 方法，把保存在该类中的数逐个输出并用 <code>*</code> 相连</li>
 </ul>
 </li>
-<li><h5 id="基本项（幂）类-Basic"><a href="#基本项（幂）类-Basic" class="headerlink" title="基本项（幂）类 Basic"></a>基本项（幂）类 <code>Basic</code></h5><p><img src="7.png"  alt="2" />  </p>
+<li><h5 id="基本项（幂）类-Basic"><a href="#基本项（幂）类-Basic" class="headerlink" title="基本项（幂）类 Basic"></a>基本项（幂）类 <code>Basic</code></h5><img src="7.png"  alt="2" />  
+
 <ul>
 <li>储存 <code>基本项</code></li>
 <li>重写 <code>toString</code> 方法，把保存在该类中的数逐个输出并用 <code>**</code> 相连</li>
 </ul>
 </li>
-<li><h5 id="常量类-Constant"><a href="#常量类-Constant" class="headerlink" title="常量类 Constant"></a>常量类 <code>Constant</code></h5><p><img src="8.png"  alt="2" />  </p>
+<li><h5 id="常量类-Constant"><a href="#常量类-Constant" class="headerlink" title="常量类 Constant"></a>常量类 <code>Constant</code></h5><img src="8.png"  alt="2" />  
+
 <ul>
 <li>储存 <code>常量因子</code></li>
 </ul>
 </li>
-<li><h5 id="变量类-Variable"><a href="#变量类-Variable" class="headerlink" title="变量类 Variable"></a>变量类 <code>Variable</code></h5><p><img src="9.png"  alt="2" />  </p>
+<li><h5 id="变量类-Variable"><a href="#变量类-Variable" class="headerlink" title="变量类 Variable"></a>变量类 <code>Variable</code></h5><img src="9.png"  alt="2" />  
+
 <ul>
 <li>储存 <code>变量因子</code></li>
 </ul>
@@ -402,7 +419,8 @@
 </ul>
 </li>
 </ul>
-<p><br></p>
+<br>
+
 <hr>
 <p>优化小方法：  </p>
 <ol>
@@ -411,156 +429,150 @@
 <li>……</li>
 </ol>
 
-                
-                <hr>
-                <!-- Pager -->
-                <ul class="pager">
-                    
-                    <li class="previous">
-                        <a href="/2022/03/04/OO - P1 - Question/" data-toggle="tooltip" data-placement="top" title="OO - P1 - Question">&larr; Previous Post
-		<br>
-		<span><font size="2" face="Calibri" color="grey">OO - P1 - Question</font></span>
-	       </a>
-                    </li>
-                    
-                    
-                    <li class="next">
-                        <a href="/2022/01/03/基础物理实验1/" data-toggle="tooltip" data-placement="top" title="基础物理实验1">Next Post &rarr;
-		<br>
-		<span><font size="2" face="Calibri" color="grey">基础物理实验1</font></span>
-	        </a>
-                    </li>
-                    
-                </ul>
-
-                <!-- tip start -->
-                
-
-                
-                <div class="comment_notes">
-                    <p>
-                        by Tan
-                    </p>
-                </div>
-                
-                <!-- tip end -->
-
-                <!-- Music start-->
-                
-                <!-- Music end -->
-
-                <!-- Sharing -->
-                
-                <!-- Sharing -->
-
-                <!-- gitment start -->
-                
-                <!-- gitment end -->
-
-                <!-- 来必力City版安装代码 -->
-                
-                <!-- City版安装代码已完成 -->
-
-                <!-- disqus comment start -->
-                
-                <!-- disqus comment end -->
             </div>
-            
-            <!-- Tabe of Content -->
-            <!-- Table of Contents -->
 
-    
-      
-        <aside id="sidebar">
-          <div id="toc" class="toc-article">
-          <strong class="toc-title">Contents</strong>
-          
-            
-              <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#面向对象设计与构造第一单元第一次作业"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">面向对象设计与构造第一单元第一次作业</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#表达式展开"><span class="toc-nav-number">1.0.0.1.</span> <span class="toc-nav-text">表达式展开</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#题目"><span class="toc-nav-number">1.0.1.</span> <span class="toc-nav-text">题目</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#分析"><span class="toc-nav-number">1.0.2.</span> <span class="toc-nav-text">分析</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#基本思路"><span class="toc-nav-number">1.0.3.</span> <span class="toc-nav-text">基本思路</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#具体实现"><span class="toc-nav-number">1.0.4.</span> <span class="toc-nav-text">具体实现</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#总UML类图："><span class="toc-nav-number">1.0.4.1.</span> <span class="toc-nav-text">总UML类图：</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#读取处理类-Lexer"><span class="toc-nav-number">1.0.4.2.</span> <span class="toc-nav-text">读取处理类 Lexer</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#解析类-Parser"><span class="toc-nav-number">1.0.4.3.</span> <span class="toc-nav-text">解析类 Parser</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#多项式类-Item"><span class="toc-nav-number">1.0.4.4.</span> <span class="toc-nav-text">多项式类 Item</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#因子类接口-Factor"><span class="toc-nav-number">1.0.4.5.</span> <span class="toc-nav-text">因子类接口 Factor</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#表达式（加减）类-Expression"><span class="toc-nav-number">1.0.4.5.1.</span> <span class="toc-nav-text">表达式（加减）类 Expression</span></a></li><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#项（乘除）类-Term"><span class="toc-nav-number">1.0.4.5.2.</span> <span class="toc-nav-text">项（乘除）类 Term</span></a></li><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#基本项（幂）类-Basic"><span class="toc-nav-number">1.0.4.5.3.</span> <span class="toc-nav-text">基本项（幂）类 Basic</span></a></li><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#常量类-Constant"><span class="toc-nav-number">1.0.4.5.4.</span> <span class="toc-nav-text">常量类 Constant</span></a></li><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#变量类-Variable"><span class="toc-nav-number">1.0.4.5.5.</span> <span class="toc-nav-text">变量类 Variable</span></a></li></ol></li></ol></li></ol></li></ol></li></ol>
-            
-          
-          </div>
-        </aside>
-      
-    
-
-                
             <!-- Sidebar Container -->
-            <div class="
-                col-lg-8 col-lg-offset-2
-                col-md-10 col-md-offset-1
-                sidebar-container">
+<div class="
+    col-lg-3 col-lg-offset-0
+    col-md-3 col-md-offset-0
+    col-sm-12
+    col-xs-12
+    sidebar-container
+">
+    
+        <!-- Featured Tags -->
 
-                <!-- Featured Tags -->
-                
-                <section>
-                    <!-- no hr -->
-                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
-                    <div class="tags">
-                       
-                          <a class="tag" href="/tags/#OO" title="OO">OO</a>
-                        
-                    </div>
-                </section>
-                
-
-            </div>
-			<br>
-			<br>
-			<div>
-				<script src="https://utteranc.es/client.js"
-						repo="master-tan/master-tan.github.io"
-						issue-term="pathname"
-						label="Comment"
-						theme="github-light"
-						crossorigin="anonymous"
-						async>
-				</script> 
-			</div>
-			      
-        </div>
+<section>
+    <!-- no hr -->
+    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+    <div class="tags">
+        
+            
+            <a href="/tags/#碎碎念" title="碎碎念" rel="2">碎碎念</a>
+            
+        
+            
+            <a href="/tags/#hexo-theme-snail" title="hexo-theme-snail" rel="1">hexo-theme-snail</a>
+            
+        
+            
+            <a href="/tags/#CO" title="CO" rel="5">CO</a>
+            
+        
+            
+            <a href="/tags/#基物实验" title="基物实验" rel="1">基物实验</a>
+            
+        
+            
+            <a href="/tags/#OO" title="OO" rel="4">OO</a>
+            
+        
+            
+            <a href="/tags/#OS" title="OS" rel="2">OS</a>
+            
+        
     </div>
-</article>
+</section>
 
+        <hr>
+    
+        <!-- Short About -->
+<section class="visible-md visible-lg">
+    <h5><a href="/about/">ABOUT ME</a></h5>
+    <div class="short-about">
 
+        
+            <img id = "avatar_pic" src="/img/ironman-draw.png" />
+        
 
+        
+            <p>Welcome to visit, I&#39;m Tan!</p>
+        
 
-<!-- async load function -->
-<script>
-    function async(u, c) {
-      var d = document, t = 'script',
-          o = d.createElement(t),
-          s = d.getElementsByTagName(t)[0];
-      o.src = u;
-      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
-      s.parentNode.insertBefore(o, s);
-    }
-</script>
-<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
-<script>
-    async("https://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
-        anchors.options = {
-          visible: 'hover',
-          placement: 'left',
-          icon: 'ℬ'
-        };
-        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
-    })
-</script>
+        <!-- SNS Link -->
+        <ul class="list-inline">
 
+            
+                <li>
+                    <a target="_blank"  href="https://github.com/Master-Tan">
+                        <span class="fa-stack fa-lg">
+                            <i class="fa fa-circle fa-stack-2x"></i>
+                            <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                        </span>
+                    </a>
+                </li>
+            
 
-<style  type="text/css">
-    /* place left on bigger screen */
-    @media all and (min-width: 800px) {
-        .anchorjs-link{
-            position: absolute;
-            left: -0.75em;
-            font-size: 1.1em;
-            margin-top : -0.1em;
-        }
-    }
-</style>
+            
+                <li>
+                    <a target="_blank" href="https://twitter.com/None">
+                        <span class="fa-stack fa-lg">
+                            <i class="fa fa-circle fa-stack-2x"></i>
+                            <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                        </span>
+                    </a>
+                </li>
+            
 
+            
+                <li>
+                    <a target="_blank" href="https://www.facebook.com/None">
+                        <span class="fa-stack fa-lg">
+                            <i class="fa fa-circle fa-stack-2x"></i>
+                            <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+                        </span>
+                    </a>
+                </li>
+            
+
+            
+
+            
+
+            
+
+            
+
+        </ul>
+    </div>
+</section>
+        <hr>
+    
+        
+  <h5>VISITORS</h5>
+  <div class="widget">
+    <span>
+    	Viewed <b><i><span id="busuanzi_value_site_pv"><i class="fa fa-spinner fa-spin"></i></span></i></b> Times
+	</span>
+	<br/>
+	<span>
+		<b><i><span id="busuanzi_value_site_uv"><i class="fa fa-spinner fa-spin"></i></span></i></b> Visitors In Total
+	</span>
+  </div>
+
+        <hr>
+    
+        <!-- Friends Blog -->
+
+<h5>FRIENDS</h5>
+<ul class="list-inline">
+
+    
+        <li><a href="https://trickeye.github.io" target="_blank">TrickEye&#39;s Blog</a></li>
+    
+        <li><a href="#" target="_blank">Tan&#39;s Web</a></li>
+    
+        <li><a href="https://github.com/Master-Tan" target="_blank">Tan&#39;s Github</a></li>
+    
+</ul>
+
+        <hr>
+    
+</div>
+
+        
+    </div>
+</div>
 
 
     <!-- Footer -->
