@@ -16,11 +16,11 @@
     <!--<link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>-->
     <title>
         
-          OS - Lab0 - Tan&#39;s Blog
+          OS - Lab2 - Tan&#39;s Blog
         
     </title>
 
-    <link rel="canonical" href="http://Master-Tan.github.io/2022/03/14/OS - Lab0/">
+    <link rel="canonical" href="http://Master-Tan.github.io/2022/04/02/OS - Lab2/">
 
     <!-- Bootstrap Core CSS -->
     
@@ -111,17 +111,17 @@
                               <a class="tag" href="/tags/#OS" title="OS">OS</a>
                             
                         </div>
-                        <h1>OS - Lab0</h1>
-                        <h2 class="subheading">OS第零次实验</h2>
+                        <h1>OS - Lab2</h1>
+                        <h2 class="subheading">OS第二次实验</h2>
                         <span class="meta">
                             Posted by Tan on
-                            2022-03-14
+                            2022-04-02
                         </span>
 
 	       
                             <div class="blank_box"></div>
                             <span class="meta">
-                                 <span class="post-count">2k</span> Words
+                                 <span class="post-count">1.9k</span> Words
                             </span>
                             <div class="blank_box"></div>
                             <!-- 不蒜子统计 start -->
@@ -260,230 +260,166 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <h1 id="OS-Lab0"><a href="#OS-Lab0" class="headerlink" title="OS - Lab0"></a>OS - Lab0</h1><p>写在前面：由于操作系统需要撰写实验报告，要求如下图：<br><img align="middle" src="1.png"><br>因此，之后 OS 的每一次 Blog 的前半部分（课前）基本为我的实验报告，后半部分则会分享每一次上机的经验以及其他的一些碎碎念(～￣▽￣)～ </p>
-<br>
-
-<hr>
-<h2 id="课下"><a href="#课下" class="headerlink" title="课下"></a>课下</h2><h3 id="Lab0-实验报告"><a href="#Lab0-实验报告" class="headerlink" title="Lab0 实验报告"></a>Lab0 实验报告</h3><br>
+                <h1 id="OS-Lab1"><a href="#OS-Lab1" class="headerlink" title="OS - Lab1"></a>OS - Lab1</h1><h2 id="课下"><a href="#课下" class="headerlink" title="课下"></a>课下</h2><h3 id="Lab1-实验报告"><a href="#Lab1-实验报告" class="headerlink" title="Lab1 实验报告"></a>Lab1 实验报告</h3><br>
 
 <h3 id="一-思考题"><a href="#一-思考题" class="headerlink" title="一. 思考题"></a>一. 思考题</h3><br>
 
-<h4 id="Thinking-0-1"><a href="#Thinking-0-1" class="headerlink" title="Thinking 0.1"></a>Thinking 0.1</h4><ul>
-<li><p>在 <code>/home/20xxxxxx/learnGit</code> 目录下创建一个名为 <code>README.txt</code> 的文件。这时使用 <code>git status &gt; Untracked.txt</code> 。</p>
-</li>
-<li><p>在 <code>README.txt</code> 文件中随便写点什么，然后使用刚刚学到的 <code>add</code> 命令，再使用 <code>git status &gt; Stage.txt</code> 。</p>
-</li>
-<li><p>之后使用上面学到的 <code>Git</code> 提交有关的知识把 <code>README.txt</code> 提交，并在提交说明里写入自己的学号。</p>
-</li>
-<li><p>使用 <code>cat Untracked.txt</code> 和 <code>cat Stage.txt</code>，对比一下两次的结果，体会一下 <code>README.txt</code> 两次所处位置的不同。</p>
-</li>
-<li><p>修改 <code>README.txt</code> 文件，再使用 <code>git status &gt; Modified.txt</code> 。</p>
-</li>
-<li><p>使用 <code>cat Modified.txt</code>，观察它和第一次 <code>add</code> 之前的 <code>status</code> 一样吗，思考一下为什么？</p>
-</li>
+<h4 id="Thinking-1-1"><a href="#Thinking-1-1" class="headerlink" title="Thinking 1.1"></a>Thinking 1.1</h4><ul>
+<li>请查阅并给出前述 <code>objdump</code> 中使用的参数的含义。使用其它体系结构的编译器（如课程平台的 <code>MIPS</code> 交叉编译器）重复上述各步编译过程，观察并在实验报告中提交相应结果。</li>
 </ul>
 <h4 id="答："><a href="#答：" class="headerlink" title="答："></a>答：</h4><ul>
-<li>第一次 <code>add</code> 时的 <code>status</code> 如图：  <img align="middle" src='2.png'>  </li>
-<li>使用 <code>cat Modified.txt</code> 后的 <code>status</code> 如图：  <img align="middle" src='3.png'>  </li>
-<li>思考：不一样，第一次 <code>add</code> 之前文件还未加入暂存区和版本库，从而显示状态为 <code>Untracked</code> ，而此时 <code>README.txt</code> 文件已经被加入版本库中，此时再更改工作区中的 <code>README.txt</code> 文件会导致其与版本库中当前版本内容不一致，从而显示状态为 <code>modified</code> ,即 <strong>‘已修改’</strong> 的意思</li>
+<li><p><code>objdump</code> 指令使用参数如下如图：  </p>
+<img align="middle" src='1.png'>  
+</li>
+<li><p>对于文件 <code>test.c</code> ,使用课程平台的 <code>MIPS</code> 交叉编译器编译为 <code>test.o</code> 文件  </p>
+<img align="middle" src='4.png'>
+</li>
+<li><p>再编辑链接器配置文件 <code>test.lds</code>  </p>
+<img align="middle" src='5.png'>
+</li>
+<li><p>最后通过链接器编译得到 <code>test</code> 可执行文件  </p>
+<img align="middle" src='6.png'></li>
 </ul>
 <br>
 
-<h4 id="Thinking-0-2"><a href="#Thinking-0-2" class="headerlink" title="Thinking 0.2"></a>Thinking 0.2</h4>  <img align="middle" src='4.png'>  
-
-<ul>
-<li>仔细看看这张图，思考一下箭头中的 <code>add the file</code>、<code>stage the file</code> 和 <code>commit</code> 分别对应的是 <code>Git</code> 里的哪些命令呢？</li>
+<h4 id="Thinking-1-2"><a href="#Thinking-1-2" class="headerlink" title="Thinking 1.2"></a>Thinking 1.2</h4><ul>
+<li>也许你会发现我们的 <code>readelf</code> 程序是不能解析之前生成的内核文件(内核文件是可执行文件)的，而我们之后将要介绍的工具 <code>readelf</code> 则可以解析，这是为什么呢？(提示：尝试使用 <code>readelf -h</code> ，观察不同)</li>
 </ul>
 <h4 id="答：-1"><a href="#答：-1" class="headerlink" title="答："></a>答：</h4><ul>
-<li><p><code>add the file</code> 对应 <code>git add</code> 指令</p>
+<li><p><code>readelf -h vmlinux</code> 和 <code>readelf -h testELF</code> 的结果为  </p>
+<img align="middle" src='2.png'>  
+<img align="middle" src='3.png'>  
 </li>
-<li><p><code>stage th file</code> 同样对应 <code>git add</code> 指令</p>
-</li>
-<li><p><code>commit</code> 对应 <code>git commit</code> 指令</p>
+<li><p>由此可见，我们自己写的 <code>readelf</code> 程序和 <code>testELF</code> 文件都是在小端 <code>（little endian）</code> 环境下运行，而 <code>vmlinux</code> 是大端 <code>（big endian）</code> 格式存储，在大端环境下运行的。因此我们自己的程序无法解析 <code>vmlinux</code> 内核文件，而 <code>linux</code> 默认的 <code>readelf</code> 指令有识别大小端并按相应方式处理的代解析程序能力</p>
 </li>
 </ul>
 <br>
 
-<h4 id="Thinking-0-3"><a href="#Thinking-0-3" class="headerlink" title="Thinking 0.3"></a>Thinking 0.3</h4><ul>
-<li><p>深夜，小明在做操作系统实验。困意一阵阵袭来，小明睡倒在了键盘上。等到小明早上醒来的时候，他惊恐地发现，他把一个重要的代码文件 <code>printf.c</code> 删除掉了。苦恼的小明向你求助，你该怎样帮他把代码文件恢复呢？</p>
+<h4 id="Thinking-1-3"><a href="#Thinking-1-3" class="headerlink" title="Thinking 1.3"></a>Thinking 1.3</h4><ul>
+<li><p>在理论课上我们了解到， <code>MIPS</code> 体系结构上电时，启动入口地址为 <code>0xBFC00000</code> （其实启动入口地址是根据具体型号而定的，由硬件逻辑确定，也有可能不是这个地址，但一定是一个确定的地址），但实验操作系统的内核入口并没有放在上电启动地址，而是按照内存布局图放置。思考为什么这样放置内核还能保证内核入口被正确跳转到？</p>
 </li>
-<li><p>正在小明苦恼的时候，小红主动请缨帮小明解决问题。小红很爽快地在键盘上敲下了 <code>git rm printf.c</code> ，这下事情更复杂了，现在你又该如何处理才能弥补小红的过错呢？</p>
-</li>
-<li><p>处理完代码文件，你正打算去找小明说他的文件已经恢复了，但突然发现小明的仓库里有一个叫 <code>Tucao.txt</code> ，你好奇地打开一看，发现是吐槽操作系统实验的，且该文件已经被添加到暂存区了，面对这样的情况，你该如何设置才能使 <code>Tucao.txt</code> 在不从工作区删除的情况下不会被 <code>git commit</code> 指令提交到版本库？</p>
+<li><p>（提示：思考实验中启动过程的两阶段分别由谁执行。）</p>
 </li>
 </ul>
 <h4 id="答：-2"><a href="#答：-2" class="headerlink" title="答："></a>答：</h4><ul>
-<li><p>执行 <code>git checkout -- printf.c</code> 指令，</p>
-</li>
-<li><p>先执行 <code>git reset HEAD printf.c</code> 指令，然后执行 <code>git checkout -- printf.c</code> 指令</p>
-</li>
-<li><p>执行 <code>git rm --cached Tucao.txt</code> 指令</p>
-</li>
+<li><code>MIPS</code> 系统加电起动后， <code>MIPS</code> 处理器默认的程序入口是 <code>0xBFC00000</code> ，此地址在无缓存的 <code>KSEG1</code> 的地址区域内，对应的物理地址是 <code>0x1FC00000</code> ，即 <code>CPU</code> 从 <code>0x1FC00000</code> 开始取第一条指令，这个地址在硬件上已经确定为 <code>FLASH</code> 的位置，然后 <code>Bootloader</code> 执行功能，加载内核到内存（ <code>Linux</code> 内核镜像文件拷贝到 <code>RAM</code> 中某个空闲地址（ <code>LOAD</code> 地址）处），之后在本系统中将 <code>./tools/scse0_3.lds</code> 传给链接器 <code>ld</code> ， <code>ld</code> 会将 <code>.text</code> 节的地址链接到 <code>0x80010000</code> （即内存布局图中内核代码开始处）。关于内核 <code>ELF</code> 文件的入口地址 <code>(Entry point)</code> ，即 <code>bootloader</code> 移动完内核后，直接跳转到的地址，由 <code>ld</code> 写入 <code>ELF</code> 的头中，在本系统中通过 <code>ENTRY(_start)</code> 指明并跳转至内核启动代码 <code>./boot/start.S</code> 处</li>
 </ul>
 <br>
 
-<h4 id="Thinking-0-4"><a href="#Thinking-0-4" class="headerlink" title="Thinking 0.4"></a>Thinking 0.4</h4><ul>
-<li><p>找到我们在 <code>/home/20xxxxxx/learnGit</code> 下刚刚创建的 <code>README.txt</code> ，没有的话就新建一个。</p>
+<h4 id="Thinking-1-4"><a href="#Thinking-1-4" class="headerlink" title="Thinking 1.4"></a>Thinking 1.4</h4><ul>
+<li><p><code>sg_size</code> 和 <code>bin_size</code> 的区别它的开始加载位置并非页对齐，同时 <code>bin_size</code> 的结束位置 <code>(va+i)</code> 也并非页对齐，最终整个段加载完毕的 <code>sg_size</code> 末尾的位置也并非页对齐，请思考，为了保证页面不冲突（不重复为同一地址申请多个页，以及页上数据尽可能减少冲突），这样一个程序段应该怎样加载内存空间中。</p>
 </li>
-<li><p>在文件里加入 <code>Testing 1</code> ，<code>add</code> ，<code>commit</code> ，提交说明写 1。</p>
-</li>
-<li><p>模仿上述做法，把 <code>1</code> 分别改为 <code>2</code> 和 <code>3</code> ，再提交两次。</p>
-</li>
-<li><p>使用 <code>git log</code> 命令查看一下提交日志，看是否已经有三次提交了？记下提交说明为 <code>3</code> 的哈希值。</p>
-</li>
-<li><p>开动时光机！使用 <code>git reset --hard HEAD^</code> ，现在再使用 <code>git log</code> ，看看什么没了？</p>
-</li>
-<li><p>找到提交说明为 <code>1</code> 的哈希值，使用 <code>git reset --hard &lt;Hash-code&gt;</code> ，再使用 <code>git log</code>，看看什么没了？</p>
-</li>
-<li><p>现在我们已经回到过去了，为了再次回到未来，使用 <code>git reset --hard &lt;Hash-code&gt;</code> ，再使用 <code>git log</code> ，我胡汉三又回来了！</p>
-</li>
-<li><p>这一部分在课后的思考题中简单写一写你的理解即可，毕竟能够进行版本的恢复是使用 <code>git</code> 很重要的一个原因。</p>
+<li><p>彻底并透彻地理解上图能帮助大家在后续实验中节约很多时间</p>
 </li>
 </ul>
 <h4 id="答：-3"><a href="#答：-3" class="headerlink" title="答："></a>答：</h4><ul>
-<li><p>我的理解：<code>git reset</code> 指令能让我们能能移动 <code>HEAD</code> 回退到任意的版本，并在<strong>缺省</strong>的情况下更新暂存区和版本库的当前版本，但在参数为 <code>--hard</code> 的情况下会同时覆盖掉工作目录下的文件，相当于把原本的工作目录使用回退版本库中的内容<strong>全部</strong>覆盖掉；所以若工作目录下的文件还未提交，则 <code>Git</code> 仍会覆盖它从而导致<strong>无法恢复</strong>，有风险，要<strong>慎用</strong>。</p>
+<li><p>系统内核加载程序段地址分配为:  </p>
+<img align="middle" src='14.png'>  
+<img align="middle" src='12.png'>  
 </li>
-<li><p>附：详细的说明可以参考 <code>Git</code> 的官网上的 <a href='https://git-scm.com/book/zh/v2/Git-%E5%B7%A5%E5%85%B7-%E9%87%8D%E7%BD%AE%E6%8F%AD%E5%AF%86' target="_blank" rel="noopener">重置揭秘</a>，里面描述了 <code>git reset</code> 类指令的具体工作原理</p>
+<li><p>实验代码（自己编写的一个实例程序）的加载程序段地址分配为：  </p>
+<img align="middle" src='15.png'>  
+<img align="middle" src='13.png'>  
+</li>
+<li><p>由两个程序加载后的段地址可知，可见，系统内核在加载程序段时能保证进行内核加载时为<strong>页对齐</strong>的，而自己编写的程序并<strong>不能</strong>保证加载时页对齐，想要自己的程序在加载时页对齐，需要自定义或修改链接器在连接时的行为</p>
 </li>
 </ul>
 <br>
 
-<h4 id="Thinking-0-5"><a href="#Thinking-0-5" class="headerlink" title="Thinking 0.5"></a>Thinking 0.5</h4><ul>
-<li>思考下面四个描述，你觉得哪些正确，哪些错误，请给出你参考的资料或实验证据。</li>
+<h4 id="Thinking-1-5"><a href="#Thinking-1-5" class="headerlink" title="Thinking 1.5"></a>Thinking 1.5</h4><ul>
+<li>内核入口在什么地方？ <code>main</code> 函数在什么地方？我们是怎么让内核进入到想要的 <code>main</code> 函数的呢？又是怎么进行跨文件调用函数的呢？</li>
 </ul>
-<ol>
-<li><p>克隆时所有分支均被克隆，但只有 <code>HEAD</code> 指向的分支被检出。</p>
+<h4 id="答：-4"><a href="#答：-4" class="headerlink" title="答："></a>答：</h4><ul>
+<li><p>内核入口位于 <code>start.S</code> 中的 <code>_start</code> 函数（标号使用 <code>LEAF</code> 宏定义，该宏完成初始化堆栈等工作，以辅助函数调用）</p>
 </li>
-<li><p>克隆出的工作区中执行 <code>git log</code> 、 <code>git status</code> 、 <code>git checkout</code> 、 <code>git commit</code> 等操作不会去访问远程版本库。</p>
+<li><p><code>main</code> 函数在 <code>./init/main.c</code>中</p>
 </li>
-<li><p>克隆时只有远程版本库 <code>HEAD</code> 指向的分支被克隆。</p>
+<li><p>我们通过一条 <code>jal main</code> 指令调用 <code>main</code></p>
 </li>
-<li><p>克隆后工作区的默认分支处于 <code>master</code> 分支。</p>
-</li>
-</ol>
-<h4 id="答：-4"><a href="#答：-4" class="headerlink" title="答："></a>答：</h4><ol>
-<li><p>正确</p>
-<ul>
-<li><p>依据：<a href='https://git-scm.com/docs/git-clone' target="_blank" rel="noopener"> <code>Git</code> 官网对 <code>git clone</code> 描述</a>  </p>
-<img align="middle" src="5.png">
-</li>
-<li><p>可见是 “creates remote-tracking branches for <strong>each</strong> branch in the cloned repository”</p>
+<li><p>跨文件调用时，跳转地址为一个标签，由链接器在连接过程中重定位至函数的真正地址</p>
 </li>
 </ul>
-</li>
-<li><p>正确</p>
-<ul>
-<li><p>依据：见第一小问</p>
-</li>
-<li><p>可见只有 <code>git pull</code> 和 <code>git fetch</code> 操作能使远程主分支改变</p>
-</li>
-</ul>
-</li>
-<li><p>错误，所有分支均被克隆</p>
-<ul>
-<li><p>依据：见第一小问</p>
-</li>
-<li><p>可见是 “creates remote-tracking branches for <strong>each</strong> branch in the cloned repository”</p>
-</li>
-</ul>
-</li>
-<li><p>错误</p>
-<ul>
-<li><p>依据：见第一小问</p>
-</li>
-<li><p>可见是 “creates and checks out an initial branch that is forked from the cloned repository’s <strong>currently active branch</strong>“</p>
-</li>
-</ul>
-</li>
-</ol>
 <br>
 
-<h4 id="Thinking-0-6"><a href="#Thinking-0-6" class="headerlink" title="Thinking 0.6"></a>Thinking 0.6</h4><p>执行如下命令,并查看结果  </p>
-<pre><code>echo first
-echo second &gt; output.txt
-echo third &gt; output.txt
-echo forth &gt;&gt; output.txts
-</code></pre>
+<h4 id="Thinking-1-6"><a href="#Thinking-1-6" class="headerlink" title="Thinking 1.6"></a>Thinking 1.6</h4><p>查阅 <code>《See MIPS Run Linux》 </code> 一书相关章节，解释 <code>boot/start.S</code> 中下面几行对 <code>CP0</code> 协处理器寄存器进行读写的意义。具体而言，它们分别读&#x2F;写了哪些寄存器的哪些特定位，从而达到什么目的？</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;* Disable interrupts *&#x2F;</span><br><span class="line">mtc0 zero, CP0_STATUS</span><br><span class="line">......</span><br><span class="line">&#x2F;* disable kernel mode cache *&#x2F;</span><br><span class="line">mfc0 t0, CP0_CONFIG</span><br><span class="line">and t0, ~0x7</span><br><span class="line">ori t0, 0x2</span><br><span class="line">mtc0 to, CP0_CONFIG</span><br></pre></td></tr></table></figure>
+
 <h4 id="答：-5"><a href="#答：-5" class="headerlink" title="答："></a>答：</h4><ul>
-<li>执行结果如图：  <img align="middle" src='6.png'></li>
-</ul>
-<br>
-
-<h4 id="Thinking-0-7"><a href="#Thinking-0-7" class="headerlink" title="Thinking 0.7"></a>Thinking 0.7</h4><ul>
-<li><p>使用你知道的方法（包括重定向）创建下图内容的文件（文件命名为 <code>test</code> ），将创建该文件的命令序列保存在 <code>command</code> 文件中，并将 <code>test</code> 文件作为批处理文件运行，将运行结果输出至 <code>result</code> 文件中。给出 <code>command</code> 文件和 <code>result</code> 文件的内容，并对最后的结果进行解释说明（可以从 <code>test</code> 文件的内容入手）。  </p>
-<img align="middle" src='7.png'>
+<li><p>宏代换后的代码为</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;* Disable interrupts *&#x2F;</span><br><span class="line">mtc0 zero, $12</span><br><span class="line">......</span><br><span class="line">&#x2F;* disable kernel mode cache *&#x2F;</span><br><span class="line">mfc0 t0, $16</span><br><span class="line">and t0, ~0x7</span><br><span class="line">ori t0, 0x2</span><br><span class="line">mtc0 t0, $16</span><br></pre></td></tr></table></figure>
 </li>
-<li><p>具体实现的过程中思考下列问题: <code>echo echo Shell Start</code> 与 <code>echo `echo Shell Start` </code>效果是否有区别; <code>echo echo \$c&gt;file1</code> 与 <code>echo `echo \$c&gt;file1` </code>效果是否有区别.</p>
-</li>
-</ul>
-<h4 id="答：-6"><a href="#答：-6" class="headerlink" title="答："></a>答：</h4><ul>
-<li><p>操作代码：</p>
+<li><p><code>mtc0 zero, $12</code></p>
 <ul>
-<li><p><code>command</code> 文件内容  </p>
-<img align="middle" src='8.png'>
+<li><p>读&#x2F;写寄存器：<br>使状态寄存器 <strong>SR</strong> <code>(Status Register)</code> 全部位置 <code>0</code></p>
 </li>
-<li><p><code>result</code> 文件内容  </p>
-<img align="middle" src='9.png'></li>
+<li><p>达到目的：<br><strong>禁用了中断</strong>  </p>
+</li>
+<li><img align="middle" src='7.png'></li>
 </ul>
 </li>
-<li><p>问题思考：</p>
+<li><p><code>mfc0 t0, $16</code><br><code>and t0, ~0x7</code><br><code>ori t0, 0x2</code><br><code>mtc0 t0, $16</code></p>
 <ul>
-<li><p>效果有区别</p>
+<li><p>读&#x2F;写寄存器：<br>取出 <code>CP0</code> 第16号寄存器 <code>Config</code>（CPU参数设置寄存器）,并将后三位置 <code>0</code>，再将第二位置 <code>1</code>，并写回 <code>Config</code> 寄存器</p>
 </li>
-<li><p>原因：在命令行指令中含有 <strong>反引号</strong> 包裹的指令时，会 <strong>先执行</strong> 反引号包裹中的指令，并使得被括起来的内容 <strong>替换</strong> 为 <strong>bash 执行</strong> 该指令的 <strong>标准输出（stdout）</strong></p>
+<li><p>达到目的：<br><strong>禁用了内核模式缓存（Cache）</strong>  </p>
 </li>
+<li><img align="middle" src='8.png'>  </li>
+<li><img align="middle" src='9.png'>  </li>
+<li><img align="middle" src='10.png'>  </li>
+<li><img align="middle" src='11.png'></li>
 </ul>
 </li>
 </ul>
 <br>
 
 <h3 id="二-实验难点："><a href="#二-实验难点：" class="headerlink" title="二. 实验难点："></a>二. 实验难点：</h3><ol>
-<li><p>命令行工具 <code>awk</code> ， <code>sed</code> 等的使用</p>
+<li><p>大量C语言代码的阅读与理解</p>
 </li>
-<li><p><code>git</code> 的理解与运用</p>
+<li><p>补全代码时的代码之间的逻辑关系复杂</p>
 </li>
-<li><p>工具 <code>Makefile</code> ， <code>Shell脚本</code> ， <code>gcc</code> 等工具的熟悉与使用</p>
+<li><p><code>ELF</code> 文件的自定义读取，<code>Linker Script</code> 链接器， <code>MIPS</code> 汇编语言等重难点的掌握</p>
 </li>
 <li><p>…</p>
 </li>
 </ol>
-<p>Tips: 谨记，一定要勤使用 <code>git pull</code> ，这条指令很重要！随时同步一下！ </p>
 <h3 id="三-体会与感想："><a href="#三-体会与感想：" class="headerlink" title="三. 体会与感想："></a>三. 体会与感想：</h3><ul>
-<li><p>难度评价：3&#x2F;10</p>
+<li><p>难度评价：6&#x2F;10</p>
 </li>
 <li><p>实验用时：5h， 撰写实验报告用时：3h</p>
 </li>
 <li><p>体会与感想：</p>
 <ul>
-<li><p>命令行操作是一种崭新的操作方式，很多工具如 <code>vim</code> ， <code>gcc</code> 等参数和使用等操作都需要我的进一步的钻研</p>
-</li>
-<li><p>本次实验很好的带领我们进入OS的大门，让我们初步熟悉OS课程平台和系统的使用，为接下来真正的OS课程打下了牢固的基础</p>
-</li>
+<li><code>Lab1</code> 使我比较浅显的认识到 <code>MIPS</code> 操作系统的启动的一些步骤，对操作系统代码执行流程有一个大致的基础的了解</li>
 </ul>
 </li>
 </ul>
 <br>
 
 <hr>
-<h2 id="课上"><a href="#课上" class="headerlink" title="课上"></a>课上</h2><p>Lab0 的课上考察较为简单，分为 <code>Basic</code> 和 <code>Extra</code> 两套题目，内容为简单 <code>Makefile</code> 的使用， <code>Shell</code> 脚本的书写（ <code>if</code> 和 <code>while</code> 语句）， <code>grep</code> 和 <code>awk</code> 命令（含参数）的使用， <code>pwd</code> 指令。（总用时大约在 <code>1h</code> 左右，但提交时评测机卡的怀疑人生，直接卡了一个多小时，上机体验极差……</p>
+<h2 id="课上"><a href="#课上" class="headerlink" title="课上"></a>课上</h2><h3 id="lab1-1-exam："><a href="#lab1-1-exam：" class="headerlink" title="lab1-1-exam："></a>lab1-1-exam：</h3><p>从原来的要求输出 <code>sh_addr</code> 变为要求输出 <code>sh_offset</code> 和 <code>sh_size</code> ，极其简单， <code>5min</code> 内解决</p>
+<br>
+
+<h3 id="lab1-1-Extra："><a href="#lab1-1-Extra：" class="headerlink" title="lab1-1-Extra："></a>lab1-1-Extra：</h3><p>研究 <code>Program segment header</code> 中每一段的 <code>p_vaddr</code> 以及 <code>p_memsz</code> 来得到每一段在内存中存储位置，再假设页面大小是 <code>4KB</code> 并且严格页对齐然后研究每一段是否存在共用页和冲突页的情况，并且根据对应情况输出对应结果</p>
+<br>
+
+<h3 id="lab1-2-exam"><a href="#lab1-2-exam" class="headerlink" title="lab1-2-exam:"></a>lab1-2-exam:</h3><p>题目是给出一个包含一个 <code>int</code> ，一个 <code>char</code> ，一个 <code>int[SIZE_C]</code> 数组（其中 <code>SIZE_C</code> 是可变的常量）的结构体，然后给定标识符 <code>T</code> ，让你用类似 <code>{0001,    a, -001, 0002}</code> 的方式在 <code>printf</code> 的函数中用类似 <code>printf(&quot;%T&quot;, &amp;my_struct);</code> 的方式输出该结构体<br>我的上机体验极差，一开始就想歪了，在本地定义了一个结构体，数组我还定义为了 <code>int*</code> 的指针来企图取到数组的首地址，然后就不知道啥原因取到了一些奇奇怪怪的地址导致输出乱七八糟，考试时间延长了半小时（估计通过率不够）也没做出来，纯纯坐大牢。<br>本题正确思路是（后来问助教）先用 <code>va_arg(ap, int *)</code> 取到结构体中 <code>int</code> 的首地址，然后偏移一个 <code>int</code> 的距离即为 <code>char</code> 的地址， 再偏移一个 <code>int</code> 就是数组第 <code>0</code> 个的地址…以此类推，再按样式分别输出即可</p>
+<br>
+
+<h3 id="lab1-2-Extra"><a href="#lab1-2-Extra" class="headerlink" title="lab1-2-Extra:"></a>lab1-2-Extra:</h3><p>exam没做完，一点没看</p>
+<br>
+
+<hr>
 
                 
                 <hr>
                 <!-- Pager -->
                 <ul class="pager">
                     
-                    <li class="previous">
-                        <a href="/2022/03/14/OO - P3/" data-toggle="tooltip" data-placement="top" title="OO - P3">&larr; Previous Post
-		<br>
-		<span><font size="2" face="Calibri" color="grey">OO - P3</font></span>
-	       </a>
-                    </li>
-                    
                     
                     <li class="next">
-                        <a href="/2022/03/09/OO - P2 - Question/" data-toggle="tooltip" data-placement="top" title="OO - P2 - Question">Next Post &rarr;
+                        <a href="/2022/04/02/OO - P5 - Question/" data-toggle="tooltip" data-placement="top" title="OO - P5 - Question">Next Post &rarr;
 		<br>
-		<span><font size="2" face="Calibri" color="grey">OO - P2 - Question</font></span>
+		<span><font size="2" face="Calibri" color="grey">OO - P5 - Question</font></span>
 	        </a>
                     </li>
                     
@@ -532,7 +468,7 @@ echo forth &gt;&gt; output.txts
           <strong class="toc-title">Contents</strong>
           
             
-              <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#OS-Lab0"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">OS - Lab0</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#课下"><span class="toc-nav-number">1.1.</span> <span class="toc-nav-text">课下</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#Lab0-实验报告"><span class="toc-nav-number">1.1.1.</span> <span class="toc-nav-text">Lab0 实验报告</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#一-思考题"><span class="toc-nav-number">1.1.2.</span> <span class="toc-nav-text">一. 思考题</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#Thinking-0-1"><span class="toc-nav-number">1.1.2.1.</span> <span class="toc-nav-text">Thinking 0.1</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#答："><span class="toc-nav-number">1.1.2.2.</span> <span class="toc-nav-text">答：</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#Thinking-0-2"><span class="toc-nav-number">1.1.2.3.</span> <span class="toc-nav-text">Thinking 0.2</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#答：-1"><span class="toc-nav-number">1.1.2.4.</span> <span class="toc-nav-text">答：</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#Thinking-0-3"><span class="toc-nav-number">1.1.2.5.</span> <span class="toc-nav-text">Thinking 0.3</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#答：-2"><span class="toc-nav-number">1.1.2.6.</span> <span class="toc-nav-text">答：</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#Thinking-0-4"><span class="toc-nav-number">1.1.2.7.</span> <span class="toc-nav-text">Thinking 0.4</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#答：-3"><span class="toc-nav-number">1.1.2.8.</span> <span class="toc-nav-text">答：</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#Thinking-0-5"><span class="toc-nav-number">1.1.2.9.</span> <span class="toc-nav-text">Thinking 0.5</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#答：-4"><span class="toc-nav-number">1.1.2.10.</span> <span class="toc-nav-text">答：</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#Thinking-0-6"><span class="toc-nav-number">1.1.2.11.</span> <span class="toc-nav-text">Thinking 0.6</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#答：-5"><span class="toc-nav-number">1.1.2.12.</span> <span class="toc-nav-text">答：</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#Thinking-0-7"><span class="toc-nav-number">1.1.2.13.</span> <span class="toc-nav-text">Thinking 0.7</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#答：-6"><span class="toc-nav-number">1.1.2.14.</span> <span class="toc-nav-text">答：</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#二-实验难点："><span class="toc-nav-number">1.1.3.</span> <span class="toc-nav-text">二. 实验难点：</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#三-体会与感想："><span class="toc-nav-number">1.1.4.</span> <span class="toc-nav-text">三. 体会与感想：</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#课上"><span class="toc-nav-number">1.2.</span> <span class="toc-nav-text">课上</span></a></li></ol></li></ol>
+              <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#OS-Lab1"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">OS - Lab1</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#课下"><span class="toc-nav-number">1.1.</span> <span class="toc-nav-text">课下</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#Lab1-实验报告"><span class="toc-nav-number">1.1.1.</span> <span class="toc-nav-text">Lab1 实验报告</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#一-思考题"><span class="toc-nav-number">1.1.2.</span> <span class="toc-nav-text">一. 思考题</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#Thinking-1-1"><span class="toc-nav-number">1.1.2.1.</span> <span class="toc-nav-text">Thinking 1.1</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#答："><span class="toc-nav-number">1.1.2.2.</span> <span class="toc-nav-text">答：</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#Thinking-1-2"><span class="toc-nav-number">1.1.2.3.</span> <span class="toc-nav-text">Thinking 1.2</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#答：-1"><span class="toc-nav-number">1.1.2.4.</span> <span class="toc-nav-text">答：</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#Thinking-1-3"><span class="toc-nav-number">1.1.2.5.</span> <span class="toc-nav-text">Thinking 1.3</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#答：-2"><span class="toc-nav-number">1.1.2.6.</span> <span class="toc-nav-text">答：</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#Thinking-1-4"><span class="toc-nav-number">1.1.2.7.</span> <span class="toc-nav-text">Thinking 1.4</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#答：-3"><span class="toc-nav-number">1.1.2.8.</span> <span class="toc-nav-text">答：</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#Thinking-1-5"><span class="toc-nav-number">1.1.2.9.</span> <span class="toc-nav-text">Thinking 1.5</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#答：-4"><span class="toc-nav-number">1.1.2.10.</span> <span class="toc-nav-text">答：</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#Thinking-1-6"><span class="toc-nav-number">1.1.2.11.</span> <span class="toc-nav-text">Thinking 1.6</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#答：-5"><span class="toc-nav-number">1.1.2.12.</span> <span class="toc-nav-text">答：</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#二-实验难点："><span class="toc-nav-number">1.1.3.</span> <span class="toc-nav-text">二. 实验难点：</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#三-体会与感想："><span class="toc-nav-number">1.1.4.</span> <span class="toc-nav-text">三. 体会与感想：</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#课上"><span class="toc-nav-number">1.2.</span> <span class="toc-nav-text">课上</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#lab1-1-exam："><span class="toc-nav-number">1.2.1.</span> <span class="toc-nav-text">lab1-1-exam：</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#lab1-1-Extra："><span class="toc-nav-number">1.2.2.</span> <span class="toc-nav-text">lab1-1-Extra：</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#lab1-2-exam"><span class="toc-nav-number">1.2.3.</span> <span class="toc-nav-text">lab1-2-exam:</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#lab1-2-Extra"><span class="toc-nav-number">1.2.4.</span> <span class="toc-nav-text">lab1-2-Extra:</span></a></li></ol></li></ol></li></ol>
             
           
           </div>
