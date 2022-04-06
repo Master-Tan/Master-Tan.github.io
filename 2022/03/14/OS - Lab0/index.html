@@ -188,16 +188,6 @@
                     
 
                         
-                        	<li>
-                          	  <a href="/archive/">Archives</a>
-                        	</li>
-                        
-                    
-
-                        
-                    
-
-                        
                     
 
                         
@@ -207,6 +197,16 @@
                         
                     
 
+                        
+                    
+
+                        
+                    
+
+                        
+                        	<li>
+                          	  <a href="/archive/">Archives</a>
+                        	</li>
                         
                     
                     
@@ -261,13 +261,10 @@
                 post-container">
 
                 <h1 id="OS-Lab0"><a href="#OS-Lab0" class="headerlink" title="OS - Lab0"></a>OS - Lab0</h1><p>写在前面：由于操作系统需要撰写实验报告，要求如下图：<br><img align="middle" src="1.png"><br>因此，之后 OS 的每一次 Blog 的前半部分（课前）基本为我的实验报告，后半部分则会分享每一次上机的经验以及其他的一些碎碎念(～￣▽￣)～ </p>
-<br>
-
+<p><br></p>
 <hr>
-<h2 id="课下"><a href="#课下" class="headerlink" title="课下"></a>课下</h2><h3 id="Lab0-实验报告"><a href="#Lab0-实验报告" class="headerlink" title="Lab0 实验报告"></a>Lab0 实验报告</h3><br>
-
-<h3 id="一-思考题"><a href="#一-思考题" class="headerlink" title="一. 思考题"></a>一. 思考题</h3><br>
-
+<h2 id="课下"><a href="#课下" class="headerlink" title="课下"></a>课下</h2><h3 id="Lab0-实验报告"><a href="#Lab0-实验报告" class="headerlink" title="Lab0 实验报告"></a>Lab0 实验报告</h3><p><br></p>
+<h3 id="一-思考题"><a href="#一-思考题" class="headerlink" title="一. 思考题"></a>一. 思考题</h3><p><br></p>
 <h4 id="Thinking-0-1"><a href="#Thinking-0-1" class="headerlink" title="Thinking 0.1"></a>Thinking 0.1</h4><ul>
 <li><p>在 <code>/home/20xxxxxx/learnGit</code> 目录下创建一个名为 <code>README.txt</code> 的文件。这时使用 <code>git status &gt; Untracked.txt</code> 。</p>
 </li>
@@ -283,16 +280,14 @@
 </li>
 </ul>
 <h4 id="答："><a href="#答：" class="headerlink" title="答："></a>答：</h4><ul>
-<li>第一次 <code>add</code> 时的 <code>status</code> 如图：  <img align="middle" src='2.png'>  </li>
-<li>使用 <code>cat Modified.txt</code> 后的 <code>status</code> 如图：  <img align="middle" src='3.png'>  </li>
+<li>第一次 <code>add</code> 时的 <code>status</code> 如图：<br><img align="middle" src='2.png'>  </li>
+<li>使用 <code>cat Modified.txt</code> 后的 <code>status</code> 如图：<br><img align="middle" src='3.png'>  </li>
 <li>思考：不一样，第一次 <code>add</code> 之前文件还未加入暂存区和版本库，从而显示状态为 <code>Untracked</code> ，而此时 <code>README.txt</code> 文件已经被加入版本库中，此时再更改工作区中的 <code>README.txt</code> 文件会导致其与版本库中当前版本内容不一致，从而显示状态为 <code>modified</code> ,即 <strong>‘已修改’</strong> 的意思</li>
 </ul>
-<br>
-
-<h4 id="Thinking-0-2"><a href="#Thinking-0-2" class="headerlink" title="Thinking 0.2"></a>Thinking 0.2</h4>  <img align="middle" src='4.png'>  
-
+<p><br></p>
+<h4 id="Thinking-0-2"><a href="#Thinking-0-2" class="headerlink" title="Thinking 0.2"></a>Thinking 0.2</h4><p>  <img align="middle" src='4.png'>  </p>
 <ul>
-<li>仔细看看这张图，思考一下箭头中的 <code>add the file</code>、<code>stage the file</code> 和 <code>commit</code> 分别对应的是 <code>Git</code> 里的哪些命令呢？</li>
+<li>仔细看看这张图，思考一下箭头中的 <code>add the file</code>、<code>stage the file</code> 和 <code>commit</code> 分别对应的是 <code>Git</code> 里的哪些命令呢？  </li>
 </ul>
 <h4 id="答：-1"><a href="#答：-1" class="headerlink" title="答："></a>答：</h4><ul>
 <li><p><code>add the file</code> 对应 <code>git add</code> 指令</p>
@@ -302,8 +297,7 @@
 <li><p><code>commit</code> 对应 <code>git commit</code> 指令</p>
 </li>
 </ul>
-<br>
-
+<p><br></p>
 <h4 id="Thinking-0-3"><a href="#Thinking-0-3" class="headerlink" title="Thinking 0.3"></a>Thinking 0.3</h4><ul>
 <li><p>深夜，小明在做操作系统实验。困意一阵阵袭来，小明睡倒在了键盘上。等到小明早上醒来的时候，他惊恐地发现，他把一个重要的代码文件 <code>printf.c</code> 删除掉了。苦恼的小明向你求助，你该怎样帮他把代码文件恢复呢？</p>
 </li>
@@ -320,8 +314,7 @@
 <li><p>执行 <code>git rm --cached Tucao.txt</code> 指令</p>
 </li>
 </ul>
-<br>
-
+<p><br></p>
 <h4 id="Thinking-0-4"><a href="#Thinking-0-4" class="headerlink" title="Thinking 0.4"></a>Thinking 0.4</h4><ul>
 <li><p>找到我们在 <code>/home/20xxxxxx/learnGit</code> 下刚刚创建的 <code>README.txt</code> ，没有的话就新建一个。</p>
 </li>
@@ -346,8 +339,7 @@
 <li><p>附：详细的说明可以参考 <code>Git</code> 的官网上的 <a href='https://git-scm.com/book/zh/v2/Git-%E5%B7%A5%E5%85%B7-%E9%87%8D%E7%BD%AE%E6%8F%AD%E5%AF%86' target="_blank" rel="noopener">重置揭秘</a>，里面描述了 <code>git reset</code> 类指令的具体工作原理</p>
 </li>
 </ul>
-<br>
-
+<p><br></p>
 <h4 id="Thinking-0-5"><a href="#Thinking-0-5" class="headerlink" title="Thinking 0.5"></a>Thinking 0.5</h4><ul>
 <li>思考下面四个描述，你觉得哪些正确，哪些错误，请给出你参考的资料或实验证据。</li>
 </ul>
@@ -364,10 +356,9 @@
 <h4 id="答：-4"><a href="#答：-4" class="headerlink" title="答："></a>答：</h4><ol>
 <li><p>正确</p>
 <ul>
-<li><p>依据：<a href='https://git-scm.com/docs/git-clone' target="_blank" rel="noopener"> <code>Git</code> 官网对 <code>git clone</code> 描述</a>  </p>
-<img align="middle" src="5.png">
+<li><p>依据：<a href='https://git-scm.com/docs/git-clone' target="_blank" rel="noopener"> <code>Git</code> 官网对 <code>git clone</code> 描述</a><br><img align="middle" src="5.png"></p>
 </li>
-<li><p>可见是 “creates remote-tracking branches for <strong>each</strong> branch in the cloned repository”</p>
+<li><p>可见是 “creates remote-tracking branches for <strong>each</strong> branch in the cloned repository” </p>
 </li>
 </ul>
 </li>
@@ -396,22 +387,18 @@
 </ul>
 </li>
 </ol>
-<br>
-
+<p><br></p>
 <h4 id="Thinking-0-6"><a href="#Thinking-0-6" class="headerlink" title="Thinking 0.6"></a>Thinking 0.6</h4><p>执行如下命令,并查看结果  </p>
 <pre><code>echo first
 echo second &gt; output.txt
 echo third &gt; output.txt
 echo forth &gt;&gt; output.txts
-</code></pre>
-<h4 id="答：-5"><a href="#答：-5" class="headerlink" title="答："></a>答：</h4><ul>
-<li>执行结果如图：  <img align="middle" src='6.png'></li>
+</code></pre><h4 id="答：-5"><a href="#答：-5" class="headerlink" title="答："></a>答：</h4><ul>
+<li>执行结果如图：<br><img align="middle" src='6.png'></li>
 </ul>
-<br>
-
+<p><br></p>
 <h4 id="Thinking-0-7"><a href="#Thinking-0-7" class="headerlink" title="Thinking 0.7"></a>Thinking 0.7</h4><ul>
-<li><p>使用你知道的方法（包括重定向）创建下图内容的文件（文件命名为 <code>test</code> ），将创建该文件的命令序列保存在 <code>command</code> 文件中，并将 <code>test</code> 文件作为批处理文件运行，将运行结果输出至 <code>result</code> 文件中。给出 <code>command</code> 文件和 <code>result</code> 文件的内容，并对最后的结果进行解释说明（可以从 <code>test</code> 文件的内容入手）。  </p>
-<img align="middle" src='7.png'>
+<li><p>使用你知道的方法（包括重定向）创建下图内容的文件（文件命名为 <code>test</code> ），将创建该文件的命令序列保存在 <code>command</code> 文件中，并将 <code>test</code> 文件作为批处理文件运行，将运行结果输出至 <code>result</code> 文件中。给出 <code>command</code> 文件和 <code>result</code> 文件的内容，并对最后的结果进行解释说明（可以从 <code>test</code> 文件的内容入手）。<br><img align="middle" src='7.png'></p>
 </li>
 <li><p>具体实现的过程中思考下列问题: <code>echo echo Shell Start</code> 与 <code>echo `echo Shell Start` </code>效果是否有区别; <code>echo echo \$c&gt;file1</code> 与 <code>echo `echo \$c&gt;file1` </code>效果是否有区别.</p>
 </li>
@@ -419,11 +406,10 @@ echo forth &gt;&gt; output.txts
 <h4 id="答：-6"><a href="#答：-6" class="headerlink" title="答："></a>答：</h4><ul>
 <li><p>操作代码：</p>
 <ul>
-<li><p><code>command</code> 文件内容  </p>
-<img align="middle" src='8.png'>
+<li><p><code>command</code> 文件内容<br><img align="middle" src='8.png'></p>
 </li>
-<li><p><code>result</code> 文件内容  </p>
-<img align="middle" src='9.png'></li>
+<li><p><code>result</code> 文件内容<br><img align="middle" src='9.png'></p>
+</li>
 </ul>
 </li>
 <li><p>问题思考：</p>
@@ -435,8 +421,7 @@ echo forth &gt;&gt; output.txts
 </ul>
 </li>
 </ul>
-<br>
-
+<p><br></p>
 <h3 id="二-实验难点："><a href="#二-实验难点：" class="headerlink" title="二. 实验难点："></a>二. 实验难点：</h3><ol>
 <li><p>命令行工具 <code>awk</code> ， <code>sed</code> 等的使用</p>
 </li>
@@ -444,12 +429,12 @@ echo forth &gt;&gt; output.txts
 </li>
 <li><p>工具 <code>Makefile</code> ， <code>Shell脚本</code> ， <code>gcc</code> 等工具的熟悉与使用</p>
 </li>
-<li><p>…</p>
+<li><p>…  </p>
 </li>
 </ol>
 <p>Tips: 谨记，一定要勤使用 <code>git pull</code> ，这条指令很重要！随时同步一下！ </p>
 <h3 id="三-体会与感想："><a href="#三-体会与感想：" class="headerlink" title="三. 体会与感想："></a>三. 体会与感想：</h3><ul>
-<li><p>难度评价：3&#x2F;10</p>
+<li><p>难度评价：3/10</p>
 </li>
 <li><p>实验用时：5h， 撰写实验报告用时：3h</p>
 </li>
@@ -462,8 +447,7 @@ echo forth &gt;&gt; output.txts
 </ul>
 </li>
 </ul>
-<br>
-
+<p><br></p>
 <hr>
 <h2 id="课上"><a href="#课上" class="headerlink" title="课上"></a>课上</h2><p>Lab0 的课上考察较为简单，分为 <code>Basic</code> 和 <code>Extra</code> 两套题目，内容为简单 <code>Makefile</code> 的使用， <code>Shell</code> 脚本的书写（ <code>if</code> 和 <code>while</code> 语句）， <code>grep</code> 和 <code>awk</code> 命令（含参数）的使用， <code>pwd</code> 指令。（总用时大约在 <code>1h</code> 左右，但提交时评测机卡的怀疑人生，直接卡了一个多小时，上机体验极差……</p>
 
@@ -803,21 +787,6 @@ echo forth &gt;&gt; output.txts
     
         <script src="/js/ribbonDynamic.js"></script>
     
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
-            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-            processEscapes: true
-        }
-    });
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax();
-        for (var i = 0; i < all.length; ++i)
-            all[i].SourceElement().parentNode.className += ' has-jax';
-    });
-</script>
-<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 </body>
 
 </html>

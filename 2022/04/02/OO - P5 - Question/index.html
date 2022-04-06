@@ -186,16 +186,6 @@
                     
 
                         
-                        	<li>
-                          	  <a href="/archive/">Archives</a>
-                        	</li>
-                        
-                    
-
-                        
-                    
-
-                        
                     
 
                         
@@ -205,6 +195,16 @@
                         
                     
 
+                        
+                    
+
+                        
+                    
+
+                        
+                        	<li>
+                          	  <a href="/archive/">Archives</a>
+                        	</li>
                         
                     
                     
@@ -311,7 +311,7 @@
 </li>
 </ul>
 <hr>
-<h3 id="第四部分：输入-x2F-输出和样例"><a href="#第四部分：输入-x2F-输出和样例" class="headerlink" title="第四部分：输入&#x2F;输出和样例"></a>第四部分：输入&#x2F;输出和样例</h3><h4 id="一-输入输出接口说明"><a href="#一-输入输出接口说明" class="headerlink" title="一.输入输出接口说明"></a>一.输入输出接口说明</h4><ul>
+<h3 id="第四部分：输入-输出和样例"><a href="#第四部分：输入-输出和样例" class="headerlink" title="第四部分：输入/输出和样例"></a>第四部分：输入/输出和样例</h3><h4 id="一-输入输出接口说明"><a href="#一-输入输出接口说明" class="headerlink" title="一.输入输出接口说明"></a>一.输入输出接口说明</h4><ul>
 <li><p>$1、$本单元作业使用官方提供的输入输出接口进行输入输出。</p>
 </li>
 <li><p>$2、$输入接口提供了若干方法，通过调用方法可以直接获取所需数据对象。输入接口在<strong>尝试</strong>读取标准输入的内容时，对于正确的输入将成功解析，错误的则输出错误信息，但不会影响程序的正常运行。</p>
@@ -386,16 +386,16 @@
 <hr>
 <h3 id="第五部分：测试数据限制说明"><a href="#第五部分：测试数据限制说明" class="headerlink" title="第五部分：测试数据限制说明"></a>第五部分：测试数据限制说明</h3><h4 id="一-数据基本限制"><a href="#一-数据基本限制" class="headerlink" title="一.数据基本限制"></a>一.数据基本限制</h4><ul>
 <li>$1、$可输入电梯系统的指令数：<strong>1~100条</strong>（指令数为0或超过100均为不合法输入）。</li>
-<li>$2、$系统时间上限 $T_{max}$ ：电梯系统时间 $T_{real}$ 和电梯系统运行花费总时间 $T_{final}$ 的上限时间，<strong>一旦超过将直接判定为TIME_LIMIT_EXCEED</strong>。</li>
+<li>$2、$系统时间上限 $T<em>{max}$ ：电梯系统时间 $T</em>{real}$ 和电梯系统运行花费总时间 $T_{final}$ 的上限时间，<strong>一旦超过将直接判定为TIME_LIMIT_EXCEED</strong>。</li>
 </ul>
 <h4 id="二-公测数据限制"><a href="#二-公测数据限制" class="headerlink" title="二.公测数据限制"></a>二.公测数据限制</h4><ul>
-<li>$1、$运行基准时间 $T_{ALS}$：由课程组提供的 <code>datacheck1</code> 程序对输入进行分析给出，计算 $T_{ALS}$ 使用的策略为 ALS 调度策略。</li>
-<li>$2、$系统时间上限 $T_{max}$：计算方式为 $T_{max} &#x3D; \max\left(T_{ALS}+3, 1.05\cdot T_{ALS}\right)$</li>
+<li>$1、$运行基准时间 $T<em>{ALS}$：由课程组提供的 <code>datacheck1</code> 程序对输入进行分析给出，计算 $T</em>{ALS}$ 使用的策略为 ALS 调度策略。</li>
+<li>$2、$系统时间上限 $T<em>{max}$：计算方式为 $T</em>{max} = \max\left(T<em>{ALS}+3, 1.05\cdot T</em>{ALS}\right)$</li>
 <li>$3、$包括强测在内的数据都会保证正常程序的电梯系统时间不会超过 $T_{max}$，也会<strong>避免使用对边界情况较为敏感的数据</strong>。</li>
 <li>$4、$提示：<strong>对于中测和强测数据，$T_{max}$ 将会严格限制为通过上述公式计算得到的值。</strong><del>所以，请不要试图用超长的 sleep 来回避线程安全停止的问题。</del></li>
 </ul>
 <h4 id="三-互测数据限制"><a href="#三-互测数据限制" class="headerlink" title="三.互测数据限制"></a>三.互测数据限制</h4><ul>
-<li>$1、$系统时间上限 $T_{max}$：对于互测数据，$T_{max}$ 为210s。</li>
+<li>$1、$系统时间上限 $T<em>{max}$：对于互测数据，$T</em>{max}$ 为210s。</li>
 <li>$2、$第一条指令的投喂时间在1s或1s以后。</li>
 <li>$3、$最后一条指令的输入时间不晚于70s。</li>
 <li>$4、$指令条数不超过70。</li>
@@ -406,9 +406,9 @@
 <ul>
 <li><p>$1、$<strong>代码实现中不存在轮询</strong>。轮询是一种非常占用 CPU 资源的行为，为了避免出现轮询的情况，<strong>请使用 Wait-Notify 的方式编程</strong>。同时，为了检查是否出现轮询的情况，总 CPU 时间限制为 10s，不满足该限制的程序会被判定为错误。</p>
 </li>
-<li><p>$2、$<strong>电梯的性能符合基本要求</strong>，即你的程序需要满足 $T_{real} \le T_{max}\ &amp;&amp;\ T_{final} \le T_{max}$。这里再次说明 $T_{max}$ 的标准：</p>
+<li><p>$2、$<strong>电梯的性能符合基本要求</strong>，即你的程序需要满足 $T<em>{real} \le T</em>{max}\ \&amp;\&amp;\ T<em>{final} \le T</em>{max}$。这里再次说明 $T_{max}$ 的标准：</p>
 <ul>
-<li>$(1)、$对于公测数据，$T_{max}$ 取决于 $T_{ALS}$，计算方式为 $T_{max} &#x3D; \max\left(T_{ALS}+3, 1.05\cdot T_{ALS}\right)$，基准为 ALS 调度策略。</li>
+<li>$(1)、$对于公测数据，$T<em>{max}$ 取决于 $T</em>{ALS}$，计算方式为 $T<em>{max} = \max\left(T</em>{ALS}+3, 1.05\cdot T_{ALS}\right)$，基准为 ALS 调度策略。</li>
 <li>$(2)、$对于互测数据，$T_{max}$ 为210s。</li>
 </ul>
 </li>
@@ -446,12 +446,17 @@
 </ul>
 </li>
 </ul>
-<h4 id="二-性能分的评判"><a href="#二-性能分的评判" class="headerlink" title="二.性能分的评判"></a>二.性能分的评判</h4><p>在强测时，将电梯系统运行花费总时间 $T_{final}$ 作为运行时间 $\rm{time}$ ，计算相应的性能分。<br>设全体通过该数据点的同学的运行时间的平均值为 $\rm{mean}$ ，标准差为 $\rm{std}$。<br>设 $x &#x3D; \frac{\rm{mean}-\rm{time}}{\rm{std}}$，则通过多项式拟合，性能百分比为<br>$$<br>r\left(x\right) &#x3D; 100% \cdot<br>\begin{cases}<br>1 &amp; x \geq 1 \<br>0.17361111x^3 -0.05952381x^2 +0.73710317x +0.15119048 &amp; -0.2 &lt; x &lt; 1 \<br>0 &amp; x \leq -0.2<br>\end{cases}<br>$$</p>
-<h4 id="三-分数判定和组成"><a href="#三-分数判定和组成" class="headerlink" title="三.分数判定和组成"></a>三.分数判定和组成</h4><p>本次作业功能分为 85 分，性能分为 15 分，二者之和为总分。</p>
+<h4 id="二-性能分的评判"><a href="#二-性能分的评判" class="headerlink" title="二.性能分的评判"></a>二.性能分的评判</h4><p>在强测时，将电梯系统运行花费总时间 $T_{final}$ 作为运行时间 $\rm{time}$ ，计算相应的性能分。<br>设全体通过该数据点的同学的运行时间的平均值为 $\rm{mean}$ ，标准差为 $\rm{std}$。<br>设 $x = \frac{\rm{mean}-\rm{time}}{\rm{std}}$，则通过多项式拟合，性能百分比为</p>
+<script type="math/tex; mode=display">
+r\left(x\right) = 100\% \cdot 
+\begin{cases}
+1 & x \geq 1 \\\
+0.17361111x^3 -0.05952381x^2 +0.73710317x +0.15119048 & -0.2 < x < 1 \\\
+0 & x \leq -0.2
+\end{cases}</script><h4 id="三-分数判定和组成"><a href="#三-分数判定和组成" class="headerlink" title="三.分数判定和组成"></a>三.分数判定和组成</h4><p>本次作业功能分为 85 分，性能分为 15 分，二者之和为总分。</p>
 <hr>
 <h3 id="第七部分：互测说明"><a href="#第七部分：互测说明" class="headerlink" title="第七部分：互测说明"></a>第七部分：互测说明</h3><ul>
-<li><p>$1、$<strong>程序在互测中的正确性判断规则与公测说明中的一致。</strong></p>
-</li>
+<li>$1、$<strong>程序在互测中的正确性判断规则与公测说明中的一致。</strong></li>
 <li><p>$2、$所有提交的互测数据均需要满足以下输入格式（该格式与样例一致，可参考样例中的输入格式）：</p>
 <ul>
 <li><p>$(1)、$需要携带时间戳 <code>[time]</code>，其中 time 是一个保留一位小数的浮点数，比如 <code>0.0</code>,<code>1.5</code>,<code>2.2</code> 等。</p>
@@ -462,8 +467,7 @@
 </li>
 </ul>
 </li>
-<li><p>$3、$所有提交的互测数据均需要满足数据基本限制和互测数据限制。</p>
-</li>
+<li>$3、$所有提交的互测数据均需要满足数据基本限制和互测数据限制。</li>
 </ul>
 <hr>
 <h3 id="第八部分：提示和警示"><a href="#第八部分：提示和警示" class="headerlink" title="第八部分：提示和警示"></a>第八部分：提示和警示</h3><h4 id="一、实现提示"><a href="#一、实现提示" class="headerlink" title="一、实现提示"></a>一、实现提示</h4><ul>
@@ -475,15 +479,22 @@
 <li><p>$1、$关于接口的一些使用，可以在 idea 里面，按 Ctrl+Q 。将可以看到类和方法的使用格式以及注释（本次官方提供的接口均提供了中文版 javadoc 注释，Ctrl+Q 可以直接查看）</p>
 </li>
 <li><p>$2、$请<strong>在代码一开始就初始化时间戳</strong>，否则可能会出现和评测不一致的情况。</p>
-<p>  &#96;&#96;&#96;java<br>  import com.oocourse.TimableOutput;</p>
-<p>  public class MainClass {<br>public static void main(String[] args) {<br>  TimableOutput.initStartTimestamp();  &#x2F;&#x2F; 初始化时间戳<br>      &#x2F;*<br>          代码部分<br>      *&#x2F;<br>}<br>  }</p>
+<p>  ```java<br>  import com.oocourse.TimableOutput;</p>
+<p>  public class MainClass {</p>
+<pre><code>public static void main(String[] args) {
+  TimableOutput.initStartTimestamp();  // 初始化时间戳
+      /*
+          代码部分
+      */
+}
+</code></pre><p>  }</p>
 </li>
 </ul>
 <ul>
 <li>$3、$官方提供的输出包是<strong>线程不安全</strong>的，需要同学们<strong>自行保证其被多个线程调用时输出符合逻辑</strong>。</li>
 <li>$4、$由于<strong>多线程调度存在随机性</strong>，在使用官方提供的投喂脚本或进行互测环节时，可能会出现<strong>输出与官方评测机不一致、bug 无法复现的情况</strong>，最终结果均<strong>以官方评测机为准</strong>。</li>
 </ul>
-<h4 id="三、警示"><a href="#三、警示" class="headerlink" title="三、警示"></a>三、警示</h4><p><font color = red>1. 不要试图Hack评测机和官方接口，不要企图伪造时间戳，不要抄袭。如在互测中发现其他人的代码疑似存在上述行为，可向课程组举报。课程组感谢同学们为OO课程建设所作出的贡献。</font></p>
+<h4 id="三、警示"><a href="#三、警示" class="headerlink" title="三、警示"></a>三、警示</h4><font color = red>1. 不要试图Hack评测机和官方接口，不要企图伪造时间戳，不要抄袭。如在互测中发现其他人的代码疑似存在上述行为，可向课程组举报。课程组感谢同学们为OO课程建设所作出的贡献。</font>
 
                 
                 <hr>
@@ -550,7 +561,7 @@
           <strong class="toc-title">Contents</strong>
           
             
-              <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#面向对象设计与构造第二单元第一次作业指导书"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">面向对象设计与构造第二单元第一次作业指导书</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#第一部分：训练目标"><span class="toc-nav-number">1.1.</span> <span class="toc-nav-text">第一部分：训练目标</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#第二部分：基本概念"><span class="toc-nav-number">1.2.</span> <span class="toc-nav-text">第二部分：基本概念</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#第三部分：题目描述"><span class="toc-nav-number">1.3.</span> <span class="toc-nav-text">第三部分：题目描述</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#一-电梯系统说明"><span class="toc-nav-number">1.3.1.</span> <span class="toc-nav-text">一.电梯系统说明</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#二-电梯参数说明"><span class="toc-nav-number">1.3.2.</span> <span class="toc-nav-text">二.电梯参数说明</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#三-电梯请求说明"><span class="toc-nav-number">1.3.3.</span> <span class="toc-nav-text">三.电梯请求说明</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#四-电梯捎带规则说明"><span class="toc-nav-number">1.3.4.</span> <span class="toc-nav-text">四.电梯捎带规则说明</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#五-基准策略"><span class="toc-nav-number">1.3.5.</span> <span class="toc-nav-text">五.基准策略</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#第四部分：输入-x2F-输出和样例"><span class="toc-nav-number">1.4.</span> <span class="toc-nav-text">第四部分：输入&#x2F;输出和样例</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#一-输入输出接口说明"><span class="toc-nav-number">1.4.1.</span> <span class="toc-nav-text">一.输入输出接口说明</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#二-输入数据"><span class="toc-nav-number">1.4.2.</span> <span class="toc-nav-text">二.输入数据</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#三-输出数据"><span class="toc-nav-number">1.4.3.</span> <span class="toc-nav-text">三.输出数据</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#四-样例"><span class="toc-nav-number">1.4.4.</span> <span class="toc-nav-text">四.样例</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#第五部分：测试数据限制说明"><span class="toc-nav-number">1.5.</span> <span class="toc-nav-text">第五部分：测试数据限制说明</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#一-数据基本限制"><span class="toc-nav-number">1.5.1.</span> <span class="toc-nav-text">一.数据基本限制</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#二-公测数据限制"><span class="toc-nav-number">1.5.2.</span> <span class="toc-nav-text">二.公测数据限制</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#三-互测数据限制"><span class="toc-nav-number">1.5.3.</span> <span class="toc-nav-text">三.互测数据限制</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#第六部分：公测说明"><span class="toc-nav-number">1.6.</span> <span class="toc-nav-text">第六部分：公测说明</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#一-正确性判断"><span class="toc-nav-number">1.6.1.</span> <span class="toc-nav-text">一.正确性判断</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#二-性能分的评判"><span class="toc-nav-number">1.6.2.</span> <span class="toc-nav-text">二.性能分的评判</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#三-分数判定和组成"><span class="toc-nav-number">1.6.3.</span> <span class="toc-nav-text">三.分数判定和组成</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#第七部分：互测说明"><span class="toc-nav-number">1.7.</span> <span class="toc-nav-text">第七部分：互测说明</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#第八部分：提示和警示"><span class="toc-nav-number">1.8.</span> <span class="toc-nav-text">第八部分：提示和警示</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#一、实现提示"><span class="toc-nav-number">1.8.1.</span> <span class="toc-nav-text">一、实现提示</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#二、其他提示"><span class="toc-nav-number">1.8.2.</span> <span class="toc-nav-text">二、其他提示</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#三、警示"><span class="toc-nav-number">1.8.3.</span> <span class="toc-nav-text">三、警示</span></a></li></ol></li></ol></li></ol>
+              <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#面向对象设计与构造第二单元第一次作业指导书"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">面向对象设计与构造第二单元第一次作业指导书</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#第一部分：训练目标"><span class="toc-nav-number">1.1.</span> <span class="toc-nav-text">第一部分：训练目标</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#第二部分：基本概念"><span class="toc-nav-number">1.2.</span> <span class="toc-nav-text">第二部分：基本概念</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#第三部分：题目描述"><span class="toc-nav-number">1.3.</span> <span class="toc-nav-text">第三部分：题目描述</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#一-电梯系统说明"><span class="toc-nav-number">1.3.1.</span> <span class="toc-nav-text">一.电梯系统说明</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#二-电梯参数说明"><span class="toc-nav-number">1.3.2.</span> <span class="toc-nav-text">二.电梯参数说明</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#三-电梯请求说明"><span class="toc-nav-number">1.3.3.</span> <span class="toc-nav-text">三.电梯请求说明</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#四-电梯捎带规则说明"><span class="toc-nav-number">1.3.4.</span> <span class="toc-nav-text">四.电梯捎带规则说明</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#五-基准策略"><span class="toc-nav-number">1.3.5.</span> <span class="toc-nav-text">五.基准策略</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#第四部分：输入-输出和样例"><span class="toc-nav-number">1.4.</span> <span class="toc-nav-text">第四部分：输入&#x2F;输出和样例</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#一-输入输出接口说明"><span class="toc-nav-number">1.4.1.</span> <span class="toc-nav-text">一.输入输出接口说明</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#二-输入数据"><span class="toc-nav-number">1.4.2.</span> <span class="toc-nav-text">二.输入数据</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#三-输出数据"><span class="toc-nav-number">1.4.3.</span> <span class="toc-nav-text">三.输出数据</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#四-样例"><span class="toc-nav-number">1.4.4.</span> <span class="toc-nav-text">四.样例</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#第五部分：测试数据限制说明"><span class="toc-nav-number">1.5.</span> <span class="toc-nav-text">第五部分：测试数据限制说明</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#一-数据基本限制"><span class="toc-nav-number">1.5.1.</span> <span class="toc-nav-text">一.数据基本限制</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#二-公测数据限制"><span class="toc-nav-number">1.5.2.</span> <span class="toc-nav-text">二.公测数据限制</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#三-互测数据限制"><span class="toc-nav-number">1.5.3.</span> <span class="toc-nav-text">三.互测数据限制</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#第六部分：公测说明"><span class="toc-nav-number">1.6.</span> <span class="toc-nav-text">第六部分：公测说明</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#一-正确性判断"><span class="toc-nav-number">1.6.1.</span> <span class="toc-nav-text">一.正确性判断</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#二-性能分的评判"><span class="toc-nav-number">1.6.2.</span> <span class="toc-nav-text">二.性能分的评判</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#三-分数判定和组成"><span class="toc-nav-number">1.6.3.</span> <span class="toc-nav-text">三.分数判定和组成</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#第七部分：互测说明"><span class="toc-nav-number">1.7.</span> <span class="toc-nav-text">第七部分：互测说明</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#第八部分：提示和警示"><span class="toc-nav-number">1.8.</span> <span class="toc-nav-text">第八部分：提示和警示</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#一、实现提示"><span class="toc-nav-number">1.8.1.</span> <span class="toc-nav-text">一、实现提示</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#二、其他提示"><span class="toc-nav-number">1.8.2.</span> <span class="toc-nav-text">二、其他提示</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#三、警示"><span class="toc-nav-number">1.8.3.</span> <span class="toc-nav-text">三、警示</span></a></li></ol></li></ol></li></ol>
             
           
           </div>
@@ -819,21 +830,6 @@
     
         <script src="/js/ribbonDynamic.js"></script>
     
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
-            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-            processEscapes: true
-        }
-    });
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax();
-        for (var i = 0; i < all.length; ++i)
-            all[i].SourceElement().parentNode.className += ' has-jax';
-    });
-</script>
-<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 </body>
 
 </html>
