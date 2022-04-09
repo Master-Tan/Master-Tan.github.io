@@ -121,7 +121,7 @@
 	       
                             <div class="blank_box"></div>
                             <span class="meta">
-                                 <span class="post-count">235</span> Words
+                                 <span class="post-count">206</span> Words
                             </span>
                             <div class="blank_box"></div>
                             <!-- 不蒜子统计 start -->
@@ -182,6 +182,13 @@
 
                         
                         	<li>
+                          	  <a href="/about/">About Tan</a>
+                        	</li>
+                        
+                    
+
+                        
+                        	<li>
                           	  <a href="/archive/">Archives</a>
                         	</li>
                         
@@ -189,18 +196,11 @@
 
                         
                         	<li>
-                          	  <a href="/about/">About Tan</a>
-                        	</li>
-                        
-                    
-
-                        
-                    
-
-                        
-                        	<li>
                           	  <a href="/tags/">Tags</a>
                         	</li>
+                        
+                    
+
                         
                     
 
@@ -263,53 +263,52 @@
                 <p>P7课上为<b> 4 </b>道题</p>
 <p>第<b> 1 </b>题为必做题<br>第<b> 2~4 </b>题为选做题，做出其中两道即达到通过条件</p>
 <p>题目如下：</p>
-<p>第<strong>1</strong>题：P6所有指令 &amp; mfc0 &amp; mtc0 &amp;emsp; &amp;emsp; &amp;emsp;<strong>功能强测</strong></p>
-<p>第<strong>2</strong>题： 第1题 &amp; 异常检测 &amp;emsp; &amp;emsp; &amp;emsp;&amp;emsp; &amp;emsp;&amp;emsp;<strong>异常强测</strong></p>
-<p>第<strong>3</strong>题： 第1题 &amp; 中断检测 &amp;emsp; &amp;emsp; &amp;emsp;&amp;emsp; &amp;emsp;&amp;emsp;<strong>中断强测</strong></p>
+<p>第<strong>1</strong>题：P6所有指令 &amp; mfc0 &amp; mtc0 &emsp; &emsp; &emsp;<strong>功能强测</strong></p>
+<p>第<strong>2</strong>题： 第1题 &amp; 异常检测 &emsp; &emsp; &emsp;&emsp; &emsp;&emsp;<strong>异常强测</strong></p>
+<p>第<strong>3</strong>题： 第1题 &amp; 中断检测 &emsp; &emsp; &emsp;&emsp; &emsp;&emsp;<strong>中断强测</strong></p>
 <p>第<strong>4</strong>题： 加判断异常指令 ↓</p>
 <h1 id="P7-L1-tltiu"><a href="#P7-L1-tltiu" class="headerlink" title="P7_L1_tltiu"></a>P7_L1_tltiu</h1><h2 id="tltiu"><a href="#tltiu" class="headerlink" title="tltiu"></a>tltiu</h2><p>编码：</p>
+<div class="table-container">
 <table>
 <thead>
 <tr>
-<th align="center">31&amp;emsp;&amp;emsp;&amp;emsp;26</th>
-<th align="center">25&amp;emsp;&amp;emsp;21</th>
-<th align="center">20&amp;emsp;&amp;emsp;16</th>
-<th align="center">15&amp;emsp;&amp;emsp; &amp;emsp; &amp;emsp; &amp;emsp;0</th>
+<th style="text-align:center">31&emsp;&emsp;&emsp;26</th>
+<th style="text-align:center">25&emsp;&emsp;21</th>
+<th style="text-align:center">20&emsp;&emsp;16</th>
+<th style="text-align:center">15&emsp;&emsp; &emsp; &emsp; &emsp;0</th>
 </tr>
 </thead>
-<tbody><tr>
-<td align="center">REGIMM<br>000000</td>
-<td align="center">rs</td>
-<td align="center">TLTIU<br>01011</td>
-<td align="center">immediate</td>
+<tbody>
+<tr>
+<td style="text-align:center">REGIMM<br>000000</td>
+<td style="text-align:center">rs</td>
+<td style="text-align:center">TLTIU<br>01011</td>
+<td style="text-align:center">immediate</td>
 </tr>
 <tr>
-<td align="center">6</td>
-<td align="center">5</td>
-<td align="center">5</td>
-<td align="center">16</td>
+<td style="text-align:center">6</td>
+<td style="text-align:center">5</td>
+<td style="text-align:center">5</td>
+<td style="text-align:center">16</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <p>格式：</p>
 <pre><code>tltiu rs, immediate
-</code></pre>
-<p>描述：</p>
+</code></pre><p>描述：</p>
 <pre><code>如果 GPR[rs] 小于立即数，则产生Trap异常 (ExcCode = 5&#39;d13)
-</code></pre>
-<p>操作：</p>
+</code></pre><p>操作：</p>
 <pre><code>If (0||GPR[rs]) &lt; (0||sign_extend(immediate)) then
 
     SignalException(Trap)
-    
+
 endif
-</code></pre>
-<p>实例：</p>
+</code></pre><p>实例：</p>
 <pre><code>tltiu $t1, 20
-</code></pre>
-<p>其他：</p>
+</code></pre><p>其他：</p>
 <pre><code>MIPS英文指令集与原版MARS中均包含该指令
-</code></pre>
-<p>&amp;emsp;<br>&amp;emsp;</p>
+</code></pre><p>&emsp;<br>&emsp;</p>
 
                 
                 <hr>
@@ -647,21 +646,6 @@ endif
     
         <script src="/js/ribbonDynamic.js"></script>
     
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
-            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-            processEscapes: true
-        }
-    });
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax();
-        for (var i = 0; i < all.length; ++i)
-            all[i].SourceElement().parentNode.className += ' has-jax';
-    });
-</script>
-<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 </body>
 
 </html>
