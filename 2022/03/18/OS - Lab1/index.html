@@ -182,8 +182,11 @@
 
                         
                         	<li>
-                          	  <a href="/about/">About Tan</a>
+                          	  <a href="/archive/">Archives</a>
                         	</li>
+                        
+                    
+
                         
                     
 
@@ -196,11 +199,8 @@
 
                         
                         	<li>
-                          	  <a href="/archive/">Archives</a>
+                          	  <a href="/about/">About Tan</a>
                         	</li>
-                        
-                    
-
                         
                     
 
@@ -342,11 +342,11 @@
 <br>
 
 <h4 id="Thinking-1-6"><a href="#Thinking-1-6" class="headerlink" title="Thinking 1.6"></a>Thinking 1.6</h4><p>查阅 <code>《See MIPS Run Linux》 </code> 一书相关章节，解释 <code>boot/start.S</code> 中下面几行对 <code>CP0</code> 协处理器寄存器进行读写的意义。具体而言，它们分别读&#x2F;写了哪些寄存器的哪些特定位，从而达到什么目的？</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;* Disable interrupts *&#x2F;</span><br><span class="line">mtc0 zero, CP0_STATUS</span><br><span class="line">......</span><br><span class="line">&#x2F;* disable kernel mode cache *&#x2F;</span><br><span class="line">mfc0 t0, CP0_CONFIG</span><br><span class="line">and t0, ~0x7</span><br><span class="line">ori t0, 0x2</span><br><span class="line">mtc0 to, CP0_CONFIG</span><br></pre></td></tr></table></figure>
+<figure class="highlight mips"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* Disable interrupts */</span></span><br><span class="line"><span class="keyword">mtc0 </span><span class="built_in">zero</span>, CP0_STATUS</span><br><span class="line">......</span><br><span class="line"><span class="comment">/* disable kernel mode cache */</span></span><br><span class="line"><span class="keyword">mfc0 </span><span class="built_in">t0</span>, CP0_CONFIG</span><br><span class="line"><span class="keyword">and </span><span class="built_in">t0</span>, ~<span class="number">0x7</span></span><br><span class="line"><span class="keyword">ori </span><span class="built_in">t0</span>, <span class="number">0x2</span></span><br><span class="line"><span class="keyword">mtc0 </span>to, CP0_CONFIG</span><br></pre></td></tr></table></figure>
 
 <h4 id="答：-5"><a href="#答：-5" class="headerlink" title="答："></a>答：</h4><ul>
 <li><p>宏代换后的代码为</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;* Disable interrupts *&#x2F;</span><br><span class="line">mtc0 zero, $12</span><br><span class="line">......</span><br><span class="line">&#x2F;* disable kernel mode cache *&#x2F;</span><br><span class="line">mfc0 t0, $16</span><br><span class="line">and t0, ~0x7</span><br><span class="line">ori t0, 0x2</span><br><span class="line">mtc0 t0, $16</span><br></pre></td></tr></table></figure>
+<figure class="highlight mips"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* Disable interrupts */</span></span><br><span class="line"><span class="keyword">mtc0 </span><span class="built_in">zero</span>, $<span class="number">12</span></span><br><span class="line">......</span><br><span class="line"><span class="comment">/* disable kernel mode cache */</span></span><br><span class="line"><span class="keyword">mfc0 </span><span class="built_in">t0</span>, $<span class="number">16</span></span><br><span class="line"><span class="keyword">and </span><span class="built_in">t0</span>, ~<span class="number">0x7</span></span><br><span class="line"><span class="keyword">ori </span><span class="built_in">t0</span>, <span class="number">0x2</span></span><br><span class="line"><span class="keyword">mtc0 </span><span class="built_in">t0</span>, $<span class="number">16</span></span><br></pre></td></tr></table></figure>
 </li>
 <li><p><code>mtc0 zero, $12</code></p>
 <ul>
