@@ -20,7 +20,7 @@
         
     </title>
 
-    <link rel="canonical" href="http://Master-Tan.github.io/2022/04/02/OS - Lab2/">
+    <link rel="canonical" href="https://master-tan.github.io/2022/04/02/OS - Lab2/">
 
     <!-- Bootstrap Core CSS -->
     
@@ -188,6 +188,9 @@
                     
 
                         
+                    
+
+                        
                         	<li>
                           	  <a href="/archive/">Archives</a>
                         	</li>
@@ -198,15 +201,12 @@
                     
 
                         
+                    
+
+                        
                         	<li>
                           	  <a href="/tags/">Tags</a>
                         	</li>
-                        
-                    
-
-                        
-                    
-
                         
                     
                     
@@ -260,41 +260,32 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <h1 id="OS-Lab1"><a href="#OS-Lab1" class="headerlink" title="OS - Lab1"></a>OS - Lab1</h1><h2 id="课下"><a href="#课下" class="headerlink" title="课下"></a>课下</h2><h3 id="Lab1-实验报告"><a href="#Lab1-实验报告" class="headerlink" title="Lab1 实验报告"></a>Lab1 实验报告</h3><br>
-
-<h3 id="一-思考题"><a href="#一-思考题" class="headerlink" title="一. 思考题"></a>一. 思考题</h3><br>
-
+                <h1 id="OS-Lab1"><a href="#OS-Lab1" class="headerlink" title="OS - Lab1"></a>OS - Lab1</h1><h2 id="课下"><a href="#课下" class="headerlink" title="课下"></a>课下</h2><h3 id="Lab1-实验报告"><a href="#Lab1-实验报告" class="headerlink" title="Lab1 实验报告"></a>Lab1 实验报告</h3><p><br></p>
+<h3 id="一-思考题"><a href="#一-思考题" class="headerlink" title="一. 思考题"></a>一. 思考题</h3><p><br></p>
 <h4 id="Thinking-1-1"><a href="#Thinking-1-1" class="headerlink" title="Thinking 1.1"></a>Thinking 1.1</h4><ul>
 <li>请查阅并给出前述 <code>objdump</code> 中使用的参数的含义。使用其它体系结构的编译器（如课程平台的 <code>MIPS</code> 交叉编译器）重复上述各步编译过程，观察并在实验报告中提交相应结果。</li>
 </ul>
 <h4 id="答："><a href="#答：" class="headerlink" title="答："></a>答：</h4><ul>
-<li><p><code>objdump</code> 指令使用参数如下如图：  </p>
-<img align="middle" src='1.png'>  
+<li><p><code>objdump</code> 指令使用参数如下如图：<br><img align="middle" src='1.png'>  </p>
 </li>
-<li><p>对于文件 <code>test.c</code> ,使用课程平台的 <code>MIPS</code> 交叉编译器编译为 <code>test.o</code> 文件  </p>
-<img align="middle" src='4.png'>
+<li><p>对于文件 <code>test.c</code> ,使用课程平台的 <code>MIPS</code> 交叉编译器编译为 <code>test.o</code> 文件<br><img align="middle" src='4.png'></p>
 </li>
-<li><p>再编辑链接器配置文件 <code>test.lds</code>  </p>
-<img align="middle" src='5.png'>
+<li><p>再编辑链接器配置文件 <code>test.lds</code><br><img align="middle" src='5.png'></p>
 </li>
-<li><p>最后通过链接器编译得到 <code>test</code> 可执行文件  </p>
-<img align="middle" src='6.png'></li>
+<li><p>最后通过链接器编译得到 <code>test</code> 可执行文件<br><img align="middle" src='6.png'></p>
+</li>
 </ul>
-<br>
-
+<p><br></p>
 <h4 id="Thinking-1-2"><a href="#Thinking-1-2" class="headerlink" title="Thinking 1.2"></a>Thinking 1.2</h4><ul>
 <li>也许你会发现我们的 <code>readelf</code> 程序是不能解析之前生成的内核文件(内核文件是可执行文件)的，而我们之后将要介绍的工具 <code>readelf</code> 则可以解析，这是为什么呢？(提示：尝试使用 <code>readelf -h</code> ，观察不同)</li>
 </ul>
 <h4 id="答：-1"><a href="#答：-1" class="headerlink" title="答："></a>答：</h4><ul>
-<li><p><code>readelf -h vmlinux</code> 和 <code>readelf -h testELF</code> 的结果为  </p>
-<img align="middle" src='2.png'>  
-<img align="middle" src='3.png'>  
+<li><p><code>readelf -h vmlinux</code> 和 <code>readelf -h testELF</code> 的结果为<br><img align="middle" src='2.png'><br><img align="middle" src='3.png'>  </p>
 </li>
 <li><p>由此可见，我们自己写的 <code>readelf</code> 程序和 <code>testELF</code> 文件都是在小端 <code>（little endian）</code> 环境下运行，而 <code>vmlinux</code> 是大端 <code>（big endian）</code> 格式存储，在大端环境下运行的。因此我们自己的程序无法解析 <code>vmlinux</code> 内核文件，而 <code>linux</code> 默认的 <code>readelf</code> 指令有识别大小端并按相应方式处理的代解析程序能力</p>
 </li>
 </ul>
-<br>
-
+<p><br></p>
 <h4 id="Thinking-1-3"><a href="#Thinking-1-3" class="headerlink" title="Thinking 1.3"></a>Thinking 1.3</h4><ul>
 <li><p>在理论课上我们了解到， <code>MIPS</code> 体系结构上电时，启动入口地址为 <code>0xBFC00000</code> （其实启动入口地址是根据具体型号而定的，由硬件逻辑确定，也有可能不是这个地址，但一定是一个确定的地址），但实验操作系统的内核入口并没有放在上电启动地址，而是按照内存布局图放置。思考为什么这样放置内核还能保证内核入口被正确跳转到？</p>
 </li>
@@ -304,8 +295,7 @@
 <h4 id="答：-2"><a href="#答：-2" class="headerlink" title="答："></a>答：</h4><ul>
 <li><code>MIPS</code> 系统加电起动后， <code>MIPS</code> 处理器默认的程序入口是 <code>0xBFC00000</code> ，此地址在无缓存的 <code>KSEG1</code> 的地址区域内，对应的物理地址是 <code>0x1FC00000</code> ，即 <code>CPU</code> 从 <code>0x1FC00000</code> 开始取第一条指令，这个地址在硬件上已经确定为 <code>FLASH</code> 的位置，然后 <code>Bootloader</code> 执行功能，加载内核到内存（ <code>Linux</code> 内核镜像文件拷贝到 <code>RAM</code> 中某个空闲地址（ <code>LOAD</code> 地址）处），之后在本系统中将 <code>./tools/scse0_3.lds</code> 传给链接器 <code>ld</code> ， <code>ld</code> 会将 <code>.text</code> 节的地址链接到 <code>0x80010000</code> （即内存布局图中内核代码开始处）。关于内核 <code>ELF</code> 文件的入口地址 <code>(Entry point)</code> ，即 <code>bootloader</code> 移动完内核后，直接跳转到的地址，由 <code>ld</code> 写入 <code>ELF</code> 的头中，在本系统中通过 <code>ENTRY(_start)</code> 指明并跳转至内核启动代码 <code>./boot/start.S</code> 处</li>
 </ul>
-<br>
-
+<p><br></p>
 <h4 id="Thinking-1-4"><a href="#Thinking-1-4" class="headerlink" title="Thinking 1.4"></a>Thinking 1.4</h4><ul>
 <li><p><code>sg_size</code> 和 <code>bin_size</code> 的区别它的开始加载位置并非页对齐，同时 <code>bin_size</code> 的结束位置 <code>(va+i)</code> 也并非页对齐，最终整个段加载完毕的 <code>sg_size</code> 末尾的位置也并非页对齐，请思考，为了保证页面不冲突（不重复为同一地址申请多个页，以及页上数据尽可能减少冲突），这样一个程序段应该怎样加载内存空间中。</p>
 </li>
@@ -313,21 +303,16 @@
 </li>
 </ul>
 <h4 id="答：-3"><a href="#答：-3" class="headerlink" title="答："></a>答：</h4><ul>
-<li><p>系统内核加载程序段地址分配为:  </p>
-<img align="middle" src='14.png'>  
-<img align="middle" src='12.png'>  
+<li><p>系统内核加载程序段地址分配为:<br><img align="middle" src='14.png'><br><img align="middle" src='12.png'>  </p>
 </li>
-<li><p>实验代码（自己编写的一个实例程序）的加载程序段地址分配为：  </p>
-<img align="middle" src='15.png'>  
-<img align="middle" src='13.png'>  
+<li><p>实验代码（自己编写的一个实例程序）的加载程序段地址分配为：<br><img align="middle" src='15.png'><br><img align="middle" src='13.png'>  </p>
 </li>
 <li><p>由两个程序加载后的段地址可知，可见，系统内核在加载程序段时能保证进行内核加载时为<strong>页对齐</strong>的，而自己编写的程序并<strong>不能</strong>保证加载时页对齐，想要自己的程序在加载时页对齐，需要自定义或修改链接器在连接时的行为</p>
 </li>
 </ul>
-<br>
-
+<p><br></p>
 <h4 id="Thinking-1-5"><a href="#Thinking-1-5" class="headerlink" title="Thinking 1.5"></a>Thinking 1.5</h4><ul>
-<li>内核入口在什么地方？ <code>main</code> 函数在什么地方？我们是怎么让内核进入到想要的 <code>main</code> 函数的呢？又是怎么进行跨文件调用函数的呢？</li>
+<li>内核入口在什么地方？ <code>main</code> 函数在什么地方？我们是怎么让内核进入到想要的 <code>main</code> 函数的呢？又是怎么进行跨文件调用函数的呢？ </li>
 </ul>
 <h4 id="答：-4"><a href="#答：-4" class="headerlink" title="答："></a>答：</h4><ul>
 <li><p>内核入口位于 <code>start.S</code> 中的 <code>_start</code> 函数（标号使用 <code>LEAF</code> 宏定义，该宏完成初始化堆栈等工作，以辅助函数调用）</p>
@@ -339,39 +324,36 @@
 <li><p>跨文件调用时，跳转地址为一个标签，由链接器在连接过程中重定位至函数的真正地址</p>
 </li>
 </ul>
-<br>
-
-<h4 id="Thinking-1-6"><a href="#Thinking-1-6" class="headerlink" title="Thinking 1.6"></a>Thinking 1.6</h4><p>查阅 <code>《See MIPS Run Linux》 </code> 一书相关章节，解释 <code>boot/start.S</code> 中下面几行对 <code>CP0</code> 协处理器寄存器进行读写的意义。具体而言，它们分别读&#x2F;写了哪些寄存器的哪些特定位，从而达到什么目的？</p>
+<p><br></p>
+<h4 id="Thinking-1-6"><a href="#Thinking-1-6" class="headerlink" title="Thinking 1.6"></a>Thinking 1.6</h4><p>查阅 <code>《See MIPS Run Linux》</code> 一书相关章节，解释 <code>boot/start.S</code> 中下面几行对 <code>CP0</code> 协处理器寄存器进行读写的意义。具体而言，它们分别读/写了哪些寄存器的哪些特定位，从而达到什么目的？</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;* Disable interrupts *&#x2F;</span><br><span class="line">mtc0 zero, CP0_STATUS</span><br><span class="line">......</span><br><span class="line">&#x2F;* disable kernel mode cache *&#x2F;</span><br><span class="line">mfc0 t0, CP0_CONFIG</span><br><span class="line">and t0, ~0x7</span><br><span class="line">ori t0, 0x2</span><br><span class="line">mtc0 to, CP0_CONFIG</span><br></pre></td></tr></table></figure>
-
 <h4 id="答：-5"><a href="#答：-5" class="headerlink" title="答："></a>答：</h4><ul>
 <li><p>宏代换后的代码为</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;* Disable interrupts *&#x2F;</span><br><span class="line">mtc0 zero, $12</span><br><span class="line">......</span><br><span class="line">&#x2F;* disable kernel mode cache *&#x2F;</span><br><span class="line">mfc0 t0, $16</span><br><span class="line">and t0, ~0x7</span><br><span class="line">ori t0, 0x2</span><br><span class="line">mtc0 t0, $16</span><br></pre></td></tr></table></figure>
 </li>
 <li><p><code>mtc0 zero, $12</code></p>
 <ul>
-<li><p>读&#x2F;写寄存器：<br>使状态寄存器 <strong>SR</strong> <code>(Status Register)</code> 全部位置 <code>0</code></p>
+<li><p>读/写寄存器：<br>使状态寄存器 <strong>SR</strong> <code>(Status Register)</code> 全部位置 <code>0</code></p>
 </li>
 <li><p>达到目的：<br><strong>禁用了中断</strong>  </p>
 </li>
-<li><img align="middle" src='7.png'></li>
+<li><img align="middle" src='7.png'>  </li>
 </ul>
 </li>
 <li><p><code>mfc0 t0, $16</code><br><code>and t0, ~0x7</code><br><code>ori t0, 0x2</code><br><code>mtc0 t0, $16</code></p>
 <ul>
-<li><p>读&#x2F;写寄存器：<br>取出 <code>CP0</code> 第16号寄存器 <code>Config</code>（CPU参数设置寄存器）,并将后三位置 <code>0</code>，再将第二位置 <code>1</code>，并写回 <code>Config</code> 寄存器</p>
+<li><p>读/写寄存器：<br>取出 <code>CP0</code> 第16号寄存器 <code>Config</code>（CPU参数设置寄存器）,并将后三位置 <code>0</code>，再将第二位置 <code>1</code>，并写回 <code>Config</code> 寄存器</p>
 </li>
 <li><p>达到目的：<br><strong>禁用了内核模式缓存（Cache）</strong>  </p>
 </li>
 <li><img align="middle" src='8.png'>  </li>
 <li><img align="middle" src='9.png'>  </li>
 <li><img align="middle" src='10.png'>  </li>
-<li><img align="middle" src='11.png'></li>
+<li><img align="middle" src='11.png'>  </li>
 </ul>
 </li>
 </ul>
-<br>
-
+<p><br></p>
 <h3 id="二-实验难点："><a href="#二-实验难点：" class="headerlink" title="二. 实验难点："></a>二. 实验难点：</h3><ol>
 <li><p>大量C语言代码的阅读与理解</p>
 </li>
@@ -379,11 +361,11 @@
 </li>
 <li><p><code>ELF</code> 文件的自定义读取，<code>Linker Script</code> 链接器， <code>MIPS</code> 汇编语言等重难点的掌握</p>
 </li>
-<li><p>…</p>
+<li><p>…  </p>
 </li>
 </ol>
 <h3 id="三-体会与感想："><a href="#三-体会与感想：" class="headerlink" title="三. 体会与感想："></a>三. 体会与感想：</h3><ul>
-<li><p>难度评价：6&#x2F;10</p>
+<li><p>难度评价：6/10</p>
 </li>
 <li><p>实验用时：5h， 撰写实验报告用时：3h</p>
 </li>
@@ -393,21 +375,16 @@
 </ul>
 </li>
 </ul>
-<br>
-
+<p><br></p>
 <hr>
 <h2 id="课上"><a href="#课上" class="headerlink" title="课上"></a>课上</h2><h3 id="lab1-1-exam："><a href="#lab1-1-exam：" class="headerlink" title="lab1-1-exam："></a>lab1-1-exam：</h3><p>从原来的要求输出 <code>sh_addr</code> 变为要求输出 <code>sh_offset</code> 和 <code>sh_size</code> ，极其简单， <code>5min</code> 内解决</p>
-<br>
-
+<p><br></p>
 <h3 id="lab1-1-Extra："><a href="#lab1-1-Extra：" class="headerlink" title="lab1-1-Extra："></a>lab1-1-Extra：</h3><p>研究 <code>Program segment header</code> 中每一段的 <code>p_vaddr</code> 以及 <code>p_memsz</code> 来得到每一段在内存中存储位置，再假设页面大小是 <code>4KB</code> 并且严格页对齐然后研究每一段是否存在共用页和冲突页的情况，并且根据对应情况输出对应结果</p>
-<br>
-
+<p><br></p>
 <h3 id="lab1-2-exam"><a href="#lab1-2-exam" class="headerlink" title="lab1-2-exam:"></a>lab1-2-exam:</h3><p>题目是给出一个包含一个 <code>int</code> ，一个 <code>char</code> ，一个 <code>int[SIZE_C]</code> 数组（其中 <code>SIZE_C</code> 是可变的常量）的结构体，然后给定标识符 <code>T</code> ，让你用类似 <code>{0001,    a, -001, 0002}</code> 的方式在 <code>printf</code> 的函数中用类似 <code>printf(&quot;%T&quot;, &amp;my_struct);</code> 的方式输出该结构体<br>我的上机体验极差，一开始就想歪了，在本地定义了一个结构体，数组我还定义为了 <code>int*</code> 的指针来企图取到数组的首地址，然后就不知道啥原因取到了一些奇奇怪怪的地址导致输出乱七八糟，考试时间延长了半小时（估计通过率不够）也没做出来，纯纯坐大牢。<br>本题正确思路是（后来问助教）先用 <code>va_arg(ap, int *)</code> 取到结构体中 <code>int</code> 的首地址，然后偏移一个 <code>int</code> 的距离即为 <code>char</code> 的地址， 再偏移一个 <code>int</code> 就是数组第 <code>0</code> 个的地址…以此类推，再按样式分别输出即可</p>
-<br>
-
+<p><br></p>
 <h3 id="lab1-2-Extra"><a href="#lab1-2-Extra" class="headerlink" title="lab1-2-Extra:"></a>lab1-2-Extra:</h3><p>exam没做完，一点没看</p>
-<br>
-
+<p><br></p>
 <hr>
 
                 
@@ -659,7 +636,7 @@
 <script>
     // only load tagcloud.js in tag.html
     if($('#tag_cloud').length !== 0){
-        async("http://Master-Tan.github.io/js/jquery.tagcloud.js",function(){
+        async("https://master-tan.github.io/js/jquery.tagcloud.js",function(){
             $.fn.tagcloud.defaults = {
                 //size: {start: 1, end: 1, unit: 'em'},
                 color: {start: '#bbbbee', end: '#0085a1'},
