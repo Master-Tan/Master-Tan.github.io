@@ -121,7 +121,7 @@
 	       
                             <div class="blank_box"></div>
                             <span class="meta">
-                                 <span class="post-count">350</span> Words
+                                 <span class="post-count">430</span> Words
                             </span>
                             <div class="blank_box"></div>
                             <!-- 不蒜子统计 start -->
@@ -188,12 +188,12 @@
                     
 
                         
-                    
-
-                        
                         	<li>
                           	  <a href="/archive/">Archives</a>
                         	</li>
+                        
+                    
+
                         
                     
 
@@ -264,75 +264,73 @@
 <p>第<b> 1~3 </b>题，做出其中两道即达到通过条件</p>
 <p>题目如下：</p>
 <h1 id="P4-L1-rlb"><a href="#P4-L1-rlb" class="headerlink" title="P4_L1_rlb"></a>P4_L1_rlb</h1><h2 id="rlb"><a href="#rlb" class="headerlink" title="rlb"></a>rlb</h2><p>编码：</p>
-<div class="table-container">
 <table>
 <thead>
 <tr>
-<th style="text-align:center">31&emsp;&emsp;&emsp;&emsp;26</th>
-<th style="text-align:center">25&emsp;&emsp;21</th>
-<th style="text-align:center">20&emsp;&emsp;16</th>
-<th style="text-align:center">15&emsp;&emsp;&emsp;&emsp;0</th>
+<th align="center">31&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;26</th>
+<th align="center">25&amp;emsp;&amp;emsp;21</th>
+<th align="center">20&amp;emsp;&amp;emsp;16</th>
+<th align="center">15&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;0</th>
 </tr>
 </thead>
-<tbody>
-<tr>
-<td style="text-align:center">rlb<br>101010</td>
-<td style="text-align:center">rs</td>
-<td style="text-align:center">rt</td>
-<td style="text-align:center">imm</td>
+<tbody><tr>
+<td align="center">rlb<br>101010</td>
+<td align="center">rs</td>
+<td align="center">rt</td>
+<td align="center">imm</td>
 </tr>
 <tr>
-<td style="text-align:center">6</td>
-<td style="text-align:center">5</td>
-<td style="text-align:center">5</td>
-<td style="text-align:center">16</td>
+<td align="center">6</td>
+<td align="center">5</td>
+<td align="center">5</td>
+<td align="center">16</td>
 </tr>
-</tbody>
-</table>
-</div>
+</tbody></table>
 <p>格式：</p>
 <pre><code>rlb rs, rt, imm
-</code></pre><p>描述：</p>
+</code></pre>
+<p>描述：</p>
 <pre><code>指定位数取反
-</code></pre><p>操作：</p>
-<p>&emsp;&emsp;temp &lt;- GPR[rs]<sub>imm-1…0</sub><br>&emsp;&emsp;GPR[rt] &lt;- ( GPR[rs]<sub>31…imm</sub> || ~temp )</p>
+</code></pre>
+<p>操作：</p>
+<p>&amp;emsp;&amp;emsp;temp &lt;- GPR[rs]<sub>imm-1…0</sub><br>&amp;emsp;&amp;emsp;GPR[rt] &lt;- ( GPR[rs]<sub>31…imm</sub> || ~temp )</p>
 <p>实例：</p>
 <pre><code>rlb $t1, $t2, 5
-</code></pre><p>其他：</p>
+</code></pre>
+<p>其他：</p>
 <pre><code>保证 imm 的范围在 0 ~ 31 之间
-</code></pre><p>&emsp;<br>&emsp;</p>
+</code></pre>
+<p>&amp;emsp;<br>&amp;emsp;</p>
 <h1 id="P4-L2-bnezalc"><a href="#P4-L2-bnezalc" class="headerlink" title="P4_L2_bnezalc"></a>P4_L2_bnezalc</h1><h2 id="bnezalc"><a href="#bnezalc" class="headerlink" title="bnezalc"></a>bnezalc</h2><p>编码：</p>
-<div class="table-container">
 <table>
 <thead>
 <tr>
-<th style="text-align:center">31&emsp;&emsp;&emsp;&emsp;26</th>
-<th style="text-align:center">25&emsp;&emsp;21</th>
-<th style="text-align:center">20&emsp;&emsp;16</th>
-<th style="text-align:center">15&emsp;&emsp;&emsp;&emsp;&emsp;0</th>
+<th align="center">31&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;26</th>
+<th align="center">25&amp;emsp;&amp;emsp;21</th>
+<th align="center">20&amp;emsp;&amp;emsp;16</th>
+<th align="center">15&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;0</th>
 </tr>
 </thead>
-<tbody>
-<tr>
-<td style="text-align:center">regimm<br>000001</td>
-<td style="text-align:center">rs</td>
-<td style="text-align:center">bnezalc<br>11001</td>
-<td style="text-align:center">offset</td>
+<tbody><tr>
+<td align="center">regimm<br>000001</td>
+<td align="center">rs</td>
+<td align="center">bnezalc<br>11001</td>
+<td align="center">offset</td>
 </tr>
 <tr>
-<td style="text-align:center">6</td>
-<td style="text-align:center">5</td>
-<td style="text-align:center">5</td>
-<td style="text-align:center">16</td>
+<td align="center">6</td>
+<td align="center">5</td>
+<td align="center">5</td>
+<td align="center">16</td>
 </tr>
-</tbody>
-</table>
-</div>
+</tbody></table>
 <p>格式：</p>
 <pre><code>bnezalc rs, offset
-</code></pre><p>描述：</p>
+</code></pre>
+<p>描述：</p>
 <pre><code>若 GPR[rs] != 0 跳转并 Link
-</code></pre><p>操作：</p>
+</code></pre>
+<p>操作：</p>
 <pre><code>I:
     target_offset &lt;- sign_extend(offset||00)
     condition &lt;- GPR[rs] != 0
@@ -343,49 +341,52 @@ I+1:
     If Condition:
         PC ← PC + target_offset
     endif
-</code></pre><p>实例：</p>
+</code></pre>
+<p>实例：</p>
 <pre><code>bnezalc $t1, -1
-</code></pre><p>其他：</p>
+</code></pre>
+<p>其他：</p>
 <pre><code>不跳转则不Link，视为nop
-</code></pre><p>&emsp;<br>&emsp;</p>
+</code></pre>
+<p>&amp;emsp;<br>&amp;emsp;</p>
 <h1 id="P4-L3-lwrr"><a href="#P4-L3-lwrr" class="headerlink" title="P4_L3_lwrr"></a>P4_L3_lwrr</h1><h2 id="lwrr"><a href="#lwrr" class="headerlink" title="lwrr"></a>lwrr</h2><p>编码：</p>
-<div class="table-container">
 <table>
 <thead>
 <tr>
-<th style="text-align:center">31&emsp;&emsp;&emsp;&emsp;26</th>
-<th style="text-align:center">25&emsp;&emsp;21</th>
-<th style="text-align:center">20&emsp;&emsp;16</th>
-<th style="text-align:center">&emsp;&emsp;15&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;0</th>
+<th align="center">31&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;26</th>
+<th align="center">25&amp;emsp;&amp;emsp;21</th>
+<th align="center">20&amp;emsp;&amp;emsp;16</th>
+<th align="center">&amp;emsp;&amp;emsp;15&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;0</th>
 </tr>
 </thead>
-<tbody>
-<tr>
-<td style="text-align:center">lwrr<br>000011</td>
-<td style="text-align:center">base</td>
-<td style="text-align:center">rt</td>
-<td style="text-align:center">offset</td>
+<tbody><tr>
+<td align="center">lwrr<br>000011</td>
+<td align="center">base</td>
+<td align="center">rt</td>
+<td align="center">offset</td>
 </tr>
 <tr>
-<td style="text-align:center">6</td>
-<td style="text-align:center">5</td>
-<td style="text-align:center">5</td>
-<td style="text-align:center">16</td>
+<td align="center">6</td>
+<td align="center">5</td>
+<td align="center">5</td>
+<td align="center">16</td>
 </tr>
-</tbody>
-</table>
-</div>
+</tbody></table>
 <p>格式：</p>
 <pre><code>lwrr rt, offset(base)
-</code></pre><p>描述：</p>
+</code></pre>
+<p>描述：</p>
 <pre><code>根据内存后两位，循环右移后存入对应寄存器中
-</code></pre><p>操作：</p>
-<p>&emsp;&emsp;addr &lt;- GPR[base] + sign_extend(offset)<br>&emsp;&emsp;Paddr &lt;- Memory[ addr ]<br>&emsp;&emsp;temp &lt;- Paddr<sub>1…0</sub><br>&emsp;&emsp;if temp != 0：<br>&emsp;&emsp;&emsp;&emsp;Vaddr &lt;- ( Paddr<sub>(temp-1)…0</sub> || Paddr<sub>31…temp</sub> )<br>&emsp;&emsp;else：<br>&emsp;&emsp;&emsp;&emsp;Vaddr &lt;- Paddr<br>&emsp;&emsp;GPR[rt] &lt;- Vaddr</p>
+</code></pre>
+<p>操作：</p>
+<p>&amp;emsp;&amp;emsp;addr &lt;- GPR[base] + sign_extend(offset)<br>&amp;emsp;&amp;emsp;Paddr &lt;- Memory[ addr ]<br>&amp;emsp;&amp;emsp;temp &lt;- Paddr<sub>1…0</sub><br>&amp;emsp;&amp;emsp;if temp !&#x3D; 0：<br>&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;Vaddr &lt;- ( Paddr<sub>(temp-1)…0</sub> || Paddr<sub>31…temp</sub> )<br>&amp;emsp;&amp;emsp;else：<br>&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;Vaddr &lt;- Paddr<br>&amp;emsp;&amp;emsp;GPR[rt] &lt;- Vaddr</p>
 <p>实例：</p>
 <pre><code>lwrr $t5, 1($0)
-</code></pre><p>其他：</p>
+</code></pre>
+<p>其他：</p>
 <pre><code>无
-</code></pre><p>&emsp;<br>&emsp;</p>
+</code></pre>
+<p>&amp;emsp;<br>&amp;emsp;</p>
 <div style='font-size: 12px'><b>鸣谢：强生</b></div>
                 
                 <hr>
@@ -715,7 +716,7 @@ I+1:
         
 
         
-            <script type="text/javascript" src="/js/mouse-click.js" content='[&quot;Sunny&quot;, &quot;💖&quot;, &quot;Sunny&quot;, &quot;🧡&quot;, &quot;Sunny&quot;, &quot;💛&quot;, &quot;Sunny&quot; , &quot;💚&quot;, &quot;Sunny&quot;, &quot;💙&quot;, &quot;Sunny&quot;, &quot;💜&quot;, &quot;Sunny&quot;, &quot;😍&quot;]' color='[&quot;rgb(255, 0, 0)&quot; ,&quot;rgb(255, 0, 0)&quot; ,&quot;rgb(255, 125, 0)&quot; ,&quot;rgb(255, 125, 0)&quot; ,&quot;rgb(255, 255, 0)&quot; ,&quot;rgb(255, 255, 0)&quot; ,&quot;rgb(0, 255, 0)&quot; ,&quot;rgb(0, 255, 0)&quot; ,&quot;rgb(0, 255, 255)&quot; ,&quot;rgb(0, 255, 255)&quot; ,&quot;rgb(0, 0, 255)&quot; ,&quot;rgb(0, 0, 255)&quot; ,&quot;rgb(255, 0, 255)&quot; ,&quot;rgb(255, 0, 255)&quot;]'></script>
+            <script type="text/javascript" src="/js/mouse-click.js" content='[&#34;Sunny&#34;, &#34;💖&#34;, &#34;Sunny&#34;, &#34;🧡&#34;, &#34;Sunny&#34;, &#34;💛&#34;, &#34;Sunny&#34; , &#34;💚&#34;, &#34;Sunny&#34;, &#34;💙&#34;, &#34;Sunny&#34;, &#34;💜&#34;, &#34;Sunny&#34;, &#34;😍&#34;]' color='[&#34;rgb(255, 0, 0)&#34; ,&#34;rgb(255, 0, 0)&#34; ,&#34;rgb(255, 125, 0)&#34; ,&#34;rgb(255, 125, 0)&#34; ,&#34;rgb(255, 255, 0)&#34; ,&#34;rgb(255, 255, 0)&#34; ,&#34;rgb(0, 255, 0)&#34; ,&#34;rgb(0, 255, 0)&#34; ,&#34;rgb(0, 255, 255)&#34; ,&#34;rgb(0, 255, 255)&#34; ,&#34;rgb(0, 0, 255)&#34; ,&#34;rgb(0, 0, 255)&#34; ,&#34;rgb(255, 0, 255)&#34; ,&#34;rgb(255, 0, 255)&#34;]'></script>
         
 
         <!-- background effects end -->
@@ -725,21 +726,6 @@ I+1:
     
         <script src="/js/ribbonDynamic.js"></script>
     
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
-            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-            processEscapes: true
-        }
-    });
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax();
-        for (var i = 0; i < all.length; ++i)
-            all[i].SourceElement().parentNode.className += ' has-jax';
-    });
-</script>
-<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 </body>
 
 </html>

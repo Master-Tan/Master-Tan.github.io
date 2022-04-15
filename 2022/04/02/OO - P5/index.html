@@ -188,12 +188,12 @@
                     
 
                         
-                    
-
-                        
                         	<li>
                           	  <a href="/archive/">Archives</a>
                         	</li>
+                        
+                    
+
                         
                     
 
@@ -260,30 +260,39 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <h1 id="面向对象设计与构造第二单元第一次作业"><a href="#面向对象设计与构造第二单元第一次作业" class="headerlink" title="面向对象设计与构造第二单元第一次作业"></a>面向对象设计与构造第二单元第一次作业</h1><h4 id="多线程实时电梯系统"><a href="#多线程实时电梯系统" class="headerlink" title="多线程实时电梯系统"></a>多线程实时电梯系统</h4><p><br></p>
+                <h1 id="面向对象设计与构造第二单元第一次作业"><a href="#面向对象设计与构造第二单元第一次作业" class="headerlink" title="面向对象设计与构造第二单元第一次作业"></a>面向对象设计与构造第二单元第一次作业</h1><h4 id="多线程实时电梯系统"><a href="#多线程实时电梯系统" class="headerlink" title="多线程实时电梯系统"></a>多线程实时电梯系统</h4><br>
+
 <hr>
 <h3 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h3><p><a href="../OO - P5 - Question">题目链接</a></p>
-<p><br></p>
+<br>
+
 <hr>
 <h3 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h3><ul>
-<li><p>在本单元我们的任务为设计并实现一个多线程电梯，并且构造策略实现接送乘客于出发地和目的地<br><br></p>
+<li><p>在本单元我们的任务为设计并实现一个多线程电梯，并且构造策略实现接送乘客于出发地和目的地</p>
+<br>
 </li>
-<li><p>本单元为多线程的应用，对每一个有可能线程不安全的变量或者方法，都要通过加锁构造为 <code>线程安全</code><br><br></p>
+<li><p>本单元为多线程的应用，对每一个有可能线程不安全的变量或者方法，都要通过加锁构造为 <code>线程安全</code></p>
+<br>
 </li>
-<li><p>使用 <code>生产者-消费者</code> 模式，与 <code>乘客-电梯</code> 相对应<br><br></p>
+<li><p>使用 <code>生产者-消费者</code> 模式，与 <code>乘客-电梯</code> 相对应</p>
+<br>
 </li>
-<li><p>使用 <code>策略类—电梯类</code> 分离模式，让电梯的运行与策略分离，并且电梯作为线程类，在其自身的 <code>run</code> 方法中保证输出的正确性<br><br></p>
+<li><p>使用 <code>策略类—电梯类</code> 分离模式，让电梯的运行与策略分离，并且电梯作为线程类，在其自身的 <code>run</code> 方法中保证输出的正确性</p>
+<br>
 </li>
-<li><p>应用工厂模式，电梯捎带策略类均实现 <code>DecisionMaker</code> 接口，以实现在策略之间的转换<br><br></p>
-</li>
+<li><p>应用工厂模式，电梯捎带策略类均实现 <code>DecisionMaker</code> 接口，以实现在策略之间的转换</p>
+<br></li>
 </ul>
 <hr>
 <h3 id="基本思路"><a href="#基本思路" class="headerlink" title="基本思路"></a>基本思路</h3><ul>
-<li><p>输入：乘客输入经过 <code>InputThread</code> 类进入请求池，由于请求进入请求池的前后顺序无要求，并且请求之间互不影响，因此此过程并不会产生线程安全问题<br><br></p>
+<li><p>输入：乘客输入经过 <code>InputThread</code> 类进入请求池，由于请求进入请求池的前后顺序无要求，并且请求之间互不影响，因此此过程并不会产生线程安全问题</p>
+<br>
 </li>
-<li><p>输出：电梯或乘客在执行动作的时候需要调用 <code>OutputThread</code> 类的一个 <strong>静态的</strong> <strong>加锁的</strong> 方法来输出，因为官方所给的输出包是线程不安全的，在同时调用的时候会由于线程的冲突而导致输出时间戳 <strong>有可能不递增</strong> ，所以需要在此类把官方输出方法加锁使其线程安全<br><br></p>
+<li><p>输出：电梯或乘客在执行动作的时候需要调用 <code>OutputThread</code> 类的一个 <strong>静态的</strong> <strong>加锁的</strong> 方法来输出，因为官方所给的输出包是线程不安全的，在同时调用的时候会由于线程的冲突而导致输出时间戳 <strong>有可能不递增</strong> ，所以需要在此类把官方输出方法加锁使其线程安全</p>
+<br>
 </li>
-<li><p>控制器：本程序的控制器起到开始时的建立请求池实例，建立所有电梯线程实例并开始线程，结束时的通知程序中止作用（并不起调度作用），相当于使程序开始和结束的控制者<br><br></p>
+<li><p>控制器：本程序的控制器起到开始时的建立请求池实例，建立所有电梯线程实例并开始线程，结束时的通知程序中止作用（并不起调度作用），相当于使程序开始和结束的控制者</p>
+<br>
 </li>
 <li><p>策略：接受当前电梯的状态和请求池中的请求，然后对电梯返回一种 <strong>策略</strong> （注意可能并不会真正执行），由于对每个电梯都有一个专门的策略类实例，所以这种一对一传输并不会产生线程安全问题</p>
 <p>（LOOK算法）其思想如下：</p>
@@ -305,54 +314,68 @@
 </ul>
 </li>
 </ul>
-<p><font size="1"> 虽然不知道原理是啥，但是学长都是这么用的（逃） </font><br><br></p>
+<p><font size="1"> 虽然不知道原理是啥，但是学长都是这么用的（逃） </font></p>
 </li>
-<li><p>请求池操作：该类相当于 <code>生产者-消费者</code> 模型中的 <code>托盘</code>，由于该对象被多线程同时访问 / 修改，所以该类中的所有 <strong>修改请求池</strong> 的方法均应该加上<strong>同一个</strong>锁，以此来保证线程安全<br><br></p>
+</ul>
+<br>
+
+<ul>
+<li><p>请求池操作：该类相当于 <code>生产者-消费者</code> 模型中的 <code>托盘</code>，由于该对象被多线程同时访问 &#x2F; 修改，所以该类中的所有 <strong>修改请求池</strong> 的方法均应该加上<strong>同一个</strong>锁，以此来保证线程安全</p>
+<br>
 </li>
-<li><p>电梯：每一个电梯都是一个单独的线程，电梯之间互不干扰，电梯的行动完全由其对应的策略类决定，并且在其 <code>run()</code> 方法中保证电梯的正确性，并且加入了回退机制以实现 <code>&quot;电梯空等后接第一个人时可以实现一次跃迁节省一次电梯移动时间&quot;</code> 以及 <code>&quot;电梯的关门和移动未完成时，如果有新的客人请求可以直接让电梯受理&quot;</code> 的功能<br><br></p>
+<li><p>电梯：每一个电梯都是一个单独的线程，电梯之间互不干扰，电梯的行动完全由其对应的策略类决定，并且在其 <code>run()</code> 方法中保证电梯的正确性，并且加入了回退机制以实现 <code>&quot;电梯空等后接第一个人时可以实现一次跃迁节省一次电梯移动时间&quot;</code> 以及 <code>&quot;电梯的关门和移动未完成时，如果有新的客人请求可以直接让电梯受理&quot;</code> 的功能</p>
+<br>
 </li>
-<li><p>程序结束：在 <code>InputThread</code>类判断到输入截止之后，输入线程终止，并且将调用控制器的 <code>close()</code> 方法，进而调用请求池的 <code>close()</code> 方法，请求池将所有电梯的 <code>isClose</code> 置位，并且唤醒所有线程，然后电梯在载完请求池中该栋以及当前在电梯中的所有客人后 <code>break</code> 出 <code>while(true)</code> 循环，电梯线程终止，所有电梯线程终止后，程序正常结束<br><br></p>
-</li>
+<li><p>程序结束：在 <code>InputThread</code>类判断到输入截止之后，输入线程终止，并且将调用控制器的 <code>close()</code> 方法，进而调用请求池的 <code>close()</code> 方法，请求池将所有电梯的 <code>isClose</code> 置位，并且唤醒所有线程，然后电梯在载完请求池中该栋以及当前在电梯中的所有客人后 <code>break</code> 出 <code>while(true)</code> 循环，电梯线程终止，所有电梯线程终止后，程序正常结束</p>
+<br></li>
 </ul>
 <hr>
-<h3 id="具体实现"><a href="#具体实现" class="headerlink" title="具体实现"></a>具体实现</h3><h4 id="总UML类图："><a href="#总UML类图：" class="headerlink" title="总UML类图："></a>总UML类图：</h4><p><img src="MainClass.png"/></p>
+<h3 id="具体实现"><a href="#具体实现" class="headerlink" title="具体实现"></a>具体实现</h3><h4 id="总UML类图："><a href="#总UML类图：" class="headerlink" title="总UML类图："></a>总UML类图：</h4><img src="MainClass.png"/>
+
+  
 <ul>
-<li><h4 id="读入处理类-InputThread"><a href="#读入处理类-InputThread" class="headerlink" title="读入处理类 InputThread"></a>读入处理类 <code>InputThread</code></h4><p><img src="1.png"/>  </p>
+<li><h4 id="读入处理类-InputThread"><a href="#读入处理类-InputThread" class="headerlink" title="读入处理类 InputThread"></a>读入处理类 <code>InputThread</code></h4><img src="1.png"/>  
+
 <ul>
 <li>开启官方包的输入线程，获得输入的请求，并将每一个输入请求传递到<code>Controller</code> 类中</li>
-<li>在官方包传出终止信号时，调用 <code>Controller</code> 的 <code>close</code> 方法<br><br></li>
+<li>在官方包传出终止信号时，调用 <code>Controller</code> 的 <code>close</code> 方法<br></li>
 </ul>
 </li>
-<li><h4 id="输出处理类-OutputThread"><a href="#输出处理类-OutputThread" class="headerlink" title="输出处理类 OutputThread"></a>输出处理类 <code>OutputThread</code></h4><p><img src="2.png"/>  </p>
+<li><h4 id="输出处理类-OutputThread"><a href="#输出处理类-OutputThread" class="headerlink" title="输出处理类 OutputThread"></a>输出处理类 <code>OutputThread</code></h4><img src="2.png"/>  
+
 <ul>
-<li>用一个 <code>synchronized</code> 的 <code>static</code> 方法，对官方给的线程不安全的输出方法 <code>TimableOutput.println()</code> 进行封装，使其成为线程安全的静态方法 <code>OutputThread.println()</code> （即调用时不会出现时间戳不递增的情况）<br><br></li>
+<li>用一个 <code>synchronized</code> 的 <code>static</code> 方法，对官方给的线程不安全的输出方法 <code>TimableOutput.println()</code> 进行封装，使其成为线程安全的静态方法 <code>OutputThread.println()</code> （即调用时不会出现时间戳不递增的情况）<br></li>
 </ul>
 </li>
-<li><h4 id="控制器类-Controller"><a href="#控制器类-Controller" class="headerlink" title="控制器类 Controller"></a>控制器类 <code>Controller</code></h4><p><img src="3.png"/>  </p>
+<li><h4 id="控制器类-Controller"><a href="#控制器类-Controller" class="headerlink" title="控制器类 Controller"></a>控制器类 <code>Controller</code></h4><img src="3.png"/>  
+
 <ul>
 <li>创建请求池类（ <code>RequestPool</code> 类）的实例</li>
 <li>创建所有电梯线程（ <code>Elevator</code> 类）并开始运行（处于可接客状态）</li>
 <li>为每一个电梯创建一个决策者实例 <code>DecisionMaker</code></li>
-<li>在接收到读入处理类 （ <code>InputThread</code> 类）的 <code>close</code> 请求后，调用请求池类（ <code>RequestPool</code> 类 ）的 <code>close</code> 方法通知其进入停止状态<br><br></li>
+<li>在接收到读入处理类 （ <code>InputThread</code> 类）的 <code>close</code> 请求后，调用请求池类（ <code>RequestPool</code> 类 ）的 <code>close</code> 方法通知其进入停止状态<br></li>
 </ul>
 </li>
-<li><h4 id="请求池类-RequestPool"><a href="#请求池类-RequestPool" class="headerlink" title="请求池类 RequestPool"></a>请求池类 <code>RequestPool</code></h4><p><img src="4.png"/>  </p>
+<li><h4 id="请求池类-RequestPool"><a href="#请求池类-RequestPool" class="headerlink" title="请求池类 RequestPool"></a>请求池类 <code>RequestPool</code></h4><img src="4.png"/>  
+
 <ul>
-<li>线程安全类，采用了 <code>ReentrantLock</code> 锁，所有对请求池读 / 写的方法均上锁，以保证线程安全</li>
+<li>线程安全类，采用了 <code>ReentrantLock</code> 锁，所有对请求池读 &#x2F; 写的方法均上锁，以保证线程安全</li>
 <li>实现向请求池添加请求 <code>addRequest</code> ，从请求池删除（获得）请求 <code>removeRequest</code> ，查询当前请求池中所有请求 <code>getAllRequest</code></li>
 <li>储存所有的电梯信息</li>
 <li>在添加请求时，唤醒 <strong>所有</strong> 电梯中正在 <code>await</code> 的线程，达到实时判断乘客的效果</li>
 <li>控制器（ <code>Controller</code> 类）传入关闭方法时，将本类的 <code>isClose</code> 置 <code>1</code> ，并且将 <strong>所有</strong> 电梯的 <code>isClose</code> 置 <code>1</code></li>
 </ul>
 </li>
-<li><h4 id="电梯类-Elevator"><a href="#电梯类-Elevator" class="headerlink" title="电梯类 Elevator"></a>电梯类 <code>Elevator</code></h4><p><img src="5.png"/>  </p>
+<li><h4 id="电梯类-Elevator"><a href="#电梯类-Elevator" class="headerlink" title="电梯类 Elevator"></a>电梯类 <code>Elevator</code></h4><img src="5.png"/>  
+
 <ul>
 <li>重写 <code>run()</code> 方法，实现顺序执行 <code>下客-&gt;上客-&gt;关门-&gt;运行一层</code> 的流程，其中每一步均有是否执行的判断条件，只有满足条件才会执行，顺序执行保证了电梯的正确性</li>
-<li>每次下客前和关门前均调用自身对应的决策类的 <code>ask</code> 方法，使决策类根据此时电梯状态和请求池状态更新自身行为，然后访问决策类的方法获得电梯下一步的行动 <strong>建议</strong> （接那些人以及向哪一层移动/空等）</li>
-<li>关门和移动等待时间为电梯上一次 <strong>任意</strong> 操作（ <code>开门/关门/移动</code> ）的系统时间与此时系统时间的差值（保证电梯距上次输出 <code>400ms</code> 即可）<br><br></li>
+<li>每次下客前和关门前均调用自身对应的决策类的 <code>ask</code> 方法，使决策类根据此时电梯状态和请求池状态更新自身行为，然后访问决策类的方法获得电梯下一步的行动 <strong>建议</strong> （接那些人以及向哪一层移动&#x2F;空等）</li>
+<li>关门和移动等待时间为电梯上一次 <strong>任意</strong> 操作（ <code>开门/关门/移动</code> ）的系统时间与此时系统时间的差值（保证电梯距上次输出 <code>400ms</code> 即可）<br></li>
 </ul>
 </li>
-<li><h4 id="决策类接口-DecisionMaker"><a href="#决策类接口-DecisionMaker" class="headerlink" title="决策类接口 DecisionMaker"></a>决策类接口 <code>DecisionMaker</code></h4><p>  <img src="6.png"/>  </p>
+<li><h4 id="决策类接口-DecisionMaker"><a href="#决策类接口-DecisionMaker" class="headerlink" title="决策类接口 DecisionMaker"></a>决策类接口 <code>DecisionMaker</code></h4>  <img src="6.png"/>  
+  
 <ul>
 <li><p>定义了 <code>4</code> 个方法</p>
 <ul>
@@ -362,21 +385,22 @@
 </li>
 <li><p><code>whoToPutDown()</code> 方法：返回需要下客的建议  </p>
 </li>
-<li><p><code>nextDirection()</code> 方法：返回下一步电梯行动方向 / 是否空等的建议  </p>
+<li><p><code>nextDirection()</code> 方法：返回下一步电梯行动方向 &#x2F; 是否空等的建议</p>
 </li>
 </ul>
-<p><br></p>
+<br></li>
+<li><h5 id="项（乘除）类-LookDecisionMaker"><a href="#项（乘除）类-LookDecisionMaker" class="headerlink" title="项（乘除）类 LookDecisionMaker"></a>项（乘除）类 <code>LookDecisionMaker</code></h5><img src="7.png"/>  
+
 <ul>
-<li><h5 id="项（乘除）类-LookDecisionMaker"><a href="#项（乘除）类-LookDecisionMaker" class="headerlink" title="项（乘除）类 LookDecisionMaker"></a>项（乘除）类 <code>LookDecisionMaker</code></h5><img src="7.png"/>  </li>
-</ul>
-</li>
-<li><p>实现了 <code>LOOK</code> 算法</p>
-</li>
+<li>实现了 <code>LOOK</code> 算法</li>
 <li>重写了 <code>DecisionMaker</code> 接口的 <code>4</code> 个方法</li>
 </ul>
 </li>
 </ul>
-<p><br></p>
+</li>
+</ul>
+<br>
+
 <hr>
 <p>易错点： </p>
 <ol>
@@ -715,7 +739,7 @@
         
 
         
-            <script type="text/javascript" src="/js/mouse-click.js" content='[&quot;Sunny&quot;, &quot;💖&quot;, &quot;Sunny&quot;, &quot;🧡&quot;, &quot;Sunny&quot;, &quot;💛&quot;, &quot;Sunny&quot; , &quot;💚&quot;, &quot;Sunny&quot;, &quot;💙&quot;, &quot;Sunny&quot;, &quot;💜&quot;, &quot;Sunny&quot;, &quot;😍&quot;]' color='[&quot;rgb(255, 0, 0)&quot; ,&quot;rgb(255, 0, 0)&quot; ,&quot;rgb(255, 125, 0)&quot; ,&quot;rgb(255, 125, 0)&quot; ,&quot;rgb(255, 255, 0)&quot; ,&quot;rgb(255, 255, 0)&quot; ,&quot;rgb(0, 255, 0)&quot; ,&quot;rgb(0, 255, 0)&quot; ,&quot;rgb(0, 255, 255)&quot; ,&quot;rgb(0, 255, 255)&quot; ,&quot;rgb(0, 0, 255)&quot; ,&quot;rgb(0, 0, 255)&quot; ,&quot;rgb(255, 0, 255)&quot; ,&quot;rgb(255, 0, 255)&quot;]'></script>
+            <script type="text/javascript" src="/js/mouse-click.js" content='[&#34;Sunny&#34;, &#34;💖&#34;, &#34;Sunny&#34;, &#34;🧡&#34;, &#34;Sunny&#34;, &#34;💛&#34;, &#34;Sunny&#34; , &#34;💚&#34;, &#34;Sunny&#34;, &#34;💙&#34;, &#34;Sunny&#34;, &#34;💜&#34;, &#34;Sunny&#34;, &#34;😍&#34;]' color='[&#34;rgb(255, 0, 0)&#34; ,&#34;rgb(255, 0, 0)&#34; ,&#34;rgb(255, 125, 0)&#34; ,&#34;rgb(255, 125, 0)&#34; ,&#34;rgb(255, 255, 0)&#34; ,&#34;rgb(255, 255, 0)&#34; ,&#34;rgb(0, 255, 0)&#34; ,&#34;rgb(0, 255, 0)&#34; ,&#34;rgb(0, 255, 255)&#34; ,&#34;rgb(0, 255, 255)&#34; ,&#34;rgb(0, 0, 255)&#34; ,&#34;rgb(0, 0, 255)&#34; ,&#34;rgb(255, 0, 255)&#34; ,&#34;rgb(255, 0, 255)&#34;]'></script>
         
 
         <!-- background effects end -->
@@ -725,21 +749,6 @@
     
         <script src="/js/ribbonDynamic.js"></script>
     
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
-            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-            processEscapes: true
-        }
-    });
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax();
-        for (var i = 0; i < all.length; ++i)
-            all[i].SourceElement().parentNode.className += ' has-jax';
-    });
-</script>
-<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 </body>
 
 </html>
