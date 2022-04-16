@@ -112,7 +112,7 @@
                             
                         </div>
                         <h1>OS - Lab2</h1>
-                        <h2 class="subheading">OS第二次实验</h2>
+                        <h2 class="subheading">内存管理</h2>
                         <span class="meta">
                             Posted by Tan on
                             2022-04-02
@@ -121,7 +121,7 @@
 	       
                             <div class="blank_box"></div>
                             <span class="meta">
-                                 <span class="post-count">2.2k</span> Words
+                                 <span class="post-count">2.6k</span> Words
                             </span>
                             <div class="blank_box"></div>
                             <!-- 不蒜子统计 start -->
@@ -182,13 +182,6 @@
 
                         
                         	<li>
-                          	  <a href="/about/">About Tan</a>
-                        	</li>
-                        
-                    
-
-                        
-                        	<li>
                           	  <a href="/archive/">Archives</a>
                         	</li>
                         
@@ -196,11 +189,18 @@
 
                         
                         	<li>
-                          	  <a href="/tags/">Tags</a>
+                          	  <a href="/about/">About Tan</a>
                         	</li>
                         
                     
 
+                        
+                    
+
+                        
+                        	<li>
+                          	  <a href="/tags/">Tags</a>
+                        	</li>
                         
                     
 
@@ -273,15 +273,12 @@
 </li>
 </ul>
 <h4 id="答："><a href="#答：" class="headerlink" title="答："></a>答：</h4><ul>
-<li><p><code>objdump</code> 指令使用参数如下如图：<br><img align="middle" src='1.png'>  </p>
+<li><p>虚拟地址。自身所写的程序的指针储存地址为映射到进程地址空间的偏移地址。不同进程地址空间是相互隔离的，不同进程两个值相同的指针对应的真实内存是不同的。 </p>
 </li>
-<li><p>对于文件 <code>test.c</code> ,使用课程平台的 <code>MIPS</code> 交叉编译器编译为 <code>test.o</code> 文件<br><img align="middle" src='4.png'></p>
-</li>
-<li><p>再编辑链接器配置文件 <code>test.lds</code><br><img align="middle" src='5.png'></p>
-</li>
-<li><p>最后通过链接器编译得到 <code>test</code> 可执行文件<br><img align="middle" src='6.png'></p>
+<li><p>虚拟地址。其地址为32位而物理地址为64位</p>
 </li>
 </ul>
+<p>大多数的应用程序无法得知实际的物理地址，而是使用电脑的内存管理单元及操作系统的内存映射，为 <code>逻辑地址</code> 或 <code>虚拟地址</code> 定址</p>
 <p><br></p>
 <h4 id="Thinking-2-2"><a href="#Thinking-2-2" class="headerlink" title="Thinking 2.2"></a>Thinking 2.2</h4><ul>
 <li><p>请从可重用性的角度，阐述用宏来实现链表的好处。</p>
@@ -290,9 +287,50 @@
 </li>
 </ul>
 <h4 id="答：-1"><a href="#答：-1" class="headerlink" title="答："></a>答：</h4><ul>
-<li><p><code>readelf -h vmlinux</code> 和 <code>readelf -h testELF</code> 的结果为<br><img align="middle" src='2.png'><br><img align="middle" src='3.png'>  </p>
+<li><p>链表实现图示：<br><img align="middle" src='1.png'>  </p>
 </li>
-<li><p>由此可见，我们自己写的 <code>readelf</code> 程序和 <code>testELF</code> 文件都是在小端 <code>（little endian）</code> 环境下运行，而 <code>vmlinux</code> 是大端 <code>（big endian）</code> 格式存储，在大端环境下运行的。因此我们自己的程序无法解析 <code>vmlinux</code> 内核文件，而 <code>linux</code> 默认的 <code>readelf</code> 指令有识别大小端并按相应方式处理的代解析程序能力</p>
+<li><p>用宏实现链表这一链表设计并不提供提供一个将其他结构体包起来的结构体，而是提供了一种可与其他结构体组合的小结构体。任何一个结构体，只要在自身加入这样一个链表结构体，就能应用链表的各种操作。  </p>
+</li>
+<li><p>好处：</p>
+<ul>
+<li><p>小结构体添加方便，基本不影响对原结构体的访问； 定义的结构具有很好的扩展性，在实际使用时，可以通过在某一结构体中定义 <code>LIST_ENTRY</code> 链接的指针的总的名称 <code>&#39;field&#39;</code> 使得这一结构体变成可以被链接的对象。</p>
+</li>
+<li><p>小结构体中 <code>le_prev</code> 是一个指针的指针，因此在某个位置前后插入/删除节点时都不需要进行额外的遍历</p>
+</li>
+<li><p>对于双向链表需要实现的各种方法，实现了较好的封装</p>
+</li>
+<li><p>C 语言并不支持 <code>泛型</code>，该链表设计通过宏另辟蹊径来实现了 <code>泛型</code></p>
+</li>
+</ul>
+</li>
+<li><p>三者比较如下：</p>
+<ul>
+<li><p>本实验中使用的双向链表的 <code>LIST_ENTRY</code> 如图：<br><img align="middle" src='2.png'>  </p>
+</li>
+<li><p><code>/usr/include/sys/queue.h</code> 中的单向链表的 <code>SLIST_ENTRY</code> 如图：<br><img align="middle" src='3.png'>  </p>
+</li>
+<li><p><code>/usr/include/sys/queue.h</code> 中的循环链表的 <code>CIRCLEQ_ENTRY</code> 如图：<br><img align="middle" src='4.png'><br>且其在 <code>CIRCLEQ_INIT</code> 实现了循环功能<br><img align="middle" src='5.png'>  </p>
+</li>
+</ul>
+</li>
+<li><p>性能差异：</p>
+<ul>
+<li><p>插入操作：<br>三者的插入操作如下:<br>  <img align="middle" src='6.png'><br>  <img align="middle" src='8.png'><br>  <img align="middle" src='10.png'>  </p>
+<p>  可见：</p>
+<ul>
+<li>单向链表虽然只能向后插入，但是性能最高</li>
+<li>双向链表由于使用了 <code>le_prev</code> ，比循环链表少了一次访存，性能次之</li>
+<li>循环链表操作最复杂，性能最次</li>
+</ul>
+</li>
+<li><p>删除操作：<br>三者的删除操作如下:<br>  <img align="middle" src='7.png'><br>  <img align="middle" src='9.png'><br>  <img align="middle" src='11.png'>  </p>
+<p>  可见：</p>
+<ul>
+<li>双向链表与循环链表均可由所给链表项直接执行删除操作；同样，由于使用了 <code>le_prev</code> ，双向链表比循环链表少了两次访存，因此双向链表性能最优，循环链表次之</li>
+<li>单项链表由于所给链表项前一项未知，需要从头开始遍历以找到前置链表项，性能最次</li>
+</ul>
+</li>
+</ul>
 </li>
 </ul>
 <p><br></p>
@@ -301,7 +339,21 @@
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">B:</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Page_list</span>&#123;</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> &#123;</span></span><br><span class="line">        <span class="class"><span class="keyword">struct</span> &#123;</span></span><br><span class="line">            <span class="class"><span class="keyword">struct</span> <span class="title">Page</span> *<span class="title">le_next</span>;</span></span><br><span class="line">            <span class="class"><span class="keyword">struct</span> <span class="title">Page</span> **<span class="title">le_prev</span>;</span></span><br><span class="line">        &#125; pp_link;</span><br><span class="line">        u_short pp_ref;</span><br><span class="line">    &#125; lh_first;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">C:</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Page_list</span>&#123;</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> &#123;</span></span><br><span class="line">        <span class="class"><span class="keyword">struct</span> &#123;</span></span><br><span class="line">            <span class="class"><span class="keyword">struct</span> <span class="title">Page</span> *<span class="title">le_next</span>;</span></span><br><span class="line">            <span class="class"><span class="keyword">struct</span> <span class="title">Page</span> **<span class="title">le_prev</span>;</span></span><br><span class="line">        &#125; pp_link;</span><br><span class="line">        u_short pp_ref;</span><br><span class="line">    &#125;* lh_first;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h4 id="答：-2"><a href="#答：-2" class="headerlink" title="答："></a>答：</h4><ul>
-<li><code>MIPS</code> 系统加电起动后， <code>MIPS</code> 处理器默认的程序入口是 <code>0xBFC00000</code> ，此地址在无缓存的 <code>KSEG1</code> 的地址区域内，对应的物理地址是 <code>0x1FC00000</code> ，即 <code>CPU</code> 从 <code>0x1FC00000</code> 开始取第一条指令，这个地址在硬件上已经确定为 <code>FLASH</code> 的位置，然后 <code>Bootloader</code> 执行功能，加载内核到内存（ <code>Linux</code> 内核镜像文件拷贝到 <code>RAM</code> 中某个空闲地址（ <code>LOAD</code> 地址）处），之后在本系统中将 <code>./tools/scse0_3.lds</code> 传给链接器 <code>ld</code> ， <code>ld</code> 会将 <code>.text</code> 节的地址链接到 <code>0x80010000</code> （即内存布局图中内核代码开始处）。关于内核 <code>ELF</code> 文件的入口地址 <code>(Entry point)</code> ，即 <code>bootloader</code> 移动完内核后，直接跳转到的地址，由 <code>ld</code> 写入 <code>ELF</code> 的头中，在本系统中通过 <code>ENTRY(_start)</code> 指明并跳转至内核启动代码 <code>./boot/start.S</code> 处</li>
+<li><p>选 <strong>C</strong></p>
+</li>
+<li><p>解析：  </p>
+<p><code>Page_list</code> 的定义在 <code>include/pmap.h</code><br><img align="middle" src='13.png'><br>此时定义为：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">LIST_HEAD(Page_list, page);</span><br></pre></td></tr></table></figure>
+<p>其中宏定义 <code>LIST_HEAD</code> 定义在 <code>include/queue.h</code><br><img align="middle" src='12.png'><br>此时定义为：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Page_list</span> &#123;</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">Page</span> *<span class="title">lh_first</span>;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>其中 <code>struct Page</code> 定义在 <code>include/pmap.h</code><br><img align="middle" src='14.png'><br>此时定义为：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Page_list</span> &#123;</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> &#123;</span></span><br><span class="line">        Page_LIST_entry_t pp_link;</span><br><span class="line">        u_short pp_ref;</span><br><span class="line">    &#125;* lh_first;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>其中 <code>Page_LIST_entry_t</code> 定义在 <code>include/pmap.h</code><br><img align="middle" src='15.png'><br>此时定义为</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Page_list</span> &#123;</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> &#123;</span></span><br><span class="line">        LIST_ENTRY(Page) pplink;</span><br><span class="line">    &#125;* lh_first;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>其中 <code>LIST_ENTRY</code> 定义在 <code>include/queue.h</code><br><img align="middle" src='16.png'><br>此时定义为</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Page_list</span> &#123;</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> &#123;</span></span><br><span class="line">        <span class="class"><span class="keyword">struct</span> &#123;</span></span><br><span class="line">            <span class="class"><span class="keyword">struct</span> <span class="title">Page</span> *<span class="title">le_next</span>;</span></span><br><span class="line">            <span class="class"><span class="keyword">struct</span> <span class="title">Page</span> **<span class="title">le_prev</span>;</span></span><br><span class="line">        &#125; pp_link;</span><br><span class="line">        u_short pp_ref;</span><br><span class="line">    &#125;* lh_first;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>因此，选 <strong>C</strong> </p>
+</li>
 </ul>
 <p><br></p>
 <h4 id="Thinking-2-4"><a href="#Thinking-2-4" class="headerlink" title="Thinking 2.4"></a>Thinking 2.4</h4><p>请你寻找上述两个 boot_* 函数在何处被调用。</p>
@@ -758,7 +810,7 @@
         
 
         
-            <script type="text/javascript" src="/js/mouse-click.js" content='[&#34;Sunny&#34;, &#34;💖&#34;, &#34;Sunny&#34;, &#34;🧡&#34;, &#34;Sunny&#34;, &#34;💛&#34;, &#34;Sunny&#34; , &#34;💚&#34;, &#34;Sunny&#34;, &#34;💙&#34;, &#34;Sunny&#34;, &#34;💜&#34;, &#34;Sunny&#34;, &#34;😍&#34;]' color='[&#34;rgb(255, 0, 0)&#34; ,&#34;rgb(255, 0, 0)&#34; ,&#34;rgb(255, 125, 0)&#34; ,&#34;rgb(255, 125, 0)&#34; ,&#34;rgb(255, 255, 0)&#34; ,&#34;rgb(255, 255, 0)&#34; ,&#34;rgb(0, 255, 0)&#34; ,&#34;rgb(0, 255, 0)&#34; ,&#34;rgb(0, 255, 255)&#34; ,&#34;rgb(0, 255, 255)&#34; ,&#34;rgb(0, 0, 255)&#34; ,&#34;rgb(0, 0, 255)&#34; ,&#34;rgb(255, 0, 255)&#34; ,&#34;rgb(255, 0, 255)&#34;]'></script>
+            <script type="text/javascript" src="/js/mouse-click.js" content='[&quot;Sunny&quot;, &quot;💖&quot;, &quot;Sunny&quot;, &quot;🧡&quot;, &quot;Sunny&quot;, &quot;💛&quot;, &quot;Sunny&quot; , &quot;💚&quot;, &quot;Sunny&quot;, &quot;💙&quot;, &quot;Sunny&quot;, &quot;💜&quot;, &quot;Sunny&quot;, &quot;😍&quot;]' color='[&quot;rgb(255, 0, 0)&quot; ,&quot;rgb(255, 0, 0)&quot; ,&quot;rgb(255, 125, 0)&quot; ,&quot;rgb(255, 125, 0)&quot; ,&quot;rgb(255, 255, 0)&quot; ,&quot;rgb(255, 255, 0)&quot; ,&quot;rgb(0, 255, 0)&quot; ,&quot;rgb(0, 255, 0)&quot; ,&quot;rgb(0, 255, 255)&quot; ,&quot;rgb(0, 255, 255)&quot; ,&quot;rgb(0, 0, 255)&quot; ,&quot;rgb(0, 0, 255)&quot; ,&quot;rgb(255, 0, 255)&quot; ,&quot;rgb(255, 0, 255)&quot;]'></script>
         
 
         <!-- background effects end -->
@@ -768,6 +820,21 @@
     
         <script src="/js/ribbonDynamic.js"></script>
     
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 </body>
 
 </html>
