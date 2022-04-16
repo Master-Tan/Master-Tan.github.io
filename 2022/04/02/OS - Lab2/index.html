@@ -182,13 +182,6 @@
 
                         
                         	<li>
-                          	  <a href="/archive/">Archives</a>
-                        	</li>
-                        
-                    
-
-                        
-                        	<li>
                           	  <a href="/about/">About Tan</a>
                         	</li>
                         
@@ -207,6 +200,13 @@
                         
                     
 
+                        
+                    
+
+                        
+                        	<li>
+                          	  <a href="/archive/">Archives</a>
+                        	</li>
                         
                     
                     
@@ -278,7 +278,10 @@
 <li><p>虚拟地址。其地址为32位而物理地址为64位</p>
 </li>
 </ul>
-<p>大多数的应用程序无法得知实际的物理地址，而是使用电脑的内存管理单元及操作系统的内存映射，为 <code>逻辑地址</code> 或 <code>虚拟地址</code> 定址</p>
+<p><br></p>
+<ul>
+<li>大多数的应用程序无法得知实际的物理地址，而是使用电脑的内存管理单元及操作系统的内存映射，为 <code>逻辑地址</code> 或 <code>虚拟地址</code> 定址</li>
+</ul>
 <p><br></p>
 <h4 id="Thinking-2-2"><a href="#Thinking-2-2" class="headerlink" title="Thinking 2.2"></a>Thinking 2.2</h4><ul>
 <li><p>请从可重用性的角度，阐述用宏来实现链表的好处。</p>
@@ -323,6 +326,9 @@
 <li>循环链表操作最复杂，性能最次</li>
 </ul>
 </li>
+</ul>
+<p><br></p>
+<ul>
 <li><p>删除操作：<br>三者的删除操作如下:<br>  <img align="middle" src='7.png'><br>  <img align="middle" src='9.png'><br>  <img align="middle" src='11.png'>  </p>
 <p>  可见：</p>
 <ul>
@@ -342,15 +348,15 @@
 <li><p>选 <strong>C</strong></p>
 </li>
 <li><p>解析：  </p>
-<p><code>Page_list</code> 的定义在 <code>include/pmap.h</code><br><img align="middle" src='13.png'><br>此时定义为：</p>
+<p><code>Page_list</code> 的定义在 <code>include/pmap.h</code> ：<br><img align="middle" src='13.png'><br>此时定义为：</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">LIST_HEAD(Page_list, page);</span><br></pre></td></tr></table></figure>
-<p>其中宏定义 <code>LIST_HEAD</code> 定义在 <code>include/queue.h</code><br><img align="middle" src='12.png'><br>此时定义为：</p>
+<p>其中宏定义 <code>LIST_HEAD</code> 定义在 <code>include/queue.h</code> ：<br><img align="middle" src='12.png'><br>此时定义为：</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Page_list</span> &#123;</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">Page</span> *<span class="title">lh_first</span>;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>其中 <code>struct Page</code> 定义在 <code>include/pmap.h</code><br><img align="middle" src='14.png'><br>此时定义为：</p>
+<p>其中 <code>struct Page</code> 定义在 <code>include/pmap.h</code> ：<br><img align="middle" src='14.png'><br>此时定义为：</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Page_list</span> &#123;</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> &#123;</span></span><br><span class="line">        Page_LIST_entry_t pp_link;</span><br><span class="line">        u_short pp_ref;</span><br><span class="line">    &#125;* lh_first;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>其中 <code>Page_LIST_entry_t</code> 定义在 <code>include/pmap.h</code><br><img align="middle" src='15.png'><br>此时定义为</p>
+<p>其中 <code>Page_LIST_entry_t</code> 定义在 <code>include/pmap.h</code> ：<br><img align="middle" src='15.png'><br>此时定义为：</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Page_list</span> &#123;</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> &#123;</span></span><br><span class="line">        LIST_ENTRY(Page) pplink;</span><br><span class="line">    &#125;* lh_first;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>其中 <code>LIST_ENTRY</code> 定义在 <code>include/queue.h</code><br><img align="middle" src='16.png'><br>此时定义为</p>
+<p>其中 <code>LIST_ENTRY</code> 定义在 <code>include/queue.h</code> ：<br><img align="middle" src='16.png'><br>此时定义为：</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Page_list</span> &#123;</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> &#123;</span></span><br><span class="line">        <span class="class"><span class="keyword">struct</span> &#123;</span></span><br><span class="line">            <span class="class"><span class="keyword">struct</span> <span class="title">Page</span> *<span class="title">le_next</span>;</span></span><br><span class="line">            <span class="class"><span class="keyword">struct</span> <span class="title">Page</span> **<span class="title">le_prev</span>;</span></span><br><span class="line">        &#125; pp_link;</span><br><span class="line">        u_short pp_ref;</span><br><span class="line">    &#125;* lh_first;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>因此，选 <strong>C</strong> </p>
 </li>
