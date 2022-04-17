@@ -121,7 +121,7 @@
 	       
                             <div class="blank_box"></div>
                             <span class="meta">
-                                 <span class="post-count">2.6k</span> Words
+                                 <span class="post-count">2.8k</span> Words
                             </span>
                             <div class="blank_box"></div>
                             <!-- 不蒜子统计 start -->
@@ -188,6 +188,10 @@
                     
 
                         
+                        	<li>
+                          	  <a href="/archive/">Archives</a>
+                        	</li>
+                        
                     
 
                         
@@ -197,10 +201,6 @@
                         
                     
 
-                        
-                        	<li>
-                          	  <a href="/archive/">Archives</a>
-                        	</li>
                         
                     
 
@@ -269,11 +269,11 @@
 <ul>
 <li><p>在我们编写的程序中，指针变量中存储的地址是虚拟地址还是物理地址？</p>
 </li>
-<li><p>MIPS 汇编程序中lw, sw使用的是虚拟地址还是物理地址？</p>
+<li><p><code>MIPS</code> 汇编程序中 <code>lw</code> ， <code>sw</code> 使用的是虚拟地址还是物理地址？</p>
 </li>
 </ul>
 <h4 id="答："><a href="#答：" class="headerlink" title="答："></a>答：</h4><ul>
-<li><p>虚拟地址。自身所写的程序的指针储存地址为映射到进程地址空间的偏移地址。不同进程地址空间是相互隔离的，不同进程两个值相同的指针对应的真实内存是不同的。 </p>
+<li><p>虚拟地址。自身所写的程序的指针储存地址为映射到进程地址空间的偏移地址，不同进程地址空间是相互隔离的，不同进程两个值相同的指针对应的真实内存是不同的</p>
 </li>
 <li><p>虚拟地址。其地址为32位而物理地址为64位</p>
 </li>
@@ -286,17 +286,17 @@
 <h4 id="Thinking-2-2"><a href="#Thinking-2-2" class="headerlink" title="Thinking 2.2"></a>Thinking 2.2</h4><ul>
 <li><p>请从可重用性的角度，阐述用宏来实现链表的好处。</p>
 </li>
-<li><p>请你查看实验环境中的 /usr/include/sys/queue.h，了解其中单向链表与循环链表的实现，比较它们与本实验中使用的双向链表，分析三者在插入与删除操作上的性能差异。</p>
+<li><p>请你查看实验环境中的 <code>/usr/include/sys/queue.h</code>，了解其中单向链表与循环链表的实现，比较它们与本实验中使用的双向链表，分析三者在插入与删除操作上的性能差异。</p>
 </li>
 </ul>
 <h4 id="答：-1"><a href="#答：-1" class="headerlink" title="答："></a>答：</h4><ul>
 <li><p>链表实现图示：<br><img align="middle" src='1.png'>  </p>
 </li>
-<li><p>用宏实现链表这一链表设计并不提供提供一个将其他结构体包起来的结构体，而是提供了一种可与其他结构体组合的小结构体。任何一个结构体，只要在自身加入这样一个链表结构体，就能应用链表的各种操作。  </p>
+<li><p>用宏实现链表这一链表设计并不提供提供一个将其他结构体包起来的结构体，而是提供了一种可与其他结构体组合的小结构体；任何一个结构体，只要在自身加入这样一个链表结构体，就能应用链表的各种操作</p>
 </li>
 <li><p>好处：</p>
 <ul>
-<li><p>小结构体添加方便，基本不影响对原结构体的访问； 定义的结构具有很好的扩展性，在实际使用时，可以通过在某一结构体中定义 <code>LIST_ENTRY</code> 链接的指针的总的名称 <code>&#39;field&#39;</code> 使得这一结构体变成可以被链接的对象。</p>
+<li><p>小结构体添加方便，基本不影响对原结构体的访问； 定义的结构具有很好的扩展性，在实际使用时，可以通过在某一结构体中定义 <code>LIST_ENTRY</code> 链接的指针的总的名称 <code>&#39;field&#39;</code> 使得这一结构体变成可以被链接的对象</p>
 </li>
 <li><p>小结构体中 <code>le_prev</code> 是一个指针的指针，因此在某个位置前后插入/删除节点时都不需要进行额外的遍历</p>
 </li>
@@ -321,9 +321,12 @@
 <li><p>插入操作：<br>三者的插入操作如下:<br>  <img align="middle" src='6.png'><br>  <img align="middle" src='8.png'><br>  <img align="middle" src='10.png'>  </p>
 <p>  可见：</p>
 <ul>
-<li>单向链表虽然只能向后插入，但是性能最高</li>
-<li>双向链表由于使用了 <code>le_prev</code> ，比循环链表少了一次访存，性能次之</li>
-<li>循环链表操作最复杂，性能最次</li>
+<li><p>单向链表虽然只能向后插入，但是性能最高</p>
+</li>
+<li><p>双向链表由于使用了 <code>le_prev</code> ，比循环链表少了一次访存，性能次之</p>
+</li>
+<li><p>循环链表操作最复杂，性能最次</p>
+</li>
 </ul>
 </li>
 </ul>
@@ -332,15 +335,17 @@
 <li><p>删除操作：<br>三者的删除操作如下:<br>  <img align="middle" src='7.png'><br>  <img align="middle" src='9.png'><br>  <img align="middle" src='11.png'>  </p>
 <p>  可见：</p>
 <ul>
-<li>双向链表与循环链表均可由所给链表项直接执行删除操作；同样，由于使用了 <code>le_prev</code> ，双向链表比循环链表少了两次访存，因此双向链表性能最优，循环链表次之</li>
-<li>单项链表由于所给链表项前一项未知，需要从头开始遍历以找到前置链表项，性能最次</li>
+<li><p>双向链表与循环链表均可由所给链表项直接执行删除操作；同样，由于使用了 <code>le_prev</code> ，双向链表比循环链表少了两次访存，因此双向链表性能最优，循环链表次之</p>
+</li>
+<li><p>单项链表由于所给链表项前一项未知，需要从头开始遍历以找到前置链表项，性能最次</p>
+</li>
 </ul>
 </li>
 </ul>
 </li>
 </ul>
 <p><br></p>
-<h4 id="Thinking-2-3"><a href="#Thinking-2-3" class="headerlink" title="Thinking 2.3"></a>Thinking 2.3</h4><p>请阅读 include/queue.h 以及 include/pmap.h, 将 Page_list 的结构梳理清楚，选择正确的展开结构</p>
+<h4 id="Thinking-2-3"><a href="#Thinking-2-3" class="headerlink" title="Thinking 2.3"></a>Thinking 2.3</h4><p>请阅读 <code>include/queue.h</code> 以及 <code>include/pmap.h</code> ，将 <code>Page_list</code> 的结构梳理清楚，选择正确的展开结构</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">A:</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Page_list</span>&#123;</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> &#123;</span></span><br><span class="line">        <span class="class"><span class="keyword">struct</span> &#123;</span></span><br><span class="line">            <span class="class"><span class="keyword">struct</span> <span class="title">Page</span> *<span class="title">le_next</span>;</span></span><br><span class="line">            <span class="class"><span class="keyword">struct</span> <span class="title">Page</span> **<span class="title">le_prev</span>;</span></span><br><span class="line">        &#125;* pp_link;</span><br><span class="line">        u_short pp_ref;</span><br><span class="line">    &#125;* lh_first;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">B:</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Page_list</span>&#123;</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> &#123;</span></span><br><span class="line">        <span class="class"><span class="keyword">struct</span> &#123;</span></span><br><span class="line">            <span class="class"><span class="keyword">struct</span> <span class="title">Page</span> *<span class="title">le_next</span>;</span></span><br><span class="line">            <span class="class"><span class="keyword">struct</span> <span class="title">Page</span> **<span class="title">le_prev</span>;</span></span><br><span class="line">        &#125; pp_link;</span><br><span class="line">        u_short pp_ref;</span><br><span class="line">    &#125; lh_first;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">C:</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Page_list</span>&#123;</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> &#123;</span></span><br><span class="line">        <span class="class"><span class="keyword">struct</span> &#123;</span></span><br><span class="line">            <span class="class"><span class="keyword">struct</span> <span class="title">Page</span> *<span class="title">le_next</span>;</span></span><br><span class="line">            <span class="class"><span class="keyword">struct</span> <span class="title">Page</span> **<span class="title">le_prev</span>;</span></span><br><span class="line">        &#125; pp_link;</span><br><span class="line">        u_short pp_ref;</span><br><span class="line">    &#125;* lh_first;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -362,71 +367,58 @@
 </li>
 </ul>
 <p><br></p>
-<h4 id="Thinking-2-4"><a href="#Thinking-2-4" class="headerlink" title="Thinking 2.4"></a>Thinking 2.4</h4><p>请你寻找上述两个 boot_* 函数在何处被调用。</p>
+<h4 id="Thinking-2-4"><a href="#Thinking-2-4" class="headerlink" title="Thinking 2.4"></a>Thinking 2.4</h4><p>请你寻找上述两个 <code>boot_*</code> 函数在何处被调用。<br>  &emsp;<em>( boot_pgdir_walk &amp; boot_map_segment )</em></p>
 <h4 id="答：-3"><a href="#答：-3" class="headerlink" title="答："></a>答：</h4><ul>
-<li><p>系统内核加载程序段地址分配为:<br><img align="middle" src='14.png'><br><img align="middle" src='12.png'>  </p>
+<li><p><code>Linux</code> 的 <code>grep</code> 指令可用于查找内容包含指定的范本样式的文件，并把含有范本样式的那一列显示出来  </p>
 </li>
-<li><p>实验代码（自己编写的一个实例程序）的加载程序段地址分配为：<br><img align="middle" src='15.png'><br><img align="middle" src='13.png'>  </p>
+<li><p>何处调用 <code>boot_pgdir_walk</code> 函数：<br><img align="middle" src='17.png'>  </p>
 </li>
-<li><p>由两个程序加载后的段地址可知，可见，系统内核在加载程序段时能保证进行内核加载时为<strong>页对齐</strong>的，而自己编写的程序并<strong>不能</strong>保证加载时页对齐，想要自己的程序在加载时页对齐，需要自定义或修改链接器在连接时的行为</p>
+<li><p>何处调用 <code>boot_map_segment</code> 函数：<br><img align="middle" src='18.png'>  </p>
 </li>
 </ul>
 <p><br></p>
 <h4 id="Thinking-2-5"><a href="#Thinking-2-5" class="headerlink" title="Thinking 2.5"></a>Thinking 2.5</h4><p>请你思考下述两个问题：</p>
 <ul>
-<li><p>请阅读上面有关 R3000-TLB 的叙述，从虚拟内存的实现角度，阐述 ASID 的必要性</p>
+<li><p>请阅读上面有关 <code>R3000-TLB</code> 的叙述，从虚拟内存的实现角度，阐述 <code>ASID</code> 的必要性</p>
 </li>
-<li><p>请阅读《IDT R30xx Family Software Reference Manual》的 Chapter 6，结合 ASID 段的位数，说明 R3000 中可容纳不同的地址空间的最大数量</p>
+<li><p>请阅读 <code>《IDT R30xx Family Software Reference Manual》</code> 的 <code>Chapter 6</code> ，结合 <code>ASID</code> 段的位数，说明 <code>R3000</code> 中可容纳不同的地址空间的最大数量</p>
 </li>
 </ul>
 <h4 id="答：-4"><a href="#答：-4" class="headerlink" title="答："></a>答：</h4><ul>
-<li><p>内核入口位于 <code>start.S</code> 中的 <code>_start</code> 函数（标号使用 <code>LEAF</code> 宏定义，该宏完成初始化堆栈等工作，以辅助函数调用）</p>
+<li><p><code>ASID（address space identifier）</code> 是用于区分 <code>TLB</code> 中不同进程的一个标识符，由于操作系统可以同时运行多个进程，因此在 <code>CPU</code> 的系统寄存器中设置 <code>ASID</code> ，这样不同进程会拥有不同的 <code>ASID</code> ，多者都在 <code>TLB</code> 中，这样当一个进程占据 <code>CPU</code> 的时候，不会使用其他进程的页表项，因此操作系统切换进程的时候， <code>TLB</code> 中原本的映射还存在，也不需要重新加载（最坏情况会增加 <code>64</code> 次的缺页中断），这提高了 <code>TLB</code> 效率  </p>
 </li>
-<li><p><code>main</code> 函数在 <code>./init/main.c</code>中</p>
-</li>
-<li><p>我们通过一条 <code>jal main</code> 指令调用 <code>main</code></p>
-</li>
-<li><p>跨文件调用时，跳转地址为一个标签，由链接器在连接过程中重定位至函数的真正地址</p>
+<li><p><code>EntryHi, EntryLo</code> 寄存器划分：<br><img align="middle" src='22.png'><br>由上图可知<code>ASID</code> 段的位数为 <code>6</code> 位，因此可容纳不同的地址空间的最大数量为 2<sup>6</sup> = 64 </p>
 </li>
 </ul>
 <p><br></p>
 <h4 id="Thinking-2-6"><a href="#Thinking-2-6" class="headerlink" title="Thinking 2.6"></a>Thinking 2.6</h4><p>请你完成如下三个任务： </p>
 <ul>
-<li><p>tlb_invalidate 和 tlb_out 的调用关系是怎样的？</p>
+<li><p><code>tlb_invalidate</code> 和 <code>tlb_out</code> 的调用关系是怎样的？</p>
 </li>
-<li><p>请用一句话概括 tlb_invalidate 的作用</p>
+<li><p>请用一句话概括 <code>tlb_invalidate</code> 的作用</p>
 </li>
-<li><p>逐行解释 tlb_out 中的汇编代码</p>
+<li><p>逐行解释 <code>tlb_out</code> 中的汇编代码</p>
 </li>
 </ul>
 <h4 id="答：-5"><a href="#答：-5" class="headerlink" title="答："></a>答：</h4><ul>
-<li><p>宏代换后的代码为</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;* Disable interrupts *&#x2F;</span><br><span class="line">mtc0 zero, $12</span><br><span class="line">......</span><br><span class="line">&#x2F;* disable kernel mode cache *&#x2F;</span><br><span class="line">mfc0 t0, $16</span><br><span class="line">and t0, ~0x7</span><br><span class="line">ori t0, 0x2</span><br><span class="line">mtc0 t0, $16</span><br></pre></td></tr></table></figure>
-</li>
-<li><p><code>mtc0 zero, $12</code></p>
+<li><p><code>tlb_invalidate</code> 和 <code>tlb_out</code> 的调用关系：</p>
 <ul>
-<li><p>读/写寄存器：<br>使状态寄存器 <strong>SR</strong> <code>(Status Register)</code> 全部位置 <code>0</code></p>
+<li><p><code>tlb_invalidate</code> 的实现：<br><img align="middle" src='19.png'>  </p>
 </li>
-<li><p>达到目的：<br><strong>禁用了中断</strong>  </p>
+<li><p><code>tlb_out</code> 的定义及实现：<br><img align="middle" src='20.png'>  </p>
 </li>
-<li><img align="middle" src='7.png'>  </li>
+<li><p>可知 <code>tlb_invalidate</code> 通过调用 <code>tlb_out</code> 完成其功能</p>
+</li>
 </ul>
 </li>
-<li><p><code>mfc0 t0, $16</code><br><code>and t0, ~0x7</code><br><code>ori t0, 0x2</code><br><code>mtc0 t0, $16</code></p>
-<ul>
-<li><p>读/写寄存器：<br>取出 <code>CP0</code> 第16号寄存器 <code>Config</code>（CPU参数设置寄存器）,并将后三位置 <code>0</code>，再将第二位置 <code>1</code>，并写回 <code>Config</code> 寄存器</p>
+<li><p><code>tlb_invalidate</code> 的作用：<br>对给定特定进程的 <code>context</code> ，这个函数可以让这个进程对应页表中的这个虚拟地址对应的 <code>TLB</code> 表项失效</p>
 </li>
-<li><p>达到目的：<br><strong>禁用了内核模式缓存（Cache）</strong>  </p>
-</li>
-<li><img align="middle" src='8.png'>  </li>
-<li><img align="middle" src='9.png'>  </li>
-<li><img align="middle" src='10.png'>  </li>
-<li><img align="middle" src='11.png'>  </li>
-</ul>
+<li><p>逐行解释如下：</p>
+<figure class="highlight mips"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">LEAF(tlb_out)  <span class="comment"># 函数开头</span></span><br><span class="line"><span class="keyword">nop</span></span><br><span class="line"><span class="keyword"> </span>   <span class="comment"># 保存 CP0_ENTRYHI 中数值至 $k1</span></span><br><span class="line">    <span class="keyword">mfc0 </span>   <span class="built_in">k1</span>, CP0_ENTRYHI  </span><br><span class="line">    <span class="comment"># 将 $a0 (键值：u_int entryhi) 中数值写入到 CP0_ENTRYHI</span></span><br><span class="line">    <span class="keyword">mtc0 </span>   <span class="built_in">a0</span>, CP0_ENTRYHI  </span><br><span class="line">    <span class="keyword">nop</span></span><br><span class="line"><span class="keyword"> </span>   <span class="comment"># 用于查看 TLB 是否可以转换虚拟地址（即命中与否），</span></span><br><span class="line">    <span class="comment"># 根据 CP0_ENTRYHI 中的 Key（包含 VPN 与 ASID），</span></span><br><span class="line">    <span class="comment"># 查找 TLB 中与之对应的表项；如果命中，并将表项的索引存入 CP0_INDEX 寄存器；</span></span><br><span class="line">    <span class="comment"># 若未找到匹配项，则 CP0_INDEX 最高位被置 1</span></span><br><span class="line">    <span class="keyword">tlbp </span> </span><br><span class="line">    <span class="keyword">nop</span></span><br><span class="line"><span class="keyword"> </span>   <span class="keyword">nop</span></span><br><span class="line"><span class="keyword"> </span>   <span class="keyword">nop</span></span><br><span class="line"><span class="keyword"> </span>   <span class="keyword">nop</span></span><br><span class="line"><span class="keyword"> </span>   <span class="keyword">nop</span></span><br><span class="line"><span class="keyword"> </span>   <span class="comment"># 将保存着查询结果的 Index 寄存器保存至 $k0</span></span><br><span class="line">    <span class="keyword">mfc0 </span>   <span class="built_in">k0</span>, CP0_INDEX  </span><br><span class="line"></span><br><span class="line">    <span class="comment"># 将 $k0 的值（也就是 Index 寄存器的值）与 0 比较，</span></span><br><span class="line">    <span class="comment"># 判断是否查询成功（ Index 最高位置 1 会使寄存器值变为负数），</span></span><br><span class="line">    <span class="comment"># 查询失败（没有查到）则进入 NOFOUND</span></span><br><span class="line">    <span class="keyword">bltz </span>   <span class="built_in">k0</span>,NOFOUND  </span><br><span class="line">    <span class="keyword">nop</span></span><br><span class="line"><span class="keyword"> </span>   <span class="comment"># 将 CP0_ENTRYHI 清零</span></span><br><span class="line">    <span class="keyword">mtc0 </span>   <span class="built_in">zero</span>, CP0_ENTRYHI</span><br><span class="line">    <span class="comment"># 将 CP0_ENTRYLO0 清零</span></span><br><span class="line">    <span class="keyword">mtc0 </span>   <span class="built_in">zero</span>, CP0_ENTRYLO0</span><br><span class="line">    <span class="keyword">nop</span></span><br><span class="line"><span class="keyword"> </span>   <span class="comment"># 将 CP0_ENTRYHI 和 CP0_ENTRYLO0 的内容写入 CP0_INDEX 对应的 TLB 条目</span></span><br><span class="line">    <span class="keyword">tlbwi</span></span><br><span class="line"><span class="keyword"> </span>   <span class="keyword">nop</span></span><br><span class="line"><span class="keyword">NOFOUND:</span></span><br><span class="line"><span class="keyword"> </span>   <span class="comment"># 查询失败，恢复 CP0_ENTRYHI</span></span><br><span class="line">    <span class="keyword">mtc0 </span>   <span class="built_in">k1</span>, CP0_ENTRYHI</span><br><span class="line">    <span class="comment"># 函数返回</span></span><br><span class="line">    <span class="keyword">j </span>  <span class="built_in">ra</span></span><br><span class="line">    <span class="keyword">nop</span></span><br><span class="line"><span class="keyword">END(tlb_out) </span> <span class="comment"># 函数结束</span></span><br></pre></td></tr></table></figure>
 </li>
 </ul>
 <p><br></p>
-<h4 id="Thinking-2-7"><a href="#Thinking-2-7" class="headerlink" title="Thinking 2.7"></a>Thinking 2.7</h4><p>在现代的 64 位系统中，提供了 64 位的字长，但实际上不是 64 位页式存储系统。假设在 64 位系统中采用三级页表机制，页面大小 4KB。由于 64 位系统中字长为 8B，且页目录也占用一页，因此页目录中有 512 个页目录项，因此每级页表都需要 9 位。因此在 64 位系统下，总共需要 3 × 9 + 12 = 39 位就可以实现三级页表机制，并不需要 64 位。现考虑上述 39 位的三级页式存储系统，虚拟地址空间为 512 GB，若记三级页表的基地址为 PTbase ，请你计算：</p>
+<h4 id="Thinking-2-7"><a href="#Thinking-2-7" class="headerlink" title="Thinking 2.7"></a>Thinking 2.7</h4><p>在现代的 <code>64</code> 位系统中，提供了 <code>64</code> 位的字长，但实际上不是 <code>64</code> 位页式存储系统。假设在 <code>64</code> 位系统中采用三级页表机制，页面大小 <code>4KB</code>。由于 <code>64</code> 位系统中字长为 <code>8B</code> ，且页目录也占用一页，因此页目录中有 <code>512</code> 个页目录项，因此每级页表都需要 <code>9</code> 位。因此在 <code>64</code> 位系统下，总共需要 <code>3 × 9 + 12 = 39</code> 位就可以实现三级页表机制，并不需要 <code>64</code> 位。现考虑上述 <code>39</code> 位的三级页式存储系统，虚拟地址空间为 <code>512 GB</code>，若记三级页表的基地址为 <code>PTbase</code> ，请你计算：</p>
 <ul>
 <li><p>三级页表页目录的基地址</p>
 </li>
@@ -446,9 +438,9 @@
 <p><br></p>
 <h4 id="Thinking-2-8"><a href="#Thinking-2-8" class="headerlink" title="Thinking 2.8"></a>Thinking 2.8</h4><p>任选下述二者之一回答：</p>
 <ul>
-<li><p>简单了解并叙述 X86 体系结构中的内存管理机制，比较 X86 和 MIPS 在内存管理上的区别。</p>
+<li><p>简单了解并叙述 <code>X86</code> 体系结构中的内存管理机制，比较 <code>X86</code> 和 <code>MIPS</code> 在内存管理上的区别。</p>
 </li>
-<li><p>简单了解并叙述 RISC-V 中的内存管理机制，比较 RISC-V 与 MIPS 在内存管理上的区别。</p>
+<li><p>简单了解并叙述 <code>RISC-V</code> 中的内存管理机制，比较 <code>RISC-V</code> 与 <code>MIPS</code> 在内存管理上的区别。</p>
 </li>
 </ul>
 <h4 id="答：-7"><a href="#答：-7" class="headerlink" title="答："></a>答：</h4><ul>

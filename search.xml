@@ -23,9 +23,9 @@
     
     
     <entry>
-      <title></title>
-      <link href="/categories/index.html"/>
-      <url>/categories/index.html</url>
+      <title>Archives</title>
+      <link href="/archive/index.html"/>
+      <url>/archive/index.html</url>
       
     </entry>
     
@@ -41,9 +41,9 @@
     
     
     <entry>
-      <title>Archives</title>
-      <link href="/archive/index.html"/>
-      <url>/archive/index.html</url>
+      <title></title>
+      <link href="/categories/index.html"/>
+      <url>/categories/index.html</url>
       
     </entry>
     
