@@ -121,7 +121,7 @@
 	       
                             <div class="blank_box"></div>
                             <span class="meta">
-                                 <span class="post-count">3.1k</span> Words
+                                 <span class="post-count">3.2k</span> Words
                             </span>
                             <div class="blank_box"></div>
                             <!-- 不蒜子统计 start -->
@@ -198,12 +198,12 @@
                     
 
                         
+                    
+
+                        
                         	<li>
                           	  <a href="/tags/">Tags</a>
                         	</li>
-                        
-                    
-
                         
                     
 
@@ -450,7 +450,7 @@
 </li>
 <li><p>第三级页表对应第二级页表页目录项： <code>(64 / 8) * (PTbase / 0x1000)</code></p>
 </li>
-<li><p>因此第二级页表项基地址： <code>PMDbase = (PTbase + (64 / 8) * (PTbase / 0x1000))</code></p>
+<li><p>因此第二级页表项基地址： <code>PMDbase = (PTbase + (64 / 8) * (PTbase / 0x1000))</code> （此即为 <code>三级页表页目录的基地址</code>）</p>
 </li>
 <li><p>第二级页表总页表项个数： <code>512<sup>2</sup> = 2<sup>18</sup> (项)</code></p>
 </li>
