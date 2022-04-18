@@ -188,6 +188,9 @@
                     
 
                         
+                    
+
+                        
                         	<li>
                           	  <a href="/about/">About Tan</a>
                         	</li>
@@ -198,9 +201,6 @@
                         	<li>
                           	  <a href="/tags/">Tags</a>
                         	</li>
-                        
-                    
-
                         
                     
 
@@ -426,6 +426,8 @@
 </li>
 </ul>
 <h4 id="答：-6"><a href="#答：-6" class="headerlink" title="答："></a>答：</h4><ul>
+<li><p>39位 -&gt; 需要用一个字（64位）存储，其中低 39 位为有效位，高位置零</p>
+</li>
 <li><p>总虚拟地址空间： <code>512GB -&gt; 0x8000000000 (0x0000000000 ~ 0x7FFFFFFFFF)</code></p>
 </li>
 <li><p>页面大小： <code>4KB</code></p>
@@ -440,39 +442,41 @@
 </li>
 <li><p>每个页表项对应地址空间大小： <code>0x8000000000 / 2<sup>27</sup> = 0x1000</code></p>
 </li>
-<li><p>第三级页表对应页表项： 第 <code>PTbase / 0x1000</code> 个页表项</p>
+<li><p>第三级页表对应二级页表项： 第 <code>PTbase / 0x1000</code> 个页表项</p>
 </li>
-<li><p>第三级页表占用空间： <code>(39 / 8) * 2<sup>27</sup> = 0x4E000000 </code></p>
+<li><p>第三级页表占用空间： <code>(64 / 8) * 2<sup>27</sup> = 0x40000000 </code></p>
 </li>
-<li><p>第三级页表对应地址空间： <code>PTbase ~ (PTbase + 0x4E000000)</code></p>
+<li><p>第三级页表对应地址空间： <code>(PTbase) ~ (PTbase + 0x400000000)</code></p>
 </li>
-<li><p>第三级页表对应第二级页表页目录项： <code>(39 / 8) * (PTbase / 0x1000)</code></p>
+<li><p>第三级页表对应第二级页表页目录项： <code>(64 / 8) * (PTbase / 0x1000)</code></p>
 </li>
-<li><p>因此第二级页表项基地址： <code>PMDbase = (PTbase + (39 / 8) * (PTbase / 0x1000))</code></p>
+<li><p>因此第二级页表项基地址： <code>PMDbase = (PTbase + (64 / 8) * (PTbase / 0x1000))</code></p>
 </li>
 <li><p>第二级页表总页表项个数： <code>512<sup>2</sup> = 2<sup>18</sup> (项)</code></p>
 </li>
-<li><p>每个页表项对应地址空间大小： <code>0x4E000000 / 2<sup>18</sup> = 0x9C0</code></p>
+<li><p>每个页表项对应地址空间大小： <code>0x400000000 / 2<sup>18</sup> = 0x1000</code></p>
 </li>
-<li><p>第二级页表对应页表项： <code>(PMDbase - PTbase) / 0x9C0</code></p>
+<li><p>第二级页表对应一级页表项： 第 <code>(PMDbase - PTbase) / 0x1000</code> 个页表项</p>
 </li>
-<li><p>第二级页表占用空间： <code>(39 / 8) * 2<sup>18</sup> = 0x2000000 </code></p>
+<li><p>第二级页表占用空间： <code>(64 / 8) * 2<sup>18</sup> = 0x200000 </code></p>
 </li>
-<li><p>第二级页表对应地址空间： <code>PMDbase ~ (PMDbase + 0x2000000)</code></p>
+<li><p>第二级页表对应地址空间： <code>(PMDbase) ~ (PMDbase + 0x200000)</code></p>
 </li>
-<li><p>第二级页表对应第一级页表页目录项： <code>(39 / 8) * ((PMDbase - PTbase) / 0x9C0)</code></p>
+<li><p>第二级页表对应第一级页表页目录项： <code>(64 / 8) * ((PMDbase - PTbase) / 0x1000)</code></p>
 </li>
-<li><p>因此第一级页表项基地址： <code>PGDbase = (PMDbase + (39 / 8) * ((PMDbase - PTbase) / 0x9C0))</code></p>
+<li><p>因此第一级页表项基地址： <code>PGDbase = (PMDbase + (64 / 8) * ((PMDbase - PTbase) / 0x1000))</code></p>
 </li>
 <li><p>第一级页表总页表项个数： <code>512 = 2<sup>9</sup> (项)</code></p>
 </li>
-<li><p>每个页表项对应地址空间大小： <code>0x2000000 / 2<sup>9</sup> = 0x10000</code></p>
+<li><p>每个页表项对应地址空间大小： <code>0x200000 / 2<sup>9</sup> = 0x1000</code></p>
 </li>
-<li><p>第一级页表对应页表项： <code>(PGDbase - PMDbase) / 0x</code></p>
+<li><p>第一级页表对应根页表项： 第 <code>(PGDbase - PMDbase) / 0x1000</code> 个页表项</p>
 </li>
-<li><p>第一级页表占用空间： <code>(39 / 8) * 2<sup>18</sup> = 0x2000000 </code></p>
+<li><p>第一级页表占用空间： <code>(64 / 8) * 2<sup>9</sup> = 0x1000 </code></p>
 </li>
-<li><p>第一级页表对应地址空间： <code>PMDbase ~ (PMDbase + 0x2000000)</code></p>
+<li><p>第一级页表对应地址空间： <code>PGDbase ~ (PGDbase + 0x1000)</code></p>
+</li>
+<li><p>因此，映射到页目录自身的页目录项的地址为 <code>PGDbase + (64 / 8) * ((PGDbase - PMDbase) / 0x1000)</code></p>
 </li>
 </ul>
 <p><br></p>
@@ -485,7 +489,7 @@
 </ul>
 <h4 id="答：-7"><a href="#答：-7" class="headerlink" title="答："></a>答：</h4><p>简单了解并叙述 <code>x86</code> 体系结构中的内存管理机制，比较 <code>X86</code> 和 <code>MIPS</code> 在内存管理上的区别：、</p>
 <ul>
-<li><p>在 <code>x86</code> 架构中内存被分为三种形式，分别是逻辑地址 <code>(Logical Address)</code> ，线性地址 <code>(Linear Address)</code> 和物理地址 <code>(Physical Address)</code> ；其内存管理分为两个部分：<strong>分段和分页</strong>；分段提供了一种隔离每个进程或者任务代码、数据和栈模块的机制，保证多个进程或者任务能够在同一个处理器上运行而不会互相干扰；分页机制实现了传统请求调页的虚拟内存系统，在这种系统中，程序的执行环境块按需要被映射到物理内存中。分页机制同样可以用来隔离多个任务；对分页和分段机制进行不同的配置，可以分别支持简单的单任务系统、多任务系统或者使用共享内存的多处理器系统</p>
+<li><p>在 <code>x86</code> 架构中内存被分为三种形式，分别是逻辑地址 <code>(Logical Address)</code> ，线性地址 <code>(Linear Address)</code> 和物理地址 <code>(Physical Address)</code> ；其内存管理分为两个部分：<strong>分段和分页</strong><br/><strong>分段</strong>提供了一种隔离每个进程或者任务代码、数据和栈模块的机制，保证多个进程或者任务能够在同一个处理器上运行而不会互相干扰<br/><strong>分页</strong>机制实现了传统请求调页的虚拟内存系统，在这种系统中，程序的执行环境块按需要被映射到物理内存中。分页机制同样可以用来隔离多个任务；对分页和分段机制进行不同的配置，可以分别支持简单的单任务系统、多任务系统或者使用共享内存的多处理器系统</p>
 </li>
 <li><p>而 <code>MIPS</code> 使用内存管理单元 <code>(MMU)</code> 管理内存，内存管理单元 <code>(MMU)</code> 是处理器支持操作系统高效运行的基础，与软件内存管理模块，相结合完成了虚拟地址到物理地址的转换。同时， <code>MMU</code> 能够对处理器发出的地址进行合法性检验，在硬件上提供了内存访问授权控制</p>
 </li>
@@ -498,7 +502,7 @@
 </li>
 <li><p>链表宏定义的代码形式较为陌生，链表结构较为复杂</p>
 </li>
-<li><p>多级页表映射关系较难理解</p>
+<li><p><code>多级页表</code>映射关系较难理解</p>
 </li>
 <li><p><code>TLB</code> 具体实现困难</p>
 </li>
@@ -847,7 +851,7 @@
         
 
         
-            <script type="text/javascript" src="/js/mouse-click.js" content='[&quot;Sunny&quot;, &quot;💖&quot;, &quot;Sunny&quot;, &quot;🧡&quot;, &quot;Sunny&quot;, &quot;💛&quot;, &quot;Sunny&quot; , &quot;💚&quot;, &quot;Sunny&quot;, &quot;💙&quot;, &quot;Sunny&quot;, &quot;💜&quot;, &quot;Sunny&quot;, &quot;😍&quot;]' color='[&quot;rgb(255, 0, 0)&quot; ,&quot;rgb(255, 0, 0)&quot; ,&quot;rgb(255, 125, 0)&quot; ,&quot;rgb(255, 125, 0)&quot; ,&quot;rgb(255, 255, 0)&quot; ,&quot;rgb(255, 255, 0)&quot; ,&quot;rgb(0, 255, 0)&quot; ,&quot;rgb(0, 255, 0)&quot; ,&quot;rgb(0, 255, 255)&quot; ,&quot;rgb(0, 255, 255)&quot; ,&quot;rgb(0, 0, 255)&quot; ,&quot;rgb(0, 0, 255)&quot; ,&quot;rgb(255, 0, 255)&quot; ,&quot;rgb(255, 0, 255)&quot;]'></script>
+            <script type="text/javascript" src="/js/mouse-click.js" content='[&#34;Sunny&#34;, &#34;💖&#34;, &#34;Sunny&#34;, &#34;🧡&#34;, &#34;Sunny&#34;, &#34;💛&#34;, &#34;Sunny&#34; , &#34;💚&#34;, &#34;Sunny&#34;, &#34;💙&#34;, &#34;Sunny&#34;, &#34;💜&#34;, &#34;Sunny&#34;, &#34;😍&#34;]' color='[&#34;rgb(255, 0, 0)&#34; ,&#34;rgb(255, 0, 0)&#34; ,&#34;rgb(255, 125, 0)&#34; ,&#34;rgb(255, 125, 0)&#34; ,&#34;rgb(255, 255, 0)&#34; ,&#34;rgb(255, 255, 0)&#34; ,&#34;rgb(0, 255, 0)&#34; ,&#34;rgb(0, 255, 0)&#34; ,&#34;rgb(0, 255, 255)&#34; ,&#34;rgb(0, 255, 255)&#34; ,&#34;rgb(0, 0, 255)&#34; ,&#34;rgb(0, 0, 255)&#34; ,&#34;rgb(255, 0, 255)&#34; ,&#34;rgb(255, 0, 255)&#34;]'></script>
         
 
         <!-- background effects end -->
@@ -857,21 +861,6 @@
     
         <script src="/js/ribbonDynamic.js"></script>
     
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
-            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-            processEscapes: true
-        }
-    });
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax();
-        for (var i = 0; i < all.length; ++i)
-            all[i].SourceElement().parentNode.className += ' has-jax';
-    });
-</script>
-<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 </body>
 
 </html>
