@@ -16,11 +16,11 @@
     <!--<link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>-->
     <title>
         
-          OO - P1 - Tan&#39;s Blog
+          OO - P6 - Tan&#39;s Blog
         
     </title>
 
-    <link rel="canonical" href="https://master-tan.github.io/2022/03/04/OO - P1/">
+    <link rel="canonical" href="https://master-tan.github.io/2022/04/19/OO - P6/">
 
     <!-- Bootstrap Core CSS -->
     
@@ -108,20 +108,18 @@
                     <div class="post-heading">
                         <div class="tags">
                             
-                              <a class="tag" href="/tags/#OO" title="OO">OO</a>
-                            
                         </div>
-                        <h1>OO - P1</h1>
-                        <h2 class="subheading">OO第一单元第一次作业</h2>
+                        <h1>OO - P6</h1>
+                        <h2 class="subheading"></h2>
                         <span class="meta">
                             Posted by Tan on
-                            2022-03-04
+                            2022-04-19
                         </span>
 
 	       
                             <div class="blank_box"></div>
                             <span class="meta">
-                                 <span class="post-count">1.5k</span> Words
+                                 <span class="post-count">1.6k</span> Words
                             </span>
                             <div class="blank_box"></div>
                             <!-- 不蒜子统计 start -->
@@ -260,154 +258,130 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <h1 id="面向对象设计与构造第一单元第一次作业"><a href="#面向对象设计与构造第一单元第一次作业" class="headerlink" title="面向对象设计与构造第一单元第一次作业"></a>面向对象设计与构造第一单元第一次作业</h1><h4 id="表达式展开"><a href="#表达式展开" class="headerlink" title="表达式展开"></a>表达式展开</h4><p><br></p>
+                <h1 id="面向对象设计与构造第二单元第一次作业"><a href="#面向对象设计与构造第二单元第一次作业" class="headerlink" title="面向对象设计与构造第二单元第一次作业"></a>面向对象设计与构造第二单元第一次作业</h1><h4 id="多线程实时电梯系统"><a href="#多线程实时电梯系统" class="headerlink" title="多线程实时电梯系统"></a>多线程实时电梯系统</h4><p><br></p>
 <hr>
-<h3 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h3><p><a href="../OO - P1 - Question">题目链接</a></p>
+<h3 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h3><p><a href="../OO - P6 - Question">题目链接</a></p>
 <p><br></p>
 <hr>
-<h3 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h3><p>我们要做的是对单变量多项式的括号展开，并且化简输出，所以我的思路为分为两步：</p>
-<ul>
-<li><b>1.</b> 将输入表达式转化为后缀表达式 <b>（展开括号）</b></li>
-<li><b>2.</b> 将后缀表达式计算并化简为顺序结果 <b>（计算结果）</b></li>
-</ul>
-<p>首先，用递归下降法解析输入，将输入的表达式进行化简和拆解，得到一个不含括号的后缀表达式字符串。接着再按照多项式运算规则进行运算并合并同类项，最后结果进行排序，最后输出结果。</p>
-<p><br></p>
-<hr>
-<h3 id="基本思路"><a href="#基本思路" class="headerlink" title="基本思路"></a>基本思路</h3><p>我的代码分为了两大部分，分别实现两种相互独立的功能，并用main函数实现连接</p>
-<ul>
-<li><p><code>1.</code>递归下降法求后缀表达式</p>
-<ul>
-<li><p>简单介绍一下递归下降算法：</p>
-<p>递归下降是一种根据形式化语法对字符串进行解析的算法。</p>
-<p>递归下降的思想是对于每一个语法元素，都用单独的函数对其进行读取。其中难点在于因子的解析，使用递归下降时只要直接调用对应的解析函数 parseXXX() 即可。</p>
-<p>parseXXX() 的要点在于，调用时要只要保证当前位置恰好在 XXX 的开头，而且调用完他就能解析完这个元素，而具体这些儿子部分是怎么解析的就交给对应的方法。这个方法比较像分治。  </p>
-<font size="1">-- （此段介绍来自roife's blog）</font>
-
-<p><br></p>
+<h3 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h3><ul>
+<li><p>本次作业在第一次的基础之上增加了横向电梯以及同楼层/楼座的多台电梯<br><br></p>
 </li>
-<li><p>首先对表达式进行预处理</p>
+<li><p>本单元虽然新增横向电梯，但是横向电梯<br><br></p>
+</li>
+<li><p>使用 <code>生产者-消费者</code> 模式，与 <code>乘客-电梯</code> 相对应<br><br></p>
+</li>
+<li><p>使用 <code>策略类—电梯类</code> 分离模式，让电梯的运行与策略分离，并且电梯作为线程类，在其自身的 <code>run</code> 方法中保证输出的正确性<br><br></p>
+</li>
+<li><p>应用工厂模式，电梯捎带策略类均实现 <code>DecisionMaker</code> 接口，以实现在策略之间的转换<br><br></p>
+</li>
+</ul>
+<hr>
+<h3 id="基本思路"><a href="#基本思路" class="headerlink" title="基本思路"></a>基本思路</h3><ul>
+<li><p>输入：乘客输入经过 <code>InputThread</code> 类进入请求池，由于请求进入请求池的前后顺序无要求，并且请求之间互不影响，因此此过程并不会产生线程安全问题<br><br></p>
+</li>
+<li><p>输出：电梯或乘客在执行动作的时候需要调用 <code>OutputThread</code> 类的一个 <strong>静态的</strong> <strong>加锁的</strong> 方法来输出，因为官方所给的输出包是线程不安全的，在同时调用的时候会由于线程的冲突而导致输出时间戳 <strong>有可能不递增</strong> ，所以需要在此类把官方输出方法加锁使其线程安全<br><br></p>
+</li>
+<li><p>控制器：本程序的控制器起到开始时的建立请求池实例，建立所有电梯线程实例并开始线程，结束时的通知程序中止作用（并不起调度作用），相当于使程序开始和结束的控制者<br><br></p>
+</li>
+<li><p>策略：接受当前电梯的状态和请求池中的请求，然后对电梯返回一种 <strong>策略</strong> （注意可能并不会真正执行），由于对每个电梯都有一个专门的策略类实例，所以这种一对一传输并不会产生线程安全问题</p>
+<p>（LOOK算法）其思想如下：</p>
+<ul>
+<li><p>如果电梯没人</p>
+<ul>
+<li><p>如果没请求，则等待</p>
+</li>
+<li><p>如果有请求，沿原方向前进（原来是等待则沿另一个方向前进）</p>
+</li>
+</ul>
+</li>
+<li><p>如果电梯有人</p>
+<ul>
+<li><p>判断当前是否需要开门</p>
+</li>
+<li><p>如果不用开门，则沿原方向前进</p>
+</li>
+</ul>
+</li>
+</ul>
+<p><font size="1"> 虽然不知道原理是啥，但是学长都是这么用的（逃） </font><br><br></p>
+</li>
+<li><p>请求池操作：该类相当于 <code>生产者-消费者</code> 模型中的 <code>托盘</code>，由于该对象被多线程同时访问 / 修改，所以该类中的所有 <strong>修改请求池</strong> 的方法均应该加上<strong>同一个</strong>锁，以此来保证线程安全<br><br></p>
+</li>
+<li><p>电梯：每一个电梯都是一个单独的线程，电梯之间互不干扰，电梯的行动完全由其对应的策略类决定，并且在其 <code>run()</code> 方法中保证电梯的正确性，并且加入了回退机制以实现 <code>&quot;电梯空等后接第一个人时可以实现一次跃迁节省一次电梯移动时间&quot;</code> 以及 <code>&quot;电梯的关门和移动未完成时，如果有新的客人请求可以直接让电梯受理&quot;</code> 的功能<br><br></p>
+</li>
+<li><p>程序结束：在 <code>InputThread</code>类判断到输入截止之后，输入线程终止，并且将调用控制器的 <code>close()</code> 方法，进而调用请求池的 <code>close()</code> 方法，请求池将所有电梯的 <code>isClose</code> 置位，并且唤醒所有线程，然后电梯在载完请求池中该栋以及当前在电梯中的所有客人后 <code>break</code> 出 <code>while(true)</code> 循环，电梯线程终止，所有电梯线程终止后，程序正常结束<br><br></p>
+</li>
+</ul>
+<hr>
+<h3 id="具体实现"><a href="#具体实现" class="headerlink" title="具体实现"></a>具体实现</h3><h4 id="总UML类图："><a href="#总UML类图：" class="headerlink" title="总UML类图："></a>总UML类图：</h4><p><img src="MainClass.png"/></p>
+<ul>
+<li><h4 id="读入处理类-InputThread"><a href="#读入处理类-InputThread" class="headerlink" title="读入处理类 InputThread"></a>读入处理类 <code>InputThread</code></h4><p><img src="1.png"/>  </p>
+<ul>
+<li>开启官方包的输入线程，获得输入的请求，并将每一个输入请求传递到<code>Controller</code> 类中</li>
+<li>在官方包传出终止信号时，调用 <code>Controller</code> 的 <code>close</code> 方法<br><br></li>
+</ul>
+</li>
+<li><h4 id="输出处理类-OutputThread"><a href="#输出处理类-OutputThread" class="headerlink" title="输出处理类 OutputThread"></a>输出处理类 <code>OutputThread</code></h4><p><img src="2.png"/>  </p>
+<ul>
+<li>用一个 <code>synchronized</code> 的 <code>static</code> 方法，对官方给的线程不安全的输出方法 <code>TimableOutput.println()</code> 进行封装，使其成为线程安全的静态方法 <code>OutputThread.println()</code> （即调用时不会出现时间戳不递增的情况）<br><br></li>
+</ul>
+</li>
+<li><h4 id="控制器类-Controller"><a href="#控制器类-Controller" class="headerlink" title="控制器类 Controller"></a>控制器类 <code>Controller</code></h4><p><img src="3.png"/>  </p>
+<ul>
+<li>创建请求池类（ <code>RequestPool</code> 类）的实例</li>
+<li>创建所有电梯线程（ <code>Elevator</code> 类）并开始运行（处于可接客状态）</li>
+<li>为每一个电梯创建一个决策者实例 <code>DecisionMaker</code></li>
+<li>在接收到读入处理类 （ <code>InputThread</code> 类）的 <code>close</code> 请求后，调用请求池类（ <code>RequestPool</code> 类 ）的 <code>close</code> 方法通知其进入停止状态<br><br></li>
+</ul>
+</li>
+<li><h4 id="请求池类-RequestPool"><a href="#请求池类-RequestPool" class="headerlink" title="请求池类 RequestPool"></a>请求池类 <code>RequestPool</code></h4><p><img src="4.png"/>  </p>
+<ul>
+<li>线程安全类，采用了 <code>ReentrantLock</code> 锁，所有对请求池读 / 写的方法均上锁，以保证线程安全</li>
+<li>实现向请求池添加请求 <code>addRequest</code> ，从请求池删除（获得）请求 <code>removeRequest</code> ，查询当前请求池中所有请求 <code>getAllRequest</code></li>
+<li>储存所有的电梯信息</li>
+<li>在添加请求时，唤醒 <strong>所有</strong> 电梯中正在 <code>await</code> 的线程，达到实时判断乘客的效果</li>
+<li>控制器（ <code>Controller</code> 类）传入关闭方法时，将本类的 <code>isClose</code> 置 <code>1</code> ，并且将 <strong>所有</strong> 电梯的 <code>isClose</code> 置 <code>1</code></li>
+</ul>
+</li>
+<li><h4 id="电梯类-Elevator"><a href="#电梯类-Elevator" class="headerlink" title="电梯类 Elevator"></a>电梯类 <code>Elevator</code></h4><p><img src="5.png"/>  </p>
+<ul>
+<li>重写 <code>run()</code> 方法，实现顺序执行 <code>下客-&gt;上客-&gt;关门-&gt;运行一层</code> 的流程，其中每一步均有是否执行的判断条件，只有满足条件才会执行，顺序执行保证了电梯的正确性</li>
+<li>每次下客前和关门前均调用自身对应的决策类的 <code>ask</code> 方法，使决策类根据此时电梯状态和请求池状态更新自身行为，然后访问决策类的方法获得电梯下一步的行动 <strong>建议</strong> （接那些人以及向哪一层移动/空等）</li>
+<li>关门和移动等待时间为电梯上一次 <strong>任意</strong> 操作（ <code>开门/关门/移动</code> ）的系统时间与此时系统时间的差值（保证电梯距上次输出 <code>400ms</code> 即可）<br><br></li>
+</ul>
+</li>
+<li><h4 id="决策类接口-DecisionMaker"><a href="#决策类接口-DecisionMaker" class="headerlink" title="决策类接口 DecisionMaker"></a>决策类接口 <code>DecisionMaker</code></h4><p>  <img src="6.png"/>  </p>
+<ul>
+<li><p>定义了 <code>4</code> 个方法</p>
+<ul>
+<li><p><code>ask()</code> 方法：调用时重新计算当前建议  </p>
+</li>
+<li><p><code>whoToPickUp()</code> 方法：返回需要载客的建议  </p>
+</li>
+<li><p><code>whoToPutDown()</code> 方法：返回需要下客的建议  </p>
+</li>
+<li><p><code>nextDirection()</code> 方法：返回下一步电梯行动方向 / 是否空等的建议  </p>
+</li>
+</ul>
+<p><br></p>
+<ul>
+<li><h5 id="项（乘除）类-LookDecisionMaker"><a href="#项（乘除）类-LookDecisionMaker" class="headerlink" title="项（乘除）类 LookDecisionMaker"></a>项（乘除）类 <code>LookDecisionMaker</code></h5><img src="7.png"/>  </li>
+</ul>
+</li>
+<li><p>实现了 <code>LOOK</code> 算法</p>
+</li>
+<li>重写了 <code>DecisionMaker</code> 接口的 <code>4</code> 个方法</li>
+</ul>
+</li>
+</ul>
+<p><br></p>
+<hr>
+<p>易错点： </p>
 <ol>
-<li><p>去除所有<strong>空白</strong>字符</p>
-</li>
-<li><p>若<strong>第一项</strong>为符号，则在表达式开头补 0</p>
-</li>
-<li><p>在表达式中连续的 <code>+/-</code> 号，整合成<strong>一个</strong> <code>+/-</code> 号</p>
-</li>
-<li><p>在表达式中 <code>**</code> 后面<strong>紧跟着</strong>的 <code>+</code> 号，删除之</p>
-</li>
-</ol>
-<p><br></p>
-</li>
-<li><p>通过利用形式化表述定义，将表达式分成了四个层次：<strong>因子</strong>（常量或变量）、<strong>基本项</strong>（幂）、<strong>项</strong>（乘除）、<strong>表达式</strong>（加减），这四种结构对应了四种对象。我们下面分别进行讨论对这些对象的解析：</p>
-<p><br></p>
-<ul>
-<li>对于因子（常量或变量）的解析：若下一个字符为单目运算符或者是数字或者是变量 x ，则不断看下一个字符是否是数字。如果不是数字，那么说明下一个符号不属于因子，即对因子的解析结束。</li>
-</ul>
-<p><br></p>
-<ul>
-<li>对基本项（幂）的解析：基本项由因子的幂次方组成，即为 <code>[加减] 因子 ** 带符号整数</code> 。当解析到一个因子后，若下一个解析到的为 <code>**</code> ，那么读入这个符号并做处理，然后下一个符号一定是一个带符号整数，否则，说明基本项的解析结束了。</li>
-</ul>
-<p><br></p>
-<ul>
-<li>对项（乘除）的解析：项由基本项或因子和乘除符号组成，即为 <code>[加减] 因子 | 项 * 因子</code> ，处理方法与基本项相似。</li>
-</ul>
-<p><br></p>
-<ul>
-<li><p>对表达式（加减）的解析：表达式由项和加减符号组成，即为：<code>[加减] 项 | 表达式 加减 项</code>  </p>
-</li>
-<li><p>通过题目所给的形式化表述可以表叫容易地建立层次，并且通过方法的互相调用完成解析。递归下降方法的好处在于，它可以通过方法之间的间接递归调用，非常自然地处理嵌套的表达式（即带嵌套括号的表达式）。</p>
-</li>
-</ul>
-<p><br></p>
-</li>
-</ul>
-</li>
-<li><p><code>2.</code>后缀表达式计算</p>
-<ul>
-<li><p>第<strong>1</strong>步中所得的后缀表达式中，运算符为 <code>+/-/*/**</code> ，操作数为 <code>带符号整数 / 变量x</code>。</p>
-<p><br></p>
-</li>
-<li><p>把所有操作数和运算结果视为一系列单项式之和（多项式）</p>
-<p><br></p>
-</li>
-<li><p>则：</p>
-<ul>
-<li>对于 <code>带符号整数</code> ，视为指数为零，系数为带符号整数的值的单项式</li>
-</ul>
-<p><br></p>
-<ul>
-<li>对于 <code>变量x</code> ，视为指数和系数均为 1 的单项式</li>
-</ul>
-<p><br></p>
-</li>
-<li><p>由于后缀表达式的便利性，因此我们每读到一个运算符，就对最近的两个多项式进行对应运算并返回一个多项式即可</p>
-</li>
-</ul>
-</li>
-</ul>
-<p><br></p>
-<hr>
-<h3 id="具体实现"><a href="#具体实现" class="headerlink" title="具体实现"></a>具体实现</h3><h4 id="总UML类图："><a href="#总UML类图：" class="headerlink" title="总UML类图："></a>总UML类图：</h4><p><img src="MainClass.png"  alt="2" /></p>
-<ul>
-<li><h4 id="读取处理类-Lexer"><a href="#读取处理类-Lexer" class="headerlink" title="读取处理类 Lexer"></a>读取处理类 <code>Lexer</code></h4><p><img src="1.png"  alt="2" />  </p>
-<ul>
-<li>该类主要目的是对原始表达式进行读取处理，使其按照需要每次使用都能输出一个 <code>操作数/运算符</code></li>
-<li>对字符串进行必要的预处理</li>
-<li>读取数字需要判断正负（即该数前面的 <code>+/-</code> 号（如果有）是否是单目运算符）</li>
-</ul>
-</li>
-<li><h4 id="解析类-Parser"><a href="#解析类-Parser" class="headerlink" title="解析类 Parser"></a>解析类 <code>Parser</code></h4><p><img src="2.png"  alt="2" />  </p>
-<ul>
-<li>使用递归下降法处理表达式，递归地分别对表达式（Expression）、项（Term）、基本项（Basic）、因子（Factor）进行处理</li>
-<li>若是识别到左括号 <code>(</code> 则递归调用 <code>parseExpression()</code> 先处理括号内的内容即可</li>
-</ul>
-</li>
-<li><h4 id="多项式类-Item"><a href="#多项式类-Item" class="headerlink" title="多项式类 Item"></a>多项式类 <code>Item</code></h4><p><img src="3.png"  alt="2" />  </p>
-<ul>
-<li>对于多项式的 <code>+/-/*/**</code> 操作均在该类中使用公开函数实现，需要时根据运算符类型调用即可</li>
-<li>重写 <code>toString</code> 方法，对保存在该类的各单项式对指数项进行排列后输出</li>
-</ul>
-</li>
-<li><h4 id="因子类接口-Factor"><a href="#因子类接口-Factor" class="headerlink" title="因子类接口 Factor"></a>因子类接口 <code>Factor</code></h4><p><img src="4.png"  alt="2" />  </p>
-<ul>
-<li><h5 id="表达式（加减）类-Expression"><a href="#表达式（加减）类-Expression" class="headerlink" title="表达式（加减）类 Expression"></a>表达式（加减）类 <code>Expression</code></h5><p><img src="5.png"  alt="2" />  </p>
-<ul>
-<li>储存 <code>表达式</code></li>
-<li>由于 <code>+</code> 和 <code>-</code> 地位相同，所以让该类自带一个队列（此处用    <code>ArrayList</code> 实现，并用 <code>flag</code> 标记队首</li>
-<li>重写 <code>toString</code> 方法，把保存在该类中的数逐个输出并用 <code>+/-(队首元素)</code> 相连</li>
-</ul>
-</li>
-<li><h5 id="项（乘除）类-Term"><a href="#项（乘除）类-Term" class="headerlink" title="项（乘除）类 Term"></a>项（乘除）类 <code>Term</code></h5><p><img src="6.png"  alt="2" />  </p>
-<ul>
-<li>储存 <code>项</code></li>
-<li>重写 <code>toString</code> 方法，把保存在该类中的数逐个输出并用 <code>*</code> 相连</li>
-</ul>
-</li>
-<li><h5 id="基本项（幂）类-Basic"><a href="#基本项（幂）类-Basic" class="headerlink" title="基本项（幂）类 Basic"></a>基本项（幂）类 <code>Basic</code></h5><p><img src="7.png"  alt="2" />  </p>
-<ul>
-<li>储存 <code>基本项</code></li>
-<li>重写 <code>toString</code> 方法，把保存在该类中的数逐个输出并用 <code>**</code> 相连</li>
-</ul>
-</li>
-<li><h5 id="常量类-Constant"><a href="#常量类-Constant" class="headerlink" title="常量类 Constant"></a>常量类 <code>Constant</code></h5><p><img src="8.png"  alt="2" />  </p>
-<ul>
-<li>储存 <code>常量因子</code></li>
-</ul>
-</li>
-<li><h5 id="变量类-Variable"><a href="#变量类-Variable" class="headerlink" title="变量类 Variable"></a>变量类 <code>Variable</code></h5><p><img src="9.png"  alt="2" />  </p>
-<ul>
-<li>储存 <code>变量因子</code></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<p><br></p>
-<hr>
-<p>优化小方法：  </p>
-<ol>
-<li>把 <code>x**2</code> 用 <code>x*x</code> 替换</li>
-<li>把多项式的首个<strong>非负项</strong>放在表达式首位显示</li>
+<li>死锁</li>
+<li>轮询</li>
+<li>超载</li>
+<li>超时</li>
 <li>……</li>
 </ol>
 
@@ -417,17 +391,17 @@
                 <ul class="pager">
                     
                     <li class="previous">
-                        <a href="/2022/03/04/OO - P1 - Question/" data-toggle="tooltip" data-placement="top" title="OO - P1 - Question">&larr; Previous Post
+                        <a href="/2022/04/19/OO - P6 - Question/" data-toggle="tooltip" data-placement="top" title="OO - P6 - Question">&larr; Previous Post
 		<br>
-		<span><font size="2" face="Calibri" color="grey">OO - P1 - Question</font></span>
+		<span><font size="2" face="Calibri" color="grey">OO - P6 - Question</font></span>
 	       </a>
                     </li>
                     
                     
                     <li class="next">
-                        <a href="/2022/01/03/基础物理实验1/" data-toggle="tooltip" data-placement="top" title="基础物理实验1">Next Post &rarr;
+                        <a href="/2022/04/02/OS - Lab2/" data-toggle="tooltip" data-placement="top" title="OS - Lab2">Next Post &rarr;
 		<br>
-		<span><font size="2" face="Calibri" color="grey">基础物理实验1</font></span>
+		<span><font size="2" face="Calibri" color="grey">OS - Lab2</font></span>
 	        </a>
                     </li>
                     
@@ -476,7 +450,7 @@
           <strong class="toc-title">Contents</strong>
           
             
-              <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#面向对象设计与构造第一单元第一次作业"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">面向对象设计与构造第一单元第一次作业</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#表达式展开"><span class="toc-nav-number">1.0.0.1.</span> <span class="toc-nav-text">表达式展开</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#题目"><span class="toc-nav-number">1.0.1.</span> <span class="toc-nav-text">题目</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#分析"><span class="toc-nav-number">1.0.2.</span> <span class="toc-nav-text">分析</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#基本思路"><span class="toc-nav-number">1.0.3.</span> <span class="toc-nav-text">基本思路</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#具体实现"><span class="toc-nav-number">1.0.4.</span> <span class="toc-nav-text">具体实现</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#总UML类图："><span class="toc-nav-number">1.0.4.1.</span> <span class="toc-nav-text">总UML类图：</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#读取处理类-Lexer"><span class="toc-nav-number">1.0.4.2.</span> <span class="toc-nav-text">读取处理类 Lexer</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#解析类-Parser"><span class="toc-nav-number">1.0.4.3.</span> <span class="toc-nav-text">解析类 Parser</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#多项式类-Item"><span class="toc-nav-number">1.0.4.4.</span> <span class="toc-nav-text">多项式类 Item</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#因子类接口-Factor"><span class="toc-nav-number">1.0.4.5.</span> <span class="toc-nav-text">因子类接口 Factor</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#表达式（加减）类-Expression"><span class="toc-nav-number">1.0.4.5.1.</span> <span class="toc-nav-text">表达式（加减）类 Expression</span></a></li><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#项（乘除）类-Term"><span class="toc-nav-number">1.0.4.5.2.</span> <span class="toc-nav-text">项（乘除）类 Term</span></a></li><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#基本项（幂）类-Basic"><span class="toc-nav-number">1.0.4.5.3.</span> <span class="toc-nav-text">基本项（幂）类 Basic</span></a></li><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#常量类-Constant"><span class="toc-nav-number">1.0.4.5.4.</span> <span class="toc-nav-text">常量类 Constant</span></a></li><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#变量类-Variable"><span class="toc-nav-number">1.0.4.5.5.</span> <span class="toc-nav-text">变量类 Variable</span></a></li></ol></li></ol></li></ol></li></ol></li></ol>
+              <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#面向对象设计与构造第二单元第一次作业"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">面向对象设计与构造第二单元第一次作业</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#多线程实时电梯系统"><span class="toc-nav-number">1.0.0.1.</span> <span class="toc-nav-text">多线程实时电梯系统</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#题目"><span class="toc-nav-number">1.0.1.</span> <span class="toc-nav-text">题目</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#分析"><span class="toc-nav-number">1.0.2.</span> <span class="toc-nav-text">分析</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#基本思路"><span class="toc-nav-number">1.0.3.</span> <span class="toc-nav-text">基本思路</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#具体实现"><span class="toc-nav-number">1.0.4.</span> <span class="toc-nav-text">具体实现</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#总UML类图："><span class="toc-nav-number">1.0.4.1.</span> <span class="toc-nav-text">总UML类图：</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#读入处理类-InputThread"><span class="toc-nav-number">1.0.4.2.</span> <span class="toc-nav-text">读入处理类 InputThread</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#输出处理类-OutputThread"><span class="toc-nav-number">1.0.4.3.</span> <span class="toc-nav-text">输出处理类 OutputThread</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#控制器类-Controller"><span class="toc-nav-number">1.0.4.4.</span> <span class="toc-nav-text">控制器类 Controller</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#请求池类-RequestPool"><span class="toc-nav-number">1.0.4.5.</span> <span class="toc-nav-text">请求池类 RequestPool</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#电梯类-Elevator"><span class="toc-nav-number">1.0.4.6.</span> <span class="toc-nav-text">电梯类 Elevator</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#决策类接口-DecisionMaker"><span class="toc-nav-number">1.0.4.7.</span> <span class="toc-nav-text">决策类接口 DecisionMaker</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#项（乘除）类-LookDecisionMaker"><span class="toc-nav-number">1.0.4.7.1.</span> <span class="toc-nav-text">项（乘除）类 LookDecisionMaker</span></a></li></ol></li></ol></li></ol></li></ol></li></ol>
             
           
           </div>
@@ -498,8 +472,6 @@
                     <h5><a href="/tags/">FEATURED TAGS</a></h5>
                     <div class="tags">
                        
-                          <a class="tag" href="/tags/#OO" title="OO">OO</a>
-                        
                     </div>
                 </section>
                 

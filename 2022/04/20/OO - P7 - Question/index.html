@@ -1,0 +1,1035 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="baidu-site-verification" content="093lY4ziMu" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="description" content="Tan&#39;s Blog">
+    <meta name="keyword"  content="Hello world">
+    <link rel="shortcut icon" href="/img/ironman-draw.png">
+    <!-- Place this tag in your head or just before your close body tag. -->
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+    <!--<link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>-->
+    <title>
+        
+          OO - P7 - Question - Tan&#39;s Blog
+        
+    </title>
+
+    <link rel="canonical" href="https://master-tan.github.io/2022/04/20/OO - P7 - Question/">
+
+    <!-- Bootstrap Core CSS -->
+    
+<link rel="stylesheet" href="/css/bootstrap.min.css">
+
+
+    <!-- Custom CSS --> 
+    
+        
+<link rel="stylesheet" href="/css/dusign-light.css">
+
+        
+<link rel="stylesheet" href="/css/dusign-common-light.css">
+
+        
+<link rel="stylesheet" href="/css/font-awesome.css">
+
+        
+<link rel="stylesheet" href="/css/toc.css">
+
+        <!-- background effects end -->
+    
+    
+    <!-- Pygments Highlight CSS -->
+    
+<link rel="stylesheet" href="/css/highlight.css">
+
+
+    
+<link rel="stylesheet" href="/css/widget.css">
+
+
+    
+<link rel="stylesheet" href="/css/rocket.css">
+
+
+    
+<link rel="stylesheet" href="/css/signature.css">
+
+
+    
+<link rel="stylesheet" href="/css/fonts.googleapis.css">
+
+
+    <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.3.0/css/font-awesome.min.css">
+
+    <!-- photography -->
+    
+<link rel="stylesheet" href="/css/photography.css">
+
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+
+    <!-- background effects start -->
+    
+    <!-- background effects end -->
+
+	<!-- Modified by Yu-Hsuan Yen -->
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        
+            
+                background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('../../../../img/default.jpg')
+                /*post*/
+            
+        
+    }
+    
+</style>
+
+<header class="intro-header" >
+    <!-- Signature -->
+    <div id="signature">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                
+                    <div class="post-heading">
+                        <div class="tags">
+                            
+                        </div>
+                        <h1>OO - P7 - Question</h1>
+                        <h2 class="subheading"></h2>
+                        <span class="meta">
+                            Posted by Tan on
+                            2022-04-20
+                        </span>
+
+	       
+                            <div class="blank_box"></div>
+                            <span class="meta">
+                                 <span class="post-count">6.1k</span> Words
+                            </span>
+                            <div class="blank_box"></div>
+                            <!-- 不蒜子统计 start -->
+                            <span class="meta">
+                                Viewed <span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span> Times
+                            </span>
+                            <!-- 不蒜子统计 end -->
+                        
+
+                    </div>
+                
+
+                </div>
+            </div>
+        </div>      
+    </div>
+
+    
+    <div class="waveWrapper">
+        <div class="wave wave_before" style="background-image: url('/img/wave-light.png')"></div>
+        <div class="wave wave_after" style="background-image: url('/img/wave-light.png')"></div>
+    </div>
+    
+</header>
+
+	
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Tan&#39;s Blog</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+
+                    
+
+                        
+                    
+
+                        
+                        	<li>
+                          	  <a href="/archive/">Archives</a>
+                        	</li>
+                        
+                    
+
+                        
+                        	<li>
+                          	  <a href="/about/">About Tan</a>
+                        	</li>
+                        
+                    
+
+                        
+                    
+
+                        
+                        	<li>
+                          	  <a href="/tags/">Tags</a>
+                        	</li>
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+    <!-- Main Content -->
+    <!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+            <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <h2 id="面向对象设计与构造第二单元第三次作业指导书"><a href="#面向对象设计与构造第二单元第三次作业指导书" class="headerlink" title="面向对象设计与构造第二单元第三次作业指导书"></a>面向对象设计与构造第二单元第三次作业指导书</h2><hr>
+<h3 id="第一部分：训练目标"><a href="#第一部分：训练目标" class="headerlink" title="第一部分：训练目标"></a>第一部分：训练目标</h3><p>本次作业的基本目标是模拟<strong>多线程实时电梯系统</strong>，在前两次作业的基础上，掌握线程之间的交互，强化线程之间的协同设计层次架构</p>
+<hr>
+<h3 id="第二部分：基本概念"><a href="#第二部分：基本概念" class="headerlink" title="第二部分：基本概念"></a>第二部分：基本概念</h3><ul>
+<li>$1、$电梯系统时间 $T_{real}$：从程序开始运行，到所有线程终止，程序结束的时刻花费的时间，即程序的真实运行时间 (real time)</li>
+<li>$2、$电梯系统运行花费总时间 $T_{final}$：从程序开始运行，到电梯最后输出关门的时刻花费的时间</li>
+<li>$3、$开关门窗口时间：从电梯开始开门的时刻到完成关门的时刻的时间闭区间</li>
+<li>$4、$数据基本限制：所有测试数据均需满足的限制</li>
+<li>$5、$公测数据限制：中测和强测数据满足的限制</li>
+<li>$6、$互测数据限制：互测数据需满足的限制</li>
+</ul>
+<hr>
+<h3 id="第三部分：题目描述"><a href="#第三部分：题目描述" class="headerlink" title="第三部分：题目描述"></a>第三部分：题目描述</h3><h4 id="一、电梯系统说明"><a href="#一、电梯系统说明" class="headerlink" title="一、电梯系统说明"></a>一、电梯系统说明</h4><p>本次作业需要模拟一个多线程环形实时电梯系统。</p>
+<p>系统基于一个类似北京航空航天大学新主楼的大楼，大楼有 $A,B,C,D,E$ 五个座，每个楼座可以对应多台电梯，可以在楼座内 $1-10$​​ 层之间运行。<strong>本次作业将扩大乘客的移动需求</strong>，每个乘客的起始位置和目的位置可以在楼层和楼座上都不同。同时，<strong>本次作业新增电梯定制化功能</strong>，对纵向电梯的运行速度、可容纳人数，横向电梯的运行速度、可容纳人数、可开关门信息进行<strong>定制</strong>。</p>
+<p>系统从标准输入中输入请求信息，程序进行接收和处理，模拟电梯运行，将必要的运行信息通过输出接口进行输出。</p>
+<p>具体而言，本次作业电梯系统具有的功能为：</p>
+<ul>
+<li>$1、$楼座对应的电梯：上下行，开关门，以及模拟乘客的进出。</li>
+<li>$2、$楼层对应的电梯：左右行，开关门，以及模拟乘客的进出。</li>
+</ul>
+<p>电梯系统<strong>可以采用任意的调度策略</strong>，即在任意时刻，系统选择上下（左右）行动，是否在某层开关门，都可自定义，只要保证在<strong>电梯系统时间不超过系统时间上限</strong>的前提下将所有的乘客送至目的地即可。</p>
+<p>电梯每纵向（横向）运行一层（座）、开关门的时间为固定值，仅在<strong>开关门窗口时间内允许乘客进出</strong>。</p>
+<p><strong>电梯系统默认初始在 $A,B,C,D,E$ 五个楼座的 $1$ 层中有一个容量为 $8$ 人，运行速度为 $0.6$​ s/层的纵向电梯。</strong></p>
+<p><strong>电梯系统默认初始在 $A$​ 座的 $1$​ 层中有一个容量为 $8$​ 人，运行速度为 $0.6$​ s/座，可以在全部楼座停留的横向电梯。</strong></p>
+<h4 id="二、电梯参数说明"><a href="#二、电梯参数说明" class="headerlink" title="二、电梯参数说明"></a>二、电梯参数说明</h4><ul>
+<li>$1、$可到达楼层：1-10层</li>
+<li>$2、$纵向电梯初始位置：各座1层</li>
+<li>$3、$横向电梯初始位置：A 座各层 </li>
+<li>$4、$数量：最初5部纵向电梯、1部横向电梯，可增加</li>
+<li>$5、$编号：最初5部电梯中 A 座为1号，B座为2号，依次类推，最初的横向电梯为6号；新增的电梯编号自定义，但不可与之前的重复</li>
+<li>$6、$移动一层（座）花费的时间：可定制</li>
+<li>$7、$开门花费的时间：0.2s</li>
+<li>$8、$关门花费的时间：0.2s</li>
+<li>$9、$限乘人数：可定制</li>
+<li>$10、$横向电梯可停靠楼层：可定制</li>
+</ul>
+<h4 id="三、电梯请求说明"><a href="#三、电梯请求说明" class="headerlink" title="三、电梯请求说明"></a>三、电梯请求说明</h4><p>本次作业的电梯，为一种比较特殊的电梯，学名叫做<strong>目的选择电梯</strong>。</p>
+<p>大概意思是，<strong>在电梯的每个入口，都有一个输入装置，让每个乘客输入自己的目的位置</strong>。电梯基于这样的一个目的地选择系统进行调度，将乘客运送到指定的目标位置。</p>
+<p>所以，一个电梯请求包含这个人的<strong>出发楼座、出发楼层、目的楼座和目的楼层</strong>，以及这个人的id（保证人员id唯一），请求内容将作为一个整体送入电梯系统，在整个运行过程中请求内容不会发生改变。</p>
+<h4 id="四、电梯捎带规则说明"><a href="#四、电梯捎带规则说明" class="headerlink" title="四、电梯捎带规则说明"></a>四、电梯捎带规则说明</h4><p>在<strong>不违反课程规则</strong>的前提下，我们对电梯的<strong>捎带策略不做限制</strong>。希望同学们多多阅读并自行探索相关算法，对电梯的捎带策略有自己的设计与思考。</p>
+<p>为保证同学们实现的都为作业要求的<strong>可捎带电梯</strong>，我们对电梯的性能做一定的约束，采用<strong>类似ALS调度策略</strong>为性能<strong>基准</strong>（关于调度策略，欢迎大家积极上网找资料探索）。性能约束详见公测说明-正确性判断章节中关于 $T_{max}$ 的部分。</p>
+<h4 id="五、基准策略"><a href="#五、基准策略" class="headerlink" title="五、基准策略"></a>五、基准策略</h4><ul>
+<li><p>$1、$对于纵向电梯，采用 ALS 策略</p>
+</li>
+<li><p>$2、$对于横向电梯，采用基于 ALS 的不支持换乘策略</p>
+<ul>
+<li>$(1)、$<strong>目标方向</strong>为能够完成这个请求的最短路线所走的方向，比如 $A$ 座到 $C$ 座采用$A \rightarrow B \rightarrow C$ 的策略，$A$ 座到 $E$ 座采用   $A\rightarrow E$ 的策略</li>
+<li><p>$(2)、$分为<strong>主请求</strong>和<strong>被捎带请求</strong>两个概念</p>
+</li>
+<li><p>$(3)、$主请求选择规则：</p>
+<ul>
+<li><p>$a、$如果电梯中没有乘客，将请求队列中到达时间最早的请求作为主请求</p>
+</li>
+<li><p>$b、$如果电梯中有乘客，将其中到达时间最早的乘客请求作为主请求</p>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p>$(4)、$被捎带请求选择规则：</p>
+<ul>
+<li><p>$a、$电梯的主请求存在</p>
+</li>
+<li><p>$b、$该请求投喂的时刻<strong>小于等于</strong>电梯到达该请求出发楼层关门的截止时间</p>
+</li>
+<li><p>$c、$电梯主请求的目标方向和该请求的目标方向一致</p>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p>$(5)、$每个横向电梯所处理的乘客的请求符合如下条件，请求的起始楼座为 $P$，目的楼座为 $Q$，电梯的可开关门信息为 $M$，有如下公式：</p>
+<p><code>((M &gt;&gt; (P -&#39;A&#39;)) &amp; 1) + ((M &gt;&gt; (Q -&#39;A&#39;)) &amp; 1) == 2</code></p>
+<p>关于这个公式，可以参照<strong>提示与警示</strong>中有关掩码的介绍</p>
+</li>
+</ul>
+</li>
+<li><p>$3、$每次运送时先由起始楼座纵向电梯把乘客运送到中转楼层，在中转楼层经横向电梯运输到目的楼座后，再由目的楼座纵向电梯运送到目的楼层。</p>
+<ul>
+<li><p>$(1)、$乘客的起始楼座为 $P$，目的楼座为 $Q$，起始楼层为 $X$,  目的楼层为 $Y$，则中转楼层 $m$ 满足如下公式：</p>
+<p>存在<code>((M &gt;&gt; (P -&#39;A&#39;)) &amp; 1) + ((M &gt;&gt; (Q -&#39;A&#39;)) &amp; 1) == 2</code> 且使 $|X-m| + |Y-m|$ 最小的 $m$</p>
+</li>
+<li><p>$M$ 是中转楼层的某一个电梯的可开关门信息，关于公式的详细信息参见第四部分关于输入数据的描述。</p>
+</li>
+</ul>
+</li>
+<li><p>$4、$在电梯的调度上，采用一种较为均衡的调度方式，例如 $A$ 座 $7$ 层有5个乘客，3部电梯，那么第1个乘客分配给第1部电梯，第2个乘客分配给第2部电梯，第3个乘客分配给第3部电梯，第4个乘客分配给第1部电梯，第5个乘客分配给第2部电梯</p>
+</li>
+</ul>
+<hr>
+<h3 id="第四部分：输入-输出和样例"><a href="#第四部分：输入-输出和样例" class="headerlink" title="第四部分：输入/输出和样例"></a>第四部分：输入/输出和样例</h3><h4 id="一、输入输出接口说明"><a href="#一、输入输出接口说明" class="headerlink" title="一、输入输出接口说明"></a>一、输入输出接口说明</h4><ul>
+<li>$1、$本单元作业使用官方提供的输入输出接口进行输入输出。</li>
+<li>$2、$输入接口提供了若干方法，通过调用方法可以直接获取所需数据对象。输入接口在<strong>尝试</strong>读取标准输入的内容时，对于正确的输入将成功解析，错误的则输出错误信息，但不会影响程序的正常运行。</li>
+<li>$3、$输出子程序接受一个字符串，并附上时间戳后再输出。</li>
+<li>$4、$详细的接口定义和使用方法见官方接口说明文档。</li>
+<li>$5、$程序的输入输出为<strong>实时交互</strong>，评测机可以做到在某个时间点投放一定量的输入。</li>
+</ul>
+<h4 id="二、输入数据"><a href="#二、输入数据" class="headerlink" title="二、输入数据"></a>二、输入数据</h4><ul>
+<li><p>$1、$每行输入数据可分以下三类：</p>
+<ul>
+<li>$(1)、$请求信息：<ul>
+<li>$a、$格式为：<code>[时间戳]乘客ID-FROM-起点座-起点层-TO-终点座-终点层</code></li>
+<li>$b、$输入保证 $[$起点座 $==$ 终点座$] + [$起点层 $==$ 终点层$ ]\ \ne 2$，即楼座和楼层不会同时相同。</li>
+<li>$c、$乘客 $ID$ 唯一，且满足$ID$是 int 类型数据</li>
+</ul>
+</li>
+<li>$(2)、$为一个楼座动态增加纵向电梯的指令：<ul>
+<li>$a、$格式为：<code>ADD-building-电梯ID-楼座ID-容纳人数V1-运行速度V2</code></li>
+<li>$b、$输入保证楼座 $ID \in [A,B,C,D,E]$</li>
+<li>$c、$电梯 $ID$ 唯一</li>
+<li>$d、$新建电梯默认处于对应楼座 $1$ 层</li>
+<li>$e、$输入保证容纳人数 $V1 \in [4,6,8]$</li>
+<li>$f、$输入保证运行速度 $V2 \in [0.2, 0.4, 0.6]$</li>
+</ul>
+</li>
+<li>$(3)、$为一个楼层动态增加横向电梯的指令：<ul>
+<li>$a、$格式为：<code>ADD-floor-电梯ID-楼层ID-容纳人数V1-运行速度V2-可开关门信息M</code></li>
+<li>$b、$若满足 <code>((M &gt;&gt; (X-&#39;A&#39;)) &amp; 1) == 1</code> ，则代表该电梯在楼座 $X$ 可开关门。$(X \in [A,B,C,D,E])$</li>
+<li>$c、$输入保证 $\sum_{i=0}^4 ((M &gt;&gt; i)\  \&amp;\  1) \ge 2$，即至少有两个可到达楼座。</li>
+<li>$d、$输入同时保证 $1 \lt M \lt 32$，即不包含无意义的二进制位。</li>
+<li>$e、$输入保证楼层 $ID \in [1,2,3,4,5,6,7,8,9,10]$</li>
+<li>$f、$电梯 $ID$ 唯一</li>
+<li>$g、$新建电梯默认处于对应楼层 $A$ 座</li>
+<li>$h、$输入保证容纳人数$V1 \in [4,6,8]$</li>
+<li>$i、$输入保证运行速度$V2 \in [0.2, 0.4, 0.6]$</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="三、输出数据"><a href="#三、输出数据" class="headerlink" title="三、输出数据"></a>三、输出数据</h4><ul>
+<li><p>$1、$通过调用输出接口的每一次输出将自动附加时间戳于头部，具体请参考<strong>输出接口文档</strong>，请不要试图伪造时间戳，否则会在实际评测时产生不一样的结果导致程序运行错误。</p>
+</li>
+<li><p>$2、$电梯到达某一位置：<code>[时间戳]ARRIVE-所在座-所在层-电梯ID</code></p>
+<blockquote>
+<p><strong>每到达一个楼层都要输出，初始所在的楼层不需要输出</strong></p>
+</blockquote>
+</li>
+<li><p>$3、$电梯<strong>开始</strong>开门：<code>[时间戳]OPEN-所在座-所在层-电梯ID</code></p>
+</li>
+<li><p>$4、$电梯<strong>完成</strong>关门：<code>[时间戳]CLOSE-所在座-所在层-电梯ID</code></p>
+</li>
+<li><p>$5、$乘客进入电梯：<code>[时间戳]IN-乘客ID-所在座-所在层-电梯ID</code></p>
+</li>
+<li><p>$6、$乘客离开电梯：<code>[时间戳]OUT-乘客ID-所在座-所在层-电梯ID</code></p>
+</li>
+</ul>
+<h4 id="四、样例"><a href="#四、样例" class="headerlink" title="四、样例"></a>四、样例</h4><table>
+    <tr>
+        <td>#</td>
+        <td>输入</td>
+        <td>输出</td>
+        <td>说明</td>
+    </tr>
+    <tr>
+        <td width = "100px">1</td>
+        <td width = "300px">[2.0]ADD-floor-7-3-6-0.4-5 <br />
+                            [2.3]1-FROM-A-4-TO-C-3</td>
+        <td width = "300px">[   2.8160]ARRIVE-A-2-1 <br />
+                            [   3.4290]ARRIVE-A-3-1 <br />
+                            [   4.0370]ARRIVE-A-4-1 <br />
+                            [   4.0380]OPEN-A-4-1 <br />
+                            [   4.2570]IN-1-A-4-1 <br />
+                            [   4.4600]CLOSE-A-4-1 <br />
+                            [   5.0710]ARRIVE-A-3-1 <br />
+                            [   5.0720]OPEN-A-3-1 <br /> 
+                            [   5.2910]OUT-1-A-3-1 <br />
+                            [   5.4960]CLOSE-A-3-1 <br />
+                            [   5.4970]OPEN-A-3-7 <br />
+                            [   5.7070]IN-1-A-3-7 <br />
+                            [   5.9240]CLOSE-A-3-7 <br />
+                            [   6.3270]ARRIVE-B-3-7 <br />
+                            [   6.7370]ARRIVE-C-3-7 <br />
+                            [   6.7380]OPEN-C-3-7 <br />
+                            [   6.9400]OUT-1-C-3-7 <br />
+                            [   7.1600]CLOSE-C-3-7</td>
+        <td width = "260px">新加入的电梯(ID为7)可停靠信息为5，代表可以在 A 座和 C 座停留</td>
+    </tr>
+    <tr>
+        <td>2</td>
+        <td>[2.0]ADD-floor-7-3-6-0.4-3<br />
+            [2.3]1-FROM-A-4-TO-C-3</td>
+        <td>[   2.8130]ARRIVE-A-2-1<br />
+            [   3.4240]ARRIVE-A-3-1<br />
+            [   4.0330]ARRIVE-A-4-1<br />
+            [   4.0350]OPEN-A-4-1<br />
+            [   4.2510]IN-1-A-4-1<br />
+            [   4.4690]CLOSE-A-4-1<br />
+            [   5.0800]ARRIVE-A-3-1<br />
+            [   5.6940]ARRIVE-A-2-1<br />
+            [   6.2980]ARRIVE-A-1-1<br />
+            [   6.3010]OPEN-A-1-1<br />
+            [   6.5220]OUT-1-A-1-1<br />
+            [   6.7340]CLOSE-A-1-1<br />
+            [   6.7360]OPEN-A-1-6<br />
+            [   6.9430]IN-1-A-1-6<br />
+            [   7.1560]CLOSE-A-1-6<br />
+            [   7.7630]ARRIVE-B-1-6<br />
+            [   8.3850]ARRIVE-C-1-6<br />
+            [   8.3860]OPEN-C-1-6<br />
+            [   8.6030]OUT-1-C-1-6<br />
+            [   8.8100]CLOSE-C-1-6<br />
+            [   8.8110]OPEN-C-1-3<br />
+            [   9.0190]IN-1-C-1-3<br />
+            [   9.2330]CLOSE-C-1-3<br />
+            [   9.8340]ARRIVE-C-2-3<br />
+            [  10.4410]ARRIVE-C-3-3<br />
+            [  10.4410]OPEN-C-3-3<br />
+            [  10.6560]OUT-1-C-3-3<br />
+            [  10.8690]CLOSE-C-3-3</td>
+        <td>新加入的电梯(ID为7)可停靠信息为3，代表可以在A座和B座停留，因此乘客只能在1层换乘</td>
+    </tr>
+    <tr>
+        <td>3</td>
+        <td>[1.0]ADD-floor-7-7-4-0.6-31<br />
+            [3.4]1-FROM-A-8-TO-C-7<br />
+            [4.4]2-FROM-B-7-TO-D-8</td>
+        <td>[   3.9130]ARRIVE-A-2-1<br />
+            [   4.5230]ARRIVE-A-3-1<br />
+            [   4.9190]ARRIVE-B-7-7<br />
+            [   4.9210]OPEN-B-7-7<br />
+            [   5.1360]ARRIVE-A-4-1<br />
+            [   5.1370]IN-2-B-7-7<br />
+            [   5.3510]CLOSE-B-7-7<br />
+            [   5.7510]ARRIVE-A-5-1<br />
+            [   5.9540]ARRIVE-C-7-7<br />
+            [   6.3530]ARRIVE-A-6-1<br />
+            [   6.5690]ARRIVE-D-7-7<br />
+            [   6.5710]OPEN-D-7-7<br />
+            [   6.7910]OUT-2-D-7-7<br />
+            [   6.9690]ARRIVE-A-7-1<br />
+            [   7.0080]CLOSE-D-7-7<br />
+            [   7.5750]ARRIVE-A-8-1<br />
+            [   7.5750]OPEN-A-8-1<br />
+            [   7.6250]ARRIVE-D-2-4<br />
+            [   7.7820]IN-1-A-8-1<br />
+            [   7.9930]CLOSE-A-8-1<br />
+            [   8.2390]ARRIVE-D-3-4<br />
+            [   8.5990]ARRIVE-A-7-1<br />
+            [   8.6010]OPEN-A-7-1<br />
+            [   8.8080]OUT-1-A-7-1<br />
+            [   8.8570]ARRIVE-D-4-4<br />
+            [   9.0210]CLOSE-A-7-1<br />
+            [   9.4700]ARRIVE-D-5-4<br />
+            [   9.6330]ARRIVE-E-7-7<br />
+            [  10.0750]ARRIVE-D-6-4<br />
+            [  10.2480]ARRIVE-A-7-7<br />
+            [  10.2480]OPEN-A-7-7<br />
+            [  10.4560]IN-1-A-7-7<br />
+            [  10.6720]CLOSE-A-7-7<br />
+            [  10.6900]ARRIVE-D-7-4<br />
+            [  10.6910]OPEN-D-7-4<br />
+            [  10.9060]IN-2-D-7-4<br />
+            [  11.1160]CLOSE-D-7-4<br />
+            [  11.2870]ARRIVE-B-7-7<br />
+            [  11.7270]ARRIVE-D-8-4<br />
+            [  11.7280]OPEN-D-8-4<br />
+            [  11.8910]ARRIVE-C-7-7<br />
+            [  11.8920]OPEN-C-7-7<br />
+            [  11.9410]OUT-2-D-8-4<br />
+            [  12.0960]OUT-1-C-7-7<br />
+            [  12.1440]CLOSE-D-8-4<br />
+            [  12.2990]CLOSE-C-7-7</td>
+        <td>两个请求都在 7 楼进行换乘处理</td>
+    </tr>
+</table>
+
+<p>说明：</p>
+<ul>
+<li>$1、$为了方便说明，指导书上提供的输入为这样的格式：<code>[x.x]yyyyyyyy</code>。</li>
+<li>$2、$意思是在 <code>x.x</code> 这个时刻（相对于程序运行开始的时间，单位秒），输入 <code>yyyyyyyy</code> 这样的一行数据。</li>
+<li>$3、$关于上面说到的时间计测同步性问题，在这里解释一下：<ul>
+<li>$(1)、$直观地说，可能会观察到输入指令时间晚于做出反应的时间或反应时间明显晚于预期时间的现象。</li>
+<li>$(2)、$这个实际上不是程序的错误，而是由于评测机投放数据的系统、和程序输出接口，这两边的时间可能存在不同步导致的。</li>
+<li>$(3)、$<strong>这一问题是由于多线程测试不可避免的波动性导致的计时同步性误差，属于正常现象，不会被认定为错误</strong>。（<del>当然，也不会出现故意提早的情况，因为程序本身就是实时交互，不可能做得到预知未来</del>）但是，电梯的操作还是应当遵从逻辑，不能出现乘客先进电梯，再开门这样的操作，<strong>你的程序所输出的操作的时间戳也应当是递增的</strong>。</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 id="第五部分：测试数据限制说明"><a href="#第五部分：测试数据限制说明" class="headerlink" title="第五部分：测试数据限制说明"></a>第五部分：测试数据限制说明</h3><h4 id="一、数据基本限制"><a href="#一、数据基本限制" class="headerlink" title="一、数据基本限制"></a>一、数据基本限制</h4><ul>
+<li>$1、$可输入电梯系统的指令数：<strong>1~70条</strong>（指令数为0或超过70均为不合法输入）。</li>
+<li>$2、$系统时间上限 $T<em>{max}$ ：电梯系统时间 $T</em>{real}$ 和电梯系统运行花费总时间 $T_{final}$ 的上限时间，<strong>一旦超过将直接判定为TIME_LIMIT_EXCEED</strong>。</li>
+<li>$3、$乘客$id$满足为int类型且 $id&gt;0$</li>
+<li>$4、$<strong>注意</strong>，本次作业<strong>新增电梯与请求之间不存在时间上的限制关系</strong>（显然，所有请求都能够被初始电梯完成）。</li>
+</ul>
+<h4 id="二、公测数据限制"><a href="#二、公测数据限制" class="headerlink" title="二、公测数据限制"></a>二、公测数据限制</h4><ul>
+<li>$1、$运行基准时间 $T_{ALS}$：基于 ALS 的纵向横向电梯调度策略运行的时间。</li>
+<li>$2、$系统时间上限 $T<em>{max}$：计算方式为 $T</em>{max} = \max\left(T<em>{ALS}+3, 1.05\cdot T</em>{ALS}\right)$</li>
+<li>$3、$包括强测在内的数据都会保证正常程序的电梯系统时间不会超过 $T_{max}$，也会<strong>避免使用对边界情况较为敏感的数据</strong>。</li>
+<li>$4、$提示：<strong>对于中测和强测数据，$T_{max}$ 将会严格限制为通过上述公式计算得到的值。</strong><del>所以，请不要试图用超长的 sleep 来回避线程安全停止的问题。</del>。&lt;/del&gt;</li>
+</ul>
+<h4 id="三、互测数据限制"><a href="#三、互测数据限制" class="headerlink" title="三、互测数据限制"></a>三、互测数据限制</h4><ul>
+<li>$1、$系统时间上限 $T<em>{max}$：对于互测数据，$T</em>{max}$ 为210s。</li>
+<li>$2、$第一条指令的投喂时间在 1s 或 1s 以后。</li>
+<li>$3、$最后一条指令的输入时间不晚于50s。</li>
+<li>$4、$指令条数不超过50。</li>
+<li>$5、$要求每座、每层最多3个电梯，总电梯数量不超过20。</li>
+</ul>
+<hr>
+<h3 id="第六部分：公测说明"><a href="#第六部分：公测说明" class="headerlink" title="第六部分：公测说明"></a>第六部分：公测说明</h3><h4 id="一、正确性判断"><a href="#一、正确性判断" class="headerlink" title="一、正确性判断"></a>一、正确性判断</h4><p>程序被认定为正确当且仅当以下 3 个条件同时满足：</p>
+<ul>
+<li><p>$1、$<strong>代码实现中不存在轮询</strong>。轮询是一种非常占用 CPU 资源的行为，为了避免出现轮询的情况，<strong>请使用 Wait-Notify 的方式编程(也可采取 Condition 的 await, signalAll 方式等其他合理方式)</strong>。同时，为了检查是否出现轮询的情况，总 CPU 时间限制为 10s，不满足该限制的程序会被判定为错误。</p>
+</li>
+<li><p>$2、$<strong>电梯的性能符合基本要求</strong>，即你的程序需要满足 $T<em>{real} \le T</em>{max}\ \&amp;\&amp;\ T<em>{final} \le T</em>{max}$。这里再次说明 $T_{max}$ 的标准：</p>
+<ul>
+<li>$(1)、$对于公测数据，$T<em>{max}$ 取决于 $T</em>{ALS}$，计算方式为 $T<em>{max} = \max\left(T</em>{ALS}+3, 1.05\cdot T_{ALS}\right)$，基准为 ALS 调度策略。</li>
+<li>$(2)、$对于互测数据，$T_{max}$ 为210s。</li>
+</ul>
+</li>
+<li><p>$3、$<strong>输出结果符合逻辑</strong>，具体来说，有以下几点：</p>
+<ul>
+<li><p>$(1)、$电梯运行逻辑合理：</p>
+<ul>
+<li>$a、$电梯到达一层后就可以输出开门信息，然后花 0.2s 开门，开门结束。</li>
+<li>$b、$电梯开门结束后，某一刻电梯花 0.2s 关门，然后输出关门信息，就可以离开楼层。</li>
+<li>$c、$电梯在两楼层间若发生移动，应满足移动时间要求</li>
+<li>$d、$电梯只在可到达楼层运行。</li>
+</ul>
+</li>
+<li><p>$(2)、$人员进出逻辑合理：</p>
+<ul>
+<li><p>$a、$只有已经在电梯里的人可以出电梯，也只有不在电梯里的人可以进入电梯。</p>
+</li>
+<li><p>$b、$如果电梯在楼座 A 楼层 2，那么乘客显然也只能在楼座 A 楼层 2 进出。</p>
+</li>
+<li><p>$c、$<strong>反常识设定</strong>：开门的 0.2s 期间或关门的 0.2s 期间乘客仍然可以进出，即在<strong>整个开关门窗口时间内</strong>乘客都可以进出。<del>纸片人没有厚度</del></p>
+</li>
+<li><p>$d、$乘客进出信息在电梯开关门窗口时间之内。</p>
+  <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">错误示例：</span><br><span class="line">[   <span class="number">4.6280</span>]OUT-<span class="number">1</span>-A-<span class="number">1</span> ← 这个人没开门就出来了</span><br><span class="line">[   <span class="number">4.8440</span>]OPEN-A-<span class="number">1</span></span><br><span class="line">[   <span class="number">5.0470</span>]CLOSE-A-<span class="number">1</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>$e、$ 电梯系统结束运行时，所有的乘客都到达了目标楼层，且没有被困在电梯里。</p>
+</li>
+</ul>
+</li>
+<li><p>$(3)、$电梯载客量合理：</p>
+<ul>
+<li>$a、$<strong>电梯任何时候，内部的人数都必须小于等于轿厢容量限制</strong>。</li>
+<li>$b、$也就是说，即便在 OPEN、CLOSE 中间，也不允许出现超过容量限制的中间情况。</li>
+</ul>
+</li>
+<li><p>$(4)、$时间戳合理：即<strong>输出的时间戳应该是非减的</strong>。</p>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="二、性能分的评判"><a href="#二、性能分的评判" class="headerlink" title="二、性能分的评判"></a>二、性能分的评判</h4><p>在本次作业中，为了更贴近现实的情景，对性能分的评判依据性能值做了修改。性能值将由电梯的总运行时间 $T<em>1$ 与所有请求总等待时间 $T_2$ 之和 $T$ 计算得出。<br>请求总等待时间 $T_2$ 的定义为：$\sum</em>{i \in passagers} (T<em>{i到达目标楼层}-T</em>{i发出请求})$，即所有乘客从发出请求到满足请求的总时间。<br>设某同学给出的正确答案的性能值为 $T<em>p$，所有人给出的正确答案的性能值的最小值为 $T</em>{min}$，最大值为 $T<em>{max}$，平均值为 $T</em>{avg}$。<br>设<br>        $base<em>{min} = p\cdot T</em>{avg}+(1-p)\cdot T_{min}$，</p>
+<p>​        $base<em>{max}=p\cdot T</em>{max}+(1-p)\cdot T_{avg}$，</p>
+<p>​        $p=0.25$</p>
+<p>则该同学性能分百分比为：</p>
+<script type="math/tex; mode=display">
+r(T_p)= 100 \% \cdot\begin{cases}1 & T_p \leq base_{min} \\1-10^{1-\frac{base_{max}-base_{min}}{T_p-base_{min}}} & base_{min} < T_p \leq base_{max} \\\ 0 & T_p > base_{max}\end{cases}</script><h4 id="三、分数判定和组成"><a href="#三、分数判定和组成" class="headerlink" title="三、分数判定和组成"></a>三、分数判定和组成</h4><p>本次作业功能分为 85 分，性能分为 15 分，二者之和为总分。</p>
+<hr>
+<h3 id="第七部分：互测说明"><a href="#第七部分：互测说明" class="headerlink" title="第七部分：互测说明"></a>第七部分：互测说明</h3><ul>
+<li><p>$1、$<strong>程序在互测中的正确性判断规则与公测说明中的一致。</strong></p>
+</li>
+<li><p>$2、$所有提交的互测数据均需要满足以下输入格式（该格式与样例一致，可参考样例中的输入格式）：</p>
+<ul>
+<li><p>$(1)、$需要额外附加时间戳 <code>[time]</code>，其中 time 是一个保留一位小数的浮点数，比如 <code>0.0</code>,<code>1.5</code>,<code>2.2</code>等。</p>
+</li>
+<li><p>$(2)、$每行的输入为乘客请求，其格式为 <code>[&lt;time&gt;]&lt;id&gt;-FROM-&lt;A&gt;-&lt;x&gt;-TO-&lt;B&gt;-&lt;y&gt;</code>。</p>
+</li>
+<li><p>$(3)、$评测系统将使用请求发射器在对应的时间将请求送入标准输入。</p>
+</li>
+</ul>
+</li>
+<li><p>$3、$所有提交的互测数据均需要满足数据基本限制和互测数据限制。</p>
+</li>
+<li><p>$4、$<strong>随测试点提交的输出</strong>中电梯最终的关门时间 $T_{final}$ 不得大于 150s。</p>
+</li>
+</ul>
+<hr>
+<h3 id="第八部分：提示和警示"><a href="#第八部分：提示和警示" class="headerlink" title="第八部分：提示和警示"></a>第八部分：提示和警示</h3><h4 id="一、提示"><a href="#一、提示" class="headerlink" title="一、提示"></a>一、提示</h4><ul>
+<li><p>$1、$关于接口的一些使用，可以在 idea 里面，按 Ctrl+Q 。将可以看到类和方法的使用格式以及注释（本次官方提供的接口均提供了中文版 javadoc 注释，Ctrl+Q 可以直接查看）</p>
+</li>
+<li><p>$2、$请<strong>在代码一开始就初始化时间戳</strong>，否则可能会出现和评测不一致的情况。</p>
+  <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> com.oocourse.TimableOutput;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MainClass</span> </span>&#123;</span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">    TimableOutput.initStartTimestamp();  <span class="comment">// 初始化时间戳</span></span><br><span class="line">		<span class="comment">/*</span></span><br><span class="line"><span class="comment">			代码部分</span></span><br><span class="line"><span class="comment">		*/</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<ul>
+<li>$3、$官方提供的输出包是<strong>线程不安全</strong>的，需要同学们<strong>自行保证其被多个线程调用时输出符合逻辑</strong>。</li>
+<li>$4、$由于<strong>多线程调度存在随机性</strong>，在使用官方提供的投喂脚本或进行互测环节时，可能会出现<strong>输出与官方评测机不一致、bug 无法复现的情况</strong>，最终结果均<strong>以官方评测机为准</strong>。</li>
+<li>$5、$如何进行线程安全设计：<ul>
+<li>明确共享对象的状态和约束</li>
+<li>更高效率的进行并发访问（如使用读写锁）</li>
+</ul>
+</li>
+<li>$6、$线程协同架构选择：<ul>
+<li>对请求的处理分段：分配给横/纵向电梯 $\rightarrow$ 分配给哪部电梯</li>
+<li>对共享队列的选择：整体队列、楼座（层）队列、电梯队列</li>
+</ul>
+</li>
+<li>$7、$工厂模式的使用：采用工厂模式来创建不同运行模式、运行策略的电梯。</li>
+<li>$8、$换乘问题：<ul>
+<li>必须要换乘：如何判断路径可达？</li>
+<li>可能要换乘：如何估计换乘代价？估计过程是否需要加锁？</li>
+</ul>
+</li>
+<li>$9、$不可直达请求：<ul>
+<li>动态拆分：电梯分析整体的请求，尽量将请求往目的地捎带？</li>
+<li>静态拆分：跟据路径可达信息在请求读入时拆成多个阶段任务，电梯按阶段接受任务？</li>
+</ul>
+</li>
+</ul>
+<h4 id="二、警示"><a href="#二、警示" class="headerlink" title="二、警示"></a>二、警示</h4><font color = red>不要试图Hack评测机和官方接口，不要企图伪造时间戳，不要抄袭。如在互测中发现其他人的代码疑似存在上述行为，可向课程组举报。课程组感谢同学们为OO课程建设所作出的贡献。</font>
+
+<h4 id="三、掩码"><a href="#三、掩码" class="headerlink" title="三、掩码"></a>三、掩码</h4><p>本次作业中的可到达信息 $M$ 主要采用了掩码 (mask) 来表示，下面进行一个简单的举例：</p>
+<p>如果我们要表示物品是易燃还是易爆，那么可以采取如下方式：</p>
+<ul>
+<li>我们用二进制第 1 位（即最低位）的 <code>0 / 1</code> 来表示 <code>不易燃 / 易燃</code> </li>
+<li>我们用二进制第 2 位的 <code>0 / 1</code> 来表示 <code>不易爆 / 易爆</code></li>
+</ul>
+<p>这样的话，我们只需要两位就能表示出所有的情况：</p>
+<ul>
+<li>0 (二进制 00) 代表不易燃且不易爆</li>
+<li>1 (二进制 01) 代表易燃但是不易爆</li>
+<li>2 (二进制 10) 代表易爆但是不易燃</li>
+<li>3 (二进制 11) 代表易燃且易爆</li>
+</ul>
+<p>需要得到这个物品的情况时就取出其对应位即可。</p>
+<p>当然，如果理解不了也不影响我们作业的完成，只需要使用给定的公式就可以了。</p>
+
+                
+                <hr>
+                <!-- Pager -->
+                <ul class="pager">
+                    
+                    <li class="previous">
+                        <a href="/2022/04/20/OO - P7/" data-toggle="tooltip" data-placement="top" title="OO - P7">&larr; Previous Post
+		<br>
+		<span><font size="2" face="Calibri" color="grey">OO - P7</font></span>
+	       </a>
+                    </li>
+                    
+                    
+                    <li class="next">
+                        <a href="/2022/04/20/OS - Lab3/" data-toggle="tooltip" data-placement="top" title="OS - Lab3">Next Post &rarr;
+		<br>
+		<span><font size="2" face="Calibri" color="grey">OS - Lab3</font></span>
+	        </a>
+                    </li>
+                    
+                </ul>
+
+                <!-- tip start -->
+                
+
+                
+                <div class="comment_notes">
+                    <p>
+                        by Tan
+                    </p>
+                </div>
+                
+                <!-- tip end -->
+
+                <!-- Music start-->
+                
+                <!-- Music end -->
+
+                <!-- Sharing -->
+                
+                <!-- Sharing -->
+
+                <!-- gitment start -->
+                
+                <!-- gitment end -->
+
+                <!-- 来必力City版安装代码 -->
+                
+                <!-- City版安装代码已完成 -->
+
+                <!-- disqus comment start -->
+                
+                <!-- disqus comment end -->
+            </div>
+            
+            <!-- Tabe of Content -->
+            <!-- Table of Contents -->
+
+    
+      
+        <aside id="sidebar">
+          <div id="toc" class="toc-article">
+          <strong class="toc-title">Contents</strong>
+          
+            
+              <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#面向对象设计与构造第二单元第三次作业指导书"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">面向对象设计与构造第二单元第三次作业指导书</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#第一部分：训练目标"><span class="toc-nav-number">1.1.</span> <span class="toc-nav-text">第一部分：训练目标</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#第二部分：基本概念"><span class="toc-nav-number">1.2.</span> <span class="toc-nav-text">第二部分：基本概念</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#第三部分：题目描述"><span class="toc-nav-number">1.3.</span> <span class="toc-nav-text">第三部分：题目描述</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#一、电梯系统说明"><span class="toc-nav-number">1.3.1.</span> <span class="toc-nav-text">一、电梯系统说明</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#二、电梯参数说明"><span class="toc-nav-number">1.3.2.</span> <span class="toc-nav-text">二、电梯参数说明</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#三、电梯请求说明"><span class="toc-nav-number">1.3.3.</span> <span class="toc-nav-text">三、电梯请求说明</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#四、电梯捎带规则说明"><span class="toc-nav-number">1.3.4.</span> <span class="toc-nav-text">四、电梯捎带规则说明</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#五、基准策略"><span class="toc-nav-number">1.3.5.</span> <span class="toc-nav-text">五、基准策略</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#第四部分：输入-输出和样例"><span class="toc-nav-number">1.4.</span> <span class="toc-nav-text">第四部分：输入&#x2F;输出和样例</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#一、输入输出接口说明"><span class="toc-nav-number">1.4.1.</span> <span class="toc-nav-text">一、输入输出接口说明</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#二、输入数据"><span class="toc-nav-number">1.4.2.</span> <span class="toc-nav-text">二、输入数据</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#三、输出数据"><span class="toc-nav-number">1.4.3.</span> <span class="toc-nav-text">三、输出数据</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#四、样例"><span class="toc-nav-number">1.4.4.</span> <span class="toc-nav-text">四、样例</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#第五部分：测试数据限制说明"><span class="toc-nav-number">1.5.</span> <span class="toc-nav-text">第五部分：测试数据限制说明</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#一、数据基本限制"><span class="toc-nav-number">1.5.1.</span> <span class="toc-nav-text">一、数据基本限制</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#二、公测数据限制"><span class="toc-nav-number">1.5.2.</span> <span class="toc-nav-text">二、公测数据限制</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#三、互测数据限制"><span class="toc-nav-number">1.5.3.</span> <span class="toc-nav-text">三、互测数据限制</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#第六部分：公测说明"><span class="toc-nav-number">1.6.</span> <span class="toc-nav-text">第六部分：公测说明</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#一、正确性判断"><span class="toc-nav-number">1.6.1.</span> <span class="toc-nav-text">一、正确性判断</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#二、性能分的评判"><span class="toc-nav-number">1.6.2.</span> <span class="toc-nav-text">二、性能分的评判</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#三、分数判定和组成"><span class="toc-nav-number">1.6.3.</span> <span class="toc-nav-text">三、分数判定和组成</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#第七部分：互测说明"><span class="toc-nav-number">1.7.</span> <span class="toc-nav-text">第七部分：互测说明</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#第八部分：提示和警示"><span class="toc-nav-number">1.8.</span> <span class="toc-nav-text">第八部分：提示和警示</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#一、提示"><span class="toc-nav-number">1.8.1.</span> <span class="toc-nav-text">一、提示</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#二、警示"><span class="toc-nav-number">1.8.2.</span> <span class="toc-nav-text">二、警示</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#三、掩码"><span class="toc-nav-number">1.8.3.</span> <span class="toc-nav-text">三、掩码</span></a></li></ol></li></ol></li></ol>
+            
+          
+          </div>
+        </aside>
+      
+    
+
+                
+            <!-- Sidebar Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                       
+                    </div>
+                </section>
+                
+
+            </div>
+			
+			<div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+				
+				<br>
+				<br>
+
+				<script src="https://utteranc.es/client.js"
+						repo="Master-Tan/Master-Tan.github.io"
+						issue-term="pathname"
+						label="Comment"
+						theme="github-light"
+						crossorigin="anonymous"
+						async>
+				</script>
+			</div>
+        </div>
+    </div>
+</article>
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("https://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'hover',
+          placement: 'left',
+          icon: 'ℬ'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+
+
+<style  type="text/css">
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
+
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+
+                
+                    <li>
+                        <a target="_blank"  href="https://github.com/Master-Tan">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+                    <li>
+                        <a target="_blank" href="https://twitter.com/None">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+                    <li>
+                        <a target="_blank" href="https://www.facebook.com/None">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                
+
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; Tan 2022 | Powered by 
+                    <a href="https://github.com/Master-Tan/Master-Tan.github.io" target="_blank" rel="noopener">
+                        <i>Tan's Blog</i>
+                    </a>
+                </p>
+            </div>
+        </div>
+    </div>
+
+</footer>
+
+<!-- jQuery -->
+
+<script src="/js/jquery.min.js"></script>
+
+
+<!-- Bootstrap Core JavaScript -->
+
+<script src="/js/bootstrap.min.js"></script>
+
+
+<!-- Custom Theme JavaScript -->
+
+<script src="/js/hux-blog.min.js"></script>
+
+
+<!-- Search -->
+
+<script src="/js/search.js"></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("https://master-tan.github.io/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("https://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+<script>
+    // dynamic User by Hux
+    var _gaId = 'UA-XXXXXXXX-X';
+    var _gaDomain = 'yoursite';
+
+    // Originial
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', _gaId, _gaDomain);
+    ga('send', 'pageview');
+</script>
+
+
+
+
+<!-- Baidu Tongji -->
+
+
+<!-- Search -->
+
+    <script type="text/javascript">      
+        var search_path = "search.xml";
+        if (search_path.length == 0) {
+            search_path = "search.xml";
+        }
+    var path = "/" + search_path;
+    searchFunc(path, 'local-search-input', 'local-search-result');
+    </script>
+
+
+<!-- busuanzi -->
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+
+	<a id="rocket" href="#top" class=""></a>
+	<script type="text/javascript" src="/js/totop.js?v=1.0.0" async=""></script>
+    <script type="text/javascript" src="/js/toc.js?v=1.0.0" async=""></script>
+
+    
+        <!-- background effects line -->
+        
+
+        
+            <script type="text/javascript" src="/js/mouse-click.js" content='[&quot;Sunny&quot;, &quot;💖&quot;, &quot;Sunny&quot;, &quot;🧡&quot;, &quot;Sunny&quot;, &quot;💛&quot;, &quot;Sunny&quot; , &quot;💚&quot;, &quot;Sunny&quot;, &quot;💙&quot;, &quot;Sunny&quot;, &quot;💜&quot;, &quot;Sunny&quot;, &quot;😍&quot;]' color='[&quot;rgb(255, 0, 0)&quot; ,&quot;rgb(255, 0, 0)&quot; ,&quot;rgb(255, 125, 0)&quot; ,&quot;rgb(255, 125, 0)&quot; ,&quot;rgb(255, 255, 0)&quot; ,&quot;rgb(255, 255, 0)&quot; ,&quot;rgb(0, 255, 0)&quot; ,&quot;rgb(0, 255, 0)&quot; ,&quot;rgb(0, 255, 255)&quot; ,&quot;rgb(0, 255, 255)&quot; ,&quot;rgb(0, 0, 255)&quot; ,&quot;rgb(0, 0, 255)&quot; ,&quot;rgb(255, 0, 255)&quot; ,&quot;rgb(255, 0, 255)&quot;]'></script>
+        
+
+        <!-- background effects end -->
+    
+
+    <!--<script size="50" alpha='0.3' zIndex="-999" src="/js/ribbonStatic.js"></script>-->
+    
+        <script src="/js/ribbonDynamic.js"></script>
+    
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+
+</html>
