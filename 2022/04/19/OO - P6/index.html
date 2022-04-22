@@ -119,7 +119,7 @@
 	       
                             <div class="blank_box"></div>
                             <span class="meta">
-                                 <span class="post-count">1.6k</span> Words
+                                 <span class="post-count">1k</span> Words
                             </span>
                             <div class="blank_box"></div>
                             <!-- 不蒜子统计 start -->
@@ -180,14 +180,14 @@
 
                         
                         	<li>
-                          	  <a href="/archive/">Archives</a>
+                          	  <a href="/about/">About Tan</a>
                         	</li>
                         
                     
 
                         
                         	<li>
-                          	  <a href="/about/">About Tan</a>
+                          	  <a href="/archive/">Archives</a>
                         	</li>
                         
                     
@@ -258,132 +258,105 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <h1 id="面向对象设计与构造第二单元第一次作业"><a href="#面向对象设计与构造第二单元第一次作业" class="headerlink" title="面向对象设计与构造第二单元第一次作业"></a>面向对象设计与构造第二单元第一次作业</h1><h4 id="多线程实时电梯系统"><a href="#多线程实时电梯系统" class="headerlink" title="多线程实时电梯系统"></a>多线程实时电梯系统</h4><p><br></p>
+                <h1 id="面向对象设计与构造第二单元第二次作业"><a href="#面向对象设计与构造第二单元第二次作业" class="headerlink" title="面向对象设计与构造第二单元第二次作业"></a>面向对象设计与构造第二单元第二次作业</h1><h4 id="多线程实时电梯系统"><a href="#多线程实时电梯系统" class="headerlink" title="多线程实时电梯系统"></a>多线程实时电梯系统</h4><p><br></p>
 <hr>
 <h3 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h3><p><a href="../OO - P6 - Question">题目链接</a></p>
 <p><br></p>
 <hr>
 <h3 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h3><ul>
-<li><p>本次作业在第一次的基础之上增加了横向电梯以及同楼层/楼座的多台电梯<br><br></p>
+<li><p>本次作业在第一次的基础之上增加了横向电梯以及同楼层/楼座的多台电梯的需求<br><br></p>
 </li>
-<li><p>本单元虽然新增横向电梯，但是横向电梯<br><br></p>
+<li><p>本单元虽然新增横向电梯，但是在本单元的要求中不会同时出现跨楼层/跨楼座的请求，即乘客与第一次作业一样只需乘坐一趟电梯就可以到达目的地，因此，横向电梯在本单元中与纵向电梯本质上是一样的<br><br></p>
 </li>
-<li><p>使用 <code>生产者-消费者</code> 模式，与 <code>乘客-电梯</code> 相对应<br><br></p>
-</li>
-<li><p>使用 <code>策略类—电梯类</code> 分离模式，让电梯的运行与策略分离，并且电梯作为线程类，在其自身的 <code>run</code> 方法中保证输出的正确性<br><br></p>
-</li>
-<li><p>应用工厂模式，电梯捎带策略类均实现 <code>DecisionMaker</code> 接口，以实现在策略之间的转换<br><br></p>
+<li><p>根据第一次作业留下的可拓展接口进行迭代开发<br><br></p>
 </li>
 </ul>
 <hr>
-<h3 id="基本思路"><a href="#基本思路" class="headerlink" title="基本思路"></a>基本思路</h3><ul>
-<li><p>输入：乘客输入经过 <code>InputThread</code> 类进入请求池，由于请求进入请求池的前后顺序无要求，并且请求之间互不影响，因此此过程并不会产生线程安全问题<br><br></p>
-</li>
-<li><p>输出：电梯或乘客在执行动作的时候需要调用 <code>OutputThread</code> 类的一个 <strong>静态的</strong> <strong>加锁的</strong> 方法来输出，因为官方所给的输出包是线程不安全的，在同时调用的时候会由于线程的冲突而导致输出时间戳 <strong>有可能不递增</strong> ，所以需要在此类把官方输出方法加锁使其线程安全<br><br></p>
-</li>
-<li><p>控制器：本程序的控制器起到开始时的建立请求池实例，建立所有电梯线程实例并开始线程，结束时的通知程序中止作用（并不起调度作用），相当于使程序开始和结束的控制者<br><br></p>
-</li>
-<li><p>策略：接受当前电梯的状态和请求池中的请求，然后对电梯返回一种 <strong>策略</strong> （注意可能并不会真正执行），由于对每个电梯都有一个专门的策略类实例，所以这种一对一传输并不会产生线程安全问题</p>
-<p>（LOOK算法）其思想如下：</p>
+<h3 id="需求变更"><a href="#需求变更" class="headerlink" title="需求变更"></a>需求变更</h3><h4 id="新增内容"><a href="#新增内容" class="headerlink" title="新增内容:"></a>新增内容:</h4><ul>
+<li><p><strong>横向电梯（环形电梯）：</strong>  </p>
 <ul>
-<li><p>如果电梯没人</p>
-<ul>
-<li><p>如果没请求，则等待</p>
-</li>
-<li><p>如果有请求，沿原方向前进（原来是等待则沿另一个方向前进）</p>
-</li>
+<li>新增楼座与楼座之间移动的环形电梯，每个楼层可以对应多台环形电梯，可以在 $A\rightarrow B \rightarrow C \rightarrow D \rightarrow E  \rightarrow A$​​ 或者 $A\rightarrow E \rightarrow D \rightarrow C \rightarrow B  \rightarrow A$ ​​所组成的回路之间运行，例如，位于$A$​​ 座 $2$​​ 楼的横向电梯可以直接运行到 $B$​​ 座 $2$​​ 楼 $/$​​ $E$​​ 座 $2$​​ 楼</li>
 </ul>
 </li>
-<li><p>如果电梯有人</p>
+<li><p><strong>纵向乘客请求</strong></p>
 <ul>
-<li><p>判断当前是否需要开门</p>
+<li>可以输入相同楼层但是不同楼座的乘客请求</li>
+</ul>
 </li>
-<li><p>如果不用开门，则沿原方向前进</p>
-</li>
+<li><p><strong>动态增加电梯</strong></p>
+<ul>
+<li>可以输入新增电梯指令，在对应楼座/楼层加入一台电梯</li>
 </ul>
 </li>
 </ul>
-<p><font size="1"> 虽然不知道原理是啥，但是学长都是这么用的（逃） </font><br><br></p>
-</li>
-<li><p>请求池操作：该类相当于 <code>生产者-消费者</code> 模型中的 <code>托盘</code>，由于该对象被多线程同时访问 / 修改，所以该类中的所有 <strong>修改请求池</strong> 的方法均应该加上<strong>同一个</strong>锁，以此来保证线程安全<br><br></p>
-</li>
-<li><p>电梯：每一个电梯都是一个单独的线程，电梯之间互不干扰，电梯的行动完全由其对应的策略类决定，并且在其 <code>run()</code> 方法中保证电梯的正确性，并且加入了回退机制以实现 <code>&quot;电梯空等后接第一个人时可以实现一次跃迁节省一次电梯移动时间&quot;</code> 以及 <code>&quot;电梯的关门和移动未完成时，如果有新的客人请求可以直接让电梯受理&quot;</code> 的功能<br><br></p>
-</li>
-<li><p>程序结束：在 <code>InputThread</code>类判断到输入截止之后，输入线程终止，并且将调用控制器的 <code>close()</code> 方法，进而调用请求池的 <code>close()</code> 方法，请求池将所有电梯的 <code>isClose</code> 置位，并且唤醒所有线程，然后电梯在载完请求池中该栋以及当前在电梯中的所有客人后 <code>break</code> 出 <code>while(true)</code> 循环，电梯线程终止，所有电梯线程终止后，程序正常结束<br><br></p>
-</li>
-</ul>
-<hr>
-<h3 id="具体实现"><a href="#具体实现" class="headerlink" title="具体实现"></a>具体实现</h3><h4 id="总UML类图："><a href="#总UML类图：" class="headerlink" title="总UML类图："></a>总UML类图：</h4><p><img src="MainClass.png"/></p>
+<h4 id="数据限制变更"><a href="#数据限制变更" class="headerlink" title="数据限制变更:"></a>数据限制变更:</h4><ul>
+<li><p>乘客请求：</p>
 <ul>
-<li><h4 id="读入处理类-InputThread"><a href="#读入处理类-InputThread" class="headerlink" title="读入处理类 InputThread"></a>读入处理类 <code>InputThread</code></h4><p><img src="1.png"/>  </p>
-<ul>
-<li>开启官方包的输入线程，获得输入的请求，并将每一个输入请求传递到<code>Controller</code> 类中</li>
-<li>在官方包传出终止信号时，调用 <code>Controller</code> 的 <code>close</code> 方法<br><br></li>
+<li>输入保证 [起点座 == 终点座] + [起点层 == 终点层] == 1，即楼座和楼层两者中有且仅有一个相同，换言之，乘客一次只能在同一层楼或者同一座楼移动，从 A 座 1 层到 C 座 3 层是不被允许的（本次作业中）</li>
 </ul>
 </li>
-<li><h4 id="输出处理类-OutputThread"><a href="#输出处理类-OutputThread" class="headerlink" title="输出处理类 OutputThread"></a>输出处理类 <code>OutputThread</code></h4><p><img src="2.png"/>  </p>
+<li><p>电梯移动速度：</p>
 <ul>
-<li>用一个 <code>synchronized</code> 的 <code>static</code> 方法，对官方给的线程不安全的输出方法 <code>TimableOutput.println()</code> 进行封装，使其成为线程安全的静态方法 <code>OutputThread.println()</code> （即调用时不会出现时间戳不递增的情况）<br><br></li>
+<li>纵向电梯移动一层花费的时间：0.4s</li>
+<li>横向电梯移动一座花费的时间：0.2s</li>
 </ul>
 </li>
-<li><h4 id="控制器类-Controller"><a href="#控制器类-Controller" class="headerlink" title="控制器类 Controller"></a>控制器类 <code>Controller</code></h4><p><img src="3.png"/>  </p>
+</ul>
+<h3 id="迭代开发"><a href="#迭代开发" class="headerlink" title="迭代开发"></a>迭代开发</h3><h4 id="总UML类图："><a href="#总UML类图：" class="headerlink" title="总UML类图："></a>总UML类图：</h4><p><img src="MainClass.png"  alt="MainClass" /></p>
+<h4 id="新增："><a href="#新增：" class="headerlink" title="新增："></a>新增：</h4><ul>
+<li><h4 id="电梯接口-Elevator"><a href="#电梯接口-Elevator" class="headerlink" title="电梯接口 Elevator"></a>电梯接口 <code>Elevator</code></h4><p><img src="1.png"  alt="1" />  </p>
 <ul>
-<li>创建请求池类（ <code>RequestPool</code> 类）的实例</li>
-<li>创建所有电梯线程（ <code>Elevator</code> 类）并开始运行（处于可接客状态）</li>
-<li>为每一个电梯创建一个决策者实例 <code>DecisionMaker</code></li>
-<li>在接收到读入处理类 （ <code>InputThread</code> 类）的 <code>close</code> 请求后，调用请求池类（ <code>RequestPool</code> 类 ）的 <code>close</code> 方法通知其进入停止状态<br><br></li>
+<li>由于本次作业新增了一种电梯（横向电梯），横向电梯与纵向电梯本质上都是一种电梯，只不过在一些具体的方法和行为上有所区别，因此可以让这两种电梯实现一个公共的电梯接口，实现了面向对象思维  </li>
 </ul>
 </li>
-<li><h4 id="请求池类-RequestPool"><a href="#请求池类-RequestPool" class="headerlink" title="请求池类 RequestPool"></a>请求池类 <code>RequestPool</code></h4><p><img src="4.png"/>  </p>
+<li><h4 id="横向电梯类-FloorElevator"><a href="#横向电梯类-FloorElevator" class="headerlink" title="横向电梯类 FloorElevator"></a>横向电梯类 <code>FloorElevator</code></h4><p><img src="2.png"  alt="2" />  </p>
 <ul>
-<li>线程安全类，采用了 <code>ReentrantLock</code> 锁，所有对请求池读 / 写的方法均上锁，以保证线程安全</li>
-<li>实现向请求池添加请求 <code>addRequest</code> ，从请求池删除（获得）请求 <code>removeRequest</code> ，查询当前请求池中所有请求 <code>getAllRequest</code></li>
-<li>储存所有的电梯信息</li>
-<li>在添加请求时，唤醒 <strong>所有</strong> 电梯中正在 <code>await</code> 的线程，达到实时判断乘客的效果</li>
-<li>控制器（ <code>Controller</code> 类）传入关闭方法时，将本类的 <code>isClose</code> 置 <code>1</code> ，并且将 <strong>所有</strong> 电梯的 <code>isClose</code> 置 <code>1</code></li>
+<li>该类的<code>addFun</code>方法读入一个自定义函数表达式，以 <code>HashMap&lt;String, ArrayList&lt;String&gt;&gt;</code> 的形式保存于该类中</li>
+<li>如： <code>f(x,y,z)=x+y**2+z**3</code> 存储为 <code>HashMap&lt;f,[x, y, z, (x+y**2+z**3)]&gt;</code></li>
+<li>该类亦带有一个处理方法，同样用于字符串的预处理，将本类中所存的所有<strong>自定义函数</strong>都代入输入字符串中，并返回处理后的字符串</li>
+<li>如： <code>自定义函数为：f(x,y,z)=x+y**2+z**3 ; 待处理表达式为：f(sin(x)**2,cos(x),x) ;</code> 处理为 <code>((sin(x)**2)+(cos(x))**2+(x)**3)</code></li>
+<li>tips: 需要先替换 <code>x</code> 以免出现 <code>x</code> 的重复代入</li>
 </ul>
 </li>
-<li><h4 id="电梯类-Elevator"><a href="#电梯类-Elevator" class="headerlink" title="电梯类 Elevator"></a>电梯类 <code>Elevator</code></h4><p><img src="5.png"/>  </p>
+<li><h4 id="横向电梯策略类-LookFloorDecisionMaker"><a href="#横向电梯策略类-LookFloorDecisionMaker" class="headerlink" title="横向电梯策略类 LookFloorDecisionMaker"></a>横向电梯策略类 <code>LookFloorDecisionMaker</code></h4><p><img src="3.png"  alt="3" />  </p>
 <ul>
-<li>重写 <code>run()</code> 方法，实现顺序执行 <code>下客-&gt;上客-&gt;关门-&gt;运行一层</code> 的流程，其中每一步均有是否执行的判断条件，只有满足条件才会执行，顺序执行保证了电梯的正确性</li>
-<li>每次下客前和关门前均调用自身对应的决策类的 <code>ask</code> 方法，使决策类根据此时电梯状态和请求池状态更新自身行为，然后访问决策类的方法获得电梯下一步的行动 <strong>建议</strong> （接那些人以及向哪一层移动/空等）</li>
-<li>关门和移动等待时间为电梯上一次 <strong>任意</strong> 操作（ <code>开门/关门/移动</code> ）的系统时间与此时系统时间的差值（保证电梯距上次输出 <code>400ms</code> 即可）<br><br></li>
+<li>该类在递归下降算法中位于 <code>Experssion类</code> 之上，具有 <code>addExpression</code> 方法用于递归</li>
+<li>使用一个字符串用于记录三角函数具体类型（ <code>sin</code> / <code>cos</code> ）</li>
+<li>重写 <code>toString</code> 方法，把保存在该类中存储的表达式并输出三角函数类型（视为<strong>单目</strong>运算符）</li>
 </ul>
 </li>
-<li><h4 id="决策类接口-DecisionMaker"><a href="#决策类接口-DecisionMaker" class="headerlink" title="决策类接口 DecisionMaker"></a>决策类接口 <code>DecisionMaker</code></h4><p>  <img src="6.png"/>  </p>
+<li><h4 id="乘客请求类（重写）-MyRequest"><a href="#乘客请求类（重写）-MyRequest" class="headerlink" title="乘客请求类（重写） MyRequest"></a>乘客请求类（重写） <code>MyRequest</code></h4><p><img src="4.png"  alt="4" /></p>
 <ul>
-<li><p>定义了 <code>4</code> 个方法</p>
-<ul>
-<li><p><code>ask()</code> 方法：调用时重新计算当前建议  </p>
-</li>
-<li><p><code>whoToPickUp()</code> 方法：返回需要载客的建议  </p>
-</li>
-<li><p><code>whoToPutDown()</code> 方法：返回需要下客的建议  </p>
-</li>
-<li><p><code>nextDirection()</code> 方法：返回下一步电梯行动方向 / 是否空等的建议  </p>
-</li>
-</ul>
-<p><br></p>
-<ul>
-<li><h5 id="项（乘除）类-LookDecisionMaker"><a href="#项（乘除）类-LookDecisionMaker" class="headerlink" title="项（乘除）类 LookDecisionMaker"></a>项（乘除）类 <code>LookDecisionMaker</code></h5><img src="7.png"/>  </li>
+<li>该类用于将一个 <code>Item</code> 类中符合三角函数化简规则的项进行运算并化简，返回一个处理后的 <code>Item</code> 类</li>
 </ul>
 </li>
-<li><p>实现了 <code>LOOK</code> 算法</p>
+</ul>
+<h4 id="修改："><a href="#修改：" class="headerlink" title="修改："></a>修改：</h4><ul>
+<li><h4 id="纵向电梯类-BuildingElevator"><a href="#纵向电梯类-BuildingElevator" class="headerlink" title="纵向电梯类 BuildingElevator"></a>纵向电梯类 <code>BuildingElevator</code></h4><ul>
+<li><p>关闭条件变更</p>
 </li>
-<li>重写了 <code>DecisionMaker</code> 接口的 <code>4</code> 个方法</li>
+<li><p>增加操作内部人员（InsidePerson）锁</p>
+</li>
+</ul>
+</li>
+<li><h4 id="控制器类-Controller"><a href="#控制器类-Controller" class="headerlink" title="控制器类 Controller"></a>控制器类 <code>Controller</code></h4><ul>
+<li>递归下降算法输出后缀表达式时加入三角函数类，输出时将三角函数视为单目运算符（即增加 <code>parseTriFun</code> 方法）</li>
+<li>变更识别变量 <code>x</code> 为识别所有自变量</li>
+</ul>
+</li>
+<li><h4 id="纵向电梯策略类-LookBuildingDecisionMaker"><a href="#纵向电梯策略类-LookBuildingDecisionMaker" class="headerlink" title="纵向电梯策略类 LookBuildingDecisionMaker"></a>纵向电梯策略类 <code>LookBuildingDecisionMaker</code></h4><ul>
+<li>优化：优先接取最远乘客</li>
+<li>优化：优先接取同目的地乘客</li>
+</ul>
+</li>
+<li><h4 id="请求池类-RequestPool"><a href="#请求池类-RequestPool" class="headerlink" title="请求池类 RequestPool"></a>请求池类 <code>RequestPool</code></h4><ul>
+<li>优化：优先接取最远乘客</li>
+<li>优化：优先接取同目的地乘客</li>
 </ul>
 </li>
 </ul>
 <p><br></p>
 <hr>
-<p>易错点： </p>
-<ol>
-<li>死锁</li>
-<li>轮询</li>
-<li>超载</li>
-<li>超时</li>
-<li>……</li>
-</ol>
 
                 
                 <hr>
@@ -450,7 +423,7 @@
           <strong class="toc-title">Contents</strong>
           
             
-              <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#面向对象设计与构造第二单元第一次作业"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">面向对象设计与构造第二单元第一次作业</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#多线程实时电梯系统"><span class="toc-nav-number">1.0.0.1.</span> <span class="toc-nav-text">多线程实时电梯系统</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#题目"><span class="toc-nav-number">1.0.1.</span> <span class="toc-nav-text">题目</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#分析"><span class="toc-nav-number">1.0.2.</span> <span class="toc-nav-text">分析</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#基本思路"><span class="toc-nav-number">1.0.3.</span> <span class="toc-nav-text">基本思路</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#具体实现"><span class="toc-nav-number">1.0.4.</span> <span class="toc-nav-text">具体实现</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#总UML类图："><span class="toc-nav-number">1.0.4.1.</span> <span class="toc-nav-text">总UML类图：</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#读入处理类-InputThread"><span class="toc-nav-number">1.0.4.2.</span> <span class="toc-nav-text">读入处理类 InputThread</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#输出处理类-OutputThread"><span class="toc-nav-number">1.0.4.3.</span> <span class="toc-nav-text">输出处理类 OutputThread</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#控制器类-Controller"><span class="toc-nav-number">1.0.4.4.</span> <span class="toc-nav-text">控制器类 Controller</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#请求池类-RequestPool"><span class="toc-nav-number">1.0.4.5.</span> <span class="toc-nav-text">请求池类 RequestPool</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#电梯类-Elevator"><span class="toc-nav-number">1.0.4.6.</span> <span class="toc-nav-text">电梯类 Elevator</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#决策类接口-DecisionMaker"><span class="toc-nav-number">1.0.4.7.</span> <span class="toc-nav-text">决策类接口 DecisionMaker</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#项（乘除）类-LookDecisionMaker"><span class="toc-nav-number">1.0.4.7.1.</span> <span class="toc-nav-text">项（乘除）类 LookDecisionMaker</span></a></li></ol></li></ol></li></ol></li></ol></li></ol>
+              <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#面向对象设计与构造第二单元第二次作业"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">面向对象设计与构造第二单元第二次作业</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#多线程实时电梯系统"><span class="toc-nav-number">1.0.0.1.</span> <span class="toc-nav-text">多线程实时电梯系统</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#题目"><span class="toc-nav-number">1.0.1.</span> <span class="toc-nav-text">题目</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#分析"><span class="toc-nav-number">1.0.2.</span> <span class="toc-nav-text">分析</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#需求变更"><span class="toc-nav-number">1.0.3.</span> <span class="toc-nav-text">需求变更</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#新增内容"><span class="toc-nav-number">1.0.3.1.</span> <span class="toc-nav-text">新增内容:</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#数据限制变更"><span class="toc-nav-number">1.0.3.2.</span> <span class="toc-nav-text">数据限制变更:</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#迭代开发"><span class="toc-nav-number">1.0.4.</span> <span class="toc-nav-text">迭代开发</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#总UML类图："><span class="toc-nav-number">1.0.4.1.</span> <span class="toc-nav-text">总UML类图：</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#新增："><span class="toc-nav-number">1.0.4.2.</span> <span class="toc-nav-text">新增：</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#电梯接口-Elevator"><span class="toc-nav-number">1.0.4.3.</span> <span class="toc-nav-text">电梯接口 Elevator</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#横向电梯类-FloorElevator"><span class="toc-nav-number">1.0.4.4.</span> <span class="toc-nav-text">横向电梯类 FloorElevator</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#横向电梯策略类-LookFloorDecisionMaker"><span class="toc-nav-number">1.0.4.5.</span> <span class="toc-nav-text">横向电梯策略类 LookFloorDecisionMaker</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#乘客请求类（重写）-MyRequest"><span class="toc-nav-number">1.0.4.6.</span> <span class="toc-nav-text">乘客请求类（重写） MyRequest</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#修改："><span class="toc-nav-number">1.0.4.7.</span> <span class="toc-nav-text">修改：</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#纵向电梯类-BuildingElevator"><span class="toc-nav-number">1.0.4.8.</span> <span class="toc-nav-text">纵向电梯类 BuildingElevator</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#控制器类-Controller"><span class="toc-nav-number">1.0.4.9.</span> <span class="toc-nav-text">控制器类 Controller</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#纵向电梯策略类-LookBuildingDecisionMaker"><span class="toc-nav-number">1.0.4.10.</span> <span class="toc-nav-text">纵向电梯策略类 LookBuildingDecisionMaker</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#请求池类-RequestPool"><span class="toc-nav-number">1.0.4.11.</span> <span class="toc-nav-text">请求池类 RequestPool</span></a></li></ol></li></ol></li></ol></li></ol>
             
           
           </div>

@@ -119,7 +119,7 @@
 	       
                             <div class="blank_box"></div>
                             <span class="meta">
-                                 <span class="post-count">0</span> Words
+                                 <span class="post-count">1k</span> Words
                             </span>
                             <div class="blank_box"></div>
                             <!-- 不蒜子统计 start -->
@@ -180,14 +180,14 @@
 
                         
                         	<li>
-                          	  <a href="/archive/">Archives</a>
+                          	  <a href="/about/">About Tan</a>
                         	</li>
                         
                     
 
                         
                         	<li>
-                          	  <a href="/about/">About Tan</a>
+                          	  <a href="/archive/">Archives</a>
                         	</li>
                         
                     
@@ -258,7 +258,109 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                
+                <h1 id="面向对象设计与构造第二单元第三次作业"><a href="#面向对象设计与构造第二单元第三次作业" class="headerlink" title="面向对象设计与构造第二单元第三次作业"></a>面向对象设计与构造第二单元第三次作业</h1><h4 id="多线程实时电梯系统"><a href="#多线程实时电梯系统" class="headerlink" title="多线程实时电梯系统"></a>多线程实时电梯系统</h4><p><br></p>
+<hr>
+<h3 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h3><p><a href="../OO - P7 - Question">题目链接</a></p>
+<p><br></p>
+<hr>
+<h3 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h3><ul>
+<li><p>本次作业在第二次的基础之上增加了电梯的<em>定制化</em>以及同时跨楼层/跨楼座的乘客请求<br><br></p>
+</li>
+<li><p>本单元虽然新增的乘客请求是建立在上一次作业的横向电梯和上上次作业的纵向电梯的铺垫之上，需要修改代码以实现换乘功能；电梯定制化只需要在创建新电梯类的时候作为参数传入并固化为该电梯属性即可<br><br></p>
+</li>
+<li><p>根据前两次作业留下的可拓展接口进行迭代开发<br><br></p>
+</li>
+</ul>
+<hr>
+<h3 id="需求变更"><a href="#需求变更" class="headerlink" title="需求变更"></a>需求变更</h3><h4 id="新增内容"><a href="#新增内容" class="headerlink" title="新增内容:"></a>新增内容:</h4><ul>
+<li><p><strong>横向电梯（环形电梯）：</strong>  </p>
+<ul>
+<li>新增楼座与楼座之间移动的环形电梯，每个楼层可以对应多台环形电梯，可以在 $A\rightarrow B \rightarrow C \rightarrow D \rightarrow E  \rightarrow A$​​ 或者 $A\rightarrow E \rightarrow D \rightarrow C \rightarrow B  \rightarrow A$ ​​所组成的回路之间运行，例如，位于$A$​​ 座 $2$​​ 楼的横向电梯可以直接运行到 $B$​​ 座 $2$​​ 楼 $/$​​ $E$​​ 座 $2$​​ 楼</li>
+</ul>
+</li>
+<li><p><strong>纵向乘客请求</strong></p>
+<ul>
+<li>可以输入相同楼层但是不同楼座的乘客请求</li>
+</ul>
+</li>
+<li><p><strong>动态增加电梯</strong></p>
+<ul>
+<li>可以输入新增电梯指令，在对应楼座/楼层加入一台电梯</li>
+</ul>
+</li>
+</ul>
+<h4 id="数据限制变更"><a href="#数据限制变更" class="headerlink" title="数据限制变更:"></a>数据限制变更:</h4><ul>
+<li><p>乘客请求：</p>
+<ul>
+<li>输入保证 [起点座 == 终点座] + [起点层 == 终点层] == 1，即楼座和楼层两者中有且仅有一个相同，换言之，乘客一次只能在同一层楼或者同一座楼移动，从 A 座 1 层到 C 座 3 层是不被允许的（本次作业中）</li>
+</ul>
+</li>
+<li><p>电梯移动速度：</p>
+<ul>
+<li>纵向电梯移动一层花费的时间：0.4s</li>
+<li>横向电梯移动一座花费的时间：0.2s</li>
+</ul>
+</li>
+</ul>
+<h3 id="迭代开发"><a href="#迭代开发" class="headerlink" title="迭代开发"></a>迭代开发</h3><h4 id="总UML类图："><a href="#总UML类图：" class="headerlink" title="总UML类图："></a>总UML类图：</h4><p><img src="MainClass.png"  alt="MainClass" /></p>
+<h4 id="新增："><a href="#新增：" class="headerlink" title="新增："></a>新增：</h4><ul>
+<li><h4 id="电梯接口-Elevator"><a href="#电梯接口-Elevator" class="headerlink" title="电梯接口 Elevator"></a>电梯接口 <code>Elevator</code></h4><p><img src="1.png"  alt="1" />  </p>
+<ul>
+<li>该类带有一个处理方法，用于字符串的预处理，将输入字符串中所有的 <strong>sum 函数</strong>展开，返回处理后的字符串</li>
+<li>如： <code>sum(i, 1, 3, (i*x))</code> 处理为 <code>((1*x)+(2*x)+(3*x))</code></li>
+<li>tips: 直接 <code>replaceAll</code> 的小心 <code>&quot;sin&quot;</code> 里面也有个<code>&quot;i&quot;</code> </li>
+<li>tips: <code>sum</code> 的上下限需要用 <code>BigInter</code></li>
+</ul>
+</li>
+<li><h4 id="横向电梯类-FloorElevator"><a href="#横向电梯类-FloorElevator" class="headerlink" title="横向电梯类 FloorElevator"></a>横向电梯类 <code>FloorElevator</code></h4><p><img src="2.png"  alt="2" />  </p>
+<ul>
+<li>该类的<code>addFun</code>方法读入一个自定义函数表达式，以 <code>HashMap&lt;String, ArrayList&lt;String&gt;&gt;</code> 的形式保存于该类中</li>
+<li>如： <code>f(x,y,z)=x+y**2+z**3</code> 存储为 <code>HashMap&lt;f,[x, y, z, (x+y**2+z**3)]&gt;</code></li>
+<li>该类亦带有一个处理方法，同样用于字符串的预处理，将本类中所存的所有<strong>自定义函数</strong>都代入输入字符串中，并返回处理后的字符串</li>
+<li>如： <code>自定义函数为：f(x,y,z)=x+y**2+z**3 ; 待处理表达式为：f(sin(x)**2,cos(x),x) ;</code> 处理为 <code>((sin(x)**2)+(cos(x))**2+(x)**3)</code></li>
+<li>tips: 需要先替换 <code>x</code> 以免出现 <code>x</code> 的重复代入</li>
+</ul>
+</li>
+<li><h4 id="横向电梯策略类-LookFloorDecisionMaker"><a href="#横向电梯策略类-LookFloorDecisionMaker" class="headerlink" title="横向电梯策略类 LookFloorDecisionMaker"></a>横向电梯策略类 <code>LookFloorDecisionMaker</code></h4><p><img src="3.png"  alt="3" />  </p>
+<ul>
+<li>该类在递归下降算法中位于 <code>Experssion类</code> 之上，具有 <code>addExpression</code> 方法用于递归</li>
+<li>使用一个字符串用于记录三角函数具体类型（ <code>sin</code> / <code>cos</code> ）</li>
+<li>重写 <code>toString</code> 方法，把保存在该类中存储的表达式并输出三角函数类型（视为<strong>单目</strong>运算符）</li>
+</ul>
+</li>
+<li><h4 id="乘客请求类（重写）-MyRequest"><a href="#乘客请求类（重写）-MyRequest" class="headerlink" title="乘客请求类（重写） MyRequest"></a>乘客请求类（重写） <code>MyRequest</code></h4><p><img src="4.png"  alt="4" /></p>
+<ul>
+<li>该类用于将一个 <code>Item</code> 类中符合三角函数化简规则的项进行运算并化简，返回一个处理后的 <code>Item</code> 类</li>
+</ul>
+</li>
+</ul>
+<h4 id="修改："><a href="#修改：" class="headerlink" title="修改："></a>修改：</h4><ul>
+<li><h4 id="纵向电梯类-BuildingElevator"><a href="#纵向电梯类-BuildingElevator" class="headerlink" title="纵向电梯类 BuildingElevator"></a>纵向电梯类 <code>BuildingElevator</code></h4><ul>
+<li><p>关闭条件变更</p>
+</li>
+<li><p>增加操作内部人员（InsidePerson）锁</p>
+</li>
+</ul>
+</li>
+<li><h4 id="控制器类-Controller"><a href="#控制器类-Controller" class="headerlink" title="控制器类 Controller"></a>控制器类 <code>Controller</code></h4><ul>
+<li>递归下降算法输出后缀表达式时加入三角函数类，输出时将三角函数视为单目运算符（即增加 <code>parseTriFun</code> 方法）</li>
+<li>变更识别变量 <code>x</code> 为识别所有自变量</li>
+</ul>
+</li>
+<li><h4 id="纵向电梯策略类-LookBuildingDecisionMaker"><a href="#纵向电梯策略类-LookBuildingDecisionMaker" class="headerlink" title="纵向电梯策略类 LookBuildingDecisionMaker"></a>纵向电梯策略类 <code>LookBuildingDecisionMaker</code></h4><ul>
+<li>优化：优先接取最远乘客</li>
+<li>优化：优先接取同目的地乘客</li>
+</ul>
+</li>
+<li><h4 id="请求池类-RequestPool"><a href="#请求池类-RequestPool" class="headerlink" title="请求池类 RequestPool"></a>请求池类 <code>RequestPool</code></h4><ul>
+<li>优化：优先接取最远乘客</li>
+<li>优化：优先接取同目的地乘客</li>
+</ul>
+</li>
+</ul>
+<p><br></p>
+<hr>
+
                 
                 <hr>
                 <!-- Pager -->
@@ -311,6 +413,17 @@
             <!-- Table of Contents -->
 
     
+      
+        <aside id="sidebar">
+          <div id="toc" class="toc-article">
+          <strong class="toc-title">Contents</strong>
+          
+            
+              <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#面向对象设计与构造第二单元第三次作业"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">面向对象设计与构造第二单元第三次作业</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#多线程实时电梯系统"><span class="toc-nav-number">1.0.0.1.</span> <span class="toc-nav-text">多线程实时电梯系统</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#题目"><span class="toc-nav-number">1.0.1.</span> <span class="toc-nav-text">题目</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#分析"><span class="toc-nav-number">1.0.2.</span> <span class="toc-nav-text">分析</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#需求变更"><span class="toc-nav-number">1.0.3.</span> <span class="toc-nav-text">需求变更</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#新增内容"><span class="toc-nav-number">1.0.3.1.</span> <span class="toc-nav-text">新增内容:</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#数据限制变更"><span class="toc-nav-number">1.0.3.2.</span> <span class="toc-nav-text">数据限制变更:</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#迭代开发"><span class="toc-nav-number">1.0.4.</span> <span class="toc-nav-text">迭代开发</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#总UML类图："><span class="toc-nav-number">1.0.4.1.</span> <span class="toc-nav-text">总UML类图：</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#新增："><span class="toc-nav-number">1.0.4.2.</span> <span class="toc-nav-text">新增：</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#电梯接口-Elevator"><span class="toc-nav-number">1.0.4.3.</span> <span class="toc-nav-text">电梯接口 Elevator</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#横向电梯类-FloorElevator"><span class="toc-nav-number">1.0.4.4.</span> <span class="toc-nav-text">横向电梯类 FloorElevator</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#横向电梯策略类-LookFloorDecisionMaker"><span class="toc-nav-number">1.0.4.5.</span> <span class="toc-nav-text">横向电梯策略类 LookFloorDecisionMaker</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#乘客请求类（重写）-MyRequest"><span class="toc-nav-number">1.0.4.6.</span> <span class="toc-nav-text">乘客请求类（重写） MyRequest</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#修改："><span class="toc-nav-number">1.0.4.7.</span> <span class="toc-nav-text">修改：</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#纵向电梯类-BuildingElevator"><span class="toc-nav-number">1.0.4.8.</span> <span class="toc-nav-text">纵向电梯类 BuildingElevator</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#控制器类-Controller"><span class="toc-nav-number">1.0.4.9.</span> <span class="toc-nav-text">控制器类 Controller</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#纵向电梯策略类-LookBuildingDecisionMaker"><span class="toc-nav-number">1.0.4.10.</span> <span class="toc-nav-text">纵向电梯策略类 LookBuildingDecisionMaker</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#请求池类-RequestPool"><span class="toc-nav-number">1.0.4.11.</span> <span class="toc-nav-text">请求池类 RequestPool</span></a></li></ol></li></ol></li></ol></li></ol>
+            
+          
+          </div>
+        </aside>
       
     
 
