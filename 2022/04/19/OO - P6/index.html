@@ -119,7 +119,7 @@
 	       
                             <div class="blank_box"></div>
                             <span class="meta">
-                                 <span class="post-count">1k</span> Words
+                                 <span class="post-count">1.2k</span> Words
                             </span>
                             <div class="blank_box"></div>
                             <!-- 不蒜子统计 start -->
@@ -179,8 +179,11 @@
                     
 
                         
+                    
+
+                        
                         	<li>
-                          	  <a href="/about/">About Tan</a>
+                          	  <a href="/tags/">Tags</a>
                         	</li>
                         
                     
@@ -193,11 +196,8 @@
                     
 
                         
-                    
-
-                        
                         	<li>
-                          	  <a href="/tags/">Tags</a>
+                          	  <a href="/about/">About Tan</a>
                         	</li>
                         
                     
@@ -292,12 +292,11 @@
 <h4 id="数据限制变更"><a href="#数据限制变更" class="headerlink" title="数据限制变更:"></a>数据限制变更:</h4><ul>
 <li><p>乘客请求：</p>
 <ul>
-<li>输入保证 [起点座 == 终点座] + [起点层 == 终点层] == 1，即楼座和楼层两者中有且仅有一个相同，换言之，乘客一次只能在同一层楼或者同一座楼移动，从 A 座 1 层到 C 座 3 层是不被允许的（本次作业中）</li>
+<li>单楼座输入 $\rightarrow$ 输入保证 [起点座 == 终点座] + [起点层 == 终点层] == 1，即 <strong>楼座和楼层两者中有且仅有一个相同</strong>  ，换言之，乘客一次只能在同一层楼或者同一座楼移动，从 A 座 1 层到 C 座 3 层是不被允许的（本次作业中）</li>
 </ul>
 </li>
 <li><p>电梯移动速度：</p>
 <ul>
-<li>纵向电梯移动一层花费的时间：0.4s</li>
 <li>横向电梯移动一座花费的时间：0.2s</li>
 </ul>
 </li>
@@ -306,52 +305,85 @@
 <h4 id="新增："><a href="#新增：" class="headerlink" title="新增："></a>新增：</h4><ul>
 <li><h4 id="电梯接口-Elevator"><a href="#电梯接口-Elevator" class="headerlink" title="电梯接口 Elevator"></a>电梯接口 <code>Elevator</code></h4><p><img src="1.png"  alt="1" />  </p>
 <ul>
-<li>由于本次作业新增了一种电梯（横向电梯），横向电梯与纵向电梯本质上都是一种电梯，只不过在一些具体的方法和行为上有所区别，因此可以让这两种电梯实现一个公共的电梯接口，实现了面向对象思维  </li>
+<li><p>由于本次作业新增了一种电梯（横向电梯），横向电梯与纵向电梯本质上都是一种电梯，只不过在一些具体的方法和行为上有所区别，因此可以让这两种电梯实现一个公共的电梯接口，实现了面向对象思维  </p>
+</li>
+<li><p>接口方法：</p>
+<ul>
+<li><p><code>getAtFloor</code>， <code>getDirection</code>， <code>getAtBuilding</code>， <code>getInsidePerson</code>： 获得电梯该时刻状态信息的方法  </p>
+</li>
+<li><p><code>getThisElevatorLock</code>， <code>getThisElevatorCondition</code>： 获取电梯方法 <code>Lock</code> 以及对应 <code>Condition</code> 的方法  </p>
+</li>
+<li><p><code>setClose</code>： 线程需要关闭的标志位，该位置高则代表此电梯可以终止自身线程</p>
+</li>
+</ul>
+</li>
 </ul>
 </li>
 <li><h4 id="横向电梯类-FloorElevator"><a href="#横向电梯类-FloorElevator" class="headerlink" title="横向电梯类 FloorElevator"></a>横向电梯类 <code>FloorElevator</code></h4><p><img src="2.png"  alt="2" />  </p>
 <ul>
-<li>该类的<code>addFun</code>方法读入一个自定义函数表达式，以 <code>HashMap&lt;String, ArrayList&lt;String&gt;&gt;</code> 的形式保存于该类中</li>
-<li>如： <code>f(x,y,z)=x+y**2+z**3</code> 存储为 <code>HashMap&lt;f,[x, y, z, (x+y**2+z**3)]&gt;</code></li>
-<li>该类亦带有一个处理方法，同样用于字符串的预处理，将本类中所存的所有<strong>自定义函数</strong>都代入输入字符串中，并返回处理后的字符串</li>
-<li>如： <code>自定义函数为：f(x,y,z)=x+y**2+z**3 ; 待处理表达式为：f(sin(x)**2,cos(x),x) ;</code> 处理为 <code>((sin(x)**2)+(cos(x))**2+(x)**3)</code></li>
-<li>tips: 需要先替换 <code>x</code> 以免出现 <code>x</code> 的重复代入</li>
+<li>实现 <code>Elevator</code> 接口，继承 <code>Thread</code> 类，内部实现逻辑大体与横向电梯显示，对外方法也基本相同，重写的 <code>run</code> 方法亦封装了顺序执行 <code>下客-&gt;上客-&gt;关门-&gt;运行一层</code> 的流程，只是从 <code>所处楼层：1 ~ 10</code> 转变为了 <code>所处楼座：A ~ E</code> ，</li>
 </ul>
 </li>
 <li><h4 id="横向电梯策略类-LookFloorDecisionMaker"><a href="#横向电梯策略类-LookFloorDecisionMaker" class="headerlink" title="横向电梯策略类 LookFloorDecisionMaker"></a>横向电梯策略类 <code>LookFloorDecisionMaker</code></h4><p><img src="3.png"  alt="3" />  </p>
 <ul>
-<li>该类在递归下降算法中位于 <code>Experssion类</code> 之上，具有 <code>addExpression</code> 方法用于递归</li>
-<li>使用一个字符串用于记录三角函数具体类型（ <code>sin</code> / <code>cos</code> ）</li>
-<li>重写 <code>toString</code> 方法，把保存在该类中存储的表达式并输出三角函数类型（视为<strong>单目</strong>运算符）</li>
+<li><p>该类为横向电梯的根据 <code>LOOK</code> 算法修改的适用于横向电梯的算法</p>
+</li>
+<li><p>修改内容：</p>
+<ul>
+<li><p>空等条件： 该楼层无乘客请求</p>
+</li>
+<li><p>转向条件： 电梯内部人数为零，该楼层电梯运行方向（顺时针 / 逆时针）上的下两座楼没有乘客请求，且本楼座没有该运行方向上的请求，则转向</p>
+</li>
+<li><p>接人条件： 接取电梯当前楼座的 <strong>所有</strong> 横向运动请求</p>
+</li>
+<li><p>下客条件： 所有到达楼座为当前楼座的请求</p>
+</li>
+</ul>
+</li>
 </ul>
 </li>
 <li><h4 id="乘客请求类（重写）-MyRequest"><a href="#乘客请求类（重写）-MyRequest" class="headerlink" title="乘客请求类（重写） MyRequest"></a>乘客请求类（重写） <code>MyRequest</code></h4><p><img src="4.png"  alt="4" /></p>
 <ul>
-<li>该类用于将一个 <code>Item</code> 类中符合三角函数化简规则的项进行运算并化简，返回一个处理后的 <code>Item</code> 类</li>
+<li>相当于重写了官方 <code>PersonRequest</code> 类中的所有对外接口，并且新增了一个构造方法，以支持在程序内部而非标准输入中的乘客请求的添加</li>
 </ul>
 </li>
 </ul>
 <h4 id="修改："><a href="#修改：" class="headerlink" title="修改："></a>修改：</h4><ul>
-<li><h4 id="纵向电梯类-BuildingElevator"><a href="#纵向电梯类-BuildingElevator" class="headerlink" title="纵向电梯类 BuildingElevator"></a>纵向电梯类 <code>BuildingElevator</code></h4><ul>
-<li><p>关闭条件变更</p>
+<li><h4 id="纵向电梯类-BuildingElevator"><a href="#纵向电梯类-BuildingElevator" class="headerlink" title="纵向电梯类 BuildingElevator"></a>纵向电梯类 <code>BuildingElevator</code></h4><p><img src="5.png"  alt="5" />  </p>
+<ul>
+<li><p>线程终止条件变更，适用于当前输入和处理</p>
 </li>
-<li><p>增加操作内部人员（InsidePerson）锁</p>
+<li><p>增加操作内部人员（InsidePerson）锁，因为在本次迭代中有可能外部类要访问该电梯的内部人员信息，加锁以保证线程安全性</p>
+</li>
+<li><p>新增不包含上锁操作的添加请求和获取所有请求的方法</p>
 </li>
 </ul>
 </li>
-<li><h4 id="控制器类-Controller"><a href="#控制器类-Controller" class="headerlink" title="控制器类 Controller"></a>控制器类 <code>Controller</code></h4><ul>
-<li>递归下降算法输出后缀表达式时加入三角函数类，输出时将三角函数视为单目运算符（即增加 <code>parseTriFun</code> 方法）</li>
-<li>变更识别变量 <code>x</code> 为识别所有自变量</li>
+<li><h4 id="控制器类-Controller"><a href="#控制器类-Controller" class="headerlink" title="控制器类 Controller"></a>控制器类 <code>Controller</code></h4><p><img src="6.png"  alt="6" />  </p>
+<ul>
+<li>新增添加电梯的处理方法 <code>addElevatorRequest</code> ，判断是新增楼座电梯还是新增楼层电梯并且调用自身的两个对应新增电梯方法： <code>addFloorElevator</code> 和 <code>addBuildingElevator</code> 以加入不同类的电梯进入电梯池中</li>
 </ul>
 </li>
-<li><h4 id="纵向电梯策略类-LookBuildingDecisionMaker"><a href="#纵向电梯策略类-LookBuildingDecisionMaker" class="headerlink" title="纵向电梯策略类 LookBuildingDecisionMaker"></a>纵向电梯策略类 <code>LookBuildingDecisionMaker</code></h4><ul>
-<li>优化：优先接取最远乘客</li>
-<li>优化：优先接取同目的地乘客</li>
+<li><h4 id="纵向电梯策略类-LookBuildingDecisionMaker"><a href="#纵向电梯策略类-LookBuildingDecisionMaker" class="headerlink" title="纵向电梯策略类 LookBuildingDecisionMaker"></a>纵向电梯策略类 <code>LookBuildingDecisionMaker</code></h4><p><img src="7.png"  alt="7" />  </p>
+<ul>
+<li><ol>
+<li>优化：优先接取在电梯运行方向上距离当前楼层最远乘客</li>
+</ol>
+</li>
+<li><ol>
+<li>优化：在 <code>1</code> 的优化条件下，优先接取同目的地乘客</li>
+</ol>
+</li>
 </ul>
 </li>
-<li><h4 id="请求池类-RequestPool"><a href="#请求池类-RequestPool" class="headerlink" title="请求池类 RequestPool"></a>请求池类 <code>RequestPool</code></h4><ul>
-<li>优化：优先接取最远乘客</li>
-<li>优化：优先接取同目的地乘客</li>
+<li><h4 id="请求池类-RequestPool"><a href="#请求池类-RequestPool" class="headerlink" title="请求池类 RequestPool"></a>请求池类 <code>RequestPool</code></h4><p><img src="8.png"  alt="8" /></p>
+<ul>
+<li><p>新增 <code>getAllFloorRequest</code> 方法以响应横向电梯的 <code>ask()</code> 方法，并且设定横向电梯的 <code>wait</code> 条件</p>
+</li>
+<li><p>增加增加电梯和访问电梯方法 <code>addElevators</code> 和 <code>getElevators</code>，并且对电梯池进行加 <code>elevatorLock</code> 读写锁以避免线程不安全问题</p>
+</li>
+<li><p>增加不加锁的从请求池添加$/$移除请求的方法 <code>addNotLockedPersonRequest</code> 和 <code>removeNotLockedPersonRequest</code> 以便保证加锁的顺序，防止死锁问题的出现</p>
+</li>
 </ul>
 </li>
 </ul>
