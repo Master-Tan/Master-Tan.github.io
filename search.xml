@@ -14,18 +14,18 @@
     
     
     <entry>
-      <title>About Tan</title>
-      <link href="/about/index.html"/>
-      <url>/about/index.html</url>
+      <title></title>
+      <link href="/categories/index.html"/>
+      <url>/categories/index.html</url>
       
     </entry>
     
     
     
     <entry>
-      <title>tanlide</title>
-      <link href="/tanlide/index.html"/>
-      <url>/tanlide/index.html</url>
+      <title>About Tan</title>
+      <link href="/about/index.html"/>
+      <url>/about/index.html</url>
       
     </entry>
     
@@ -50,18 +50,18 @@
     
     
     <entry>
-      <title></title>
-      <link href="/categories/index.html"/>
-      <url>/categories/index.html</url>
+      <title>Tags</title>
+      <link href="/tags/index.html"/>
+      <url>/tags/index.html</url>
       
     </entry>
     
     
     
     <entry>
-      <title>Tags</title>
-      <link href="/tags/index.html"/>
-      <url>/tags/index.html</url>
+      <title>tanlide</title>
+      <link href="/tanlide/index.html"/>
+      <url>/tanlide/index.html</url>
       
     </entry>
     
