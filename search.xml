@@ -14,6 +14,15 @@
     
     
     <entry>
+      <title></title>
+      <link href="/categories/index.html"/>
+      <url>/categories/index.html</url>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Archives</title>
       <link href="/archive/index.html"/>
       <url>/archive/index.html</url>
@@ -32,9 +41,9 @@
     
     
     <entry>
-      <title></title>
-      <link href="/categories/index.html"/>
-      <url>/categories/index.html</url>
+      <title>Tags</title>
+      <link href="/tags/index.html"/>
+      <url>/tags/index.html</url>
       
     </entry>
     
@@ -44,15 +53,6 @@
       <title>tanlide</title>
       <link href="/tanlide/index.html"/>
       <url>/tanlide/index.html</url>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>Tags</title>
-      <link href="/tags/index.html"/>
-      <url>/tags/index.html</url>
       
     </entry>
     
