@@ -182,6 +182,20 @@
 
                         
                         	<li>
+                          	  <a href="/about/">About Tan</a>
+                        	</li>
+                        
+                    
+
+                        
+                        	<li>
+                          	  <a href="/tags/">Tags</a>
+                        	</li>
+                        
+                    
+
+                        
+                        	<li>
                           	  <a href="/archive/">Archives</a>
                         	</li>
                         
@@ -190,20 +204,6 @@
                         
                     
 
-                        
-                        	<li>
-                          	  <a href="/about/">About Tan</a>
-                        	</li>
-                        
-                    
-
-                        
-                    
-
-                        
-                        	<li>
-                          	  <a href="/tags/">Tags</a>
-                        	</li>
                         
                     
 
@@ -261,13 +261,15 @@
                 post-container">
 
                 <h1 id="OS-Lab3"><a href="#OS-Lab3" class="headerlink" title="OS - Lab3"></a>OS - Lab3</h1><hr>
-<h4 id="进程和异常"><a href="#进程和异常" class="headerlink" title="进程和异常"></a>进程和异常</h4><hr>
+<font size='5'> 进程和异常 </font>
+
+<hr>
 <p><br></p>
 <h2 id="课下"><a href="#课下" class="headerlink" title="课下"></a>课下</h2><h3 id="Lab3-实验报告"><a href="#Lab3-实验报告" class="headerlink" title="Lab3 实验报告"></a>Lab3 实验报告</h3><p><br></p>
 <h3 id="一-思考题"><a href="#一-思考题" class="headerlink" title="一. 思考题"></a>一. 思考题</h3><p><br></p>
-<h4 id="Thinking-3-1"><a href="#Thinking-3-1" class="headerlink" title="Thinking 3.1"></a>Thinking 3.1</h4><p>思考envid2env 函数:</p>
+<h4 id="Thinking-3-1"><a href="#Thinking-3-1" class="headerlink" title="Thinking 3.1"></a>Thinking 3.1</h4><p>思考 <code>envid2env</code> 函数:</p>
 <ul>
-<li>为什么envid2env 中需要判断e-&gt;env_id != envid 的情况？如果没有这步判断会发生什么情况？</li>
+<li>为什么 <code>envid2env</code> 中需要判断 <code>e-&gt;env_id != envid</code> 的情况？如果没有这步判断会发生什么情况？</li>
 </ul>
 <h4 id="答："><a href="#答：" class="headerlink" title="答："></a>答：</h4><ul>
 <li><p>虚拟地址。自身所写的程序的指针储存地址为映射到进程地址空间的偏移地址，不同进程地址空间是相互隔离的，不同进程两个值相同的指针对应的真实内存是不同的</p>
@@ -280,11 +282,11 @@
 <li>大多数的应用程序无法得知实际的物理地址，而是使用电脑的内存管理单元及操作系统的内存映射，为 <code>逻辑地址</code> 或 <code>虚拟地址</code> 定址</li>
 </ul>
 <p><br></p>
-<h4 id="Thinking-3-2"><a href="#Thinking-3-2" class="headerlink" title="Thinking 3.2"></a>Thinking 3.2</h4><p>结合include/mmu.h 中的地址空间布局，思考env_setup_vm 函数：</p>
+<h4 id="Thinking-3-2"><a href="#Thinking-3-2" class="headerlink" title="Thinking 3.2"></a>Thinking 3.2</h4><p>结合 <code>include/mmu.h</code> 中的地址空间布局，思考 <code>env_setup_vm</code> 函数：</p>
 <ul>
-<li><p>UTOP 和ULIM 的含义分别是什么，UTOP 和ULIM 之间的区域与UTOP以下的区域相比有什么区别？</p>
+<li><p><code>UTOP</code> 和 <code>ULIM</code> 的含义分别是什么， <code>UTOP</code> 和 <code>ULIM</code> 之间的区域与 <code>UTOP</code> 以下的区域相比有什么区别？</p>
 </li>
-<li><p>请结合系统自映射机制解释代码中pgdir[PDX(UVPT)]=env_cr3的含义。</p>
+<li><p>请结合系统自映射机制解释代码中 <code>pgdir[PDX(UVPT)]=env_cr3</code> 的含义。</p>
 </li>
 <li><p>谈谈自己对进程中物理地址和虚拟地址的理解。</p>
 </li>
@@ -330,6 +332,8 @@
 </ul>
 </li>
 </ul>
+</li>
+</ul>
 <p><br></p>
 <ul>
 <li><p>删除操作：<br>三者的删除操作如下:<br>  <img align="middle" src='7.png'><br>  <img align="middle" src='9.png'><br>  <img align="middle" src='11.png'>  </p>
@@ -342,11 +346,9 @@
 </ul>
 </li>
 </ul>
-</li>
-</ul>
 <p><br></p>
 <h4 id="Thinking-3-3"><a href="#Thinking-3-3" class="headerlink" title="Thinking 3.3"></a>Thinking 3.3</h4><ul>
-<li>找到 user_data 这一参数的来源，思考它的作用。</li>
+<li>找到 <code>user_data</code> 这一参数的来源，思考它的作用。</li>
 <li>没有这个参数可不可以？</li>
 <li>为什么？（可以尝试说明实际的应用场景，举一个实际的库中的例子）</li>
 </ul>
@@ -369,7 +371,7 @@
 </ul>
 <p><br></p>
 <h4 id="Thinking-3-4"><a href="#Thinking-3-4" class="headerlink" title="Thinking 3.4"></a>Thinking 3.4</h4><ul>
-<li>结合load_icode_mapper 的参数以及二进制镜像的大小，考虑该函数可能会面临哪几种复制的情况？</li>
+<li>结合 <code>load_icode_mapper</code> 的参数以及二进制镜像的大小，考虑该函数可能会面临哪几种复制的情况？</li>
 <li>你是否都考虑到了？ </li>
 </ul>
 <h4 id="答：-3"><a href="#答：-3" class="headerlink" title="答："></a>答：</h4><ul>
@@ -384,9 +386,9 @@
 <h4 id="Thinking-3-5"><a href="#Thinking-3-5" class="headerlink" title="Thinking 3.5"></a>Thinking 3.5</h4><blockquote>
 <p>这里的 <code>e-&gt;env_tf.pc</code> 是什么呢？这个字段指示了进程要恢复运行时 <code>pc</code> 应恢复到的位置。冯诺依曼体系结构的一大特点就是：程序预存储，计算机自动执行。我们要运行的进程的代码段预先被载入到了 <code>entry_ point</code> 为起点的内存中，当我们运行进程时，<code>CPU</code> 将自动从 <code>pc</code> 所指的位置开始执行二进制码。</p>
 </blockquote>
-<p>思考上面这一段话，并根据自己在lab2 中的理解，回答：</p>
-<p>• 你认为这里的 env_tf.pc 存储的是物理地址还是虚拟地址?</p>
-<p>• 你觉得entry_point其值对于每个进程是否一样？该如何理解这种统一或不同？</p>
+<p>思考上面这一段话，并根据自己在 <code>lab2</code> 中的理解，回答：</p>
+<p>• 你认为这里的 <code>env_tf.pc</code> 存储的是物理地址还是虚拟地址?</p>
+<p>• 你觉得 <code>entry_point</code> 其值对于每个进程是否一样？该如何理解这种统一或不同？</p>
 <h4 id="答：-4"><a href="#答：-4" class="headerlink" title="答："></a>答：</h4><ul>
 <li><p><code>ASID（address space identifier）</code> 是用于区分 <code>TLB</code> 中不同进程的一个标识符，由于操作系统可以同时运行多个进程，因此在 <code>CPU</code> 的系统寄存器中设置 <code>ASID</code> ，这样不同进程会拥有不同的 <code>ASID</code> ，多者都在 <code>TLB</code> 中，这样当一个进程占据 <code>CPU</code> 的时候，不会使用其他进程的页表项，因此操作系统切换进程的时候， <code>TLB</code> 中原本的映射还存在，也不需要重新加载（最坏情况会增加 <code>64</code> 次的缺页中断），这提高了 <code>TLB</code> 效率  </p>
 </li>
@@ -395,8 +397,8 @@
 </ul>
 <p><br></p>
 <h4 id="Thinking-3-6"><a href="#Thinking-3-6" class="headerlink" title="Thinking 3.6"></a>Thinking 3.6</h4><ul>
-<li>请查阅相关资料解释，上面提到的epc是什么？</li>
-<li>为什么要将env_tf.pc设置为epc呢？</li>
+<li>请查阅相关资料解释，上面提到的 <code>epc</code> 是什么？</li>
+<li>为什么要将 <code>env_tf.pc</code> 设置为 <code>epc</code> 呢？</li>
 </ul>
 <h4 id="答：-5"><a href="#答：-5" class="headerlink" title="答："></a>答：</h4><ul>
 <li><p><code>tlb_invalidate</code> 和 <code>tlb_out</code> 的调用关系：</p>
@@ -416,11 +418,11 @@
 </li>
 </ul>
 <p><br></p>
-<h4 id="Thinking-3-7"><a href="#Thinking-3-7" class="headerlink" title="Thinking 3.7"></a>Thinking 3.7</h4><p>关于 TIMESTACK，请思考以下问题：</p>
+<h4 id="Thinking-3-7"><a href="#Thinking-3-7" class="headerlink" title="Thinking 3.7"></a>Thinking 3.7</h4><p>关于 <code>TIMESTACK</code> ，请思考以下问题：</p>
 <ul>
-<li><p>操作系统在何时将什么内容存到了 TIMESTACK 区域</p>
+<li><p>操作系统在何时将什么内容存到了 <code>TIMESTACK</code> 区域</p>
 </li>
-<li><p>TIMESTACK 和 env_asm.S 中所定义的 KERNEL_SP 的含义有何不同</p>
+<li><p><code>TIMESTACK</code> 和 <code>env_asm.S</code> 中所定义的 <code>KERNEL_SP</code> 的含义有何不同</p>
 </li>
 </ul>
 <h4 id="答：-6"><a href="#答：-6" class="headerlink" title="答："></a>答：</h4><ul>
@@ -429,14 +431,14 @@
 <p><br></p>
 <h4 id="Thinking-3-8"><a href="#Thinking-3-8" class="headerlink" title="Thinking 3.8"></a>Thinking 3.8</h4><p>…………</p>
 <ul>
-<li>试找出上述 5 个异常处理函数的具体实现位置。</li>
+<li>试找出上述 <code>5</code> 个异常处理函数的具体实现位置。</li>
 </ul>
 <h4 id="答：-7"><a href="#答：-7" class="headerlink" title="答："></a>答：</h4><ul>
 <li><code>39位 -&gt; 需要用一个字（64位）存储，其中低 39 位为有效位，高位置零</code></li>
 </ul>
 <p><br></p>
 <h4 id="Thinking-3-9"><a href="#Thinking-3-9" class="headerlink" title="Thinking 3.9"></a>Thinking 3.9</h4><ul>
-<li>阅读 kclock_asm.S 和 genex.S 两个文件，并尝试说出 set_timer 和timer_irq 函数中每行汇编代码的作用</li>
+<li>阅读 <code>kclock_asm.S</code> 和 <code>genex.S</code> 两个文件，并尝试说出 <code>set_timer</code> 和 <code>timer_irq</code> 函数中每行汇编代码的作用</li>
 </ul>
 <h4 id="答：-8"><a href="#答：-8" class="headerlink" title="答："></a>答：</h4><ul>
 <li><code>39位 -&gt; 需要用一个字（64位）存储，其中低 39 位为有效位，高位置零</code></li>
@@ -464,7 +466,7 @@
 </li>
 </ol>
 <h3 id="三-体会与感想："><a href="#三-体会与感想：" class="headerlink" title="三. 体会与感想："></a>三. 体会与感想：</h3><ul>
-<li><p>难度评价：<code>9/10</code></p>
+<li><p>难度评价：<code>8/10</code></p>
 </li>
 <li><p>实验用时：<code>12h+</code>， 撰写实验报告用时：<code>7h</code></p>
 </li>
@@ -476,13 +478,13 @@
 </ul>
 <p><br></p>
 <hr>
-<h2 id="课上"><a href="#课上" class="headerlink" title="课上"></a>课上</h2><h3 id="lab2-1-exam："><a href="#lab2-1-exam：" class="headerlink" title="lab2-1-exam："></a>lab2-1-exam：</h3><p>需要增加 <code>页面保护</code> 功能，对每一个页面增加 <code>未保护</code> 和 <code>已保护</code> 的状态，并完成两个函数分别实现 <strong>设置 / 消除</strong> 对应页面的保护状态的功能，实现较为简单，在 <code>Page</code> 中新增一个标识变量标记是否保护即可</p>
+<h2 id="课上"><a href="#课上" class="headerlink" title="课上"></a>课上</h2><h3 id="lab3-1-exam："><a href="#lab3-1-exam：" class="headerlink" title="lab3-1-exam："></a>lab3-1-exam：</h3><p>需要增加 <code>页面保护</code> 功能，对每一个页面增加 <code>未保护</code> 和 <code>已保护</code> 的状态，并完成两个函数分别实现 <strong>设置 / 消除</strong> 对应页面的保护状态的功能，实现较为简单，在 <code>Page</code> 中新增一个标识变量标记是否保护即可</p>
 <p><br></p>
-<h3 id="lab2-1-Extra："><a href="#lab2-1-Extra：" class="headerlink" title="lab2-1-Extra："></a>lab2-1-Extra：</h3><p>更改当前内存的分配机制，实现 <code>伙伴系统</code> 的 <strong>初始化 / 分配 / 释放</strong> 函数，主要问题是如何规划内存的状态并且在 <strong>分配 / 释放</strong> 时正确 <strong>拆分 / 合并</strong> 内存</p>
+<h3 id="lab3-1-Extra："><a href="#lab3-1-Extra：" class="headerlink" title="lab3-1-Extra："></a>lab3-1-Extra：</h3><p>更改当前内存的分配机制，实现 <code>伙伴系统</code> 的 <strong>初始化 / 分配 / 释放</strong> 函数，主要问题是如何规划内存的状态并且在 <strong>分配 / 释放</strong> 时正确 <strong>拆分 / 合并</strong> 内存</p>
 <p><br></p>
-<h3 id="lab2-2-exam"><a href="#lab2-2-exam" class="headerlink" title="lab2-2-exam:"></a>lab2-2-exam:</h3><p><strong>反向查询函数</strong>：根据所给的物理页面和以及一级页表基地址，输出页表中所有映射此物理页面的页表项的页表编号并且返回总数，通过两次 <code>for</code> 循环遍历</p>
+<h3 id="lab3-2-exam"><a href="#lab3-2-exam" class="headerlink" title="lab3-2-exam:"></a>lab3-2-exam:</h3><p><strong>反向查询函数</strong>：根据所给的物理页面和以及一级页表基地址，输出页表中所有映射此物理页面的页表项的页表编号并且返回总数，通过两次 <code>for</code> 循环遍历</p>
 <p><br></p>
-<h3 id="lab2-2-Extra"><a href="#lab2-2-Extra" class="headerlink" title="lab2-2-Extra:"></a>lab2-2-Extra:</h3><p><strong>快慢内存分配</strong>：将 <code>64MB</code> 的内存空间分配为 <code>高16MB</code> 的快内存和 <code>低32MB</code>，编写函数使得这两块空间有着独立的分配、回收内存管理（链表）机制</p>
+<h3 id="lab3-2-Extra"><a href="#lab3-2-Extra" class="headerlink" title="lab3-2-Extra:"></a>lab3-2-Extra:</h3><p><strong>快慢内存分配</strong>：将 <code>64MB</code> 的内存空间分配为 <code>高16MB</code> 的快内存和 <code>低32MB</code>，编写函数使得这两块空间有着独立的分配、回收内存管理（链表）机制</p>
 <p><br></p>
 <hr>
 
@@ -551,7 +553,7 @@
           <strong class="toc-title">Contents</strong>
           
             
-              <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#OS-Lab3"><span class="toc-nav-text">OS - Lab3</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#进程和异常"><span class="toc-nav-text">进程和异常</span></a></li></ol></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#课下"><span class="toc-nav-text">课下</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#Lab3-实验报告"><span class="toc-nav-text">Lab3 实验报告</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#一-思考题"><span class="toc-nav-text">一. 思考题</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#Thinking-3-1"><span class="toc-nav-text">Thinking 3.1</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#答："><span class="toc-nav-text">答：</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#Thinking-3-2"><span class="toc-nav-text">Thinking 3.2</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#答：-1"><span class="toc-nav-text">答：</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#Thinking-3-3"><span class="toc-nav-text">Thinking 3.3</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#答：-2"><span class="toc-nav-text">答：</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#Thinking-3-4"><span class="toc-nav-text">Thinking 3.4</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#答：-3"><span class="toc-nav-text">答：</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#Thinking-3-5"><span class="toc-nav-text">Thinking 3.5</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#答：-4"><span class="toc-nav-text">答：</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#Thinking-3-6"><span class="toc-nav-text">Thinking 3.6</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#答：-5"><span class="toc-nav-text">答：</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#Thinking-3-7"><span class="toc-nav-text">Thinking 3.7</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#答：-6"><span class="toc-nav-text">答：</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#Thinking-3-8"><span class="toc-nav-text">Thinking 3.8</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#答：-7"><span class="toc-nav-text">答：</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#Thinking-3-9"><span class="toc-nav-text">Thinking 3.9</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#答：-8"><span class="toc-nav-text">答：</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#Thinking-3-10"><span class="toc-nav-text">Thinking 3.10</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#答：-9"><span class="toc-nav-text">答：</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#二-实验难点："><span class="toc-nav-text">二. 实验难点：</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#三-体会与感想："><span class="toc-nav-text">三. 体会与感想：</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#课上"><span class="toc-nav-text">课上</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#lab2-1-exam："><span class="toc-nav-text">lab2-1-exam：</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#lab2-1-Extra："><span class="toc-nav-text">lab2-1-Extra：</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#lab2-2-exam"><span class="toc-nav-text">lab2-2-exam:</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#lab2-2-Extra"><span class="toc-nav-text">lab2-2-Extra:</span></a></li></ol></li></ol></li></ol>
+              <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#OS-Lab3"><span class="toc-nav-text">OS - Lab3</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#课下"><span class="toc-nav-text">课下</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#Lab3-实验报告"><span class="toc-nav-text">Lab3 实验报告</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#一-思考题"><span class="toc-nav-text">一. 思考题</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#Thinking-3-1"><span class="toc-nav-text">Thinking 3.1</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#答："><span class="toc-nav-text">答：</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#Thinking-3-2"><span class="toc-nav-text">Thinking 3.2</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#答：-1"><span class="toc-nav-text">答：</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#Thinking-3-3"><span class="toc-nav-text">Thinking 3.3</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#答：-2"><span class="toc-nav-text">答：</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#Thinking-3-4"><span class="toc-nav-text">Thinking 3.4</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#答：-3"><span class="toc-nav-text">答：</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#Thinking-3-5"><span class="toc-nav-text">Thinking 3.5</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#答：-4"><span class="toc-nav-text">答：</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#Thinking-3-6"><span class="toc-nav-text">Thinking 3.6</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#答：-5"><span class="toc-nav-text">答：</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#Thinking-3-7"><span class="toc-nav-text">Thinking 3.7</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#答：-6"><span class="toc-nav-text">答：</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#Thinking-3-8"><span class="toc-nav-text">Thinking 3.8</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#答：-7"><span class="toc-nav-text">答：</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#Thinking-3-9"><span class="toc-nav-text">Thinking 3.9</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#答：-8"><span class="toc-nav-text">答：</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#Thinking-3-10"><span class="toc-nav-text">Thinking 3.10</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#答：-9"><span class="toc-nav-text">答：</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#二-实验难点："><span class="toc-nav-text">二. 实验难点：</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#三-体会与感想："><span class="toc-nav-text">三. 体会与感想：</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#课上"><span class="toc-nav-text">课上</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#lab3-1-exam："><span class="toc-nav-text">lab3-1-exam：</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#lab3-1-Extra："><span class="toc-nav-text">lab3-1-Extra：</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#lab3-2-exam"><span class="toc-nav-text">lab3-2-exam:</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#lab3-2-Extra"><span class="toc-nav-text">lab3-2-Extra:</span></a></li></ol></li></ol></li></ol>
             
           
           </div>
