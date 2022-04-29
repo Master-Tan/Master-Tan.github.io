@@ -121,7 +121,7 @@
 	       
                             <div class="blank_box"></div>
                             <span class="meta">
-                                 <span class="post-count">2.6k</span> Words
+                                 <span class="post-count">2.7k</span> Words
                             </span>
                             <div class="blank_box"></div>
                             <!-- 不蒜子统计 start -->
@@ -181,6 +181,13 @@
                     
 
                         
+                        	<li>
+                          	  <a href="/about/">About Tan</a>
+                        	</li>
+                        
+                    
+
+                        
                     
 
                         
@@ -193,13 +200,6 @@
                         
                         	<li>
                           	  <a href="/tags/">Tags</a>
-                        	</li>
-                        
-                    
-
-                        
-                        	<li>
-                          	  <a href="/about/">About Tan</a>
                         	</li>
                         
                     
@@ -272,14 +272,14 @@
 <li>为什么 <code>envid2env</code> 中需要判断 <code>e-&gt;env_id != envid</code> 的情况？如果没有这步判断会发生什么情况？</li>
 </ul>
 <h4 id="答："><a href="#答：" class="headerlink" title="答："></a>答：</h4><ul>
-<li><p>虚拟地址。自身所写的程序的指针储存地址为映射到进程地址空间的偏移地址，不同进程地址空间是相互隔离的，不同进程两个值相同的指针对应的真实内存是不同的</p>
+<li><p>先查看每个 <code>env_id</code> 的生成函数 <code>mkenvid</code>:<br><img align="middle" src='1.png'>  </p>
 </li>
-<li><p>虚拟地址。其地址为32位而物理地址为64位</p>
+<li><p>可见创建出来的 <code>envid</code> 的低十位是该 <code>env</code> 在总的 <code>envs</code> 数组中的位置，可以直接取其低十位 <code>ENVX()</code> 获得该 <code>envid</code> 对应的在 <code>envs</code> 组中的 <code>index</code>，便于访问；而高位是关于该函数调用次数的一个递增量</p>
 </li>
-</ul>
-<p><br></p>
-<ul>
-<li>大多数的应用程序无法得知实际的物理地址，而是使用电脑的内存管理单元及操作系统的内存映射，为 <code>逻辑地址</code> 或 <code>虚拟地址</code> 定址</li>
+<li><p>这样可以保证每次调用此函数确定的 <code>envid</code> 是一个不仅取决于 <code>env</code> 在 <code>envs</code> 数组中的位置，还取决于函数调用的次数，使得每个进程的 <code>envid</code> 独一无二。在进程被创建后杀死，再在同样的位置创建新的进程时，它们的 <code>id</code> 的高位是不同的</p>
+</li>
+<li><p>因此，两个进程可能具有相同的 <code>idx</code>，但其 <code>env_id</code> 是不同的。所以判断 <code>e-&gt;env_id != envid</code> 是必要的，如果没有这步判断可能导致将一个已经被杀死的进程当做现在在该进程块上注册的进程而导致出错</p>
+</li>
 </ul>
 <p><br></p>
 <h4 id="Thinking-3-2"><a href="#Thinking-3-2" class="headerlink" title="Thinking 3.2"></a>Thinking 3.2</h4><p>结合 <code>include/mmu.h</code> 中的地址空间布局，思考 <code>env_setup_vm</code> 函数：</p>
@@ -816,7 +816,7 @@
         
 
         
-            <script type="text/javascript" src="/js/mouse-click.js" content='[&quot;Sunny&quot;, &quot;💖&quot;, &quot;Sunny&quot;, &quot;🧡&quot;, &quot;Sunny&quot;, &quot;💛&quot;, &quot;Sunny&quot; , &quot;💚&quot;, &quot;Sunny&quot;, &quot;💙&quot;, &quot;Sunny&quot;, &quot;💜&quot;, &quot;Sunny&quot;, &quot;😍&quot;]' color='[&quot;rgb(255, 0, 0)&quot; ,&quot;rgb(255, 0, 0)&quot; ,&quot;rgb(255, 125, 0)&quot; ,&quot;rgb(255, 125, 0)&quot; ,&quot;rgb(255, 255, 0)&quot; ,&quot;rgb(255, 255, 0)&quot; ,&quot;rgb(0, 255, 0)&quot; ,&quot;rgb(0, 255, 0)&quot; ,&quot;rgb(0, 255, 255)&quot; ,&quot;rgb(0, 255, 255)&quot; ,&quot;rgb(0, 0, 255)&quot; ,&quot;rgb(0, 0, 255)&quot; ,&quot;rgb(255, 0, 255)&quot; ,&quot;rgb(255, 0, 255)&quot;]'></script>
+            <script type="text/javascript" src="/js/mouse-click.js" content='[&#34;Sunny&#34;, &#34;💖&#34;, &#34;Sunny&#34;, &#34;🧡&#34;, &#34;Sunny&#34;, &#34;💛&#34;, &#34;Sunny&#34; , &#34;💚&#34;, &#34;Sunny&#34;, &#34;💙&#34;, &#34;Sunny&#34;, &#34;💜&#34;, &#34;Sunny&#34;, &#34;😍&#34;]' color='[&#34;rgb(255, 0, 0)&#34; ,&#34;rgb(255, 0, 0)&#34; ,&#34;rgb(255, 125, 0)&#34; ,&#34;rgb(255, 125, 0)&#34; ,&#34;rgb(255, 255, 0)&#34; ,&#34;rgb(255, 255, 0)&#34; ,&#34;rgb(0, 255, 0)&#34; ,&#34;rgb(0, 255, 0)&#34; ,&#34;rgb(0, 255, 255)&#34; ,&#34;rgb(0, 255, 255)&#34; ,&#34;rgb(0, 0, 255)&#34; ,&#34;rgb(0, 0, 255)&#34; ,&#34;rgb(255, 0, 255)&#34; ,&#34;rgb(255, 0, 255)&#34;]'></script>
         
 
         <!-- background effects end -->
@@ -826,21 +826,6 @@
     
         <script src="/js/ribbonDynamic.js"></script>
     
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
-            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-            processEscapes: true
-        }
-    });
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax();
-        for (var i = 0; i < all.length; ++i)
-            all[i].SourceElement().parentNode.className += ' has-jax';
-    });
-</script>
-<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 </body>
 
 </html>
