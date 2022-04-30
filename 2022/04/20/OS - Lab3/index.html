@@ -121,7 +121,7 @@
 	       
                             <div class="blank_box"></div>
                             <span class="meta">
-                                 <span class="post-count">3.7k</span> Words
+                                 <span class="post-count">3.4k</span> Words
                             </span>
                             <div class="blank_box"></div>
                             <!-- 不蒜子统计 start -->
@@ -182,6 +182,13 @@
 
                         
                         	<li>
+                          	  <a href="/about/">About Tan</a>
+                        	</li>
+                        
+                    
+
+                        
+                        	<li>
                           	  <a href="/archive/">Archives</a>
                         	</li>
                         
@@ -191,21 +198,14 @@
                     
 
                         
+                    
+
+                        
+                    
+
+                        
                         	<li>
                           	  <a href="/tags/">Tags</a>
-                        	</li>
-                        
-                    
-
-                        
-                    
-
-                        
-                    
-
-                        
-                        	<li>
-                          	  <a href="/about/">About Tan</a>
                         	</li>
                         
                     
@@ -384,11 +384,9 @@
 <p>• 你认为这里的 <code>env_tf.pc</code> 存储的是物理地址还是虚拟地址?</p>
 <p>• 你觉得 <code>entry_point</code> 其值对于每个进程是否一样？该如何理解这种统一或不同？</p>
 <h4 id="答：-4"><a href="#答：-4" class="headerlink" title="答："></a>答：</h4><ul>
-<li><p>虚拟地址……</p>
+<li><p>虚拟地址</p>
 </li>
-<li><p>entry_point对于每个进程应该是一样的。<code>load_elf</code>中的<code>*entry_point = ehdr-&gt;e_entry;</code>语句对entry_point进行赋值。因为entry_point是对于ELF格式的文件而言的，ELF文件严格规定了所有程序的统一入口地址能够使得其作为操作系统加载程序的依据时更加规范严谨。</p>
-</li>
-<li><p>不一定一样。大部分ELF格式可执行文件的entry_point都是相同的，但是ELF格式文件中也允许设定程序的entry_point，这正体现了虚拟内存的优势：进程可以自主的决定自己的布局。此外，操作系统可以支持多种类型的可执行文件，这些可执行文件的entry_point也不一定相同。</p>
+<li><p>entry_point对于每个进程不一定是一样的； <code>load_elf</code> 中的 <code>*entry_point = ehdr-&gt;e_entry</code> 语句对 <code>entry_point</code> 进行赋值，因为 <code>entry_point</code> 是对于 <code>ELF</code> 格式的文件而言的， <code>ELF</code> 文件严格规定了所有程序的统一入口地址能够使得其作为操作系统加载程序的依据时更加规范严谨；因此<strong>大部分</strong> <code>ELF</code> 格式可执行文件的 <code>entry_point</code> 都是相同的，但是 <code>ELF</code> 格式文件中也允许设定程序的 <code>entry_point</code> ，这正体现了虚拟内存的优势：进程可以自主的决定自己的布局。此外，操作系统可以支持<strong>多种类型</strong>的可执行文件，这些可执行文件的 <code>entry_point</code> 也不一定相同。</p>
 </li>
 </ul>
 <p><br></p>
@@ -397,11 +395,9 @@
 <li>为什么要将 <code>env_tf.pc</code> 设置为 <code>epc</code> 呢？</li>
 </ul>
 <h4 id="答：-5"><a href="#答：-5" class="headerlink" title="答："></a>答：</h4><ul>
-<li><p>……</p>
+<li><p>在 <code>MIPS</code> 的 <code>CP0</code> 寄存器中， <code>epc</code> 为一个存储当前被打断执行的指令的 <code>pc</code> 或是下一条 <code>pc</code> 或者由软件维护的应该从内核态返回后执行的第一条指令的 <code>pc</code> 的寄存器，在这里指的是当前进程在陷入内核态后 <code>cp0</code> 中 <code>epc</code> 的值，即为 <code>curenv-&gt;env_tf.cp0_epc</code></p>
 </li>
-<li><p>应该设置为当前进程在陷入内核态后cp0中epc的值，在MIPS的CP0寄存器中，epc存储当前被打断执行的指令的pc或是下一条pc或者由软件维护的应该从内核态返回后执行的第一条指令的pc到epc中，符合进程切换的条件。下一次运行这一进程时也应该从epc处开始执行。</p>
-</li>
-<li><p>应设为<code>env_tf.cp0_epc</code>。在我们的OS里，如果要进行进程切换，一定是因中断发生后的处理过程中，进入env_run时如果当前curenv不是null，则当前进程进入中断时的寄存器状态必定在TIMESTACK处存放（中断处理时会先调用<code>.\include\stackframe.h</code>中的saveall，而saveall依赖的sp指针值在时钟中断（目前唯一的中断）时正是TIMESTACK）。由于是通过中断进入的，EPC指向的值就是受害指令，如果我们以后要恢复这个进程的运行，当然是从受害指令开始重新执行，因此应设为<code>env_tf.cp0_epc</code>。</p>
+<li><p>在 <code>lab3</code> 中，进程切换只因中断而发生，而在发生后，新的进程运行 <code>env_run</code> 时，如果当前 <code>curenv</code> 非空，则当前进程进入中断时的寄存器状态必定在 <code>TIMESTACK</code> 处存放（在处理时钟中断（目前唯一的中断）调用的 <code>.\include\stackframe.h</code> 中的 <code>saveall</code> 函数依赖的 <code>sp</code> 指针值为 <code>TIMESTACK</code>）；由于是通过中断进入的，因此该进程的 <code>epc</code> 指向的值就是其受害指令，如果我们以后要恢复这个进程的运行，就要从受害指令开始重新执行，因此将 <code>env_tf.pc</code> 设置为<code>env_tf.cp0_epc</code>，保证了下一次运行这一进程时在正确的位置开始运行</p>
 </li>
 </ul>
 <p><br></p>
@@ -413,19 +409,11 @@
 </li>
 </ul>
 <h4 id="答：-6"><a href="#答：-6" class="headerlink" title="答："></a>答：</h4><ul>
-<li><p>TIMESTACK是发生时钟中断后保存进程上下文环境的栈区</p>
+<li><p>时钟中断发生时，操作系统将存放相关数据（进程上下文、现场）时使用的栈空间（地址为 <code>0x82000000</code> ）存到了 <code>TIMESTACK</code> 区域</p>
 </li>
-<li><p>TIMESTACK是在发生时钟中断后CPU内部状态的存储栈。KERNEL_SP是在发生系统调用等exception或trap时CPU内部状态的存储栈。</p>
-</li>
-<li><p>TIMESTACK就是时钟中断发生时系统存放相关数据（上下文、现场）时使用的栈空间，地址是0x82000000。证据如下：</p>
+<li><p><code>TIMESTACK</code> 中定义的 <code>KERNEL_SP</code> 是在发生时钟中断后 <code>CPU</code> 内部状态的存储栈，专用于处理时钟中断和与之紧密联系的进程切换等任务；而 <code>env_asm.S</code> 中定义的 <code>KERNEL_SP</code> 是内核处理各种异常中断时的通用的存储栈，在发生系统调用等 <code>exception</code> 或 <code>trap</code> 时 <code>CPU</code> 内部状态</p>
 </li>
 </ul>
-<p>从.\lib\traps.c中我们知道，所有异常的处理都是由异常处理句柄完成的，而一部分具体的异常处理句柄可以在.\lib\genex.S中找到。</p>
-<p>异常处理句柄其实是由宏构建起来的，如下<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">.macro BUILD_HANDLER exception handler clear</span><br><span class="line">.align 5</span><br><span class="line">NESTED(handle_\exception, TF_SIZE, sp) </span><br><span class="line">.set noat</span><br><span class="line">nop</span><br><span class="line">SAVE_ALL </span><br><span class="line">__build_clear_\clear</span><br><span class="line">.set at</span><br><span class="line">move a0, sp</span><br><span class="line">jal \handler</span><br><span class="line">nop</span><br><span class="line">j ret_from_exception</span><br><span class="line">nop</span><br><span class="line">END(handle_\exception)</span><br><span class="line">.endm</span><br></pre></td></tr></table></figure><br>这个宏表现出了异常处理句柄的一般形式：先保存上下文（SAVE_ALL），在跳转至特定的异常处理函数，最后从异常返回。其中，保存上下文（SAVE_ALL）这个过程定义在.\include\stackframe.h里</p>
-<p>SAVE_ALL先调用get_sp来获得栈指针，并把寄存器等上下文信息存入栈中，get_sp内容如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">.macro get_sp</span><br><span class="line">mfc0 k1, CP0_CAUSE</span><br><span class="line">andi k1, 0x107C</span><br><span class="line">xori k1, 0x1000</span><br><span class="line">bnez k1, 1f</span><br><span class="line">nop</span><br><span class="line">li sp, 0x82000000</span><br><span class="line">j 2f</span><br><span class="line">nop</span><br><span class="line">1:</span><br><span class="line">bltz sp, 2f</span><br><span class="line">nop</span><br><span class="line">lw sp, KERNEL_SP</span><br><span class="line">nop</span><br><span class="line">2: nop</span><br><span class="line">.endm</span><br></pre></td></tr></table></figure>
-<p>get_sp所做的事情其实是：如果CP0_CAUSE中，exccode的值为0且IRQ4值为1，则使用0x82000000作为栈。否则，如果sp &gt; 0x80000000，则直接使用sp，否则使用KERNEL_SP作为栈地址。而0x82000000就是我们的TIME_STACK，同时，IRQ4正是时钟中断的中断请求。</p>
-<p>KERNEL_SP是内核处理各种异常中断时的通用的栈，而TIME_STACK专用于处理时钟中断和与之紧密联系的进程切换等任务。</p>
 <p><br></p>
 <h4 id="Thinking-3-8"><a href="#Thinking-3-8" class="headerlink" title="Thinking 3.8"></a>Thinking 3.8</h4><p>…………</p>
 <ul>
@@ -455,11 +443,17 @@
 <li>阅读相关代码，思考操作系统是怎么根据时钟周期切换进程的。</li>
 </ul>
 <h4 id="答：-9"><a href="#答：-9" class="headerlink" title="答："></a>答：</h4><ul>
-<li>本次实验设置了两个就绪队列。存储一个count值记录当前正在运行的进程剩余的时间片数量，每经过一次时钟中断自减一（表明该进程消耗了一个单位的运行时间），当count自减到0时，意味着当前运行的进程已经用光了自己的时间片，需要进行进程切换：</li>
+<li><p>本次实验设置了两个就绪队列。存储一个 <code>count</code> 值记录当前正在运行的进程剩余的时间片数量，每经过一次时钟中断自减一（表明该进程消耗了一个单位的运行时间），当 <code>count</code> 自减到 <code>0</code> 时，意味着当前运行的进程已经用光了自己的时间片，需要进行进程切换：</p>
+<ol>
+<li><p>选择一个非空队列，第一个元素（进程）出队，设置count值为该进程的时间片数量（在本实验中即为该进程的优先级）。</p>
+</li>
+<li><p>将之前已经跑外的进程进入到另一个队列的队尾。</p>
+</li>
+<li><p>执行当前进程。</p>
+</li>
+</ol>
+</li>
 </ul>
-<p>1.选择一个非空队列，第一个元素（进程）出队，设置count值为该进程的时间片数量（在本实验中即为该进程的优先级）。</p>
-<p>2.将之前已经跑外的进程进入到另一个队列的队尾。</p>
-<p>3.执行当前进程。</p>
 <p>当然，同时需要注意，当所选择的进程为阻塞状态或已经结束，则重复上述过程直到找到一个就绪进程。且已经结束的进程不需要加入就绪队列了。</p>
 <ul>
 <li>时钟中断发生时，系统在保存上下文之后跳转到sched_yield函数，进行进程的调度。</li>
