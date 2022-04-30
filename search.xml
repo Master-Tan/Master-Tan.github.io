@@ -23,18 +23,18 @@
     
     
     <entry>
-      <title>Archives</title>
-      <link href="/archive/index.html"/>
-      <url>/archive/index.html</url>
+      <title></title>
+      <link href="/categories/index.html"/>
+      <url>/categories/index.html</url>
       
     </entry>
     
     
     
     <entry>
-      <title></title>
-      <link href="/categories/index.html"/>
-      <url>/categories/index.html</url>
+      <title>Archives</title>
+      <link href="/archive/index.html"/>
+      <url>/archive/index.html</url>
       
     </entry>
     
@@ -51,8 +51,8 @@
     
     <entry>
       <title>tanlide</title>
-      <link href="/tanlide/index%20-%20%E5%8E%9F.html"/>
-      <url>/tanlide/index%20-%20%E5%8E%9F.html</url>
+      <link href="/tanlide/index.html"/>
+      <url>/tanlide/index.html</url>
       
     </entry>
     
@@ -60,8 +60,8 @@
     
     <entry>
       <title>tanlide</title>
-      <link href="/tanlide/index.html"/>
-      <url>/tanlide/index.html</url>
+      <link href="/tanlide/index%20-%20%E5%8E%9F.html"/>
+      <url>/tanlide/index%20-%20%E5%8E%9F.html</url>
       
     </entry>
     
