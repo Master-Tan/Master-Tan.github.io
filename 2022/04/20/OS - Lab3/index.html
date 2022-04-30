@@ -121,7 +121,7 @@
 	       
                             <div class="blank_box"></div>
                             <span class="meta">
-                                 <span class="post-count">3.8k</span> Words
+                                 <span class="post-count">3.6k</span> Words
                             </span>
                             <div class="blank_box"></div>
                             <!-- 不蒜子统计 start -->
@@ -188,12 +188,12 @@
                     
 
                         
-                    
-
-                        
                         	<li>
                           	  <a href="/archive/">Archives</a>
                         	</li>
+                        
+                    
+
                         
                     
 
@@ -444,17 +444,10 @@
 <li>阅读 <code>kclock_asm.S</code> 和 <code>genex.S</code> 两个文件，并尝试说出 <code>set_timer</code> 和 <code>timer_irq</code> 函数中每行汇编代码的作用</li>
 </ul>
 <h4 id="答：-8"><a href="#答：-8" class="headerlink" title="答："></a>答：</h4><ul>
-<li>kclock_asm.S：<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#include &lt;asm/regdef.h&gt;</span></span><br><span class="line"><span class="comment">#include &lt;asm/cp0regdef.h&gt;</span></span><br><span class="line"><span class="comment">#include &lt;asm/asm.h&gt;</span></span><br><span class="line"><span class="comment">#include &lt;kclock.h&gt;</span></span><br><span class="line">.macro  setup_c0_status set clr <span class="comment">#宏函数，设定CP0的初始状态</span></span><br><span class="line">        .set    push</span><br><span class="line">        mfc0    t0, CP0_STATUS</span><br><span class="line">        <span class="keyword">or</span>      t0, \set|\clr</span><br><span class="line">        xor     t0, \clr</span><br><span class="line">        mtc0    t0, CP0_STATUS</span><br><span class="line">        .set    pop</span><br><span class="line">.endm</span><br><span class="line"></span><br><span class="line">        .text</span><br><span class="line">LEAF(set_timer)</span><br><span class="line"></span><br><span class="line">        li t0, <span class="number">0x01</span></span><br><span class="line">        sb t0, <span class="number">0xb5000100</span>  <span class="comment">#0xb5000000是时钟设备的基地址，在偏移量为0x100（此处写值将改变时钟的频率）处写入1表示时钟频率为1s.</span></span><br><span class="line">        sw      sp, KERNEL_SP <span class="comment">#将栈指针保存在内核栈空间保证正常产生时钟中断</span></span><br><span class="line">setup_c0_status STATUS_CU0|<span class="number">0x1001</span> <span class="number">0</span> <span class="comment">#调用宏函数设置CP0的状态</span></span><br><span class="line">        jr ra <span class="comment">#函数结束返回</span></span><br><span class="line"></span><br><span class="line">        nop</span><br><span class="line">END(set_timer)</span><br></pre></td></tr></table></figure></li>
-<li>除了引用之外，kclock_asm.S可以分为两部分，第一部分是一个宏，负责对CP0的Status寄存器进行设置，将set中为1的位置为1，将clr中为1的位置为0</li>
+<li><code>set_timer</code> 中每行代码的作用：</li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">.macro setup_c0_status set clr</span><br><span class="line">.set push</span><br><span class="line">mfc0 t0, CP0_STATUS</span><br><span class="line">or t0, \set|\clr</span><br><span class="line">xor t0, \clr</span><br><span class="line">mtc0 t0, CP0_STATUS</span><br><span class="line">.set pop</span><br><span class="line">.endm</span><br></pre></td></tr></table></figure>
-<p>第二部分是一个函数set_timer，负责开启时钟中断</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">.text</span><br><span class="line">LEAF(set_timer)</span><br><span class="line">li t0, 0x01</span><br><span class="line">sb t0, 0xb5000100</span><br><span class="line">sw sp, KERNEL_SP</span><br><span class="line">setup_c0_status STATUS_CU0|0x1001 0</span><br><span class="line">jr ra</span><br><span class="line">nop</span><br><span class="line">END(set_timer)</span><br></pre></td></tr></table></figure>
-<p>第1，2行<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">li t0, 0x01</span><br><span class="line">sb t0, 0xb5000100</span><br></pre></td></tr></table></figure><br>的作用是，让时钟以1s一次的频率产生中断。0xb5000100为时钟的控制地址</p>
-<p>接下来<code>sw sp, KERNEL_SP</code>设置KERNEl_SP，内核异常处理栈的值</p>
-<p>然后<code>setup_c0_status STATUS_CU0|0x1001 0</code>设置CP0的Status寄存器，STATUS_CU0为仅开启CU0，表示CP0存在的状态，0x1001，最低位1开启终端，第13位1使能IRQ4即时钟中断</p>
-<p>最后<code>jr ra</code>返回主调函数</p>
-<p><code>LEAF(set_timer)</code>和<code>END(set_timer)</code>都是设置一些调试/链接用到的符号信息，在此不深入解释</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">LEAF(set_timer)</span><br><span class="line"></span><br><span class="line">        li  t0, <span class="number">0x01</span></span><br><span class="line">        sb  t0, <span class="number">0xb5000100</span>  </span><br><span class="line">        <span class="comment">// 0xb5000000是时钟设备的基地址</span></span><br><span class="line">        <span class="comment">// 在偏移量为0x100（此处写值将改变时钟的频率）处写入1表示时钟频率为1s</span></span><br><span class="line">        <span class="comment">// 此行代码让时钟以1s一次的频率产生中断</span></span><br><span class="line">        <span class="comment">// 0xb5000100为时钟的控制地址</span></span><br><span class="line"></span><br><span class="line">        sw  sp, KERNEL_SP  </span><br><span class="line">        <span class="comment">// 将栈指针保存在内核栈空间保证正常产生时钟中断</span></span><br><span class="line">        <span class="comment">// 设置KERNEl_SP，内核异常处理栈的值  </span></span><br><span class="line"></span><br><span class="line">setup_c0_status STATUS_CU0|<span class="number">0x10010</span></span><br><span class="line"><span class="comment">// 调用宏函数设置CP0的状态，设置CP0的Status寄存器，STATUS_CU0为仅开启CU0，表示CP0存在的状态，0x1001，最低位1开启终端，第13位1使能IRQ4即时钟中断</span></span><br><span class="line"></span><br><span class="line">        jr ra #函数结束返回主调函数</span><br><span class="line"></span><br><span class="line">        nop</span><br><span class="line">END(set_timer)</span><br></pre></td></tr></table></figure>
+<figure class="highlight mips"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">timer_irq:</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">sb </span><span class="built_in">zero</span>, <span class="number">0xb5000110</span></span><br><span class="line"><span class="number">1</span>:  <span class="keyword">j </span>  <span class="keyword">sched_yield</span></span><br><span class="line"><span class="keyword"> </span>   <span class="keyword">nop</span></span><br><span class="line"><span class="keyword"> </span>   <span class="comment">/*li t1, 0xff</span></span><br><span class="line"><span class="comment">    lw    t0, delay</span></span><br><span class="line"><span class="comment">    addu  t0, 1</span></span><br><span class="line"><span class="comment">    sw  t0, delay</span></span><br><span class="line"><span class="comment">    beq t0,t1,1f    </span></span><br><span class="line"><span class="comment">    nop*/</span></span><br><span class="line">    <span class="keyword">j </span>  ret_from_exception</span><br><span class="line">    <span class="keyword">nop</span></span><br></pre></td></tr></table></figure>
 <p><br></p>
 <h4 id="Thinking-3-10"><a href="#Thinking-3-10" class="headerlink" title="Thinking 3.10"></a>Thinking 3.10</h4><ul>
 <li>阅读相关代码，思考操作系统是怎么根据时钟周期切换进程的。</li>
@@ -838,7 +831,7 @@
         
 
         
-            <script type="text/javascript" src="/js/mouse-click.js" content='[&#34;Sunny&#34;, &#34;💖&#34;, &#34;Sunny&#34;, &#34;🧡&#34;, &#34;Sunny&#34;, &#34;💛&#34;, &#34;Sunny&#34; , &#34;💚&#34;, &#34;Sunny&#34;, &#34;💙&#34;, &#34;Sunny&#34;, &#34;💜&#34;, &#34;Sunny&#34;, &#34;😍&#34;]' color='[&#34;rgb(255, 0, 0)&#34; ,&#34;rgb(255, 0, 0)&#34; ,&#34;rgb(255, 125, 0)&#34; ,&#34;rgb(255, 125, 0)&#34; ,&#34;rgb(255, 255, 0)&#34; ,&#34;rgb(255, 255, 0)&#34; ,&#34;rgb(0, 255, 0)&#34; ,&#34;rgb(0, 255, 0)&#34; ,&#34;rgb(0, 255, 255)&#34; ,&#34;rgb(0, 255, 255)&#34; ,&#34;rgb(0, 0, 255)&#34; ,&#34;rgb(0, 0, 255)&#34; ,&#34;rgb(255, 0, 255)&#34; ,&#34;rgb(255, 0, 255)&#34;]'></script>
+            <script type="text/javascript" src="/js/mouse-click.js" content='[&quot;Sunny&quot;, &quot;💖&quot;, &quot;Sunny&quot;, &quot;🧡&quot;, &quot;Sunny&quot;, &quot;💛&quot;, &quot;Sunny&quot; , &quot;💚&quot;, &quot;Sunny&quot;, &quot;💙&quot;, &quot;Sunny&quot;, &quot;💜&quot;, &quot;Sunny&quot;, &quot;😍&quot;]' color='[&quot;rgb(255, 0, 0)&quot; ,&quot;rgb(255, 0, 0)&quot; ,&quot;rgb(255, 125, 0)&quot; ,&quot;rgb(255, 125, 0)&quot; ,&quot;rgb(255, 255, 0)&quot; ,&quot;rgb(255, 255, 0)&quot; ,&quot;rgb(0, 255, 0)&quot; ,&quot;rgb(0, 255, 0)&quot; ,&quot;rgb(0, 255, 255)&quot; ,&quot;rgb(0, 255, 255)&quot; ,&quot;rgb(0, 0, 255)&quot; ,&quot;rgb(0, 0, 255)&quot; ,&quot;rgb(255, 0, 255)&quot; ,&quot;rgb(255, 0, 255)&quot;]'></script>
         
 
         <!-- background effects end -->
@@ -848,6 +841,21 @@
     
         <script src="/js/ribbonDynamic.js"></script>
     
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 </body>
 
 </html>
