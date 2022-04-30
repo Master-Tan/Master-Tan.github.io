@@ -195,12 +195,12 @@
                     
 
                         
+                    
+
+                        
                         	<li>
                           	  <a href="/tags/">Tags</a>
                         	</li>
-                        
-                    
-
                         
                     
 
@@ -333,7 +333,6 @@
 <h4 id="答：-3"><a href="#答：-3" class="headerlink" title="答："></a>答：</h4><ul>
 <li><p><code>load_icode_mapper</code> 的参数为：  </p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">int</span> <span class="title">load_icode_mapper</span><span class="params">(u_long va, <span class="keyword">u_int32_t</span> sgsize, u_char *bin, <span class="keyword">u_int32_t</span> bin_size, <span class="keyword">void</span> *user_data)</span></span></span><br></pre></td></tr></table></figure>
-<p><img align="middle" src='4.png'>  </p>
 </li>
 <li><p>复制情况：</p>
 <ol>
@@ -446,7 +445,7 @@
 <h4 id="答：-8"><a href="#答：-8" class="headerlink" title="答："></a>答：</h4><ul>
 <li><code>set_timer</code> 中每行代码的作用：</li>
 </ul>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">LEAF(set_timer)</span><br><span class="line"></span><br><span class="line">        li  t0, <span class="number">0x01</span></span><br><span class="line">        sb  t0, <span class="number">0xb5000100</span>  </span><br><span class="line">        <span class="comment">// 0xb5000000是时钟设备的基地址</span></span><br><span class="line">        <span class="comment">// 在偏移量为0x100（此处写值将改变时钟的频率）处写入1表示时钟频率为1s</span></span><br><span class="line">        <span class="comment">// 此行代码让时钟以1s一次的频率产生中断</span></span><br><span class="line">        <span class="comment">// 0xb5000100为时钟的控制地址</span></span><br><span class="line"></span><br><span class="line">        sw  sp, KERNEL_SP  </span><br><span class="line">        <span class="comment">// 将栈指针保存在内核栈空间保证正常产生时钟中断</span></span><br><span class="line">        <span class="comment">// 设置KERNEl_SP，内核异常处理栈的值  </span></span><br><span class="line"></span><br><span class="line">setup_c0_status STATUS_CU0|<span class="number">0x10010</span></span><br><span class="line"><span class="comment">// 调用宏函数设置CP0的状态，设置CP0的Status寄存器，STATUS_CU0为仅开启CU0，表示CP0存在的状态，0x1001，最低位1开启终端，第13位1使能IRQ4即时钟中断</span></span><br><span class="line"></span><br><span class="line">        jr ra #函数结束返回主调函数</span><br><span class="line"></span><br><span class="line">        nop</span><br><span class="line">END(set_timer)</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">LEAF(set_timer)</span><br><span class="line"></span><br><span class="line">        li  t0, <span class="number">0x01</span></span><br><span class="line">        sb  t0, <span class="number">0xb5000100</span>  </span><br><span class="line">        <span class="comment">// 0xb5000000是时钟设备的基地址</span></span><br><span class="line">        <span class="comment">// 在偏移量为0x100（此处写值将改变时钟的频率）处写入1表示时钟频率为1s</span></span><br><span class="line">        <span class="comment">// 此行代码让时钟以1s一次的频率产生中断</span></span><br><span class="line">        <span class="comment">// 0xb5000100为时钟的控制地址</span></span><br><span class="line"></span><br><span class="line">        sw  sp, KERNEL_SP  </span><br><span class="line">        <span class="comment">// 将栈指针保存在内核栈空间保证正常产生时钟中断</span></span><br><span class="line">        <span class="comment">// 设置KERNEl_SP，内核异常处理栈的值  </span></span><br><span class="line"></span><br><span class="line">setup_c0_status STATUS_CU0 | <span class="number">0x10010</span></span><br><span class="line"><span class="comment">// 调用宏函数设置CP0的状态，设置CP0的Status寄存器</span></span><br><span class="line"><span class="comment">// STATUS_CU0为仅开启CU0，表示CP0存在的状态</span></span><br><span class="line"><span class="comment">// 0x1001，最低位1开启终端，第13位1使能IRQ4即时钟中断</span></span><br><span class="line"></span><br><span class="line">        jr ra #函数结束返回主调函数</span><br><span class="line"></span><br><span class="line">        nop</span><br><span class="line">END(set_timer)</span><br></pre></td></tr></table></figure>
 <figure class="highlight mips"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">timer_irq:</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">sb </span><span class="built_in">zero</span>, <span class="number">0xb5000110</span></span><br><span class="line"><span class="number">1</span>:  <span class="keyword">j </span>  <span class="keyword">sched_yield</span></span><br><span class="line"><span class="keyword"> </span>   <span class="keyword">nop</span></span><br><span class="line"><span class="keyword"> </span>   <span class="comment">/*li t1, 0xff</span></span><br><span class="line"><span class="comment">    lw    t0, delay</span></span><br><span class="line"><span class="comment">    addu  t0, 1</span></span><br><span class="line"><span class="comment">    sw  t0, delay</span></span><br><span class="line"><span class="comment">    beq t0,t1,1f    </span></span><br><span class="line"><span class="comment">    nop*/</span></span><br><span class="line">    <span class="keyword">j </span>  ret_from_exception</span><br><span class="line">    <span class="keyword">nop</span></span><br></pre></td></tr></table></figure>
 <p><br></p>
 <h4 id="Thinking-3-10"><a href="#Thinking-3-10" class="headerlink" title="Thinking 3.10"></a>Thinking 3.10</h4><ul>
@@ -831,7 +830,7 @@
         
 
         
-            <script type="text/javascript" src="/js/mouse-click.js" content='[&quot;Sunny&quot;, &quot;💖&quot;, &quot;Sunny&quot;, &quot;🧡&quot;, &quot;Sunny&quot;, &quot;💛&quot;, &quot;Sunny&quot; , &quot;💚&quot;, &quot;Sunny&quot;, &quot;💙&quot;, &quot;Sunny&quot;, &quot;💜&quot;, &quot;Sunny&quot;, &quot;😍&quot;]' color='[&quot;rgb(255, 0, 0)&quot; ,&quot;rgb(255, 0, 0)&quot; ,&quot;rgb(255, 125, 0)&quot; ,&quot;rgb(255, 125, 0)&quot; ,&quot;rgb(255, 255, 0)&quot; ,&quot;rgb(255, 255, 0)&quot; ,&quot;rgb(0, 255, 0)&quot; ,&quot;rgb(0, 255, 0)&quot; ,&quot;rgb(0, 255, 255)&quot; ,&quot;rgb(0, 255, 255)&quot; ,&quot;rgb(0, 0, 255)&quot; ,&quot;rgb(0, 0, 255)&quot; ,&quot;rgb(255, 0, 255)&quot; ,&quot;rgb(255, 0, 255)&quot;]'></script>
+            <script type="text/javascript" src="/js/mouse-click.js" content='[&#34;Sunny&#34;, &#34;💖&#34;, &#34;Sunny&#34;, &#34;🧡&#34;, &#34;Sunny&#34;, &#34;💛&#34;, &#34;Sunny&#34; , &#34;💚&#34;, &#34;Sunny&#34;, &#34;💙&#34;, &#34;Sunny&#34;, &#34;💜&#34;, &#34;Sunny&#34;, &#34;😍&#34;]' color='[&#34;rgb(255, 0, 0)&#34; ,&#34;rgb(255, 0, 0)&#34; ,&#34;rgb(255, 125, 0)&#34; ,&#34;rgb(255, 125, 0)&#34; ,&#34;rgb(255, 255, 0)&#34; ,&#34;rgb(255, 255, 0)&#34; ,&#34;rgb(0, 255, 0)&#34; ,&#34;rgb(0, 255, 0)&#34; ,&#34;rgb(0, 255, 255)&#34; ,&#34;rgb(0, 255, 255)&#34; ,&#34;rgb(0, 0, 255)&#34; ,&#34;rgb(0, 0, 255)&#34; ,&#34;rgb(255, 0, 255)&#34; ,&#34;rgb(255, 0, 255)&#34;]'></script>
         
 
         <!-- background effects end -->
@@ -841,21 +840,6 @@
     
         <script src="/js/ribbonDynamic.js"></script>
     
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
-            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-            processEscapes: true
-        }
-    });
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax();
-        for (var i = 0; i < all.length; ++i)
-            all[i].SourceElement().parentNode.className += ' has-jax';
-    });
-</script>
-<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 </body>
 
 </html>
