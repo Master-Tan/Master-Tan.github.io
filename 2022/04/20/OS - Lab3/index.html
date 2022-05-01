@@ -181,12 +181,12 @@
                     
 
                         
-                    
-
-                        
                         	<li>
                           	  <a href="/about/">About Tan</a>
                         	</li>
+                        
+                    
+
                         
                     
 
@@ -446,7 +446,7 @@
 <li><code>set_timer</code> 中每行代码的作用：</li>
 </ul>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">LEAF(set_timer)</span><br><span class="line"></span><br><span class="line">        li  t0, <span class="number">0x01</span></span><br><span class="line">        sb  t0, <span class="number">0xb5000100</span>  </span><br><span class="line">        <span class="comment">// 0xb5000000是时钟设备的基地址</span></span><br><span class="line">        <span class="comment">// 在偏移量为0x100（此处写值将改变时钟的频率）处写入1表示时钟频率为1s</span></span><br><span class="line">        <span class="comment">// 此行代码让时钟以1s一次的频率产生中断</span></span><br><span class="line">        <span class="comment">// 0xb5000100为时钟的控制地址</span></span><br><span class="line"></span><br><span class="line">        sw  sp, KERNEL_SP  </span><br><span class="line">        <span class="comment">// 将栈指针保存在内核栈空间保证正常产生时钟中断</span></span><br><span class="line">        <span class="comment">// 设置KERNEl_SP，内核异常处理栈的值  </span></span><br><span class="line"></span><br><span class="line">setup_c0_status STATUS_CU0 | <span class="number">0x10010</span></span><br><span class="line"><span class="comment">// 调用宏函数设置CP0的状态，设置CP0的Status寄存器</span></span><br><span class="line"><span class="comment">// STATUS_CU0为仅开启CU0，表示CP0存在的状态</span></span><br><span class="line"><span class="comment">// 0x1001，最低位1开启终端，第13位1使能IRQ4即时钟中断</span></span><br><span class="line"></span><br><span class="line">        jr ra #函数结束返回主调函数</span><br><span class="line"></span><br><span class="line">        nop</span><br><span class="line">END(set_timer)</span><br></pre></td></tr></table></figure>
-<figure class="highlight mips"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">timer_irq:</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">sb </span><span class="built_in">zero</span>, <span class="number">0xb5000110</span></span><br><span class="line"><span class="number">1</span>:  <span class="keyword">j </span>  <span class="keyword">sched_yield</span></span><br><span class="line"><span class="keyword"> </span>   <span class="keyword">nop</span></span><br><span class="line"><span class="keyword"> </span>   <span class="comment">/*li t1, 0xff</span></span><br><span class="line"><span class="comment">    lw    t0, delay</span></span><br><span class="line"><span class="comment">    addu  t0, 1</span></span><br><span class="line"><span class="comment">    sw  t0, delay</span></span><br><span class="line"><span class="comment">    beq t0,t1,1f    </span></span><br><span class="line"><span class="comment">    nop*/</span></span><br><span class="line">    <span class="keyword">j </span>  ret_from_exception</span><br><span class="line">    <span class="keyword">nop</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight mips"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">timer_irq:</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">sb </span><span class="built_in">zero</span>, <span class="number">0xb5000110</span></span><br><span class="line">    <span class="comment"># 向 0xb5000110 中写入 0</span></span><br><span class="line"><span class="number">1</span>:  <span class="keyword">j </span>  <span class="keyword">sched_yield</span></span><br><span class="line"><span class="keyword"> </span>   <span class="keyword">nop</span></span><br><span class="line"><span class="keyword"> </span>   <span class="comment"># 跳转至 sched_yield 处执行调度策略</span></span><br><span class="line">    <span class="comment">/*li t1, 0xff</span></span><br><span class="line"><span class="comment">    lw    t0, delay</span></span><br><span class="line"><span class="comment">    addu  t0, 1</span></span><br><span class="line"><span class="comment">    sw  t0, delay</span></span><br><span class="line"><span class="comment">    beq t0,t1,1f    </span></span><br><span class="line"><span class="comment">    nop*/</span></span><br><span class="line">    <span class="keyword">j </span>  ret_from_exception</span><br><span class="line">    <span class="keyword">nop</span></span><br><span class="line"><span class="keyword"> </span>   <span class="comment"># 跳转至恢复现场函数</span></span><br></pre></td></tr></table></figure>
 <p><br></p>
 <h4 id="Thinking-3-10"><a href="#Thinking-3-10" class="headerlink" title="Thinking 3.10"></a>Thinking 3.10</h4><ul>
 <li>阅读相关代码，思考操作系统是怎么根据时钟周期切换进程的。</li>
@@ -458,15 +458,15 @@
 </li>
 <li><p>调度算法：</p>
 <ol>
-<li><p>选择一个非空队列，第一个元素（进程）出队，设置 <code>count</code> 值为该进程的时间片数量（在本实验中即为该进程的优先级）。</p>
+<li><p>选择一个非空队列，第一个元素（进程）出队，设置 <code>count</code> 值为该进程的时间片数量（在本实验中即为该进程的优先级）</p>
 </li>
-<li><p>将之前已经跑完时间片的进程进入到另一个队列的队尾。</p>
+<li><p>将之前已经跑完时间片的进程进入到另一个队列的队尾</p>
 </li>
-<li><p>通过调用 <code>env_run</code> 函数执行当前进程。</p>
+<li><p>通过调用 <code>env_run</code> 函数执行当前进程</p>
 </li>
 </ol>
 </li>
-<li><p>当然，同时需要注意，当所选择的进程为阻塞状态或已经结束，则重复上述过程直到找到一个就绪进程。且已经结束的进程不需要加入就绪队列了。</p>
+<li><p>当然，同时需要注意，当所选择的进程为阻塞状态或已经结束，则重复上述过程直到找到一个就绪进程。且已经结束的进程不需要加入就绪队列了</p>
 </li>
 </ul>
 <p><br></p>
