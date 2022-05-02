@@ -1,0 +1,840 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="baidu-site-verification" content="093lY4ziMu" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="description" content="Tan&#39;s Blog">
+    <meta name="keyword"  content="Hello world">
+    <link rel="shortcut icon" href="/img/ironman-draw.png">
+    <!-- Place this tag in your head or just before your close body tag. -->
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+    <!--<link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>-->
+    <title>
+        
+          OO - P9 - Question - Tan&#39;s Blog
+        
+    </title>
+
+    <link rel="canonical" href="https://master-tan.github.io/2022/05/03/OO - P9 - Question/">
+
+    <!-- Bootstrap Core CSS -->
+    
+<link rel="stylesheet" href="/css/bootstrap.min.css">
+
+
+    <!-- Custom CSS --> 
+    
+        
+<link rel="stylesheet" href="/css/dusign-light.css">
+
+        
+<link rel="stylesheet" href="/css/dusign-common-light.css">
+
+        
+<link rel="stylesheet" href="/css/font-awesome.css">
+
+        
+<link rel="stylesheet" href="/css/toc.css">
+
+        <!-- background effects end -->
+    
+    
+    <!-- Pygments Highlight CSS -->
+    
+<link rel="stylesheet" href="/css/highlight.css">
+
+
+    
+<link rel="stylesheet" href="/css/widget.css">
+
+
+    
+<link rel="stylesheet" href="/css/rocket.css">
+
+
+    
+<link rel="stylesheet" href="/css/signature.css">
+
+
+    
+<link rel="stylesheet" href="/css/fonts.googleapis.css">
+
+
+    <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.3.0/css/font-awesome.min.css">
+
+    <!-- photography -->
+    
+<link rel="stylesheet" href="/css/photography.css">
+
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+
+    <!-- background effects start -->
+    
+    <!-- background effects end -->
+
+	<!-- Modified by Yu-Hsuan Yen -->
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        
+            
+                background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('../../../../img/default.jpg')
+                /*post*/
+            
+        
+    }
+    
+</style>
+
+<header class="intro-header" >
+    <!-- Signature -->
+    <div id="signature">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                
+                    <div class="post-heading">
+                        <div class="tags">
+                            
+                        </div>
+                        <h1>OO - P9 - Question</h1>
+                        <h2 class="subheading"></h2>
+                        <span class="meta">
+                            Posted by Tan on
+                            2022-05-03
+                        </span>
+
+	       
+                            <div class="blank_box"></div>
+                            <span class="meta">
+                                 <span class="post-count">3k</span> Words
+                            </span>
+                            <div class="blank_box"></div>
+                            <!-- 不蒜子统计 start -->
+                            <span class="meta">
+                                Viewed <span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span> Times By  <span id="busuanzi_value_page_uv"><i class="fa fa-spinner fa-spin"></i></span> People
+                            </span>
+                            <!-- 不蒜子统计 end -->
+                        
+
+                    </div>
+                
+
+                </div>
+            </div>
+        </div>      
+    </div>
+
+    
+    <div class="waveWrapper">
+        <div class="wave wave_before" style="background-image: url('/img/wave-light.png')"></div>
+        <div class="wave wave_after" style="background-image: url('/img/wave-light.png')"></div>
+    </div>
+    
+</header>
+
+	
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Tan&#39;s Blog</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+
+                    
+
+                        
+                    
+
+                        
+                        	<li>
+                          	  <a href="/archive/">Archives</a>
+                        	</li>
+                        
+                    
+
+                        
+                    
+
+                        
+                        	<li>
+                          	  <a href="/about/">About Tan</a>
+                        	</li>
+                        
+                    
+
+                        
+                        	<li>
+                          	  <a href="/tags/">Tags</a>
+                        	</li>
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+    <!-- Main Content -->
+    <!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+            <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <h2 id="面向对象-JML-系列第一次代码作业指导书"><a href="#面向对象-JML-系列第一次代码作业指导书" class="headerlink" title="面向对象 JML 系列第一次代码作业指导书"></a>面向对象 JML 系列第一次代码作业指导书</h2><p><strong>写在前面：请勿提交官方包代码，仅提交自己实现的类。更不要将官方包的 JML 或代码粘贴到自己的类中，否则以作弊、抄袭论处。</strong></p>
+<h3 id="第一部分：训练目标"><a href="#第一部分：训练目标" class="headerlink" title="第一部分：训练目标"></a>第一部分：训练目标</h3><p>本次作业，需要完成的任务为实现简单社交关系的模拟和查询，学习目标为 <strong>入门级JML规格理解与代码实现</strong>。</p>
+<hr>
+<h3 id="第二部分：预备知识"><a href="#第二部分：预备知识" class="headerlink" title="第二部分：预备知识"></a>第二部分：预备知识</h3><p>需要同学们了解基本的JML语法和语义，以及具备根据JML给出的规格编写Java代码的能力。</p>
+<hr>
+<h3 id="第三部分：题目描述"><a href="#第三部分：题目描述" class="headerlink" title="第三部分：题目描述"></a>第三部分：题目描述</h3><h4 id="一、作业基本要求"><a href="#一、作业基本要求" class="headerlink" title="一、作业基本要求"></a>一、作业基本要求</h4><p>本次作业的程序主干逻辑我们均已经实现，只需要同学们完成剩下的部分，即：</p>
+<ul>
+<li><strong>通过实现官方提供的接口 <code>Person</code>、<code>Network</code> 和 <code>Group</code>，来实现自己的 <code>Person</code>、<code>Network</code>和<code>Group</code>类</strong>。</li>
+<li><strong>阅读指导书中关于异常类行为的描述，通过继承官方提供的各抽象异常类，实现自己的异常类。</strong></li>
+</ul>
+<p><strong>相关类的接口定义源代码和对应的JML规格</strong>都已在接口源代码文件中给出，各位同学需要<strong>准确理解 JML 规格</strong>，然后使用 Java 来实现相应的接口，并保证<strong>代码实现严格符合对应的 JML 规格</strong>。具体来说，各位同学需要新建三个类 <code>MyPerson</code>，<code>MyGroup</code>，<code>MyNetwork</code>（仅举例，具体类名可自行定义并配置），并实现相应的接口方法，每个方法的代码实现需要严格满足给出的JML规格定义。</p>
+<p><strong>抽象异常类已在官方包内给出，这一部分没有提供 JML 规格</strong>，各位同学需要仔细阅读指导书中关于异常类的详细描述，结合样例理解其行为，然后继承这些抽象类实现自己的异常类，使其 <code>print()</code> 方法能够正确输出指定的信息。</p>
+<p>当然，还需要同学们在主类中通过调用官方包的 <code>Runner</code> 类，并载入自己实现的 <code>Person</code>，<code>Group</code>，<code>Network</code> 类，来使得程序完整可运行，具体形式下文中有提示。</p>
+<p>针对本次作业提交的代码实现，课程将使用公测 + 互测 + bug 修复的黑箱测试模式，具体测试规则参见下文 <strong>第六部分：输入输出-关于判定-测试模式</strong>。</p>
+<h4 id="二、类规格要求"><a href="#二、类规格要求" class="headerlink" title="二、类规格要求"></a>二、类规格要求</h4><h5 id="Person类"><a href="#Person类" class="headerlink" title="Person类"></a>Person类</h5><p><code>Person</code>的具体接口规格见官方包的开源代码，此处不加赘述。</p>
+<p>除此之外，<code>Person</code>类必须实现一个构造方法</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyPerson</span> <span class="keyword">implements</span> <span class="title">Person</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">MyPerson</span><span class="params">(<span class="keyword">int</span> id, String name, <span class="keyword">int</span> age)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>构造函数的逻辑为生成并初始化 <code>Person</code> 对象。</p>
+<p><code>Person</code>的属性：</p>
+<p><code>id</code>：对所有<code>Person</code>对象实例而言独一无二的 id</p>
+<p><code>name</code>：姓名</p>
+<p><code>age</code>：年龄</p>
+<p><strong>请确保构造函数正确实现，且类和构造函数均定义为 <code>public</code></strong>。<code>Runner</code>内将自动获取此构造函数进行 <code>Person</code> 实例的生成。</p>
+<h5 id="Group类"><a href="#Group类" class="headerlink" title="Group类"></a>Group类</h5><p><code>Group</code>的具体接口规格见官方包的开源代码，此处不加赘述。</p>
+<p>除此之外，<code>Group</code>类必须实现一个构造方法</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyGroup</span> <span class="keyword">implements</span> <span class="title">Group</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">MyGroup</span><span class="params">(<span class="keyword">int</span> id)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>构造函数的逻辑为生成并初始化 <code>Group</code> 对象。</p>
+<p><code>Group</code>的属性：</p>
+<p><code>id</code>：对所有<code>Group</code>对象实例而言独一无二的 id</p>
+<p><strong>请确保构造函数正确实现，且类和构造函数均定义为 <code>public</code></strong>。<code>Runner</code> 内将自动获取此构造函数进行 <code>Group</code> 实例的生成。</p>
+<h5 id="Network类"><a href="#Network类" class="headerlink" title="Network类"></a>Network类</h5><p><code>Network</code>的具体接口规格见官方包的开源代码，此处不加赘述。</p>
+<p>除此之外，<code>Network</code>类必须实现一个构造方法</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyNetwork</span> <span class="keyword">implements</span> <span class="title">Network</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">MyNetwork</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>构造函数的逻辑为生成一个 <code>Network</code> 对象。</p>
+<p><strong>请确保构造函数正确实现，且类和构造函数均定义为 <code>public</code></strong>。<code>Runner</code>内将自动获取此构造函数进行 <code>Network</code>实例的生成。</p>
+<h5 id="异常类"><a href="#异常类" class="headerlink" title="异常类"></a>异常类</h5><p>同学们需要实现 6 个具有计数功能的异常类。</p>
+<p>每个异常类必须正确实现指定参数的构造方法。</p>
+<p>除此之外，还需要实现一个无参的 <code>print()</code> 方法。<code>print()</code> 方法需将包含计数结果的指定信息输出到标准输出中，<code>Runner</code> 类会自动调用该方法。为实现计数功能，同学们可以在异常类中自定义其他属性、方法（例如：可以构造一个计数器类，其实例作为每个异常类的 <code>static</code> 属性，管理该类型异常的计数)。</p>
+<p>详细的异常类行为请参考代码和样例以及官方包中的 JML 约束，大致要求如下：</p>
+<ul>
+<li><p><strong>PersonIdNotFoundException</strong>：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyPersonIdNotFoundException</span> <span class="keyword">extends</span> <span class="title">PersonIdNotFoundException</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">MyPersonIdNotFoundException</span><span class="params">(<span class="keyword">int</span> id)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>输出格式：<code>pinf-x, id-y</code>，x 为此类异常发生的总次数，y 为该 <code>Person.id</code> 触发此类异常的次数</li>
+<li>当 <code>network</code> 类某方法中有多个参数都会触发此异常时，只以第一个触发此异常的参数抛出一次异常<ul>
+<li>比如对方法<code>func(id1, id2)</code>，如果<code>id1</code>和<code>id2</code>均会触发该异常，则仅认为“<code>id1</code>触发了该异常”，且只计算触发一次该异常。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>EqualPersonIdException</strong>：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyEqualPersonIdException</span> <span class="keyword">extends</span> <span class="title">EqualPersonIdException</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">MyEqualPersonIdException</span><span class="params">(<span class="keyword">int</span> id)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>输出格式：<code>epi-x, id-y</code>，x 为此类异常发生的总次数，y 为该 <code>Person.id</code> 触发此类异常的次数</li>
+</ul>
+</li>
+<li><p><strong>RelationNotFoundException</strong>：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyRelationNotFoundException</span> <span class="keyword">extends</span> <span class="title">RelationNotFoundException</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">MyRelationNotFoundException</span><span class="params">(<span class="keyword">int</span> id1, <span class="keyword">int</span> id2)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>输出格式：<code>rnf-x, id1-y, id2-z</code>，x 为此类异常发生的总次数，y 为 <code>Person.id1</code> 触发此类异常的次数，z 为 <code>Person.id2</code> 触发此类异常的次数</p>
+</li>
+<li><p><code>id1</code>，<code>id2</code> 按数值大小排序，由小到大输出</p>
+</li>
+</ul>
+</li>
+<li><p><strong>EqualRelationException</strong>：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyEqualRelationException</span> <span class="keyword">extends</span> <span class="title">EqualRelationException</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">MyEqualRelationException</span><span class="params">(<span class="keyword">int</span> id1, <span class="keyword">int</span> id2)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>输出格式：<code>er-x, id1-y, id2-z</code>，x 为此类异常发生的总次数, y 为 <code>Person.id1</code> 触发此类异常的次数，z 为 <code>Person.id2</code> 触发此类异常的次数</li>
+<li><code>id1</code>，<code>id2</code> 按数值大小排序，由小到大输出</li>
+<li><code>id1</code> 与 <code>id2</code> 相等时，视为该 <code>id</code> 触发了一次此类异常，其中 <code>id</code> 满足 <code>id == id1 == id2</code></li>
+</ul>
+</li>
+<li><p><strong>GroupIdNotFoundException</strong>：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyGroupIdNotFoundException</span> <span class="keyword">extends</span> <span class="title">GroupIdNotFoundException</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">MyGroupIdNotFoundException</span><span class="params">(<span class="keyword">int</span> id)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>输出格式：<code>ginf-x, id-y</code>，x 为此类异常发生的总次数，y 为该 <code>Group.id</code> 触发此类异常的次数</li>
+</ul>
+</li>
+<li><p><strong>EqualGroupIdException</strong>：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyEqualGroupIdException</span> <span class="keyword">extends</span> <span class="title">EqualGroupIdException</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">MyEqualGroupIdException</span><span class="params">(<span class="keyword">int</span> id)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>输出格式：<code>egi-x, id-y</code>，x 为此类异常发生的总次数，y 为该 <code>Group.id</code> 触发此类异常的次数</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 id="第四部分：设计建议"><a href="#第四部分：设计建议" class="headerlink" title="第四部分：设计建议"></a>第四部分：设计建议</h3><p>推荐各位同学在课下测试时使用 Junit 单元测试来对自己的程序进行测试</p>
+<ul>
+<li>Junit 是一个单元测试包，<strong>可以通过编写单元测试类和方法，来实现对类和方法实现正确性的快速检查和测试</strong>。还可以查看测试覆盖率以及具体覆盖范围（精确到语句级别），以帮助编程者全面无死角的进行程序功能测试。</li>
+<li>此外，Junit 对主流 Java IDE（Idea、eclipse 等）均有较为完善的支持，可以自行安装相关插件。推荐两篇博客：<ul>
+<li><a href="https://www.cnblogs.com/wangmingshun/p/6411885.html" target="_blank" rel="noopener">Idea 下配置 Junit</a></li>
+<li><a href="https://blog.csdn.net/yitengtongweishi/article/details/80715569" target="_blank" rel="noopener">Idea 下 Junit 的简单使用</a></li>
+</ul>
+</li>
+<li>感兴趣的同学可以自行进行更深入的探索，百度关键字：<code>Java Junit</code>。</li>
+<li>请<strong>不要</strong>在提交的代码中调用JUnit测试方法！</li>
+</ul>
+<hr>
+<h3 id="第五部分：输入输出"><a href="#第五部分：输入输出" class="headerlink" title="第五部分：输入输出"></a>第五部分：输入输出</h3><p>本次作业将会下发输入输出接口和全局测试调用程序，前者用于输入输出的解析和处理，后者会实例化同学们实现的类，并根据输入接口解析内容进行测试，并把测试结果通过输出接口进行输出。</p>
+<p>输出接口的具体字符格式已在接口内部定义好，各位同学可以阅读相关代码，这里我们只给出程序黑箱的字符串输入输出。</p>
+<p>关于 <code>main</code> 函数内对于 <code>Runner</code> 的调用，参见以下写法。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> xxx;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.oocourse.spec1.main.Runner;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">xxx</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">        Runner runner = <span class="keyword">new</span> Runner(MyPerson<span class="class">.<span class="keyword">class</span>, <span class="title">MyNetwork</span>.<span class="title">class</span>, <span class="title">MyGroup</span>.<span class="title">class</span>)</span>;</span><br><span class="line">        runner.run();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="规则"><a href="#规则" class="headerlink" title="规则"></a>规则</h4><ul>
+<li>输入一律在标准输入中进行，输出一律在标准输出。</li>
+<li>输入内容以指令的形式输入，一条指令占一行，输出以提示语句的形式输出，一句输出占一行。</li>
+<li>输入使用官方提供的输入接口，输出使用官方提供的输出接口。</li>
+</ul>
+<h4 id="指令格式一览-括号内为变量类型"><a href="#指令格式一览-括号内为变量类型" class="headerlink" title="指令格式一览(括号内为变量类型)"></a>指令格式一览(括号内为变量类型)</h4><ul>
+<li><p>基本格式：<code>指令字符串</code> <code>参数1</code> <code>参数2</code>…</p>
+<p>本次作业涉及指令如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">add_person <span class="title">id</span><span class="params">(<span class="keyword">int</span>)</span> <span class="title">name</span><span class="params">(String)</span> <span class="title">age</span><span class="params">(<span class="keyword">int</span>)</span></span></span><br><span class="line"><span class="function">add_relation <span class="title">id</span><span class="params">(<span class="keyword">int</span>)</span> <span class="title">id</span><span class="params">(<span class="keyword">int</span>)</span> <span class="title">value</span><span class="params">(<span class="keyword">int</span>)</span></span></span><br><span class="line"><span class="function">query_value <span class="title">id</span><span class="params">(<span class="keyword">int</span>)</span> <span class="title">id</span><span class="params">(<span class="keyword">int</span>)</span></span></span><br><span class="line"><span class="function">query_people_sum</span></span><br><span class="line"><span class="function">query_circle <span class="title">id</span><span class="params">(<span class="keyword">int</span>)</span> <span class="title">id</span><span class="params">(<span class="keyword">int</span>)</span></span></span><br><span class="line"><span class="function">query_block_sum</span></span><br><span class="line"><span class="function">add_group <span class="title">id</span><span class="params">(<span class="keyword">int</span>)</span></span></span><br><span class="line"><span class="function">add_to_group <span class="title">id</span><span class="params">(<span class="keyword">int</span>)</span> <span class="title">id</span><span class="params">(<span class="keyword">int</span>)</span></span></span><br><span class="line"><span class="function">del_from_group <span class="title">id</span><span class="params">(<span class="keyword">int</span>)</span> <span class="title">id</span><span class="params">(<span class="keyword">int</span>)</span></span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><em>实际上为了减小输入量，真实输入为简写</em>：</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>指令</th>
+<th>简写</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>add_person</td>
+<td>ap</td>
+</tr>
+<tr>
+<td>add_relation</td>
+<td>ar</td>
+</tr>
+<tr>
+<td>query_value</td>
+<td>qv</td>
+</tr>
+<tr>
+<td>query_people_sum</td>
+<td>qps</td>
+</tr>
+<tr>
+<td>query_circle</td>
+<td>qci</td>
+</tr>
+<tr>
+<td>query_block_sum</td>
+<td>qbs</td>
+</tr>
+<tr>
+<td>add_group</td>
+<td>ag</td>
+</tr>
+<tr>
+<td>add_to_group</td>
+<td>atg</td>
+</tr>
+<tr>
+<td>del_from_group</td>
+<td>dfg</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h4 id="样例"><a href="#样例" class="headerlink" title="样例"></a>样例</h4><div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">#</th>
+<th style="text-align:left">标准输入</th>
+<th>标准输出</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">1</td>
+<td style="text-align:left">ap 1 jack 100<br/>ap 2 mark 100<br/>ar 1 2 100<br/>qv 1 2<br/>qbs<br/>qps<br/>qci 1 2</td>
+<td>Ok<br/>Ok<br/>Ok<br/>100<br/>1<br/>2<br/>1</td>
+</tr>
+<tr>
+<td style="text-align:center">2</td>
+<td style="text-align:left">ap 1 jack 100<br/>ap 2 mark 100<br/>ap 3 grace 200<br/>ag 1<br/>atg 1 1<br/>atg 2 1<br/>dfg 1 1</td>
+<td>Ok<br/>Ok<br/>Ok<br/>Ok<br/>Ok<br/>Ok<br/>Ok<br/></td>
+</tr>
+<tr>
+<td style="text-align:center">3</td>
+<td style="text-align:left">ap 1 jack 100<br/>ap 2 mark 100<br/>ar 1 2 100<br/>ar 1 2 100</td>
+<td>Ok<br/>Ok<br/>Ok<br/>er-1, 1-1, 2-1</td>
+</tr>
+<tr>
+<td style="text-align:center">4</td>
+<td style="text-align:left">qv 1 2<br/>qv 2 1<br/>ap 1 jack 100<br/>ap 1 mark 100<br/>ap 2 mark 100<br/>qv 1 2<br/>qv 2 1<br/>ar 1 2 100<br/>ar 1 2 200</td>
+<td>pinf-1, 1-1<br/>pinf-2, 2-1<br/>Ok<br/>epi-1, 1-1<br/>Ok<br/>rnf-1, 1-1, 2-1<br/>rnf-2, 1-2, 2-2<br/>Ok<br/>er-1, 1-1, 2-1</td>
+</tr>
+<tr>
+<td style="text-align:center">5</td>
+<td style="text-align:left">ap 1 jack 100<br/>ap 2 mark 100<br/>ag 114514<br/>atg 1 114514<br/>dfg 2 114514<br/>ag 114514<br/>atg 1 114514<br/>dfg 1 114514</td>
+<td>Ok<br/>Ok<br/>Ok<br/>Ok<br/>epi-1, 2-1<br/>egi-1, 114514-1<br/>epi-2, 1-1<br/>Ok</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h4 id="关于判定"><a href="#关于判定" class="headerlink" title="关于判定"></a>关于判定</h4><h5 id="数据基本限制"><a href="#数据基本限制" class="headerlink" title="数据基本限制"></a>数据基本限制</h5><p>指令条数不多于 1000 条</p>
+<p><code>name(String)</code> 长度不超过 <code>10</code></p>
+<p><code>age(int)</code>值在 <code>[0,200]</code> 中</p>
+<p><code>value(int)</code>值在 <code>[0,1000]</code> 中</p>
+<h5 id="互测数据限制"><a href="#互测数据限制" class="headerlink" title="互测数据限制"></a>互测数据限制</h5><p>同数据基本限制</p>
+<h5 id="测试模式"><a href="#测试模式" class="headerlink" title="测试模式"></a>测试模式</h5><p>公测和互测都将使用指令的形式模拟容器的各种状态，从而测试各个类、接口的实现正确性，即是否满足 JML 规格的定义或者指导书描述。<strong>可以认为，只要所要求的三个类的具体实现严格满足 JML，同时异常类的实现符合指导书描述，就能保证正确性，但是不保证满足时间限制</strong>。</p>
+<p>任何满足规则的输入，程序都应该保证不会异常退出，如果出现问题即视为未通过该测试点。</p>
+<p>程序的最大运行 cpu 时间为 2s，虽然保证强测数据有梯度，但是还是请<strong>注意时间复杂度的控制</strong>。</p>
+<hr>
+<h3 id="第六部分：提示与警示"><a href="#第六部分：提示与警示" class="headerlink" title="第六部分：提示与警示"></a>第六部分：提示与警示</h3><h4 id="一、提示"><a href="#一、提示" class="headerlink" title="一、提示"></a>一、提示</h4><ul>
+<li>如果还有人不知道标准输入、标准输出是啥的话，那在这里解释一下<ul>
+<li>标准输入，直观来说就是屏幕输入</li>
+<li>标准输出，直观来说就是屏幕输出</li>
+<li>标准异常，直观来说就是报错的时候那堆红字</li>
+<li>想更加详细的了解的话，请去百度</li>
+</ul>
+</li>
+<li>本次作业中可以自行组织工程结构。任意新增<code>java</code>代码文件。只需要保证题目要求的几个类的继承与实现即可。</li>
+<li><strong>关于本次作业容器类的设计具体细节，本指导书中均不会进行过多描述，请自行去官方包开源仓库中查看接口的规格，并依据规格进行功能的具体实现，必要时也可以查看 Runner 的代码实现。</strong></li>
+<li>开源库地址：<a href="http://gitlab.oo.buaa.edu.cn/2022_public/guidebook/homework_9" target="_blank" rel="noopener">第九次作业公共仓库</a></li>
+</ul>
+<h4 id="二、警示"><a href="#二、警示" class="headerlink" title="二、警示"></a>二、警示</h4><ul>
+<li><strong>不要试图通过反射机制来对官方接口进行操作</strong>，我们有办法进行筛查。此外，在互测环节中，如果发现有人试图通过反射等手段 hack 输出接口的话，请邮件 <a href="neumy@qq.com">管理员邮箱</a> 或私聊助教进行举报，<strong>经核实后，将直接作为无效作业处理</strong>。</li>
+</ul>
+
+                
+                <hr>
+                <!-- Pager -->
+                <ul class="pager">
+                    
+                    <li class="previous">
+                        <a href="/2022/05/03/OS - Lab4/" data-toggle="tooltip" data-placement="top" title="OS - Lab4">&larr; Previous Post
+		<br>
+		<span><font size="2" face="Calibri" color="grey">OS - Lab4</font></span>
+	       </a>
+                    </li>
+                    
+                    
+                    <li class="next">
+                        <a href="/2022/05/03/OO - P9/" data-toggle="tooltip" data-placement="top" title="OO - P9">Next Post &rarr;
+		<br>
+		<span><font size="2" face="Calibri" color="grey">OO - P9</font></span>
+	        </a>
+                    </li>
+                    
+                </ul>
+
+                <!-- tip start -->
+                
+
+                
+                <div class="comment_notes">
+                    <p>
+                        by Tan
+                    </p>
+                </div>
+                
+                <!-- tip end -->
+
+                <!-- Music start-->
+                
+                <!-- Music end -->
+
+                <!-- Sharing -->
+                
+                <!-- Sharing -->
+
+                <!-- gitment start -->
+                
+                <!-- gitment end -->
+
+                <!-- 来必力City版安装代码 -->
+                
+                <!-- City版安装代码已完成 -->
+
+                <!-- disqus comment start -->
+                
+                <!-- disqus comment end -->
+            </div>
+            
+            <!-- Tabe of Content -->
+            <!-- Table of Contents -->
+
+    
+      
+        <aside id="sidebar">
+          <div id="toc" class="toc-article">
+          <strong class="toc-title">Contents</strong>
+          
+            
+              <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#面向对象-JML-系列第一次代码作业指导书"><span class="toc-nav-text">面向对象 JML 系列第一次代码作业指导书</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#第一部分：训练目标"><span class="toc-nav-text">第一部分：训练目标</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#第二部分：预备知识"><span class="toc-nav-text">第二部分：预备知识</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#第三部分：题目描述"><span class="toc-nav-text">第三部分：题目描述</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#一、作业基本要求"><span class="toc-nav-text">一、作业基本要求</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#二、类规格要求"><span class="toc-nav-text">二、类规格要求</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#Person类"><span class="toc-nav-text">Person类</span></a></li><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#Group类"><span class="toc-nav-text">Group类</span></a></li><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#Network类"><span class="toc-nav-text">Network类</span></a></li><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#异常类"><span class="toc-nav-text">异常类</span></a></li></ol></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#第四部分：设计建议"><span class="toc-nav-text">第四部分：设计建议</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#第五部分：输入输出"><span class="toc-nav-text">第五部分：输入输出</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#规则"><span class="toc-nav-text">规则</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#指令格式一览-括号内为变量类型"><span class="toc-nav-text">指令格式一览(括号内为变量类型)</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#样例"><span class="toc-nav-text">样例</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#关于判定"><span class="toc-nav-text">关于判定</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#数据基本限制"><span class="toc-nav-text">数据基本限制</span></a></li><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#互测数据限制"><span class="toc-nav-text">互测数据限制</span></a></li><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#测试模式"><span class="toc-nav-text">测试模式</span></a></li></ol></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#第六部分：提示与警示"><span class="toc-nav-text">第六部分：提示与警示</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#一、提示"><span class="toc-nav-text">一、提示</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#二、警示"><span class="toc-nav-text">二、警示</span></a></li></ol></li></ol></li></ol>
+            
+          
+          </div>
+        </aside>
+      
+    
+
+                
+            <!-- Sidebar Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                       
+                    </div>
+                </section>
+                
+
+            </div>
+			
+			<div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+				
+				<br>
+				<br>
+
+				<script src="https://utteranc.es/client.js"
+						repo="Master-Tan/Master-Tan.github.io"
+						issue-term="pathname"
+						label="Comment"
+						theme="github-light"
+						crossorigin="anonymous"
+						async>
+				</script>
+			</div>
+        </div>
+    </div>
+</article>
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("https://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'hover',
+          placement: 'left',
+          icon: 'ℬ'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+
+
+<style  type="text/css">
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
+
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+
+                
+                    <li>
+                        <a target="_blank"  href="https://github.com/Master-Tan">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+                    <li>
+                        <a target="_blank" href="https://twitter.com/None">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+                    <li>
+                        <a target="_blank" href="https://www.facebook.com/None">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                
+
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; Tan 2022 | Powered by 
+                    <a href="https://github.com/Master-Tan/Master-Tan.github.io" target="_blank" rel="noopener">
+                        <i>Tan's Blog</i>
+                    </a>
+                </p>
+            </div>
+        </div>
+    </div>
+
+</footer>
+
+<!-- jQuery -->
+
+<script src="/js/jquery.min.js"></script>
+
+
+<!-- Bootstrap Core JavaScript -->
+
+<script src="/js/bootstrap.min.js"></script>
+
+
+<!-- Custom Theme JavaScript -->
+
+<script src="/js/hux-blog.min.js"></script>
+
+
+<!-- Search -->
+
+<script src="/js/search.js"></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("https://master-tan.github.io/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("https://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+<script>
+    // dynamic User by Hux
+    var _gaId = 'UA-XXXXXXXX-X';
+    var _gaDomain = 'yoursite';
+
+    // Originial
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', _gaId, _gaDomain);
+    ga('send', 'pageview');
+</script>
+
+
+
+
+<!-- Baidu Tongji -->
+
+
+<!-- Search -->
+
+    <script type="text/javascript">      
+        var search_path = "search.xml";
+        if (search_path.length == 0) {
+            search_path = "search.xml";
+        }
+    var path = "/" + search_path;
+    searchFunc(path, 'local-search-input', 'local-search-result');
+    </script>
+
+
+<!-- busuanzi -->
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+
+	<a id="rocket" href="#top" class=""></a>
+	<script type="text/javascript" src="/js/totop.js?v=1.0.0" async=""></script>
+    <script type="text/javascript" src="/js/toc.js?v=1.0.0" async=""></script>
+
+    
+        <!-- background effects line -->
+        
+
+        
+            <script type="text/javascript" src="/js/mouse-click.js" content='[&quot;Sunny&quot;, &quot;💖&quot;, &quot;Sunny&quot;, &quot;🧡&quot;, &quot;Sunny&quot;, &quot;💛&quot;, &quot;Sunny&quot; , &quot;💚&quot;, &quot;Sunny&quot;, &quot;💙&quot;, &quot;Sunny&quot;, &quot;💜&quot;, &quot;Sunny&quot;, &quot;😍&quot;]' color='[&quot;rgb(255, 0, 0)&quot; ,&quot;rgb(255, 0, 0)&quot; ,&quot;rgb(255, 125, 0)&quot; ,&quot;rgb(255, 125, 0)&quot; ,&quot;rgb(255, 255, 0)&quot; ,&quot;rgb(255, 255, 0)&quot; ,&quot;rgb(0, 255, 0)&quot; ,&quot;rgb(0, 255, 0)&quot; ,&quot;rgb(0, 255, 255)&quot; ,&quot;rgb(0, 255, 255)&quot; ,&quot;rgb(0, 0, 255)&quot; ,&quot;rgb(0, 0, 255)&quot; ,&quot;rgb(255, 0, 255)&quot; ,&quot;rgb(255, 0, 255)&quot;]'></script>
+        
+
+        <!-- background effects end -->
+    
+
+    <!--<script size="50" alpha='0.3' zIndex="-999" src="/js/ribbonStatic.js"></script>-->
+    
+        <script src="/js/ribbonDynamic.js"></script>
+    
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+
+</html>
