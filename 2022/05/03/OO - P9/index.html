@@ -121,7 +121,7 @@
 	       
                             <div class="blank_box"></div>
                             <span class="meta">
-                                 <span class="post-count">1.1k</span> Words
+                                 <span class="post-count">925</span> Words
                             </span>
                             <div class="blank_box"></div>
                             <!-- 不蒜子统计 start -->
@@ -182,18 +182,8 @@
 
                         
                         	<li>
-                          	  <a href="/about/">About Tan</a>
-                        	</li>
-                        
-                    
-
-                        
-                        	<li>
                           	  <a href="/archive/">Archives</a>
                         	</li>
-                        
-                    
-
                         
                     
 
@@ -204,6 +194,16 @@
                         	<li>
                           	  <a href="/tags/">Tags</a>
                         	</li>
+                        
+                    
+
+                        
+                        	<li>
+                          	  <a href="/about/">About Tan</a>
+                        	</li>
+                        
+                    
+
                         
                     
 
@@ -277,7 +277,7 @@
 </li>
 <li><p>本次作业只需要读懂代码中的 <code>JML</code> 表示语言，并且按照其中的要求编写好代码即可，由于客户需求基本都已经表述的很明白了，所以留给你的实现空间挺少的<br><br></p>
 </li>
-<li><p><code>JML</code> 表示语言中的伪代码只是给你实现的一种参考，仅仅是规格层次的描述，实际上并不需要严格按照其代码编写，只要你最后的代码能满足所有条件即可<br><br></p>
+<li><p><code>JML</code> 表示语言中的伪代码只是给你实现的一种参考，仅仅是规格层次的描述，实际上并不需要严格按照其代码编写，只要你最后的代码能满足条件即可<br><br></p>
 </li>
 </ul>
 <hr>
@@ -294,70 +294,72 @@
 <ul>
 <li><h4 id="人物接口-Person"><a href="#人物接口-Person" class="headerlink" title="人物接口 Person"></a>人物接口 <code>Person</code></h4><p><img src="1.png"/>  </p>
 <ul>
-<li>开启官方包的输入线程，获得输入的请求，并将每一个输入请求传递到<code>Controller</code> 类中</li>
-<li>在官方包传出终止信号时，调用 <code>Controller</code> 的 <code>close</code> 方法<br><br></li>
-</ul>
-</li>
-<li><h4 id="人物类-MyPerson"><a href="#人物类-MyPerson" class="headerlink" title="人物类 MyPerson"></a>人物类 <code>MyPerson</code></h4><p><img src="1.png"/>  </p>
-<ul>
-<li>开启官方包的输入线程，获得输入的请求，并将每一个输入请求传递到<code>Controller</code> 类中</li>
-<li>在官方包传出终止信号时，调用 <code>Controller</code> 的 <code>close</code> 方法<br><br></li>
-</ul>
-</li>
-<li><h4 id="分组接口-Group"><a href="#分组接口-Group" class="headerlink" title="分组接口 Group"></a>分组接口 <code>Group</code></h4><p><img src="2.png"/>  </p>
-<ul>
-<li>用一个 <code>synchronized</code> 的 <code>static</code> 方法，对官方给的线程不安全的输出方法 <code>TimableOutput.println()</code> 进行封装，使其成为线程安全的静态方法 <code>OutputThread.println()</code> （即调用时不会出现时间戳不递增的情况）<br><br></li>
-</ul>
-</li>
-<li><h4 id="分组类-MyGroup"><a href="#分组类-MyGroup" class="headerlink" title="分组类 MyGroup"></a>分组类 <code>MyGroup</code></h4><p><img src="3.png"/>  </p>
-<ul>
-<li>创建请求池类（ <code>RequestPool</code> 类）的实例</li>
-<li>创建所有电梯线程（ <code>Elevator</code> 类）并开始运行（处于可接客状态）</li>
-<li>为每一个电梯创建一个决策者实例 <code>DecisionMaker</code></li>
-<li>在接收到读入处理类 （ <code>InputThread</code> 类）的 <code>close</code> 请求后，调用请求池类（ <code>RequestPool</code> 类 ）的 <code>close</code> 方法通知其进入停止状态<br><br></li>
-</ul>
-</li>
-<li><h4 id="网络接口-Network"><a href="#网络接口-Network" class="headerlink" title="网络接口 Network"></a>网络接口 <code>Network</code></h4><p><img src="4.png"/>  </p>
-<ul>
-<li>线程安全类，采用了 <code>ReentrantLock</code> 锁，所有对请求池读 / 写的方法均上锁，以保证线程安全</li>
-<li>实现向请求池添加请求 <code>addRequest</code> ，从请求池删除（获得）请求 <code>removeRequest</code> ，查询当前请求池中所有请求 <code>getAllRequest</code></li>
-<li>储存所有的电梯信息</li>
-<li>在添加请求时，唤醒 <strong>所有</strong> 电梯中正在 <code>await</code> 的线程，达到实时判断乘客的效果</li>
-<li>控制器（ <code>Controller</code> 类）传入关闭方法时，将本类的 <code>isClose</code> 置 <code>1</code> ，并且将 <strong>所有</strong> 电梯的 <code>isClose</code> 置 <code>1</code></li>
-</ul>
-</li>
-<li><h4 id="网络类-MyNetwork"><a href="#网络类-MyNetwork" class="headerlink" title="网络类 MyNetwork"></a>网络类 <code>MyNetwork</code></h4><p><img src="5.png"/>  </p>
-<ul>
-<li>重写 <code>run()</code> 方法，实现顺序执行 <code>下客-&gt;上客-&gt;关门-&gt;运行一层</code> 的流程，其中每一步均有是否执行的判断条件，只有满足条件才会执行，顺序执行保证了电梯的正确性</li>
-<li>每次下客前和关门前均调用自身对应的决策类的 <code>ask</code> 方法，使决策类根据此时电梯状态和请求池状态更新自身行为，然后访问决策类的方法获得电梯下一步的行动 <strong>建议</strong> （接那些人以及向哪一层移动/空等）</li>
-<li>关门和移动等待时间为电梯上一次 <strong>任意</strong> 操作（ <code>开门/关门/移动</code> ）的系统时间与此时系统时间的差值（保证电梯距上次输出 <code>400ms</code> 即可）<br><br></li>
-</ul>
-</li>
-<li><h4 id="人物Id重复抽象类-EqualGroupIdException"><a href="#人物Id重复抽象类-EqualGroupIdException" class="headerlink" title="人物Id重复抽象类 EqualGroupIdException"></a>人物Id重复抽象类 <code>EqualGroupIdException</code></h4><p>  <img src="6.png"/>  </p>
-<ul>
-<li><p>定义了 <code>4</code> 个方法</p>
-<ul>
-<li><p><code>ask()</code> 方法：调用时重新计算当前建议  </p>
-</li>
-<li><p><code>whoToPickUp()</code> 方法：返回需要载客的建议  </p>
-</li>
-<li><p><code>whoToPutDown()</code> 方法：返回需要下客的建议  </p>
-</li>
-<li><p><code>nextDirection()</code> 方法：返回下一步电梯行动方向 / 是否空等的建议  </p>
-</li>
+<li>重写 <code>equal</code> 和 <code>compareTo</code> 方法</li>
+<li>编写 <code>id</code> 和 <code>name</code> 和 <code>age</code> 的 <code>Getter</code> 方法</li>
+<li><code>isLinked</code> : 查看两人物之间是否存在关系</li>
+<li><code>queryValue</code> : 查看两人物之间关系的权重</li>
 </ul>
 <p><br></p>
+</li>
+<li><h4 id="人物类-MyPerson"><a href="#人物类-MyPerson" class="headerlink" title="人物类 MyPerson"></a>人物类 <code>MyPerson</code></h4><p><img src="2.png"/>  </p>
 <ul>
-<li><h5 id="Look策略类-LookDecisionMaker"><a href="#Look策略类-LookDecisionMaker" class="headerlink" title="Look策略类 LookDecisionMaker"></a>Look策略类 <code>LookDecisionMaker</code></h5><img src="7.png"/>  </li>
+<li><code>acquaintance</code> : 存储与该人有关系的人</li>
+<li><code>value</code> : 存储与人的权重，与 <code>acquaintance</code> 的下标相对应</li>
+<li><code>link</code> : 使两人建立关系的方法<br><br></li>
 </ul>
 </li>
-<li><p>实现了 <code>LOOK</code> 算法</p>
-</li>
-<li>重写了 <code>DecisionMaker</code> 接口的 <code>4</code> 个方法</li>
+<li><h4 id="分组接口-Group"><a href="#分组接口-Group" class="headerlink" title="分组接口 Group"></a>分组接口 <code>Group</code></h4><p><img src="3.png"/>  </p>
+<ul>
+<li><code>addPerson</code>， <code>delPerson</code>: 对分组中的人的增加与删除</li>
+<li><code>hasPerson</code> : 查询此分组是否存在该人</li>
+<li><code>getValueSum</code> : 返回与此人有关系所有人的权重的总和</li>
+<li><code>getAgeMean</code>， <code>getAgeVar</code> : 获得该分组的所有人年龄的平均值，方差</li>
+<li><code>getSize</code> : 获得该分组的大小</li>
+<li><code>getId</code> : 获得该分组的id<br><br></li>
 </ul>
 </li>
+<li><h4 id="分组类-MyGroup"><a href="#分组类-MyGroup" class="headerlink" title="分组类 MyGroup"></a>分组类 <code>MyGroup</code></h4><p><img src="4.png"/>  </p>
+<ul>
+<li><code>people</code> 存储所有该分组中的人<br><br></li>
 </ul>
-<p><br></p>
+</li>
+<li><h4 id="网络接口-Network"><a href="#网络接口-Network" class="headerlink" title="网络接口 Network"></a>网络接口 <code>Network</code></h4><p><img src="5.png"/>  </p>
+<ul>
+<li><code>contains</code> : 此网络是否包含此人</li>
+<li><code>getPerson</code> : 根据 <code>id</code> 获取对应的人物</li>
+<li><code>addPerson</code> : 向网络中增加人物</li>
+<li><code>addRelation</code> : 让两个人产生关系</li>
+<li><code>queryValue</code> : 获取两个人之间关系的权重</li>
+<li><code>queryPeople</code> : 获取网络中人数的总和</li>
+<li><code>isCircle</code> : 判断是否可以通过此网络中的人来使两个人之间‘间接’建立关系</li>
+<li><code>queryBlockSum</code> : 获取关系网的数量</li>
+<li><code>addGroup</code> : 向网络中增加分组</li>
+<li><code>getGroup</code> : 根据 <code>id</code> 获取对应分组</li>
+<li><code>addToGroup</code> : 将人物加入到分组中</li>
+<li><code>delFromGroup</code> : 将人物移除出分组</li>
+</ul>
+</li>
+<li><h4 id="网络类-MyNetwork"><a href="#网络类-MyNetwork" class="headerlink" title="网络类 MyNetwork"></a>网络类 <code>MyNetwork</code></h4><p><img src="6.png"/>  </p>
+<ul>
+<li><code>getRoot</code> : 并查集数据结构，获取一个人物的根结点</li>
+<li><code>parent</code> : 并查集数据结构，标记一个人物的父结点</li>
+<li><code>people</code> : 网络中存储人物</li>
+<li><code>groups</code> : 网络中存储分组<br><br></li>
+</ul>
+</li>
+<li><h4 id="人物Id重复抽象类-amp-任务Id重复类-PersonIdNotFoundException-amp-MyPersonIdNotFoundException"><a href="#人物Id重复抽象类-amp-任务Id重复类-PersonIdNotFoundException-amp-MyPersonIdNotFoundException" class="headerlink" title="人物Id重复抽象类 &amp; 任务Id重复类 PersonIdNotFoundException &amp; MyPersonIdNotFoundException"></a>人物Id重复抽象类 &amp; 任务Id重复类 <code>PersonIdNotFoundException &amp; MyPersonIdNotFoundException</code></h4><p><img src="7.png"/><br><br></p>
+</li>
+<li><h4 id="分组Id重复抽象类-amp-分组Id重复类-EqualPersonIdException-amp-MyEqualPersonIdException"><a href="#分组Id重复抽象类-amp-分组Id重复类-EqualPersonIdException-amp-MyEqualPersonIdException" class="headerlink" title="分组Id重复抽象类 &amp; 分组Id重复类 EqualPersonIdException &amp; MyEqualPersonIdException"></a>分组Id重复抽象类 &amp; 分组Id重复类 <code>EqualPersonIdException &amp; MyEqualPersonIdException</code></h4><p><img src="8.png"/><br><br></p>
+</li>
+<li><h4 id="未具有关系抽象类-amp-未具有关系类-RelationNotFoundException-amp-MyRelationNotFoundException"><a href="#未具有关系抽象类-amp-未具有关系类-RelationNotFoundException-amp-MyRelationNotFoundException" class="headerlink" title="未具有关系抽象类 &amp; 未具有关系类 RelationNotFoundException &amp; MyRelationNotFoundException"></a>未具有关系抽象类 &amp; 未具有关系类 <code>RelationNotFoundException &amp; MyRelationNotFoundException</code></h4><p><img src="9.png"/><br><br></p>
+</li>
+<li><h4 id="关系已存在抽象类-amp-关系已存在类-EqualRelationException-amp-MyEqualRelationException"><a href="#关系已存在抽象类-amp-关系已存在类-EqualRelationException-amp-MyEqualRelationException" class="headerlink" title="关系已存在抽象类 &amp; 关系已存在类 EqualRelationException &amp; MyEqualRelationException"></a>关系已存在抽象类 &amp; 关系已存在类 <code>EqualRelationException &amp; MyEqualRelationException</code></h4><p><img src="10.png"/><br><br></p>
+</li>
+<li><h4 id="未找到分组Id抽象类-amp-未找到分组Id类-GroupIdNotFoundException-amp-MyGroupIdNotFoundException"><a href="#未找到分组Id抽象类-amp-未找到分组Id类-GroupIdNotFoundException-amp-MyGroupIdNotFoundException" class="headerlink" title="未找到分组Id抽象类 &amp; 未找到分组Id类 GroupIdNotFoundException &amp; MyGroupIdNotFoundException"></a>未找到分组Id抽象类 &amp; 未找到分组Id类 <code>GroupIdNotFoundException &amp; MyGroupIdNotFoundException</code></h4><p><img src="11.png"/><br><br></p>
+</li>
+<li><h4 id="分组Id相同抽象类-amp-分组Id相同类-EqualGroupIdException-amp-MyEqualGroupIdException"><a href="#分组Id相同抽象类-amp-分组Id相同类-EqualGroupIdException-amp-MyEqualGroupIdException" class="headerlink" title="分组Id相同抽象类 &amp; 分组Id相同类 EqualGroupIdException &amp; MyEqualGroupIdException"></a>分组Id相同抽象类 &amp; 分组Id相同类 <code>EqualGroupIdException &amp; MyEqualGroupIdException</code></h4><p><img src="12.png"/><br><br></p>
+</li>
+</ul>
 <hr>
 
                 
@@ -425,7 +427,7 @@
           <strong class="toc-title">Contents</strong>
           
             
-              <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#面向对象设计与构造第三单元第一次作业"><span class="toc-nav-text">面向对象设计与构造第三单元第一次作业</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#JML-系列"><span class="toc-nav-text">JML 系列</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#题目"><span class="toc-nav-text">题目</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#分析"><span class="toc-nav-text">分析</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#基本思路"><span class="toc-nav-text">基本思路</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#具体实现"><span class="toc-nav-text">具体实现</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#总UML类图："><span class="toc-nav-text">总UML类图：</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#人物接口-Person"><span class="toc-nav-text">人物接口 Person</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#人物类-MyPerson"><span class="toc-nav-text">人物类 MyPerson</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#分组接口-Group"><span class="toc-nav-text">分组接口 Group</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#分组类-MyGroup"><span class="toc-nav-text">分组类 MyGroup</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#网络接口-Network"><span class="toc-nav-text">网络接口 Network</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#网络类-MyNetwork"><span class="toc-nav-text">网络类 MyNetwork</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#人物Id重复抽象类-EqualGroupIdException"><span class="toc-nav-text">人物Id重复抽象类 EqualGroupIdException</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#Look策略类-LookDecisionMaker"><span class="toc-nav-text">Look策略类 LookDecisionMaker</span></a></li></ol></li></ol></li></ol></li></ol></li></ol>
+              <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#面向对象设计与构造第三单元第一次作业"><span class="toc-nav-text">面向对象设计与构造第三单元第一次作业</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#JML-系列"><span class="toc-nav-text">JML 系列</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#题目"><span class="toc-nav-text">题目</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#分析"><span class="toc-nav-text">分析</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#基本思路"><span class="toc-nav-text">基本思路</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#具体实现"><span class="toc-nav-text">具体实现</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#总UML类图："><span class="toc-nav-text">总UML类图：</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#人物接口-Person"><span class="toc-nav-text">人物接口 Person</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#人物类-MyPerson"><span class="toc-nav-text">人物类 MyPerson</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#分组接口-Group"><span class="toc-nav-text">分组接口 Group</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#分组类-MyGroup"><span class="toc-nav-text">分组类 MyGroup</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#网络接口-Network"><span class="toc-nav-text">网络接口 Network</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#网络类-MyNetwork"><span class="toc-nav-text">网络类 MyNetwork</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#人物Id重复抽象类-amp-任务Id重复类-PersonIdNotFoundException-amp-MyPersonIdNotFoundException"><span class="toc-nav-text">人物Id重复抽象类 &amp; 任务Id重复类 PersonIdNotFoundException &amp; MyPersonIdNotFoundException</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#分组Id重复抽象类-amp-分组Id重复类-EqualPersonIdException-amp-MyEqualPersonIdException"><span class="toc-nav-text">分组Id重复抽象类 &amp; 分组Id重复类 EqualPersonIdException &amp; MyEqualPersonIdException</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#未具有关系抽象类-amp-未具有关系类-RelationNotFoundException-amp-MyRelationNotFoundException"><span class="toc-nav-text">未具有关系抽象类 &amp; 未具有关系类 RelationNotFoundException &amp; MyRelationNotFoundException</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#关系已存在抽象类-amp-关系已存在类-EqualRelationException-amp-MyEqualRelationException"><span class="toc-nav-text">关系已存在抽象类 &amp; 关系已存在类 EqualRelationException &amp; MyEqualRelationException</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#未找到分组Id抽象类-amp-未找到分组Id类-GroupIdNotFoundException-amp-MyGroupIdNotFoundException"><span class="toc-nav-text">未找到分组Id抽象类 &amp; 未找到分组Id类 GroupIdNotFoundException &amp; MyGroupIdNotFoundException</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#分组Id相同抽象类-amp-分组Id相同类-EqualGroupIdException-amp-MyEqualGroupIdException"><span class="toc-nav-text">分组Id相同抽象类 &amp; 分组Id相同类 EqualGroupIdException &amp; MyEqualGroupIdException</span></a></li></ol></li></ol></li></ol></li></ol>
             
           
           </div>
@@ -688,7 +690,7 @@
         
 
         
-            <script type="text/javascript" src="/js/mouse-click.js" content='[&quot;Sunny&quot;, &quot;💖&quot;, &quot;Sunny&quot;, &quot;🧡&quot;, &quot;Sunny&quot;, &quot;💛&quot;, &quot;Sunny&quot; , &quot;💚&quot;, &quot;Sunny&quot;, &quot;💙&quot;, &quot;Sunny&quot;, &quot;💜&quot;, &quot;Sunny&quot;, &quot;😍&quot;]' color='[&quot;rgb(255, 0, 0)&quot; ,&quot;rgb(255, 0, 0)&quot; ,&quot;rgb(255, 125, 0)&quot; ,&quot;rgb(255, 125, 0)&quot; ,&quot;rgb(255, 255, 0)&quot; ,&quot;rgb(255, 255, 0)&quot; ,&quot;rgb(0, 255, 0)&quot; ,&quot;rgb(0, 255, 0)&quot; ,&quot;rgb(0, 255, 255)&quot; ,&quot;rgb(0, 255, 255)&quot; ,&quot;rgb(0, 0, 255)&quot; ,&quot;rgb(0, 0, 255)&quot; ,&quot;rgb(255, 0, 255)&quot; ,&quot;rgb(255, 0, 255)&quot;]'></script>
+            <script type="text/javascript" src="/js/mouse-click.js" content='[&#34;Sunny&#34;, &#34;💖&#34;, &#34;Sunny&#34;, &#34;🧡&#34;, &#34;Sunny&#34;, &#34;💛&#34;, &#34;Sunny&#34; , &#34;💚&#34;, &#34;Sunny&#34;, &#34;💙&#34;, &#34;Sunny&#34;, &#34;💜&#34;, &#34;Sunny&#34;, &#34;😍&#34;]' color='[&#34;rgb(255, 0, 0)&#34; ,&#34;rgb(255, 0, 0)&#34; ,&#34;rgb(255, 125, 0)&#34; ,&#34;rgb(255, 125, 0)&#34; ,&#34;rgb(255, 255, 0)&#34; ,&#34;rgb(255, 255, 0)&#34; ,&#34;rgb(0, 255, 0)&#34; ,&#34;rgb(0, 255, 0)&#34; ,&#34;rgb(0, 255, 255)&#34; ,&#34;rgb(0, 255, 255)&#34; ,&#34;rgb(0, 0, 255)&#34; ,&#34;rgb(0, 0, 255)&#34; ,&#34;rgb(255, 0, 255)&#34; ,&#34;rgb(255, 0, 255)&#34;]'></script>
         
 
         <!-- background effects end -->
@@ -698,21 +700,6 @@
     
         <script src="/js/ribbonDynamic.js"></script>
     
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
-            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-            processEscapes: true
-        }
-    });
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax();
-        for (var i = 0; i < all.length; ++i)
-            all[i].SourceElement().parentNode.className += ' has-jax';
-    });
-</script>
-<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 </body>
 
 </html>
