@@ -1,0 +1,836 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="baidu-site-verification" content="093lY4ziMu" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="description" content="Tan&#39;s Blog">
+    <meta name="keyword"  content="Hello world">
+    <link rel="shortcut icon" href="/img/ironman-draw.png">
+    <!-- Place this tag in your head or just before your close body tag. -->
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+    <!--<link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>-->
+    <title>
+        
+          简易 Shell 实现 - Tan&#39;s Blog
+        
+    </title>
+
+    <link rel="canonical" href="https://master-tan.github.io/2022/05/09/简易 Shell 实现/">
+
+    <!-- Bootstrap Core CSS -->
+    
+<link rel="stylesheet" href="/css/bootstrap.min.css">
+
+
+    <!-- Custom CSS --> 
+    
+        
+<link rel="stylesheet" href="/css/dusign-light.css">
+
+        
+<link rel="stylesheet" href="/css/dusign-common-light.css">
+
+        
+<link rel="stylesheet" href="/css/font-awesome.css">
+
+        
+<link rel="stylesheet" href="/css/toc.css">
+
+        <!-- background effects end -->
+    
+    
+    <!-- Pygments Highlight CSS -->
+    
+<link rel="stylesheet" href="/css/highlight.css">
+
+
+    
+<link rel="stylesheet" href="/css/widget.css">
+
+
+    
+<link rel="stylesheet" href="/css/rocket.css">
+
+
+    
+<link rel="stylesheet" href="/css/signature.css">
+
+
+    
+<link rel="stylesheet" href="/css/fonts.googleapis.css">
+
+
+    <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.3.0/css/font-awesome.min.css">
+
+    <!-- photography -->
+    
+<link rel="stylesheet" href="/css/photography.css">
+
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+
+    <!-- background effects start -->
+    
+    <!-- background effects end -->
+
+	<!-- Modified by Yu-Hsuan Yen -->
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        
+            
+                background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('../../../../img/default.jpg')
+                /*post*/
+            
+        
+    }
+    
+</style>
+
+<header class="intro-header" >
+    <!-- Signature -->
+    <div id="signature">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                
+                    <div class="post-heading">
+                        <div class="tags">
+                            
+                              <a class="tag" href="/tags/#Unix" title="Unix">Unix</a>
+                            
+                        </div>
+                        <h1>简易 Shell 实现</h1>
+                        <h2 class="subheading">2022 秋 Unix 大作业</h2>
+                        <span class="meta">
+                            Posted by Tan on
+                            2022-05-09
+                        </span>
+
+	       
+                            <div class="blank_box"></div>
+                            <span class="meta">
+                                 <span class="post-count">1.4k</span> Words
+                            </span>
+                            <div class="blank_box"></div>
+                            <!-- 不蒜子统计 start -->
+                            <span class="meta">
+                                Viewed <span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span> Times
+                            </span>
+                            <!-- 不蒜子统计 end -->
+                        
+
+                    </div>
+                
+
+                </div>
+            </div>
+        </div>      
+    </div>
+
+    
+    <div class="waveWrapper">
+        <div class="wave wave_before" style="background-image: url('/img/wave-light.png')"></div>
+        <div class="wave wave_after" style="background-image: url('/img/wave-light.png')"></div>
+    </div>
+    
+</header>
+
+	
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Tan&#39;s Blog</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+
+                    
+
+                        
+                    
+
+                        
+                        	<li>
+                          	  <a href="/archive/">Archives</a>
+                        	</li>
+                        
+                    
+
+                        
+                    
+
+                        
+                        	<li>
+                          	  <a href="/about/">About Tan</a>
+                        	</li>
+                        
+                    
+
+                        
+                        	<li>
+                          	  <a href="/tags/">Tags</a>
+                        	</li>
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+    <!-- Main Content -->
+    <!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+            <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <h1 id="简易-Shell-实现"><a href="#简易-Shell-实现" class="headerlink" title="简易 Shell 实现"></a>简易 Shell 实现</h1><font size=3px> 2022 秋 Unix 大作业 </font>
+
+<hr>
+<h3 id="作业要求"><a href="#作业要求" class="headerlink" title="作业要求"></a>作业要求</h3><ul>
+<li><p>编写一个简单的shell（myshell），满足：</p>
+<ol>
+<li><p>可以运行 <strong>不带参数的外部命令</strong></p>
+</li>
+<li><p>支持标准 <code>I/O</code> <strong>重定向</strong></p>
+</li>
+<li><p>可以通过 <strong>管道</strong> 连接两个命令；（外部命令的路径可以是固定路径，如当前目录）</p>
+</li>
+</ol>
+</li>
+<li><p>要求：</p>
+<ol>
+<li><p>尽量使用第八章所介绍的<strong>系统调用函数</strong></p>
+</li>
+<li><p><strong>所有</strong> 源代码写在 <strong>一个</strong> .c 文件中，篇幅不超过 <strong>450</strong> 行</p>
+</li>
+<li><p><strong>源程序</strong> 中（例如注释、变量名和函数名等）具有 <strong>明显的身份信息</strong></p>
+</li>
+<li><p>可执行程序的 <strong>命令提示符</strong> 具有编写者的 <strong>身份特征</strong></p>
+</li>
+</ol>
+</li>
+<li><p>注意：本作业 <strong>禁止</strong> 使用 <code>system</code> 函数，因为该函数的功能就是执行 <code>shell</code> 命令</p>
+</li>
+<li><p>最终提交：  </p>
+<ul>
+<li><p>一份作业报告，内容包括：</p>
+<ol>
+<li><p><code>myshell</code> 的 <strong>功能概述</strong></p>
+</li>
+<li><p>实现每个功能所用到的 <strong>系统调用</strong>，功能实现的简单 <strong>流程图</strong>（可用伪代码表达）</p>
+</li>
+<li><p><strong>源代码</strong></p>
+</li>
+</ol>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 id="作业报告"><a href="#作业报告" class="headerlink" title="作业报告"></a>作业报告</h3><h4 id="功能概述-amp-展示-amp-实现功能所用系统调用-amp-实现流程"><a href="#功能概述-amp-展示-amp-实现功能所用系统调用-amp-实现流程" class="headerlink" title="功能概述 &amp; 展示 &amp; 实现功能所用系统调用 &amp; 实现流程"></a>功能概述 &amp; 展示 &amp; 实现功能所用系统调用 &amp; 实现流程</h4><hr>
+<h5 id="满足作业要求"><a href="#满足作业要求" class="headerlink" title="满足作业要求"></a>满足作业要求</h5><ul>
+<li><p>所有源代码写在一个 .c 文件中（ <code>TanShell.c</code> ）</p>
+</li>
+<li><p>代码量：<code>344</code> 行（包括空行和注释行）</p>
+</li>
+<li><p>源程序中身份信息：</p>
+<ul>
+<li>如图：（部分）<br><img src="1.png"/><br><img src="2.png"/><br><img src="3.png"/><br><img src="4.png"/>  </li>
+</ul>
+</li>
+<li><p>可执行程序的命令提示符中编写者的身份特征：</p>
+<ul>
+<li>如图：（部分）<br><img src="5.png"/><br><img src="6.png"/><br><img src="7.png"/>  </li>
+</ul>
+</li>
+</ul>
+<hr>
+<h5 id="基本功能"><a href="#基本功能" class="headerlink" title="基本功能"></a>基本功能</h5><ul>
+<li><p><code>myshell</code> 命名： <code>TanShell</code></p>
+</li>
+<li><p>作者： <code>20373864 谭立德</code></p>
+</li>
+<li><p>实现外部指令：</p>
+<ul>
+<li><p><strong>本程序支持运行不含参数的外部指令</strong> </p>
+</li>
+<li><p>系统调用：<br><code>execvp</code>， <code>fork</code> 函数</p>
+</li>
+<li><p>实现流程：<br>对于无法匹配内部指令的输入，在本程序进行解析、整理后使用 <code>fork</code> 函数开启一个新的进程，在该进程中使用 <code>execvp</code> 指令尝试执行该输入， <code>execvp</code> 指令会从环境变量所指的目录中查找符合参数 <code>file</code> 的文件名， 找到后执行该文件， 然后将第二个参数 <code>argv</code> 传给该执行的文件，没找到则会被本程序捕获到异常并输出到标准错误输出中（不支持的指令）</p>
+</li>
+<li><p>展示：</p>
+<ul>
+<li><p><code>ls</code> 指令<br><img src="8.png"/>  </p>
+</li>
+<li><p><code>cat</code> 指令<br><img src="9.png"/>  </p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>标准 <code>I/O</code> 重定向</p>
+<ul>
+<li><p><strong>本程序支持标准 I/O 重定向</strong></p>
+</li>
+<li><p>系统调用：<br><code>dup2</code> 函数、<code>open</code> 函数、 <code>creat</code> 函数</p>
+</li>
+<li><p>实现流程：<br>解析识别命令行中的 <code>&gt;</code> 、 <code>&lt;</code>、 <code>&gt;&gt;</code> ，并且将对应文件打开后将当前进程的标准输入输出指针指向重定向的文件处</p>
+</li>
+<li><p>展示：<br><img src="10.png"/><br><img src="11.png"/><br><img src="12.png"/>  </p>
+</li>
+</ul>
+</li>
+<li><p>管道</p>
+<ul>
+<li><p><strong>本程序支持通过管道连接两个命令</strong> </p>
+</li>
+<li><p>系统调用：<br><code>pipe</code> 函数、<code>dup2</code> 函数、 <code>fork</code> 函数、 <code>close</code> 函数</p>
+</li>
+<li><p>实现流程：<br>解析识别命令行中的 <code>|</code> 分割输入命令，并开启对应的管道，并且每一个分隔出的命令使用 <code>fork</code> 函数创立一个供其运行的进程，将首进程的输出接入管道，将末进程的输入接入管道，然后分别执行命令即可</p>
+</li>
+<li><p>展示：<br><img src="13.png"/>  </p>
+</li>
+</ul>
+</li>
+</ul>
+<h5 id="高级功能"><a href="#高级功能" class="headerlink" title="高级功能"></a>高级功能</h5><p>&emsp;&emsp;<font size=2px>由于本程序是本人写过的第一个 <code>Shell</code> 程序，因此本人在 <b>满足本次作业要求的前提下</b> 实现了一些 <b>额外的</b> 功能使我的 <code>Tan’s Shell</code> 变得更加完善，使其具备更多功能</font></p>
+<ul>
+<li><p>路径压缩</p>
+<ul>
+<li><p>系统调用：无</p>
+</li>
+<li><p>实现流程：<br>把程序运行路径视为家路径，在 <code>Shell</code> 中显示路径时把家路径替换为 <code>~</code></p>
+</li>
+<li><p>展示：<br><img src="14.png"/>  </p>
+</li>
+</ul>
+</li>
+<li><p>实现内部指令：  </p>
+<ul>
+<li><p>目前已经实现的内部指令：  </p>
+<ol>
+<li><p><code>type</code> 指令  </p>
+<ul>
+<li><p>功能：<br>识别输入指令是否属于内部指令</p>
+</li>
+<li><p>系统调用：<br>无</p>
+</li>
+<li><p>实现流程：<br>将当前命令与已实现的所有内部命令查看是否相等</p>
+</li>
+<li><p>展示：<br><img src="15.png"/><br><img src="16.png"/>  </p>
+</li>
+</ul>
+</li>
+<li><p><code>cd</code> 指令  </p>
+<ul>
+<li><p>功能：<br>更改当前程序工作路径</p>
+</li>
+<li><p>系统调用：<br><code>chdir</code> 函数</p>
+</li>
+<li><p>实现流程：<br>使用 <code>chdir</code> 函数直接改变工作路径</p>
+</li>
+<li><p>展示：<br><img src="17.png"/><br><img src="18.png"/>  </p>
+</li>
+</ul>
+</li>
+<li><p><code>pwd</code> 指令  </p>
+<ul>
+<li><p>功能：<br>输出当前工作路径</p>
+</li>
+<li><p>系统调用：<br><code>getcwd</code> 函数</p>
+</li>
+<li><p>实现流程：<br>使用 <code>getcwd</code> 函数直接获得工作路径</p>
+</li>
+<li><p>展示：<br><img src="19.png"/><br><img src="20.png"/>  </p>
+</li>
+</ul>
+</li>
+<li><p><code>chmod</code> 指令  </p>
+<ul>
+<li><p>功能：<br>改变指定文件的权限</p>
+</li>
+<li><p>系统调用：<code>chmod</code> 函数 </p>
+</li>
+<li><p>实现流程：<br>将输入的权限数转为 <code>mode_t</code> 类型的数后使用 <code>chmod</code> 函数</p>
+</li>
+<li><p>展示：<br><img src="21.png"/>  </p>
+</li>
+</ul>
+</li>
+<li><p><code>quit</code> 指令  </p>
+<ul>
+<li><p>功能：<br>退出程序  </p>
+</li>
+<li><p>系统调用：<br>无</p>
+</li>
+<li><p>实现流程：<br>退出循环，程序结束 </p>
+</li>
+<li><p>展示：<br><img src="22.png"/>  </p>
+</li>
+</ul>
+</li>
+</ol>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p>支持运行含参数的外部指令  </p>
+<ul>
+<li><p>实现逻辑：<br>解析函数支持了带参数的指令的解析和处理</p>
+</li>
+<li><p>展示：（部分）<br><img src="23.png"/>  </p>
+</li>
+</ul>
+</li>
+<li><p>支持同时重定向输入$/$输出  </p>
+<ul>
+<li><p>实现逻辑：<br>输入输出可同时重定向，两者的文件指针均修改</p>
+</li>
+<li><p>展示：<br><img src="24.png"/>  </p>
+</li>
+</ul>
+</li>
+<li><p>支持通过多个管道连接多个命令  </p>
+<ul>
+<li><p>实现逻辑：<br>可同时开启多个管道，管道间输入输出相连接，最后首尾与标准输入$/$输出相连接</p>
+</li>
+<li><p>展示：<br><img src="25.png"/>  </p>
+</li>
+</ul>
+</li>
+<li><p>支持管道 &amp; 重定向结合使用  </p>
+<ul>
+<li><p>实现逻辑：<br>管道 &amp; 重定向两个功能相互独立，支持同时进行</p>
+</li>
+<li><p>展示：<br><img src="26.png"/>  </p>
+</li>
+</ul>
+</li>
+<li><p>错误检测 &amp; 自定义错误信息输出  </p>
+<ul>
+<li><p>实现逻辑：<br>对于各种系统调用的返回值进行捕获并在捕获到异常时将异常信息输出到标准错误输出处</p>
+</li>
+<li><p>展示：（部分）<br><img src="27.png"/><br><img src="28.png"/>  </p>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h4 id="源代码"><a href="#源代码" class="headerlink" title="源代码"></a>源代码</h4><p><a href="http://www.baidu.com" target="_blank" rel="noopener">见附件</a> </p>
+<h2 id=""><a href="#" class="headerlink" title=""></a><script src="//onlinegdb.com/embed/js/Y0_toVmpE?theme=dark"></script></h2><h3 id="作业感想"><a href="#作业感想" class="headerlink" title="作业感想"></a>作业感想</h3><p>&emsp;&emsp;原本我认为的 <code>Shell</code> 程序是和 <code>OS</code> 一样拥有庞大的底层代码支撑的一个输入输出交互程序，但真正开始动手实现这次作业后，我理解到 <code>Shell</code> 的编程也可以轻量化，在只实现最基础的功能的情况下我通过这次作业体会到了 <code>Shell</code> 的基本实现，系统调用的基本使用，具备了编写小型 <code>Shell</code> 交互程序的能力</p>
+
+                
+                <hr>
+                <!-- Pager -->
+                <ul class="pager">
+                    
+                    
+                    <li class="next">
+                        <a href="/2022/05/03/OS - Lab4/" data-toggle="tooltip" data-placement="top" title="OS - Lab4">Next Post &rarr;
+		<br>
+		<span><font size="2" face="Calibri" color="grey">OS - Lab4</font></span>
+	        </a>
+                    </li>
+                    
+                </ul>
+
+                <!-- tip start -->
+                
+
+                
+                <div class="comment_notes">
+                    <p>
+                        by Tan
+                    </p>
+                </div>
+                
+                <!-- tip end -->
+
+                <!-- Music start-->
+                
+                <!-- Music end -->
+
+                <!-- Sharing -->
+                
+                <!-- Sharing -->
+
+                <!-- gitment start -->
+                
+                <!-- gitment end -->
+
+                <!-- 来必力City版安装代码 -->
+                
+                <!-- City版安装代码已完成 -->
+
+                <!-- disqus comment start -->
+                
+                <!-- disqus comment end -->
+            </div>
+            
+            <!-- Tabe of Content -->
+            <!-- Table of Contents -->
+
+    
+      
+        <aside id="sidebar">
+          <div id="toc" class="toc-article">
+          <strong class="toc-title">Contents</strong>
+          
+            
+              <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#简易-Shell-实现"><span class="toc-nav-text">简易 Shell 实现</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#作业要求"><span class="toc-nav-text">作业要求</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#作业报告"><span class="toc-nav-text">作业报告</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#功能概述-amp-展示-amp-实现功能所用系统调用-amp-实现流程"><span class="toc-nav-text">功能概述 &amp; 展示 &amp; 实现功能所用系统调用 &amp; 实现流程</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#满足作业要求"><span class="toc-nav-text">满足作业要求</span></a></li><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#基本功能"><span class="toc-nav-text">基本功能</span></a></li><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#高级功能"><span class="toc-nav-text">高级功能</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#源代码"><span class="toc-nav-text">源代码</span></a></li></ol></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#"><span class="toc-nav-text"></span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#作业感想"><span class="toc-nav-text">作业感想</span></a></li></ol></li></ol></li></ol>
+            
+          
+          </div>
+        </aside>
+      
+    
+
+                
+            <!-- Sidebar Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                       
+                          <a class="tag" href="/tags/#Unix" title="Unix">Unix</a>
+                        
+                    </div>
+                </section>
+                
+
+            </div>
+			
+			<div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+				
+				<br>
+				<br>
+
+				<script src="https://utteranc.es/client.js"
+						repo="Master-Tan/Master-Tan.github.io"
+						issue-term="pathname"
+						label="Comment"
+						theme="github-light"
+						crossorigin="anonymous"
+						async>
+				</script>
+			</div>
+        </div>
+    </div>
+</article>
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("https://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'hover',
+          placement: 'left',
+          icon: 'ℬ'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+
+
+<style  type="text/css">
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
+
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+
+                
+                    <li>
+                        <a target="_blank"  href="https://github.com/Master-Tan">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+                    <li>
+                        <a target="_blank" href="https://twitter.com/None">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+                    <li>
+                        <a target="_blank" href="https://www.facebook.com/None">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                
+
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; Tan 2022 | Powered by 
+                    <a href="https://github.com/Master-Tan/Master-Tan.github.io" target="_blank" rel="noopener">
+                        <i>Tan's Blog</i>
+                    </a>
+                </p>
+            </div>
+        </div>
+    </div>
+
+</footer>
+
+<!-- jQuery -->
+
+<script src="/js/jquery.min.js"></script>
+
+
+<!-- Bootstrap Core JavaScript -->
+
+<script src="/js/bootstrap.min.js"></script>
+
+
+<!-- Custom Theme JavaScript -->
+
+<script src="/js/hux-blog.min.js"></script>
+
+
+<!-- Search -->
+
+<script src="/js/search.js"></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("https://master-tan.github.io/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("https://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+<script>
+    // dynamic User by Hux
+    var _gaId = 'UA-XXXXXXXX-X';
+    var _gaDomain = 'yoursite';
+
+    // Originial
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', _gaId, _gaDomain);
+    ga('send', 'pageview');
+</script>
+
+
+
+
+<!-- Baidu Tongji -->
+
+
+<!-- Search -->
+
+    <script type="text/javascript">      
+        var search_path = "search.xml";
+        if (search_path.length == 0) {
+            search_path = "search.xml";
+        }
+    var path = "/" + search_path;
+    searchFunc(path, 'local-search-input', 'local-search-result');
+    </script>
+
+
+<!-- busuanzi -->
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+
+	<a id="rocket" href="#top" class=""></a>
+	<script type="text/javascript" src="/js/totop.js?v=1.0.0" async=""></script>
+    <script type="text/javascript" src="/js/toc.js?v=1.0.0" async=""></script>
+
+    
+        <!-- background effects line -->
+        
+
+        
+            <script type="text/javascript" src="/js/mouse-click.js" content='[&#34;Sunny&#34;, &#34;💖&#34;, &#34;Sunny&#34;, &#34;🧡&#34;, &#34;Sunny&#34;, &#34;💛&#34;, &#34;Sunny&#34; , &#34;💚&#34;, &#34;Sunny&#34;, &#34;💙&#34;, &#34;Sunny&#34;, &#34;💜&#34;, &#34;Sunny&#34;, &#34;😍&#34;]' color='[&#34;rgb(255, 0, 0)&#34; ,&#34;rgb(255, 0, 0)&#34; ,&#34;rgb(255, 125, 0)&#34; ,&#34;rgb(255, 125, 0)&#34; ,&#34;rgb(255, 255, 0)&#34; ,&#34;rgb(255, 255, 0)&#34; ,&#34;rgb(0, 255, 0)&#34; ,&#34;rgb(0, 255, 0)&#34; ,&#34;rgb(0, 255, 255)&#34; ,&#34;rgb(0, 255, 255)&#34; ,&#34;rgb(0, 0, 255)&#34; ,&#34;rgb(0, 0, 255)&#34; ,&#34;rgb(255, 0, 255)&#34; ,&#34;rgb(255, 0, 255)&#34;]'></script>
+        
+
+        <!-- background effects end -->
+    
+
+    <!--<script size="50" alpha='0.3' zIndex="-999" src="/js/ribbonStatic.js"></script>-->
+    
+        <script src="/js/ribbonDynamic.js"></script>
+    
+</body>
+
+</html>
