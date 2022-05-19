@@ -121,7 +121,7 @@
 	       
                             <div class="blank_box"></div>
                             <span class="meta">
-                                 <span class="post-count">3.6k</span> Words
+                                 <span class="post-count">3.3k</span> Words
                             </span>
                             <div class="blank_box"></div>
                             <!-- 不蒜子统计 start -->
@@ -270,9 +270,16 @@
 <p><br></p>
 <h2 id="课下"><a href="#课下" class="headerlink" title="课下"></a>课下</h2><h3 id="Lab4-实验报告"><a href="#Lab4-实验报告" class="headerlink" title="Lab4 实验报告"></a>Lab4 实验报告</h3><p><br></p>
 <h3 id="一-思考题"><a href="#一-思考题" class="headerlink" title="一. 思考题"></a>一. 思考题</h3><p><br></p>
-<h4 id="Thinking-3-1"><a href="#Thinking-3-1" class="headerlink" title="Thinking 3.1"></a>Thinking 3.1</h4><p>思考 <code>envid2env</code> 函数:</p>
+<h4 id="Thinking-4-1"><a href="#Thinking-4-1" class="headerlink" title="Thinking 4.1"></a>Thinking 4.1</h4><p>思考并回答下面的问题：</p>
 <ul>
-<li>为什么 <code>envid2env</code> 中需要判断 <code>e-&gt;env_id != envid</code> 的情况？如果没有这步判断会发生什么情况？</li>
+<li><p>内核在保存现场的时候是如何避免破坏通用寄存器的？</p>
+</li>
+<li><p>系统陷入内核调用后可以直接从当时的 <code>$a0-$a3</code> 参数寄存器中得到用户调用 <code>msyscall</code> 留下的信息吗？</p>
+</li>
+<li><p>我们是怎么做到让 <code>sys</code> 开头的函数 “认为” 我们提供了和用户调用 <code>msyscall</code> 时同样的参数的？</p>
+</li>
+<li><p>内核处理系统调用的过程对 <code>Trapframe</code> 做了哪些更改？这种修改对应的用户态的变化是？</p>
+</li>
 </ul>
 <h4 id="答："><a href="#答：" class="headerlink" title="答："></a>答：</h4><ul>
 <li><p>先查看每个 <code>env_id</code> 的生成函数 <code>mkenvid</code>:<br><img align="middle" src='1.png'>  </p>
@@ -285,14 +292,9 @@
 </li>
 </ul>
 <p><br></p>
-<h4 id="Thinking-3-2"><a href="#Thinking-3-2" class="headerlink" title="Thinking 3.2"></a>Thinking 3.2</h4><p>结合 <code>include/mmu.h</code> 中的地址空间布局，思考 <code>env_setup_vm</code> 函数：</p>
+<h4 id="Thinking-4-2"><a href="#Thinking-4-2" class="headerlink" title="Thinking 4.2"></a>Thinking 4.2</h4><p>思考下面的问题，并对这个问题谈谈你的理解：  </p>
 <ul>
-<li><p><code>UTOP</code> 和 <code>ULIM</code> 的含义分别是什么， <code>UTOP</code> 和 <code>ULIM</code> 之间的区域与 <code>UTOP</code> 以下的区域相比有什么区别？</p>
-</li>
-<li><p>请结合系统自映射机制解释代码中 <code>pgdir[PDX(UVPT)]=env_cr3</code> 的含义。</p>
-</li>
-<li><p>谈谈自己对进程中物理地址和虚拟地址的理解。</p>
-</li>
+<li>请回顾 <code>lib/env.c</code> 文件中 <code>mkenvid()</code> 函数的实现，该函数不会返回 <code>0</code> ，请结合系统调用和 <code>IPC</code> 部分的实现与 <code>envid2env()</code> 函数的行为进行解释。</li>
 </ul>
 <h4 id="答：-1"><a href="#答：-1" class="headerlink" title="答："></a>答：</h4><ul>
 <li><p><code>include/mmu.h</code> 中的地址空间布局如下图：<br><img align="middle" src='2.png'>  </p>
@@ -305,11 +307,12 @@
 </li>
 </ul>
 <p><br></p>
-<h4 id="Thinking-3-3"><a href="#Thinking-3-3" class="headerlink" title="Thinking 3.3"></a>Thinking 3.3</h4><ul>
-<li>找到 <code>user_data</code> 这一参数的来源，思考它的作用。</li>
-<li>没有这个参数可不可以？</li>
-<li>为什么？</li>
-<li>（可以尝试说明实际的应用场景，举一个实际的库中的例子）</li>
+<h4 id="Thinking-4-3"><a href="#Thinking-4-3" class="headerlink" title="Thinking 4.3"></a>Thinking 4.3</h4><p>思考下面的问题，并对这两个问题谈谈你的理解：</p>
+<ul>
+<li><p>子进程完全按照 <code>fork()</code> 之后父进程的代码执行，说明了什么？</p>
+</li>
+<li><p>但是子进程却没有执行 <code>fork()</code> 之前父进程的代码，又说明了什么？</p>
+</li>
 </ul>
 <h4 id="答：-2"><a href="#答：-2" class="headerlink" title="答："></a>答：</h4><ul>
 <li><p><code>user_data</code> 这一参数的定义在 <code>include/kerelf.h</code> ，为一个 <code>void *</code> 类型的指针<br><img align="middle" src='3.png'>  </p>
@@ -329,10 +332,11 @@
 </li>
 </ul>
 <p><br></p>
-<h4 id="Thinking-3-4"><a href="#Thinking-3-4" class="headerlink" title="Thinking 3.4"></a>Thinking 3.4</h4><ul>
-<li>结合 <code>load_icode_mapper</code> 的参数以及二进制镜像的大小，考虑该函数可能会面临哪几种复制的情况？</li>
-<li>你是否都考虑到了？ </li>
-</ul>
+<h4 id="Thinking-4-4"><a href="#Thinking-4-4" class="headerlink" title="Thinking 4.4"></a>Thinking 4.4</h4><p>关于 <code>fork</code> 函数的两个返回值，下面说法正确的是：</p>
+<p>A、<code>fork</code> 在父进程中被调用两次，产生两个返回值</p>
+<p>B、<code>fork</code> 在两个进程中分别被调用一次，产生两个不同的返回值</p>
+<p>C、<code>fork</code> 只在父进程中被调用了一次，在两个进程中各产生一个返回值</p>
+<p>D、<code>fork</code> 只在子进程中被调用了一次，在两个进程中各产生一个返回值</p>
 <h4 id="答：-3"><a href="#答：-3" class="headerlink" title="答："></a>答：</h4><ul>
 <li><p><code>load_icode_mapper</code> 的参数为：  </p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">int</span> <span class="title">load_icode_mapper</span><span class="params">(u_long va, <span class="keyword">u_int32_t</span> sgsize, u_char *bin, <span class="keyword">u_int32_t</span> bin_size, <span class="keyword">void</span> *user_data)</span></span></span><br></pre></td></tr></table></figure>
@@ -381,12 +385,7 @@
 </li>
 </ul>
 <p><br></p>
-<h4 id="Thinking-3-5"><a href="#Thinking-3-5" class="headerlink" title="Thinking 3.5"></a>Thinking 3.5</h4><blockquote>
-<p>这里的 <code>e-&gt;env_tf.pc</code> 是什么呢？这个字段指示了进程要恢复运行时 <code>pc</code> 应恢复到的位置。冯诺依曼体系结构的一大特点就是：程序预存储，计算机自动执行。我们要运行的进程的代码段预先被载入到了 <code>entry_ point</code> 为起点的内存中，当我们运行进程时，<code>CPU</code> 将自动从 <code>pc</code> 所指的位置开始执行二进制码。</p>
-</blockquote>
-<p>思考上面这一段话，并根据自己在 <code>lab2</code> 中的理解，回答：</p>
-<p>• 你认为这里的 <code>env_tf.pc</code> 存储的是物理地址还是虚拟地址?</p>
-<p>• 你觉得 <code>entry_point</code> 其值对于每个进程是否一样？该如何理解这种统一或不同？</p>
+<h4 id="Thinking-4-5"><a href="#Thinking-4-5" class="headerlink" title="Thinking 4.5"></a>Thinking 4.5</h4><p>我们并不应该对所有的用户空间页都使用 <code>duppage</code> 进行映射。那么究竟哪些用户空间页应该映射，哪些不应该呢？ 请结合本章的后续描述、 <code>mm/pmap.c</code> 中 <code>mips_vm_init</code> 函数进行的页面映射以及 <code>include/mmu.h</code> 里的内存布局图进行思考。</p>
 <h4 id="答：-4"><a href="#答：-4" class="headerlink" title="答："></a>答：</h4><ul>
 <li><p>虚拟地址</p>
 </li>
@@ -394,9 +393,16 @@
 </li>
 </ul>
 <p><br></p>
-<h4 id="Thinking-3-6"><a href="#Thinking-3-6" class="headerlink" title="Thinking 3.6"></a>Thinking 3.6</h4><ul>
-<li>请查阅相关资料解释，上面提到的 <code>epc</code> 是什么？</li>
-<li>为什么要将 <code>env_tf.pc</code> 设置为 <code>epc</code> 呢？</li>
+<h4 id="Thinking-4-6"><a href="#Thinking-4-6" class="headerlink" title="Thinking 4.6"></a>Thinking 4.6</h4><p>在遍历地址空间存取页表项时你需要使用到 <code>vpd</code> 和 <code>vpt</code> 这两个 “指针的指针” ，请参考 <code>user/entry.S</code> 和 <code>include/mmu.h</code> 中的相关实现，思考并回答这几个问题：</p>
+<ul>
+<li><p><code>vpt</code> 和 <code>vpd</code> 的作用是什么？怎样使用它们？</p>
+</li>
+<li><p>从实现的角度谈一下为什么进程能够通过这种方式来存取自身的页表？</p>
+</li>
+<li><p>它们是如何体现自映射设计的？</p>
+</li>
+<li><p>进程能够通过这种方式来修改自己的页表项吗？</p>
+</li>
 </ul>
 <h4 id="答：-5"><a href="#答：-5" class="headerlink" title="答："></a>答：</h4><ul>
 <li><p>在 <code>MIPS</code> 的 <code>CP0</code> 寄存器中， <code>epc</code> 为一个存储当前被打断执行的指令的 <code>pc</code> 或是下一条 <code>pc</code> 或者由软件维护的应该从内核态返回后执行的第一条指令的 <code>pc</code> 的寄存器，在这里指的是当前进程在陷入内核态后 <code>cp0</code> 中 <code>epc</code> 的值，即为 <code>curenv-&gt;env_tf.cp0_epc</code></p>
@@ -405,11 +411,11 @@
 </li>
 </ul>
 <p><br></p>
-<h4 id="Thinking-3-7"><a href="#Thinking-3-7" class="headerlink" title="Thinking 3.7"></a>Thinking 3.7</h4><p>关于 <code>TIMESTACK</code> ，请思考以下问题：</p>
+<h4 id="Thinking-4-7"><a href="#Thinking-4-7" class="headerlink" title="Thinking 4.7"></a>Thinking 4.7</h4><p><code>page_fault_handler</code> 函数中，你可能注意到了一个向异常处理栈复制 <code>Trapframe</code> 运行现场的过程，请思考并回答这几个问题：</p>
 <ul>
-<li><p>操作系统在何时将什么内容存到了 <code>TIMESTACK</code> 区域</p>
+<li><p>这里实现了一个支持类似于 “中断重入” 的机制，而在什么时候会出现这种 “中断重入”？</p>
 </li>
-<li><p><code>TIMESTACK</code> 和 <code>env_asm.S</code> 中所定义的 <code>KERNEL_SP</code> 的含义有何不同</p>
+<li><p>内核为什么需要将异常的现场 <code>Trapframe</code> 复制到用户空间？</p>
 </li>
 </ul>
 <h4 id="答：-6"><a href="#答：-6" class="headerlink" title="答："></a>答：</h4><ul>
@@ -419,11 +425,12 @@
 </li>
 </ul>
 <p><br></p>
-<h4 id="Thinking-3-8"><a href="#Thinking-3-8" class="headerlink" title="Thinking 3.8"></a>Thinking 3.8</h4><blockquote>
-<p><code>0</code> 号异常的处理函数为 <code>handle_int</code>，表示中断，由时钟中断、控制台中断等中断造成<br><code>1</code> 号异常的处理函数为 <code>handle_mod</code> ，表示存储异常，进行存储操作时该页被标记为只读<br><code>2</code> 号异常的处理函数为 <code>handle_tlb</code> ， <code>TLB</code> 异常， <code>TLB</code> 中没有和程序地址匹配的有效入口<br><code>3</code> 号异常的处理函数为 <code>handle_tlb</code> ， <code>TLB</code> 异常， <code>TLB</code> 失效，且未处于异常模式（用于提高处理效率）<br><code>8</code> 号异常的处理函数为 <code>handle_sys</code> ，系统调用，陷入内核，执行了 <code>syscall</code> 指令</p>
-</blockquote>
+<h4 id="Thinking-4-8"><a href="#Thinking-4-8" class="headerlink" title="Thinking 4.8"></a>Thinking 4.8</h4><p>到这里我们大概知道了这是一个由用户程序处理并由用户程序自身来恢复运行现场的过程，请思考并回答以下几个问题：</p>
 <ul>
-<li>试找出上述 <code>5</code> 个异常处理函数的具体实现位置。</li>
+<li><p>在用户态处理页写入异常，相比于在内核态处理有什么优势？</p>
+</li>
+<li><p>从通用寄存器的用途角度讨论，在可能被中断的用户态下进行现场的恢复，要如何做到不破坏现场中的通用寄存器？</p>
+</li>
 </ul>
 <h4 id="答：-7"><a href="#答：-7" class="headerlink" title="答："></a>答：</h4><ul>
 <li><p>实现具体位置：</p>
@@ -442,60 +449,20 @@
 </li>
 </ul>
 <p><br></p>
-<h4 id="Thinking-3-9"><a href="#Thinking-3-9" class="headerlink" title="Thinking 3.9"></a>Thinking 3.9</h4><ul>
-<li>阅读 <code>kclock_asm.S</code> 和 <code>genex.S</code> 两个文件，并尝试说出 <code>set_timer</code> 和 <code>timer_irq</code> 函数中每行汇编代码的作用</li>
+<h4 id="Thinking-4-9"><a href="#Thinking-4-9" class="headerlink" title="Thinking 4.9"></a>Thinking 4.9</h4><p>请思考并回答以下几个问题：</p>
+<ul>
+<li><p>为什么需要将 <code>set_pgfault_handler</code> 的调用放置在 <code>syscall_env_alloc</code> 之前？</p>
+</li>
+<li><p>如果放置在写时复制保护机制完成之后会有怎样的效果？</p>
+</li>
+<li><p>子进程是否需要对在 <code>entry.S</code> 定义的字 <code>__pgfault_handler</code> 赋值？</p>
+</li>
 </ul>
 <h4 id="答：-8"><a href="#答：-8" class="headerlink" title="答："></a>答：</h4><ul>
 <li><code>set_timer</code> 中每行代码的作用：</li>
 </ul>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">LEAF(set_timer)</span><br><span class="line"></span><br><span class="line">        li  t0, <span class="number">0x01</span></span><br><span class="line">        sb  t0, <span class="number">0xb5000100</span>  </span><br><span class="line">        <span class="comment">// 0xb5000000是时钟设备的基地址</span></span><br><span class="line">        <span class="comment">// 在偏移量为0x100（此处写值将改变时钟的频率）处写入1表示时钟频率为1s</span></span><br><span class="line">        <span class="comment">// 此行代码让时钟以1s一次的频率产生中断</span></span><br><span class="line">        <span class="comment">// 0xb5000100为时钟的控制地址</span></span><br><span class="line"></span><br><span class="line">        sw  sp, KERNEL_SP  </span><br><span class="line">        <span class="comment">// 将栈指针保存在内核栈空间保证正常产生时钟中断</span></span><br><span class="line">        <span class="comment">// 设置KERNEl_SP，内核异常处理栈的值  </span></span><br><span class="line"></span><br><span class="line">setup_c0_status STATUS_CU0 | <span class="number">0x10010</span></span><br><span class="line"><span class="comment">// 调用宏函数设置CP0的状态，设置CP0的Status寄存器</span></span><br><span class="line"><span class="comment">// STATUS_CU0为仅开启CU0，表示CP0存在的状态</span></span><br><span class="line"><span class="comment">// 0x1001，最低位1开启终端，第13位1使能IRQ4即时钟中断</span></span><br><span class="line"></span><br><span class="line">        jr ra #函数结束返回主调函数</span><br><span class="line"></span><br><span class="line">        nop</span><br><span class="line">END(set_timer)</span><br></pre></td></tr></table></figure>
 <figure class="highlight mips"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">timer_irq:</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">sb </span><span class="built_in">zero</span>, <span class="number">0xb5000110</span></span><br><span class="line">    <span class="comment"># 向 0xb5000110 中写入 0</span></span><br><span class="line"><span class="number">1</span>:  <span class="keyword">j </span>  <span class="keyword">sched_yield</span></span><br><span class="line"><span class="keyword"> </span>   <span class="keyword">nop</span></span><br><span class="line"><span class="keyword"> </span>   <span class="comment"># 跳转至 sched_yield 处执行调度策略</span></span><br><span class="line">    <span class="comment">/*li t1, 0xff</span></span><br><span class="line"><span class="comment">    lw    t0, delay</span></span><br><span class="line"><span class="comment">    addu  t0, 1</span></span><br><span class="line"><span class="comment">    sw  t0, delay</span></span><br><span class="line"><span class="comment">    beq t0,t1,1f    </span></span><br><span class="line"><span class="comment">    nop*/</span></span><br><span class="line">    <span class="keyword">j </span>  ret_from_exception</span><br><span class="line">    <span class="keyword">nop</span></span><br><span class="line"><span class="keyword"> </span>   <span class="comment"># 跳转至恢复现场函数</span></span><br></pre></td></tr></table></figure>
-<p><br></p>
-<h4 id="Thinking-3-10"><a href="#Thinking-3-10" class="headerlink" title="Thinking 3.10"></a>Thinking 3.10</h4><ul>
-<li>阅读相关代码，思考操作系统是怎么根据时钟周期切换进程的。</li>
-</ul>
-<h4 id="答：-9"><a href="#答：-9" class="headerlink" title="答："></a>答：</h4><ul>
-<li><p>本次实验设置了两个就绪队列。存储一个 <code>count</code> 值记录当前正在运行的进程剩余的时间片数量，每经过一次时钟中断自减一（表明该进程消耗了一个单位的运行时间），当 <code>count</code> 自减到 <code>0</code> 时，意味着当前运行的进程已经用光了自己的时间片，发生时钟中断，系统在保存上下文之后跳转到 <code>sched_yield</code> 函数，进行进程的调度$/$切换：</p>
-</li>
-<li><p><code>sched_yield</code> 函数首先判断当前进程时间片是否用完，若未用完继续执行当前进程，否则根据调度算法选择一个新进程继续执行，原进程上下文被保存并再次进入就绪队列。</p>
-</li>
-<li><p>调度算法：</p>
-<ol>
-<li><p>选择一个非空队列，第一个元素（进程）出队，设置 <code>count</code> 值为该进程的时间片数量（在本实验中即为该进程的优先级）</p>
-</li>
-<li><p>将之前已经跑完时间片的进程进入到另一个队列的队尾</p>
-</li>
-<li><p>通过调用 <code>env_run</code> 函数执行当前进程</p>
-</li>
-</ol>
-</li>
-<li><p>当然，同时需要注意，当所选择的进程为阻塞状态或已经结束，则重复上述过程直到找到一个就绪进程。且已经结束的进程不需要加入就绪队列了</p>
-</li>
-</ul>
-<p><br></p>
-<h3 id="二-实验难点："><a href="#二-实验难点：" class="headerlink" title="二. 实验难点："></a>二. 实验难点：</h3><ol>
-<li><p>进程控制块的建立与分配</p>
-</li>
-<li><p>进程的创建</p>
-</li>
-<li><p>跨异常的分发</p>
-</li>
-<li><p>调度算法的思路</p>
-</li>
-<li><p>时钟中断的原理及理解</p>
-</li>
-</ol>
-<h3 id="三-体会与感想："><a href="#三-体会与感想：" class="headerlink" title="三. 体会与感想："></a>三. 体会与感想：</h3><ul>
-<li><p>难度评价：<code>7/10</code></p>
-</li>
-<li><p>实验用时：<code>8-10h</code>， 撰写实验报告用时：<code>4h</code></p>
-</li>
-<li><p>体会与感想：</p>
-<ul>
-<li><code>Lab3</code> 使我学习到进程的创建和运行，并且跟踪和调度用户进程，学会了加载一个程序镜像到指定的内存空间，并让它运行起来；实现了时钟中断，通过时钟中断内核可以再次获得执行权；使我深刻理解了中断异常处理和CP0寄存器的工作原理，深入了解了计算机系统的进程管理机制，受益匪浅</li>
-</ul>
-</li>
-</ul>
 <p><br></p>
 <hr>
 <h2 id="课上"><a href="#课上" class="headerlink" title="课上"></a>课上</h2><h3 id="lab3-1-exam："><a href="#lab3-1-exam：" class="headerlink" title="lab3-1-exam："></a>lab3-1-exam：</h3><p>模拟 <code>Linux</code> 里面的进程块 <code>asid</code> 的分配，用一个 <code>32</code> 位的变量以 <code>版本号 + asid (26+6)</code> 的方式来使系统不局限于 <code>64</code> 个进程，编写函数实现 <strong>新规则</strong> 下的进程块的 <strong>创建和回收</strong></p>
@@ -570,7 +537,7 @@
           <strong class="toc-title">Contents</strong>
           
             
-              <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#OS-Lab4"><span class="toc-nav-text">OS - Lab4</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#课下"><span class="toc-nav-text">课下</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#Lab4-实验报告"><span class="toc-nav-text">Lab4 实验报告</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#一-思考题"><span class="toc-nav-text">一. 思考题</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#Thinking-3-1"><span class="toc-nav-text">Thinking 3.1</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#答："><span class="toc-nav-text">答：</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#Thinking-3-2"><span class="toc-nav-text">Thinking 3.2</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#答：-1"><span class="toc-nav-text">答：</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#Thinking-3-3"><span class="toc-nav-text">Thinking 3.3</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#答：-2"><span class="toc-nav-text">答：</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#Thinking-3-4"><span class="toc-nav-text">Thinking 3.4</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#答：-3"><span class="toc-nav-text">答：</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#Thinking-3-5"><span class="toc-nav-text">Thinking 3.5</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#答：-4"><span class="toc-nav-text">答：</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#Thinking-3-6"><span class="toc-nav-text">Thinking 3.6</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#答：-5"><span class="toc-nav-text">答：</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#Thinking-3-7"><span class="toc-nav-text">Thinking 3.7</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#答：-6"><span class="toc-nav-text">答：</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#Thinking-3-8"><span class="toc-nav-text">Thinking 3.8</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#答：-7"><span class="toc-nav-text">答：</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#Thinking-3-9"><span class="toc-nav-text">Thinking 3.9</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#答：-8"><span class="toc-nav-text">答：</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#Thinking-3-10"><span class="toc-nav-text">Thinking 3.10</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#答：-9"><span class="toc-nav-text">答：</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#二-实验难点："><span class="toc-nav-text">二. 实验难点：</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#三-体会与感想："><span class="toc-nav-text">三. 体会与感想：</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#课上"><span class="toc-nav-text">课上</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#lab3-1-exam："><span class="toc-nav-text">lab3-1-exam：</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#lab3-1-Extra："><span class="toc-nav-text">lab3-1-Extra：</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#lab3-2-exam"><span class="toc-nav-text">lab3-2-exam:</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#lab3-2-Extra"><span class="toc-nav-text">lab3-2-Extra:</span></a></li></ol></li></ol></li></ol>
+              <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#OS-Lab4"><span class="toc-nav-text">OS - Lab4</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#课下"><span class="toc-nav-text">课下</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#Lab4-实验报告"><span class="toc-nav-text">Lab4 实验报告</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#一-思考题"><span class="toc-nav-text">一. 思考题</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#Thinking-4-1"><span class="toc-nav-text">Thinking 4.1</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#答："><span class="toc-nav-text">答：</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#Thinking-4-2"><span class="toc-nav-text">Thinking 4.2</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#答：-1"><span class="toc-nav-text">答：</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#Thinking-4-3"><span class="toc-nav-text">Thinking 4.3</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#答：-2"><span class="toc-nav-text">答：</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#Thinking-4-4"><span class="toc-nav-text">Thinking 4.4</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#答：-3"><span class="toc-nav-text">答：</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#Thinking-4-5"><span class="toc-nav-text">Thinking 4.5</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#答：-4"><span class="toc-nav-text">答：</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#Thinking-4-6"><span class="toc-nav-text">Thinking 4.6</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#答：-5"><span class="toc-nav-text">答：</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#Thinking-4-7"><span class="toc-nav-text">Thinking 4.7</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#答：-6"><span class="toc-nav-text">答：</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#Thinking-4-8"><span class="toc-nav-text">Thinking 4.8</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#答：-7"><span class="toc-nav-text">答：</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#Thinking-4-9"><span class="toc-nav-text">Thinking 4.9</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#答：-8"><span class="toc-nav-text">答：</span></a></li></ol></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#课上"><span class="toc-nav-text">课上</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#lab3-1-exam："><span class="toc-nav-text">lab3-1-exam：</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#lab3-1-Extra："><span class="toc-nav-text">lab3-1-Extra：</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#lab3-2-exam"><span class="toc-nav-text">lab3-2-exam:</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#lab3-2-Extra"><span class="toc-nav-text">lab3-2-Extra:</span></a></li></ol></li></ol></li></ol>
             
           
           </div>
@@ -833,7 +800,7 @@
         
 
         
-            <script type="text/javascript" src="/js/mouse-click.js" content='[&#34;Sunny&#34;, &#34;💖&#34;, &#34;Sunny&#34;, &#34;🧡&#34;, &#34;Sunny&#34;, &#34;💛&#34;, &#34;Sunny&#34; , &#34;💚&#34;, &#34;Sunny&#34;, &#34;💙&#34;, &#34;Sunny&#34;, &#34;💜&#34;, &#34;Sunny&#34;, &#34;😍&#34;]' color='[&#34;rgb(255, 0, 0)&#34; ,&#34;rgb(255, 0, 0)&#34; ,&#34;rgb(255, 125, 0)&#34; ,&#34;rgb(255, 125, 0)&#34; ,&#34;rgb(255, 255, 0)&#34; ,&#34;rgb(255, 255, 0)&#34; ,&#34;rgb(0, 255, 0)&#34; ,&#34;rgb(0, 255, 0)&#34; ,&#34;rgb(0, 255, 255)&#34; ,&#34;rgb(0, 255, 255)&#34; ,&#34;rgb(0, 0, 255)&#34; ,&#34;rgb(0, 0, 255)&#34; ,&#34;rgb(255, 0, 255)&#34; ,&#34;rgb(255, 0, 255)&#34;]'></script>
+            <script type="text/javascript" src="/js/mouse-click.js" content='[&quot;Sunny&quot;, &quot;💖&quot;, &quot;Sunny&quot;, &quot;🧡&quot;, &quot;Sunny&quot;, &quot;💛&quot;, &quot;Sunny&quot; , &quot;💚&quot;, &quot;Sunny&quot;, &quot;💙&quot;, &quot;Sunny&quot;, &quot;💜&quot;, &quot;Sunny&quot;, &quot;😍&quot;]' color='[&quot;rgb(255, 0, 0)&quot; ,&quot;rgb(255, 0, 0)&quot; ,&quot;rgb(255, 125, 0)&quot; ,&quot;rgb(255, 125, 0)&quot; ,&quot;rgb(255, 255, 0)&quot; ,&quot;rgb(255, 255, 0)&quot; ,&quot;rgb(0, 255, 0)&quot; ,&quot;rgb(0, 255, 0)&quot; ,&quot;rgb(0, 255, 255)&quot; ,&quot;rgb(0, 255, 255)&quot; ,&quot;rgb(0, 0, 255)&quot; ,&quot;rgb(0, 0, 255)&quot; ,&quot;rgb(255, 0, 255)&quot; ,&quot;rgb(255, 0, 255)&quot;]'></script>
         
 
         <!-- background effects end -->
@@ -843,6 +810,21 @@
     
         <script src="/js/ribbonDynamic.js"></script>
     
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 </body>
 
 </html>
