@@ -121,7 +121,7 @@
 	       
                             <div class="blank_box"></div>
                             <span class="meta">
-                                 <span class="post-count">3.3k</span> Words
+                                 <span class="post-count">3.8k</span> Words
                             </span>
                             <div class="blank_box"></div>
                             <!-- 不蒜子统计 start -->
@@ -182,6 +182,16 @@
 
                         
                         	<li>
+                          	  <a href="/archive/">Archives</a>
+                        	</li>
+                        
+                    
+
+                        
+                    
+
+                        
+                        	<li>
                           	  <a href="/about/">About Tan</a>
                         	</li>
                         
@@ -191,16 +201,6 @@
                         	<li>
                           	  <a href="/tags/">Tags</a>
                         	</li>
-                        
-                    
-
-                        
-                        	<li>
-                          	  <a href="/archive/">Archives</a>
-                        	</li>
-                        
-                    
-
                         
                     
 
@@ -282,28 +282,37 @@
 </li>
 </ul>
 <h4 id="答："><a href="#答：" class="headerlink" title="答："></a>答：</h4><ul>
-<li><p>先查看每个 <code>env_id</code> 的生成函数 <code>mkenvid</code>:<br><img align="middle" src='1.png'>  </p>
+<li><p>内核在保存现场时，通过 <code>SAVE_ALL</code> 宏函数利用 <code>$k0, $k1</code> 这两个不需要保护的寄存器，获取应该使用的 <code>$sp</code> 值，然后首先将 <code>$sp</code> 存入栈空间，再利用 <code>$sp</code> 将所有寄存器的值入栈。这样在退出异常（从内核返回）时可以进行恢复</p>
 </li>
-<li><p>可见创建出来的 <code>envid</code> 的低十位是该 <code>env</code> 在总的 <code>envs</code> 数组中的位置，可以直接取其低十位 <code>ENVX()</code> 获得该 <code>envid</code> 对应的在 <code>envs</code> 组中的 <code>index</code>，便于访问；而高位是关于该函数调用次数的一个递增量</p>
+<li><p>不可以，在陷入内核态时，系统取得系统调用号时，已经将系统调用号存入 <code>$a0</code></p>
+<figure class="highlight mips"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">……</span><br><span class="line"></span><br><span class="line"><span class="comment">/* <span class="doctag">TODO:</span> 将系统调用号“复制”入寄存器$a0 */</span></span><br><span class="line"><span class="keyword">lw </span><span class="built_in">a0</span>, TF_REG4(<span class="built_in">sp</span>)    </span><br><span class="line"><span class="keyword">addiu </span>  <span class="built_in">a0</span>, <span class="built_in">a0</span>, -__SYSCALL_BASE     <span class="comment"># a0 &lt;- “相对”系统调用号</span></span><br><span class="line"></span><br><span class="line">……</span><br></pre></td></tr></table></figure>
+<p>而 <code>$a1-$a3</code> 寄存器寄存器虽然没被使用，因此其保存的值没有改变；但是系统并没有要求它们不变的，在之后插入某些功能时可能使用到了 <code>$a1-$a3</code> 寄存器，从而导致其内部保存的值的改变；因此正确的做法应该是 <code>$a0-$a3</code> 从栈中获取，这样可以防止其他程序使用这四个寄存器带来的问题。  </p>
 </li>
-<li><p>这样可以保证每次调用此函数确定的 <code>envid</code> 是一个同时取决于 <code>env</code> 在 <code>envs</code> 数组中的位置及函数调用的次数，这使得每个进程调用 <code>mkenvid</code> 所得到的 <code>envid</code> 均不一样；因为即使新建进程在 <code>envs</code> 数组中位置一样时（即在进程被创建后杀死，再在同样的位置创建新的进程时），它们的 <code>id</code> 的高位也是不同的</p>
+<li><p>我们在 <code>lib/syscall.S</code> 中先从内核栈中取出 <code>$a0-$a3</code> 的值，在从用户栈中取出后两个参数，将它们的值存入异常栈，从而将栈和寄存器 “伪装成” 正常调用 <code>sys</code> 开头的函数时的状态，使得 <code>msyscall</code> 与 <code>sys</code> 函数获得了相同的输入信息，即 <code>$a0-$a3、16(sp)、20(sp)</code>.</p>
+<figure class="highlight mips"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">  ……</span><br><span class="line"></span><br><span class="line"><span class="comment">/* <span class="doctag">TODO:</span> 在当前栈指针分配6个参数的存储空间，并将6个参数安置到期望的位置 */</span></span><br><span class="line">  <span class="keyword">lw </span><span class="built_in">a0</span>, TF_REG4(<span class="built_in">sp</span>)</span><br><span class="line">  <span class="keyword">lw </span><span class="built_in">a1</span>, TF_REG5(<span class="built_in">sp</span>)</span><br><span class="line">  <span class="keyword">lw </span><span class="built_in">a2</span>, TF_REG6(<span class="built_in">sp</span>)</span><br><span class="line">  <span class="keyword">lw </span><span class="built_in">a3</span>, TF_REG7(<span class="built_in">sp</span>)</span><br><span class="line">  <span class="keyword">addiu </span><span class="built_in">sp</span>, <span class="built_in">sp</span>, -<span class="number">24</span></span><br><span class="line">  <span class="keyword">sw </span><span class="built_in">t3</span>, <span class="number">16</span>(<span class="built_in">sp</span>)</span><br><span class="line">  <span class="keyword">sw </span><span class="built_in">t4</span>, <span class="number">20</span>(<span class="built_in">sp</span>)</span><br><span class="line">  </span><br><span class="line">  ……</span><br></pre></td></tr></table></figure>
 </li>
-<li><p>因此，两个进程可能具有相同的 <code>idx</code> ，但其 <code>env_id</code> 不同。所以判断 <code>e-&gt;env_id != envid</code> 是必要的，如果没有这步判断可能导致将一个已经被杀死的进程当做现在在该进程块上注册的进程而导致出错，该判断保证了找到的就是 <code>envid</code> 指向的进程，且该进程仍然存活</p>
+<li><p>设置 <code>tf.epc</code> 的值为 <code>epc + 4</code> ，对应用户态的 <code>pc + 4</code> ，这样可以使返回时从<code>syscall_*</code> 的后一条指令开始执行。系统调用的返回值放在 <code>tf.v0</code> 中，用户态函数在其中可以获得系统调用函数 <code>syscall_*</code> 的返回参数</p>
+<figure class="highlight mips"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">……</span><br><span class="line"></span><br><span class="line"><span class="comment">/* <span class="doctag">TODO:</span> 将Trapframe的EPC寄存器取出，计算一个合理的值存回Trapframe中 */</span></span><br><span class="line"><span class="keyword">lw </span><span class="built_in">t0</span>, TF_EPC(<span class="built_in">sp</span>)</span><br><span class="line"><span class="keyword">addiu </span><span class="built_in">t0</span>, <span class="built_in">t0</span>, <span class="number">4</span></span><br><span class="line"><span class="keyword">sw </span><span class="built_in">t0</span>, TF_EPC(<span class="built_in">sp</span>)</span><br><span class="line"></span><br><span class="line">……</span><br></pre></td></tr></table></figure>
+<figure class="highlight mips"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">……</span><br><span class="line"></span><br><span class="line"><span class="comment">/* <span class="doctag">TODO:</span> 恢复栈指针到分配前的状态 */</span></span><br><span class="line"><span class="keyword">sw </span><span class="built_in">v0</span>, TF_REG2(<span class="built_in">sp</span>)             <span class="comment"># 将$v0中的sys_*函数返回值存入Trapframe</span></span><br><span class="line"></span><br><span class="line">……</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
 <p><br></p>
 <h4 id="Thinking-4-2"><a href="#Thinking-4-2" class="headerlink" title="Thinking 4.2"></a>Thinking 4.2</h4><p>思考下面的问题，并对这个问题谈谈你的理解：  </p>
 <ul>
-<li>请回顾 <code>lib/env.c</code> 文件中 <code>mkenvid()</code> 函数的实现，该函数不会返回 <code>0</code> ，请结合系统调用和 <code>IPC</code> 部分的实现与 <code>envid2env()</code> 函数的行为进行解释。</li>
+<li>请回顾 <code>lib/env.c</code> 文件中 <code>mkenvid()</code> 函数的实现，该函数不会返回 <code>0</code> ，请结合系统调用和 <code>IPC</code> 部分的实现与 <code>envid2env()</code> 函数的行为进行解释</li>
 </ul>
 <h4 id="答：-1"><a href="#答：-1" class="headerlink" title="答："></a>答：</h4><ul>
-<li><p><code>include/mmu.h</code> 中的地址空间布局如下图：<br><img align="middle" src='2.png'>  </p>
+<li><p><code>mkenvid()</code> 函数的实现：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">u_int <span class="title">mkenvid</span><span class="params">(struct Env *e)</span> </span>&#123;</span><br><span class="line">    u_int idx = e - envs;</span><br><span class="line">    u_int asid = asid_alloc();</span><br><span class="line">    <span class="keyword">return</span> (asid &lt;&lt; (<span class="number">1</span> + LOG2NENV)) | (<span class="number">1</span> &lt;&lt; LOG2NENV) | idx;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>可见 <code>mkenvid()</code> 函数的返回值为由于 <code>(1 &lt;&lt; LOG2NENV)</code> 的存在而使第 <code>(LOG2NENV + 1)</code> 位永远为 <code>1</code>，即该函数不会返回 <code>0</code></p>
 </li>
-<li><p><code>ULIM</code> 是给用户分配的最大虚拟地址 <code>0x0000_0000 - 0x8000_0000 (2G)</code> ，也是 <code>kuseg</code> 和 <code>kseg0</code> 的分界； <code>UTOP</code> 是用户进程可以自由使用的地址空间的最高点， 且<code>UTOP</code> 及其以下的部分是每个进程独有的；而 <code>UTOP-ULIM</code> 虽属于用户地址空间，但进程在用户态仅具有读取的权利（查看自己各个进程的状态，读取自己的页表完成地址的转换），且实际由内核态的操作系统分配并编辑，因此可以将这一部分当做内核态暴露给用户态获取信息的部分。用户进程对在 <code>UTOP</code> 到 <code>ULIM</code> 之间区域的内存一般没有写权限，因此用户态下对此空间进行写操作也算作越界访问的异常（ <code>PTE_R</code> 位为 <code>0</code> ），进程只能读写 <code>UTOP</code> 以下的空间；当然，不同于内核态，对这一区域的读取不被视作异常</p>
+<li><p><code>envid2env()</code> 函数的行为：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">envid2env</span><span class="params">(u_int envid, struct Env **penv, <span class="keyword">int</span> checkperm)</span> </span>&#123;</span><br><span class="line">    ……</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (envid == <span class="number">0</span>) &#123;</span><br><span class="line">        *penv = curenv;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    ……  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>可见在 <code>envid2env()</code> 函数中，遇到 <code>envid == 0</code> 时会返回当前进程；所以，如果进程的 <code>envid</code> 被设置成 <code>0</code> 的话，则意味着该进程不能通过 <code>envid2env()</code> 函数查询到该进程</p>
 </li>
-<li><p>根据自映射的机制，<code>pgdir</code> 中的第 <code>PDX(UVPT)</code> 项中存储的内容即应当为 <code>pgdir</code> 的物理的地址。设置之后即可通过 <code>pgdir</code> 找到其页目录的物理地址，方便后续建立二级页表的映射关系；这样，用户进程可以直接使用 <code>UVPT</code> 这一虚拟地址访问页表，且 <code>UVPT</code> 是一个满足自映射条件的地址，在此处放置页表的好处是可以利用自映射性质节省一页的内存占用 <code>(4KB)</code></p>
-</li>
-<li><p>我们在建立页表机制、创建进程 <code>(env)</code> 时的内存环境时绝大部分用到的都是虚拟地址；只有在向页表中填写页表项（ <code>TLB</code> 重填）时，才需要向其中填入具体的物理地址（在进程初始化时的转化仅需要 <code>pa = (va - ULIM)</code>）；对于进程而言，操作系统为其屏蔽了物理地址，其只能通过读写虚拟地址改变计算机的状态，且用户进程无需关心数据的物理地址，只要有虚拟地址即可正常访问</p>
+<li><p>系统调用 <code>IPC</code> 部分的实现：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">sys_ipc_can_send</span><span class="params">(<span class="keyword">int</span> sysno, u_int envid, u_int value, u_int srcva, u_int perm)</span> </span>&#123;</span><br><span class="line">    ……</span><br><span class="line"></span><br><span class="line">    r = envid2env(envid, &amp;e, <span class="number">0</span>);</span><br><span class="line">    <span class="keyword">if</span> (r &lt; <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> r;</span><br><span class="line">    &#125;   </span><br><span class="line"></span><br><span class="line">    ……</span><br><span class="line"></span><br><span class="line">    e-&gt;env_ipc_from = curenv-&gt;env_id;</span><br><span class="line"></span><br><span class="line">    ……  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>同理，由于调用了 <code>envid2env()</code> 函数以及把发送进程的进程号设置为了当前进程的进程号，因此若进程号被设置为 <code>0</code> 则会导致该部分的功能异常</p>
 </li>
 </ul>
 <p><br></p>
@@ -315,20 +324,9 @@
 </li>
 </ul>
 <h4 id="答：-2"><a href="#答：-2" class="headerlink" title="答："></a>答：</h4><ul>
-<li><p><code>user_data</code> 这一参数的定义在 <code>include/kerelf.h</code> ，为一个 <code>void *</code> 类型的指针<br><img align="middle" src='3.png'>  </p>
-<p>作用：</p>
-<ul>
-<li><p>在 <code>lib/kernel_elfloader.c</code> 中转化为了函数指针，作用为接受并使用了加载函数传入的函数指针参数</p>
+<li><p><code>fork()</code> 刚执行完时，父子进程的内存映射当前装载的二进制镜像几乎完全相同，即父子进程的代码段以及大部分数据（除了 <code>fork()</code> 的返回值外）内容完全相同</p>
 </li>
-<li><p>在 <code>lib/env.c</code> 中转化为了进程控制块指针，作用为由该指针可得到该进程的页目录的虚拟地址，从而将 <code>ELF</code> 加载到合适位置</p>
-</li>
-</ul>
-</li>
-<li><p>不可以</p>
-</li>
-<li><p>其作为进程指针时是连接三个重要的加载镜像的函数 <code>(load_icode_mapper、load_icode、load_elf)</code> 的纽带；且 <code>user_data</code> 这个参数允许我们更好的定制 <code>load_elf</code> 的行为，没有这个参数会影响系统的灵活性。我们在 <code>load</code> 时，可能会使用多种不同的 <code>mapper</code> ，这些 <code>mapper</code> 可能会需要不同的额外数据来辅助进行映射，此时 <code>void *</code> 类型的 <code>user_data</code> 是一个最好的传递额外数据的方式，因为向 <code>void *</code> 型指针强制转换可以自动且无影响地完成，且 <code>void *</code> 可读性更好，因此不可以没有这个参数</p>
-</li>
-<li><p>在真实库中，如果某个函数需要使用到用户提供的函数，且希望具有类似泛型的，可处理多种数据的能力，就会用到这种设计。例如， <code>C</code> 标准库中在 <code>stdlib.h</code> 里定义的 <code>qsort</code> 函数接受的 <code>cmp</code> 函数指针，其中就有两个 <code>void *</code> 型的参数</p>
+<li><p>子进程栈帧里面保存的 <code>pc</code> 是父进程的 <code>epc</code> ，也就是说子进程会从程序段中调用 <code>fork()</code> 的那一条语句开始执行；父进程中创建了子进程，子进程利用 <code>fork()</code> 的返回值来确认自己的存在；因此子进程不会执行 <code>fork()</code> 之前的代码</p>
 </li>
 </ul>
 <p><br></p>
@@ -338,58 +336,34 @@
 <p>C、<code>fork</code> 只在父进程中被调用了一次，在两个进程中各产生一个返回值</p>
 <p>D、<code>fork</code> 只在子进程中被调用了一次，在两个进程中各产生一个返回值</p>
 <h4 id="答：-3"><a href="#答：-3" class="headerlink" title="答："></a>答：</h4><ul>
-<li><p><code>load_icode_mapper</code> 的参数为：  </p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">int</span> <span class="title">load_icode_mapper</span><span class="params">(u_long va, <span class="keyword">u_int32_t</span> sgsize, u_char *bin, <span class="keyword">u_int32_t</span> bin_size, <span class="keyword">void</span> *user_data)</span></span></span><br></pre></td></tr></table></figure>
+<li><p>选 <code>C</code></p>
 </li>
-<li><p>复制情况：</p>
-<ol>
-<li><p>va：</p>
-<ul>
-<li><p>va与页面大小对齐</p>
+<li><p><code>A</code> 错误，在父进程中调用 <code>1</code> 次，返回子进程进程号 </p>
 </li>
-<li><p>va与页面大小不对齐</p>
+<li><p><code>B</code> 错误，子进程没有调用 <code>fork</code> </p>
 </li>
-</ul>
+<li><p><code>C</code> 正确，<code>fork</code> 前子进程并不存在，子进程在父进程调用 <code>fork</code> 时在 <code>sys_env_alloc</code> 函数中被创建，赋予不同的返回值，并从这里开始执行  </p>
 </li>
-<li><p>bin_size：</p>
-<ul>
-<li><p>bin_size &lt;= 1页</p>
-</li>
-<li><p>bin_size &gt; 1页</p>
-</li>
-</ul>
-</li>
-<li><p>va + bin_size</p>
-<ul>
-<li><p>va + bin_size后还在va所在页内</p>
-</li>
-<li><p>va + bin_size后超出va所在页内</p>
-</li>
-<li><p>va + bin_size与页面大小对齐</p>
-</li>
-<li><p>va + bin_size与页面大小不对齐</p>
-</li>
-</ul>
-</li>
-<li><p>sgsize </p>
-<ul>
-<li><p>sgsize &gt; bin_size：需要填充</p>
-</li>
-<li><p>sgsize = bin_size：不需要填充</p>
-</li>
-</ul>
-</li>
-</ol>
-</li>
-<li><p>是</p>
+<li><p><code>D</code> 错误，父进程必须调用 <code>fork</code> </p>
 </li>
 </ul>
 <p><br></p>
 <h4 id="Thinking-4-5"><a href="#Thinking-4-5" class="headerlink" title="Thinking 4.5"></a>Thinking 4.5</h4><p>我们并不应该对所有的用户空间页都使用 <code>duppage</code> 进行映射。那么究竟哪些用户空间页应该映射，哪些不应该呢？ 请结合本章的后续描述、 <code>mm/pmap.c</code> 中 <code>mips_vm_init</code> 函数进行的页面映射以及 <code>include/mmu.h</code> 里的内存布局图进行思考。</p>
 <h4 id="答：-4"><a href="#答：-4" class="headerlink" title="答："></a>答：</h4><ul>
-<li><p>虚拟地址</p>
+<li><p>在 <code>mm/pmap.c</code> 中 <code>mips_vm_init</code> 函数中建立了 <code>UPAGES</code> 和 <code>UENVS</code> 对应的 <code>4M</code> 空间的映射：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">mips_vm_init</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    ……</span><br><span class="line"></span><br><span class="line">    pages = (struct Page *)alloc(npage * <span class="keyword">sizeof</span>(struct Page), BY2PG, <span class="number">1</span>); </span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"to memory %x for struct Pages.\n"</span>, freemem);</span><br><span class="line">    n = ROUND(npage * <span class="keyword">sizeof</span>(struct Page), BY2PG);</span><br><span class="line">    boot_map_segment(pgdir, UPAGES, n, PADDR(pages), PTE_R);</span><br><span class="line">    </span><br><span class="line">    envs = (struct Env *)alloc(NENV * <span class="keyword">sizeof</span>(struct Env), BY2PG, <span class="number">1</span>);</span><br><span class="line">    n = ROUND(NENV * <span class="keyword">sizeof</span>(struct Env), BY2PG);</span><br><span class="line">    boot_map_segment(pgdir, UENVS, n, PADDR(envs), PTE_R);</span><br><span class="line"></span><br><span class="line">    ……</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
-<li><p>entry_point对于每个进程不一定是一样的； <code>load_elf</code> 中的 <code>*entry_point = ehdr-&gt;e_entry</code> 语句对 <code>entry_point</code> 进行赋值，因为 <code>entry_point</code> 是对于 <code>ELF</code> 格式的文件而言的， <code>ELF</code> 文件严格规定了所有程序的统一入口地址能够使得其作为操作系统加载程序的依据时更加规范严谨；因此<strong>大部分</strong> <code>ELF</code> 格式可执行文件的 <code>entry_point</code> 都是相同的，但是 <code>ELF</code> 格式文件中也允许设定程序的 <code>entry_point</code> ，这正体现了虚拟内存的优势：进程可以自主的决定自己的布局。此外，操作系统可以支持<strong>多种类型</strong>的可执行文件，这些可执行文件的 <code>entry_point</code> 也不一定相同。</p>
+<li><p><code>include/mmu.h</code> 里的内存布局图：<br><img align="middle" src='1.png'>  </p>
+</li>
+<li><p><code>UTEXT</code> 到 <code>USTACKTOP</code> 的部分：除了不可写（ <code>PTE_R</code> 未设置）或父子进程共享（设置 <code>PTE_LIBRARY</code> ）的页，我们不能用 <code>PTE_COW</code> 保护以外，其余页需要用 <code>PTE_COW</code> 保护</p>
+</li>
+<li><p><code>USTACKTOP</code> 到 <code>UTOP</code> 的部分不应该进行映射：在 <code>[USTACKTOP， UXSTACKTOP - BY2PG)</code> 位置存放的是无效内存，而 <code>[UXSTACKTOP - BY2PG, UXSTACKTOP)</code> 位置是用户的缺页异常处理栈，父子进程不能共用，而且处理 <code>page fault</code> 需要借助以上两片空间，因此我们不能用 <code>PTE_COW</code> 保护</p>
+</li>
+</ul>
+<ul>
+<li><p><code>UTOP</code> 到 <code>ULIM</code> 的部分：从 <code>UVPT</code> 开始的 <code>4M</code> 空间是进程的页表我们显然不能从父进程复制，因此也就没有保护的必要； <code>UPAGES</code> 和 <code>UENVS</code> 对应的 <code>4M</code> 空间都是在 <code>mips_vm_init</code> 建立映射，对所有进程共享，因此不需要保护；且这三者各个子进程都仅具有读取的权利，因此我们不能用 <code>PTE_COW</code> 保护</p>
+</li>
+<li><p><code>KERNBASE</code> 再往上为内核态空间，内核态空间所有用户进程在用户态下都不可访问，因此我们不能用 <code>PTE_COW</code> 保护</p>
 </li>
 </ul>
 <p><br></p>
@@ -401,13 +375,19 @@
 </li>
 <li><p>它们是如何体现自映射设计的？</p>
 </li>
-<li><p>进程能够通过这种方式来修改自己的页表项吗？</p>
+<li><p>吗？</p>
 </li>
 </ul>
-<h4 id="答：-5"><a href="#答：-5" class="headerlink" title="答："></a>答：</h4><ul>
-<li><p>在 <code>MIPS</code> 的 <code>CP0</code> 寄存器中， <code>epc</code> 为一个存储当前被打断执行的指令的 <code>pc</code> 或是下一条 <code>pc</code> 或者由软件维护的应该从内核态返回后执行的第一条指令的 <code>pc</code> 的寄存器，在这里指的是当前进程在陷入内核态后 <code>cp0</code> 中 <code>epc</code> 的值，即为 <code>curenv-&gt;env_tf.cp0_epc</code></p>
+<h4 id="答：-5"><a href="#答：-5" class="headerlink" title="答："></a>答：</h4><p>在user/entry.S中定义了这两个宏：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">vpt: <span class="comment">// Virtual page table</span></span><br><span class="line">	.<span class="keyword">word</span> UVPT = <span class="number">0x7fc00000</span></span><br><span class="line">vpd: <span class="comment">// Virtual page directory</span></span><br><span class="line">	.<span class="keyword">word</span> (UVPT+(UVPT&gt;&gt;<span class="number">12</span>)*<span class="number">4</span>) = <span class="number">0x7fdff000</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li><p><code>vpt</code> 是指向虚拟页表的指针的指针， <code>vpd</code> 是指向虚拟页目录的指针的指针 ， 通过 <code>vpt</code> 和 <code>vpd</code> 这两个宏，我们可以找到任意 <code>Vaddr</code> 对应的页表项和页目录项  </p>
 </li>
-<li><p>在 <code>lab3</code> 中，进程切换只因中断而发生，而在发生后，新的进程运行 <code>env_run</code> 时，如果当前 <code>curenv</code> 非空，则当前进程进入中断时的寄存器状态必定在 <code>TIMESTACK</code> 处存放（在处理时钟中断（目前唯一的中断）调用的 <code>.\include\stackframe.h</code> 中的 <code>saveall</code> 函数依赖的 <code>sp</code> 指针值为 <code>TIMESTACK</code>）；由于是通过中断进入的，因此该进程的 <code>epc</code> 指向的值就是其受害指令，如果我们以后要恢复这个进程的运行，就要从受害指令开始重新执行，因此将 <code>env_tf.pc</code> 设置为<code>env_tf.cp0_epc</code>，保证了下一次运行这一进程时在正确的位置开始运行</p>
+<li><p>使用 <code>(*vpd)[PDX(va)]</code> 即 <code>((Pte *)(*vpt))[PDX(va)]</code> 可获得其所在的页目录项，<br>使用 <code>(*vpt)[PTX(va)]</code> 即 <code>((Pde \*)(\*vpd))\[PDX(va)]</code> 可以获得其所在的页表项；根据自映射访问的就是页目录所在的一页的第<code>pgdirIndex</code> 条记录</p>
+</li>
+<li><p><code>vpd</code> 很明显位于<code>UVPY-UVPT+4KB</code>之间，因此页目录在页表的内部，可以体现自映射的设计；即根据自映射访问的就是页目录所在的一页的第 <code>PDX(va)</code> 条记录</p>
+</li>
+<li><p>不可以，页表项的修改由操作系统完成；处于用户态的进程仅具有读取的权限，因此进程对应的页表/页目录在映射时权限同样是只读的，进程不能够通过这种方式来修改自己的页表项</p>
 </li>
 </ul>
 <p><br></p>
@@ -419,9 +399,9 @@
 </li>
 </ul>
 <h4 id="答：-6"><a href="#答：-6" class="headerlink" title="答："></a>答：</h4><ul>
-<li><p>时钟中断发生时，操作系统将存放相关数据（进程上下文、现场）时使用的栈空间（地址为 <code>0x82000000</code> ）存到了 <code>TIMESTACK</code> 区域</p>
+<li><p>一般情况下， <code>CPU</code> 不支持中断重入（因为在一个内核态处理的过程中， <code>SR</code> 中断屏蔽位始终为 <code>1</code> ，外部中断请求会被屏蔽），但由于我们实验的操作系统的微内核结构中对于 <code>COW</code> 缺页中断的处理，部分在内核态下完成（异常的识别、分发、设置异常栈和 <code>handler</code> 入口），部分在用户态下完成（完成页面复制和充填的主要工作）；因而处理的全过程并不能保证中断屏蔽位时钟被置 <code>1</code> ，因而可能出现 “中断重入” ，以“为实现进程的分时调度而设置的时钟中断”为例：在进行 <code>page_fault_handler</code> 函数时，外部请求时钟中断，由于此时 <code>CPU</code> 处于内核态会屏蔽中断， <code>page_fault_handler</code> 函数会被原子地执行完，设置好异常栈和 <code>cp0</code> ，返回用户态后，时钟中断发生，进行进程调度；当再一次执行这一进程时，首先由 <code>env_run</code> 使得 <code>CPU</code> 上下文恢复至时钟中断发生前的状态，此后立即在用户态下进行 <code>COW</code> 的缺页异常处理。这一过程可以视作一次 “中断重入” ；简而言之，在 <code>page_fault_handler</code> 的处理过程中，如果触发了新的 <code>page_fault_handler</code> ，就会出现这种中断重入。</p>
 </li>
-<li><p><code>TIMESTACK</code> 中定义的 <code>KERNEL_SP</code> 是在发生时钟中断后 <code>CPU</code> 内部状态的存储栈，专用于处理时钟中断和与之紧密联系的进程切换等任务；而 <code>env_asm.S</code> 中定义的 <code>KERNEL_SP</code> 是内核处理各种异常中断时的通用的存储栈，在发生系统调用等 <code>exception</code> 或 <code>trap</code> 时 <code>CPU</code> 内部状态</p>
+<li><p>我们采用微内核架构，对缺页错误的处理由用户进程完成，处理结束后也由用户进程恢复原来缺页异常发生时的现场。因此需要将保留着发生缺页异常的指令和缺页的地址的 <code>Trapframe</code> 复制到用户空间，并且用户进程中处理异常的函数也需知道异常的现场，即为 <code>Trapframe</code> 结构体</p>
 </li>
 </ul>
 <p><br></p>
@@ -433,20 +413,7 @@
 </li>
 </ul>
 <h4 id="答：-7"><a href="#答：-7" class="headerlink" title="答："></a>答：</h4><ul>
-<li><p>实现具体位置：</p>
-<ol>
-<li><p><code>handle_int</code> 实现位置: <code>lib/genex.S</code> </p>
-</li>
-<li><p><code>handle_mod</code> 实现位置: <code>lib/genex.S</code> （使用了宏定义实现）</p>
-</li>
-<li><p><code>handle_tlb</code> 实现位置: <code>lib/genex.S</code> （使用了宏定义实现）</p>
-</li>
-<li><p><code>handle_tlb</code> 实现位置: <code>lib/genex.S</code> （使用了宏定义实现）</p>
-</li>
-<li><p><code>handle_sys</code> 实现位置: <code>lib/syscall.S</code> </p>
-</li>
-</ol>
-</li>
+<li>TODO</li>
 </ul>
 <p><br></p>
 <h4 id="Thinking-4-9"><a href="#Thinking-4-9" class="headerlink" title="Thinking 4.9"></a>Thinking 4.9</h4><p>请思考并回答以下几个问题：</p>
@@ -459,17 +426,46 @@
 </li>
 </ul>
 <h4 id="答：-8"><a href="#答：-8" class="headerlink" title="答："></a>答：</h4><ul>
-<li><code>set_timer</code> 中每行代码的作用：</li>
+<li><p><code>syscall_env_alloc</code> 是 <code>fork</code> 函数真正产生子进程的地方。子进程执行的起始点即从 <code>syscall_env_alloc</code> 返回后的第一条指令；因此，应当在子进程开始执行第一条指令之前由父进程设置好属于父进程自己的 <code>COW</code> 的缺页处理机制；如果放在 <code>syscall_env_alloc</code> 之后，子进程开始运行后会再次执行 <code>set_pgfault_handler</code> ，为 <code>__pgfault_handler</code> 赋值，同时设置 <code>pgfault_handler</code> 和分配相应的空间。但由于我们在子进程开始运行前就完成了第二、三步的内容，这样就产生了不必要的的开销</p>
+</li>
+<li><p><code>set_pgfault_handler</code> 如果放置在写时复制保护机制完成之后会导致在父进程进行 <code>duppage</code> 的设置过程中遇到的 <code>COW</code> 缺页异常无法得到正确的处理，即在执行 <code>set_pgfault_handler</code> 之前就会发生 <code>pgfault</code> ，此时还没有相应的 <code>handler</code> 进行处理，系统就会出现问题</p>
+</li>
+<li><p>不需要，父进程已经通过 <code>syscall_set_pgfault_handler</code> 对子进程的 <code>__pagefault_handler</code> 进行了设置</p>
+</li>
 </ul>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">LEAF(set_timer)</span><br><span class="line"></span><br><span class="line">        li  t0, <span class="number">0x01</span></span><br><span class="line">        sb  t0, <span class="number">0xb5000100</span>  </span><br><span class="line">        <span class="comment">// 0xb5000000是时钟设备的基地址</span></span><br><span class="line">        <span class="comment">// 在偏移量为0x100（此处写值将改变时钟的频率）处写入1表示时钟频率为1s</span></span><br><span class="line">        <span class="comment">// 此行代码让时钟以1s一次的频率产生中断</span></span><br><span class="line">        <span class="comment">// 0xb5000100为时钟的控制地址</span></span><br><span class="line"></span><br><span class="line">        sw  sp, KERNEL_SP  </span><br><span class="line">        <span class="comment">// 将栈指针保存在内核栈空间保证正常产生时钟中断</span></span><br><span class="line">        <span class="comment">// 设置KERNEl_SP，内核异常处理栈的值  </span></span><br><span class="line"></span><br><span class="line">setup_c0_status STATUS_CU0 | <span class="number">0x10010</span></span><br><span class="line"><span class="comment">// 调用宏函数设置CP0的状态，设置CP0的Status寄存器</span></span><br><span class="line"><span class="comment">// STATUS_CU0为仅开启CU0，表示CP0存在的状态</span></span><br><span class="line"><span class="comment">// 0x1001，最低位1开启终端，第13位1使能IRQ4即时钟中断</span></span><br><span class="line"></span><br><span class="line">        jr ra #函数结束返回主调函数</span><br><span class="line"></span><br><span class="line">        nop</span><br><span class="line">END(set_timer)</span><br></pre></td></tr></table></figure>
-<figure class="highlight mips"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">timer_irq:</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">sb </span><span class="built_in">zero</span>, <span class="number">0xb5000110</span></span><br><span class="line">    <span class="comment"># 向 0xb5000110 中写入 0</span></span><br><span class="line"><span class="number">1</span>:  <span class="keyword">j </span>  <span class="keyword">sched_yield</span></span><br><span class="line"><span class="keyword"> </span>   <span class="keyword">nop</span></span><br><span class="line"><span class="keyword"> </span>   <span class="comment"># 跳转至 sched_yield 处执行调度策略</span></span><br><span class="line">    <span class="comment">/*li t1, 0xff</span></span><br><span class="line"><span class="comment">    lw    t0, delay</span></span><br><span class="line"><span class="comment">    addu  t0, 1</span></span><br><span class="line"><span class="comment">    sw  t0, delay</span></span><br><span class="line"><span class="comment">    beq t0,t1,1f    </span></span><br><span class="line"><span class="comment">    nop*/</span></span><br><span class="line">    <span class="keyword">j </span>  ret_from_exception</span><br><span class="line">    <span class="keyword">nop</span></span><br><span class="line"><span class="keyword"> </span>   <span class="comment"># 跳转至恢复现场函数</span></span><br></pre></td></tr></table></figure>
+<p><br></p>
+<h3 id="二-实验难点："><a href="#二-实验难点：" class="headerlink" title="二. 实验难点："></a>二. 实验难点：</h3><ol>
+<li><p>进程控制块的建立与分配</p>
+</li>
+<li><p>进程的创建</p>
+</li>
+<li><p>跨异常的分发</p>
+</li>
+<li><p>调度算法的思路</p>
+</li>
+<li><p>时钟中断的原理及理解</p>
+</li>
+</ol>
+<h3 id="三-体会与感想："><a href="#三-体会与感想：" class="headerlink" title="三. 体会与感想："></a>三. 体会与感想：</h3><ul>
+<li><p>难度评价：<code>7/10</code></p>
+</li>
+<li><p>实验用时：<code>8-10h</code>， 撰写实验报告用时：<code>4h</code></p>
+</li>
+<li><p>体会与感想：</p>
+<ul>
+<li><code>Lab3</code> 使我学习到进程的创建和运行，并且跟踪和调度用户进程，学会了加载一个程序镜像到指定的内存空间，并让它运行起来；实现了时钟中断，通过时钟中断内核可以再次获得执行权；使我深刻理解了中断异常处理和CP0寄存器的工作原理，深入了解了计算机系统的进程管理机制，受益匪浅</li>
+</ul>
+</li>
+</ul>
 <p><br></p>
 <hr>
 <h2 id="课上"><a href="#课上" class="headerlink" title="课上"></a>课上</h2><h3 id="lab3-1-exam："><a href="#lab3-1-exam：" class="headerlink" title="lab3-1-exam："></a>lab3-1-exam：</h3><p>模拟 <code>Linux</code> 里面的进程块 <code>asid</code> 的分配，用一个 <code>32</code> 位的变量以 <code>版本号 + asid (26+6)</code> 的方式来使系统不局限于 <code>64</code> 个进程，编写函数实现 <strong>新规则</strong> 下的进程块的 <strong>创建和回收</strong></p>
 <p><br></p>
 <h3 id="lab3-1-Extra："><a href="#lab3-1-Extra：" class="headerlink" title="lab3-1-Extra："></a>lab3-1-Extra：</h3><p>模拟操作系统中的 <code>PV</code> 操作，实现资源（信号量）的 <b>初始化$/$查询</b> 功能，以及进程块 <b>请求$/$拥有$/$释放</b> 资源（信号量）的操作<br><br></p>
-<h3 id="lab3-2-exam"><a href="#lab3-2-exam" class="headerlink" title="lab3-2-exam:"></a>lab3-2-exam:</h3><p><br></p>
-<h3 id="lab3-2-Extra"><a href="#lab3-2-Extra" class="headerlink" title="lab3-2-Extra:"></a>lab3-2-Extra:</h3><p><br></p>
+<h3 id="lab3-2-exam"><a href="#lab3-2-exam" class="headerlink" title="lab3-2-exam:"></a>lab3-2-exam:</h3><p>修改进程的调度策略，从原本的双队列调度改为三队列调度，每个时间片大小随所在调度队列而变化，只需在 <code>lib/env.c</code> 中修改调度队列的定义和初始化，然后在 <code>lib/sched.c</code> 中模仿双队列调度来完成满足题目要求的三队列调度即可</p>
+<p><br></p>
+<h3 id="lab3-2-Extra"><a href="#lab3-2-Extra" class="headerlink" title="lab3-2-Extra:"></a>lab3-2-Extra:</h3><p>完成对地址错误中的 <code>AdEL</code> 错误进行处理，在抛出这个异常后编写完成 <code>lib/traps.c</code> 中的异常分发和 <code>lib.genex.S</code> 中的处理异常的汇编代码，使其能完成题目要求的对该类异常的正确处理，注意看清各指令的 <code>opcode</code> 码…</p>
+<p><br></p>
 <hr>
 
                 
@@ -537,7 +533,7 @@
           <strong class="toc-title">Contents</strong>
           
             
-              <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#OS-Lab4"><span class="toc-nav-text">OS - Lab4</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#课下"><span class="toc-nav-text">课下</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#Lab4-实验报告"><span class="toc-nav-text">Lab4 实验报告</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#一-思考题"><span class="toc-nav-text">一. 思考题</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#Thinking-4-1"><span class="toc-nav-text">Thinking 4.1</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#答："><span class="toc-nav-text">答：</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#Thinking-4-2"><span class="toc-nav-text">Thinking 4.2</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#答：-1"><span class="toc-nav-text">答：</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#Thinking-4-3"><span class="toc-nav-text">Thinking 4.3</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#答：-2"><span class="toc-nav-text">答：</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#Thinking-4-4"><span class="toc-nav-text">Thinking 4.4</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#答：-3"><span class="toc-nav-text">答：</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#Thinking-4-5"><span class="toc-nav-text">Thinking 4.5</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#答：-4"><span class="toc-nav-text">答：</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#Thinking-4-6"><span class="toc-nav-text">Thinking 4.6</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#答：-5"><span class="toc-nav-text">答：</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#Thinking-4-7"><span class="toc-nav-text">Thinking 4.7</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#答：-6"><span class="toc-nav-text">答：</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#Thinking-4-8"><span class="toc-nav-text">Thinking 4.8</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#答：-7"><span class="toc-nav-text">答：</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#Thinking-4-9"><span class="toc-nav-text">Thinking 4.9</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#答：-8"><span class="toc-nav-text">答：</span></a></li></ol></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#课上"><span class="toc-nav-text">课上</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#lab3-1-exam："><span class="toc-nav-text">lab3-1-exam：</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#lab3-1-Extra："><span class="toc-nav-text">lab3-1-Extra：</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#lab3-2-exam"><span class="toc-nav-text">lab3-2-exam:</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#lab3-2-Extra"><span class="toc-nav-text">lab3-2-Extra:</span></a></li></ol></li></ol></li></ol>
+              <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#OS-Lab4"><span class="toc-nav-text">OS - Lab4</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#课下"><span class="toc-nav-text">课下</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#Lab4-实验报告"><span class="toc-nav-text">Lab4 实验报告</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#一-思考题"><span class="toc-nav-text">一. 思考题</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#Thinking-4-1"><span class="toc-nav-text">Thinking 4.1</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#答："><span class="toc-nav-text">答：</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#Thinking-4-2"><span class="toc-nav-text">Thinking 4.2</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#答：-1"><span class="toc-nav-text">答：</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#Thinking-4-3"><span class="toc-nav-text">Thinking 4.3</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#答：-2"><span class="toc-nav-text">答：</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#Thinking-4-4"><span class="toc-nav-text">Thinking 4.4</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#答：-3"><span class="toc-nav-text">答：</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#Thinking-4-5"><span class="toc-nav-text">Thinking 4.5</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#答：-4"><span class="toc-nav-text">答：</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#Thinking-4-6"><span class="toc-nav-text">Thinking 4.6</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#答：-5"><span class="toc-nav-text">答：</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#Thinking-4-7"><span class="toc-nav-text">Thinking 4.7</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#答：-6"><span class="toc-nav-text">答：</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#Thinking-4-8"><span class="toc-nav-text">Thinking 4.8</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#答：-7"><span class="toc-nav-text">答：</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#Thinking-4-9"><span class="toc-nav-text">Thinking 4.9</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#答：-8"><span class="toc-nav-text">答：</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#二-实验难点："><span class="toc-nav-text">二. 实验难点：</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#三-体会与感想："><span class="toc-nav-text">三. 体会与感想：</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#课上"><span class="toc-nav-text">课上</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#lab3-1-exam："><span class="toc-nav-text">lab3-1-exam：</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#lab3-1-Extra："><span class="toc-nav-text">lab3-1-Extra：</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#lab3-2-exam"><span class="toc-nav-text">lab3-2-exam:</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#lab3-2-Extra"><span class="toc-nav-text">lab3-2-Extra:</span></a></li></ol></li></ol></li></ol>
             
           
           </div>
