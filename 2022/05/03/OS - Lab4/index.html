@@ -182,14 +182,17 @@
 
                         
                         	<li>
-                          	  <a href="/about/">About Tan</a>
+                          	  <a href="/archive/">Archives</a>
                         	</li>
                         
                     
 
                         
+                    
+
+                        
                         	<li>
-                          	  <a href="/archive/">Archives</a>
+                          	  <a href="/about/">About Tan</a>
                         	</li>
                         
                     
@@ -198,9 +201,6 @@
                         	<li>
                           	  <a href="/tags/">Tags</a>
                         	</li>
-                        
-                    
-
                         
                     
 
@@ -375,15 +375,15 @@
 </li>
 <li><p>它们是如何体现自映射设计的？</p>
 </li>
-<li><p>吗？</p>
+<li><p>进程能够通过这种方式来修改自己的页表项吗？</p>
 </li>
 </ul>
 <h4 id="答：-5"><a href="#答：-5" class="headerlink" title="答："></a>答：</h4><p>在user/entry.S中定义了这两个宏：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">vpt: <span class="comment">// Virtual page table</span></span><br><span class="line">	.<span class="keyword">word</span> UVPT = <span class="number">0x7fc00000</span></span><br><span class="line">vpd: <span class="comment">// Virtual page directory</span></span><br><span class="line">	.<span class="keyword">word</span> (UVPT+(UVPT&gt;&gt;<span class="number">12</span>)*<span class="number">4</span>) = <span class="number">0x7fdff000</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">vpt: <span class="comment">// Virtual page table</span></span><br><span class="line">  .<span class="keyword">word</span> UVPT = <span class="number">0x7fc00000</span></span><br><span class="line">vpd: <span class="comment">// Virtual page directory</span></span><br><span class="line">  .<span class="keyword">word</span> (UVPT+(UVPT&gt;&gt;<span class="number">12</span>)*<span class="number">4</span>) = <span class="number">0x7fdff000</span></span><br></pre></td></tr></table></figure>
 <ul>
 <li><p><code>vpt</code> 是指向虚拟页表的指针的指针， <code>vpd</code> 是指向虚拟页目录的指针的指针 ， 通过 <code>vpt</code> 和 <code>vpd</code> 这两个宏，我们可以找到任意 <code>Vaddr</code> 对应的页表项和页目录项  </p>
 </li>
-<li><p>使用 <code>(*vpd)[PDX(va)]</code> 即 <code>((Pte *)(*vpt))[PDX(va)]</code> 可获得其所在的页目录项，<br>使用 <code>(*vpt)[PTX(va)]</code> 即 <code>((Pde \*)(\*vpd))\[PDX(va)]</code> 可以获得其所在的页表项；根据自映射访问的就是页目录所在的一页的第<code>pgdirIndex</code> 条记录</p>
+<li><p>使用 <code>(*vpd)[PDX(va)]</code> 即 <code>((Pte *)(*vpt))[PDX(va)]</code> 可获得其所在的页目录项，<br>使用 <code>(*vpt)[PTX(va)]</code> 即 <code>((Pde *)(*vpd))[PDX(va)]</code> 可以获得其所在的页表项；根据自映射访问的就是页目录所在的一页的第<code>pgdirIndex</code> 条记录</p>
 </li>
 <li><p><code>vpd</code> 很明显位于<code>UVPY-UVPT+4KB</code>之间，因此页目录在页表的内部，可以体现自映射的设计；即根据自映射访问的就是页目录所在的一页的第 <code>PDX(va)</code> 条记录</p>
 </li>
@@ -413,7 +413,10 @@
 </li>
 </ul>
 <h4 id="答：-7"><a href="#答：-7" class="headerlink" title="答："></a>答：</h4><ul>
-<li>TODO</li>
+<li><p>采用微内核架构，减小了内核体积，符合设计思想；减少关中断时间，提高中断处理效率；并且使得进程在处理缺页中断的过程中保持可相应外部中断的状态，换句话说，使得进程处理缺页中断的过程非原子化，可被进程调度打断。从而提高系统的分时程度，提高其他外部中断的响应速度。此外，一个进程的缺页处理的过程不会影响到其他进程的执行，其错误也只会导致一个进程的崩溃，一定程度上提高了操作系统的健壮性</p>
+</li>
+<li><p>在 <code>pgfault</code> 函数完成处理后，会回到 <code>__asm_pgfault_handler</code> 函数中，该函数继续通过恢复各个寄存器到 <code>UXSTACK</code> 中保存的 <code>TrapFram</code> 中的值，可以避免破坏通用寄存器中所存储的值。在恢复的时候先利用 <code>lw</code> 命令取出除sp之外的其他寄存器(sp此时被指向UXSTACK)，然后在利用k0跳转到中断发生前执行的指令的同时，利用延时槽的特性恢复sp(到USTACK)。</p>
+</li>
 </ul>
 <p><br></p>
 <h4 id="Thinking-4-9"><a href="#Thinking-4-9" class="headerlink" title="Thinking 4.9"></a>Thinking 4.9</h4><p>请思考并回答以下几个问题：</p>
@@ -435,37 +438,36 @@
 </ul>
 <p><br></p>
 <h3 id="二-实验难点："><a href="#二-实验难点：" class="headerlink" title="二. 实验难点："></a>二. 实验难点：</h3><ol>
-<li><p>进程控制块的建立与分配</p>
+<li><p>了解系统调用的本质</p>
 </li>
-<li><p>进程的创建</p>
+<li><p>系统调用机制的实现</p>
 </li>
-<li><p>跨异常的分发</p>
+<li><p>进程间通信机制 <code>(IPC)</code> 的实现</p>
 </li>
-<li><p>调度算法的思路</p>
+<li><p>了解写时复制思想</p>
 </li>
-<li><p>时钟中断的原理及理解</p>
+<li><p>实现 <code>fork</code> 函数</p>
+</li>
+<li><p>处理页写入异常</p>
 </li>
 </ol>
 <h3 id="三-体会与感想："><a href="#三-体会与感想：" class="headerlink" title="三. 体会与感想："></a>三. 体会与感想：</h3><ul>
-<li><p>难度评价：<code>7/10</code></p>
+<li><p>难度评价：<code>6/10</code></p>
 </li>
 <li><p>实验用时：<code>8-10h</code>， 撰写实验报告用时：<code>4h</code></p>
 </li>
 <li><p>体会与感想：</p>
 <ul>
-<li><code>Lab3</code> 使我学习到进程的创建和运行，并且跟踪和调度用户进程，学会了加载一个程序镜像到指定的内存空间，并让它运行起来；实现了时钟中断，通过时钟中断内核可以再次获得执行权；使我深刻理解了中断异常处理和CP0寄存器的工作原理，深入了解了计算机系统的进程管理机制，受益匪浅</li>
+<li><code>Lab4</code> 使我掌握了系统调用的概念及流程、实现了进程间通讯机制 <code>fork</code> 函数，掌握了页写入异常的处理流程；更加深入理解了进程间的协作机制以及内核态和用户态之间的关联与转换，大致清晰了系统调用与 <code>fork</code> 操作时操作的工作流程，受益匪浅</li>
 </ul>
 </li>
 </ul>
 <p><br></p>
 <hr>
-<h2 id="课上"><a href="#课上" class="headerlink" title="课上"></a>课上</h2><h3 id="lab3-1-exam："><a href="#lab3-1-exam：" class="headerlink" title="lab3-1-exam："></a>lab3-1-exam：</h3><p>模拟 <code>Linux</code> 里面的进程块 <code>asid</code> 的分配，用一个 <code>32</code> 位的变量以 <code>版本号 + asid (26+6)</code> 的方式来使系统不局限于 <code>64</code> 个进程，编写函数实现 <strong>新规则</strong> 下的进程块的 <strong>创建和回收</strong></p>
-<p><br></p>
-<h3 id="lab3-1-Extra："><a href="#lab3-1-Extra：" class="headerlink" title="lab3-1-Extra："></a>lab3-1-Extra：</h3><p>模拟操作系统中的 <code>PV</code> 操作，实现资源（信号量）的 <b>初始化$/$查询</b> 功能，以及进程块 <b>请求$/$拥有$/$释放</b> 资源（信号量）的操作<br><br></p>
-<h3 id="lab3-2-exam"><a href="#lab3-2-exam" class="headerlink" title="lab3-2-exam:"></a>lab3-2-exam:</h3><p>修改进程的调度策略，从原本的双队列调度改为三队列调度，每个时间片大小随所在调度队列而变化，只需在 <code>lib/env.c</code> 中修改调度队列的定义和初始化，然后在 <code>lib/sched.c</code> 中模仿双队列调度来完成满足题目要求的三队列调度即可</p>
-<p><br></p>
-<h3 id="lab3-2-Extra"><a href="#lab3-2-Extra" class="headerlink" title="lab3-2-Extra:"></a>lab3-2-Extra:</h3><p>完成对地址错误中的 <code>AdEL</code> 错误进行处理，在抛出这个异常后编写完成 <code>lib/traps.c</code> 中的异常分发和 <code>lib.genex.S</code> 中的处理异常的汇编代码，使其能完成题目要求的对该类异常的正确处理，注意看清各指令的 <code>opcode</code> 码…</p>
-<p><br></p>
+<h2 id="课上"><a href="#课上" class="headerlink" title="课上"></a>课上</h2><h3 id="lab4-1-exam："><a href="#lab4-1-exam：" class="headerlink" title="lab4-1-exam："></a>lab4-1-exam：</h3><p><br></p>
+<h3 id="lab4-1-Extra："><a href="#lab4-1-Extra：" class="headerlink" title="lab4-1-Extra："></a>lab4-1-Extra：</h3><p><br></p>
+<h3 id="lab4-2-exam"><a href="#lab4-2-exam" class="headerlink" title="lab4-2-exam:"></a>lab4-2-exam:</h3><p><br></p>
+<h3 id="lab4-2-Extra"><a href="#lab4-2-Extra" class="headerlink" title="lab4-2-Extra:"></a>lab4-2-Extra:</h3><p><br></p>
 <hr>
 
                 
@@ -533,7 +535,7 @@
           <strong class="toc-title">Contents</strong>
           
             
-              <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#OS-Lab4"><span class="toc-nav-text">OS - Lab4</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#课下"><span class="toc-nav-text">课下</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#Lab4-实验报告"><span class="toc-nav-text">Lab4 实验报告</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#一-思考题"><span class="toc-nav-text">一. 思考题</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#Thinking-4-1"><span class="toc-nav-text">Thinking 4.1</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#答："><span class="toc-nav-text">答：</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#Thinking-4-2"><span class="toc-nav-text">Thinking 4.2</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#答：-1"><span class="toc-nav-text">答：</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#Thinking-4-3"><span class="toc-nav-text">Thinking 4.3</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#答：-2"><span class="toc-nav-text">答：</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#Thinking-4-4"><span class="toc-nav-text">Thinking 4.4</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#答：-3"><span class="toc-nav-text">答：</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#Thinking-4-5"><span class="toc-nav-text">Thinking 4.5</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#答：-4"><span class="toc-nav-text">答：</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#Thinking-4-6"><span class="toc-nav-text">Thinking 4.6</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#答：-5"><span class="toc-nav-text">答：</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#Thinking-4-7"><span class="toc-nav-text">Thinking 4.7</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#答：-6"><span class="toc-nav-text">答：</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#Thinking-4-8"><span class="toc-nav-text">Thinking 4.8</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#答：-7"><span class="toc-nav-text">答：</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#Thinking-4-9"><span class="toc-nav-text">Thinking 4.9</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#答：-8"><span class="toc-nav-text">答：</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#二-实验难点："><span class="toc-nav-text">二. 实验难点：</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#三-体会与感想："><span class="toc-nav-text">三. 体会与感想：</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#课上"><span class="toc-nav-text">课上</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#lab3-1-exam："><span class="toc-nav-text">lab3-1-exam：</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#lab3-1-Extra："><span class="toc-nav-text">lab3-1-Extra：</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#lab3-2-exam"><span class="toc-nav-text">lab3-2-exam:</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#lab3-2-Extra"><span class="toc-nav-text">lab3-2-Extra:</span></a></li></ol></li></ol></li></ol>
+              <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#OS-Lab4"><span class="toc-nav-text">OS - Lab4</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#课下"><span class="toc-nav-text">课下</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#Lab4-实验报告"><span class="toc-nav-text">Lab4 实验报告</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#一-思考题"><span class="toc-nav-text">一. 思考题</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#Thinking-4-1"><span class="toc-nav-text">Thinking 4.1</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#答："><span class="toc-nav-text">答：</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#Thinking-4-2"><span class="toc-nav-text">Thinking 4.2</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#答：-1"><span class="toc-nav-text">答：</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#Thinking-4-3"><span class="toc-nav-text">Thinking 4.3</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#答：-2"><span class="toc-nav-text">答：</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#Thinking-4-4"><span class="toc-nav-text">Thinking 4.4</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#答：-3"><span class="toc-nav-text">答：</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#Thinking-4-5"><span class="toc-nav-text">Thinking 4.5</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#答：-4"><span class="toc-nav-text">答：</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#Thinking-4-6"><span class="toc-nav-text">Thinking 4.6</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#答：-5"><span class="toc-nav-text">答：</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#Thinking-4-7"><span class="toc-nav-text">Thinking 4.7</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#答：-6"><span class="toc-nav-text">答：</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#Thinking-4-8"><span class="toc-nav-text">Thinking 4.8</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#答：-7"><span class="toc-nav-text">答：</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#Thinking-4-9"><span class="toc-nav-text">Thinking 4.9</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#答：-8"><span class="toc-nav-text">答：</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#二-实验难点："><span class="toc-nav-text">二. 实验难点：</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#三-体会与感想："><span class="toc-nav-text">三. 体会与感想：</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#课上"><span class="toc-nav-text">课上</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#lab4-1-exam："><span class="toc-nav-text">lab4-1-exam：</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#lab4-1-Extra："><span class="toc-nav-text">lab4-1-Extra：</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#lab4-2-exam"><span class="toc-nav-text">lab4-2-exam:</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#lab4-2-Extra"><span class="toc-nav-text">lab4-2-Extra:</span></a></li></ol></li></ol></li></ol>
             
           
           </div>
