@@ -282,16 +282,16 @@
 </li>
 </ul>
 <h4 id="答："><a href="#答：" class="headerlink" title="答："></a>答：</h4><ul>
-<li><p>内核在保存现场时，通过 <code>SAVE_ALL</code> 宏函数利用 <code>$k0, $k1</code> 这两个不需要保护的寄存器，获取应该使用的 <code>$sp</code> 值，然后首先将 <code>$sp</code> 存入栈空间，再利用 <code>$sp</code> 将所有寄存器的值入栈。这样在退出异常（从内核返回）时可以进行恢复</p>
+<li><p>内核在保存现场时，通过 <code>SAVE_ALL</code> 宏函数利用 <code>$k0, $k1</code> 这两个不需要保护的寄存器，获取应该使用的 <code>$sp</code> 值，然后首先将 <code>$sp</code> 存入栈空间，再利用 <code>$sp</code> 将所有寄存器的值入栈；这样在退出异常（从内核返回）时可以进行恢复</p>
 </li>
 <li><p>不可以，在陷入内核态时，系统取得系统调用号时，已经将系统调用号存入 <code>$a0</code></p>
 <figure class="highlight mips"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">……</span><br><span class="line"></span><br><span class="line"><span class="comment">/* <span class="doctag">TODO:</span> 将系统调用号“复制”入寄存器$a0 */</span></span><br><span class="line"><span class="keyword">lw </span><span class="built_in">a0</span>, TF_REG4(<span class="built_in">sp</span>)    </span><br><span class="line"><span class="keyword">addiu </span>  <span class="built_in">a0</span>, <span class="built_in">a0</span>, -__SYSCALL_BASE     <span class="comment"># a0 &lt;- “相对”系统调用号</span></span><br><span class="line"></span><br><span class="line">……</span><br></pre></td></tr></table></figure>
-<p>而 <code>$a1-$a3</code> 寄存器寄存器虽然没被使用，因此其保存的值没有改变；但是系统并没有要求它们不变的，在之后插入某些功能时可能使用到了 <code>$a1-$a3</code> 寄存器，从而导致其内部保存的值的改变；因此正确的做法应该是 <code>$a0-$a3</code> 从栈中获取，这样可以防止其他程序使用这四个寄存器带来的问题。  </p>
+<p>而 <code>$a1-$a3</code> 寄存器寄存器虽然没被使用，因此其保存的值没有改变；但是系统并没有要求它们不变的，在之后插入某些功能时可能使用到了 <code>$a1-$a3</code> 寄存器，从而导致其内部保存的值的改变；因此正确的做法应该是 <code>$a0-$a3</code> 从栈中获取，这样可以防止其他程序使用这四个寄存器带来的问题 </p>
 </li>
-<li><p>我们在 <code>lib/syscall.S</code> 中先从内核栈中取出 <code>$a0-$a3</code> 的值，在从用户栈中取出后两个参数，将它们的值存入异常栈，从而将栈和寄存器 “伪装成” 正常调用 <code>sys</code> 开头的函数时的状态，使得 <code>msyscall</code> 与 <code>sys</code> 函数获得了相同的输入信息，即 <code>$a0-$a3、16(sp)、20(sp)</code>.</p>
+<li><p>我们在 <code>lib/syscall.S</code> 中先从内核栈中取出 <code>$a0-$a3</code> 的值，在从用户栈中取出后两个参数，将它们的值存入异常栈，从而将栈和寄存器 “伪装成” 正常调用 <code>sys</code> 开头的函数时的状态，使得 <code>msyscall</code> 与 <code>sys</code> 函数获得了相同的输入信息，即 <code>$a0-$a3、16(sp)、20(sp)</code></p>
 <figure class="highlight mips"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">  ……</span><br><span class="line"></span><br><span class="line"><span class="comment">/* <span class="doctag">TODO:</span> 在当前栈指针分配6个参数的存储空间，并将6个参数安置到期望的位置 */</span></span><br><span class="line">  <span class="keyword">lw </span><span class="built_in">a0</span>, TF_REG4(<span class="built_in">sp</span>)</span><br><span class="line">  <span class="keyword">lw </span><span class="built_in">a1</span>, TF_REG5(<span class="built_in">sp</span>)</span><br><span class="line">  <span class="keyword">lw </span><span class="built_in">a2</span>, TF_REG6(<span class="built_in">sp</span>)</span><br><span class="line">  <span class="keyword">lw </span><span class="built_in">a3</span>, TF_REG7(<span class="built_in">sp</span>)</span><br><span class="line">  <span class="keyword">addiu </span><span class="built_in">sp</span>, <span class="built_in">sp</span>, -<span class="number">24</span></span><br><span class="line">  <span class="keyword">sw </span><span class="built_in">t3</span>, <span class="number">16</span>(<span class="built_in">sp</span>)</span><br><span class="line">  <span class="keyword">sw </span><span class="built_in">t4</span>, <span class="number">20</span>(<span class="built_in">sp</span>)</span><br><span class="line">  </span><br><span class="line">  ……</span><br></pre></td></tr></table></figure>
 </li>
-<li><p>设置 <code>tf.epc</code> 的值为 <code>epc + 4</code> ，对应用户态的 <code>pc + 4</code> ，这样可以使返回时从<code>syscall_*</code> 的后一条指令开始执行。系统调用的返回值放在 <code>tf.v0</code> 中，用户态函数在其中可以获得系统调用函数 <code>syscall_*</code> 的返回参数</p>
+<li><p>设置 <code>tf.epc</code> 的值为 <code>epc + 4</code> ，对应用户态的 <code>pc + 4</code> ，这样可以使返回时从<code>syscall_*</code> 的后一条指令开始执行；系统调用的返回值放在 <code>tf.v0</code> 中，用户态函数在其中可以获得系统调用函数 <code>syscall_*</code> 的返回参数</p>
 <figure class="highlight mips"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">……</span><br><span class="line"></span><br><span class="line"><span class="comment">/* <span class="doctag">TODO:</span> 将Trapframe的EPC寄存器取出，计算一个合理的值存回Trapframe中 */</span></span><br><span class="line"><span class="keyword">lw </span><span class="built_in">t0</span>, TF_EPC(<span class="built_in">sp</span>)</span><br><span class="line"><span class="keyword">addiu </span><span class="built_in">t0</span>, <span class="built_in">t0</span>, <span class="number">4</span></span><br><span class="line"><span class="keyword">sw </span><span class="built_in">t0</span>, TF_EPC(<span class="built_in">sp</span>)</span><br><span class="line"></span><br><span class="line">……</span><br></pre></td></tr></table></figure>
 <figure class="highlight mips"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">……</span><br><span class="line"></span><br><span class="line"><span class="comment">/* <span class="doctag">TODO:</span> 恢复栈指针到分配前的状态 */</span></span><br><span class="line"><span class="keyword">sw </span><span class="built_in">v0</span>, TF_REG2(<span class="built_in">sp</span>)             <span class="comment"># 将$v0中的sys_*函数返回值存入Trapframe</span></span><br><span class="line"></span><br><span class="line">……</span><br></pre></td></tr></table></figure>
 </li>
@@ -304,7 +304,7 @@
 <h4 id="答：-1"><a href="#答：-1" class="headerlink" title="答："></a>答：</h4><ul>
 <li><p><code>mkenvid()</code> 函数的实现：</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">u_int <span class="title">mkenvid</span><span class="params">(struct Env *e)</span> </span>&#123;</span><br><span class="line">    u_int idx = e - envs;</span><br><span class="line">    u_int asid = asid_alloc();</span><br><span class="line">    <span class="keyword">return</span> (asid &lt;&lt; (<span class="number">1</span> + LOG2NENV)) | (<span class="number">1</span> &lt;&lt; LOG2NENV) | idx;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>可见 <code>mkenvid()</code> 函数的返回值为由于 <code>(1 &lt;&lt; LOG2NENV)</code> 的存在而使第 <code>(LOG2NENV + 1)</code> 位永远为 <code>1</code>，即该函数不会返回 <code>0</code></p>
+<p>可见 <code>mkenvid()</code> 函数的返回值由于 <code>(1 &lt;&lt; LOG2NENV)</code> 的存在而使第 <code>(LOG2NENV + 1)</code> 位永远为 <code>1</code>，即该函数不会返回 <code>0</code></p>
 </li>
 <li><p><code>envid2env()</code> 函数的行为：</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">envid2env</span><span class="params">(u_int envid, struct Env **penv, <span class="keyword">int</span> checkperm)</span> </span>&#123;</span><br><span class="line">    ……</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (envid == <span class="number">0</span>) &#123;</span><br><span class="line">        *penv = curenv;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    ……  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -399,9 +399,9 @@
 </li>
 </ul>
 <h4 id="答：-6"><a href="#答：-6" class="headerlink" title="答："></a>答：</h4><ul>
-<li><p>一般情况下， <code>CPU</code> 不支持中断重入（因为在一个内核态处理的过程中， <code>SR</code> 中断屏蔽位始终为 <code>1</code> ，外部中断请求会被屏蔽），但由于我们实验的操作系统的微内核结构中对于 <code>COW</code> 缺页中断的处理，部分在内核态下完成（异常的识别、分发、设置异常栈和 <code>handler</code> 入口），部分在用户态下完成（完成页面复制和充填的主要工作）；因而处理的全过程并不能保证中断屏蔽位时钟被置 <code>1</code> ，因而可能出现 “中断重入” ，以“为实现进程的分时调度而设置的时钟中断”为例：在进行 <code>page_fault_handler</code> 函数时，外部请求时钟中断，由于此时 <code>CPU</code> 处于内核态会屏蔽中断， <code>page_fault_handler</code> 函数会被原子地执行完，设置好异常栈和 <code>cp0</code> ，返回用户态后，时钟中断发生，进行进程调度；当再一次执行这一进程时，首先由 <code>env_run</code> 使得 <code>CPU</code> 上下文恢复至时钟中断发生前的状态，此后立即在用户态下进行 <code>COW</code> 的缺页异常处理。这一过程可以视作一次 “中断重入” ；简而言之，在 <code>page_fault_handler</code> 的处理过程中，如果触发了新的 <code>page_fault_handler</code> ，就会出现这种中断重入。</p>
+<li><p>一般情况下， <code>CPU</code> 不支持中断重入（因为在一个内核态处理的过程中， <code>SR</code> 中断屏蔽位始终为 <code>1</code> ，外部中断请求会被屏蔽），但由于我们实验的操作系统的微内核结构中对于 <code>COW</code> 缺页中断的处理，部分在内核态下完成（异常的识别、分发、设置异常栈和 <code>handler</code> 入口），部分在用户态下完成（完成页面复制和充填的主要工作）；因而处理的全过程并不能保证中断屏蔽位时钟被置 <code>1</code> ，因而可能出现 “中断重入” ，以“为实现进程的分时调度而设置的时钟中断”为例：在进行 <code>page_fault_handler</code> 函数时，外部请求时钟中断，由于此时 <code>CPU</code> 处于内核态会屏蔽中断， <code>page_fault_handler</code> 函数会被原子地执行完，设置好异常栈和 <code>cp0</code> ，返回用户态后，时钟中断发生，进行进程调度；当再一次执行这一进程时，首先由 <code>env_run</code> 使得 <code>CPU</code> 上下文恢复至时钟中断发生前的状态，此后立即在用户态下进行 <code>COW</code> 的缺页异常处理；这一过程可以视作一次 “中断重入” ；简而言之，在 <code>page_fault_handler</code> 的处理过程中，如果触发了新的 <code>page_fault_handler</code> ，就会出现这种中断重入  </p>
 </li>
-<li><p>我们采用微内核架构，对缺页错误的处理由用户进程完成，处理结束后也由用户进程恢复原来缺页异常发生时的现场。因此需要将保留着发生缺页异常的指令和缺页的地址的 <code>Trapframe</code> 复制到用户空间，并且用户进程中处理异常的函数也需知道异常的现场，即为 <code>Trapframe</code> 结构体</p>
+<li><p>我们采用微内核架构，对缺页错误的处理由用户进程完成，处理结束后也由用户进程恢复原来缺页异常发生时的现场；因此需要将保留着发生缺页异常的指令和缺页的地址的 <code>Trapframe</code> 复制到用户空间，并且用户进程中处理异常的函数也需知道异常的现场，即为 <code>Trapframe</code> 结构体</p>
 </li>
 </ul>
 <p><br></p>
@@ -413,9 +413,9 @@
 </li>
 </ul>
 <h4 id="答：-7"><a href="#答：-7" class="headerlink" title="答："></a>答：</h4><ul>
-<li><p>采用微内核架构，减小了内核体积，符合设计思想；减少关中断时间，提高中断处理效率；并且使得进程在处理缺页中断的过程中保持可相应外部中断的状态，换句话说，使得进程处理缺页中断的过程非原子化，可被进程调度打断。从而提高系统的分时程度，提高其他外部中断的响应速度。此外，一个进程的缺页处理的过程不会影响到其他进程的执行，其错误也只会导致一个进程的崩溃，一定程度上提高了操作系统的健壮性</p>
+<li><p>采用微内核架构，减小了内核体积，符合设计思想；减少关中断时间，提高中断处理效率；并且使得进程在处理缺页中断的过程中保持可相应外部中断的状态，换句话说，使得进程处理缺页中断的过程非原子化，可被进程调度打断；从而提高系统的分时程度，提高其他外部中断的响应速度；此外，一个进程的缺页处理的过程不会影响到其他进程的执行，其错误也只会导致一个进程的崩溃，一定程度上提高了操作系统的健壮性</p>
 </li>
-<li><p>在 <code>pgfault</code> 函数完成处理后，会回到 <code>__asm_pgfault_handler</code> 函数中，该函数继续通过恢复各个寄存器到 <code>UXSTACK</code> 中保存的 <code>TrapFram</code> 中的值，可以避免破坏通用寄存器中所存储的值。在恢复的时候先利用 <code>lw</code> 命令取出除sp之外的其他寄存器(sp此时被指向UXSTACK)，然后在利用k0跳转到中断发生前执行的指令的同时，利用延时槽的特性恢复sp(到USTACK)。</p>
+<li><p>在 <code>pgfault</code> 函数完成处理后，会回到 <code>__asm_pgfault_handler</code> 函数中，该函数继续通过恢复各个寄存器到 <code>UXSTACK</code> 中保存的 <code>TrapFram</code> 中的值，可以避免破坏通用寄存器中所存储的值；在恢复的时候先利用 <code>lw</code> 命令取出除 <code>$sp</code> 之外的其他寄存器（ <code>$sp</code> 此时被指向 <code>UXSTACK</code> ），然后在利用 <code>$k0</code> 跳转到中断发生前执行的指令的同时，利用延时槽的特性恢复 <code>$sp</code> （到 <code>USTACK</code> ）</p>
 </li>
 </ul>
 <p><br></p>
@@ -429,7 +429,7 @@
 </li>
 </ul>
 <h4 id="答：-8"><a href="#答：-8" class="headerlink" title="答："></a>答：</h4><ul>
-<li><p><code>syscall_env_alloc</code> 是 <code>fork</code> 函数真正产生子进程的地方。子进程执行的起始点即从 <code>syscall_env_alloc</code> 返回后的第一条指令；因此，应当在子进程开始执行第一条指令之前由父进程设置好属于父进程自己的 <code>COW</code> 的缺页处理机制；如果放在 <code>syscall_env_alloc</code> 之后，子进程开始运行后会再次执行 <code>set_pgfault_handler</code> ，为 <code>__pgfault_handler</code> 赋值，同时设置 <code>pgfault_handler</code> 和分配相应的空间。但由于我们在子进程开始运行前就完成了第二、三步的内容，这样就产生了不必要的的开销</p>
+<li><p><code>syscall_env_alloc</code> 是 <code>fork</code> 函数真正产生子进程的地方；子进程执行的起始点即从 <code>syscall_env_alloc</code> 返回后的第一条指令；因此，应当在子进程开始执行第一条指令之前由父进程设置好属于父进程自己的 <code>COW</code> 的缺页处理机制；如果放在 <code>syscall_env_alloc</code> 之后，子进程开始运行后会再次执行 <code>set_pgfault_handler</code> ，为 <code>__pgfault_handler</code> 赋值，同时设置 <code>pgfault_handler</code> 和分配相应的空间；但由于我们在子进程开始运行前就完成了第二、三步的内容，这样就产生了不必要的的开销</p>
 </li>
 <li><p><code>set_pgfault_handler</code> 如果放置在写时复制保护机制完成之后会导致在父进程进行 <code>duppage</code> 的设置过程中遇到的 <code>COW</code> 缺页异常无法得到正确的处理，即在执行 <code>set_pgfault_handler</code> 之前就会发生 <code>pgfault</code> ，此时还没有相应的 <code>handler</code> 进行处理，系统就会出现问题</p>
 </li>
@@ -800,7 +800,7 @@
         
 
         
-            <script type="text/javascript" src="/js/mouse-click.js" content='[&quot;Sunny&quot;, &quot;💖&quot;, &quot;Sunny&quot;, &quot;🧡&quot;, &quot;Sunny&quot;, &quot;💛&quot;, &quot;Sunny&quot; , &quot;💚&quot;, &quot;Sunny&quot;, &quot;💙&quot;, &quot;Sunny&quot;, &quot;💜&quot;, &quot;Sunny&quot;, &quot;😍&quot;]' color='[&quot;rgb(255, 0, 0)&quot; ,&quot;rgb(255, 0, 0)&quot; ,&quot;rgb(255, 125, 0)&quot; ,&quot;rgb(255, 125, 0)&quot; ,&quot;rgb(255, 255, 0)&quot; ,&quot;rgb(255, 255, 0)&quot; ,&quot;rgb(0, 255, 0)&quot; ,&quot;rgb(0, 255, 0)&quot; ,&quot;rgb(0, 255, 255)&quot; ,&quot;rgb(0, 255, 255)&quot; ,&quot;rgb(0, 0, 255)&quot; ,&quot;rgb(0, 0, 255)&quot; ,&quot;rgb(255, 0, 255)&quot; ,&quot;rgb(255, 0, 255)&quot;]'></script>
+            <script type="text/javascript" src="/js/mouse-click.js" content='[&#34;Sunny&#34;, &#34;💖&#34;, &#34;Sunny&#34;, &#34;🧡&#34;, &#34;Sunny&#34;, &#34;💛&#34;, &#34;Sunny&#34; , &#34;💚&#34;, &#34;Sunny&#34;, &#34;💙&#34;, &#34;Sunny&#34;, &#34;💜&#34;, &#34;Sunny&#34;, &#34;😍&#34;]' color='[&#34;rgb(255, 0, 0)&#34; ,&#34;rgb(255, 0, 0)&#34; ,&#34;rgb(255, 125, 0)&#34; ,&#34;rgb(255, 125, 0)&#34; ,&#34;rgb(255, 255, 0)&#34; ,&#34;rgb(255, 255, 0)&#34; ,&#34;rgb(0, 255, 0)&#34; ,&#34;rgb(0, 255, 0)&#34; ,&#34;rgb(0, 255, 255)&#34; ,&#34;rgb(0, 255, 255)&#34; ,&#34;rgb(0, 0, 255)&#34; ,&#34;rgb(0, 0, 255)&#34; ,&#34;rgb(255, 0, 255)&#34; ,&#34;rgb(255, 0, 255)&#34;]'></script>
         
 
         <!-- background effects end -->
@@ -810,21 +810,6 @@
     
         <script src="/js/ribbonDynamic.js"></script>
     
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
-            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-            processEscapes: true
-        }
-    });
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax();
-        for (var i = 0; i < all.length; ++i)
-            all[i].SourceElement().parentNode.className += ' has-jax';
-    });
-</script>
-<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 </body>
 
 </html>
