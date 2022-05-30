@@ -121,7 +121,7 @@
 	       
                             <div class="blank_box"></div>
                             <span class="meta">
-                                 <span class="post-count">4k</span> Words
+                                 <span class="post-count">4.2k</span> Words
                             </span>
                             <div class="blank_box"></div>
                             <!-- 不蒜子统计 start -->
@@ -198,12 +198,12 @@
                     
 
                         
+                    
+
+                        
                         	<li>
                           	  <a href="/tags/">Tags</a>
                         	</li>
-                        
-                    
-
                         
                     
 
@@ -468,8 +468,10 @@
 <p><br></p>
 <h3 id="lab4-1-Extra："><a href="#lab4-1-Extra：" class="headerlink" title="lab4-1-Extra："></a>lab4-1-Extra：</h3><p>修改 <code>IPC</code> 的发送进程的进程逻辑，使其在接受进程没就位的时候发送进程堵塞以 <strong>防止发送进程轮询</strong> 消耗 <code>CPU</code> 资源；本题为增加一个等待队列，接受进程可以接受信息时先查找等待队列有无信息，没有才等待，发送进程在接受进程没准备好时直接进入等待队列并阻塞即可</p>
 <p><br></p>
-<h3 id="lab4-2-exam"><a href="#lab4-2-exam" class="headerlink" title="lab4-2-exam:"></a>lab4-2-exam:</h3><p><br></p>
-<h3 id="lab4-2-Extra"><a href="#lab4-2-Extra" class="headerlink" title="lab4-2-Extra:"></a>lab4-2-Extra:</h3><p><br></p>
+<h3 id="lab4-2-exam"><a href="#lab4-2-exam" class="headerlink" title="lab4-2-exam:"></a>lab4-2-exam:</h3><p>实现 <strong>把一个页面标记为共享页面</strong> <code>(PTE_LIBRARY)</code> 的功能，没权限或者没有对应物理页面时作出相应的处理；因为是在用户态下实现该功能，所以不能使用内核函数，因此注意好 <code>sys_*</code> 类函数的使用，以及如何在用户态访问当前进程的页表即可</p>
+<p><br></p>
+<h3 id="lab4-2-Extra"><a href="#lab4-2-Extra" class="headerlink" title="lab4-2-Extra:"></a>lab4-2-Extra:</h3><p>实现 <strong>注册用户信号函数</strong> 以及 <strong>发送信号</strong> 的功能，所需实现代码量极大，直接放弃</p>
+<p><br></p>
 <hr>
 
                 
@@ -800,7 +802,7 @@
         
 
         
-            <script type="text/javascript" src="/js/mouse-click.js" content='[&#34;Sunny&#34;, &#34;💖&#34;, &#34;Sunny&#34;, &#34;🧡&#34;, &#34;Sunny&#34;, &#34;💛&#34;, &#34;Sunny&#34; , &#34;💚&#34;, &#34;Sunny&#34;, &#34;💙&#34;, &#34;Sunny&#34;, &#34;💜&#34;, &#34;Sunny&#34;, &#34;😍&#34;]' color='[&#34;rgb(255, 0, 0)&#34; ,&#34;rgb(255, 0, 0)&#34; ,&#34;rgb(255, 125, 0)&#34; ,&#34;rgb(255, 125, 0)&#34; ,&#34;rgb(255, 255, 0)&#34; ,&#34;rgb(255, 255, 0)&#34; ,&#34;rgb(0, 255, 0)&#34; ,&#34;rgb(0, 255, 0)&#34; ,&#34;rgb(0, 255, 255)&#34; ,&#34;rgb(0, 255, 255)&#34; ,&#34;rgb(0, 0, 255)&#34; ,&#34;rgb(0, 0, 255)&#34; ,&#34;rgb(255, 0, 255)&#34; ,&#34;rgb(255, 0, 255)&#34;]'></script>
+            <script type="text/javascript" src="/js/mouse-click.js" content='[&quot;Sunny&quot;, &quot;💖&quot;, &quot;Sunny&quot;, &quot;🧡&quot;, &quot;Sunny&quot;, &quot;💛&quot;, &quot;Sunny&quot; , &quot;💚&quot;, &quot;Sunny&quot;, &quot;💙&quot;, &quot;Sunny&quot;, &quot;💜&quot;, &quot;Sunny&quot;, &quot;😍&quot;]' color='[&quot;rgb(255, 0, 0)&quot; ,&quot;rgb(255, 0, 0)&quot; ,&quot;rgb(255, 125, 0)&quot; ,&quot;rgb(255, 125, 0)&quot; ,&quot;rgb(255, 255, 0)&quot; ,&quot;rgb(255, 255, 0)&quot; ,&quot;rgb(0, 255, 0)&quot; ,&quot;rgb(0, 255, 0)&quot; ,&quot;rgb(0, 255, 255)&quot; ,&quot;rgb(0, 255, 255)&quot; ,&quot;rgb(0, 0, 255)&quot; ,&quot;rgb(0, 0, 255)&quot; ,&quot;rgb(255, 0, 255)&quot; ,&quot;rgb(255, 0, 255)&quot;]'></script>
         
 
         <!-- background effects end -->
@@ -810,6 +812,21 @@
     
         <script src="/js/ribbonDynamic.js"></script>
     
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 </body>
 
 </html>
