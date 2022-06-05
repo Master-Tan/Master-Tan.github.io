@@ -121,7 +121,7 @@
 	       
                             <div class="blank_box"></div>
                             <span class="meta">
-                                 <span class="post-count">1.2k</span> Words
+                                 <span class="post-count">489</span> Words
                             </span>
                             <div class="blank_box"></div>
                             <!-- 不蒜子统计 start -->
@@ -269,132 +269,92 @@
 <p><br></p>
 <hr>
 <h3 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h3><ul>
-<li><p>本次作业在第一次的基础之上增加了横向电梯以及同楼层/楼座的多台电梯的需求<br><br></p>
+<li><p>本次作业在上一次作业的基础之上新增了 <code>Message</code> 类，并且新增了关于其属性和其余的一些查询方法<br><br></p>
 </li>
-<li><p>本单元虽然新增横向电梯，但是在本单元的要求中不会同时出现跨楼层/跨楼座的请求，即乘客与第一次作业一样只需乘坐一趟电梯就可以到达目的地，因此，横向电梯在本单元中与纵向电梯本质上是一样的<br><br></p>
-</li>
-<li><p>根据第一次作业留下的可拓展接口进行迭代开发<br><br></p>
+<li><p>根据第一次作业留下的可拓展接口进行迭代开发（虚假的迭代开发：根据官方包所给 <code>Jml</code> 注释填空，莫得感情的填空机器）<br><br></p>
 </li>
 </ul>
 <hr>
 <h3 id="需求变更"><a href="#需求变更" class="headerlink" title="需求变更"></a>需求变更</h3><h4 id="新增内容"><a href="#新增内容" class="headerlink" title="新增内容:"></a>新增内容:</h4><ul>
-<li><p><strong>横向电梯（环形电梯）：</strong>  </p>
-<ul>
-<li>新增楼座与楼座之间移动的环形电梯，每个楼层可以对应多台环形电梯，可以在 $A\rightarrow B \rightarrow C \rightarrow D \rightarrow E  \rightarrow A$​​ 或者 $A\rightarrow E \rightarrow D \rightarrow C \rightarrow B  \rightarrow A$ ​​所组成的回路之间运行，例如，位于$A$​​ 座 $2$​​ 楼的横向电梯可以直接运行到 $B$​​ 座 $2$​​ 楼 $/$​​ $E$​​ 座 $2$​​ 楼  </li>
-</ul>
+<li><p><code>Message</code> 类</p>
 </li>
-<li><p><strong>纵向乘客请求</strong></p>
-<ul>
-<li>可以输入相同楼层但是不同楼座的乘客请求  </li>
-</ul>
+<li><p>多种查询方法</p>
 </li>
-<li><p><strong>动态增加电梯</strong></p>
-<ul>
-<li>可以输入新增电梯指令，在对应楼座/楼层加入一台电梯  </li>
-</ul>
+<li><p>两种异常处理函数</p>
 </li>
 </ul>
 <h4 id="数据限制变更"><a href="#数据限制变更" class="headerlink" title="数据限制变更:"></a>数据限制变更:</h4><ul>
-<li><p>乘客请求：</p>
-<ul>
-<li>单楼座输入 $\rightarrow$ 输入保证 [起点座 == 终点座] + [起点层 == 终点层] == 1，即 <strong>楼座和楼层两者中有且仅有一个相同</strong>  ，换言之，乘客一次只能在同一层楼或者同一座楼移动，从 A 座 1 层到 C 座 3 层是不被允许的（本次作业中）</li>
-</ul>
+<li><p>指令数：<code>1000</code> $\rightarrow$ <code>10000</code></p>
 </li>
-<li><p>电梯移动速度：</p>
-<ul>
-<li>横向电梯移动一座花费的时间：0.2s</li>
-</ul>
+<li><p><code>add_person</code> 指令条数不超过 <code>2500</code></p>
+</li>
+<li><p><code>query_circle</code> 指令条数不超过 <code>333</code></p>
+</li>
+<li><p><code>add_group</code> 指令条数不超过 <code>25</code></p>
+</li>
+<li><p><code>query_least_connection</code> 指令条数不超过 <code>100</code></p>
+</li>
+<li><p><code>add_message</code> 指令：保证 <code>type</code> 为 <code>0</code> 或 <code>1</code> ，<code>socialValue</code> 值在 <code>[-1000,1000]</code> 中</p>
 </li>
 </ul>
-<h3 id="迭代开发"><a href="#迭代开发" class="headerlink" title="迭代开发"></a>迭代开发</h3><h4 id="总UML类图："><a href="#总UML类图：" class="headerlink" title="总UML类图："></a>总UML类图：</h4><p><img src="MainClass.png"  alt="MainClass" /></p>
+<h3 id="迭代开发"><a href="#迭代开发" class="headerlink" title="迭代开发"></a>迭代开发</h3><h4 id="总UML类图："><a href="#总UML类图：" class="headerlink" title="总UML类图："></a>总UML类图：</h4><font size='2'> （可以放大观看） </font>
+
+<p><img src="MainClass.png"  alt="MainClass" /></p>
 <h4 id="新增："><a href="#新增：" class="headerlink" title="新增："></a>新增：</h4><ul>
-<li><h4 id="电梯接口-Elevator"><a href="#电梯接口-Elevator" class="headerlink" title="电梯接口 Elevator"></a>电梯接口 <code>Elevator</code></h4><p><img src="1.png"  alt="1" />  </p>
+<li><h4 id="人物接口-Person"><a href="#人物接口-Person" class="headerlink" title="人物接口 Person"></a>人物接口 <code>Person</code></h4><p><img src="1.png"/>  </p>
 <ul>
-<li><p>由于本次作业新增了一种电梯（横向电梯），横向电梯与纵向电梯本质上都是一种电梯，只不过在一些具体的方法和行为上有所区别，因此可以让这两种电梯实现一个公共的电梯接口，实现了面向对象思维  </p>
+<li><code>socialValue</code> 的 <code>add</code> 和 <code>get</code> 方法  </li>
+<li><code>Money</code> 的 <code>add</code> 和 <code>get</code> 方法  </li>
+<li><code>Messages</code> 的获取方法  </li>
+<li><code>receivedMessages</code> 的获取方法  </li>
+</ul>
 </li>
-<li><p>接口方法：</p>
+<li><h4 id="人物类-MyPerson"><a href="#人物类-MyPerson" class="headerlink" title="人物类 MyPerson"></a>人物类 <code>MyPerson</code></h4><p><img src="2.png"/>  </p>
 <ul>
-<li><p><code>getAtFloor</code>， <code>getDirection</code>， <code>getAtBuilding</code>， <code>getInsidePerson</code>： 获得电梯该时刻状态信息的方法  </p>
-</li>
-<li><p><code>getThisElevatorLock</code>， <code>getThisElevatorCondition</code>： 获取电梯方法 <code>Lock</code> 以及对应 <code>Condition</code> 的方法  </p>
-</li>
-<li><p><code>setClose</code>： 线程需要关闭的标志位，该位置高则代表此电梯可以终止自身线程</p>
-</li>
+<li><code>Messages</code> : 存储消息  </li>
+<li><code>Money</code> : 存储现有钱的数量  </li>
+<li><code>socialValue</code> : 存储活动值  </li>
 </ul>
 </li>
-</ul>
-</li>
-<li><h4 id="横向电梯类-FloorElevator"><a href="#横向电梯类-FloorElevator" class="headerlink" title="横向电梯类 FloorElevator"></a>横向电梯类 <code>FloorElevator</code></h4><p><img src="2.png"  alt="2" />  </p>
+<li><h4 id="消息接口-Message"><a href="#消息接口-Message" class="headerlink" title="消息接口 Message"></a>消息接口 <code>Message</code></h4><p><img src="3.png"/>  </p>
 <ul>
-<li>实现 <code>Elevator</code> 接口，继承 <code>Thread</code> 类，内部实现逻辑大体与横向电梯显示，对外方法也基本相同，重写的 <code>run</code> 方法亦封装了顺序执行 <code>下客-&gt;上客-&gt;关门-&gt;运行一层</code> 的流程，只是从 <code>所处楼层：1 ~ 10</code> 转变为了 <code>所处楼座：A ~ E</code> ，</li>
+<li>重写 <code>equal</code> 方法  </li>
+<li>编写 <code>id</code> 和 <code>type</code> 和 <code>Person1</code> 和 <code>Person2</code> 和 <code>name</code> 和 <code>group</code> 的 <code>get</code> 方法  </li>
 </ul>
+<p><br></p>
 </li>
-<li><h4 id="横向电梯策略类-LookFloorDecisionMaker"><a href="#横向电梯策略类-LookFloorDecisionMaker" class="headerlink" title="横向电梯策略类 LookFloorDecisionMaker"></a>横向电梯策略类 <code>LookFloorDecisionMaker</code></h4><p><img src="3.png"  alt="3" />  </p>
+<li><h4 id="消息类-MyMessage"><a href="#消息类-MyMessage" class="headerlink" title="消息类 MyMessage"></a>消息类 <code>MyMessage</code></h4><p><img src="4.png"/>  </p>
 <ul>
-<li><p>该类为横向电梯的根据 <code>LOOK</code> 算法修改的适用于横向电梯的算法</p>
+<li><code>socialValue</code> : 存储两个人之间关系权重<br><br></li>
+</ul>
 </li>
-<li><p>修改内容：</p>
+<li><h4 id="网络接口-Network"><a href="#网络接口-Network" class="headerlink" title="网络接口 Network"></a>网络接口 <code>Network</code></h4><p><img src="5.png"/>  </p>
 <ul>
-<li><p>空等条件： 该楼层无乘客请求</p>
-</li>
-<li><p>转向条件： 电梯内部人数为零，该楼层电梯运行方向（顺时针 / 逆时针）上的下两座楼没有乘客请求，且本楼座没有该运行方向上的请求，则转向</p>
-</li>
-<li><p>接人条件： 接取电梯当前楼座的 <strong>所有</strong> 横向运动请求</p>
-</li>
-<li><p>下客条件： 所有到达楼座为当前楼座的请求</p>
-</li>
+<li><code>query_group_people_sum</code> : 获取组内人物数目</li>
+<li><code>query_group_value_sum</code> : 获取组内人物权重的总和</li>
+<li><code>query_group_age_var</code> : 获取组内人物年龄的方差</li>
+<li><code>add_message</code> : 加入消息</li>
+<li><code>send_message</code> : 给某人发送消息</li>
+<li><code>query_social_value</code> : 获取某人的活跃度</li>
+<li><code>query_received_messages</code> : 获取某人接受到的所有消息</li>
+<li><code>query_least_connection</code> : 获取最短连接人的通路<br><br></li>
 </ul>
 </li>
-</ul>
-</li>
-<li><h4 id="乘客请求类（重写）-MyRequest"><a href="#乘客请求类（重写）-MyRequest" class="headerlink" title="乘客请求类（重写） MyRequest"></a>乘客请求类（重写） <code>MyRequest</code></h4><p><img src="4.png"  alt="4" /></p>
+<li><h4 id="网络类-MyNetwork"><a href="#网络类-MyNetwork" class="headerlink" title="网络类 MyNetwork"></a>网络类 <code>MyNetwork</code></h4><p><img src="6.png"/>  </p>
 <ul>
-<li>相当于重写了官方 <code>PersonRequest</code> 类中的所有对外接口，并且新增了一个构造方法，以支持在程序内部而非标准输入中的乘客请求的添加</li>
+<li><code>messages</code> : 网络中存储消息</li>
+<li><code>beginLines</code> &amp; <code>endLines</code> : 存储有关系的二人的结点</li>
+<li><code>values</code> : 存储两人关系的权重<br><br></li>
 </ul>
 </li>
-</ul>
-<h4 id="修改："><a href="#修改：" class="headerlink" title="修改："></a>修改：</h4><ul>
-<li><h4 id="纵向电梯类-BuildingElevator"><a href="#纵向电梯类-BuildingElevator" class="headerlink" title="纵向电梯类 BuildingElevator"></a>纵向电梯类 <code>BuildingElevator</code></h4><p><img src="5.png"  alt="5" />  </p>
-<ul>
-<li><p>线程终止条件变更，适用于当前输入和处理</p>
+<li><h4 id="消息Id重复抽象类-amp-消息Id重复类-EqualMessageIdException-amp-MyEqualMessageIdException"><a href="#消息Id重复抽象类-amp-消息Id重复类-EqualMessageIdException-amp-MyEqualMessageIdException" class="headerlink" title="消息Id重复抽象类 &amp; 消息Id重复类 EqualMessageIdException &amp; MyEqualMessageIdException"></a>消息Id重复抽象类 &amp; 消息Id重复类 <code>EqualMessageIdException &amp; MyEqualMessageIdException</code></h4><p><img src="7.png"/><br><br></p>
 </li>
-<li><p>增加操作内部人员（InsidePerson）锁，因为在本次迭代中有可能外部类要访问该电梯的内部人员信息，加锁以保证线程安全性</p>
-</li>
-<li><p>新增不包含上锁操作的添加请求和获取所有请求的方法</p>
-</li>
-</ul>
-</li>
-<li><h4 id="控制器类-Controller"><a href="#控制器类-Controller" class="headerlink" title="控制器类 Controller"></a>控制器类 <code>Controller</code></h4><p><img src="6.png"  alt="6" />  </p>
-<ul>
-<li>新增添加电梯的处理方法 <code>addElevatorRequest</code> ，判断是新增楼座电梯还是新增楼层电梯并且调用自身的两个对应新增电梯方法： <code>addFloorElevator</code> 和 <code>addBuildingElevator</code> 以加入不同类的电梯进入电梯池中</li>
-</ul>
-</li>
-<li><h4 id="纵向电梯策略类-LookBuildingDecisionMaker"><a href="#纵向电梯策略类-LookBuildingDecisionMaker" class="headerlink" title="纵向电梯策略类 LookBuildingDecisionMaker"></a>纵向电梯策略类 <code>LookBuildingDecisionMaker</code></h4><p><img src="7.png"  alt="7" />  </p>
-<ul>
-<li><ol>
-<li>优化：优先接取在电梯运行方向上距离当前楼层最远乘客</li>
-</ol>
-</li>
-<li><ol>
-<li>优化：在 <code>1</code> 的优化条件下，优先接取同目的地乘客</li>
-</ol>
-</li>
-</ul>
-</li>
-<li><h4 id="请求池类-RequestPool"><a href="#请求池类-RequestPool" class="headerlink" title="请求池类 RequestPool"></a>请求池类 <code>RequestPool</code></h4><p><img src="8.png"  alt="8" /></p>
-<ul>
-<li><p>新增 <code>getAllFloorRequest</code> 方法以响应横向电梯的 <code>ask()</code> 方法，并且设定横向电梯的 <code>wait</code> 条件</p>
-</li>
-<li><p>增加增加电梯和访问电梯方法 <code>addElevators</code> 和 <code>getElevators</code>，并且对电梯池进行加 <code>elevatorLock</code> 读写锁以避免线程不安全问题</p>
-</li>
-<li><p>增加不加锁的从请求池添加$/$移除请求的方法 <code>addNotLockedPersonRequest</code> 和 <code>removeNotLockedPersonRequest</code> 以便保证加锁的顺序，防止死锁问题的出现</p>
-</li>
-</ul>
+<li><h4 id="未找到消息Id抽象类-amp-未找到消息Id类-MessageIdNotFoundException-amp-MyMessageIdNotFoundException"><a href="#未找到消息Id抽象类-amp-未找到消息Id类-MessageIdNotFoundException-amp-MyMessageIdNotFoundException" class="headerlink" title="未找到消息Id抽象类 &amp; 未找到消息Id类 MessageIdNotFoundException &amp; MyMessageIdNotFoundException"></a>未找到消息Id抽象类 &amp; 未找到消息Id类 <code>MessageIdNotFoundException &amp; MyMessageIdNotFoundException</code></h4><p><img src="8.png"/><br><br></p>
 </li>
 </ul>
 <p><br></p>
 <hr>
-
+<h3 id="关键算法"><a href="#关键算法" class="headerlink" title="关键算法"></a>关键算法</h3><h4 id="最小生成树算法"><a href="#最小生成树算法" class="headerlink" title="最小生成树算法"></a>最小生成树算法</h4>
                 
                 <hr>
                 <!-- Pager -->
@@ -460,7 +420,7 @@
           <strong class="toc-title">Contents</strong>
           
             
-              <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#面向对象设计与构造第三单元第二次作业"><span class="toc-nav-text">面向对象设计与构造第三单元第二次作业</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#JML-系列"><span class="toc-nav-text">JML 系列</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#题目"><span class="toc-nav-text">题目</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#分析"><span class="toc-nav-text">分析</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#需求变更"><span class="toc-nav-text">需求变更</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#新增内容"><span class="toc-nav-text">新增内容:</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#数据限制变更"><span class="toc-nav-text">数据限制变更:</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#迭代开发"><span class="toc-nav-text">迭代开发</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#总UML类图："><span class="toc-nav-text">总UML类图：</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#新增："><span class="toc-nav-text">新增：</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#电梯接口-Elevator"><span class="toc-nav-text">电梯接口 Elevator</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#横向电梯类-FloorElevator"><span class="toc-nav-text">横向电梯类 FloorElevator</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#横向电梯策略类-LookFloorDecisionMaker"><span class="toc-nav-text">横向电梯策略类 LookFloorDecisionMaker</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#乘客请求类（重写）-MyRequest"><span class="toc-nav-text">乘客请求类（重写） MyRequest</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#修改："><span class="toc-nav-text">修改：</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#纵向电梯类-BuildingElevator"><span class="toc-nav-text">纵向电梯类 BuildingElevator</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#控制器类-Controller"><span class="toc-nav-text">控制器类 Controller</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#纵向电梯策略类-LookBuildingDecisionMaker"><span class="toc-nav-text">纵向电梯策略类 LookBuildingDecisionMaker</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#请求池类-RequestPool"><span class="toc-nav-text">请求池类 RequestPool</span></a></li></ol></li></ol></li></ol></li></ol>
+              <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#面向对象设计与构造第三单元第二次作业"><span class="toc-nav-text">面向对象设计与构造第三单元第二次作业</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#JML-系列"><span class="toc-nav-text">JML 系列</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#题目"><span class="toc-nav-text">题目</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#分析"><span class="toc-nav-text">分析</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#需求变更"><span class="toc-nav-text">需求变更</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#新增内容"><span class="toc-nav-text">新增内容:</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#数据限制变更"><span class="toc-nav-text">数据限制变更:</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#迭代开发"><span class="toc-nav-text">迭代开发</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#总UML类图："><span class="toc-nav-text">总UML类图：</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#新增："><span class="toc-nav-text">新增：</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#人物接口-Person"><span class="toc-nav-text">人物接口 Person</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#人物类-MyPerson"><span class="toc-nav-text">人物类 MyPerson</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#消息接口-Message"><span class="toc-nav-text">消息接口 Message</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#消息类-MyMessage"><span class="toc-nav-text">消息类 MyMessage</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#网络接口-Network"><span class="toc-nav-text">网络接口 Network</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#网络类-MyNetwork"><span class="toc-nav-text">网络类 MyNetwork</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#消息Id重复抽象类-amp-消息Id重复类-EqualMessageIdException-amp-MyEqualMessageIdException"><span class="toc-nav-text">消息Id重复抽象类 &amp; 消息Id重复类 EqualMessageIdException &amp; MyEqualMessageIdException</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#未找到消息Id抽象类-amp-未找到消息Id类-MessageIdNotFoundException-amp-MyMessageIdNotFoundException"><span class="toc-nav-text">未找到消息Id抽象类 &amp; 未找到消息Id类 MessageIdNotFoundException &amp; MyMessageIdNotFoundException</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#关键算法"><span class="toc-nav-text">关键算法</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#最小生成树算法"><span class="toc-nav-text">最小生成树算法</span></a></li></ol></li></ol></li></ol></li></ol>
             
           
           </div>
