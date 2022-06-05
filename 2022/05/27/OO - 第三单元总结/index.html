@@ -121,7 +121,7 @@
 	       
                             <div class="blank_box"></div>
                             <span class="meta">
-                                 <span class="post-count">369</span> Words
+                                 <span class="post-count">3.5k</span> Words
                             </span>
                             <div class="blank_box"></div>
                             <!-- 不蒜子统计 start -->
@@ -182,8 +182,24 @@
 
                         
                         	<li>
+                          	  <a href="/about/">About Tan</a>
+                        	</li>
+                        
+                    
+
+                        
+                        	<li>
                           	  <a href="/archive/">Archives</a>
                         	</li>
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
                         
                     
 
@@ -194,22 +210,6 @@
                         	<li>
                           	  <a href="/tags/">Tags</a>
                         	</li>
-                        
-                    
-
-                        
-                    
-
-                        
-                        	<li>
-                          	  <a href="/about/">About Tan</a>
-                        	</li>
-                        
-                    
-
-                        
-                    
-
                         
                     
                     
@@ -263,24 +263,411 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <div class="mt-1"><div><div role="dialog" class="v-dialog__container"><!----></div><!----><div class="v-card v-card--flat v-sheet theme--light"><div class="v-card__text"><div data-v-6b448756="" class="v-card v-card--flat v-sheet theme--light"><div data-v-6b448756="" class="markdown-body v-card v-card--flat v-sheet theme--light"><h2>第三单元总结性博客作业</h2>
-<p>针对第三单元的三次作业和课程内容，撰写技术博客</p>
-<p>(1) 分析在本单元自测过程中如何利用JML规格来准备测试数据</p>
-<p>(2) 梳理本单元的架构设计，分析自己的图模型构建和维护策略</p>
-<p>(3) 按照作业分析代码实现出现的性能问题和修复情况</p>
-<p>(4) 请针对下页ppt内容对Network进行扩展，并给出相应的JML规格</p>
-<p>(5) 本单元学习体会</p>
-<p>假设出现了几种不同的Person</p>
-<ul>
-<li>Advertiser：持续向外发送产品广告</li>
-<li>Producer：产品生产商，通过Advertiser来销售产品</li>
-<li>Customer：消费者，会关注广告并选择和自己偏好匹配的产品来购买
--- 所谓购买，就是直接通过Advertiser给相应Producer发一个购买消息</li>
-<li>Person：吃瓜群众，不发广告，不买东西，不卖东西</li>
+                <h1 id="OO第三单元总结"><a href="#OO第三单元总结" class="headerlink" title="OO第三单元总结"></a>OO第三单元总结</h1><hr>
+<h2 id="要求"><a href="#要求" class="headerlink" title="要求"></a>要求</h2><p><a href="../../../../2022/04/25/OO - 第三单元总结%20-%20Requirement">单元总结要求</a></p>
+<p><br></p>
+<hr>
+<h2 id="第一次作业总结"><a href="#第一次作业总结" class="headerlink" title="第一次作业总结"></a>第一次作业总结</h2><h3 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h3><ul>
+<li><p>在本单元我们的任务为需要完成的任务为通过一个实现简单社交关系的模拟和查询的例子以此达到学习入门级 <code>JML</code> 规格理解与代码实现的能力<br><br></p>
+</li>
+<li><p>本次作业只需要读懂代码中的 <code>JML</code> 表示语言，并且按照其中的要求编写好代码即可，由于客户需求基本都已经表述的很明白了，所以留给你的实现空间挺少的<br><br></p>
+</li>
+<li><p><code>JML</code> 表示语言中的伪代码只是给你实现的一种参考，仅仅是规格层次的描述，实际上并不需要严格按照其代码编写，只要你最后的代码能满足条件即可<br><br></p>
+</li>
 </ul>
-<p>如此Network可以支持市场营销，并能查询某种商品的销售额和销售路径等
-请讨论如何对Network扩展，给出相关接口方法，并选择3个核心业务功能的接口方法撰写JML规格（借鉴所总结的JML规格模式）</p>
-<p>【<strong>注意：博客作业的提交时间为6月6日16：00，在编写完博客并发布在博客园之后，请在<a href="https://edu.cnblogs.com/campus/buaa/OO2022/homework/12675" target="_blank">对应作业处</a>选择要作为作业提交的博客，点击提交。</strong>】</p></div></div></div><!----></div></div></div>
+<hr>
+<h3 id="基本思路"><a href="#基本思路" class="headerlink" title="基本思路"></a>基本思路</h3><ul>
+<li><p>虽然这次的代码框架和方法已经确定，我们只需要完成的任务只是代码填空，但分析清楚代码的功能和实现逻辑还是很有必要的<br><br></p>
+</li>
+<li><p>本次作业为实现简单社交关系的模拟和查询，核心为 <code>MyPerson</code> 类，管理此类的数据结构分别为实现了对应接口的 <code>MyGroup</code> 类以及 <code>MyNetWork</code> 类，三者狗证了本次作业的基本框架，在这三类中实现了所需功能对应的各种方法<br><br></p>
+</li>
+<li><p>本次作业新增了异常处理机制，在 <code>JML</code> 表示语言中表明了在方法中处于何种情况下需要抛出哪一种异常，并且实现异常的计数和打印的功能<br><br></p>
+</li>
+</ul>
+<hr>
+<h3 id="具体实现"><a href="#具体实现" class="headerlink" title="具体实现"></a>具体实现</h3><h4 id="总UML类图："><a href="#总UML类图：" class="headerlink" title="总UML类图："></a>总UML类图：</h4><font size='2'> （可以放大观看） </font>
+
+
+<p><img src="MainClass.png"/></p>
+<ul>
+<li><h4 id="人物接口-Person"><a href="#人物接口-Person" class="headerlink" title="人物接口 Person"></a>人物接口 <code>Person</code></h4><p><img src="1.png"/>  </p>
+<ul>
+<li>重写 <code>equal</code> 和 <code>compareTo</code> 方法</li>
+<li>编写 <code>id</code> 和 <code>name</code> 和 <code>age</code> 的 <code>Getter</code> 方法</li>
+<li><code>isLinked</code> : 查看两人物之间是否存在关系</li>
+<li><code>queryValue</code> : 查看两人物之间关系的权重</li>
+</ul>
+<p><br></p>
+</li>
+<li><h4 id="人物类-MyPerson"><a href="#人物类-MyPerson" class="headerlink" title="人物类 MyPerson"></a>人物类 <code>MyPerson</code></h4><p><img src="2.png"/>  </p>
+<ul>
+<li><code>acquaintance</code> : 存储与该人有关系的人</li>
+<li><code>value</code> : 存储与人的权重，与 <code>acquaintance</code> 的下标相对应</li>
+<li><code>link</code> : 使两人建立关系的方法<br><br></li>
+</ul>
+</li>
+<li><h4 id="分组接口-Group"><a href="#分组接口-Group" class="headerlink" title="分组接口 Group"></a>分组接口 <code>Group</code></h4><p><img src="3.png"/>  </p>
+<ul>
+<li><code>addPerson</code>， <code>delPerson</code>: 对分组中的人的增加与删除</li>
+<li><code>hasPerson</code> : 查询此分组是否存在该人</li>
+<li><code>getValueSum</code> : 返回与此人有关系所有人的权重的总和</li>
+<li><code>getAgeMean</code>， <code>getAgeVar</code> : 获得该分组的所有人年龄的平均值，方差</li>
+<li><code>getSize</code> : 获得该分组的大小</li>
+<li><code>getId</code> : 获得该分组的id<br><br></li>
+</ul>
+</li>
+<li><h4 id="分组类-MyGroup"><a href="#分组类-MyGroup" class="headerlink" title="分组类 MyGroup"></a>分组类 <code>MyGroup</code></h4><p><img src="4.png"/>  </p>
+<ul>
+<li><code>people</code> 存储所有该分组中的人<br><br></li>
+</ul>
+</li>
+<li><h4 id="网络接口-Network"><a href="#网络接口-Network" class="headerlink" title="网络接口 Network"></a>网络接口 <code>Network</code></h4><p><img src="5.png"/>  </p>
+<ul>
+<li><code>contains</code> : 此网络是否包含此人</li>
+<li><code>getPerson</code> : 根据 <code>id</code> 获取对应的人物</li>
+<li><code>addPerson</code> : 向网络中增加人物</li>
+<li><code>addRelation</code> : 让两个人产生关系</li>
+<li><code>queryValue</code> : 获取两个人之间关系的权重</li>
+<li><code>queryPeople</code> : 获取网络中人数的总和</li>
+<li><code>isCircle</code> : 判断是否可以通过此网络中的人来使两个人之间‘间接’建立关系</li>
+<li><code>queryBlockSum</code> : 获取关系网的数量</li>
+<li><code>addGroup</code> : 向网络中增加分组</li>
+<li><code>getGroup</code> : 根据 <code>id</code> 获取对应分组</li>
+<li><code>addToGroup</code> : 将人物加入到分组中</li>
+<li><code>delFromGroup</code> : 将人物移除出分组</li>
+</ul>
+</li>
+<li><h4 id="网络类-MyNetwork"><a href="#网络类-MyNetwork" class="headerlink" title="网络类 MyNetwork"></a>网络类 <code>MyNetwork</code></h4><p><img src="6.png"/>  </p>
+<ul>
+<li><code>getRoot</code> : 并查集数据结构，获取一个人物的根结点</li>
+<li><code>parent</code> : 并查集数据结构，标记一个人物的父结点</li>
+<li><code>people</code> : 网络中存储人物</li>
+<li><code>groups</code> : 网络中存储分组<br><br></li>
+</ul>
+</li>
+<li><h4 id="人物Id重复抽象类-amp-任务Id重复类-PersonIdNotFoundException-amp-MyPersonIdNotFoundException"><a href="#人物Id重复抽象类-amp-任务Id重复类-PersonIdNotFoundException-amp-MyPersonIdNotFoundException" class="headerlink" title="人物Id重复抽象类 &amp; 任务Id重复类 PersonIdNotFoundException &amp; MyPersonIdNotFoundException"></a>人物Id重复抽象类 &amp; 任务Id重复类 <code>PersonIdNotFoundException &amp; MyPersonIdNotFoundException</code></h4><p><img src="7.png"/><br><br></p>
+</li>
+<li><h4 id="分组Id重复抽象类-amp-分组Id重复类-EqualPersonIdException-amp-MyEqualPersonIdException"><a href="#分组Id重复抽象类-amp-分组Id重复类-EqualPersonIdException-amp-MyEqualPersonIdException" class="headerlink" title="分组Id重复抽象类 &amp; 分组Id重复类 EqualPersonIdException &amp; MyEqualPersonIdException"></a>分组Id重复抽象类 &amp; 分组Id重复类 <code>EqualPersonIdException &amp; MyEqualPersonIdException</code></h4><p><img src="8.png"/><br><br>  </p>
+</li>
+<li><h4 id="未具有关系抽象类-amp-未具有关系类-RelationNotFoundException-amp-MyRelationNotFoundException"><a href="#未具有关系抽象类-amp-未具有关系类-RelationNotFoundException-amp-MyRelationNotFoundException" class="headerlink" title="未具有关系抽象类 &amp; 未具有关系类 RelationNotFoundException &amp; MyRelationNotFoundException"></a>未具有关系抽象类 &amp; 未具有关系类 <code>RelationNotFoundException &amp; MyRelationNotFoundException</code></h4><p><img src="9.png"/><br><br></p>
+</li>
+<li><h4 id="关系已存在抽象类-amp-关系已存在类-EqualRelationException-amp-MyEqualRelationException"><a href="#关系已存在抽象类-amp-关系已存在类-EqualRelationException-amp-MyEqualRelationException" class="headerlink" title="关系已存在抽象类 &amp; 关系已存在类 EqualRelationException &amp; MyEqualRelationException"></a>关系已存在抽象类 &amp; 关系已存在类 <code>EqualRelationException &amp; MyEqualRelationException</code></h4><p><img src="10.png"/><br><br></p>
+</li>
+<li><h4 id="未找到分组Id抽象类-amp-未找到分组Id类-GroupIdNotFoundException-amp-MyGroupIdNotFoundException"><a href="#未找到分组Id抽象类-amp-未找到分组Id类-GroupIdNotFoundException-amp-MyGroupIdNotFoundException" class="headerlink" title="未找到分组Id抽象类 &amp; 未找到分组Id类 GroupIdNotFoundException &amp; MyGroupIdNotFoundException"></a>未找到分组Id抽象类 &amp; 未找到分组Id类 <code>GroupIdNotFoundException &amp; MyGroupIdNotFoundException</code></h4><p><img src="11.png"/><br><br></p>
+</li>
+<li><h4 id="分组Id相同抽象类-amp-分组Id相同类-EqualGroupIdException-amp-MyEqualGroupIdException"><a href="#分组Id相同抽象类-amp-分组Id相同类-EqualGroupIdException-amp-MyEqualGroupIdException" class="headerlink" title="分组Id相同抽象类 &amp; 分组Id相同类 EqualGroupIdException &amp; MyEqualGroupIdException"></a>分组Id相同抽象类 &amp; 分组Id相同类 <code>EqualGroupIdException &amp; MyEqualGroupIdException</code></h4><p><img src="12.png"/><br><br></p>
+</li>
+</ul>
+<hr>
+<h3 id="关键算法"><a href="#关键算法" class="headerlink" title="关键算法"></a>关键算法</h3><h4 id="并查集"><a href="#并查集" class="headerlink" title="并查集"></a>并查集</h4><p><br></p>
+<hr>
+<h3 id="基于度量的程序结构分析"><a href="#基于度量的程序结构分析" class="headerlink" title="基于度量的程序结构分析"></a>基于度量的程序结构分析</h3><ul>
+<li><p>总UML类图<br><img src="1-1.png"/>  </p>
+</li>
+<li><p>代码规模分析<br><img src="1-2.png"/>  </p>
+</li>
+<li><p>方法复杂度分析<br><img src="1-3-1.png"/><br><img src="1-3-2.png"/>  </p>
+</li>
+<li><p>类复杂度分析<br><img src="1-4.png"/>  </p>
+</li>
+</ul>
+<p><br></p>
+<hr>
+<h2 id="第二次作业总结"><a href="#第二次作业总结" class="headerlink" title="第二次作业总结"></a>第二次作业总结</h2><h3 id="分析-1"><a href="#分析-1" class="headerlink" title="分析"></a>分析</h3><ul>
+<li><p>本次作业在上一次作业的基础之上新增了 <code>Message</code> 类，并且新增了关于其属性和其所在网络属性的一些查询方法<br><br></p>
+</li>
+<li><p>根据第一次作业留下的可拓展接口进行迭代开发（虚假的迭代开发：根据官方包所给 <code>Jml</code> 注释填空，莫得感情的填空机器）<br><br></p>
+</li>
+</ul>
+<hr>
+<h3 id="需求变更"><a href="#需求变更" class="headerlink" title="需求变更"></a>需求变更</h3><h4 id="新增内容"><a href="#新增内容" class="headerlink" title="新增内容:"></a>新增内容:</h4><ul>
+<li><p><code>Message</code> 类</p>
+</li>
+<li><p>多种查询方法</p>
+</li>
+<li><p>两种异常处理函数</p>
+</li>
+</ul>
+<h4 id="数据限制变更"><a href="#数据限制变更" class="headerlink" title="数据限制变更:"></a>数据限制变更:</h4><ul>
+<li><p>最大指令数：<code>1000</code> $\rightarrow$ <code>10000</code></p>
+</li>
+<li><p><code>add_person</code> 指令条数不超过 <code>2500</code></p>
+</li>
+<li><p><code>query_circle</code> 指令条数不超过 <code>333</code></p>
+</li>
+<li><p><code>add_group</code> 指令条数不超过 <code>25</code></p>
+</li>
+<li><p><code>query_least_connection</code> 指令条数不超过 <code>100</code></p>
+</li>
+<li><p><code>add_message</code> 指令：保证 <code>type</code> 为 <code>0</code> 或 <code>1</code> ，<code>socialValue</code> 值在 <code>[-1000,1000]</code> 中</p>
+</li>
+</ul>
+<h3 id="迭代开发"><a href="#迭代开发" class="headerlink" title="迭代开发"></a>迭代开发</h3><h4 id="总UML类图：-1"><a href="#总UML类图：-1" class="headerlink" title="总UML类图："></a>总UML类图：</h4><font size='2'> （可以放大观看） </font>
+
+<p><img src="MainClass.png"  alt="MainClass" /></p>
+<h4 id="新增："><a href="#新增：" class="headerlink" title="新增："></a>新增：</h4><ul>
+<li><h4 id="消息接口-Message"><a href="#消息接口-Message" class="headerlink" title="消息接口 Message"></a>消息接口 <code>Message</code></h4><p><img src="3.png"/>  </p>
+<ul>
+<li>重写 <code>equal</code> 方法  </li>
+<li>编写 <code>id</code> 和 <code>type</code> 和 <code>Person1</code> 和 <code>Person2</code> 和 <code>name</code> 和 <code>group</code> 的 <code>get</code> 方法  </li>
+</ul>
+<p><br></p>
+</li>
+<li><h4 id="消息类-MyMessage"><a href="#消息类-MyMessage" class="headerlink" title="消息类 MyMessage"></a>消息类 <code>MyMessage</code></h4><p><img src="4.png"/>  </p>
+<ul>
+<li><code>socialValue</code> : 存储两个人之间关系权重<br><br></li>
+</ul>
+</li>
+</ul>
+<h4 id="修改："><a href="#修改：" class="headerlink" title="修改："></a>修改：</h4><ul>
+<li><h4 id="人物接口-Person-1"><a href="#人物接口-Person-1" class="headerlink" title="人物接口 Person"></a>人物接口 <code>Person</code></h4><p><img src="1.png"/>  </p>
+<ul>
+<li><code>socialValue</code> 的 <code>add</code> 和 <code>get</code> 方法  </li>
+<li><code>Money</code> 的 <code>add</code> 和 <code>get</code> 方法  </li>
+<li><code>Messages</code> 的获取方法  </li>
+<li><code>receivedMessages</code> 的获取方法<br><br></li>
+</ul>
+</li>
+<li><h4 id="人物类-MyPerson-1"><a href="#人物类-MyPerson-1" class="headerlink" title="人物类 MyPerson"></a>人物类 <code>MyPerson</code></h4><p><img src="2.png"/>  </p>
+<ul>
+<li><code>Messages</code> : 存储消息  </li>
+<li><code>Money</code> : 存储现有钱的数量  </li>
+<li><code>socialValue</code> : 存储活动值<br><br></li>
+</ul>
+</li>
+<li><h4 id="网络接口-Network-1"><a href="#网络接口-Network-1" class="headerlink" title="网络接口 Network"></a>网络接口 <code>Network</code></h4><p><img src="5.png"/>  </p>
+<ul>
+<li><code>query_group_people_sum</code> : 获取组内人物数目</li>
+<li><code>query_group_value_sum</code> : 获取组内人物权重的总和</li>
+<li><code>query_group_age_var</code> : 获取组内人物年龄的方差</li>
+<li><code>add_message</code> : 加入消息</li>
+<li><code>send_message</code> : 给某人发送消息</li>
+<li><code>query_social_value</code> : 获取某人的活跃度</li>
+<li><code>query_received_messages</code> : 获取某人接受到的所有消息</li>
+<li><code>query_least_connection</code> : 获取最短连接人的通路<br><br></li>
+</ul>
+</li>
+<li><h4 id="网络类-MyNetwork-1"><a href="#网络类-MyNetwork-1" class="headerlink" title="网络类 MyNetwork"></a>网络类 <code>MyNetwork</code></h4><p><img src="6.png"/>  </p>
+<ul>
+<li><code>messages</code> : 网络中存储消息</li>
+<li><code>beginLines</code> &amp; <code>endLines</code> : 存储有关系的二人的结点</li>
+<li><code>values</code> : 存储两人关系的权重<br><br></li>
+</ul>
+</li>
+<li><h4 id="消息Id重复抽象类-amp-消息Id重复类-EqualMessageIdException-amp-MyEqualMessageIdException"><a href="#消息Id重复抽象类-amp-消息Id重复类-EqualMessageIdException-amp-MyEqualMessageIdException" class="headerlink" title="消息Id重复抽象类 &amp; 消息Id重复类 EqualMessageIdException &amp; MyEqualMessageIdException"></a>消息Id重复抽象类 &amp; 消息Id重复类 <code>EqualMessageIdException &amp; MyEqualMessageIdException</code></h4><p><img src="7.png"/><br><br></p>
+</li>
+<li><h4 id="未找到消息Id抽象类-amp-未找到消息Id类-MessageIdNotFoundException-amp-MyMessageIdNotFoundException"><a href="#未找到消息Id抽象类-amp-未找到消息Id类-MessageIdNotFoundException-amp-MyMessageIdNotFoundException" class="headerlink" title="未找到消息Id抽象类 &amp; 未找到消息Id类 MessageIdNotFoundException &amp; MyMessageIdNotFoundException"></a>未找到消息Id抽象类 &amp; 未找到消息Id类 <code>MessageIdNotFoundException &amp; MyMessageIdNotFoundException</code></h4><p><img src="8.png"/><br><br></p>
+</li>
+</ul>
+<p><br></p>
+<hr>
+<h3 id="关键算法-1"><a href="#关键算法-1" class="headerlink" title="关键算法"></a>关键算法</h3><h4 id="最小生成树算法"><a href="#最小生成树算法" class="headerlink" title="最小生成树算法"></a>最小生成树算法</h4><p><br></p>
+<hr>
+<h2 id="第三次作业总结"><a href="#第三次作业总结" class="headerlink" title="第三次作业总结"></a>第三次作业总结</h2><h3 id="分析-2"><a href="#分析-2" class="headerlink" title="分析"></a>分析</h3><ul>
+<li><p>本次作业在第二次的基础之上增加了电梯的<strong>定制化</strong>以及同时跨楼层/跨楼座的乘客请求<br><br></p>
+</li>
+<li><p>本单元虽然新增的乘客请求是建立在上一次作业的横向电梯和上上次作业的纵向电梯的铺垫之上，需要修改代码以实现换乘功能；电梯定制化只需要在创建新电梯类的时候作为参数传入并固化为该电梯属性即可<br><br></p>
+</li>
+<li><p>根据前两次作业留下的可拓展接口进行迭代开发，架构大抵不变<br><br></p>
+</li>
+</ul>
+<hr>
+<h3 id="需求变更-1"><a href="#需求变更-1" class="headerlink" title="需求变更"></a>需求变更</h3><h4 id="新增内容-1"><a href="#新增内容-1" class="headerlink" title="新增内容:"></a>新增内容:</h4><ul>
+<li><p><strong>电梯定制化</strong></p>
+<ul>
+<li>电梯的最大载客量和在楼层$/$楼座间移动的速度根据新加电梯时所给的参数决定</li>
+</ul>
+</li>
+<li><p><strong>乘客移动请求范围扩大</strong></p>
+<ul>
+<li>可以输入相同楼层但是不同楼座的乘客请求</li>
+</ul>
+</li>
+<li><p><strong>新增横向电梯可停靠楼层</strong></p>
+<ul>
+<li>可停靠楼层信息为 $\text{M}$</li>
+<li>若满足 <code>((M &gt;&gt; (X-&#39;A&#39;)) &amp; 1) == 1</code> ，则代表该电梯在楼座 $X$ 可开关门。$(X \in [A,B,C,D,E])$</li>
+<li>输入保证 $\sum_{i=0}^4 ((M &gt;&gt; i)\  \&amp;\  1) \ge 2$，即至少有两个可到达楼座。</li>
+<li>输入同时保证 $1 \lt M \lt 32$，即不包含无意义的二进制位。</li>
+</ul>
+</li>
+</ul>
+<h4 id="数据限制变更-1"><a href="#数据限制变更-1" class="headerlink" title="数据限制变更:"></a>数据限制变更:</h4><ul>
+<li><p>乘客请求：</p>
+<ul>
+<li>输入保证 $[$起点座 $==$ 终点座$] + [$起点层 $==$ 终点层$ ] $\not=$ 2$，即楼座和楼层不会同时相同。</li>
+</ul>
+</li>
+<li><p>电梯移动速度：</p>
+<ul>
+<li>纵向电梯$/$横向电梯移动一层花费的时间： $[0.2, 0.4, 0.6]$</li>
+<li>纵向电梯$/$横向电梯最大载客量： $[4,6,8]$</li>
+</ul>
+</li>
+</ul>
+<h3 id="迭代开发-1"><a href="#迭代开发-1" class="headerlink" title="迭代开发"></a>迭代开发</h3><h4 id="新增：-1"><a href="#新增：-1" class="headerlink" title="新增："></a>新增：</h4><ul>
+<li>本次迭代无新增，代码架构设计良好</li>
+</ul>
+<h4 id="修改：-1"><a href="#修改：-1" class="headerlink" title="修改："></a>修改：</h4><ul>
+<li><h4 id="纵向电梯-横向电梯类-BuildingElevator-FloorElevator"><a href="#纵向电梯-横向电梯类-BuildingElevator-FloorElevator" class="headerlink" title="纵向电梯$/$横向电梯类 BuildingElevator / FloorElevator"></a>纵向电梯$/$横向电梯类 <code>BuildingElevator / FloorElevator</code></h4><ul>
+<li><p>线程结束条件变更</p>
+</li>
+<li><p>当乘客离开电梯时，若其未达目的地，则创建一个新请求，把当前楼座$/$楼层视为起始信息，把原请求的目的楼座视为终点信息，并把该新请求重新投入请求池中</p>
+</li>
+</ul>
+</li>
+<li><h4 id="控制器类-Controller"><a href="#控制器类-Controller" class="headerlink" title="控制器类 Controller"></a>控制器类 <code>Controller</code></h4><ul>
+<li>当接受到新加电梯请求时，访问请求池的 <code>addElevatorRequest</code> 类</li>
+</ul>
+</li>
+<li><h4 id="纵向电梯策略类-LookBuildingDecisionMaker"><a href="#纵向电梯策略类-LookBuildingDecisionMaker" class="headerlink" title="纵向电梯策略类 LookBuildingDecisionMaker"></a>纵向电梯策略类 <code>LookBuildingDecisionMaker</code></h4><ul>
+<li>更改处理乘客请求： 若某乘客请求需要换乘（即起始楼层不等于目标楼层且起始楼座不等于目标楼座），则将其换乘楼层视作其目的楼层</li>
+</ul>
+</li>
+<li><h4 id="横向电梯策略类-LookFloorDecisionMaker"><a href="#横向电梯策略类-LookFloorDecisionMaker" class="headerlink" title="横向电梯策略类 LookFloorDecisionMaker"></a>横向电梯策略类 <code>LookFloorDecisionMaker</code></h4><ul>
+<li>更改处理乘客请求： 只有当乘客换乘楼层为电梯所在楼层并且乘客请求的起点楼座和终点楼座该电梯均可达的时候该电梯才会尝试处理该乘客请求</li>
+</ul>
+</li>
+<li><h4 id="乘客请求类（重写）-MyRequest"><a href="#乘客请求类（重写）-MyRequest" class="headerlink" title="乘客请求类（重写） MyRequest"></a>乘客请求类（重写） <code>MyRequest</code></h4><ul>
+<li>新增每个乘客请求唯一对应的换乘楼层 <code>changeFloor</code> 信息，初始均置为 <code>1</code>，并且新增对乘客请求的换乘楼层的 <code>Setter</code> 和 <code>Getter</code> 方法</li>
+</ul>
+</li>
+<li><h4 id="请求池类-RequestPool"><a href="#请求池类-RequestPool" class="headerlink" title="请求池类 RequestPool"></a>请求池类 <code>RequestPool</code></h4><ul>
+<li><p>新增更新（重新计算）乘客换乘楼层方法 <code>getChangeFloor</code>，该方法会按照基准策略计算所有满足<code>((M &gt;&gt; (P -&#39;A&#39;)) &amp; 1) + ((M &gt;&gt; (Q -&#39;A&#39;)) &amp; 1) == 2</code> 且使 $|X-m| + |Y-m|$ 最小的电梯及对应 $m$（初始值为当前换乘楼座，遍历所有电梯，若 $|X-m| + |Y-m|$ 更小则更新换乘楼层）</p>
+</li>
+<li><p>每一次添加乘客请求 <code>addPersonRequest</code> <strong>之前</strong> ，更新乘客的换乘楼层信息</p>
+</li>
+<li><p>每一次添加电梯请求 <code>addElevators</code> <strong>之后</strong> ，更新所有还在请求池中（未被电梯接走）的乘客请求的换乘楼层</p>
+</li>
+<li><p>横向$/$纵向电梯线程 <code>wait</code> 条件更改</p>
+</li>
+</ul>
+</li>
+</ul>
+<p><br></p>
+<hr>
+<h3 id="基于度量的程序结构分析-1"><a href="#基于度量的程序结构分析-1" class="headerlink" title="基于度量的程序结构分析"></a>基于度量的程序结构分析</h3><ul>
+<li><p>总UML类图<br><img src="3-1.png"/>  </p>
+</li>
+<li><p>代码规模分析<br><img src="3-2.png"/>  </p>
+</li>
+<li><p>方法复杂度分析<br><img src="3-3-1.png"/><br><img src="3-3-2.png"/><br><img src="3-3-3.png"/><br><img src="3-3-4.png"/>  </p>
+</li>
+<li><p>类复杂度分析<br><img src="3-4.png"/>  </p>
+</li>
+</ul>
+<p><br></p>
+<hr>
+<h2 id="时序图"><a href="#时序图" class="headerlink" title="时序图"></a>时序图</h2><p>  <img src="Seq.svg"/>  </p>
+<hr>
+<h2 id="总结分析三次作业中同步块的设置和锁的选择，并分析锁与同步块中处理语句直接的关系"><a href="#总结分析三次作业中同步块的设置和锁的选择，并分析锁与同步块中处理语句直接的关系" class="headerlink" title="总结分析三次作业中同步块的设置和锁的选择，并分析锁与同步块中处理语句直接的关系"></a>总结分析三次作业中同步块的设置和锁的选择，并分析锁与同步块中处理语句直接的关系</h2><ul>
+<li><p>在最后一次迭代过后，本程序一共有 <code>5</code> 个锁，分别是</p>
+<ol>
+<li><p>电梯操作锁 <code>thisElevatorLock</code> ，采用 <code>ReentrantLock</code> 加锁，并配备对应的 <code>Condition</code> 对象 <code>thisElevatorCondition</code>，其作用为同步本电梯操作（接客、下客、开门、关门、移动）</p>
+</li>
+<li><p>电梯内部人员的锁 <code>thisInsidePersonLock</code>， 采用 <code>ReentrantLock</code> 加锁，作用为同步对电梯内部人员的操作（增加、删减、查询）</p>
+</li>
+<li><p>请求池类方法锁 <code>lock</code> ，采用 <code>ReentrantLock</code> 加锁，作用为同步对请求池中请求的操作（增加、删减、查询）</p>
+</li>
+<li><p>请求池电梯表读写锁 <code>rwElevatorLock</code>，采用 <code>ReadWriteLock</code> 加锁，读锁作用为同步查询电梯操作，写锁作用为同步电梯表的增删操作</p>
+</li>
+<li><p>输出锁 <code>outputLock</code> ，采用 <code>ReentrantLock</code> 加锁，作用为同步所有的带时间戳的输出操作（防止输出时间戳非递增）</p>
+</li>
+</ol>
+</li>
+<li><p>防止死锁：</p>
+<ul>
+<li>固定加多个锁方法的锁顺序： <code>lock</code> $\rightarrow$ <code>rwElevatorLock</code> $\rightarrow$ <code>thisElevatorLock</code> $\rightarrow$ <code>thisInsidePersonLock</code> $\rightarrow$ <code>outputLock</code></li>
+</ul>
+</li>
+</ul>
+<p><br></p>
+<hr>
+<h2 id="总结分析三次作业中的调度器设计，并分析调度器如何与程序中的线程进行交互"><a href="#总结分析三次作业中的调度器设计，并分析调度器如何与程序中的线程进行交互" class="headerlink" title="总结分析三次作业中的调度器设计，并分析调度器如何与程序中的线程进行交互"></a>总结分析三次作业中的调度器设计，并分析调度器如何与程序中的线程进行交互</h2><ul>
+<li>无调度器。（自由竞争 yyds ）</li>
+</ul>
+<p><br></p>
+<hr>
+<h2 id="从功能设计与性能设计的平衡方面，分析和总结自己第三次作业架构设计的可扩展性"><a href="#从功能设计与性能设计的平衡方面，分析和总结自己第三次作业架构设计的可扩展性" class="headerlink" title="从功能设计与性能设计的平衡方面，分析和总结自己第三次作业架构设计的可扩展性"></a>从功能设计与性能设计的平衡方面，分析和总结自己<b>第三次作业</b>架构设计的可扩展性</h2><h3 id="可扩展性"><a href="#可扩展性" class="headerlink" title="可扩展性"></a>可扩展性</h3><h4 id="六大设计原则（SOLID原则）分析"><a href="#六大设计原则（SOLID原则）分析" class="headerlink" title="六大设计原则（SOLID原则）分析"></a>六大设计原则（SOLID原则）分析</h4><ul>
+<li><p>Single Responsibility Principle：单一职责原则</p>
+<ul>
+<li>每一个类均拥有其专属的不可替代的功能实现</li>
+</ul>
+</li>
+<li><p>Open Closed Principle：开闭原则</p>
+<ul>
+<li>第一次作业时未想到会添加电梯，其余迭代均较好遵循开闭原则</li>
+</ul>
+</li>
+<li><p>Liskov Substitution Principle：里氏替换原则</p>
+<ul>
+<li>两个接口下的派生类均满足此原则</li>
+</ul>
+</li>
+<li><p>Law of Demeter：迪米特法则</p>
+<ul>
+<li>在第三次迭代时由于前面未留好访问所有乘客（包括电梯中的）的接口和规划导致该版本迭代严重违反了此法则</li>
+</ul>
+</li>
+<li><p>Interface Segregation Principle：接口隔离原则</p>
+<ul>
+<li>接口设计都尽量精简</li>
+</ul>
+</li>
+<li><p>Dependence Inversion Principle：依赖倒置原则</p>
+<ul>
+<li>层次化设计实现较佳</li>
+</ul>
+</li>
+</ul>
+<h4 id="评价"><a href="#评价" class="headerlink" title="评价"></a>评价</h4><ul>
+<li>在第一次作业之时就大致思考好了三次迭代的可能性，所以代码架构始终未作修改，较好符合了增量开发的思想，再次深刻体会到了一个具有优良拓展性的代码的迭代开发的优势</li>
+</ul>
+<p><br></p>
+<hr>
+<h2 id="分析自己程序的-bug"><a href="#分析自己程序的-bug" class="headerlink" title="分析自己程序的 bug"></a>分析自己程序的 bug</h2><ul>
+<li><p>本人三次作业强测及互测结果如图：</p>
+<ul>
+<li><p>第一次作业：<br><img src="1-5.png"/><br><img src="1-6.png"/>  </p>
+</li>
+<li><p>第二次作业：<br><img src="2-5.png"/><br><img src="2-6.png"/>  </p>
+</li>
+<li><p>第三次作业：<br><img src="3-5.png"/><br><img src="3-6.png"/>  </p>
+</li>
+</ul>
+</li>
+<li><p>总共被找出的 <code>bug</code> (同质 bug ) 数： <code>1</code> 个  </p>
+</li>
+<li><p>分别为：  </p>
+<ol>
+<li><code>由于线程安全问题导致有几率线程在关门方法未执行时终止</code></li>
+</ol>
+</li>
+</ul>
+<p><br></p>
+<font size="1"> PS： 特别鸣谢：<code>*\(๑• ₃ •๑)</code>  </font>  
+<br>
+<font size="1"> 何指导的超 nb 的评测机帮我测 bug ！要不然我强测不会有这样滴分数和三次互测只有 1 个点被 hack ！<code>ヽ(￣ω￣(￣ω￣〃)ゝ</code>  </font>  
+
+<p><br></p>
+<hr>
+<h2 id="分析自己发现别人程序-bug-所采用的策略"><a href="#分析自己发现别人程序-bug-所采用的策略" class="headerlink" title="分析自己发现别人程序 bug 所采用的策略"></a>分析自己发现别人程序 bug 所采用的策略</h2><ul>
+<li><p>根据互测数据规定撰写 <code>python</code> 程序生成<strong>覆盖性</strong>测试数据对他人程序随机生成数据来进行<strong>黑盒测试</strong> </p>
+</li>
+<li><p>测试有效性： <strong>较佳</strong>，互测基本能覆盖所有人被找出的bug</p>
+</li>
+<li><p>是否结合被测程序的代码设计结构来设计测试用例： <strong>否</strong></p>
+</li>
+</ul>
+<p><br></p>
+<hr>
+<h2 id="心得体会"><a href="#心得体会" class="headerlink" title="心得体会"></a>心得体会</h2><p>本单元是多线程电梯请求处理展开的从简到难的三次迭代过程，在这三次作业之中我熟悉并初步掌握了 <code>JAVA</code> 设计结构中的 <strong>生产者-消费者模式</strong> 和 <strong>观察者模式</strong>，熟悉了线程的使用方式，掌握了初步设计，实现以及调试多线程程序的能力，建立了多线程程序中的线程安全观念和同步观念，由于程序在迭代过程之中结构和方法变得越来越多且复杂，我也亲身经历了多种多线程程序中常见的错误，了解到了加锁逻辑合理性的重要性，让我受益匪浅</p>
+<p><br></p>
+<hr>
+<h6>author: 20373864 谭立德</h6>
+
+<hr>
+
                 
                 <hr>
                 <!-- Pager -->
@@ -346,7 +733,7 @@
           <strong class="toc-title">Contents</strong>
           
             
-              <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#"><span class="toc-nav-text">第三单元总结性博客作业</span></a></li></ol>
+              <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#OO第三单元总结"><span class="toc-nav-text">OO第三单元总结</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#要求"><span class="toc-nav-text">要求</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#第一次作业总结"><span class="toc-nav-text">第一次作业总结</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#分析"><span class="toc-nav-text">分析</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#基本思路"><span class="toc-nav-text">基本思路</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#具体实现"><span class="toc-nav-text">具体实现</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#总UML类图："><span class="toc-nav-text">总UML类图：</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#人物接口-Person"><span class="toc-nav-text">人物接口 Person</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#人物类-MyPerson"><span class="toc-nav-text">人物类 MyPerson</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#分组接口-Group"><span class="toc-nav-text">分组接口 Group</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#分组类-MyGroup"><span class="toc-nav-text">分组类 MyGroup</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#网络接口-Network"><span class="toc-nav-text">网络接口 Network</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#网络类-MyNetwork"><span class="toc-nav-text">网络类 MyNetwork</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#人物Id重复抽象类-amp-任务Id重复类-PersonIdNotFoundException-amp-MyPersonIdNotFoundException"><span class="toc-nav-text">人物Id重复抽象类 &amp; 任务Id重复类 PersonIdNotFoundException &amp; MyPersonIdNotFoundException</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#分组Id重复抽象类-amp-分组Id重复类-EqualPersonIdException-amp-MyEqualPersonIdException"><span class="toc-nav-text">分组Id重复抽象类 &amp; 分组Id重复类 EqualPersonIdException &amp; MyEqualPersonIdException</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#未具有关系抽象类-amp-未具有关系类-RelationNotFoundException-amp-MyRelationNotFoundException"><span class="toc-nav-text">未具有关系抽象类 &amp; 未具有关系类 RelationNotFoundException &amp; MyRelationNotFoundException</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#关系已存在抽象类-amp-关系已存在类-EqualRelationException-amp-MyEqualRelationException"><span class="toc-nav-text">关系已存在抽象类 &amp; 关系已存在类 EqualRelationException &amp; MyEqualRelationException</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#未找到分组Id抽象类-amp-未找到分组Id类-GroupIdNotFoundException-amp-MyGroupIdNotFoundException"><span class="toc-nav-text">未找到分组Id抽象类 &amp; 未找到分组Id类 GroupIdNotFoundException &amp; MyGroupIdNotFoundException</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#分组Id相同抽象类-amp-分组Id相同类-EqualGroupIdException-amp-MyEqualGroupIdException"><span class="toc-nav-text">分组Id相同抽象类 &amp; 分组Id相同类 EqualGroupIdException &amp; MyEqualGroupIdException</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#关键算法"><span class="toc-nav-text">关键算法</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#并查集"><span class="toc-nav-text">并查集</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#基于度量的程序结构分析"><span class="toc-nav-text">基于度量的程序结构分析</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#第二次作业总结"><span class="toc-nav-text">第二次作业总结</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#分析-1"><span class="toc-nav-text">分析</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#需求变更"><span class="toc-nav-text">需求变更</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#新增内容"><span class="toc-nav-text">新增内容:</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#数据限制变更"><span class="toc-nav-text">数据限制变更:</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#迭代开发"><span class="toc-nav-text">迭代开发</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#总UML类图：-1"><span class="toc-nav-text">总UML类图：</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#新增："><span class="toc-nav-text">新增：</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#消息接口-Message"><span class="toc-nav-text">消息接口 Message</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#消息类-MyMessage"><span class="toc-nav-text">消息类 MyMessage</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#修改："><span class="toc-nav-text">修改：</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#人物接口-Person-1"><span class="toc-nav-text">人物接口 Person</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#人物类-MyPerson-1"><span class="toc-nav-text">人物类 MyPerson</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#网络接口-Network-1"><span class="toc-nav-text">网络接口 Network</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#网络类-MyNetwork-1"><span class="toc-nav-text">网络类 MyNetwork</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#消息Id重复抽象类-amp-消息Id重复类-EqualMessageIdException-amp-MyEqualMessageIdException"><span class="toc-nav-text">消息Id重复抽象类 &amp; 消息Id重复类 EqualMessageIdException &amp; MyEqualMessageIdException</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#未找到消息Id抽象类-amp-未找到消息Id类-MessageIdNotFoundException-amp-MyMessageIdNotFoundException"><span class="toc-nav-text">未找到消息Id抽象类 &amp; 未找到消息Id类 MessageIdNotFoundException &amp; MyMessageIdNotFoundException</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#关键算法-1"><span class="toc-nav-text">关键算法</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#最小生成树算法"><span class="toc-nav-text">最小生成树算法</span></a></li></ol></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#第三次作业总结"><span class="toc-nav-text">第三次作业总结</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#分析-2"><span class="toc-nav-text">分析</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#需求变更-1"><span class="toc-nav-text">需求变更</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#新增内容-1"><span class="toc-nav-text">新增内容:</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#数据限制变更-1"><span class="toc-nav-text">数据限制变更:</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#迭代开发-1"><span class="toc-nav-text">迭代开发</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#新增：-1"><span class="toc-nav-text">新增：</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#修改：-1"><span class="toc-nav-text">修改：</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#纵向电梯-横向电梯类-BuildingElevator-FloorElevator"><span class="toc-nav-text">纵向电梯$&#x2F;$横向电梯类 BuildingElevator &#x2F; FloorElevator</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#控制器类-Controller"><span class="toc-nav-text">控制器类 Controller</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#纵向电梯策略类-LookBuildingDecisionMaker"><span class="toc-nav-text">纵向电梯策略类 LookBuildingDecisionMaker</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#横向电梯策略类-LookFloorDecisionMaker"><span class="toc-nav-text">横向电梯策略类 LookFloorDecisionMaker</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#乘客请求类（重写）-MyRequest"><span class="toc-nav-text">乘客请求类（重写） MyRequest</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#请求池类-RequestPool"><span class="toc-nav-text">请求池类 RequestPool</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#基于度量的程序结构分析-1"><span class="toc-nav-text">基于度量的程序结构分析</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#时序图"><span class="toc-nav-text">时序图</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#总结分析三次作业中同步块的设置和锁的选择，并分析锁与同步块中处理语句直接的关系"><span class="toc-nav-text">总结分析三次作业中同步块的设置和锁的选择，并分析锁与同步块中处理语句直接的关系</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#总结分析三次作业中的调度器设计，并分析调度器如何与程序中的线程进行交互"><span class="toc-nav-text">总结分析三次作业中的调度器设计，并分析调度器如何与程序中的线程进行交互</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#从功能设计与性能设计的平衡方面，分析和总结自己第三次作业架构设计的可扩展性"><span class="toc-nav-text">从功能设计与性能设计的平衡方面，分析和总结自己第三次作业架构设计的可扩展性</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#可扩展性"><span class="toc-nav-text">可扩展性</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#六大设计原则（SOLID原则）分析"><span class="toc-nav-text">六大设计原则（SOLID原则）分析</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#评价"><span class="toc-nav-text">评价</span></a></li></ol></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#分析自己程序的-bug"><span class="toc-nav-text">分析自己程序的 bug</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#分析自己发现别人程序-bug-所采用的策略"><span class="toc-nav-text">分析自己发现别人程序 bug 所采用的策略</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#心得体会"><span class="toc-nav-text">心得体会</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-6"><a class="toc-nav-link" href="#"><span class="toc-nav-text">author: 20373864 谭立德</span></a></li></ol></li></ol></li></ol></li></ol></li></ol></li></ol>
             
           
           </div>
