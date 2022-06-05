@@ -121,7 +121,7 @@
 	       
                             <div class="blank_box"></div>
                             <span class="meta">
-                                 <span class="post-count">0</span> Words
+                                 <span class="post-count">540</span> Words
                             </span>
                             <div class="blank_box"></div>
                             <!-- 不蒜子统计 start -->
@@ -181,18 +181,8 @@
                     
 
                         
-                    
-
-                        
                         	<li>
                           	  <a href="/archive/">Archives</a>
-                        	</li>
-                        
-                    
-
-                        
-                        	<li>
-                          	  <a href="/about/">About Tan</a>
                         	</li>
                         
                     
@@ -203,6 +193,16 @@
                         
                         	<li>
                           	  <a href="/tags/">Tags</a>
+                        	</li>
+                        
+                    
+
+                        
+                    
+
+                        
+                        	<li>
+                          	  <a href="/about/">About Tan</a>
                         	</li>
                         
                     
@@ -263,7 +263,105 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                
+                <h1 id="面向对象设计与构造第三单元第三次作业"><a href="#面向对象设计与构造第三单元第三次作业" class="headerlink" title="面向对象设计与构造第三单元第三次作业"></a>面向对象设计与构造第三单元第三次作业</h1><h4 id="JML-系列"><a href="#JML-系列" class="headerlink" title="JML 系列"></a>JML 系列</h4><p><br></p>
+<hr>
+<h3 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h3><p><a href="../OO - P11 - Question">题目链接</a></p>
+<p><br></p>
+<hr>
+<h3 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h3><ul>
+<li><p>本次作业在上一次作业的基础之上新增了 <code>Message</code> 类的各个子类：<code>EmojiMessage</code> 类、 <code>NoticeMessage</code> 类、 <code>RedEnvelopeMessage</code> 类，并且新增了关于其属性和其所在网络属性的一些查询方法<br><br></p>
+</li>
+<li><p>根据第二次作业留下的可拓展接口进行迭代开发（虚假的迭代开发：根据官方包所给 <code>Jml</code> 注释填空，莫得感情的填空机器）<br><br></p>
+</li>
+</ul>
+<hr>
+<h3 id="需求变更"><a href="#需求变更" class="headerlink" title="需求变更"></a>需求变更</h3><h4 id="新增内容"><a href="#新增内容" class="headerlink" title="新增内容:"></a>新增内容:</h4><ul>
+<li><p><code>EmojiMessage</code> 类</p>
+</li>
+<li><p><code>NoticeMessage</code> 类</p>
+</li>
+<li><p><code>RedEnvelopeMessage</code> 类</p>
+</li>
+<li><p>多种查询方法</p>
+</li>
+<li><p>两种异常处理函数</p>
+</li>
+</ul>
+<h4 id="数据限制变更"><a href="#数据限制变更" class="headerlink" title="数据限制变更:"></a>数据限制变更:</h4><ul>
+<li><p><code>add_person</code> 指令条数: 不超过 <code>2500</code> $\rightarrow$ 不超过 <code>5000</code></p>
+</li>
+<li><p><code>send_indirect_message</code> 指令条数不超过 <code>1000</code></p>
+</li>
+<li><p><code>emoji_id(int)</code> 值在 <code>[0,10000]</code> 中</p>
+</li>
+<li><p><code>add_message</code> ， <code>add_red_envelope_message</code> ， <code>add_notice_message</code> ， <code>add_emoji_message</code> 指令：保证 <code>type</code> 为 <code>0</code> 或 <code>1</code> ， <code>socialValue(int)</code> 值在 <code>[-1000,1000]</code> 中， <code>money(int)</code> 值在 <code>[0,200]</code> 中， <code>string(String)</code> 长度不超过 <code>100</code></p>
+</li>
+</ul>
+<h3 id="迭代开发"><a href="#迭代开发" class="headerlink" title="迭代开发"></a>迭代开发</h3><h4 id="总UML类图："><a href="#总UML类图：" class="headerlink" title="总UML类图："></a>总UML类图：</h4><font size='2'> （可以放大观看） </font>
+
+<p><img src="MainClass.png"  alt="MainClass" /></p>
+<h4 id="新增："><a href="#新增：" class="headerlink" title="新增："></a>新增：</h4><ul>
+<li><h4 id="表情消息接口-EmojiMessage"><a href="#表情消息接口-EmojiMessage" class="headerlink" title="表情消息接口 EmojiMessage"></a>表情消息接口 <code>EmojiMessage</code></h4><p><img src="1.png"/>  </p>
+<ul>
+<li><code>socialValue</code> 和 <code>get</code> 方法<br><br></li>
+</ul>
+</li>
+<li><h4 id="表情消息类-MyEmojiMessage"><a href="#表情消息类-MyEmojiMessage" class="headerlink" title="表情消息类 MyEmojiMessage"></a>表情消息类 <code>MyEmojiMessage</code></h4><p><img src="2.png"/>  </p>
+<p><br></p>
+</li>
+<li><h4 id="公告消息接口-NoticeMessage"><a href="#公告消息接口-NoticeMessage" class="headerlink" title="公告消息接口 NoticeMessage"></a>公告消息接口 <code>NoticeMessage</code></h4><p><img src="3.png"/>  </p>
+<ul>
+<li>消息内容 <code>String</code> 的 <code>get</code> 方法<br><br></li>
+</ul>
+</li>
+<li><h4 id="公告消息类-MyNoticeMessage"><a href="#公告消息类-MyNoticeMessage" class="headerlink" title="公告消息类 MyNoticeMessage"></a>公告消息类 <code>MyNoticeMessage</code></h4><p><img src="4.png"/>  </p>
+<p><br></p>
+</li>
+<li><h4 id="红包消息接口-RedEnvelopeMessage"><a href="#红包消息接口-RedEnvelopeMessage" class="headerlink" title="红包消息接口 RedEnvelopeMessage"></a>红包消息接口 <code>RedEnvelopeMessage</code></h4><p><img src="5.png"/>  </p>
+<ul>
+<li><code>Money</code> 的 <code>get</code> 方法<br><br></li>
+</ul>
+</li>
+<li><h4 id="红包消息类-MyRedEnvelopeMessage"><a href="#红包消息类-MyRedEnvelopeMessage" class="headerlink" title="红包消息类 MyRedEnvelopeMessage"></a>红包消息类 <code>MyRedEnvelopeMessage</code></h4><p><img src="6.png"/>  </p>
+<p><br></p>
+</li>
+<li><h4 id="最小堆类-MinHeap"><a href="#最小堆类-MinHeap" class="headerlink" title="最小堆类 MinHeap"></a>最小堆类 <code>MinHeap</code></h4><p><img src="7.png"/>  </p>
+<ul>
+<li><code>add</code> 方法 : 向最小堆中增加一个人及其权重</li>
+<li><code>get</code> &amp; <code>getDist</code> 方法 : 从最小堆中取一个人并且获得其权重<br><br></li>
+</ul>
+</li>
+</ul>
+<h4 id="修改："><a href="#修改：" class="headerlink" title="修改："></a>修改：</h4><ul>
+<li><h4 id="网络接口-Network"><a href="#网络接口-Network" class="headerlink" title="网络接口 Network"></a>网络接口 <code>Network</code></h4><p><img src="8.png"/>  </p>
+<ul>
+<li><code>add_red_envelope_message</code> : 增加红包消息</li>
+<li><code>add_notice_message</code> : 增加公告消息</li>
+<li><code>clear_notices</code> : 清除公告消息</li>
+<li><code>add_emoji_message</code> :  增加表情消息</li>
+<li><code>store_emoji_id</code> : 增加新的表情</li>
+<li><code>query_popularity</code> : 查询表情热度</li>
+<li><code>delete_cold_emoji</code> : 删除热度低的表情</li>
+<li><code>query_money</code> : 查询某人钱数</li>
+<li><code>send_indirect_message</code> : 发送间接消息<br><br></li>
+</ul>
+</li>
+<li><h4 id="网络类-MyNetwork-amp-MyNetWork2"><a href="#网络类-MyNetwork-amp-MyNetWork2" class="headerlink" title="网络类 MyNetwork &amp; MyNetWork2"></a>网络类 <code>MyNetwork</code> &amp; <code>MyNetWork2</code></h4><p><img src="9.png"/><br><font size='2'> <code>MyNetwork2</code> 类的建立纯属 <code>MyNetWork</code> 类超 <code>500</code> 行了…… </font><br><img src="6.png"/>  </p>
+<ul>
+<li><code>emojiIdList</code> : 存储表情的列表</li>
+<li><code>emijiHeatList</code> : 存储表情的热度</li>
+<li><code>totalPath</code> : 存储在计算最短路中已经求得最短路的结点</li>
+<li><code>graph</code> : 存储人与人之间关系及权重的图<br><br></li>
+</ul>
+</li>
+<li><h4 id="消息Id重复抽象类-amp-消息Id重复类-EqualMessageIdException-amp-MyEqualMessageIdException"><a href="#消息Id重复抽象类-amp-消息Id重复类-EqualMessageIdException-amp-MyEqualMessageIdException" class="headerlink" title="消息Id重复抽象类 &amp; 消息Id重复类 EqualMessageIdException &amp; MyEqualMessageIdException"></a>消息Id重复抽象类 &amp; 消息Id重复类 <code>EqualMessageIdException &amp; MyEqualMessageIdException</code></h4><p><img src="10.png"/><br><br></p>
+</li>
+<li><h4 id="未找到消息Id抽象类-amp-未找到消息Id类-MessageIdNotFoundException-amp-MyMessageIdNotFoundException"><a href="#未找到消息Id抽象类-amp-未找到消息Id类-MessageIdNotFoundException-amp-MyMessageIdNotFoundException" class="headerlink" title="未找到消息Id抽象类 &amp; 未找到消息Id类 MessageIdNotFoundException &amp; MyMessageIdNotFoundException"></a>未找到消息Id抽象类 &amp; 未找到消息Id类 <code>MessageIdNotFoundException &amp; MyMessageIdNotFoundException</code></h4><p><img src="11.png"/><br><br></p>
+</li>
+</ul>
+<p><br></p>
+<hr>
+<h3 id="关键算法"><a href="#关键算法" class="headerlink" title="关键算法"></a>关键算法</h3><h4 id="最短路径算法"><a href="#最短路径算法" class="headerlink" title="最短路径算法"></a>最短路径算法</h4>
                 
                 <hr>
                 <!-- Pager -->
@@ -323,6 +421,17 @@
             <!-- Table of Contents -->
 
     
+      
+        <aside id="sidebar">
+          <div id="toc" class="toc-article">
+          <strong class="toc-title">Contents</strong>
+          
+            
+              <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#面向对象设计与构造第三单元第三次作业"><span class="toc-nav-text">面向对象设计与构造第三单元第三次作业</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#JML-系列"><span class="toc-nav-text">JML 系列</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#题目"><span class="toc-nav-text">题目</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#分析"><span class="toc-nav-text">分析</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#需求变更"><span class="toc-nav-text">需求变更</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#新增内容"><span class="toc-nav-text">新增内容:</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#数据限制变更"><span class="toc-nav-text">数据限制变更:</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#迭代开发"><span class="toc-nav-text">迭代开发</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#总UML类图："><span class="toc-nav-text">总UML类图：</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#新增："><span class="toc-nav-text">新增：</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#表情消息接口-EmojiMessage"><span class="toc-nav-text">表情消息接口 EmojiMessage</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#表情消息类-MyEmojiMessage"><span class="toc-nav-text">表情消息类 MyEmojiMessage</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#公告消息接口-NoticeMessage"><span class="toc-nav-text">公告消息接口 NoticeMessage</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#公告消息类-MyNoticeMessage"><span class="toc-nav-text">公告消息类 MyNoticeMessage</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#红包消息接口-RedEnvelopeMessage"><span class="toc-nav-text">红包消息接口 RedEnvelopeMessage</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#红包消息类-MyRedEnvelopeMessage"><span class="toc-nav-text">红包消息类 MyRedEnvelopeMessage</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#最小堆类-MinHeap"><span class="toc-nav-text">最小堆类 MinHeap</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#修改："><span class="toc-nav-text">修改：</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#网络接口-Network"><span class="toc-nav-text">网络接口 Network</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#网络类-MyNetwork-amp-MyNetWork2"><span class="toc-nav-text">网络类 MyNetwork &amp; MyNetWork2</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#消息Id重复抽象类-amp-消息Id重复类-EqualMessageIdException-amp-MyEqualMessageIdException"><span class="toc-nav-text">消息Id重复抽象类 &amp; 消息Id重复类 EqualMessageIdException &amp; MyEqualMessageIdException</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#未找到消息Id抽象类-amp-未找到消息Id类-MessageIdNotFoundException-amp-MyMessageIdNotFoundException"><span class="toc-nav-text">未找到消息Id抽象类 &amp; 未找到消息Id类 MessageIdNotFoundException &amp; MyMessageIdNotFoundException</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#关键算法"><span class="toc-nav-text">关键算法</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#最短路径算法"><span class="toc-nav-text">最短路径算法</span></a></li></ol></li></ol></li></ol></li></ol>
+            
+          
+          </div>
+        </aside>
       
     
 

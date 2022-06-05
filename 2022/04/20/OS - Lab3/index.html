@@ -181,18 +181,8 @@
                     
 
                         
-                    
-
-                        
                         	<li>
                           	  <a href="/archive/">Archives</a>
-                        	</li>
-                        
-                    
-
-                        
-                        	<li>
-                          	  <a href="/about/">About Tan</a>
                         	</li>
                         
                     
@@ -203,6 +193,16 @@
                         
                         	<li>
                           	  <a href="/tags/">Tags</a>
+                        	</li>
+                        
+                    
+
+                        
+                    
+
+                        
+                        	<li>
+                          	  <a href="/about/">About Tan</a>
                         	</li>
                         
                     
@@ -500,10 +500,10 @@
 <hr>
 <h2 id="课上"><a href="#课上" class="headerlink" title="课上"></a>课上</h2><h3 id="lab3-1-exam："><a href="#lab3-1-exam：" class="headerlink" title="lab3-1-exam："></a>lab3-1-exam：</h3><p>模拟 <code>Linux</code> 里面的进程块 <code>asid</code> 的分配，用一个 <code>32</code> 位的变量以 <code>版本号 + asid (26+6)</code> 的方式来使系统不局限于 <code>64</code> 个进程，编写函数实现 <strong>新规则</strong> 下的进程块的 <strong>创建和回收</strong></p>
 <p><br></p>
-<h3 id="lab3-1-Extra："><a href="#lab3-1-Extra：" class="headerlink" title="lab3-1-Extra："></a>lab3-1-Extra：</h3><p>模拟操作系统中的 <code>PV</code> 操作，实现资源（信号量）的 <b>初始化$/$查询</b> 功能，以及进程块 <b>请求$/$拥有$/$释放</b> 资源（信号量）的操作<br><br></p>
+<h3 id="lab3-1-Extra："><a href="#lab3-1-Extra：" class="headerlink" title="lab3-1-Extra："></a>lab3-1-Extra：</h3><p>模拟操作系统中的 <code>PV</code> 操作，实现资源（信号量）的 <b>初始化$/$查询</b> 功能，以及进程块 <b>请求$/$拥有$/$释放</b> 资源（信号量）的操作；根据平时理论上课的信号量模仿建立即可，注意这里的 <code>PV</code> 操作是可重入的<br><br></p>
 <h3 id="lab3-2-exam"><a href="#lab3-2-exam" class="headerlink" title="lab3-2-exam:"></a>lab3-2-exam:</h3><p>修改进程的调度策略，从原本的双队列调度改为三队列调度，每个时间片大小随所在调度队列而变化，只需在 <code>lib/env.c</code> 中修改调度队列的定义和初始化，然后在 <code>lib/sched.c</code> 中模仿双队列调度来完成满足题目要求的三队列调度即可</p>
 <p><br></p>
-<h3 id="lab3-2-Extra"><a href="#lab3-2-Extra" class="headerlink" title="lab3-2-Extra:"></a>lab3-2-Extra:</h3><p>完成对地址错误中的 <code>AdEL</code> 错误进行处理，在抛出这个异常后编写完成 <code>lib/traps.c</code> 中的异常分发和 <code>lib.genex.S</code> 中的处理异常的汇编代码，使其能完成题目要求的对该类异常的正确处理，注意看清各指令的 <code>opcode</code> 码…</p>
+<h3 id="lab3-2-Extra"><a href="#lab3-2-Extra" class="headerlink" title="lab3-2-Extra:"></a>lab3-2-Extra:</h3><p>完成对地址错误中的 <code>AdEL</code> 错误进行处理，在抛出这个异常后编写完成 <code>lib/traps.c</code> 中的异常分发和 <code>lib.genex.S</code> 中的处理异常的汇编代码，使其能完成题目要求的对该类异常的正确处理；注意看清各指令的 <code>opcode</code> 码…</p>
 <p><br></p>
 <hr>
 
