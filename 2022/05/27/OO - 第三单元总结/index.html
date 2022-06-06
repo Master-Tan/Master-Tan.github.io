@@ -121,7 +121,7 @@
 	       
                             <div class="blank_box"></div>
                             <span class="meta">
-                                 <span class="post-count">2.1k</span> Words
+                                 <span class="post-count">3k</span> Words
                             </span>
                             <div class="blank_box"></div>
                             <!-- 不蒜子统计 start -->
@@ -181,12 +181,12 @@
                     
 
                         
-                    
-
-                        
                         	<li>
                           	  <a href="/archive/">Archives</a>
                         	</li>
+                        
+                    
+
                         
                     
 
@@ -198,12 +198,12 @@
                     
 
                         
-                    
-
-                        
                         	<li>
                           	  <a href="/about/">About Tan</a>
                         	</li>
+                        
+                    
+
                         
                     
 
@@ -572,15 +572,55 @@
 </ul>
 <p><br></p>
 <hr>
-<h2 id="分析在本单元自测过程中如何利用JML规格来准备测试数据"><a href="#分析在本单元自测过程中如何利用JML规格来准备测试数据" class="headerlink" title="分析在本单元自测过程中如何利用JML规格来准备测试数据"></a>分析在本单元自测过程中如何利用JML规格来准备测试数据</h2><p><br></p>
+<h2 id="分析在本单元自测过程中如何利用JML规格来准备测试数据"><a href="#分析在本单元自测过程中如何利用JML规格来准备测试数据" class="headerlink" title="分析在本单元自测过程中如何利用JML规格来准备测试数据"></a>分析在本单元自测过程中如何利用JML规格来准备测试数据</h2><ul>
+<li>阅读 <code>JML</code> 规格代码，依据规格的不同边界条件特定的构造相应数据以验证正确性，并且进行覆盖测试以及随机测试来进一步确保我们程序的正确性；进一步可以构造数据以进行压力测试来确保我们代码的性能的完备</li>
+</ul>
+<p><br></p>
 <hr>
-<h2 id="梳理本单元的架构设计，分析自己的图模型构建和维护策略"><a href="#梳理本单元的架构设计，分析自己的图模型构建和维护策略" class="headerlink" title="梳理本单元的架构设计，分析自己的图模型构建和维护策略"></a>梳理本单元的架构设计，分析自己的图模型构建和维护策略</h2><p><br></p>
+<h2 id="梳理本单元的架构设计，分析自己的图模型构建和维护策略"><a href="#梳理本单元的架构设计，分析自己的图模型构建和维护策略" class="headerlink" title="梳理本单元的架构设计，分析自己的图模型构建和维护策略"></a>梳理本单元的架构设计，分析自己的图模型构建和维护策略</h2><ul>
+<li><p>架构设计（好像官方代码已经把架构定死了）：每一个类都有对应的方法，对应问题中的一类操作</p>
+</li>
+<li><p>图构建及维护策略：使用了邻接表来保存关系网中的图，使用了 <code>Java</code> 自带的 <code>ArrayList</code> 以及 <code>HashMap</code> 容器增加代码的可读性和维护性</p>
+</li>
+</ul>
+<p><br></p>
 <hr>
-<h2 id="按照作业分析代码实现出现的性能问题和修复情况"><a href="#按照作业分析代码实现出现的性能问题和修复情况" class="headerlink" title="按照作业分析代码实现出现的性能问题和修复情况"></a>按照作业分析代码实现出现的性能问题和修复情况</h2><p><br></p>
+<h2 id="按照作业分析代码实现出现的性能问题和修复情况"><a href="#按照作业分析代码实现出现的性能问题和修复情况" class="headerlink" title="按照作业分析代码实现出现的性能问题和修复情况"></a>按照作业分析代码实现出现的性能问题和修复情况</h2><ul>
+<li>第二次作业时，由于没有用图保存结点而是采用了遍历寻找节点的方式，导致在寻找最小生成树时运行时间超时，而后使用图存储结点并在图中寻找，修复了此问题</li>
+</ul>
+<p><br></p>
 <hr>
-<h2 id="请针对下页ppt内容对Network进行扩展，并给出相应的JML规格"><a href="#请针对下页ppt内容对Network进行扩展，并给出相应的JML规格" class="headerlink" title="请针对下页ppt内容对Network进行扩展，并给出相应的JML规格"></a>请针对下页ppt内容对Network进行扩展，并给出相应的JML规格</h2><p><br></p>
+<h2 id="请针对下页ppt内容对Network进行扩展，并给出相应的JML规格"><a href="#请针对下页ppt内容对Network进行扩展，并给出相应的JML规格" class="headerlink" title="请针对下页ppt内容对Network进行扩展，并给出相应的JML规格"></a>请针对下页ppt内容对Network进行扩展，并给出相应的JML规格</h2><ul>
+<li><p><code>PPT</code> 内容：</p>
+</li>
+<li><p>假设出现了几种不同的 <code>Person</code>  </p>
+<ul>
+<li><code>Advertiser</code>：持续向外发送产品广告  </li>
+<li><code>Producer</code>：产品生产商，通过 <code>Advertiser</code> 来销售产品  </li>
+<li><code>Customer</code>：消费者，会关注广告并选择和自己偏好匹配的产品来购买 — 所谓购买，就是直接通过 <code>Advertiser</code> 给相应 <code>Producer</code> 发一个购买消息</li>
+<li><code>Person</code>：吃瓜群众，不发广告，不买东西，不卖东西    </li>
+<li>如此 <code>Network</code> 可以支持市场营销，并能查询某种商品的销售额和销售路径等 请讨论如何对 <code>Network</code> 扩展，给出相关接口方法，并选择 <code>3</code> 个 <strong>核心业务</strong> 功能的接口方法撰写 <code>JML</code> 规格（借鉴所总结的 <code>JML</code> 规格模式）</li>
+</ul>
+</li>
+<li><p>生产产品：  </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*@ public normal_behavior</span></span><br><span class="line"><span class="comment">  @ requires !(\exists int i; 0 &lt;= i &amp;&amp; i &lt; getPerson(personId).products.length; getPerson(personId).products[i].getId() == id);</span></span><br><span class="line"><span class="comment">  @ assignable getPerson(personId).products ;</span></span><br><span class="line"><span class="comment">  @ ensures (\forall int i; 0 &lt;= i &amp;&amp; i &lt; \old(getPerson(personId).products.length) ;</span></span><br><span class="line"><span class="comment">  @          getPerson(personId).products[i].getId() == id );</span></span><br><span class="line"><span class="comment">  @ ensures getPerson(personId).products.length == \old(getPerson(personId).products.length) + 1 ;</span></span><br><span class="line"><span class="comment">  @ ensures getPerson(personId).hasProduct(id);</span></span><br><span class="line"><span class="comment">  @ also</span></span><br><span class="line"><span class="comment">  @ public exceptional_behavior</span></span><br><span class="line"><span class="comment">  @ signals (EqualAdvertiseIdException e) (\exists int i; 0 &lt;= i &amp;&amp; i &lt; getPerson(personId).products.length;</span></span><br><span class="line"><span class="comment">  @                                     getPerson(personId).products[i].getId() == id) ;</span></span><br><span class="line"><span class="comment">  @*/</span></span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">addProduct</span><span class="params">(String personId, Advertisement id)</span></span>;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>购买</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*@ public normal_behavior</span></span><br><span class="line"><span class="comment">       @ requires (\exists int i; 0 &lt;= i &amp;&amp; i &lt; advertisers.length;</span></span><br><span class="line"><span class="comment">       @ advertisers.get(i).equals(advertiser));</span></span><br><span class="line"><span class="comment">       @ ensures money == \old(money) - product.getValue();</span></span><br><span class="line"><span class="comment">       @ ensures production.length == \old(production).length + 1;</span></span><br><span class="line"><span class="comment">       @ ensures (\exists int i; 0 &lt;= i &amp;&amp; i &lt; production.length;</span></span><br><span class="line"><span class="comment">       @ production.get(i).equals(product));</span></span><br><span class="line"><span class="comment">       @*/</span></span><br><span class="line">     <span class="keyword">public</span> <span class="comment">/*@ pure @*/</span> <span class="function"><span class="keyword">void</span> <span class="title">buy</span><span class="params">(Advertiser advertiser, Product product)</span></span>;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>给予生产建议</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* @ public normal_behavior</span></span><br><span class="line"><span class="comment">   @ requires (\exists int i; 0 &lt;= i &amp;&amp; i &lt; customers.length;</span></span><br><span class="line"><span class="comment">   @ customers.get(i).equals(customer));</span></span><br><span class="line"><span class="comment">   @ ensures customer.getAdvertisements.length ==</span></span><br><span class="line"><span class="comment">   @ \old(customer.getAdvertisements).length + 1;</span></span><br><span class="line"><span class="comment">   @ ensures (\exists int i; 0 &lt;= i &amp;&amp; i &lt; customer.getAdvertisements.length</span></span><br><span class="line"><span class="comment">   @ customer.getAdvertisements.get(i).equals(advertisement));</span></span><br><span class="line"><span class="comment">   @*/</span></span><br><span class="line">   <span class="keyword">public</span> <span class="comment">/*@ pure @*/</span> <span class="function"><span class="keyword">void</span> <span class="title">sendAdvertisement</span><span class="params">(Customer customer, Advertisement advertisement)</span></span>;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><br></p>
 <hr>
-<h2 id="本单元学习体会"><a href="#本单元学习体会" class="headerlink" title="本单元学习体会"></a>本单元学习体会</h2><p><br></p>
+<h2 id="本单元学习体会"><a href="#本单元学习体会" class="headerlink" title="本单元学习体会"></a>本单元学习体会</h2><ul>
+<li><p>本单元学习了由契约式设计而延伸出来的 <code>JML</code> 代码，契约式设计是一种基于信任机制权利义务均衡机制的设计方法学， <code>JML</code> 源自于契约式设计的需要，并掌握了基于 <code>JML</code> 的规格模式及基于 <code>JML</code> 规格的测试与验证，受益匪浅</p>
+</li>
+<li><p>由于本单元是根据 <code>JML</code> 代码规格而书写代码，所以并没有很好的锻炼我们的架构设计以及代码迭代设计的能力，只学会了如何阅读 <code>JML</code> 而不是如何书写 <code>JML</code> ，因此会觉得这个单元相较于两个单元学习的知识偏少，这是我觉得面向对象这个单元所缺失的地方</p>
+</li>
+</ul>
+<p><br></p>
 <hr>
 <h6>author: 20373864 谭立德</h6>
 
