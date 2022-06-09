@@ -121,7 +121,7 @@
 	       
                             <div class="blank_box"></div>
                             <span class="meta">
-                                 <span class="post-count">4.8k</span> Words
+                                 <span class="post-count">2k</span> Words
                             </span>
                             <div class="blank_box"></div>
                             <!-- 不蒜子统计 start -->
@@ -182,24 +182,24 @@
 
                         
                         	<li>
+                          	  <a href="/about/">About Tan</a>
+                        	</li>
+                        
+                    
+
+                        
+                    
+
+                        
+                        	<li>
                           	  <a href="/archive/">Archives</a>
                         	</li>
                         
                     
 
                         
-                    
-
-                        
                         	<li>
                           	  <a href="/tags/">Tags</a>
-                        	</li>
-                        
-                    
-
-                        
-                        	<li>
-                          	  <a href="/about/">About Tan</a>
                         	</li>
                         
                     
@@ -270,161 +270,82 @@
 <p><br></p>
 <h2 id="课下"><a href="#课下" class="headerlink" title="课下"></a>课下</h2><h3 id="Lab5-实验报告"><a href="#Lab5-实验报告" class="headerlink" title="Lab5 实验报告"></a>Lab5 实验报告</h3><p><br></p>
 <h3 id="一-思考题"><a href="#一-思考题" class="headerlink" title="一. 思考题"></a>一. 思考题</h3><p><br></p>
-<h4 id="Thinking-5-1"><a href="#Thinking-5-1" class="headerlink" title="Thinking 5.1"></a>Thinking 5.1</h4><p>思考并回答下面的问题：</p>
+<h4 id="Thinking-5-1"><a href="#Thinking-5-1" class="headerlink" title="Thinking 5.1"></a>Thinking 5.1</h4><p>思考并回答下面的问题：  </p>
 <p>查阅资料，了解:  </p>
 <ul>
-<li><p>Linux/Unix 的 /proc 文件系统是什么？  </p>
+<li><p><code>Linux/Unix</code> 的 <code>/proc</code> 文件系统是什么？  </p>
 </li>
 <li><p>有什么作用？  </p>
 </li>
-<li><p>Windows 操作系统又是如何实现这些功能的？  </p>
+<li><p><code>Windows</code> 操作系统又是如何实现这些功能的？  </p>
 </li>
-<li><p>proc 文件系统这样的设计有什么好处和可以改进的地方？  </p>
+<li><p><code>proc</code> 文件系统这样的设计有什么好处和可以改进的地方？  </p>
 </li>
 </ul>
 <h4 id="答："><a href="#答：" class="headerlink" title="答："></a>答：</h4><ul>
-<li><p>内核在保存现场时，通过 <code>SAVE_ALL</code> 宏函数利用 <code>$k0, $k1</code> 这两个不需要保护的寄存器，获取应该使用的 <code>$sp</code> 值，然后首先将 <code>$sp</code> 存入栈空间，再利用 <code>$sp</code> 将所有寄存器的值入栈；这样在退出异常（从内核返回）时可以进行恢复</p>
+<li><p><code>/proc</code> 文件系统是一个虚拟文件系统  </p>
 </li>
-<li><p>不可以，在陷入内核态时，系统取得系统调用号时，已经将系统调用号存入 <code>$a0</code></p>
-<figure class="highlight mips"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">……</span><br><span class="line"></span><br><span class="line"><span class="comment">/* <span class="doctag">TODO:</span> 将系统调用号“复制”入寄存器$a0 */</span></span><br><span class="line"><span class="keyword">lw </span><span class="built_in">a0</span>, TF_REG4(<span class="built_in">sp</span>)    </span><br><span class="line"><span class="keyword">addiu </span>  <span class="built_in">a0</span>, <span class="built_in">a0</span>, -__SYSCALL_BASE     <span class="comment"># a0 &lt;- “相对”系统调用号</span></span><br><span class="line"></span><br><span class="line">……</span><br></pre></td></tr></table></figure>
-<p>而 <code>$a1-$a3</code> 寄存器寄存器虽然没被使用，因此其保存的值没有改变；但是系统并没有要求它们不变的，在之后插入某些功能时可能使用到了 <code>$a1-$a3</code> 寄存器，从而导致其内部保存的值的改变；因此正确的做法应该是 <code>$a0-$a3</code> 从栈中获取，这样可以防止其他程序使用这四个寄存器带来的问题 </p>
+<li><p>它将系统运行的状态的详细信息组织成一个虚拟文件系统的形式，通过它可以使用一种新的方法在 <code>Linux</code> 内核空间和用户间之间进行通信；在 <code>/proc</code> 文件系统中，我们可以将对虚拟文件的读写作为与内核中实体进行通信的一种手段，具体能实现的功能包括读取系统数据、进程信息甚至修改系统参数等；但是与普通文件不同的是，这些虚拟文件的内容都是由内核动态创建的  </p>
 </li>
-<li><p>我们在 <code>lib/syscall.S</code> 中先从内核栈中取出 <code>$a0-$a3</code> 的值，在从用户栈中取出后两个参数，将它们的值存入异常栈，从而将栈和寄存器 “伪装成” 正常调用 <code>sys</code> 开头的函数时的状态，使得 <code>msyscall</code> 与 <code>sys</code> 函数获得了相同的输入信息，即 <code>$a0-$a3、16(sp)、20(sp)</code></p>
-<figure class="highlight mips"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">  ……</span><br><span class="line"></span><br><span class="line"><span class="comment">/* <span class="doctag">TODO:</span> 在当前栈指针分配6个参数的存储空间，并将6个参数安置到期望的位置 */</span></span><br><span class="line">  <span class="keyword">lw </span><span class="built_in">a0</span>, TF_REG4(<span class="built_in">sp</span>)</span><br><span class="line">  <span class="keyword">lw </span><span class="built_in">a1</span>, TF_REG5(<span class="built_in">sp</span>)</span><br><span class="line">  <span class="keyword">lw </span><span class="built_in">a2</span>, TF_REG6(<span class="built_in">sp</span>)</span><br><span class="line">  <span class="keyword">lw </span><span class="built_in">a3</span>, TF_REG7(<span class="built_in">sp</span>)</span><br><span class="line">  <span class="keyword">addiu </span><span class="built_in">sp</span>, <span class="built_in">sp</span>, -<span class="number">24</span></span><br><span class="line">  <span class="keyword">sw </span><span class="built_in">t3</span>, <span class="number">16</span>(<span class="built_in">sp</span>)</span><br><span class="line">  <span class="keyword">sw </span><span class="built_in">t4</span>, <span class="number">20</span>(<span class="built_in">sp</span>)</span><br><span class="line">  </span><br><span class="line">  ……</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>设置 <code>tf.epc</code> 的值为 <code>epc + 4</code> ，对应用户态的 <code>pc + 4</code> ，这样可以使返回时从<code>syscall_*</code> 的后一条指令开始执行；系统调用的返回值放在 <code>tf.v0</code> 中，用户态函数在其中可以获得系统调用函数 <code>syscall_*</code> 的返回参数</p>
-<figure class="highlight mips"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">……</span><br><span class="line"></span><br><span class="line"><span class="comment">/* <span class="doctag">TODO:</span> 将Trapframe的EPC寄存器取出，计算一个合理的值存回Trapframe中 */</span></span><br><span class="line"><span class="keyword">lw </span><span class="built_in">t0</span>, TF_EPC(<span class="built_in">sp</span>)</span><br><span class="line"><span class="keyword">addiu </span><span class="built_in">t0</span>, <span class="built_in">t0</span>, <span class="number">4</span></span><br><span class="line"><span class="keyword">sw </span><span class="built_in">t0</span>, TF_EPC(<span class="built_in">sp</span>)</span><br><span class="line"></span><br><span class="line">……</span><br></pre></td></tr></table></figure>
-<figure class="highlight mips"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">……</span><br><span class="line"></span><br><span class="line"><span class="comment">/* <span class="doctag">TODO:</span> 恢复栈指针到分配前的状态 */</span></span><br><span class="line"><span class="keyword">sw </span><span class="built_in">v0</span>, TF_REG2(<span class="built_in">sp</span>)             <span class="comment"># 将$v0中的sys_*函数返回值存入Trapframe</span></span><br><span class="line"></span><br><span class="line">……</span><br></pre></td></tr></table></figure>
+<li><p><code>Windows</code> 系统一般通过 <code>Windows API</code> 即系统调用的方式返回系统的相关信息；但将这些系统信息打包提供给用户的方式更接近于 <code>WINDOWS</code> 的资源管理器  </p>
 </li>
 </ul>
+<ul>
+<li>这样的设计简化了用户程序和内核空间的交互过程，更加方便快捷  </li>
+</ul>
 <p><br></p>
-<h4 id="Thinking-5-2"><a href="#Thinking-5-2" class="headerlink" title="Thinking 5.2"></a>Thinking 5.2</h4><p>如果我们通过 kseg0 读写设备，我们对于设备的写入会缓存到 Cache 中。通过 kseg0 访问设备是一种错误的行为，在实际编写代码的时候这么做会引发不可预知的问题。请你思考：这么做这会引起什么问题？对于不同种类的设备（如我们提到的串口设备和 IDE 磁盘）的操作会有差异吗？可以从缓存的性质和缓存刷新的策略来考虑。</p>
+<h4 id="Thinking-5-2"><a href="#Thinking-5-2" class="headerlink" title="Thinking 5.2"></a>Thinking 5.2</h4><p>如果我们通过 <code>kseg0</code> 读写设备，我们对于设备的写入会缓存到 <code>Cache</code> 中  </p>
+<p>通过 <code>kseg0</code> 访问设备是一种错误的行为，在实际编写代码的时候这么做会引发不可预知的问题  </p>
+<p>请你思考：</p>
+<ul>
+<li><p>这么做这会引起什么问题？</p>
+</li>
+<li><p>对于不同种类的设备（如我们提到的串口设备和 <code>IDE</code> 磁盘）的操作会有差异吗？（可以从缓存的性质和缓存刷新的策略来考虑）  </p>
+</li>
+</ul>
 <h4 id="答：-1"><a href="#答：-1" class="headerlink" title="答："></a>答：</h4><ul>
-<li><p><code>mkenvid()</code> 函数的实现：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">u_int <span class="title">mkenvid</span><span class="params">(struct Env *e)</span> </span>&#123;</span><br><span class="line">    u_int idx = e - envs;</span><br><span class="line">    u_int asid = asid_alloc();</span><br><span class="line">    <span class="keyword">return</span> (asid &lt;&lt; (<span class="number">1</span> + LOG2NENV)) | (<span class="number">1</span> &lt;&lt; LOG2NENV) | idx;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>可见 <code>mkenvid()</code> 函数的返回值由于 <code>(1 &lt;&lt; LOG2NENV)</code> 的存在而使第 <code>(LOG2NENV + 1)</code> 位永远为 <code>1</code>，即该函数不会返回 <code>0</code></p>
+<li><p>引起问题：<br>会导致外部设备的数据与 <code>CPU</code> 获取的数据间可能不同步；对于其他地址空间的访存，都完全由 <code>CPU</code> 完成，这些地址空间中的值都是由 <code>CPU</code> 修改的，因而 <code>Cache</code> 可以保证数据访存的一致性；而外设对应的地址空间上的数据，会被外部设备自己更改，而此时 <code>CPU</code> 中的 <code>Cache</code> 仍缓存的旧数据在被访问时访问者便可能会得到错误的数据的，因而 <code>CPU</code> 只有通过直接读取这些外设地址上的信息才能保证时刻获得正确的数据  </p>
+<ul>
+<li><p>对于写入操作：  </p>
+<ol>
+<li>在采用 <code>Write-back</code> 刷新策略时，写入数据只有在 <code>Cache</code> 被换出时才会进行写回，会导致后面的操作覆盖了前面操作，最后相当于只进行最后一次操作；对串口设备，会导致只有 <code>Cache</code> 刷新后才能看到输出，且只能看到最后一个字符；类似的，会导致 <code>IDE</code> 磁盘可能只会写入最后一个扇区  </li>
+<li>但如果采用 <code>Write-through</code> 策略进行刷新， <code>CPU</code> 向 <code>Cache</code> 写入数据时，也会向内存相同地址写入相同的数据；这样就避免了上述问题，此时可以正常工作  </li>
+</ol>
 </li>
-<li><p><code>envid2env()</code> 函数的行为：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">envid2env</span><span class="params">(u_int envid, struct Env **penv, <span class="keyword">int</span> checkperm)</span> </span>&#123;</span><br><span class="line">    ……</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (envid == <span class="number">0</span>) &#123;</span><br><span class="line">        *penv = curenv;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    ……  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>可见在 <code>envid2env()</code> 函数中，遇到 <code>envid == 0</code> 时会返回当前进程；所以，如果进程的 <code>envid</code> 被设置成 <code>0</code> 的话，则意味着该进程不能通过 <code>envid2env()</code> 函数查询到该进程</p>
+<li><p>对于读取操作：<br>任何一种策略都可能会读取到旧的、过时的数据，因此产生错误</p>
 </li>
-<li><p>系统调用 <code>IPC</code> 部分的实现：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">sys_ipc_can_send</span><span class="params">(<span class="keyword">int</span> sysno, u_int envid, u_int value, u_int srcva, u_int perm)</span> </span>&#123;</span><br><span class="line">    ……</span><br><span class="line"></span><br><span class="line">    r = envid2env(envid, &amp;e, <span class="number">0</span>);</span><br><span class="line">    <span class="keyword">if</span> (r &lt; <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> r;</span><br><span class="line">    &#125;   </span><br><span class="line"></span><br><span class="line">    ……</span><br><span class="line"></span><br><span class="line">    e-&gt;env_ipc_from = curenv-&gt;env_id;</span><br><span class="line"></span><br><span class="line">    ……  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>同理，由于调用了 <code>envid2env()</code> 函数以及把发送进程的进程号设置为了当前进程的进程号，因此若进程号被设置为 <code>0</code> 则会导致该部分的功能异常</p>
+</ul>
+</li>
+<li><p>有区别，如终端串口设备是字符设备，则无需经过缓存，直接以字符（字节）为单位进行读写；而如 <code>IDE</code> 磁盘设备等设备属于块设备，需要经过缓存并通过缓存的刷新访存相应的外设</p>
 </li>
 </ul>
 <p><br></p>
-<h4 id="Thinking-5-3"><a href="#Thinking-5-3" class="headerlink" title="Thinking 5.3"></a>Thinking 5.3</h4><p>比较 MOS 操作系统的文件控制块和 Unix/Linux 操作系统的 inode 及相关概念，试述二者的不同之处。</p>
-<h4 id="答：-2"><a href="#答：-2" class="headerlink" title="答："></a>答：</h4><ul>
-<li><p><code>fork()</code> 刚执行完时，父子进程的内存映射当前装载的二进制镜像几乎完全相同，即父子进程的代码段以及大部分数据（除了 <code>fork()</code> 的返回值外）内容完全相同</p>
-</li>
-<li><p>子进程栈帧里面保存的 <code>pc</code> 是父进程的 <code>epc</code> ，也就是说子进程会从程序段中调用 <code>fork()</code> 的那一条语句开始执行；父进程中创建了子进程，子进程利用 <code>fork()</code> 的返回值来确认自己的存在；因此子进程不会执行 <code>fork()</code> 之前的代码</p>
-</li>
-</ul>
-<p><br></p>
+<h4 id="Thinking-5-3"><a href="#Thinking-5-3" class="headerlink" title="Thinking 5.3"></a>Thinking 5.3</h4><p>比较 <code>MOS</code> 操作系统的文件控制块和 <code>Unix/Linux</code> 操作系统的 <code>inode</code> 及相关概念，试述二者的不同之处。</p>
+<h4 id="答：-2"><a href="#答：-2" class="headerlink" title="答："></a>答：</h4><p><br></p>
 <h4 id="Thinking-5-4"><a href="#Thinking-5-4" class="headerlink" title="Thinking 5.4"></a>Thinking 5.4</h4><p>查找代码中的相关定义，试回答一个磁盘块中最多能存储多少个文件 控制块？一个目录下最多能有多少个文件？我们的文件系统支持的单个文件最大为 多大？</p>
-<h4 id="答：-3"><a href="#答：-3" class="headerlink" title="答："></a>答：</h4><ul>
-<li><p>选 <code>C</code></p>
-</li>
-<li><p><code>A</code> 错误，在父进程中调用 <code>1</code> 次，返回子进程进程号 </p>
-</li>
-<li><p><code>B</code> 错误，子进程没有调用 <code>fork</code> </p>
-</li>
-<li><p><code>C</code> 正确，<code>fork</code> 前子进程并不存在，子进程在父进程调用 <code>fork</code> 时在 <code>sys_env_alloc</code> 函数中被创建，赋予不同的返回值，并从这里开始执行  </p>
-</li>
-<li><p><code>D</code> 错误，父进程必须调用 <code>fork</code> </p>
-</li>
-</ul>
-<p><br></p>
+<h4 id="答：-3"><a href="#答：-3" class="headerlink" title="答："></a>答：</h4><p><br></p>
 <h4 id="Thinking-5-5"><a href="#Thinking-5-5" class="headerlink" title="Thinking 5.5"></a>Thinking 5.5</h4><p>请思考，在满足磁盘块缓存的设计的前提下，我们实验使用的内核支持的最大磁盘大小是多少？</p>
-<h4 id="答：-4"><a href="#答：-4" class="headerlink" title="答："></a>答：</h4><ul>
-<li><p>在 <code>mm/pmap.c</code> 中 <code>mips_vm_init</code> 函数中建立了 <code>UPAGES</code> 和 <code>UENVS</code> 对应的 <code>4M</code> 空间的映射：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">mips_vm_init</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    ……</span><br><span class="line"></span><br><span class="line">    pages = (struct Page *)alloc(npage * <span class="keyword">sizeof</span>(struct Page), BY2PG, <span class="number">1</span>); </span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"to memory %x for struct Pages.\n"</span>, freemem);</span><br><span class="line">    n = ROUND(npage * <span class="keyword">sizeof</span>(struct Page), BY2PG);</span><br><span class="line">    boot_map_segment(pgdir, UPAGES, n, PADDR(pages), PTE_R);</span><br><span class="line">    </span><br><span class="line">    envs = (struct Env *)alloc(NENV * <span class="keyword">sizeof</span>(struct Env), BY2PG, <span class="number">1</span>);</span><br><span class="line">    n = ROUND(NENV * <span class="keyword">sizeof</span>(struct Env), BY2PG);</span><br><span class="line">    boot_map_segment(pgdir, UENVS, n, PADDR(envs), PTE_R);</span><br><span class="line"></span><br><span class="line">    ……</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p><code>include/mmu.h</code> 里的内存布局图：<br><img align="middle" src='1.png'>  </p>
-</li>
-<li><p><code>UTEXT</code> 到 <code>USTACKTOP</code> 的部分：除了不可写（ <code>PTE_R</code> 未设置）或父子进程共享（设置 <code>PTE_LIBRARY</code> ）的页，我们不能用 <code>PTE_COW</code> 保护以外，其余页需要用 <code>PTE_COW</code> 保护</p>
-</li>
-<li><p><code>USTACKTOP</code> 到 <code>UTOP</code> 的部分不应该进行映射：在 <code>[USTACKTOP， UXSTACKTOP - BY2PG)</code> 位置存放的是无效内存，而 <code>[UXSTACKTOP - BY2PG, UXSTACKTOP)</code> 位置是用户的缺页异常处理栈，父子进程不能共用，而且处理 <code>page fault</code> 需要借助以上两片空间，因此我们不能用 <code>PTE_COW</code> 保护</p>
-</li>
+<h4 id="答：-4"><a href="#答：-4" class="headerlink" title="答："></a>答：</h4><p><br></p>
+<h4 id="Thinking-5-6"><a href="#Thinking-5-6" class="headerlink" title="Thinking 5.6"></a>Thinking 5.6</h4><p>如果将 <code>DISKMAX</code> 改成 <code>0xC0000000</code> , 超过用户空间，我们的文件系统还能正常工作吗？为什么？</p>
+<h4 id="答：-5"><a href="#答：-5" class="headerlink" title="答："></a>答：</h4><p><br></p>
+<h4 id="Thinking-5-7"><a href="#Thinking-5-7" class="headerlink" title="Thinking 5.7"></a>Thinking 5.7</h4><p>在 <code>lab5</code> 中， <code>fs/fs.h</code> 、 <code>include/fs.h</code> 等文件中出现了许多结构体和宏定 义，写出你认为比较重要或难以理解的部分，并进行解释。</p>
+<h4 id="答：-6"><a href="#答：-6" class="headerlink" title="答："></a>答：</h4><p><br></p>
+<h4 id="Thinking-5-8"><a href="#Thinking-5-8" class="headerlink" title="Thinking 5.8"></a>Thinking 5.8</h4><p>阅读 <code>user/file.c</code> ，你会发现很多函数中都会将一个 <code>struct Fd*</code> 型的 指针转换为 <code>struct Filefd*</code> 型的指针，请解释为什么这样的转换可行。</p>
+<h4 id="答：-7"><a href="#答：-7" class="headerlink" title="答："></a>答：</h4><p><br></p>
+<h4 id="Thinking-5-9"><a href="#Thinking-5-9" class="headerlink" title="Thinking 5.9"></a>Thinking 5.9</h4><p>在 <code>lab4</code> 的实验中我们实现了极为重要的 <code>fork</code> 函数。那么 <code>fork</code> 前后的父子进程是否会共享文件描述符和定位指针呢？请在完成练习 <code>5.8</code> 和 <code>5.9</code> 的基础上编写一个程序进行验证。</p>
+<h4 id="答：-8"><a href="#答：-8" class="headerlink" title="答："></a>答：</h4><p><br></p>
+<h4 id="Thinking-5-10"><a href="#Thinking-5-10" class="headerlink" title="Thinking 5.10"></a>Thinking 5.10</h4><ul>
+<li>请解释 <code>Fd</code> ， <code>Filefd</code> ， <code>Open</code> 结构体及其各个域的作用。比如各个结构体会在哪些过程中被使用，是否对应磁盘上的物理实体还是单纯的内存数据等。说明形式自定，要求简洁明了，可大致勾勒出文件系统数据结构与物理实体的对应关系与设计框架。</li>
 </ul>
-<ul>
-<li><p><code>UTOP</code> 到 <code>ULIM</code> 的部分：从 <code>UVPT</code> 开始的 <code>4M</code> 空间是进程的页表我们显然不能从父进程复制，因此也就没有保护的必要； <code>UPAGES</code> 和 <code>UENVS</code> 对应的 <code>4M</code> 空间都是在 <code>mips_vm_init</code> 建立映射，对所有进程共享，因此不需要保护；且这三者各个子进程都仅具有读取的权利，因此我们不能用 <code>PTE_COW</code> 保护</p>
-</li>
-<li><p><code>KERNBASE</code> 再往上为内核态空间，内核态空间所有用户进程在用户态下都不可访问，因此我们不能用 <code>PTE_COW</code> 保护</p>
-</li>
+<h4 id="答：-9"><a href="#答：-9" class="headerlink" title="答："></a>答：</h4><p><br></p>
+<h4 id="Thinking-5-11"><a href="#Thinking-5-11" class="headerlink" title="Thinking 5.11"></a>Thinking 5.11</h4><ul>
+<li><code>UML</code> 时序图中有多种不同形式的箭头，请结合 <code>UML</code> 时序图的规范，解释这些不同箭头的差别，并思考我们的操作系统是如何实现对应类型的进程间通信的。</li>
 </ul>
-<p><br></p>
-<h4 id="Thinking-5-6"><a href="#Thinking-5-6" class="headerlink" title="Thinking 5.6"></a>Thinking 5.6</h4><p>如果将 DISKMAX 改成 0xC0000000, 超过用户空间，我们的文件系统还能正常工作吗？为什么？</p>
-<h4 id="答：-5"><a href="#答：-5" class="headerlink" title="答："></a>答：</h4><p>在user/entry.S中定义了这两个宏：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">vpt: <span class="comment">// Virtual page table</span></span><br><span class="line">  .<span class="keyword">word</span> UVPT = <span class="number">0x7fc00000</span></span><br><span class="line">vpd: <span class="comment">// Virtual page directory</span></span><br><span class="line">  .<span class="keyword">word</span> (UVPT+(UVPT&gt;&gt;<span class="number">12</span>)*<span class="number">4</span>) = <span class="number">0x7fdff000</span></span><br></pre></td></tr></table></figure>
-<ul>
-<li><p><code>vpt</code> 是指向虚拟页表的指针的指针， <code>vpd</code> 是指向虚拟页目录的指针的指针 ， 通过 <code>vpt</code> 和 <code>vpd</code> 这两个宏，我们可以找到任意 <code>Vaddr</code> 对应的页表项和页目录项  </p>
-</li>
-<li><p>使用 <code>(*vpd)[PDX(va)]</code> 即 <code>((Pte *)(*vpt))[PDX(va)]</code> 可获得其所在的页目录项，<br>使用 <code>(*vpt)[PTX(va)]</code> 即 <code>((Pde *)(*vpd))[PDX(va)]</code> 可以获得其所在的页表项；根据自映射访问的就是页目录所在的一页的第<code>pgdirIndex</code> 条记录</p>
-</li>
-<li><p><code>vpd</code> 很明显位于<code>UVPY-UVPT+4KB</code>之间，因此页目录在页表的内部，可以体现自映射的设计；即根据自映射访问的就是页目录所在的一页的第 <code>PDX(va)</code> 条记录</p>
-</li>
-<li><p>不可以，页表项的修改由操作系统完成；处于用户态的进程仅具有读取的权限，因此进程对应的页表/页目录在映射时权限同样是只读的，进程不能够通过这种方式来修改自己的页表项</p>
-</li>
+<h4 id="答：-10"><a href="#答：-10" class="headerlink" title="答："></a>答：</h4><p><br></p>
+<h4 id="Thinking-5-12"><a href="#Thinking-5-12" class="headerlink" title="Thinking 5.12"></a>Thinking 5.12</h4><ul>
+<li>阅读 <code>serv.c/serve</code> 函数的代码，我们注意到函数中包含了一个死循环 <code>for (;;) {...}</code> ，为什么这段代码不会导致整个内核进入 <code>panic</code> 状态？</li>
 </ul>
-<p><br></p>
-<h4 id="Thinking-5-7"><a href="#Thinking-5-7" class="headerlink" title="Thinking 5.7"></a>Thinking 5.7</h4><p>在 lab5 中，fs/fs.h、include/fs.h 等文件中出现了许多结构体和宏定 义，写出你认为比较重要或难以理解的部分，并进行解释。</p>
-<h4 id="答：-6"><a href="#答：-6" class="headerlink" title="答："></a>答：</h4><ul>
-<li><p>一般情况下， <code>CPU</code> 不支持中断重入（因为在一个内核态处理的过程中， <code>SR</code> 中断屏蔽位始终为 <code>1</code> ，外部中断请求会被屏蔽），但由于我们实验的操作系统的微内核结构中对于 <code>COW</code> 缺页中断的处理，部分在内核态下完成（异常的识别、分发、设置异常栈和 <code>handler</code> 入口），部分在用户态下完成（完成页面复制和充填的主要工作）；因而处理的全过程并不能保证中断屏蔽位时钟被置 <code>1</code> ，因而可能出现 “中断重入” ，以“为实现进程的分时调度而设置的时钟中断”为例：在进行 <code>page_fault_handler</code> 函数时，外部请求时钟中断，由于此时 <code>CPU</code> 处于内核态会屏蔽中断， <code>page_fault_handler</code> 函数会被原子地执行完，设置好异常栈和 <code>cp0</code> ，返回用户态后，时钟中断发生，进行进程调度；当再一次执行这一进程时，首先由 <code>env_run</code> 使得 <code>CPU</code> 上下文恢复至时钟中断发生前的状态，此后立即在用户态下进行 <code>COW</code> 的缺页异常处理；这一过程可以视作一次 “中断重入” ；简而言之，在 <code>page_fault_handler</code> 的处理过程中，如果触发了新的 <code>page_fault_handler</code> ，就会出现这种中断重入  </p>
-</li>
-<li><p>我们采用微内核架构，对缺页错误的处理由用户进程完成，处理结束后也由用户进程恢复原来缺页异常发生时的现场；因此需要将保留着发生缺页异常的指令和缺页的地址的 <code>Trapframe</code> 复制到用户空间，并且用户进程中处理异常的函数也需知道异常的现场，即为 <code>Trapframe</code> 结构体</p>
-</li>
-</ul>
-<p><br></p>
-<h4 id="Thinking-5-8"><a href="#Thinking-5-8" class="headerlink" title="Thinking 5.8"></a>Thinking 5.8</h4><p>阅读 user/file.c，你会发现很多函数中都会将一个 struct Fd<em> 型的 指针转换为 struct Filefd</em> 型的指针，请解释为什么这样的转换可行。</p>
-<h4 id="答：-7"><a href="#答：-7" class="headerlink" title="答："></a>答：</h4><ul>
-<li><p>采用微内核架构，减小了内核体积，符合设计思想；减少关中断时间，提高中断处理效率；并且使得进程在处理缺页中断的过程中保持可相应外部中断的状态，换句话说，使得进程处理缺页中断的过程非原子化，可被进程调度打断；从而提高系统的分时程度，提高其他外部中断的响应速度；此外，一个进程的缺页处理的过程不会影响到其他进程的执行，其错误也只会导致一个进程的崩溃，一定程度上提高了操作系统的健壮性</p>
-</li>
-<li><p>在 <code>pgfault</code> 函数完成处理后，会回到 <code>__asm_pgfault_handler</code> 函数中，该函数继续通过恢复各个寄存器到 <code>UXSTACK</code> 中保存的 <code>TrapFram</code> 中的值，可以避免破坏通用寄存器中所存储的值；在恢复的时候先利用 <code>lw</code> 命令取出除 <code>$sp</code> 之外的其他寄存器（ <code>$sp</code> 此时被指向 <code>UXSTACK</code> ），然后在利用 <code>$k0</code> 跳转到中断发生前执行的指令的同时，利用延时槽的特性恢复 <code>$sp</code> （到 <code>USTACK</code> ）</p>
-</li>
-</ul>
-<p><br></p>
-<h4 id="Thinking-5-9"><a href="#Thinking-5-9" class="headerlink" title="Thinking 5.9"></a>Thinking 5.9</h4><p>在lab4 的实验中我们实现了极为重要的fork 函数。那么fork 前后的父子进程是否会共享文件描述符和定位指针呢？请在完成练习5.8和5.9的基础上编写一个程序进行验证。</p>
-<h4 id="答：-8"><a href="#答：-8" class="headerlink" title="答："></a>答：</h4><ul>
-<li><p><code>syscall_env_alloc</code> 是 <code>fork</code> 函数真正产生子进程的地方；子进程执行的起始点即从 <code>syscall_env_alloc</code> 返回后的第一条指令；因此，应当在子进程开始执行第一条指令之前由父进程设置好属于父进程自己的 <code>COW</code> 的缺页处理机制；如果放在 <code>syscall_env_alloc</code> 之后，子进程开始运行后会再次执行 <code>set_pgfault_handler</code> ，为 <code>__pgfault_handler</code> 赋值，同时设置 <code>pgfault_handler</code> 和分配相应的空间；但由于我们在子进程开始运行前就完成了第二、三步的内容，这样就产生了不必要的的开销</p>
-</li>
-<li><p><code>set_pgfault_handler</code> 如果放置在写时复制保护机制完成之后会导致在父进程进行 <code>duppage</code> 的设置过程中遇到的 <code>COW</code> 缺页异常无法得到正确的处理，即在执行 <code>set_pgfault_handler</code> 之前就会发生 <code>pgfault</code> ，此时还没有相应的 <code>handler</code> 进行处理，系统就会出现问题</p>
-</li>
-<li><p>不需要，父进程已经通过 <code>syscall_set_pgfault_handler</code> 对子进程的 <code>__pagefault_handler</code> 进行了设置</p>
-</li>
-</ul>
-<p><br></p>
-<h4 id="Thinking-5-10"><a href="#Thinking-5-10" class="headerlink" title="Thinking 5.10"></a>Thinking 5.10</h4><p>请解释Fd, Filefd, Open 结构体及其各个域的作用。比如各个结构体会在哪些过程中被使用，是否对应磁盘上的物理实体还是单纯的内存数据等。说明形式自定，要求简洁明了，可大致勾勒出文件系统数据结构与物理实体的对应关系与设计框架。</p>
-<h4 id="答：-9"><a href="#答：-9" class="headerlink" title="答："></a>答：</h4><ul>
-<li><p><code>syscall_env_alloc</code> 是 <code>fork</code> 函数真正产生子进程的地方；子进程执行的起始点即从 <code>syscall_env_alloc</code> 返回后的第一条指令；因此，应当在子进程开始执行第一条指令之前由父进程设置好属于父进程自己的 <code>COW</code> 的缺页处理机制；如果放在 <code>syscall_env_alloc</code> 之后，子进程开始运行后会再次执行 <code>set_pgfault_handler</code> ，为 <code>__pgfault_handler</code> 赋值，同时设置 <code>pgfault_handler</code> 和分配相应的空间；但由于我们在子进程开始运行前就完成了第二、三步的内容，这样就产生了不必要的的开销</p>
-</li>
-<li><p><code>set_pgfault_handler</code> 如果放置在写时复制保护机制完成之后会导致在父进程进行 <code>duppage</code> 的设置过程中遇到的 <code>COW</code> 缺页异常无法得到正确的处理，即在执行 <code>set_pgfault_handler</code> 之前就会发生 <code>pgfault</code> ，此时还没有相应的 <code>handler</code> 进行处理，系统就会出现问题</p>
-</li>
-<li><p>不需要，父进程已经通过 <code>syscall_set_pgfault_handler</code> 对子进程的 <code>__pagefault_handler</code> 进行了设置</p>
-</li>
-</ul>
-<p><br></p>
-<h4 id="Thinking-5-11"><a href="#Thinking-5-11" class="headerlink" title="Thinking 5.11"></a>Thinking 5.11</h4><p>UML时序图中有多种不同形式的箭头，请结合UML 时序图的规范，解释这些不同箭头的差别，并思考我们的操作系统是如何实现对应类型的进程间通信的。</p>
-<h4 id="答：-10"><a href="#答：-10" class="headerlink" title="答："></a>答：</h4><ul>
-<li><p><code>syscall_env_alloc</code> 是 <code>fork</code> 函数真正产生子进程的地方；子进程执行的起始点即从 <code>syscall_env_alloc</code> 返回后的第一条指令；因此，应当在子进程开始执行第一条指令之前由父进程设置好属于父进程自己的 <code>COW</code> 的缺页处理机制；如果放在 <code>syscall_env_alloc</code> 之后，子进程开始运行后会再次执行 <code>set_pgfault_handler</code> ，为 <code>__pgfault_handler</code> 赋值，同时设置 <code>pgfault_handler</code> 和分配相应的空间；但由于我们在子进程开始运行前就完成了第二、三步的内容，这样就产生了不必要的的开销</p>
-</li>
-<li><p><code>set_pgfault_handler</code> 如果放置在写时复制保护机制完成之后会导致在父进程进行 <code>duppage</code> 的设置过程中遇到的 <code>COW</code> 缺页异常无法得到正确的处理，即在执行 <code>set_pgfault_handler</code> 之前就会发生 <code>pgfault</code> ，此时还没有相应的 <code>handler</code> 进行处理，系统就会出现问题</p>
-</li>
-<li><p>不需要，父进程已经通过 <code>syscall_set_pgfault_handler</code> 对子进程的 <code>__pagefault_handler</code> 进行了设置</p>
-</li>
-</ul>
-<p><br></p>
-<h4 id="Thinking-5-12"><a href="#Thinking-5-12" class="headerlink" title="Thinking 5.12"></a>Thinking 5.12</h4><p>阅读serv.c/serve函数的代码，我们注意到函数中包含了一个死循环for (;;) {…}，为什么这段代码不会导致整个内核进入panic 状态？</p>
-<h4 id="答：-11"><a href="#答：-11" class="headerlink" title="答："></a>答：</h4><ul>
-<li><p><code>syscall_env_alloc</code> 是 <code>fork</code> 函数真正产生子进程的地方；子进程执行的起始点即从 <code>syscall_env_alloc</code> 返回后的第一条指令；因此，应当在子进程开始执行第一条指令之前由父进程设置好属于父进程自己的 <code>COW</code> 的缺页处理机制；如果放在 <code>syscall_env_alloc</code> 之后，子进程开始运行后会再次执行 <code>set_pgfault_handler</code> ，为 <code>__pgfault_handler</code> 赋值，同时设置 <code>pgfault_handler</code> 和分配相应的空间；但由于我们在子进程开始运行前就完成了第二、三步的内容，这样就产生了不必要的的开销</p>
-</li>
-<li><p><code>set_pgfault_handler</code> 如果放置在写时复制保护机制完成之后会导致在父进程进行 <code>duppage</code> 的设置过程中遇到的 <code>COW</code> 缺页异常无法得到正确的处理，即在执行 <code>set_pgfault_handler</code> 之前就会发生 <code>pgfault</code> ，此时还没有相应的 <code>handler</code> 进行处理，系统就会出现问题</p>
-</li>
-<li><p>不需要，父进程已经通过 <code>syscall_set_pgfault_handler</code> 对子进程的 <code>__pagefault_handler</code> 进行了设置</p>
-</li>
-</ul>
-<p><br></p>
+<h4 id="答：-11"><a href="#答：-11" class="headerlink" title="答："></a>答：</h4><p><br></p>
 <h3 id="二-实验难点："><a href="#二-实验难点：" class="headerlink" title="二. 实验难点："></a>二. 实验难点：</h3><ol>
 <li><p>了解系统调用的本质</p>
 </li>

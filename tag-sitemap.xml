@@ -3,6 +3,13 @@
 
 
     <url>
+        <loc>https://master-tan.github.io/tags/OS/</loc>
+        <lastmod>2022-06-09T18:42:39.780Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
         <loc>https://master-tan.github.io/tags/%25E7%25A2%258E%25E7%25A2%258E%25E5%25BF%25B5/</loc>
         <lastmod>2022-06-06T08:50:48.277Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -12,13 +19,6 @@
     <url>
         <loc>https://master-tan.github.io/tags/OO/</loc>
         <lastmod>2022-06-06T05:31:53.252Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://master-tan.github.io/tags/OS/</loc>
-        <lastmod>2022-06-05T14:19:20.362Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
