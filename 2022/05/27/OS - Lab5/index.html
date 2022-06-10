@@ -121,7 +121,7 @@
 	       
                             <div class="blank_box"></div>
                             <span class="meta">
-                                 <span class="post-count">4k</span> Words
+                                 <span class="post-count">3.9k</span> Words
                             </span>
                             <div class="blank_box"></div>
                             <!-- 不蒜子统计 start -->
@@ -182,8 +182,18 @@
 
                         
                         	<li>
+                          	  <a href="/about/">About Tan</a>
+                        	</li>
+                        
+                    
+
+                        
+                        	<li>
                           	  <a href="/archive/">Archives</a>
                         	</li>
+                        
+                    
+
                         
                     
 
@@ -191,16 +201,6 @@
                         	<li>
                           	  <a href="/tags/">Tags</a>
                         	</li>
-                        
-                    
-
-                        
-                        	<li>
-                          	  <a href="/about/">About Tan</a>
-                        	</li>
-                        
-                    
-
                         
                     
 
@@ -452,13 +452,13 @@
 </ul>
 <p><br></p>
 <hr>
-<h2 id="课上"><a href="#课上" class="headerlink" title="课上"></a>课上</h2><h3 id="lab5-1-exam："><a href="#lab5-1-exam：" class="headerlink" title="lab5-1-exam："></a>lab5-1-exam：</h3><p>增加 <strong>自旋锁</strong> 机制，维护一个共用的锁，新增两个系统调用，功能分别是获取锁和释放锁， <strong>只有持有锁的进程能输出</strong> ；本题按照系统调用函数实现的流程分别家函数，实现对应功能即可</p>
+<h2 id="课上"><a href="#课上" class="headerlink" title="课上"></a>课上</h2><h3 id="lab5-1-exam："><a href="#lab5-1-exam：" class="headerlink" title="lab5-1-exam："></a>lab5-1-exam：</h3><p>能通过基地址+偏移量的方式 <strong>访问外设</strong> 得到当前系统时间，并能完成对一块 <strong>新建磁盘的写入和读取</strong> ；熟练使用课下的 <code>ide_write</code> 和 <code>ide_read</code> 即可（lab5-1 也大致只有这俩函数）</p>
 <p><br></p>
-<h3 id="lab5-1-Extra："><a href="#lab5-1-Extra：" class="headerlink" title="lab5-1-Extra："></a>lab5-1-Extra：</h3><p>修改 <code>IPC</code> 的发送进程的进程逻辑，使其在接受进程没就位的时候发送进程堵塞以 <strong>防止发送进程轮询</strong> 消耗 <code>CPU</code> 资源；本题为增加一个等待队列，接受进程可以接受信息时先查找等待队列有无信息，没有才等待，发送进程在接受进程没准备好时直接进入等待队列并阻塞即可</p>
+<h3 id="lab5-1-Extra："><a href="#lab5-1-Extra：" class="headerlink" title="lab5-1-Extra："></a>lab5-1-Extra：</h3><p>实现一个 <strong>类 RAID4 磁盘阵列</strong> ，实现对四个数据磁盘和一个数据检验盘的带有检验和复原数据功能的实现</p>
 <p><br></p>
-<h3 id="lab5-2-exam"><a href="#lab5-2-exam" class="headerlink" title="lab5-2-exam:"></a>lab5-2-exam:</h3><p>实现 <strong>把一个页面标记为共享页面</strong> <code>(PTE_LIBRARY)</code> 的功能，没权限或者没有对应物理页面时作出相应的处理；因为是在用户态下实现该功能，所以不能使用内核函数，因此注意好 <code>sys_*</code> 类函数的使用，以及如何在用户态访问当前进程的页表即可</p>
+<h3 id="lab5-2-exam"><a href="#lab5-2-exam" class="headerlink" title="lab5-2-exam:"></a>lab5-2-exam:</h3><p>实现以 <strong>O_APPEND / O_CREATE</strong> 的参数打开一个文件，并且实现打开文件时取消父子共享页面的 <strong>O_ALONE</strong> 参数功能</p>
 <p><br></p>
-<h3 id="lab5-2-Extra"><a href="#lab5-2-Extra" class="headerlink" title="lab5-2-Extra:"></a>lab5-2-Extra:</h3><p>实现对任意路径下的文件进行遍历并输出文件名；由于文件目录块的存在，因此直接用 <code>open</code> 打开并遍历即可，但是题目提示却是需要使用进程间通信，导致直接思考复杂度暴增并且最后都没做出来</p>
+<h3 id="lab5-2-Extra"><a href="#lab5-2-Extra" class="headerlink" title="lab5-2-Extra:"></a>lab5-2-Extra:</h3><p>实现 <strong>任意路径下的文件名遍历输出</strong> ，对任意路径下的文件进行遍历并输出文件名；由于文件目录块的存在，因此直接用 <code>open</code> 打开并遍历即可，但是题目提示却是需要使用进程间通信，导致直接思考复杂度暴增并且最后都没做出来</p>
 <p><br></p>
 <hr>
 
