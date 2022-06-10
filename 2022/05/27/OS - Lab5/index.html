@@ -121,7 +121,7 @@
 	       
                             <div class="blank_box"></div>
                             <span class="meta">
-                                 <span class="post-count">2k</span> Words
+                                 <span class="post-count">4k</span> Words
                             </span>
                             <div class="blank_box"></div>
                             <!-- 不蒜子统计 start -->
@@ -182,24 +182,8 @@
 
                         
                         	<li>
-                          	  <a href="/about/">About Tan</a>
-                        	</li>
-                        
-                    
-
-                        
-                        	<li>
                           	  <a href="/archive/">Archives</a>
                         	</li>
-                        
-                    
-
-                        
-                    
-
-                        
-                    
-
                         
                     
 
@@ -207,6 +191,22 @@
                         	<li>
                           	  <a href="/tags/">Tags</a>
                         	</li>
+                        
+                    
+
+                        
+                        	<li>
+                          	  <a href="/about/">About Tan</a>
+                        	</li>
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
                         
                     
 
@@ -312,7 +312,7 @@
 <li>但如果采用 <code>Write-through</code> 策略进行刷新， <code>CPU</code> 向 <code>Cache</code> 写入数据时，也会向内存相同地址写入相同的数据；这样就避免了上述问题，此时可以正常工作  </li>
 </ol>
 </li>
-<li><p>对于读取操作：<br>任何一种策略都可能会读取到旧的、过时的数据，因此产生错误</p>
+<li><p>对于读取操作：<br>任何一种策略都可能会读取到旧的、过时的数据，不能正常地工作</p>
 </li>
 </ul>
 </li>
@@ -321,53 +321,132 @@
 </ul>
 <p><br></p>
 <h4 id="Thinking-5-3"><a href="#Thinking-5-3" class="headerlink" title="Thinking 5.3"></a>Thinking 5.3</h4><p>比较 <code>MOS</code> 操作系统的文件控制块和 <code>Unix/Linux</code> 操作系统的 <code>inode</code> 及相关概念，试述二者的不同之处。</p>
-<h4 id="答：-2"><a href="#答：-2" class="headerlink" title="答："></a>答：</h4><p><br></p>
-<h4 id="Thinking-5-4"><a href="#Thinking-5-4" class="headerlink" title="Thinking 5.4"></a>Thinking 5.4</h4><p>查找代码中的相关定义，试回答一个磁盘块中最多能存储多少个文件 控制块？一个目录下最多能有多少个文件？我们的文件系统支持的单个文件最大为 多大？</p>
-<h4 id="答：-3"><a href="#答：-3" class="headerlink" title="答："></a>答：</h4><p><br></p>
+<h4 id="答：-2"><a href="#答：-2" class="headerlink" title="答："></a>答：</h4><ul>
+<li><p><code>MOS</code> 操作系统的文件控制块：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">File</span> &#123;</span></span><br><span class="line">    u_char f_name[MAXNAMELEN];  <span class="comment">// 文件名字</span></span><br><span class="line">    u_int f_size;           <span class="comment">// 文件大小</span></span><br><span class="line">    u_int f_type;           <span class="comment">// 文件类型</span></span><br><span class="line">    u_int f_direct[NDIRECT]; <span class="comment">// 文件直接指针</span></span><br><span class="line">    u_int f_indirect; <span class="comment">// 文件间接指针</span></span><br><span class="line"></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">File</span> *<span class="title">f_dir</span>;</span>     <span class="comment">// 指向文件所属的文件目录（当此文件控制块可用时）</span></span><br><span class="line">    u_char f_pad[BY2FILE - MAXNAMELEN - <span class="number">4</span> - <span class="number">4</span> - NDIRECT * <span class="number">4</span> - <span class="number">4</span> - <span class="number">4</span>];  <span class="comment">// 为了让整数个文件结构体占用一个磁盘块，填充结构体中剩下的字节</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>Unix/Linux</code> 操作系统的 <code>inode</code> 及相关概念：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">m_inode</span> &#123;</span></span><br><span class="line">    <span class="keyword">unsigned</span> short i_mode;<span class="comment">/*文件类型和属性，ls查看的结果，比如drwx------*/</span></span><br><span class="line">    <span class="keyword">unsigned</span> short i_uid;<span class="comment">/*文件宿主id*/</span></span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">long</span> i_size;</span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">long</span> i_mtime;<span class="comment">/*文件内容上一次变动的时间*/</span></span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">char</span> i_gid;<span class="comment">/*groupid：宿主所在的组id*/</span></span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">char</span> i_nlinks; <span class="comment">/*链接数：有多少个其他的文件夹链接到这里*/</span></span><br><span class="line">    <span class="keyword">unsigned</span> short i_zone[<span class="number">9</span>];<span class="comment">/*文件映射的逻辑块号*/</span></span><br><span class="line"><span class="comment">/* these are in memory also */</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">task_struct</span> * <span class="title">i_wait</span>;</span><span class="comment">/*等待该inode节点的进程队列*/</span></span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">long</span> i_atime;<span class="comment">/*文件上一次打开的时间*/</span></span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">long</span> i_ctime;<span class="comment">/*文件的inode上一次变动的时间*/</span></span><br><span class="line">    <span class="keyword">unsigned</span> short i_dev;<span class="comment">/*设备号*/</span></span><br><span class="line">    <span class="keyword">unsigned</span> short i_num;</span><br><span class="line">    <span class="comment">/* 多少个进程在使用这个inode*/</span></span><br><span class="line">    <span class="keyword">unsigned</span> short i_count;</span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">char</span> i_lock;<span class="comment">/*互斥锁*/</span></span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">char</span> i_dirt;</span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">char</span> i_pipe;</span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">char</span> i_mount;</span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">char</span> i_seek;</span><br><span class="line">    <span class="comment">/*</span></span><br><span class="line"><span class="comment">    数据是否是最新的，或者说有效的，</span></span><br><span class="line"><span class="comment">    update代表数据的有效性，dirt代表文件是否需要回写,</span></span><br><span class="line"><span class="comment">    比如写入文件的时候，a进程写入的时候，dirt是1，因为需要回写到硬盘，</span></span><br><span class="line"><span class="comment">    但是数据是最新的，update是1，这时候b进程读取这个文件的时候，可以从</span></span><br><span class="line"><span class="comment">    缓存里直接读取。</span></span><br><span class="line"><span class="comment">      */</span></span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">char</span> i_update;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>MOS</code> 系统对文件的操作是依靠进程间通信来完成的，而 <code>Linux</code> 系统是直接系统调用完成的； <code>MOS</code> 系统的文件系统使用用户空间实现的行为降低了性能，但提高了可靠性</p>
+</li>
+</ul>
+<p><br></p>
+<h4 id="Thinking-5-4"><a href="#Thinking-5-4" class="headerlink" title="Thinking 5.4"></a>Thinking 5.4</h4><p>查找代码中的相关定义，试回答一个磁盘块中最多能存储多少个文件控制块？一个目录下最多能有多少个文件？我们的文件系统支持的单个文件最大为 多大？</p>
+<h4 id="答：-3"><a href="#答：-3" class="headerlink" title="答："></a>答：</h4><ul>
+<li>一个磁盘块最多存储 <code>16</code> 个文件控制块；单个文件最多有 <code>1024</code> 个指针，指向 <code>1024</code> 个磁盘块，所以一个目录下最多 <code>16384</code> 个文件。</li>
+</ul>
+<p><br></p>
 <h4 id="Thinking-5-5"><a href="#Thinking-5-5" class="headerlink" title="Thinking 5.5"></a>Thinking 5.5</h4><p>请思考，在满足磁盘块缓存的设计的前提下，我们实验使用的内核支持的最大磁盘大小是多少？</p>
-<h4 id="答：-4"><a href="#答：-4" class="headerlink" title="答："></a>答：</h4><p><br></p>
-<h4 id="Thinking-5-6"><a href="#Thinking-5-6" class="headerlink" title="Thinking 5.6"></a>Thinking 5.6</h4><p>如果将 <code>DISKMAX</code> 改成 <code>0xC0000000</code> , 超过用户空间，我们的文件系统还能正常工作吗？为什么？</p>
-<h4 id="答：-5"><a href="#答：-5" class="headerlink" title="答："></a>答：</h4><p><br></p>
-<h4 id="Thinking-5-7"><a href="#Thinking-5-7" class="headerlink" title="Thinking 5.7"></a>Thinking 5.7</h4><p>在 <code>lab5</code> 中， <code>fs/fs.h</code> 、 <code>include/fs.h</code> 等文件中出现了许多结构体和宏定 义，写出你认为比较重要或难以理解的部分，并进行解释。</p>
-<h4 id="答：-6"><a href="#答：-6" class="headerlink" title="答："></a>答：</h4><p><br></p>
+<h4 id="答：-4"><a href="#答：-4" class="headerlink" title="答："></a>答：</h4><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// fs/fs.h</span></span><br><span class="line">……</span><br><span class="line"></span><br><span class="line"><span class="comment">/* Maximum disk size we can handle (1GB) */</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> DISKMAX     0x40000000</span></span><br><span class="line"></span><br><span class="line">……</span><br></pre></td></tr></table></figure>
+<ul>
+<li>可见，我们实验使用的内核支持的最大磁盘大小为 <code>DISKMAX(0x40000000 Bytes)</code>，也就是 <code>1GB</code></li>
+</ul>
+<p><br></p>
+<h4 id="Thinking-5-6"><a href="#Thinking-5-6" class="headerlink" title="Thinking 5.6"></a>Thinking 5.6</h4><p>如果将 <code>DISKMAX</code> 改成 <code>0xC0000000</code> ， 超过用户空间，我们的文件系统还能正常工作吗？为什么？</p>
+<h4 id="答：-5"><a href="#答：-5" class="headerlink" title="答："></a>答：</h4><ul>
+<li><p>不能</p>
+</li>
+<li><p>系统从 <code>DISKMAP (0x10000000)</code> 开始映射缓存的硬盘块；缓存的硬盘块保存在 <code>serv.c</code> 这个用户内存空间里的，而 <code>serv.c</code> 进程会从 <code>FILEVA (0x60000000)</code> 开始，为 <code>Open</code> 结构分配空间，在 <code>DISKMAX</code> 大于 <code>0x50000000</code> 之后，映射的硬盘块就会覆盖掉 <code>Open</code> 结构进而可能出现潜在问题；而在 <code>DISKMAX</code> 大于 <code>0xB0000000</code> ，超过用户空间，就可能会导致文件控制进程试图访问内核数据，引发异常并 <code>panic</code> ，系统无法正常运行</p>
+</li>
+</ul>
+<p><br></p>
+<h4 id="Thinking-5-7"><a href="#Thinking-5-7" class="headerlink" title="Thinking 5.7"></a>Thinking 5.7</h4><p>在 <code>lab5</code> 中， <code>fs/fs.h</code> 、 <code>include/fs.h</code> 等文件中出现了许多结构体和宏定义，写出你认为比较重要或难以理解的部分，并进行解释。</p>
+<h4 id="答：-6"><a href="#答：-6" class="headerlink" title="答："></a>答：</h4><ul>
+<li><p>见注释</p>
+</li>
+<li><p><code>fs/fs.h</code>：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* IDE disk number to look on for our file system */</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> DISKNO      1</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> BY2SECT     512 <span class="comment">/* Bytes per disk sector */</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> SECT2BLK    (BY2BLK/BY2SECT)    <span class="comment">/* sectors to a block */</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* Disk block n, when in memory, is mapped into the file system</span></span><br><span class="line"><span class="comment"> * server's address space at DISKMAP+(n*BY2BLK). */</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> DISKMAP     0x10000000</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* Maximum disk size we can handle (1GB) */</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> DISKMAX     0x40000000</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>include/fs.h</code></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// See COPYRIGHT for copyright information.</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">ifndef</span> _FS_H_</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> _FS_H_ 1</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;types.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">// File nodes (both in-memory and on-disk)</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// Bytes per file system block - same as page size</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> BY2BLK      BY2PG</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> BIT2BLK     (BY2BLK*8)</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// Maximum size of a filename (a single path component), including null</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> MAXNAMELEN  128</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// Maximum size of a complete pathname, including null</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> MAXPATHLEN  1024</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// Number of (direct) block pointers in a File descriptor</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> NDIRECT     10</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> NINDIRECT   (BY2BLK/4)</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 最大文件大小</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> MAXFILESIZE (NINDIRECT*BY2BLK)</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> BY2FILE     256</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 文件控制块定义</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">File</span> &#123;</span></span><br><span class="line">    u_char f_name[MAXNAMELEN];  <span class="comment">// 文件名字</span></span><br><span class="line">    u_int f_size;           <span class="comment">// 文件大小</span></span><br><span class="line">    u_int f_type;           <span class="comment">// 文件类型</span></span><br><span class="line">    u_int f_direct[NDIRECT]; <span class="comment">// 文件直接指针</span></span><br><span class="line">    u_int f_indirect; <span class="comment">// 文件间接指针</span></span><br><span class="line"></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">File</span> *<span class="title">f_dir</span>;</span>     <span class="comment">// 指向文件所属的文件目录（当此文件控制块可用时）</span></span><br><span class="line">    u_char f_pad[BY2FILE - MAXNAMELEN - <span class="number">4</span> - <span class="number">4</span> - NDIRECT * <span class="number">4</span> - <span class="number">4</span> - <span class="number">4</span>];  <span class="comment">// 为了让整数个文件结构体占用一个磁盘块，填充结构体中剩下的字节</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 每个文件数据块含有的文件数</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> FILE2BLK    (BY2BLK/sizeof(struct File)) </span></span><br><span class="line"></span><br><span class="line"><span class="comment">// File types</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> FTYPE_REG       0   <span class="comment">// Regular file</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> FTYPE_DIR       1   <span class="comment">// Directory</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">// File system super-block (both in-memory and on-disk)</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> FS_MAGIC    0x68286097  <span class="comment">// Everyone's favorite OS class</span></span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Super</span> &#123;</span></span><br><span class="line">    u_int s_magic;      <span class="comment">// Magic number: FS_MAGIC</span></span><br><span class="line">    u_int s_nblocks;    <span class="comment">// Total number of blocks on disk</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">File</span> <span class="title">s_root</span>;</span> <span class="comment">// Root directory node</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Definitions for requests from clients to file system</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 各种操作对应的标志数</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> FSREQ_OPEN  1</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> FSREQ_MAP   2</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> FSREQ_SET_SIZE  3</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> FSREQ_CLOSE 4</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> FSREQ_DIRTY 5</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> FSREQ_REMOVE    6</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> FSREQ_SYNC  7</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Fsreq_open</span> &#123;</span> <span class="comment">// 打开文件</span></span><br><span class="line">    <span class="keyword">char</span> req_path[MAXPATHLEN];</span><br><span class="line">    u_int req_omode;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Fsreq_map</span> &#123;</span> <span class="comment">// 定位文件</span></span><br><span class="line">    <span class="keyword">int</span> req_fileid;</span><br><span class="line">    u_int req_offset;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Fsreq_set_size</span> &#123;</span> <span class="comment">// 改变文件大小</span></span><br><span class="line">    <span class="keyword">int</span> req_fileid;</span><br><span class="line">    u_int req_size;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Fsreq_close</span> &#123;</span> <span class="comment">// 关闭文件</span></span><br><span class="line">    <span class="keyword">int</span> req_fileid;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Fsreq_dirty</span> &#123;</span> <span class="comment">// 将文件标记为已修改</span></span><br><span class="line">    <span class="keyword">int</span> req_fileid;</span><br><span class="line">    u_int req_offset;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Fsreq_remove</span> &#123;</span> <span class="comment">// 删除文件</span></span><br><span class="line">    u_char req_path[MAXPATHLEN];</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span> <span class="comment">// _FS_H_</span></span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><br></p>
 <h4 id="Thinking-5-8"><a href="#Thinking-5-8" class="headerlink" title="Thinking 5.8"></a>Thinking 5.8</h4><p>阅读 <code>user/file.c</code> ，你会发现很多函数中都会将一个 <code>struct Fd*</code> 型的 指针转换为 <code>struct Filefd*</code> 型的指针，请解释为什么这样的转换可行。</p>
-<h4 id="答：-7"><a href="#答：-7" class="headerlink" title="答："></a>答：</h4><p><br></p>
+<h4 id="答：-7"><a href="#答：-7" class="headerlink" title="答："></a>答：</h4><ul>
+<li><code>user/file.c</code> 里的 <code>struct Fd *</code> 指针都是 <code>open</code> 函数执行所得的，而 <code>open</code> 函数调用了 <code>fsipc_open</code> 函数，并将一个 <code>struct Fd</code> 型指针的值发送给 <code>serv</code> ； <code>serv</code> 会用 <code>ipc</code> 将 <code>fd</code> 指针的所在页映射上一个 <code>struct Filefd</code> ； 而 <code>Filefd</code> 的结构体中第一个结构体成员就是 <code>Fd</code> 结构体，所以一个处于 <code>Filefd</code> 结构体中的 <code>fd</code> 结构体的指针所指向的地址与其所处的 <code>Filefd</code> 结构体指针所指向的地址是相同的，因此可以直接进行这样的结构体指针的强制转化</li>
+</ul>
+<p><br></p>
 <h4 id="Thinking-5-9"><a href="#Thinking-5-9" class="headerlink" title="Thinking 5.9"></a>Thinking 5.9</h4><p>在 <code>lab4</code> 的实验中我们实现了极为重要的 <code>fork</code> 函数。那么 <code>fork</code> 前后的父子进程是否会共享文件描述符和定位指针呢？请在完成练习 <code>5.8</code> 和 <code>5.9</code> 的基础上编写一个程序进行验证。</p>
-<h4 id="答：-8"><a href="#答：-8" class="headerlink" title="答："></a>答：</h4><p><br></p>
+<h4 id="答：-8"><a href="#答：-8" class="headerlink" title="答："></a>答：</h4><ul>
+<li><p>文件描述符和定位指针均存储在用户空间，因此 <code>fork</code> 前后的父子进程会共享文件描述符和定位指针</p>
+</li>
+<li><p>程序：略</p>
+</li>
+</ul>
+<p><br></p>
 <h4 id="Thinking-5-10"><a href="#Thinking-5-10" class="headerlink" title="Thinking 5.10"></a>Thinking 5.10</h4><ul>
 <li>请解释 <code>Fd</code> ， <code>Filefd</code> ， <code>Open</code> 结构体及其各个域的作用。比如各个结构体会在哪些过程中被使用，是否对应磁盘上的物理实体还是单纯的内存数据等。说明形式自定，要求简洁明了，可大致勾勒出文件系统数据结构与物理实体的对应关系与设计框架。</li>
 </ul>
-<h4 id="答：-9"><a href="#答：-9" class="headerlink" title="答："></a>答：</h4><p><br></p>
+<h4 id="答：-9"><a href="#答：-9" class="headerlink" title="答："></a>答：</h4><ul>
+<li><code>struct Fd</code> 定义在 <code>user/fd.h</code> ，是一个文件描述符结构，是库函数保存用户进程已打开文件使用的。<ul>
+<li><code>fd_dev_id</code> ：打开文件的 <code>id</code> ，也就是该文件描述符对应的抽象文件的实际类型，指示了该文件所处的设备</li>
+<li><code>fd_offset</code> ：当前读/写的偏移值，也就是下一次操作从文件的哪个地方开始</li>
+<li><code>fd_omode</code> ：当前文件打开的模式（访问权限），只读/只写/读写等，可在判定操作是否合法时用。</li>
+</ul>
+</li>
+<li><code>struct Filefd</code> 定义在 <code>user/fd.h</code> ，是文件描述符与文件 <code>id</code> 与文件控制块的结构<ul>
+<li><code>f_fd</code> ：一个文件描述符。</li>
+<li><code>f_fileid</code> ：对应于一个全局的文件编号，用来向文件系统请求服务。</li>
+<li><code>f_file</code> ：对应文件的文件控制块。</li>
+</ul>
+</li>
+</ul>
+<ol>
+<li><code>struct Open</code> 定义在 <code>fs/serv.c</code> ，是文件系统服务用来保存整个系统的已打开文件的结构。<ul>
+<li><code>o_file</code> ：真实的，指向对应文件在硬盘块缓存上文件控制块的地址，用来对文件进行属性进行更改</li>
+<li><code>o_fileid</code> ：全局唯一的文件编号 <code>id</code> ，和 <code>struct Filefd</code> 里的 <code>f_fileid</code> 对应。</li>
+<li><code>o_mode</code> ：文件打开的模式，和 <code>struct Fd</code> 的 <code>fd_omode</code> 对应</li>
+<li><code>o_ff</code> ：文件读/写偏移量，即文件读/写当前位置</li>
+</ul>
+</li>
+</ol>
+<p><br></p>
 <h4 id="Thinking-5-11"><a href="#Thinking-5-11" class="headerlink" title="Thinking 5.11"></a>Thinking 5.11</h4><ul>
 <li><code>UML</code> 时序图中有多种不同形式的箭头，请结合 <code>UML</code> 时序图的规范，解释这些不同箭头的差别，并思考我们的操作系统是如何实现对应类型的进程间通信的。</li>
 </ul>
-<h4 id="答：-10"><a href="#答：-10" class="headerlink" title="答："></a>答：</h4><p><br></p>
+<h4 id="答：-10"><a href="#答：-10" class="headerlink" title="答："></a>答：</h4><ul>
+<li><p><code>UML</code>时序图：<br><img src="1.png"/></p>
+</li>
+<li><p>黑三角箭头且黑色实线，是同步消息</p>
+</li>
+<li><p>开三角箭头且黑色虚线，是返回消息</p>
+</li>
+<li><p>返回消息和同步消息结合使用；使用同步信息时，消息的发送者把进程控制传递给消息的接收者，然后暂停活动，等待消息接收者的返回消息</p>
+</li>
+<li><p>使用 <code>IPC</code> 进行进程间通讯，具体函数为 <code>fsipc</code> 函数</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">static</span> <span class="keyword">int</span> </span><br><span class="line">fsipc(u_int type, <span class="keyword">void</span> *fsreq, u_int dstva, u_int *perm)</span><br><span class="line">&#123;</span><br><span class="line">    u_int whom;</span><br><span class="line">    <span class="comment">// NOTEICE: Our file system no.1 process!</span></span><br><span class="line">    ipc_send(envs[<span class="number">1</span>].env_id, type, (u_int)fsreq, PTE_V | PTE_R);</span><br><span class="line">    <span class="keyword">return</span> ipc_recv(&amp;whom, dstva, perm);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><br></p>
 <h4 id="Thinking-5-12"><a href="#Thinking-5-12" class="headerlink" title="Thinking 5.12"></a>Thinking 5.12</h4><ul>
 <li>阅读 <code>serv.c/serve</code> 函数的代码，我们注意到函数中包含了一个死循环 <code>for (;;) {...}</code> ，为什么这段代码不会导致整个内核进入 <code>panic</code> 状态？</li>
 </ul>
-<h4 id="答：-11"><a href="#答：-11" class="headerlink" title="答："></a>答：</h4><p><br></p>
+<h4 id="答：-11"><a href="#答：-11" class="headerlink" title="答："></a>答：</h4><ul>
+<li>该进程在调用 <code>sys_ipc_recv</code> 时，会被设置为 <code>ENV_NOT_RUNNABLE</code> 并调用 <code>sys_yield</code> 主动让步，只有当其接收到了信息，才会被发送消息的一方重新设置位 <code>ENV_RUNNABLE</code> 转化为运行态；这种类似于 <code>wait-notify</code> 机制从而避免了忙等待，因而不会导致整个内核进入 <code>panic</code> 状态。</li>
+</ul>
+<p><br></p>
 <h3 id="二-实验难点："><a href="#二-实验难点：" class="headerlink" title="二. 实验难点："></a>二. 实验难点：</h3><ol>
-<li><p>了解系统调用的本质</p>
+<li><p>了解文件系统的基本概念和作用</p>
 </li>
-<li><p>系统调用机制的实现</p>
+<li><p>了解普通磁盘的基本结构和读写方式</p>
 </li>
-<li><p>进程间通信机制 <code>(IPC)</code> 的实现</p>
+<li><p>了解实现设备驱动的方法</p>
 </li>
-<li><p>了解写时复制思想</p>
+<li><p>掌握并实现文件系统服务的基本操作</p>
 </li>
-<li><p>实现 <code>fork</code> 函数</p>
-</li>
-<li><p>处理页写入异常</p>
+<li><p>了解微内核的基本设计思想和结构</p>
 </li>
 </ol>
 <h3 id="三-体会与感想："><a href="#三-体会与感想：" class="headerlink" title="三. 体会与感想："></a>三. 体会与感想：</h3><ul>
-<li><p>难度评价：<code>8/10</code></p>
+<li><p>难度评价：<code>9/10</code></p>
 </li>
-<li><p>实验用时：<code>10-12h</code>， 撰写实验报告用时：<code>h</code></p>
+<li><p>实验用时：<code>10-12h</code>， 撰写实验报告用时：<code>8h</code></p>
 </li>
 <li><p>体会与感想：</p>
 <ul>
-<li><code>lab5</code> 使我掌握了系统调用的概念及流程、实现了进程间通讯机制 <code>fork</code> 函数，掌握了页写入异常的处理流程；更加深入理解了进程间的协作机制以及内核态和用户态之间的关联与转换，大致清晰了系统调用与 <code>fork</code> 操作时操作的工作流程，受益匪浅</li>
+<li><code>lab5</code> 实验所需阅读代码量较大，理解难度较高，完成的较为不顺利；但通过此次实验，我了解了文件系统的基本概念和作用及普通磁盘的基本结构和读写方式，通过实现设备驱动，掌握并实现了文件系统服务的基本操作；基本了解微内核的基本设计思想和结构；受益匪浅</li>
 </ul>
 </li>
 </ul>
@@ -379,7 +458,7 @@
 <p><br></p>
 <h3 id="lab5-2-exam"><a href="#lab5-2-exam" class="headerlink" title="lab5-2-exam:"></a>lab5-2-exam:</h3><p>实现 <strong>把一个页面标记为共享页面</strong> <code>(PTE_LIBRARY)</code> 的功能，没权限或者没有对应物理页面时作出相应的处理；因为是在用户态下实现该功能，所以不能使用内核函数，因此注意好 <code>sys_*</code> 类函数的使用，以及如何在用户态访问当前进程的页表即可</p>
 <p><br></p>
-<h3 id="lab5-2-Extra"><a href="#lab5-2-Extra" class="headerlink" title="lab5-2-Extra:"></a>lab5-2-Extra:</h3><p>实现 <strong>注册用户信号函数</strong> 以及 <strong>发送信号</strong> 的功能，所需实现代码量极大，直接放弃</p>
+<h3 id="lab5-2-Extra"><a href="#lab5-2-Extra" class="headerlink" title="lab5-2-Extra:"></a>lab5-2-Extra:</h3><p>实现对任意路径下的文件进行遍历并输出文件名；由于文件目录块的存在，因此直接用 <code>open</code> 打开并遍历即可，但是题目提示却是需要使用进程间通信，导致直接思考复杂度暴增并且最后都没做出来</p>
 <p><br></p>
 <hr>
 
