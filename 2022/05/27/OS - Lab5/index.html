@@ -182,16 +182,6 @@
 
                         
                         	<li>
-                          	  <a href="/about/">About Tan</a>
-                        	</li>
-                        
-                    
-
-                        
-                    
-
-                        
-                        	<li>
                           	  <a href="/archive/">Archives</a>
                         	</li>
                         
@@ -201,12 +191,22 @@
                     
 
                         
+                        	<li>
+                          	  <a href="/about/">About Tan</a>
+                        	</li>
+                        
                     
 
                         
                         	<li>
                           	  <a href="/tags/">Tags</a>
                         	</li>
+                        
+                    
+
+                        
+                    
+
                         
                     
 
@@ -392,8 +392,6 @@
 <li><code>f_file</code> ：对应文件的文件控制块。</li>
 </ul>
 </li>
-</ul>
-<ol>
 <li><code>struct Open</code> 定义在 <code>fs/serv.c</code> ，是文件系统服务用来保存整个系统的已打开文件的结构。<ul>
 <li><code>o_file</code> ：真实的，指向对应文件在硬盘块缓存上文件控制块的地址，用来对文件进行属性进行更改</li>
 <li><code>o_fileid</code> ：全局唯一的文件编号 <code>id</code> ，和 <code>struct Filefd</code> 里的 <code>f_fileid</code> 对应。</li>
@@ -401,7 +399,7 @@
 <li><code>o_ff</code> ：文件读/写偏移量，即文件读/写当前位置</li>
 </ul>
 </li>
-</ol>
+</ul>
 <p><br></p>
 <h4 id="Thinking-5-11"><a href="#Thinking-5-11" class="headerlink" title="Thinking 5.11"></a>Thinking 5.11</h4><ul>
 <li><code>UML</code> 时序图中有多种不同形式的箭头，请结合 <code>UML</code> 时序图的规范，解释这些不同箭头的差别，并思考我们的操作系统是如何实现对应类型的进程间通信的。</li>
@@ -454,9 +452,9 @@
 <hr>
 <h2 id="课上"><a href="#课上" class="headerlink" title="课上"></a>课上</h2><h3 id="lab5-1-exam："><a href="#lab5-1-exam：" class="headerlink" title="lab5-1-exam："></a>lab5-1-exam：</h3><p>能通过基地址+偏移量的方式 <strong>访问外设</strong> 得到当前系统时间，并能完成对一块 <strong>新建磁盘的写入和读取</strong> ；熟练使用课下的 <code>ide_write</code> 和 <code>ide_read</code> 即可（lab5-1 也大致只有这俩函数）</p>
 <p><br></p>
-<h3 id="lab5-1-Extra："><a href="#lab5-1-Extra：" class="headerlink" title="lab5-1-Extra："></a>lab5-1-Extra：</h3><p>实现一个 <strong>类 RAID4 磁盘阵列</strong> ，实现对四个数据磁盘和一个数据检验盘的带有检验和复原数据功能的实现</p>
+<h3 id="lab5-1-Extra："><a href="#lab5-1-Extra：" class="headerlink" title="lab5-1-Extra："></a>lab5-1-Extra：</h3><p>实现一个 <strong>类 RAID4 磁盘阵列</strong> ，实现对四个数据磁盘和一个数据检验盘的带有检验和复原数据功能的实现；也是熟练使用课下的 <code>ide_write</code> 和 <code>ide_read</code> 即可</p>
 <p><br></p>
-<h3 id="lab5-2-exam"><a href="#lab5-2-exam" class="headerlink" title="lab5-2-exam:"></a>lab5-2-exam:</h3><p>实现以 <strong>O_APPEND / O_CREATE</strong> 的参数打开一个文件，并且实现打开文件时取消父子共享页面的 <strong>O_ALONE</strong> 参数功能</p>
+<h3 id="lab5-2-exam"><a href="#lab5-2-exam" class="headerlink" title="lab5-2-exam:"></a>lab5-2-exam:</h3><p>实现以 <strong>O_APPEND / O_CREATE</strong> 的参数打开一个文件，并且实现打开文件时取消父子共享页面的 <strong>O_ALONE</strong> 参数功能；后两者需要改动的是 <code>fs/serv.c</code> 中的 <code>serve_open</code> 函数，而在题目中完全没有提示，导致花费了较久的时间</p>
 <p><br></p>
 <h3 id="lab5-2-Extra"><a href="#lab5-2-Extra" class="headerlink" title="lab5-2-Extra:"></a>lab5-2-Extra:</h3><p>实现 <strong>任意路径下的文件名遍历输出</strong> ，对任意路径下的文件进行遍历并输出文件名；由于文件目录块的存在，因此直接用 <code>open</code> 打开并遍历即可，但是题目提示却是需要使用进程间通信，导致直接思考复杂度暴增并且最后都没做出来</p>
 <p><br></p>
@@ -790,7 +788,7 @@
         
 
         
-            <script type="text/javascript" src="/js/mouse-click.js" content='[&quot;Sunny&quot;, &quot;💖&quot;, &quot;Sunny&quot;, &quot;🧡&quot;, &quot;Sunny&quot;, &quot;💛&quot;, &quot;Sunny&quot; , &quot;💚&quot;, &quot;Sunny&quot;, &quot;💙&quot;, &quot;Sunny&quot;, &quot;💜&quot;, &quot;Sunny&quot;, &quot;😍&quot;]' color='[&quot;rgb(255, 0, 0)&quot; ,&quot;rgb(255, 0, 0)&quot; ,&quot;rgb(255, 125, 0)&quot; ,&quot;rgb(255, 125, 0)&quot; ,&quot;rgb(255, 255, 0)&quot; ,&quot;rgb(255, 255, 0)&quot; ,&quot;rgb(0, 255, 0)&quot; ,&quot;rgb(0, 255, 0)&quot; ,&quot;rgb(0, 255, 255)&quot; ,&quot;rgb(0, 255, 255)&quot; ,&quot;rgb(0, 0, 255)&quot; ,&quot;rgb(0, 0, 255)&quot; ,&quot;rgb(255, 0, 255)&quot; ,&quot;rgb(255, 0, 255)&quot;]'></script>
+            <script type="text/javascript" src="/js/mouse-click.js" content='[&#34;Sunny&#34;, &#34;💖&#34;, &#34;Sunny&#34;, &#34;🧡&#34;, &#34;Sunny&#34;, &#34;💛&#34;, &#34;Sunny&#34; , &#34;💚&#34;, &#34;Sunny&#34;, &#34;💙&#34;, &#34;Sunny&#34;, &#34;💜&#34;, &#34;Sunny&#34;, &#34;😍&#34;]' color='[&#34;rgb(255, 0, 0)&#34; ,&#34;rgb(255, 0, 0)&#34; ,&#34;rgb(255, 125, 0)&#34; ,&#34;rgb(255, 125, 0)&#34; ,&#34;rgb(255, 255, 0)&#34; ,&#34;rgb(255, 255, 0)&#34; ,&#34;rgb(0, 255, 0)&#34; ,&#34;rgb(0, 255, 0)&#34; ,&#34;rgb(0, 255, 255)&#34; ,&#34;rgb(0, 255, 255)&#34; ,&#34;rgb(0, 0, 255)&#34; ,&#34;rgb(0, 0, 255)&#34; ,&#34;rgb(255, 0, 255)&#34; ,&#34;rgb(255, 0, 255)&#34;]'></script>
         
 
         <!-- background effects end -->
@@ -800,21 +798,6 @@
     
         <script src="/js/ribbonDynamic.js"></script>
     
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
-            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-            processEscapes: true
-        }
-    });
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax();
-        for (var i = 0; i < all.length; ++i)
-            all[i].SourceElement().parentNode.className += ' has-jax';
-    });
-</script>
-<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 </body>
 
 </html>
