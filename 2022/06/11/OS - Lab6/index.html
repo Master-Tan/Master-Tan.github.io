@@ -188,9 +188,6 @@
                     
 
                         
-                    
-
-                        
                         	<li>
                           	  <a href="/about/">About Tan</a>
                         	</li>
@@ -201,6 +198,9 @@
                         	<li>
                           	  <a href="/tags/">Tags</a>
                         	</li>
+                        
+                    
+
                         
                     
 
@@ -329,7 +329,8 @@
 <p><br></p>
 <h4 id="Thinking-6-6"><a href="#Thinking-6-6" class="headerlink" title="Thinking 6.6"></a>Thinking 6.6</h4><p>为什么我们的 <code>*.b</code> 的 <code>text</code> 段偏移值都是一样的，为固定值？</p>
 <h4 id="答：-5"><a href="#答：-5" class="headerlink" title="答："></a>答：</h4><ul>
-<li>在 <code>user</code> 的 <code>lds</code> 中规定了 <code>.text</code> 段在链接中第一个被链接，所有加载的可执行程序的 <code>text</code> 段的偏移值相同</li>
+<li>在 <code>user.lds</code> 中有如下内容：<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"> . = <span class="number">0x00400000</span>;</span><br><span class="line"></span><br><span class="line"> _text = .;    <span class="comment">/* Text and read-only data */</span></span><br><span class="line"> .<span class="built_in">text</span> : &#123;</span><br><span class="line">*(.<span class="built_in">text</span>)</span><br><span class="line">*(.fixup)</span><br><span class="line">*(.gnu.warning)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+其规定了 <code>.text</code> 段在链接中第一个被链接，所有加载的可执行程序的 <code>text</code> 段的偏移值相同</li>
 </ul>
 <p><br></p>
 <h4 id="Thinking-6-7"><a href="#Thinking-6-7" class="headerlink" title="Thinking 6.7"></a>Thinking 6.7</h4><p>在哪步，<code>0</code> 和 <code>1</code> 被 “安排” 为标准输入和标准输出？请分析代码执行流程，给出答案。 </p>
@@ -339,15 +340,15 @@
 </ul>
 <p><br></p>
 <h3 id="二-实验难点："><a href="#二-实验难点：" class="headerlink" title="二. 实验难点："></a>二. 实验难点：</h3><ol>
-<li><p>了解文件系统的基本概念和作用</p>
+<li><p>掌握了管道的原理与底层细节</p>
 </li>
-<li><p>了解普通磁盘的基本结构和读写方式</p>
+<li><p>实现了管道的读写</p>
 </li>
-<li><p>了解实现设备驱动的方法</p>
+<li><p>复述了管道竞争情景</p>
 </li>
-<li><p>掌握并实现文件系统服务的基本操作</p>
+<li><p>实现了基本 shell</p>
 </li>
-<li><p>了解微内核的基本设计思想和结构</p>
+<li><p>实现补全了 shell 中涉及管道的部分</p>
 </li>
 </ol>
 <h3 id="三-体会与感想："><a href="#三-体会与感想：" class="headerlink" title="三. 体会与感想："></a>三. 体会与感想：</h3><ul>
@@ -357,7 +358,7 @@
 </li>
 <li><p>体会与感想：</p>
 <ul>
-<li><code>Lab6</code> 实验所需阅读代码量较大，理解难度较高，完成的较为不顺利；但通过此次实验，我了解了文件系统的基本概念和作用及普通磁盘的基本结构和读写方式，通过实现设备驱动，掌握并实现了文件系统服务的基本操作；基本了解微内核的基本设计思想和结构；受益匪浅</li>
+<li><code>Lab6</code> 实验难度适中，让我掌握了管道的底层逻辑实现，并且编写了属于自己的第一个小程序： <code>shell</code> ，但在真正测试 <code>shell</code> 才发现我们的小系统还是有太多这样那样的不完善之处，但是这样能让一个小系统跑起来，也是一个很大的收获，让我感到受益匪浅</li>
 </ul>
 </li>
 </ul>
@@ -695,7 +696,7 @@
         
 
         
-            <script type="text/javascript" src="/js/mouse-click.js" content='[&quot;Sunny&quot;, &quot;💖&quot;, &quot;Sunny&quot;, &quot;🧡&quot;, &quot;Sunny&quot;, &quot;💛&quot;, &quot;Sunny&quot; , &quot;💚&quot;, &quot;Sunny&quot;, &quot;💙&quot;, &quot;Sunny&quot;, &quot;💜&quot;, &quot;Sunny&quot;, &quot;😍&quot;]' color='[&quot;rgb(255, 0, 0)&quot; ,&quot;rgb(255, 0, 0)&quot; ,&quot;rgb(255, 125, 0)&quot; ,&quot;rgb(255, 125, 0)&quot; ,&quot;rgb(255, 255, 0)&quot; ,&quot;rgb(255, 255, 0)&quot; ,&quot;rgb(0, 255, 0)&quot; ,&quot;rgb(0, 255, 0)&quot; ,&quot;rgb(0, 255, 255)&quot; ,&quot;rgb(0, 255, 255)&quot; ,&quot;rgb(0, 0, 255)&quot; ,&quot;rgb(0, 0, 255)&quot; ,&quot;rgb(255, 0, 255)&quot; ,&quot;rgb(255, 0, 255)&quot;]'></script>
+            <script type="text/javascript" src="/js/mouse-click.js" content='[&#34;Sunny&#34;, &#34;💖&#34;, &#34;Sunny&#34;, &#34;🧡&#34;, &#34;Sunny&#34;, &#34;💛&#34;, &#34;Sunny&#34; , &#34;💚&#34;, &#34;Sunny&#34;, &#34;💙&#34;, &#34;Sunny&#34;, &#34;💜&#34;, &#34;Sunny&#34;, &#34;😍&#34;]' color='[&#34;rgb(255, 0, 0)&#34; ,&#34;rgb(255, 0, 0)&#34; ,&#34;rgb(255, 125, 0)&#34; ,&#34;rgb(255, 125, 0)&#34; ,&#34;rgb(255, 255, 0)&#34; ,&#34;rgb(255, 255, 0)&#34; ,&#34;rgb(0, 255, 0)&#34; ,&#34;rgb(0, 255, 0)&#34; ,&#34;rgb(0, 255, 255)&#34; ,&#34;rgb(0, 255, 255)&#34; ,&#34;rgb(0, 0, 255)&#34; ,&#34;rgb(0, 0, 255)&#34; ,&#34;rgb(255, 0, 255)&#34; ,&#34;rgb(255, 0, 255)&#34;]'></script>
         
 
         <!-- background effects end -->
@@ -705,21 +706,6 @@
     
         <script src="/js/ribbonDynamic.js"></script>
     
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
-            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-            processEscapes: true
-        }
-    });
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax();
-        for (var i = 0; i < all.length; ++i)
-            all[i].SourceElement().parentNode.className += ' has-jax';
-    });
-</script>
-<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 </body>
 
 </html>
