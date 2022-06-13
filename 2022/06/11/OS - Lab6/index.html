@@ -121,7 +121,7 @@
 	       
                             <div class="blank_box"></div>
                             <span class="meta">
-                                 <span class="post-count">654</span> Words
+                                 <span class="post-count">1.6k</span> Words
                             </span>
                             <div class="blank_box"></div>
                             <!-- 不蒜子统计 start -->
@@ -182,7 +182,7 @@
 
                         
                         	<li>
-                          	  <a href="/about/">About Tan</a>
+                          	  <a href="/archive/">Archives</a>
                         	</li>
                         
                     
@@ -192,7 +192,7 @@
 
                         
                         	<li>
-                          	  <a href="/archive/">Archives</a>
+                          	  <a href="/about/">About Tan</a>
                         	</li>
                         
                     
@@ -264,7 +264,7 @@
                 post-container">
 
                 <h1 id="OS-Lab6"><a href="#OS-Lab6" class="headerlink" title="OS - Lab6"></a>OS - Lab6</h1><hr>
-<font size='5'> 文件系统 </font>
+<font size='5'> 管道与 Shell </font>
 
 <hr>
 <p><br></p>
@@ -272,40 +272,72 @@
 <h3 id="一-思考题"><a href="#一-思考题" class="headerlink" title="一. 思考题"></a>一. 思考题</h3><p><br></p>
 <h4 id="Thinking-6-1"><a href="#Thinking-6-1" class="headerlink" title="Thinking 6.1"></a>Thinking 6.1</h4><p>示例代码中，父进程操作管道的写端，子进程操作管道的读端。</p>
 <ul>
-<li>如果现在想让父进程作为“读者”，代码应当如何修改？</li>
+<li>如果现在想让父进程作为 “读者”，代码应当如何修改？</li>
 </ul>
-<h4 id="答："><a href="#答：" class="headerlink" title="答："></a>答：</h4><p><br></p>
-<h4 id="Thinking-6-2"><a href="#Thinking-6-2" class="headerlink" title="Thinking 6.2"></a>Thinking 6.2</h4><p>上面这种不同步修改 pp_ref 而导致的进程竞争问题在 user/fd.c 中的dup 函数中也存在。</p>
+<h4 id="答："><a href="#答：" class="headerlink" title="答："></a>答：</h4><ul>
+<li>代码修改为：<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;unistd.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> fildes[<span class="number">2</span>];</span><br><span class="line"><span class="comment">/* buf size is 100 */</span></span><br><span class="line"><span class="keyword">char</span> buf[<span class="number">100</span>];</span><br><span class="line"><span class="keyword">int</span> status;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	status = pipe(fildes);</span><br><span class="line">	<span class="keyword">if</span> (status == <span class="number">-1</span> ) &#123;</span><br><span class="line">		<span class="comment">/* an error occurred */</span></span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"error\n"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">switch</span> (fork()) &#123;</span><br><span class="line">		<span class="keyword">case</span> <span class="number">-1</span>: <span class="comment">/* Handle error */</span></span><br><span class="line">			<span class="keyword">break</span>;</span><br><span class="line">		<span class="keyword">case</span> <span class="number">0</span>: <span class="comment">/* Child - writes from pipe */</span></span><br><span class="line">			<span class="built_in">close</span>(fildes[<span class="number">0</span>]); <span class="comment">/* Read end is unused */</span></span><br><span class="line">			<span class="built_in">write</span>(fildes[<span class="number">1</span>], <span class="string">"Hello world\n"</span>, <span class="number">12</span>); <span class="comment">/* Write data on pipe */</span></span><br><span class="line">			<span class="built_in">close</span>(fildes[<span class="number">1</span>]); <span class="comment">/* Finished with pipe */</span></span><br><span class="line">			<span class="built_in">exit</span>(EXIT_SUCCESS);</span><br><span class="line">		<span class="keyword">default</span>: <span class="comment">/* Parent - reads to pipe */</span></span><br><span class="line">			<span class="built_in">close</span>(fildes[<span class="number">1</span>]); <span class="comment">/* Write end is unused */</span></span><br><span class="line">			<span class="built_in">read</span>(fildes[<span class="number">0</span>], buf, <span class="number">100</span>); <span class="comment">/* Get data from pipe */</span></span><br><span class="line">			<span class="built_in">printf</span>(<span class="string">"child-process read:%s"</span>,buf); <span class="comment">/* Print the data */</span></span><br><span class="line">			<span class="built_in">close</span>(fildes[<span class="number">0</span>]); <span class="comment">/* Child will see EOF */</span></span><br><span class="line">			<span class="built_in">exit</span>(EXIT_SUCCESS);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+即更换父子进程关闭的管道读写端以及 <code>read</code> 、 <code>write</code> 函数的系统调用</li>
+</ul>
+<p><br></p>
+<h4 id="Thinking-6-2"><a href="#Thinking-6-2" class="headerlink" title="Thinking 6.2"></a>Thinking 6.2</h4><p>上面这种不同步修改 <code>pp_ref</code> 而导致的进程竞争问题在 <code>user/fd.c</code> 中的 <code>dup</code> 函数中也存在。</p>
 <ul>
-<li>请结合代码模仿上述情景，分析一下我们的 dup 函数中为什么会出现预想之外的情况？</li>
+<li>请结合代码模仿上述情景，分析一下我们的 <code>dup</code> 函数中为什么会出现预想之外的情况？</li>
 </ul>
-<h4 id="答：-1"><a href="#答：-1" class="headerlink" title="答："></a>答：</h4><p><br></p>
+<h4 id="答：-1"><a href="#答：-1" class="headerlink" title="答："></a>答：</h4><ul>
+<li><p>关系式：<code>pageref(rfd) + pageref(wfd) = pageref(pipe)</code> 在非原子的 <code>close</code> 函数调用时不能保证成立；而为了使得另一个进程在判断管道某端关闭时的条件 <code>pageref(itself - fd) = pageref(pipe)</code> 不会出错，在 <code>close</code> 函数中需要先将 <code>pagefref(itself - fd)</code> 减小 <code>1</code>，再将 <code>pageref(pipe)</code> 减小 <code>1</code> ，才能保证在该函数不会导致子进程发生错误判断</p>
+</li>
+<li><p><code>close(fd)</code> 函数会将 <code>fd</code> 和 <code>pipe</code> 所在页面的 <code>ref</code> 均减小 <code>1</code> ，为保证管道另一端在真的关闭之前，当前端的读写不会发生误判，需要先让 <code>fd</code> 进行 <code>unmap</code> ，再让 <code>pipe</code> 进行 <code>unmap</code> ，而 <code>dup</code> 函数则与之相反：将 <code>fd</code> 复制给另一个文件描述符，即 <code>fd</code> 所在的页面和 <code>pipe</code> 所在的页面的 <code>pp_ref</code> 数都要增加 <code>1</code> ，因此其 <code>unmap</code> 的次序也应当与 <code>close</code> 函数恰好相反，若不是这样，则以下实例可能发生同步的错误：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> pip[<span class="number">2</span>] = &#123;<span class="number">0</span>&#125;;</span><br><span class="line">pipe(pip);</span><br><span class="line">p_id r = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">if</span>((r = fork) == <span class="number">0</span>) &#123;</span><br><span class="line">	<span class="built_in">close</span>(pip[<span class="number">0</span>]);</span><br><span class="line">	<span class="built_in">write</span>(pip[<span class="number">1</span>], <span class="string">"a"</span>, <span class="number">1</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">if</span> (r &gt; <span class="number">0</span>) &#123;</span><br><span class="line">	<span class="built_in">close</span>(pip[<span class="number">0</span>]);</span><br><span class="line">	dup(STDOUT, pip[<span class="number">1</span>]);</span><br><span class="line">	<span class="built_in">close</span>(pip[<span class="number">1</span>]);</span><br><span class="line">	execvp(<span class="string">"ls"</span>, <span class="string">"-a"</span>, <span class="literal">NULL</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>此处本来应当由父进程调用 <code>execvp</code> 函数去执行 <code>ls -a</code> 的命令，将结果送入管道写端，但是， <code>dup</code> 函数若执行到恰好将 <code>stdout</code> 的文件描述符被替换 <code>(map)</code> 为 <code>pip[1]</code> 的文件描述符后就被切换为子进程，此时 <code>wfd=2</code> ， <code>rfd=1</code> ， <code>pipe=2</code> ，此时子进程将判断写端已经关闭，从而使 <code>write</code> 函数在执行时报错</p>
+</li>
+</ul>
+<p><br></p>
 <h4 id="Thinking-6-3"><a href="#Thinking-6-3" class="headerlink" title="Thinking 6.3"></a>Thinking 6.3</h4><p>阅读上述材料并思考：</p>
 <ul>
 <li>为什么系统调用一定是原子操作呢？如果你觉得不是所有的系统调用都是原子操作，请给出反例。希望能结合相关代码进行分析。</li>
 </ul>
-<h4 id="答：-2"><a href="#答：-2" class="headerlink" title="答："></a>答：</h4><p><br></p>
-<h4 id="Thinking-6-4"><a href="#Thinking-6-4" class="headerlink" title="Thinking 6.4"></a>Thinking 6.4</h4><p>仔细阅读上面这段话，并思考下列问题</p>
-<ul>
-<li><p>按照上述说法控制 pipeclose 中 fd 和 pipe unmap 的顺序，是否可以解决上述场景的进程竞争问题？给出你的分析过程。</p>
+<h4 id="答：-2"><a href="#答：-2" class="headerlink" title="答："></a>答：</h4><ul>
+<li><p>所有的系统调用都是原子操作，具体代码是在 <code>include/stackframe.h</code> 中定义的CLI宏，如下所示:</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">.macro CLI</span><br><span class="line">    mfc0    t0, CP0_STATUS</span><br><span class="line">    li      t1, (STATUS_CU0 | <span class="number">0x1</span>)</span><br><span class="line">    <span class="keyword">or</span>      t0, t1</span><br><span class="line">    <span class="keyword">xor</span>     t0, <span class="number">0x1</span></span><br><span class="line">    mtc0    t0, CP0_STATUS</span><br><span class="line">.endm</span><br></pre></td></tr></table></figure>
+<p><code>CLI</code> 宏在 <code>handle_sys</code> 函数中出现，作用是设置 <code>CP0_STATUS</code> 寄存器，从而使后面的中断无法发生，因此就无法发生嵌套中断，用户进程执行 <code>syscall</code> 后到操作系统完成操作返回的过程中，不会有其他程序执行，因此系统调用是原子操作</p>
 </li>
-<li><p>我们只分析了 close 时的情形，那么对于 dup 中出现的情况又该如何解决？请模仿上述材料写写你的理解。</p>
+<li><p>对于比较特殊的 <code>sys_ipc_recv</code> ，也是在等待时设置为 <code>ENV_NOT_RUNNABLE</code> 后让步，待发送消息的进程将其接收消息的进程重新设置为 <code>env_runnable</code> ，由于 <code>sys_ipc_can_send</code> 是原子性的，所以这个设置过程不会被打断，因而其全过程也是原子性的</p>
 </li>
 </ul>
-<h4 id="答：-3"><a href="#答：-3" class="headerlink" title="答："></a>答：</h4><p><br></p>
-<h4 id="Thinking-6-5"><a href="#Thinking-6-5" class="headerlink" title="Thinking 6.5"></a>Thinking 6.5</h4><p>bss 在 ELF 中并不占空间，但 ELF 加载进内存后，bss 段的数据占据了空间，并且初始值都是 0。</p>
+<p><br></p>
+<h4 id="Thinking-6-4"><a href="#Thinking-6-4" class="headerlink" title="Thinking 6.4"></a>Thinking 6.4</h4><p>仔细阅读上面这段话，并思考下列问题</p>
+<ul>
+<li><p>按照上述说法控制 <code>pipeclose</code> 中 <code>fd</code> 和 <code>pipe</code> <code>unmap</code> 的顺序，是否可以解决上述场景的进程竞争问题？给出你的分析过程。</p>
+</li>
+<li><p>我们只分析了 <code>close</code> 时的情形，那么对于 <code>dup</code> 中出现的情况又该如何解决？请模仿上述材料写写你的理解。</p>
+</li>
+</ul>
+<h4 id="答：-3"><a href="#答：-3" class="headerlink" title="答："></a>答：</h4><ul>
+<li><p>可以；因为原情况出现的原因是：<code>a, b</code> 二值， <code>a &gt; b</code> 当先减少 <code>a</code> 再减少 <code>b</code> 时，就可能会出现 <code>a == b</code> 的中间态；改变顺序后 <code>b</code> 先减少 <code>a &gt; b &gt; b*</code> 不会出现这种状态</p>
+</li>
+<li><p><code>dup</code> 是类似的，只不过情况变成了先增加 <code>b</code> 再增加 <code>a</code> ，改变顺序之后先增加 <code>a</code> 再增加 <code>b</code> ，也就不会有这种情况发生</p>
+</li>
+</ul>
+<p><br></p>
+<h4 id="Thinking-6-5"><a href="#Thinking-6-5" class="headerlink" title="Thinking 6.5"></a>Thinking 6.5</h4><p><code>bss</code> 在 <code>ELF</code> 中并不占空间，但 <code>ELF</code> 加载进内存后， <code>bss</code> 段的数据占据了空间，并且初始值都是 <code>0</code>。</p>
 <ul>
 <li>请回答你设计的函数是如何实现上面这点的？</li>
 </ul>
-<h4 id="答：-4"><a href="#答：-4" class="headerlink" title="答："></a>答：</h4><p><br></p>
-<h4 id="Thinking-6-6"><a href="#Thinking-6-6" class="headerlink" title="Thinking 6.6"></a>Thinking 6.6</h4><ul>
-<li>为什么我们的 *.b 的 text 段偏移值都是一样的，为固定值？</li>
+<h4 id="答：-4"><a href="#答：-4" class="headerlink" title="答："></a>答：</h4><ul>
+<li><code>Load</code> 二进制文件时，根据 <code>bss</code> 段数据的 <code>memsz</code> 属性分配对应的内存空间并清零</li>
 </ul>
-<h4 id="答：-5"><a href="#答：-5" class="headerlink" title="答："></a>答：</h4><p><br></p>
-<h4 id="Thinking-6-7"><a href="#Thinking-6-7" class="headerlink" title="Thinking 6.7"></a>Thinking 6.7</h4><ul>
-<li>在哪步，0 和 1 被 “安排” 为标准输入和标准输出？请分析代码执行流程，给出答案。 </li>
+<p><br></p>
+<h4 id="Thinking-6-6"><a href="#Thinking-6-6" class="headerlink" title="Thinking 6.6"></a>Thinking 6.6</h4><p>为什么我们的 <code>*.b</code> 的 <code>text</code> 段偏移值都是一样的，为固定值？</p>
+<h4 id="答：-5"><a href="#答：-5" class="headerlink" title="答："></a>答：</h4><ul>
+<li>在 <code>user</code> 的 <code>lds</code> 中规定了 <code>.text</code> 段在链接中第一个被链接，所有加载的可执行程序的 <code>text</code> 段的偏移值相同</li>
 </ul>
-<h4 id="答：-6"><a href="#答：-6" class="headerlink" title="答："></a>答：</h4><p><br></p>
+<p><br></p>
+<h4 id="Thinking-6-7"><a href="#Thinking-6-7" class="headerlink" title="Thinking 6.7"></a>Thinking 6.7</h4><p>在哪步，<code>0</code> 和 <code>1</code> 被 “安排” 为标准输入和标准输出？请分析代码执行流程，给出答案。 </p>
+<h4 id="答：-6"><a href="#答：-6" class="headerlink" title="答："></a>答：</h4><ul>
+<li>在 <code>user/init.c</code> 中：<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> ((r = opencons()) &lt; <span class="number">0</span>)</span><br><span class="line">	user_panic(<span class="string">"opencons: %e"</span>, r);</span><br><span class="line"><span class="keyword">if</span> (r != <span class="number">0</span>)</span><br><span class="line">	user_panic(<span class="string">"first opencons used fd %d"</span>, r);</span><br><span class="line"><span class="keyword">if</span> ((r = dup(<span class="number">0</span>, <span class="number">1</span>)) &lt; <span class="number">0</span>)</span><br><span class="line">	user_panic(<span class="string">"dup: %d"</span>, r);</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><br></p>
 <h3 id="二-实验难点："><a href="#二-实验难点：" class="headerlink" title="二. 实验难点："></a>二. 实验难点：</h3><ol>
 <li><p>了解文件系统的基本概念和作用</p>
 </li>
@@ -663,7 +695,7 @@
         
 
         
-            <script type="text/javascript" src="/js/mouse-click.js" content='[&#34;Sunny&#34;, &#34;💖&#34;, &#34;Sunny&#34;, &#34;🧡&#34;, &#34;Sunny&#34;, &#34;💛&#34;, &#34;Sunny&#34; , &#34;💚&#34;, &#34;Sunny&#34;, &#34;💙&#34;, &#34;Sunny&#34;, &#34;💜&#34;, &#34;Sunny&#34;, &#34;😍&#34;]' color='[&#34;rgb(255, 0, 0)&#34; ,&#34;rgb(255, 0, 0)&#34; ,&#34;rgb(255, 125, 0)&#34; ,&#34;rgb(255, 125, 0)&#34; ,&#34;rgb(255, 255, 0)&#34; ,&#34;rgb(255, 255, 0)&#34; ,&#34;rgb(0, 255, 0)&#34; ,&#34;rgb(0, 255, 0)&#34; ,&#34;rgb(0, 255, 255)&#34; ,&#34;rgb(0, 255, 255)&#34; ,&#34;rgb(0, 0, 255)&#34; ,&#34;rgb(0, 0, 255)&#34; ,&#34;rgb(255, 0, 255)&#34; ,&#34;rgb(255, 0, 255)&#34;]'></script>
+            <script type="text/javascript" src="/js/mouse-click.js" content='[&quot;Sunny&quot;, &quot;💖&quot;, &quot;Sunny&quot;, &quot;🧡&quot;, &quot;Sunny&quot;, &quot;💛&quot;, &quot;Sunny&quot; , &quot;💚&quot;, &quot;Sunny&quot;, &quot;💙&quot;, &quot;Sunny&quot;, &quot;💜&quot;, &quot;Sunny&quot;, &quot;😍&quot;]' color='[&quot;rgb(255, 0, 0)&quot; ,&quot;rgb(255, 0, 0)&quot; ,&quot;rgb(255, 125, 0)&quot; ,&quot;rgb(255, 125, 0)&quot; ,&quot;rgb(255, 255, 0)&quot; ,&quot;rgb(255, 255, 0)&quot; ,&quot;rgb(0, 255, 0)&quot; ,&quot;rgb(0, 255, 0)&quot; ,&quot;rgb(0, 255, 255)&quot; ,&quot;rgb(0, 255, 255)&quot; ,&quot;rgb(0, 0, 255)&quot; ,&quot;rgb(0, 0, 255)&quot; ,&quot;rgb(255, 0, 255)&quot; ,&quot;rgb(255, 0, 255)&quot;]'></script>
         
 
         <!-- background effects end -->
@@ -673,6 +705,21 @@
     
         <script src="/js/ribbonDynamic.js"></script>
     
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 </body>
 
 </html>
