@@ -121,7 +121,7 @@
 	       
                             <div class="blank_box"></div>
                             <span class="meta">
-                                 <span class="post-count">1.2k</span> Words
+                                 <span class="post-count">849</span> Words
                             </span>
                             <div class="blank_box"></div>
                             <!-- 不蒜子统计 start -->
@@ -192,14 +192,14 @@
 
                         
                         	<li>
-                          	  <a href="/tags/">Tags</a>
+                          	  <a href="/about/">About Tan</a>
                         	</li>
                         
                     
 
                         
                         	<li>
-                          	  <a href="/about/">About Tan</a>
+                          	  <a href="/tags/">Tags</a>
                         	</li>
                         
                     
@@ -265,7 +265,7 @@
 
                 <h1 id="面向对象设计与构造第四单元第一次作业"><a href="#面向对象设计与构造第四单元第一次作业" class="headerlink" title="面向对象设计与构造第四单元第一次作业"></a>面向对象设计与构造第四单元第一次作业</h1><h4 id="UML-解析"><a href="#UML-解析" class="headerlink" title="UML 解析"></a>UML 解析</h4><p><br></p>
 <hr>
-<h3 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h3><p><a href="../OO - P5 - Question">题目链接</a></p>
+<h3 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h3><p><a href="../OO - P13 - Question">题目链接</a></p>
 <p><br></p>
 <hr>
 <h3 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h3><ul>
@@ -298,75 +298,40 @@
 <hr>
 <h3 id="具体实现"><a href="#具体实现" class="headerlink" title="具体实现"></a>具体实现</h3><h4 id="总UML类图："><a href="#总UML类图：" class="headerlink" title="总UML类图："></a>总UML类图：</h4><p><img src="MainClass.png"/></p>
 <ul>
-<li><h4 id="读入处理类-InputThread"><a href="#读入处理类-InputThread" class="headerlink" title="读入处理类 InputThread"></a>读入处理类 <code>InputThread</code></h4><p><img src="1.png"/>  </p>
-<ul>
-<li>开启官方包的输入线程，获得输入的请求，并将每一个输入请求传递到<code>Controller</code> 类中</li>
-<li>在官方包传出终止信号时，调用 <code>Controller</code> 的 <code>close</code> 方法<br><br></li>
+<li><h4 id="我的元素类-MyElement"><a href="#我的元素类-MyElement" class="headerlink" title="我的元素类 MyElement"></a>我的元素类 <code>MyElement</code></h4><ul>
+<li>保存 <code>UML</code> 元素的基本属性 <code>id</code> ， <code>parentId</code>， <code>name</code> 并配置访问方法<br><br></li>
 </ul>
 </li>
-<li><h4 id="输出处理类-OutputThread"><a href="#输出处理类-OutputThread" class="headerlink" title="输出处理类 OutputThread"></a>输出处理类 <code>OutputThread</code></h4><p><img src="2.png"/>  </p>
-<ul>
-<li>用一个 <code>synchronized</code> 的 <code>static</code> 方法，对官方给的线程不安全的输出方法 <code>TimableOutput.println()</code> 进行封装，使其成为线程安全的静态方法 <code>OutputThread.println()</code> （即调用时不会出现时间戳不递增的情况）<br><br></li>
+<li><h4 id="类图第一层元素-MyClass、MyInterface、MyAssociation"><a href="#类图第一层元素-MyClass、MyInterface、MyAssociation" class="headerlink" title="类图第一层元素 MyClass、MyInterface、MyAssociation"></a>类图第一层元素 <code>MyClass</code>、<code>MyInterface</code>、<code>MyAssociation</code></h4><ul>
+<li><code>MyClass</code> 、 <code>MyInterface</code>：存储对应的 <code>visibility</code> 属性并配置访问方法<br><br></li>
 </ul>
 </li>
-<li><h4 id="控制器类-Controller"><a href="#控制器类-Controller" class="headerlink" title="控制器类 Controller"></a>控制器类 <code>Controller</code></h4><p><img src="3.png"/>  </p>
-<ul>
-<li>创建请求池类（ <code>RequestPool</code> 类）的实例</li>
-<li>创建所有电梯线程（ <code>Elevator</code> 类）并开始运行（处于可接客状态）</li>
-<li>为每一个电梯创建一个决策者实例 <code>DecisionMaker</code></li>
-<li>在接收到读入处理类 （ <code>InputThread</code> 类）的 <code>close</code> 请求后，调用请求池类（ <code>RequestPool</code> 类 ）的 <code>close</code> 方法通知其进入停止状态<br><br></li>
+<li><h4 id="类图第二层元素-MyAttribute、MyOperation、MyAssociationEnd、MyGeneralzation"><a href="#类图第二层元素-MyAttribute、MyOperation、MyAssociationEnd、MyGeneralzation" class="headerlink" title="类图第二层元素 MyAttribute、MyOperation、MyAssociationEnd、MyGeneralzation"></a>类图第二层元素 <code>MyAttribute</code>、<code>MyOperation</code>、<code>MyAssociationEnd</code>、<code>MyGeneralzation</code></h4><ul>
+<li><code>MyAttribute</code> ：存储对应的 <code>visibility</code> 、 <code>type</code> 、 <code>referenceId</code> 、 <code>typeName</code> 属性并配置访问方法</li>
+<li><code>MyOperation</code> ： 存储对应的 <code>visibility</code> 属性并配置访问方法</li>
+<li><code>MyOperation</code> ： 存储了该类拥有的 <code>MyParameter</code> ，并配置了访问方法<br><br></li>
 </ul>
 </li>
-<li><h4 id="请求池类-RequestPool"><a href="#请求池类-RequestPool" class="headerlink" title="请求池类 RequestPool"></a>请求池类 <code>RequestPool</code></h4><p><img src="4.png"/>  </p>
-<ul>
-<li>线程安全类，采用了 <code>ReentrantLock</code> 锁，所有对请求池读 / 写的方法均上锁，以保证线程安全</li>
-<li>实现向请求池添加请求 <code>addRequest</code> ，从请求池删除（获得）请求 <code>removeRequest</code> ，查询当前请求池中所有请求 <code>getAllRequest</code></li>
-<li>储存所有的电梯信息</li>
-<li>在添加请求时，唤醒 <strong>所有</strong> 电梯中正在 <code>await</code> 的线程，达到实时判断乘客的效果</li>
-<li>控制器（ <code>Controller</code> 类）传入关闭方法时，将本类的 <code>isClose</code> 置 <code>1</code> ，并且将 <strong>所有</strong> 电梯的 <code>isClose</code> 置 <code>1</code></li>
+<li><h4 id="类图第三层元素-MyParameter、MyInterfaceRealization"><a href="#类图第三层元素-MyParameter、MyInterfaceRealization" class="headerlink" title="类图第三层元素 MyParameter、MyInterfaceRealization"></a>类图第三层元素 <code>MyParameter</code>、<code>MyInterfaceRealization</code></h4><ul>
+<li><code>MyParameter</code> ： 存储对应的 <code>visibility</code> 、 <code>type</code> 、 <code>referenceId</code> 、 <code>direction</code> 属性并配置访问方法</li>
+<li><code>MyInterfaceRealization</code> ： 存储对应的 <code>source</code> 、 <code>target</code>属性并配置访问方法<br><br></li>
 </ul>
 </li>
-<li><h4 id="电梯类-Elevator"><a href="#电梯类-Elevator" class="headerlink" title="电梯类 Elevator"></a>电梯类 <code>Elevator</code></h4><p><img src="5.png"/>  </p>
-<ul>
-<li>重写 <code>run()</code> 方法，实现顺序执行 <code>下客-&gt;上客-&gt;关门-&gt;运行一层</code> 的流程，其中每一步均有是否执行的判断条件，只有满足条件才会执行，顺序执行保证了电梯的正确性</li>
-<li>每次下客前和关门前均调用自身对应的决策类的 <code>ask</code> 方法，使决策类根据此时电梯状态和请求池状态更新自身行为，然后访问决策类的方法获得电梯下一步的行动 <strong>建议</strong> （接那些人以及向哪一层移动/空等）</li>
-<li>关门和移动等待时间为电梯上一次 <strong>任意</strong> 操作（ <code>开门/关门/移动</code> ）的系统时间与此时系统时间的差值（保证电梯距上次输出 <code>400ms</code> 即可）<br><br></li>
+<li><h4 id="我的类与接口类-MyClassOrInterface"><a href="#我的类与接口类-MyClassOrInterface" class="headerlink" title="我的类与接口类 MyClassOrInterface"></a>我的类与接口类 <code>MyClassOrInterface</code></h4><ul>
+<li>由于类与接口有大多数相同的使用和属性之处，因此令 <code>MyClass</code> 和 <code>MyInterface</code> 继承此类，此类继承 <code>MyElement</code> </li>
+<li>使用 <code>HashMap&lt;MyClassOrInterface, Integer&gt;</code> 储存该类 / 接口的所有父类（直接父类 / 间接父类）和所有子类（直接子类 / 间接子类），并且记录其到该类的继承深度</li>
+<li>存储了该类拥有的 <code>MyAttributes</code> 和 <code>MyOperations</code>，并配置了访问方法<br><br></li>
 </ul>
 </li>
-<li><h4 id="决策类接口-DecisionMaker"><a href="#决策类接口-DecisionMaker" class="headerlink" title="决策类接口 DecisionMaker"></a>决策类接口 <code>DecisionMaker</code></h4><p>  <img src="6.png"/>  </p>
-<ul>
-<li><p>定义了 <code>4</code> 个方法</p>
-<ul>
-<li><p><code>ask()</code> 方法：调用时重新计算当前建议  </p>
-</li>
-<li><p><code>whoToPickUp()</code> 方法：返回需要载客的建议  </p>
-</li>
-<li><p><code>whoToPutDown()</code> 方法：返回需要下客的建议  </p>
-</li>
-<li><p><code>nextDirection()</code> 方法：返回下一步电梯行动方向 / 是否空等的建议  </p>
-</li>
-</ul>
-<p><br></p>
-<ul>
-<li><h5 id="Look策略类-LookDecisionMaker"><a href="#Look策略类-LookDecisionMaker" class="headerlink" title="Look策略类 LookDecisionMaker"></a>Look策略类 <code>LookDecisionMaker</code></h5><img src="7.png"/>  </li>
+<li><h4 id="解析处理类-MyParser"><a href="#解析处理类-MyParser" class="headerlink" title="解析处理类 MyParser"></a>解析处理类 <code>MyParser</code></h4><ul>
+<li>在此类完成三个层次的建模，并且完成题目要求实现的接口的具体算法实现<br><br></li>
 </ul>
 </li>
-<li><p>实现了 <code>LOOK</code> 算法</p>
-</li>
-<li>重写了 <code>DecisionMaker</code> 接口的 <code>4</code> 个方法</li>
+<li><h4 id="实现接口类-MyImplementation"><a href="#实现接口类-MyImplementation" class="headerlink" title="实现接口类 MyImplementation"></a>实现接口类 <code>MyImplementation</code></h4><ul>
+<li>以 <code>elements</code> 为参数创建 <code>MyParser</code> 实例，实现官方接口，调用对应函数检查及抛出异常，无异常则执行对应解析操作<br><br></li>
 </ul>
 </li>
 </ul>
-<p><br></p>
-<hr>
-<p>易错点： </p>
-<ol>
-<li>死锁</li>
-<li>轮询</li>
-<li>超载</li>
-<li>超时</li>
-<li>……</li>
-</ol>
 
                 
                 <hr>
@@ -433,7 +398,7 @@
           <strong class="toc-title">Contents</strong>
           
             
-              <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#面向对象设计与构造第四单元第一次作业"><span class="toc-nav-text">面向对象设计与构造第四单元第一次作业</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#UML-解析"><span class="toc-nav-text">UML 解析</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#题目"><span class="toc-nav-text">题目</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#分析"><span class="toc-nav-text">分析</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#基本思路"><span class="toc-nav-text">基本思路</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#具体实现"><span class="toc-nav-text">具体实现</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#总UML类图："><span class="toc-nav-text">总UML类图：</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#读入处理类-InputThread"><span class="toc-nav-text">读入处理类 InputThread</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#输出处理类-OutputThread"><span class="toc-nav-text">输出处理类 OutputThread</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#控制器类-Controller"><span class="toc-nav-text">控制器类 Controller</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#请求池类-RequestPool"><span class="toc-nav-text">请求池类 RequestPool</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#电梯类-Elevator"><span class="toc-nav-text">电梯类 Elevator</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#决策类接口-DecisionMaker"><span class="toc-nav-text">决策类接口 DecisionMaker</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#Look策略类-LookDecisionMaker"><span class="toc-nav-text">Look策略类 LookDecisionMaker</span></a></li></ol></li></ol></li></ol></li></ol></li></ol>
+              <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#面向对象设计与构造第四单元第一次作业"><span class="toc-nav-text">面向对象设计与构造第四单元第一次作业</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#UML-解析"><span class="toc-nav-text">UML 解析</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#题目"><span class="toc-nav-text">题目</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#分析"><span class="toc-nav-text">分析</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#基本思路"><span class="toc-nav-text">基本思路</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#具体实现"><span class="toc-nav-text">具体实现</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#总UML类图："><span class="toc-nav-text">总UML类图：</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#我的元素类-MyElement"><span class="toc-nav-text">我的元素类 MyElement</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#类图第一层元素-MyClass、MyInterface、MyAssociation"><span class="toc-nav-text">类图第一层元素 MyClass、MyInterface、MyAssociation</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#类图第二层元素-MyAttribute、MyOperation、MyAssociationEnd、MyGeneralzation"><span class="toc-nav-text">类图第二层元素 MyAttribute、MyOperation、MyAssociationEnd、MyGeneralzation</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#类图第三层元素-MyParameter、MyInterfaceRealization"><span class="toc-nav-text">类图第三层元素 MyParameter、MyInterfaceRealization</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#我的类与接口类-MyClassOrInterface"><span class="toc-nav-text">我的类与接口类 MyClassOrInterface</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#解析处理类-MyParser"><span class="toc-nav-text">解析处理类 MyParser</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#实现接口类-MyImplementation"><span class="toc-nav-text">实现接口类 MyImplementation</span></a></li></ol></li></ol></li></ol></li></ol>
             
           
           </div>
