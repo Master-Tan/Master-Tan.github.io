@@ -121,7 +121,7 @@
 	       
                             <div class="blank_box"></div>
                             <span class="meta">
-                                 <span class="post-count">0</span> Words
+                                 <span class="post-count">2.5k</span> Words
                             </span>
                             <div class="blank_box"></div>
                             <!-- 不蒜子统计 start -->
@@ -195,15 +195,15 @@
                     
 
                         
+                    
+
+                        
+                    
+
+                        
                         	<li>
                           	  <a href="/tags/">Tags</a>
                         	</li>
-                        
-                    
-
-                        
-                    
-
                         
                     
 
@@ -263,7 +263,292 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                
+                <h1 id="OO第四单元总结"><a href="#OO第四单元总结" class="headerlink" title="OO第四单元总结"></a>OO第四单元总结</h1><hr>
+<h2 id="要求"><a href="#要求" class="headerlink" title="要求"></a>要求</h2><p><a href="../../../../2022/06/20/OO - 第四单元总结%20-%20Requirement">单元总结要求</a></p>
+<p><br></p>
+<hr>
+<h2 id="第一次作业总结"><a href="#第一次作业总结" class="headerlink" title="第一次作业总结"></a>第一次作业总结</h2><h3 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h3><ul>
+<li><p>本单元需要实现的是一个 <code>UML</code> 解析器，实现对经过处理为特殊格式但保留主要信息的 <code>UML</code> 源码的解析<br><br></p>
+</li>
+<li><p>本次作业要完成的是对 <code>UML</code> 图中的类图的解析处理任务，需满足能够处理多种不同的对类图的信息进行查询的指令</p>
+</li>
+<li><p>官方程序已实现基本字符串处理并且规定了要实现的接口，<code>AppRunner</code> 开启了解析线程，在 <code>run()</code> 函数中将储存 <code>UmlElement</code> 对象的容器作为参数传给了 <code>MyImplementation</code>， 参数为处理后的 <code>UmlElement</code> 的各个子类<br><br></p>
+</li>
+<li><p>相当于直接获得 <code>UmlElement</code> 的各个子类元素并且配饰好了其属性的访问方法，直接使用与处理即可<br><br></p>
+</li>
+</ul>
+<hr>
+<h3 id="基本思路"><a href="#基本思路" class="headerlink" title="基本思路"></a>基本思路</h3><ul>
+<li><p>此单元作业重点在于对于 <code>UML</code> 的各元素的处理，存储并构建好所有元素的数据结构，完整的保留原本的 <code>UML</code> 图中所包含的信息，并且通过合理的设计使其便于查询，查询方法只需在自己构建好的架构之下稍加拓展即可实现<br><br></p>
+</li>
+<li><p>对各 <code>UmlElement</code> 的各子类进行预处理，封装为对应继承 <code>MyElement</code> 的各子类，封装后能自主根据题目需求添加数据结构，满足题目的要求</p>
+</li>
+<li><p>采用数据结构：树</p>
+</li>
+<li><p>原因：各 <code>UML</code> 元素关系均为树状关系，类图的关系图如下<br><img src="1-0-1.png"/>  </p>
+</li>
+<li><p>处理方法：层次化读入处理</p>
+</li>
+<li><p>原因：提供的 <code>UmlElement</code> 的各子类是随机的，而按照树型结构建立模型的话，父、子结点之间关系的建立必须先有父结点，再有子结点，因此，按照父子节点的关系，将 <code>UmlElement</code> 的各子类按层次划分，按轮次处理，确保了建树过程中的自上而下建模的可行性<br><br></p>
+</li>
+<li><p>第一轮处理： <code>UML_CLASS</code> 、 <code>UML_INTERFACE</code> 、 <code>UML_ASSOCIATION</code><br><br></p>
+</li>
+<li><p>第二轮处理： <code>UML_ATTRIBUTE</code> 、 <code>UML_OPERATION</code> 、 <code>UML_ASSOCIATION_END</code> 、 <code>UML_GENERALIZATION</code><br><br></p>
+</li>
+<li><p>第三轮处理： <code>UML_PARAMETER</code> 、 <code>UML_INTERFACE_REALIZATION</code><br><br></p>
+</li>
+</ul>
+<hr>
+<h3 id="具体实现"><a href="#具体实现" class="headerlink" title="具体实现"></a>具体实现</h3><ul>
+<li><h4 id="我的元素类-MyElement"><a href="#我的元素类-MyElement" class="headerlink" title="我的元素类 MyElement"></a>我的元素类 <code>MyElement</code></h4><ul>
+<li>保存 <code>UML</code> 元素的基本属性 <code>id</code> ， <code>parentId</code>， <code>name</code> 并配置访问方法<br><br></li>
+</ul>
+</li>
+<li><h4 id="类图第一层元素-MyClass、MyInterface、MyAssociation"><a href="#类图第一层元素-MyClass、MyInterface、MyAssociation" class="headerlink" title="类图第一层元素 MyClass、MyInterface、MyAssociation"></a>类图第一层元素 <code>MyClass</code>、<code>MyInterface</code>、<code>MyAssociation</code></h4><ul>
+<li><code>MyClass</code> 、 <code>MyInterface</code>：存储对应的 <code>visibility</code> 属性并配置访问方法<br><br></li>
+</ul>
+</li>
+<li><h4 id="类图第二层元素-MyAttribute、MyOperation、MyAssociationEnd、MyGeneralzation"><a href="#类图第二层元素-MyAttribute、MyOperation、MyAssociationEnd、MyGeneralzation" class="headerlink" title="类图第二层元素 MyAttribute、MyOperation、MyAssociationEnd、MyGeneralzation"></a>类图第二层元素 <code>MyAttribute</code>、<code>MyOperation</code>、<code>MyAssociationEnd</code>、<code>MyGeneralzation</code></h4><ul>
+<li><code>MyAttribute</code> ：存储对应的 <code>visibility</code> 、 <code>type</code> 、 <code>referenceId</code> 、 <code>typeName</code> 属性并配置访问方法</li>
+<li><code>MyOperation</code> ： 存储对应的 <code>visibility</code> 属性并配置访问方法</li>
+<li><code>MyOperation</code> ： 存储了该类拥有的 <code>MyParameter</code> ，并配置了访问方法<br><br></li>
+</ul>
+</li>
+<li><h4 id="类图第三层元素-MyParameter、MyInterfaceRealization"><a href="#类图第三层元素-MyParameter、MyInterfaceRealization" class="headerlink" title="类图第三层元素 MyParameter、MyInterfaceRealization"></a>类图第三层元素 <code>MyParameter</code>、<code>MyInterfaceRealization</code></h4><ul>
+<li><code>MyParameter</code> ： 存储对应的 <code>visibility</code> 、 <code>type</code> 、 <code>referenceId</code> 、 <code>direction</code> 属性并配置访问方法</li>
+<li><code>MyInterfaceRealization</code> ： 存储对应的 <code>source</code> 、 <code>target</code>属性并配置访问方法<br><br></li>
+</ul>
+</li>
+<li><h4 id="我的类与接口类-MyClassOrInterface"><a href="#我的类与接口类-MyClassOrInterface" class="headerlink" title="我的类与接口类 MyClassOrInterface"></a>我的类与接口类 <code>MyClassOrInterface</code></h4><ul>
+<li>由于类与接口有大多数相同的使用和属性之处，因此令 <code>MyClass</code> 和 <code>MyInterface</code> 继承此类，此类继承 <code>MyElement</code> </li>
+<li>使用 <code>HashMap&lt;MyClassOrInterface, Integer&gt;</code> 储存该类 / 接口的所有父类（直接父类 / 间接父类）和所有子类（直接子类 / 间接子类），并且记录其到该类的继承深度</li>
+<li>存储该类拥有的 <code>MyAttributes</code> 和 <code>MyOperations</code>，并配置了访问方法<br><br></li>
+</ul>
+</li>
+<li><h4 id="解析处理类-MyParser"><a href="#解析处理类-MyParser" class="headerlink" title="解析处理类 MyParser"></a>解析处理类 <code>MyParser</code></h4><ul>
+<li>在此类完成三个层次的建模，并且完成题目要求实现的接口的具体算法实现，并且提供检查是否应该抛出异常的函数<br><br></li>
+</ul>
+</li>
+<li><h4 id="实现接口类-MyImplementation"><a href="#实现接口类-MyImplementation" class="headerlink" title="实现接口类 MyImplementation"></a>实现接口类 <code>MyImplementation</code></h4><ul>
+<li>以 <code>elements</code> 为参数创建 <code>MyParser</code> 实例，实现官方接口，调用对应函数检查及抛出异常，无异常则执行对应解析操作<br><br></li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 id="基于度量的程序结构分析"><a href="#基于度量的程序结构分析" class="headerlink" title="基于度量的程序结构分析"></a>基于度量的程序结构分析</h3><ul>
+<li><p>总UML类图<br><font size='2'> （可以放大观看） </font><br><img src="1-1.png"/>  </p>
+</li>
+<li><p>代码规模分析<br><img src="1-2.png"/>  </p>
+</li>
+<li><p>方法复杂度分析（部分）<br><img src="1-3.png"/>  </p>
+</li>
+<li><p>类复杂度分析<br><img src="1-4.png"/>  </p>
+</li>
+</ul>
+<p><br></p>
+<hr>
+<h2 id="第二次作业总结"><a href="#第二次作业总结" class="headerlink" title="第二次作业总结"></a>第二次作业总结</h2><h3 id="分析-1"><a href="#分析-1" class="headerlink" title="分析"></a>分析</h3><ul>
+<li><p>本次作业需要实现的是在第一次作业 <code>UML</code> 解析器上进行增量开发，新增了两种图：顺序图和状态图，并新增了多个不同的对这两类图的信息进行查询的指令<br><br></p>
+</li>
+<li><p>处理新增两种图与第一次作业大同小异，在第一次作业的架构之下进行增量开发即可<br><br></p>
+</li>
+</ul>
+<hr>
+<h3 id="基本思路-1"><a href="#基本思路-1" class="headerlink" title="基本思路"></a>基本思路</h3><ul>
+<li><p>本次作业新增的两个图同样适用于上一次作业使用的层次化处理，采用的数据结构也不变<br><br></p>
+</li>
+<li><p>顺序图和状态图的关系图如下<br><img src="2-0-1.png"/><br><img src="2-0-2.png"/>  </p>
+</li>
+</ul>
+<p><br></p>
+<ul>
+<li><p>顺序图：</p>
+</li>
+<li><p>第一轮处理： <code>UML_COLLABORATION</code><br><br></p>
+</li>
+<li><p>第二轮处理： <code>UML_INTERACTION</code> 、 <code>UML_ATTRIBUTE</code><br><br></p>
+</li>
+<li><p>第三轮处理： <code>UML_LIFELINE</code> 、 <code>UML_ENDPOINT</code><br><br></p>
+</li>
+<li><p>第四轮处理： <code>UML_LIFELINE</code> 、 <code>UML_ENDPOINT</code><br><br></p>
+</li>
+<li><p>状态图：</p>
+</li>
+<li><p>第一轮处理： <code>UML_STATE_MACHINE</code><br><br></p>
+</li>
+<li><p>第二轮处理： <code>UML_REGION</code><br><br></p>
+</li>
+<li><p>第三轮处理： <code>UML_STATE</code> 、 <code>UML_PSEUDOSTATE</code> 、 <code>UML_FINAL_STATE</code><br><br></p>
+</li>
+<li><p>第四轮处理： <code>UML_TRANSITION</code><br><br></p>
+</li>
+<li><p>第五轮处理： <code>UML_EVENT</code> 、 <code>UML_OPAQUE_BEHAVIOR</code><br><br></p>
+</li>
+</ul>
+<hr>
+<h3 id="具体实现-1"><a href="#具体实现-1" class="headerlink" title="具体实现"></a>具体实现</h3><h4 id="修改："><a href="#修改：" class="headerlink" title="修改："></a>修改：</h4><ul>
+<li><h4 id="解析处理类-MyParser-1"><a href="#解析处理类-MyParser-1" class="headerlink" title="解析处理类 MyParser"></a>解析处理类 <code>MyParser</code></h4><ul>
+<li>在此类完成顺序图四个层次以及状态图五个层次的建模，并且完成题目要求实现的接口的具体算法实现，并且提供检查是否应该抛出异常的函数<br><br></li>
+</ul>
+</li>
+<li><h4 id="属性类-MyAttribute"><a href="#属性类-MyAttribute" class="headerlink" title="属性类 MyAttribute"></a>属性类 <code>MyAttribute</code></h4><ul>
+<li>注意该类的 <code>parentId</code> 可以是类图的 <code>MyClass 、 MyInterface</code> 也可以是顺序图的 <code>MyCollaboration</code>，要据此划分为不同图中的元素<br><br></li>
+</ul>
+</li>
+</ul>
+<h4 id="新增："><a href="#新增：" class="headerlink" title="新增："></a>新增：</h4><ul>
+<li><h4 id="顺序图第一层元素-MyCollaboration"><a href="#顺序图第一层元素-MyCollaboration" class="headerlink" title="顺序图第一层元素 MyCollaboration"></a>顺序图第一层元素 <code>MyCollaboration</code></h4><ul>
+<li>存储该类拥有的 <code>MyInteraction</code> 和 <code>MyAttribute</code>，并配置了访问方法<br><br></li>
+</ul>
+</li>
+<li><h4 id="顺序图第二层元素-MyInteraction、MyAttribute"><a href="#顺序图第二层元素-MyInteraction、MyAttribute" class="headerlink" title="顺序图第二层元素 MyInteraction、MyAttribute"></a>顺序图第二层元素 <code>MyInteraction</code>、<code>MyAttribute</code></h4><ul>
+<li><code>MyInteraction</code> ：存储该类拥有的 <code>MyInteraction</code> 和 <code>MyAttribute</code>，并配置了访问方法</li>
+<li><code>MyInteraction</code> ：存储对应的 <code>visibility</code> 属性并配置访问方法</li>
+<li><code>MyAttribute</code> ：存储对应的 <code>visibility</code> 、 <code>type</code> 、 <code>referenceId</code> 、 <code>typeName</code> 属性并配置访问方法<br><br></li>
+</ul>
+</li>
+<li><h4 id="顺序图第三层元素-MyLifeline、MyEndPoint"><a href="#顺序图第三层元素-MyLifeline、MyEndPoint" class="headerlink" title="顺序图第三层元素 MyLifeline、MyEndPoint"></a>顺序图第三层元素 <code>MyLifeline</code>、<code>MyEndPoint</code></h4><ul>
+<li><code>MyLifeline</code> ：存储对应的 <code>represent</code> 、 <code>isMultiInstance</code> 属性并配置访问方法</li>
+<li><code>MyLifeline</code> ：使用 <code>ArrayList&lt;String&gt;</code> 存储收到的所有消息发送者，存储发出的所有信息接受者</li>
+<li><code>MyLifeline</code> ：使用 <code>ArrayList&lt;MyMessage&gt;</code> 存储收到的所有消息，存储发出的所有信息</li>
+<li><code>MyEndPoint</code> ：存储对应的 <code>visibility</code> 属性并配置访问方法</li>
+<li><code>MyEndPoint</code> ：使用 <code>ArrayList&lt;String&gt;</code> 存储收到的所有消息发送者，存储发出的所有信息接受者</li>
+<li><code>MyEndPoint</code> ：使用 <code>ArrayList&lt;MyMessage&gt;</code> 存储收到的所有消息，存储发出的所有信息<br><br></li>
+</ul>
+</li>
+<li><h4 id="顺序图第四层元素-MyMessage"><a href="#顺序图第四层元素-MyMessage" class="headerlink" title="顺序图第四层元素 MyMessage"></a>顺序图第四层元素 <code>MyMessage</code></h4><ul>
+<li>存储对应的 <code>messageSort</code> 、 <code>visibility</code>、 <code>sourse</code> 、 <code>target</code> 属性并配置访问方法<br><br></li>
+</ul>
+</li>
+<li><h4 id="状态图第一层元素-MyStateMachine"><a href="#状态图第一层元素-MyStateMachine" class="headerlink" title="状态图第一层元素 MyStateMachine"></a>状态图第一层元素 <code>MyStateMachine</code></h4><ul>
+<li>存储该类拥有的 <code>MyRegion</code> ，并配置了访问方法<br><br></li>
+</ul>
+</li>
+<li><h4 id="状态图第二层元素-MyRegion"><a href="#状态图第二层元素-MyRegion" class="headerlink" title="状态图第二层元素 MyRegion"></a>状态图第二层元素 <code>MyRegion</code></h4><ul>
+<li>存储该类拥有的 <code>MyPseudostate</code> ， <code>MyState</code> ， <code>MyFinalState</code> ， <code>MyTransition</code> ， <code>MyAllState</code> ，并配置了访问方法</li>
+<li>存储对应的 <code>visibility</code> 属性并配置访问方法<br><br></li>
+</ul>
+</li>
+<li><h4 id="状态图第三层元素-MyState、MyPseudostate、MyFinalState"><a href="#状态图第三层元素-MyState、MyPseudostate、MyFinalState" class="headerlink" title="状态图第三层元素 MyState、MyPseudostate、MyFinalState"></a>状态图第三层元素 <code>MyState</code>、<code>MyPseudostate</code>、<code>MyFinalState</code></h4><ul>
+<li><code>MyState</code> ：存储对应的 <code>visibility</code> 属性并配置访问方法</li>
+<li><code>MyPseudostate</code> ：存储对应的 <code>visibility</code> 属性并配置访问方法</li>
+<li><code>MyFinalState</code> ：存储对应的 <code>visibility</code> 属性并配置访问方法<br><br></li>
+</ul>
+</li>
+<li><h4 id="状态图第四层元素-MyTransition"><a href="#状态图第四层元素-MyTransition" class="headerlink" title="状态图第四层元素 MyTransition"></a>状态图第四层元素 <code>MyTransition</code></h4><ul>
+<li>存储对应的 <code>visibility</code>，  <code>guard</code>，  <code>sourse</code>，  <code>target</code>， 属性并配置访问方法</li>
+<li>存储该类拥有的 <code>MyEvent</code> ， <code>MyOpaqueBehavior</code> ，并配置了访问方法<br><br></li>
+</ul>
+</li>
+<li><h4 id="状态图第五层元素-MyEvent、MyOpaqueBehavior"><a href="#状态图第五层元素-MyEvent、MyOpaqueBehavior" class="headerlink" title="状态图第五层元素 MyEvent、MyOpaqueBehavior"></a>状态图第五层元素 <code>MyEvent</code>、<code>MyOpaqueBehavior</code></h4><ul>
+<li><code>MyEvent</code> ： 存储对应的 <code>visibility</code>，  <code>expression</code>，  <code>values</code>， 属性并配置访问方法<br><br></li>
+</ul>
+</li>
+<li><h4 id="类图元素初始化处理类-MyUmlClassParserInit"><a href="#类图元素初始化处理类-MyUmlClassParserInit" class="headerlink" title="类图元素初始化处理类 MyUmlClassParserInit"></a>类图元素初始化处理类 <code>MyUmlClassParserInit</code></h4><ul>
+<li>对类图元素进行层次化处理和建模<br><br></li>
+</ul>
+</li>
+<li><h4 id="顺序图元素初始化处理类-MyUmlCollaborationParserInit"><a href="#顺序图元素初始化处理类-MyUmlCollaborationParserInit" class="headerlink" title="顺序图元素初始化处理类 MyUmlCollaborationParserInit"></a>顺序图元素初始化处理类 <code>MyUmlCollaborationParserInit</code></h4><ul>
+<li>对顺序图元素进行层次化处理和建模<br><br></li>
+</ul>
+</li>
+<li><h4 id="状态图元素初始化处理类-MyUmlStateMachineParserInit"><a href="#状态图元素初始化处理类-MyUmlStateMachineParserInit" class="headerlink" title="状态图元素初始化处理类 MyUmlStateMachineParserInit"></a>状态图元素初始化处理类 <code>MyUmlStateMachineParserInit</code></h4><ul>
+<li>对状态图元素进行层次化处理和建模<br><br></li>
+</ul>
+</li>
+<li><h4 id="类图元素解析类-MyUmlClassParser"><a href="#类图元素解析类-MyUmlClassParser" class="headerlink" title="类图元素解析类 MyUmlClassParser"></a>类图元素解析类 <code>MyUmlClassParser</code></h4><ul>
+<li>对与类图有关的查询指令进行解析处理和返回<br><br></li>
+</ul>
+</li>
+<li><h4 id="顺序图元素解析类-MyUmlCollaborationParser"><a href="#顺序图元素解析类-MyUmlCollaborationParser" class="headerlink" title="顺序图元素解析类 MyUmlCollaborationParser"></a>顺序图元素解析类 <code>MyUmlCollaborationParser</code></h4><ul>
+<li>对与顺序图有关的查询指令进行解析处理和返回<br><br></li>
+</ul>
+</li>
+<li><h4 id="状态图元素解析类-MyUmlStateMachineParser"><a href="#状态图元素解析类-MyUmlStateMachineParser" class="headerlink" title="状态图元素解析类 MyUmlStateMachineParser"></a>状态图元素解析类 <code>MyUmlStateMachineParser</code></h4><ul>
+<li>对与状态图有关的查询指令进行解析处理和返回<br><br></li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 id="基于度量的程序结构分析-1"><a href="#基于度量的程序结构分析-1" class="headerlink" title="基于度量的程序结构分析"></a>基于度量的程序结构分析</h3><ul>
+<li><p>总UML类图<br><font size='2'> （可以放大观看） </font><br><img src="2-1.png"/>  </p>
+</li>
+<li><p>代码规模分析<br><img src="2-2.png"/><br><img src="2-2-2.png"/>  </p>
+</li>
+<li><p>方法复杂度分析（部分）<br><img src="2-3.png"/>  </p>
+</li>
+<li><p>类复杂度分析<br><img src="2-4.png"/><br><img src="2-4-2.png"/>  </p>
+</li>
+</ul>
+<p><br></p>
+<hr>
+<h2 id="第三次作业总结"><a href="#第三次作业总结" class="headerlink" title="第三次作业总结"></a>第三次作业总结</h2><h3 id="分析-2"><a href="#分析-2" class="headerlink" title="分析"></a>分析</h3><ul>
+<li><p>本次作业需要实现对 <code>UML</code> 各种模型的常见的几类错误检查，没有新增的 <code>UML</code> 模型元素，只需检查模型有效性<br><br></p>
+</li>
+<li><p>由于各种图内的元素均已经建模完毕，所以只需要在前两次代码的架构之下对已有的模型元素的信息进行分析，进行增量开发即可<br><br></p>
+</li>
+<li><p>模型有效性检查部分，将在实例化完毕后自动按序触发执行，而不需要通过指令的形式执行。执行中一旦发现不符合规则的情况，将直接退出，不进行后续有效性检查和指令查询<br><br></p>
+</li>
+</ul>
+<hr>
+<h3 id="基本思路-2"><a href="#基本思路-2" class="headerlink" title="基本思路"></a>基本思路</h3><ul>
+<li>本次作业不需要对原有的建模进行改动，根据前两次作业建模而成的模型，针对具体的错误检查指令，进行对应的的处理与解析操作即可<br><br></li>
+</ul>
+<hr>
+<h3 id="具体实现-2"><a href="#具体实现-2" class="headerlink" title="具体实现"></a>具体实现</h3><h4 id="修改：-1"><a href="#修改：-1" class="headerlink" title="修改："></a>修改：</h4><ul>
+<li><h4 id="解析处理类-MyParser-2"><a href="#解析处理类-MyParser-2" class="headerlink" title="解析处理类 MyParser"></a>解析处理类 <code>MyParser</code></h4><ul>
+<li>新增本次作业的接口的具体算法实现，并且提供检查是否应该抛出异常的函数<br><br></li>
+</ul>
+</li>
+</ul>
+<h4 id="新增：-1"><a href="#新增：-1" class="headerlink" title="新增："></a>新增：</h4><ul>
+<li><h4 id="模型错误检查类-MyErrorChecker"><a href="#模型错误检查类-MyErrorChecker" class="headerlink" title="模型错误检查类 MyErrorChecker"></a>模型错误检查类 <code>MyErrorChecker</code></h4><ul>
+<li>按照接口实现对模型错误 <code>UmlError001 - UmlError009</code> 的检查<br><br></li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 id="基于度量的程序结构分析-2"><a href="#基于度量的程序结构分析-2" class="headerlink" title="基于度量的程序结构分析"></a>基于度量的程序结构分析</h3><ul>
+<li><p>总UML类图<br><font size='2'> （可以放大观看） </font><br><img src="3-1.png"/>  </p>
+</li>
+<li><p>代码规模分析<br><img src="3-2.png"/><br><img src="3-2-2.png"/>  </p>
+</li>
+<li><p>方法复杂度分析（部分）<br><img src="3-3.png"/>  </p>
+</li>
+<li><p>类复杂度分析（部分）<br><img src="3-4.png"/>  </p>
+</li>
+</ul>
+<p><br></p>
+<hr>
+<h2 id="总结本单元作业的架构设计"><a href="#总结本单元作业的架构设计" class="headerlink" title="总结本单元作业的架构设计"></a>总结本单元作业的架构设计</h2><ul>
+<li>本单元主要采用层次化处理各个 <code>UML</code> 元素，并且先建立模型再解决问题，使程序中的建立模型过程和解决查询需求功能的耦合度降低，符合了面向对象的设计思维。对所有 <code>UML</code> 元素封装为自身的可控制的元素，并且配置好各类属性的访问方法，再针对具体需求添加对应的合适的容器存储所需的元素</li>
+</ul>
+<p><br></p>
+<hr>
+<h2 id="总结自己在四个单元中架构设计思维及OO方法理解的演进"><a href="#总结自己在四个单元中架构设计思维及OO方法理解的演进" class="headerlink" title="总结自己在四个单元中架构设计思维及OO方法理解的演进"></a>总结自己在四个单元中架构设计思维及OO方法理解的演进</h2><ul>
+<li><p><br></p>
+</li>
+</ul>
+<hr>
+<h2 id="总结自己在四个单元中测试理解与实践的演进"><a href="#总结自己在四个单元中测试理解与实践的演进" class="headerlink" title="总结自己在四个单元中测试理解与实践的演进"></a>总结自己在四个单元中测试理解与实践的演进</h2><ul>
+<li><p><br></p>
+</li>
+</ul>
+<hr>
+<h2 id="总结自己的课程收获"><a href="#总结自己的课程收获" class="headerlink" title="总结自己的课程收获"></a>总结自己的课程收获</h2><ul>
+<li><p><br></p>
+</li>
+</ul>
+<hr>
+<h2 id="立足于自己的体会给课程提三个具体的改进建议"><a href="#立足于自己的体会给课程提三个具体的改进建议" class="headerlink" title="立足于自己的体会给课程提三个具体的改进建议"></a>立足于自己的体会给课程提三个具体的改进建议</h2><ul>
+<li><p><br></p>
+</li>
+</ul>
+<hr>
+<h6>author: 20373864 谭立德</h6>
+
+<hr>
+
                 
                 <hr>
                 <!-- Pager -->
@@ -323,6 +608,17 @@
             <!-- Table of Contents -->
 
     
+      
+        <aside id="sidebar">
+          <div id="toc" class="toc-article">
+          <strong class="toc-title">Contents</strong>
+          
+            
+              <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#OO第四单元总结"><span class="toc-nav-text">OO第四单元总结</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#要求"><span class="toc-nav-text">要求</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#第一次作业总结"><span class="toc-nav-text">第一次作业总结</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#分析"><span class="toc-nav-text">分析</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#基本思路"><span class="toc-nav-text">基本思路</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#具体实现"><span class="toc-nav-text">具体实现</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#我的元素类-MyElement"><span class="toc-nav-text">我的元素类 MyElement</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#类图第一层元素-MyClass、MyInterface、MyAssociation"><span class="toc-nav-text">类图第一层元素 MyClass、MyInterface、MyAssociation</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#类图第二层元素-MyAttribute、MyOperation、MyAssociationEnd、MyGeneralzation"><span class="toc-nav-text">类图第二层元素 MyAttribute、MyOperation、MyAssociationEnd、MyGeneralzation</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#类图第三层元素-MyParameter、MyInterfaceRealization"><span class="toc-nav-text">类图第三层元素 MyParameter、MyInterfaceRealization</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#我的类与接口类-MyClassOrInterface"><span class="toc-nav-text">我的类与接口类 MyClassOrInterface</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#解析处理类-MyParser"><span class="toc-nav-text">解析处理类 MyParser</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#实现接口类-MyImplementation"><span class="toc-nav-text">实现接口类 MyImplementation</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#基于度量的程序结构分析"><span class="toc-nav-text">基于度量的程序结构分析</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#第二次作业总结"><span class="toc-nav-text">第二次作业总结</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#分析-1"><span class="toc-nav-text">分析</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#基本思路-1"><span class="toc-nav-text">基本思路</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#具体实现-1"><span class="toc-nav-text">具体实现</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#修改："><span class="toc-nav-text">修改：</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#解析处理类-MyParser-1"><span class="toc-nav-text">解析处理类 MyParser</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#属性类-MyAttribute"><span class="toc-nav-text">属性类 MyAttribute</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#新增："><span class="toc-nav-text">新增：</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#顺序图第一层元素-MyCollaboration"><span class="toc-nav-text">顺序图第一层元素 MyCollaboration</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#顺序图第二层元素-MyInteraction、MyAttribute"><span class="toc-nav-text">顺序图第二层元素 MyInteraction、MyAttribute</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#顺序图第三层元素-MyLifeline、MyEndPoint"><span class="toc-nav-text">顺序图第三层元素 MyLifeline、MyEndPoint</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#顺序图第四层元素-MyMessage"><span class="toc-nav-text">顺序图第四层元素 MyMessage</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#状态图第一层元素-MyStateMachine"><span class="toc-nav-text">状态图第一层元素 MyStateMachine</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#状态图第二层元素-MyRegion"><span class="toc-nav-text">状态图第二层元素 MyRegion</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#状态图第三层元素-MyState、MyPseudostate、MyFinalState"><span class="toc-nav-text">状态图第三层元素 MyState、MyPseudostate、MyFinalState</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#状态图第四层元素-MyTransition"><span class="toc-nav-text">状态图第四层元素 MyTransition</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#状态图第五层元素-MyEvent、MyOpaqueBehavior"><span class="toc-nav-text">状态图第五层元素 MyEvent、MyOpaqueBehavior</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#类图元素初始化处理类-MyUmlClassParserInit"><span class="toc-nav-text">类图元素初始化处理类 MyUmlClassParserInit</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#顺序图元素初始化处理类-MyUmlCollaborationParserInit"><span class="toc-nav-text">顺序图元素初始化处理类 MyUmlCollaborationParserInit</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#状态图元素初始化处理类-MyUmlStateMachineParserInit"><span class="toc-nav-text">状态图元素初始化处理类 MyUmlStateMachineParserInit</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#类图元素解析类-MyUmlClassParser"><span class="toc-nav-text">类图元素解析类 MyUmlClassParser</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#顺序图元素解析类-MyUmlCollaborationParser"><span class="toc-nav-text">顺序图元素解析类 MyUmlCollaborationParser</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#状态图元素解析类-MyUmlStateMachineParser"><span class="toc-nav-text">状态图元素解析类 MyUmlStateMachineParser</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#基于度量的程序结构分析-1"><span class="toc-nav-text">基于度量的程序结构分析</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#第三次作业总结"><span class="toc-nav-text">第三次作业总结</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#分析-2"><span class="toc-nav-text">分析</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#基本思路-2"><span class="toc-nav-text">基本思路</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#具体实现-2"><span class="toc-nav-text">具体实现</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#修改：-1"><span class="toc-nav-text">修改：</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#解析处理类-MyParser-2"><span class="toc-nav-text">解析处理类 MyParser</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#新增：-1"><span class="toc-nav-text">新增：</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#模型错误检查类-MyErrorChecker"><span class="toc-nav-text">模型错误检查类 MyErrorChecker</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#基于度量的程序结构分析-2"><span class="toc-nav-text">基于度量的程序结构分析</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#总结本单元作业的架构设计"><span class="toc-nav-text">总结本单元作业的架构设计</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#总结自己在四个单元中架构设计思维及OO方法理解的演进"><span class="toc-nav-text">总结自己在四个单元中架构设计思维及OO方法理解的演进</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#总结自己在四个单元中测试理解与实践的演进"><span class="toc-nav-text">总结自己在四个单元中测试理解与实践的演进</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#总结自己的课程收获"><span class="toc-nav-text">总结自己的课程收获</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#立足于自己的体会给课程提三个具体的改进建议"><span class="toc-nav-text">立足于自己的体会给课程提三个具体的改进建议</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-6"><a class="toc-nav-link" href="#"><span class="toc-nav-text">author: 20373864 谭立德</span></a></li></ol></li></ol></li></ol></li></ol></li></ol></li></ol>
+            
+          
+          </div>
+        </aside>
       
     
 

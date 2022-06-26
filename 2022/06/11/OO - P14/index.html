@@ -121,7 +121,7 @@
 	       
                             <div class="blank_box"></div>
                             <span class="meta">
-                                 <span class="post-count">764</span> Words
+                                 <span class="post-count">1k</span> Words
                             </span>
                             <div class="blank_box"></div>
                             <!-- 不蒜子统计 start -->
@@ -195,15 +195,15 @@
                     
 
                         
+                    
+
+                        
+                    
+
+                        
                         	<li>
                           	  <a href="/tags/">Tags</a>
                         	</li>
-                        
-                    
-
-                        
-                    
-
                         
                     
 
@@ -343,47 +343,51 @@
 </ul>
 </li>
 <li><h4 id="状态图第一层元素-MyStateMachine"><a href="#状态图第一层元素-MyStateMachine" class="headerlink" title="状态图第一层元素 MyStateMachine"></a>状态图第一层元素 <code>MyStateMachine</code></h4><ul>
-<li>dadoa<br><br></li>
+<li>存储该类拥有的 <code>MyRegion</code> ，并配置了访问方法<br><br></li>
 </ul>
 </li>
 <li><h4 id="状态图第二层元素-MyRegion"><a href="#状态图第二层元素-MyRegion" class="headerlink" title="状态图第二层元素 MyRegion"></a>状态图第二层元素 <code>MyRegion</code></h4><ul>
-<li>线程安<br><br></li>
+<li>存储该类拥有的 <code>MyPseudostate</code> ， <code>MyState</code> ， <code>MyFinalState</code> ， <code>MyTransition</code> ， <code>MyAllState</code> ，并配置了访问方法</li>
+<li>存储对应的 <code>visibility</code> 属性并配置访问方法<br><br></li>
 </ul>
 </li>
 <li><h4 id="状态图第三层元素-MyState、MyPseudostate、MyFinalState"><a href="#状态图第三层元素-MyState、MyPseudostate、MyFinalState" class="headerlink" title="状态图第三层元素 MyState、MyPseudostate、MyFinalState"></a>状态图第三层元素 <code>MyState</code>、<code>MyPseudostate</code>、<code>MyFinalState</code></h4><ul>
-<li>线程安<br><br></li>
+<li><code>MyState</code> ：存储对应的 <code>visibility</code> 属性并配置访问方法</li>
+<li><code>MyPseudostate</code> ：存储对应的 <code>visibility</code> 属性并配置访问方法</li>
+<li><code>MyFinalState</code> ：存储对应的 <code>visibility</code> 属性并配置访问方法<br><br></li>
 </ul>
 </li>
 <li><h4 id="状态图第四层元素-MyTransition"><a href="#状态图第四层元素-MyTransition" class="headerlink" title="状态图第四层元素 MyTransition"></a>状态图第四层元素 <code>MyTransition</code></h4><ul>
-<li>线程安<br><br></li>
+<li>存储对应的 <code>visibility</code>，  <code>guard</code>，  <code>sourse</code>，  <code>target</code>， 属性并配置访问方法</li>
+<li>存储该类拥有的 <code>MyEvent</code> ， <code>MyOpaqueBehavior</code> ，并配置了访问方法<br><br></li>
 </ul>
 </li>
 <li><h4 id="状态图第五层元素-MyEvent、MyOpaqueBehavior"><a href="#状态图第五层元素-MyEvent、MyOpaqueBehavior" class="headerlink" title="状态图第五层元素 MyEvent、MyOpaqueBehavior"></a>状态图第五层元素 <code>MyEvent</code>、<code>MyOpaqueBehavior</code></h4><ul>
-<li>线程安<br><br></li>
+<li><code>MyEvent</code> ： 存储对应的 <code>visibility</code>，  <code>expression</code>，  <code>values</code>， 属性并配置访问方法<br><br></li>
 </ul>
 </li>
 <li><h4 id="类图元素初始化处理类-MyUmlClassParserInit"><a href="#类图元素初始化处理类-MyUmlClassParserInit" class="headerlink" title="类图元素初始化处理类 MyUmlClassParserInit"></a>类图元素初始化处理类 <code>MyUmlClassParserInit</code></h4><ul>
-<li><br></li>
+<li>对类图元素进行层次化处理和建模<br><br></li>
 </ul>
 </li>
 <li><h4 id="顺序图元素初始化处理类-MyUmlCollaborationParserInit"><a href="#顺序图元素初始化处理类-MyUmlCollaborationParserInit" class="headerlink" title="顺序图元素初始化处理类 MyUmlCollaborationParserInit"></a>顺序图元素初始化处理类 <code>MyUmlCollaborationParserInit</code></h4><ul>
-<li><br></li>
+<li>对顺序图元素进行层次化处理和建模<br><br></li>
 </ul>
 </li>
 <li><h4 id="状态图元素初始化处理类-MyUmlStateMachineParserInit"><a href="#状态图元素初始化处理类-MyUmlStateMachineParserInit" class="headerlink" title="状态图元素初始化处理类 MyUmlStateMachineParserInit"></a>状态图元素初始化处理类 <code>MyUmlStateMachineParserInit</code></h4><ul>
-<li><br></li>
+<li>对状态图元素进行层次化处理和建模<br><br></li>
 </ul>
 </li>
 <li><h4 id="类图元素解析类-MyUmlClassParser"><a href="#类图元素解析类-MyUmlClassParser" class="headerlink" title="类图元素解析类 MyUmlClassParser"></a>类图元素解析类 <code>MyUmlClassParser</code></h4><ul>
-<li><br></li>
+<li>对与类图有关的查询指令进行解析处理和返回<br><br></li>
 </ul>
 </li>
 <li><h4 id="顺序图元素解析类-MyUmlCollaborationParser"><a href="#顺序图元素解析类-MyUmlCollaborationParser" class="headerlink" title="顺序图元素解析类 MyUmlCollaborationParser"></a>顺序图元素解析类 <code>MyUmlCollaborationParser</code></h4><ul>
-<li><br></li>
+<li>对与顺序图有关的查询指令进行解析处理和返回<br><br></li>
 </ul>
 </li>
 <li><h4 id="状态图元素解析类-MyUmlStateMachineParser"><a href="#状态图元素解析类-MyUmlStateMachineParser" class="headerlink" title="状态图元素解析类 MyUmlStateMachineParser"></a>状态图元素解析类 <code>MyUmlStateMachineParser</code></h4><ul>
-<li><br></li>
+<li>对与状态图有关的查询指令进行解析处理和返回<br><br></li>
 </ul>
 </li>
 </ul>
