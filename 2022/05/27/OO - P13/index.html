@@ -121,7 +121,7 @@
 	       
                             <div class="blank_box"></div>
                             <span class="meta">
-                                 <span class="post-count">896</span> Words
+                                 <span class="post-count">913</span> Words
                             </span>
                             <div class="blank_box"></div>
                             <!-- 不蒜子统计 start -->
@@ -198,18 +198,18 @@
                     
 
                         
-                    
-
-                        
-                    
-
-                        
-                    
-
-                        
                         	<li>
                           	  <a href="/tags/">Tags</a>
                         	</li>
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
                         
                     
                     
@@ -271,7 +271,7 @@
 <h3 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h3><ul>
 <li><p>本单元需要实现的是一个 <code>UML</code> 解析器，实现对经过处理为特殊格式但保留主要信息的 <code>UML</code> 源码的解析<br><br></p>
 </li>
-<li><p>本次作业要完成的是对 <code>UML</code> 图中的类图的解析处理任务，需满足能够处理多种对类图的不同性质进行查询的指令</p>
+<li><p>本次作业要完成的是对 <code>UML</code> 图中的类图的解析处理任务，需满足能够处理多种不同的对类图的信息进行查询的指令</p>
 </li>
 <li><p>官方程序已实现基本字符串处理并且规定了要实现的接口，<code>AppRunner</code> 开启了解析线程，在 <code>run()</code> 函数中将储存 <code>UmlElement</code> 对象的容器作为参数传给了 <code>MyImplementation</code>， 参数为处理后的 <code>UmlElement</code> 的各个子类<br><br></p>
 </li>
@@ -324,11 +324,11 @@
 <li><h4 id="我的类与接口类-MyClassOrInterface"><a href="#我的类与接口类-MyClassOrInterface" class="headerlink" title="我的类与接口类 MyClassOrInterface"></a>我的类与接口类 <code>MyClassOrInterface</code></h4><ul>
 <li>由于类与接口有大多数相同的使用和属性之处，因此令 <code>MyClass</code> 和 <code>MyInterface</code> 继承此类，此类继承 <code>MyElement</code> </li>
 <li>使用 <code>HashMap&lt;MyClassOrInterface, Integer&gt;</code> 储存该类 / 接口的所有父类（直接父类 / 间接父类）和所有子类（直接子类 / 间接子类），并且记录其到该类的继承深度</li>
-<li>存储了该类拥有的 <code>MyAttributes</code> 和 <code>MyOperations</code>，并配置了访问方法<br><br></li>
+<li>存储该类拥有的 <code>MyAttributes</code> 和 <code>MyOperations</code>，并配置了访问方法<br><br></li>
 </ul>
 </li>
 <li><h4 id="解析处理类-MyParser"><a href="#解析处理类-MyParser" class="headerlink" title="解析处理类 MyParser"></a>解析处理类 <code>MyParser</code></h4><ul>
-<li>在此类完成三个层次的建模，并且完成题目要求实现的接口的具体算法实现<br><br></li>
+<li>在此类完成三个层次的建模，并且完成题目要求实现的接口的具体算法实现，并且提供检查是否应该抛出异常的函数<br><br></li>
 </ul>
 </li>
 <li><h4 id="实现接口类-MyImplementation"><a href="#实现接口类-MyImplementation" class="headerlink" title="实现接口类 MyImplementation"></a>实现接口类 <code>MyImplementation</code></h4><ul>
@@ -665,7 +665,7 @@
         
 
         
-            <script type="text/javascript" src="/js/mouse-click.js" content='[&#34;Sunny&#34;, &#34;💖&#34;, &#34;Sunny&#34;, &#34;🧡&#34;, &#34;Sunny&#34;, &#34;💛&#34;, &#34;Sunny&#34; , &#34;💚&#34;, &#34;Sunny&#34;, &#34;💙&#34;, &#34;Sunny&#34;, &#34;💜&#34;, &#34;Sunny&#34;, &#34;😍&#34;]' color='[&#34;rgb(255, 0, 0)&#34; ,&#34;rgb(255, 0, 0)&#34; ,&#34;rgb(255, 125, 0)&#34; ,&#34;rgb(255, 125, 0)&#34; ,&#34;rgb(255, 255, 0)&#34; ,&#34;rgb(255, 255, 0)&#34; ,&#34;rgb(0, 255, 0)&#34; ,&#34;rgb(0, 255, 0)&#34; ,&#34;rgb(0, 255, 255)&#34; ,&#34;rgb(0, 255, 255)&#34; ,&#34;rgb(0, 0, 255)&#34; ,&#34;rgb(0, 0, 255)&#34; ,&#34;rgb(255, 0, 255)&#34; ,&#34;rgb(255, 0, 255)&#34;]'></script>
+            <script type="text/javascript" src="/js/mouse-click.js" content='[&quot;Sunny&quot;, &quot;💖&quot;, &quot;Sunny&quot;, &quot;🧡&quot;, &quot;Sunny&quot;, &quot;💛&quot;, &quot;Sunny&quot; , &quot;💚&quot;, &quot;Sunny&quot;, &quot;💙&quot;, &quot;Sunny&quot;, &quot;💜&quot;, &quot;Sunny&quot;, &quot;😍&quot;]' color='[&quot;rgb(255, 0, 0)&quot; ,&quot;rgb(255, 0, 0)&quot; ,&quot;rgb(255, 125, 0)&quot; ,&quot;rgb(255, 125, 0)&quot; ,&quot;rgb(255, 255, 0)&quot; ,&quot;rgb(255, 255, 0)&quot; ,&quot;rgb(0, 255, 0)&quot; ,&quot;rgb(0, 255, 0)&quot; ,&quot;rgb(0, 255, 255)&quot; ,&quot;rgb(0, 255, 255)&quot; ,&quot;rgb(0, 0, 255)&quot; ,&quot;rgb(0, 0, 255)&quot; ,&quot;rgb(255, 0, 255)&quot; ,&quot;rgb(255, 0, 255)&quot;]'></script>
         
 
         <!-- background effects end -->
@@ -675,6 +675,21 @@
     
         <script src="/js/ribbonDynamic.js"></script>
     
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 </body>
 
 </html>

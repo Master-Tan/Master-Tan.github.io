@@ -121,7 +121,7 @@
 	       
                             <div class="blank_box"></div>
                             <span class="meta">
-                                 <span class="post-count">707</span> Words
+                                 <span class="post-count">764</span> Words
                             </span>
                             <div class="blank_box"></div>
                             <!-- 不蒜子统计 start -->
@@ -198,18 +198,18 @@
                     
 
                         
-                    
-
-                        
-                    
-
-                        
-                    
-
-                        
                         	<li>
                           	  <a href="/tags/">Tags</a>
                         	</li>
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
                         
                     
                     
@@ -276,55 +276,74 @@
 </ul>
 <hr>
 <h3 id="基本思路"><a href="#基本思路" class="headerlink" title="基本思路"></a>基本思路</h3><ul>
-<li>ajsbdjabj</li>
-<li><p>此单元作业重点在于对于 <code>UML</code> 的各元素的处理，存储并构建好所有元素的数据结构，完整的保留原本的 <code>UML</code> 图中所包含的信息，并且通过合理的设计使其便于查询，查询方法只需在自己构建好的架构之下稍加拓展即可实现<br><br></p>
+<li><p>本次作业新增的两个图同样适用于上一次作业使用的层次化处理，采用的数据结构也不变<br><br></p>
 </li>
-<li><p>对各 <code>UmlElement</code> 的各子类进行预处理，封装为对应继承 <code>MyElement</code> 的各子类，封装后能自主根据题目需求添加数据结构，满足题目的要求</p>
+<li><p>顺序图和状态图的关系图如下<br><img src="1.png"/><br><img src="2.png"/>  </p>
 </li>
-<li><p>采用数据结构：树；原因：各 <code>UML</code> 元素关系均为树状关系，类图的关系图如下</p>
+</ul>
+<p><br></p>
+<ul>
+<li><p>顺序图：</p>
 </li>
-<li><p><img src="1.png"/>  </p>
+<li><p>第一轮处理： <code>UML_COLLABORATION</code><br><br></p>
 </li>
-<li><p>处理方法：层次化读入处理；原因：提供的 <code>UmlElement</code> 的各子类是随机的，而按照树型结构建立模型的话，父、子结点之间关系的建立必须先有父结点，再有子结点，因此，按照父子节点的关系，将 <code>UmlElement</code> 的各子类按层次划分，按轮次处理，确保了建树过程中的自上而下建模的可行性<br><br></p>
+<li><p>第二轮处理： <code>UML_INTERACTION</code> 、 <code>UML_ATTRIBUTE</code><br><br></p>
 </li>
-<li><p>第一轮处理： <code>UML_CLASS</code> 、 <code>UML_INTERFACE</code> 、 <code>UML_ASSOCIATION</code><br><br></p>
+<li><p>第三轮处理： <code>UML_LIFELINE</code> 、 <code>UML_ENDPOINT</code><br><br></p>
 </li>
-<li><p>第二轮处理： <code>UML_ATTRIBUTE</code> 、 <code>UML_OPERATION</code> 、 <code>UML_ASSOCIATION_END</code> 、 <code>UML_GENERALIZATION</code><br><br></p>
+<li><p>第四轮处理： <code>UML_LIFELINE</code> 、 <code>UML_ENDPOINT</code><br><br></p>
 </li>
-<li><p>第三轮处理： <code>UML_PARAMETER</code> 、 <code>UML_INTERFACE_REALIZATION</code><br><br></p>
+<li><p>状态图：</p>
+</li>
+<li><p>第一轮处理： <code>UML_STATE_MACHINE</code><br><br></p>
+</li>
+<li><p>第二轮处理： <code>UML_REGION</code><br><br></p>
+</li>
+<li><p>第三轮处理： <code>UML_STATE</code> 、 <code>UML_PSEUDOSTATE</code> 、 <code>UML_FINAL_STATE</code><br><br></p>
+</li>
+<li><p>第四轮处理： <code>UML_TRANSITION</code><br><br></p>
+</li>
+<li><p>第五轮处理： <code>UML_EVENT</code> 、 <code>UML_OPAQUE_BEHAVIOR</code><br><br></p>
 </li>
 </ul>
 <hr>
 <h3 id="具体实现"><a href="#具体实现" class="headerlink" title="具体实现"></a>具体实现</h3><h4 id="总UML类图："><a href="#总UML类图：" class="headerlink" title="总UML类图："></a>总UML类图：</h4><p><img src="MainClass.png"/></p>
 <h4 id="修改："><a href="#修改：" class="headerlink" title="修改："></a>修改：</h4><ul>
 <li><h4 id="解析处理类-MyParser"><a href="#解析处理类-MyParser" class="headerlink" title="解析处理类 MyParser"></a>解析处理类 <code>MyParser</code></h4><ul>
-<li><br></li>
+<li>在此类完成顺序图四个层次以及状态图五个层次的建模，并且完成题目要求实现的接口的具体算法实现，并且提供检查是否应该抛出异常的函数<br><br></li>
 </ul>
 </li>
 <li><h4 id="属性类-MyAttribute"><a href="#属性类-MyAttribute" class="headerlink" title="属性类 MyAttribute"></a>属性类 <code>MyAttribute</code></h4><ul>
-<li>线程安<br><br></li>
+<li>注意该类的 <code>parentId</code> 可以是类图的 <code>MyClass 、 MyInterface</code> 也可以是顺序图的 <code>MyCollaboration</code>，要据此划分为不同图中的元素<br><br></li>
 </ul>
 </li>
 </ul>
 <h4 id="新增："><a href="#新增：" class="headerlink" title="新增："></a>新增：</h4><ul>
 <li><h4 id="顺序图第一层元素-MyCollaboration"><a href="#顺序图第一层元素-MyCollaboration" class="headerlink" title="顺序图第一层元素 MyCollaboration"></a>顺序图第一层元素 <code>MyCollaboration</code></h4><ul>
-<li>用一个 <code>synchronized</code> 的 <code>static</code> 方法，对官方给的线程不安全的输出方法 <code>TimableOutput.println()</code> 进行封装，使其成为线程安全的静态方法 <code>OutputThread.println()</code> （即调用时不会出现时间戳不递增的情况）<br><br></li>
+<li>存储该类拥有的 <code>MyInteraction</code> 和 <code>MyAttribute</code>，并配置了访问方法<br><br></li>
 </ul>
 </li>
 <li><h4 id="顺序图第二层元素-MyInteraction、MyAttribute"><a href="#顺序图第二层元素-MyInteraction、MyAttribute" class="headerlink" title="顺序图第二层元素 MyInteraction、MyAttribute"></a>顺序图第二层元素 <code>MyInteraction</code>、<code>MyAttribute</code></h4><ul>
-<li>创建请求池类（ <code>RequestPool</code> 类）的实例<br><br></li>
+<li><code>MyInteraction</code> ：存储该类拥有的 <code>MyInteraction</code> 和 <code>MyAttribute</code>，并配置了访问方法</li>
+<li><code>MyInteraction</code> ：存储对应的 <code>visibility</code> 属性并配置访问方法</li>
+<li><code>MyAttribute</code> ：存储对应的 <code>visibility</code> 、 <code>type</code> 、 <code>referenceId</code> 、 <code>typeName</code> 属性并配置访问方法<br><br></li>
 </ul>
 </li>
-<li><h4 id="顺序图第三层元素-MyLifeline、MyEndpoint"><a href="#顺序图第三层元素-MyLifeline、MyEndpoint" class="headerlink" title="顺序图第三层元素 MyLifeline、MyEndpoint"></a>顺序图第三层元素 <code>MyLifeline</code>、<code>MyEndpoint</code></h4><ul>
-<li>线程安<br><br></li>
+<li><h4 id="顺序图第三层元素-MyLifeline、MyEndPoint"><a href="#顺序图第三层元素-MyLifeline、MyEndPoint" class="headerlink" title="顺序图第三层元素 MyLifeline、MyEndPoint"></a>顺序图第三层元素 <code>MyLifeline</code>、<code>MyEndPoint</code></h4><ul>
+<li><code>MyLifeline</code> ：存储对应的 <code>represent</code> 、 <code>isMultiInstance</code> 属性并配置访问方法</li>
+<li><code>MyLifeline</code> ：使用 <code>ArrayList&lt;String&gt;</code> 存储收到的所有消息发送者，存储发出的所有信息接受者</li>
+<li><code>MyLifeline</code> ：使用 <code>ArrayList&lt;MyMessage&gt;</code> 存储收到的所有消息，存储发出的所有信息</li>
+<li><code>MyEndPoint</code> ：存储对应的 <code>visibility</code> 属性并配置访问方法</li>
+<li><code>MyEndPoint</code> ：使用 <code>ArrayList&lt;String&gt;</code> 存储收到的所有消息发送者，存储发出的所有信息接受者</li>
+<li><code>MyEndPoint</code> ：使用 <code>ArrayList&lt;MyMessage&gt;</code> 存储收到的所有消息，存储发出的所有信息<br><br></li>
 </ul>
 </li>
 <li><h4 id="顺序图第四层元素-MyMessage"><a href="#顺序图第四层元素-MyMessage" class="headerlink" title="顺序图第四层元素 MyMessage"></a>顺序图第四层元素 <code>MyMessage</code></h4><ul>
-<li>线程安<br><br></li>
+<li>存储对应的 <code>messageSort</code> 、 <code>visibility</code>、 <code>sourse</code> 、 <code>target</code> 属性并配置访问方法<br><br></li>
 </ul>
 </li>
 <li><h4 id="状态图第一层元素-MyStateMachine"><a href="#状态图第一层元素-MyStateMachine" class="headerlink" title="状态图第一层元素 MyStateMachine"></a>状态图第一层元素 <code>MyStateMachine</code></h4><ul>
-<li>创建请求池类（ <code>RequestPool</code> 类）的实例<br><br></li>
+<li>dadoa<br><br></li>
 </ul>
 </li>
 <li><h4 id="状态图第二层元素-MyRegion"><a href="#状态图第二层元素-MyRegion" class="headerlink" title="状态图第二层元素 MyRegion"></a>状态图第二层元素 <code>MyRegion</code></h4><ul>
@@ -434,7 +453,7 @@
           <strong class="toc-title">Contents</strong>
           
             
-              <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#面向对象设计与构造第四单元第二次作业"><span class="toc-nav-text">面向对象设计与构造第四单元第二次作业</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#UML-解析"><span class="toc-nav-text">UML 解析</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#题目"><span class="toc-nav-text">题目</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#分析"><span class="toc-nav-text">分析</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#基本思路"><span class="toc-nav-text">基本思路</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#具体实现"><span class="toc-nav-text">具体实现</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#总UML类图："><span class="toc-nav-text">总UML类图：</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#修改："><span class="toc-nav-text">修改：</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#解析处理类-MyParser"><span class="toc-nav-text">解析处理类 MyParser</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#属性类-MyAttribute"><span class="toc-nav-text">属性类 MyAttribute</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#新增："><span class="toc-nav-text">新增：</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#顺序图第一层元素-MyCollaboration"><span class="toc-nav-text">顺序图第一层元素 MyCollaboration</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#顺序图第二层元素-MyInteraction、MyAttribute"><span class="toc-nav-text">顺序图第二层元素 MyInteraction、MyAttribute</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#顺序图第三层元素-MyLifeline、MyEndpoint"><span class="toc-nav-text">顺序图第三层元素 MyLifeline、MyEndpoint</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#顺序图第四层元素-MyMessage"><span class="toc-nav-text">顺序图第四层元素 MyMessage</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#状态图第一层元素-MyStateMachine"><span class="toc-nav-text">状态图第一层元素 MyStateMachine</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#状态图第二层元素-MyRegion"><span class="toc-nav-text">状态图第二层元素 MyRegion</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#状态图第三层元素-MyState、MyPseudostate、MyFinalState"><span class="toc-nav-text">状态图第三层元素 MyState、MyPseudostate、MyFinalState</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#状态图第四层元素-MyTransition"><span class="toc-nav-text">状态图第四层元素 MyTransition</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#状态图第五层元素-MyEvent、MyOpaqueBehavior"><span class="toc-nav-text">状态图第五层元素 MyEvent、MyOpaqueBehavior</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#类图元素初始化处理类-MyUmlClassParserInit"><span class="toc-nav-text">类图元素初始化处理类 MyUmlClassParserInit</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#顺序图元素初始化处理类-MyUmlCollaborationParserInit"><span class="toc-nav-text">顺序图元素初始化处理类 MyUmlCollaborationParserInit</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#状态图元素初始化处理类-MyUmlStateMachineParserInit"><span class="toc-nav-text">状态图元素初始化处理类 MyUmlStateMachineParserInit</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#类图元素解析类-MyUmlClassParser"><span class="toc-nav-text">类图元素解析类 MyUmlClassParser</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#顺序图元素解析类-MyUmlCollaborationParser"><span class="toc-nav-text">顺序图元素解析类 MyUmlCollaborationParser</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#状态图元素解析类-MyUmlStateMachineParser"><span class="toc-nav-text">状态图元素解析类 MyUmlStateMachineParser</span></a></li></ol></li></ol></li></ol></li></ol>
+              <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#面向对象设计与构造第四单元第二次作业"><span class="toc-nav-text">面向对象设计与构造第四单元第二次作业</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#UML-解析"><span class="toc-nav-text">UML 解析</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#题目"><span class="toc-nav-text">题目</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#分析"><span class="toc-nav-text">分析</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#基本思路"><span class="toc-nav-text">基本思路</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#具体实现"><span class="toc-nav-text">具体实现</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#总UML类图："><span class="toc-nav-text">总UML类图：</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#修改："><span class="toc-nav-text">修改：</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#解析处理类-MyParser"><span class="toc-nav-text">解析处理类 MyParser</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#属性类-MyAttribute"><span class="toc-nav-text">属性类 MyAttribute</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#新增："><span class="toc-nav-text">新增：</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#顺序图第一层元素-MyCollaboration"><span class="toc-nav-text">顺序图第一层元素 MyCollaboration</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#顺序图第二层元素-MyInteraction、MyAttribute"><span class="toc-nav-text">顺序图第二层元素 MyInteraction、MyAttribute</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#顺序图第三层元素-MyLifeline、MyEndPoint"><span class="toc-nav-text">顺序图第三层元素 MyLifeline、MyEndPoint</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#顺序图第四层元素-MyMessage"><span class="toc-nav-text">顺序图第四层元素 MyMessage</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#状态图第一层元素-MyStateMachine"><span class="toc-nav-text">状态图第一层元素 MyStateMachine</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#状态图第二层元素-MyRegion"><span class="toc-nav-text">状态图第二层元素 MyRegion</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#状态图第三层元素-MyState、MyPseudostate、MyFinalState"><span class="toc-nav-text">状态图第三层元素 MyState、MyPseudostate、MyFinalState</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#状态图第四层元素-MyTransition"><span class="toc-nav-text">状态图第四层元素 MyTransition</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#状态图第五层元素-MyEvent、MyOpaqueBehavior"><span class="toc-nav-text">状态图第五层元素 MyEvent、MyOpaqueBehavior</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#类图元素初始化处理类-MyUmlClassParserInit"><span class="toc-nav-text">类图元素初始化处理类 MyUmlClassParserInit</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#顺序图元素初始化处理类-MyUmlCollaborationParserInit"><span class="toc-nav-text">顺序图元素初始化处理类 MyUmlCollaborationParserInit</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#状态图元素初始化处理类-MyUmlStateMachineParserInit"><span class="toc-nav-text">状态图元素初始化处理类 MyUmlStateMachineParserInit</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#类图元素解析类-MyUmlClassParser"><span class="toc-nav-text">类图元素解析类 MyUmlClassParser</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#顺序图元素解析类-MyUmlCollaborationParser"><span class="toc-nav-text">顺序图元素解析类 MyUmlCollaborationParser</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#状态图元素解析类-MyUmlStateMachineParser"><span class="toc-nav-text">状态图元素解析类 MyUmlStateMachineParser</span></a></li></ol></li></ol></li></ol></li></ol>
             
           
           </div>
@@ -697,7 +716,7 @@
         
 
         
-            <script type="text/javascript" src="/js/mouse-click.js" content='[&#34;Sunny&#34;, &#34;💖&#34;, &#34;Sunny&#34;, &#34;🧡&#34;, &#34;Sunny&#34;, &#34;💛&#34;, &#34;Sunny&#34; , &#34;💚&#34;, &#34;Sunny&#34;, &#34;💙&#34;, &#34;Sunny&#34;, &#34;💜&#34;, &#34;Sunny&#34;, &#34;😍&#34;]' color='[&#34;rgb(255, 0, 0)&#34; ,&#34;rgb(255, 0, 0)&#34; ,&#34;rgb(255, 125, 0)&#34; ,&#34;rgb(255, 125, 0)&#34; ,&#34;rgb(255, 255, 0)&#34; ,&#34;rgb(255, 255, 0)&#34; ,&#34;rgb(0, 255, 0)&#34; ,&#34;rgb(0, 255, 0)&#34; ,&#34;rgb(0, 255, 255)&#34; ,&#34;rgb(0, 255, 255)&#34; ,&#34;rgb(0, 0, 255)&#34; ,&#34;rgb(0, 0, 255)&#34; ,&#34;rgb(255, 0, 255)&#34; ,&#34;rgb(255, 0, 255)&#34;]'></script>
+            <script type="text/javascript" src="/js/mouse-click.js" content='[&quot;Sunny&quot;, &quot;💖&quot;, &quot;Sunny&quot;, &quot;🧡&quot;, &quot;Sunny&quot;, &quot;💛&quot;, &quot;Sunny&quot; , &quot;💚&quot;, &quot;Sunny&quot;, &quot;💙&quot;, &quot;Sunny&quot;, &quot;💜&quot;, &quot;Sunny&quot;, &quot;😍&quot;]' color='[&quot;rgb(255, 0, 0)&quot; ,&quot;rgb(255, 0, 0)&quot; ,&quot;rgb(255, 125, 0)&quot; ,&quot;rgb(255, 125, 0)&quot; ,&quot;rgb(255, 255, 0)&quot; ,&quot;rgb(255, 255, 0)&quot; ,&quot;rgb(0, 255, 0)&quot; ,&quot;rgb(0, 255, 0)&quot; ,&quot;rgb(0, 255, 255)&quot; ,&quot;rgb(0, 255, 255)&quot; ,&quot;rgb(0, 0, 255)&quot; ,&quot;rgb(0, 0, 255)&quot; ,&quot;rgb(255, 0, 255)&quot; ,&quot;rgb(255, 0, 255)&quot;]'></script>
         
 
         <!-- background effects end -->
@@ -707,6 +726,21 @@
     
         <script src="/js/ribbonDynamic.js"></script>
     
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 </body>
 
 </html>
