@@ -1,0 +1,770 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="baidu-site-verification" content="093lY4ziMu" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="description" content="Tan&#39;s Blog">
+    <meta name="keyword"  content="Hello world">
+    <link rel="shortcut icon" href="/img/ironman-draw.png">
+    <!-- Place this tag in your head or just before your close body tag. -->
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+    <!--<link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>-->
+    <title>
+        
+          算法 - 第二次作业 - Tan&#39;s Blog
+        
+    </title>
+
+    <link rel="canonical" href="https://master-tan.github.io/2022/10/14/算法 - 第二次作业/">
+
+    <!-- Bootstrap Core CSS -->
+    
+<link rel="stylesheet" href="/css/bootstrap.min.css">
+
+
+    <!-- Custom CSS --> 
+    
+        
+<link rel="stylesheet" href="/css/dusign-light.css">
+
+        
+<link rel="stylesheet" href="/css/dusign-common-light.css">
+
+        
+<link rel="stylesheet" href="/css/font-awesome.css">
+
+        
+<link rel="stylesheet" href="/css/toc.css">
+
+        <!-- background effects end -->
+    
+    
+    <!-- Pygments Highlight CSS -->
+    
+<link rel="stylesheet" href="/css/highlight.css">
+
+
+    
+<link rel="stylesheet" href="/css/widget.css">
+
+
+    
+<link rel="stylesheet" href="/css/rocket.css">
+
+
+    
+<link rel="stylesheet" href="/css/signature.css">
+
+
+    
+<link rel="stylesheet" href="/css/fonts.googleapis.css">
+
+
+    <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.3.0/css/font-awesome.min.css">
+
+    <!-- photography -->
+    
+<link rel="stylesheet" href="/css/photography.css">
+
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+
+    <!-- background effects start -->
+    
+    <!-- background effects end -->
+
+	<!-- Modified by Yu-Hsuan Yen -->
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        
+            
+                background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('../../../../img/default.jpg')
+                /*post*/
+            
+        
+    }
+    
+</style>
+
+<header class="intro-header" >
+    <!-- Signature -->
+    <div id="signature">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                
+                    <div class="post-heading">
+                        <div class="tags">
+                            
+                              <a class="tag" href="/tags/#算法" title="算法">算法</a>
+                            
+                        </div>
+                        <h1>算法 - 第二次作业</h1>
+                        <h2 class="subheading">2022 算法设计与分析 - 第二次作业</h2>
+                        <span class="meta">
+                            Posted by Tan on
+                            2022-10-14
+                        </span>
+
+	       
+                            <div class="blank_box"></div>
+                            <span class="meta">
+                                 <span class="post-count">3.1k</span> Words
+                            </span>
+                            <div class="blank_box"></div>
+                            <!-- 不蒜子统计 start -->
+                            <span class="meta">
+                                Viewed <span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span> Times
+                            </span>
+                            <!-- 不蒜子统计 end -->
+                        
+
+                    </div>
+                
+
+                </div>
+            </div>
+        </div>      
+    </div>
+
+    
+    <div class="waveWrapper">
+        <div class="wave wave_before" style="background-image: url('/img/wave-light.png')"></div>
+        <div class="wave wave_after" style="background-image: url('/img/wave-light.png')"></div>
+    </div>
+    
+</header>
+
+	
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Tan&#39;s Blog</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+
+                    
+
+                        
+                    
+
+                        
+                        	<li>
+                          	  <a href="/archive/">Archives</a>
+                        	</li>
+                        
+                    
+
+                        
+                    
+
+                        
+                        	<li>
+                          	  <a href="/tags/">Tags</a>
+                        	</li>
+                        
+                    
+
+                        
+                        	<li>
+                          	  <a href="/about/">About Tan</a>
+                        	</li>
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+    <!-- Main Content -->
+    <!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+            <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <h4 id="1-小跳蛙问题-20-分"><a href="#1-小跳蛙问题-20-分" class="headerlink" title="1 小跳蛙问题 (20 分)"></a>1 小跳蛙问题 (20 分)</h4><blockquote>
+<p>给定 n 块石头，依次编号为 1 到 n，第 i 块<br>石头的高度是 h~i~，青蛙最远跳跃距离 k。</p>
+<p>现有一只小跳蛙在第 1 块石头上，它重复以下操作，直到它到达第 n 块石头：</p>
+<p>若它当前在第 i 块石头上，则可跳到第 j(i + 1 ≤ j ≤ min(i + k, n)) 块石头上，耗费的体力为 | hi − hj |。</p>
+<p>试设计算法求它最少耗费多少体力可以到达第 n 块石头，写出伪代码并分析算法的时间复杂度。</p>
+</blockquote>
+<p>答：</p>
+<ul>
+<li><p>题目分析：</p>
+<ul>
+<li><p>问题结构分析：<br>&emsp;&emsp;记 $f[i]$ 表示小跳蛙跳到第 $i$ 号石头上时的最小代价。<br>&emsp;&emsp;则初始问题为：求 $f[n]$</p>
+</li>
+<li><p>递推关系建立：<br>&emsp;&emsp;小跳蛙只能从第 $i-1$ 块石头到第 $\max(i-k, 1)$ 块石头跳到第 $i$ 块石头上面，因此递推关系为</p>
+<script type="math/tex; mode=display">
+f[i]={\min} _{j=\max(i-k, 1)}^{i-1}\left\{f[j]+\left|h_{i}-h_{j}\right|\right\}</script></li>
+<li><p>自底向上计算：<br>&emsp;&emsp;初始状态 $f[1] = 0$<br>&emsp;&emsp;从 $1$ 到 $n$ 顺序依次计算 $f[i]$，最终得到的 $f[n]$ 即为答案</p>
+</li>
+</ul>
+</li>
+<li><p>算法实现：</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">FindMin</span><span class="params">(h: list, k: int)</span> -&gt; int:</span></span><br><span class="line">  <span class="comment"># 输入：石头高度列表h，小跳蛙跳跃距离k</span></span><br><span class="line">  <span class="comment"># 输出：最小耗费体力</span></span><br><span class="line">  n = len(h) - <span class="number">1</span></span><br><span class="line">  f = []</span><br><span class="line">  <span class="keyword">for</span> i <span class="keyword">in</span> range(n + <span class="number">1</span>):</span><br><span class="line">      f.append(<span class="number">0</span>)</span><br><span class="line">  f[<span class="number">1</span>] = <span class="number">0</span></span><br><span class="line">  <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">2</span>, n + <span class="number">1</span>):</span><br><span class="line">      allDistance = []</span><br><span class="line">      <span class="keyword">for</span> j <span class="keyword">in</span> range(max(i - k, <span class="number">1</span>), i):</span><br><span class="line">          allDistance.append(f[j] + abs(h[i] - h[j]))</span><br><span class="line">      f[i] = min(allDistance)</span><br><span class="line">  <span class="keyword">return</span> f[n]</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>时间复杂度分析：<br>&emsp;&emsp;每次计算 $f[i]$ 复杂度是 $O(k)$，总共需要计算 $n$ 个 $f[i]$ 的值，因此该算法的时间复杂度为 $O(nk)$。</p>
+</li>
+</ul>
+<h4 id="2-二进制串变换问题-20-分"><a href="#2-二进制串变换问题-20-分" class="headerlink" title="2 二进制串变换问题 (20 分)"></a>2 二进制串变换问题 (20 分)</h4><blockquote>
+<p>给定两个长度均为 n 的仅由 0 和 1 组成的字符串 a 和 b，你可以对串 a 进行如下操作：</p>
+<ol>
+<li>对任意 i, j(1 ≤ i, j ≤ n)，交换 a~i~ 和 a~j~，操作代价为 |i − j|；</li>
+<li>对任意 i(1 ≤ i ≤ n)，取反 a~i~，操作代价为 1；</li>
+</ol>
+<p>请你设计算法计算将串 a 变为串 b 所需的最小代价（只能对串 a 进行操作），写出伪代码并分析算法的时间复杂度。</p>
+</blockquote>
+<p>答：</p>
+<ul>
+<li><p>题目分析：</p>
+<ul>
+<li>问题结构分析：<br>&emsp;&emsp;定义 $C[i]$ 为将串 $a$ 的前 $i$ 位变成 $b$ 的前 $i$ 位所需的最小代价，则原始问题：求串 $a$ 变为串 $b$ 的最小代价 $C[n]$<br>&emsp;&emsp;对于操作 $1$ ，显然在交换二者距离大于 $2$ 的时候可以用至多两次的操作 $2$ 来代替，所以仅在存在连续两位需要取反且这两位不相等时才会选择交换操作，因此对于操作 $1$ 只讨论相邻二者的交换</li>
+<li><p>递推关系建立：</p>
+<script type="math/tex; mode=display">
+  C[k]=\left\{\begin{array}{l}
+  C[k-1], &a[k]=b[k] \\
+  C[k-2]+1, &a[k] \neq b[k] \text { 且 } a[k-1]=b[k] \text { 且 } b[k-1]=a[k] \\
+  C[k-1]+1, &\text { 其它 }
+  \end{array}\right.</script></li>
+<li><p>自底向上计算：<br>&emsp;&emsp;初始条件为 $i = 0$ 时，此时串 $a$ 和串 $b$ 均为空，无需任何操作，$C[0] = 0$<br>&emsp;&emsp;按照递增的顺序依次计算每个 $C[i]$，直至 $C[n]$ 即可</p>
+</li>
+</ul>
+</li>
+<li><p>算法实现：</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">FindMin</span><span class="params">(a: list, b: list)</span> -&gt; int:</span></span><br><span class="line">  <span class="comment"># 输入：串a，串b</span></span><br><span class="line">  <span class="comment"># 输出：将串 a 变为串 b 所需的最小代价</span></span><br><span class="line">  n = len(a) - <span class="number">1</span></span><br><span class="line">  C = [<span class="number">0</span> <span class="keyword">for</span> c <span class="keyword">in</span> range(n + <span class="number">1</span>)]</span><br><span class="line">  C[<span class="number">0</span>] = <span class="number">0</span></span><br><span class="line">  <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>, n + <span class="number">1</span>):</span><br><span class="line">      <span class="keyword">if</span> a[i] == b[i]:</span><br><span class="line">          C[i] = C[i - <span class="number">1</span>]</span><br><span class="line">      <span class="keyword">elif</span> i &gt; <span class="number">1</span> <span class="keyword">and</span> a[i - <span class="number">1</span>] == b[i] <span class="keyword">and</span> b[i - <span class="number">1</span>] == a[i]:</span><br><span class="line">          C[i] = C[i - <span class="number">2</span>] + <span class="number">1</span></span><br><span class="line">      <span class="keyword">else</span>:</span><br><span class="line">          C[i] = C[i - <span class="number">1</span>] + <span class="number">1</span></span><br><span class="line">  <span class="keyword">return</span> C[n]</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>时间复杂度分析：<br>&emsp;&emsp;由于此处一共有 $n$ 个状态，而每次状态转移是 $O(1)$ 的，因此算法的时间复杂度为 $O(n)$</p>
+</li>
+</ul>
+<h4 id="3-球队组建问题-20-分"><a href="#3-球队组建问题-20-分" class="headerlink" title="3 球队组建问题 (20 分)"></a>3 球队组建问题 (20 分)</h4><blockquote>
+<p>有 2n 个学生分为两排，每排有 n 个人，由左至右分别编号为 1, 2, · · · , n，如图所示。现在请你在这两排学生中挑选出一些学生组成一支球队，挑选出的学生编号必须是严格递增的（编号相同的两名学生最多只能取其中一个）。此外，为避免球队中的队员都来自同一排，不能同时选择同一排相邻的两名学生（例如，若选择第一排的 5 号同学，就不能再选择第一排的 4 号和 6号同学）。组建队伍的总人数没有限制。</p>
+<p>给出同学们的身高数据 h<sub>i,j</sub>，h<sub>1,k</sub>(1 ≤ k ≤ n) 表示第一排同学的身高，h<sub>2,k</sub>(1 ≤ k ≤ n) 表示第二排同学的身高。请你设计算法使组建成的球队中队员的身高之和最大，写出伪代码并分析算法的时间复杂度。</p>
+</blockquote>
+<p>答：</p>
+<ul>
+<li><p>题目分析：</p>
+<ul>
+<li>问题结构分析：<br>&emsp;&emsp;定义 $H[i, j] \ (i={0, 1, 2})$ 为前 $j$ 列学生中组成的球队的身高最大和，若 $i = 0$ ， 则第j列没有选择学生，若 $i= 1,2$ ，则第 $j$ 列选择了 $h[i, j]$ 这名学生<br>&emsp;&emsp;原始问题：求 $\max {H[0, n], H[1, n], H[2, n]}$</li>
+<li>递推关系建立：<br>&emsp;&emsp;$H[i][j]$ 可以分成三种递推方式，分别为不选择第 j 列学生，选择 $h[1,j]$，与选择 $h[2,j]$，则递推式即对应为：<script type="math/tex; mode=display">
+  \left\{\begin{array}{l}
+  H[0, j]=\max (H[0, j-1], H[1, j-1], H[2, j-1]) \\
+  H[1, j]=h[1, j]+\max \{(H[0, j−1], H[1, j-2], H[2, j-1]\} \\
+  H[2, j]=h[2, j]+\max \{(H[0, j−1], H[1, j-1], H[2, j-2]\}
+  \end{array}\right.</script></li>
+<li>自底向上计算：<br>&emsp;&emsp;初始状态：$H[0, 0] = H[1, 0] = H[2, 0] = 0$， $H[0, 1] = 0$， $H[1, 1] = H[2, 1] = 1$;<br>&emsp;&emsp;从第 $1$ 列依次递归至第 $n$ 列，最后求出$\max {H[0, n], H[1, n], H[2, n]}$即可</li>
+<li>最优方案追踪：<br>&emsp;&emsp;在递归过程中，维护二维数组 $Rec[0..2][1..n+1]$ 记录选择过程，$Rec[i][j] = k$ 表示 $H[i][j]$ 是由 $H[k][j−1]$ 或 $H[k][j−2]$ 求得</li>
+</ul>
+</li>
+<li><p>算法实现：</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">FindMax</span><span class="params">(h1: list, h2: list)</span> -&gt; [int, list]:</span></span><br><span class="line">  <span class="comment"># 输入：第一排身高列表h1， 第二排身高列表h2</span></span><br><span class="line">  <span class="comment"># 输出：组建成的球队中队员的身高之和最大值，每一列选取方案列表</span></span><br><span class="line">  n = len(h1) - <span class="number">1</span></span><br><span class="line">  H = [[<span class="number">0</span> <span class="keyword">for</span> i <span class="keyword">in</span> range(n + <span class="number">1</span>)] <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">3</span>)]</span><br><span class="line">  Rec = [[<span class="number">0</span> <span class="keyword">for</span> i <span class="keyword">in</span> range(n + <span class="number">1</span>)] <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">3</span>)]</span><br><span class="line">  H[<span class="number">0</span>][<span class="number">0</span>] = H[<span class="number">1</span>][<span class="number">0</span>] = H[<span class="number">2</span>][<span class="number">0</span>] = <span class="number">0</span></span><br><span class="line">  H[<span class="number">0</span>][<span class="number">1</span>] = <span class="number">0</span></span><br><span class="line">  H[<span class="number">1</span>][<span class="number">1</span>] = h1[<span class="number">1</span>]</span><br><span class="line">  H[<span class="number">2</span>][<span class="number">1</span>] = h2[<span class="number">1</span>]</span><br><span class="line">  <span class="keyword">for</span> j <span class="keyword">in</span> range(<span class="number">2</span>, n + <span class="number">1</span>):</span><br><span class="line">      H[<span class="number">0</span>][j] = max(H[<span class="number">0</span>][j - <span class="number">1</span>], H[<span class="number">1</span>][j - <span class="number">1</span>], H[<span class="number">2</span>][j - <span class="number">1</span>])</span><br><span class="line">      <span class="keyword">if</span> H[<span class="number">0</span>][j] == H[<span class="number">0</span>][j - <span class="number">1</span>]:</span><br><span class="line">          Rec[<span class="number">0</span>][j] = <span class="number">0</span></span><br><span class="line">      <span class="keyword">elif</span> H[<span class="number">0</span>][j] == H[<span class="number">1</span>][j - <span class="number">1</span>]:</span><br><span class="line">          Rec[<span class="number">0</span>][j] = <span class="number">1</span></span><br><span class="line">      <span class="keyword">else</span>:</span><br><span class="line">          Rec[<span class="number">0</span>][j] = <span class="number">2</span></span><br><span class="line">      H[<span class="number">1</span>][j] = h1[j] + max(H[<span class="number">0</span>][j - <span class="number">1</span>], H[<span class="number">1</span>][j - <span class="number">2</span>], H[<span class="number">2</span>][j - <span class="number">1</span>])</span><br><span class="line">      <span class="keyword">if</span> H[<span class="number">1</span>][j] == h1[j] + H[<span class="number">0</span>][j - <span class="number">1</span>]:</span><br><span class="line">          Rec[<span class="number">1</span>][j] = <span class="number">0</span></span><br><span class="line">      <span class="keyword">elif</span> H[<span class="number">1</span>][j] == h1[j] + H[<span class="number">1</span>][j - <span class="number">2</span>]:</span><br><span class="line">          Rec[<span class="number">1</span>][j] = <span class="number">1</span></span><br><span class="line">      <span class="keyword">else</span>:</span><br><span class="line">          Rec[<span class="number">1</span>][j] = <span class="number">2</span></span><br><span class="line">      H[<span class="number">2</span>][j] = h2[j] + max(H[<span class="number">0</span>][j - <span class="number">1</span>], H[<span class="number">1</span>][j - <span class="number">1</span>], H[<span class="number">2</span>][j - <span class="number">2</span>])</span><br><span class="line">      <span class="keyword">if</span> H[<span class="number">2</span>][j] == h2[j] + H[<span class="number">0</span>][j - <span class="number">1</span>]:</span><br><span class="line">          Rec[<span class="number">2</span>][j] = <span class="number">0</span></span><br><span class="line">      <span class="keyword">elif</span> H[<span class="number">2</span>][j] == h2[j] + H[<span class="number">1</span>][j - <span class="number">1</span>]:</span><br><span class="line">          Rec[<span class="number">2</span>][j] = <span class="number">1</span></span><br><span class="line">      <span class="keyword">else</span>:</span><br><span class="line">          Rec[<span class="number">2</span>][j] = <span class="number">2</span></span><br><span class="line">  maxHeight = max(H[<span class="number">0</span>][n], H[<span class="number">1</span>][n], H[<span class="number">2</span>][n])</span><br><span class="line">  k = n</span><br><span class="line">  choose = [<span class="number">0</span> <span class="keyword">for</span> i <span class="keyword">in</span> range(n + <span class="number">1</span>)]</span><br><span class="line">  <span class="keyword">if</span> maxHeight == H[<span class="number">0</span>][n]:</span><br><span class="line">      now = <span class="number">0</span></span><br><span class="line">  <span class="keyword">elif</span> maxHeight == H[<span class="number">1</span>][n]:</span><br><span class="line">      now = <span class="number">1</span></span><br><span class="line">  <span class="keyword">else</span>:</span><br><span class="line">      now = <span class="number">2</span></span><br><span class="line">  <span class="keyword">while</span> k &gt;= <span class="number">1</span>:</span><br><span class="line">      choose[k] = now</span><br><span class="line">      now = Rec[now][k]</span><br><span class="line">      <span class="keyword">if</span> choose[k] == <span class="number">0</span>:</span><br><span class="line">          k = k - <span class="number">1</span></span><br><span class="line">      <span class="keyword">elif</span> choose[k] == <span class="number">1</span>:</span><br><span class="line">          <span class="keyword">if</span> now == <span class="number">1</span>:</span><br><span class="line">              k = k - <span class="number">2</span></span><br><span class="line">          <span class="keyword">else</span>:</span><br><span class="line">              k = k - <span class="number">1</span></span><br><span class="line">      <span class="keyword">else</span>:</span><br><span class="line">          <span class="keyword">if</span> now == <span class="number">2</span>:</span><br><span class="line">              k = k - <span class="number">2</span></span><br><span class="line">          <span class="keyword">else</span>:</span><br><span class="line">              k = k - <span class="number">1</span></span><br><span class="line">  <span class="keyword">return</span> [max(H[<span class="number">0</span>][n], H[<span class="number">1</span>][n], H[<span class="number">2</span>][n]), choose[<span class="number">1</span>:]]</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>时间复杂度分析：<br>&emsp;&emsp;此处一共有 $3n$ 个状态，而每次状态转移是 $O(1)$ 的，输出算法也是 $O(n)$ 的，因此算法的时间复杂度为 $O(n)$</p>
+</li>
+</ul>
+<h4 id="4-括号匹配问题-20-分"><a href="#4-括号匹配问题-20-分" class="headerlink" title="4 括号匹配问题 (20 分)"></a>4 括号匹配问题 (20 分)</h4><blockquote>
+<p>定义合法的括号串如下：</p>
+<ol>
+<li>空串是合法的括号串；</li>
+<li>若串 s 是合法的，则 (s) 和 [s] 也是合法的；</li>
+<li>若串 a, b 均是合法的，则 ab 也是合法的。</li>
+</ol>
+<p>现在给定由 ‘[’ , ‘]’ 和 ‘(’ , ‘)’ 构成的字符串，请你设计算法计算该串中合法的子序列的最大长度，写出伪代码并分析算法的时间复杂度。例如字符串“([(])])”，最长的合法子序列“([()])”长度为 6。</p>
+</blockquote>
+<p>答：</p>
+<ul>
+<li><p>题目分析：</p>
+<ul>
+<li>问题结构分析：<br>&emsp;&emsp;设 $s =s_1s_2· · ·s_n$ 为给定的字符串，我们希望计算该串中最长的合法子序列的长度。<br>&emsp;&emsp;定义状态 $D[i, j] \ (i \leq j)$  表示子串 $s[i..j]$ 的最长合法子序列的长度，则原始问题为：求 $D[1, n]$</li>
+<li>递推关系建立：<br>&emsp;&emsp;(1) 如果最优解中 $s[i]$ 与 $s[j]$ 是相互对应的括号，则直接得到递推式 $D[i, j] = D[i + 1, j − 1] + 2$<br>&emsp;&emsp;(2) 如果最优解中 $s[i]$ 与 $s[j]$ 不是最优解中相互对应的括号，因此即使匹配也则存在一个分位点 k(i ≤ k &lt; j)，使得 $t[i, k], t[k + 1, j]$ 对应的最优解拼接得到的序列等于 $t[i, j]$ 的最优解序列。<br>&emsp;&emsp;则递推式为<script type="math/tex; mode=display">
+  D[i, j]=\max \left\{\begin{array}{c}
+  D[i+1, j-1]+2 \\
+  D[i, k]+D[k+1, j]
+  \end{array} \quad \begin{array}{c}\text { 若 } \mathrm{S}[\mathrm{i}]=
+  \text { '(', } \mathrm{S}[\mathrm{j}]=\text { ') ' 或 } \mathrm{S}[\mathrm{i}]=\text { ' }[\text { ', } \mathrm{S}[\mathrm{j}]=\text { ' }] \text { ' } \\
+  \text { 对所有 } k=\{i, i+1, \cdots, j-1\}
+  \end{array}\right.</script></li>
+<li>自底向上计算：<br>&emsp;&emsp;考虑到每次状态转移时会转化为 $j − i$ 更小的子问题，因此可以按照 $j − i$ 从 $0$ 到 $n$ 递增的顺序转移状态，初始状态 $i=j$ 时最终求得 $D[1, n]$ 即可</li>
+</ul>
+</li>
+<li><p>算法实现：</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">FindMax</span><span class="params">(s: str)</span> -&gt; int:</span></span><br><span class="line">  <span class="comment"># 输入：字符串s</span></span><br><span class="line">  <span class="comment"># 输出：最长的合法子序列长度</span></span><br><span class="line">  n = len(s)</span><br><span class="line">  s = <span class="string">" "</span> + s</span><br><span class="line">  D = [[<span class="number">0</span> <span class="keyword">for</span> i <span class="keyword">in</span> range(n + <span class="number">1</span>)] <span class="keyword">for</span> i <span class="keyword">in</span> range(n + <span class="number">1</span>)]</span><br><span class="line">  <span class="keyword">for</span> a <span class="keyword">in</span> range(<span class="number">1</span>, n):</span><br><span class="line">      <span class="keyword">for</span> b <span class="keyword">in</span> range(<span class="number">1</span>, n - a + <span class="number">1</span>):</span><br><span class="line">          i = b</span><br><span class="line">          j = b + a</span><br><span class="line">          choose = []</span><br><span class="line">          <span class="keyword">if</span> (s[i] == <span class="string">'('</span> <span class="keyword">and</span> s[j] == <span class="string">')'</span>) <span class="keyword">or</span> (s[i] == <span class="string">'['</span> <span class="keyword">and</span> s[j] == <span class="string">']'</span>):</span><br><span class="line">              choose.append(D[i + <span class="number">1</span>][j - <span class="number">1</span>] + <span class="number">2</span>)</span><br><span class="line">          <span class="keyword">for</span> k <span class="keyword">in</span> range(i, j):</span><br><span class="line">              choose.append(D[i][k] + D[k + <span class="number">1</span>][j])</span><br><span class="line">          D[i][j] = max(choose)</span><br><span class="line">  <span class="keyword">return</span> D[<span class="number">1</span>][n]</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>时间复杂度分析：<br>该算法共有 $O(n^2)$ 种状态，每种状态有 $O(n)$ 种转移的方式，总的时间复杂度为 $O(n^3)$</p>
+</li>
+</ul>
+<h4 id="5-箱子问题-20-分"><a href="#5-箱子问题-20-分" class="headerlink" title="5 箱子问题 (20 分)"></a>5 箱子问题 (20 分)</h4><blockquote>
+<p>给定 n 种箱子 a~1~, · · · , a~n~，第 i 种箱子 a~i~ 可表示为 h~i~ × w~i~ × d~i~ 的长方体。请用这些箱子搭建一个尽可能高的塔：如果一个箱子 A 要水平的放在另一个箱子 B 上，那么要求箱子 A 底面的长和宽都严格小于箱子 B。可以任意旋转箱子，每种箱子可以用任意次。</p>
+<p>设计一个算法求出一个建塔方案使得该塔的高度最高，写出伪代码并分析算法的时间复杂度。</p>
+<p>例如给定 n = 1 种箱子，其可表示为 3 × 4 × 5 的长方体，建塔方案如下：</p>
+<ol>
+<li>最底层，放置一个以 4 × 5 为底面的箱子，该箱子高度为 3;</li>
+<li>第二层，放置一个以 3 × 4 为底面的箱子，该箱子高度为 5。</li>
+</ol>
+<p>此时该塔高度最高，为 3 + 5 = 8。<br>如下的建塔方案不合法：</p>
+<ol>
+<li>最底层，放置一个以 4 × 5 为底面的箱子，该箱子高度为 3;</li>
+<li>第二层，放置一个以 3 × 5 为底面的箱子，此时底面的长为 5，不满足条件。</li>
+</ol>
+</blockquote>
+<p>答：</p>
+<ul>
+<li><p>题目分析：</p>
+<ul>
+<li><p>问题结构分析：<br>&emsp;&emsp;将一种可旋转箱子 $a<em>{i}=h</em>{i}, w<em>{i}, d</em>{i}$， 分为三种不可旋转的箱子，固定 $&lt;宽、长、高&gt;$ 为：  $b<em>{3 i}= &lt;h</em>{i}, w<em>{i}, d</em>{i}&gt;, b<em>{3 i+1}=&lt;w</em>{i}, h<em>{i}, d</em>{i}&gt;, b<em>{3 i + 2}=&lt;d</em>{i}, h<em>{i}, w</em>{i}&gt; $<br>&emsp;&emsp;则相当于 $3 n$ 种箱子在符合题目要求的前提下搭建尽可能高的塔<br>重新对$3 n$个箱子设 $b<em>i = &lt;l</em>{i}, w<em>{i}, h</em>{i}&gt;$ ，（取 $l<em>{i} &gt; w</em>{i}$，高度不变 ）<br>&emsp;&emsp;将 $3 n$ 个箱子按关键字 $(l, w, h)$ 从小向大排序<br>&emsp;&emsp;令 $H[i]$ 为箱子 $b<em>i$ 放在最底层时，塔的最大高度，则原始问题为：求 $\max </em>{1 \leq i \leq 3 n} H[i]$</p>
+</li>
+<li><p>递推关系建立：</p>
+<script type="math/tex; mode=display">
+  取  B_{i}=\{k \mid k<i, b_k . w<b_i . w, b_k . h<b_i . h\} \\
+  则H[i]=\left\{\begin{array}{l}
+  b[i] . h, B_{i}=\emptyset \\
+  \max _{j \in B_{i}}\{H[j]+b[i] . h\}, B_{i} \neq \emptyset
+  \end{array}\right.</script></li>
+<li>自底向上计算：<br>&emsp;&emsp;从 $1$ 至 $3 n$ 递归求得各 $H[i]$，最后求 $\max _{1 \leq i \leq 3 n} H[i]$ 即为所求塔的最大值</li>
+<li>最优方案追踪：<br>&emsp;&emsp;维护 $Rec[1..3n]$ 数组分别记录上一层的箱子编号，自身是第一层则记录 $0$</li>
+</ul>
+</li>
+<li><p>算法实现：</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br></pre></td><td class="code"><pre><span class="line">  <span class="keyword">from</span> functools <span class="keyword">import</span> cmp_to_key</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">FindMax</span><span class="params">(a: list)</span> -&gt; [int, list]:</span></span><br><span class="line">    <span class="comment"># 输入：箱子列表a</span></span><br><span class="line">    <span class="comment"># 输出：塔的高度最高值，最优方案的每一层的箱子的长宽高</span></span><br><span class="line">    n = len(a)</span><br><span class="line">    H = [<span class="number">0</span> <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">3</span> * n + <span class="number">1</span>)]</span><br><span class="line">    Rec = [<span class="number">0</span> <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">3</span> * n + <span class="number">1</span>)]</span><br><span class="line">    b = []</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> a:</span><br><span class="line">        b.append([max(i[<span class="number">0</span>], i[<span class="number">1</span>]), min(i[<span class="number">0</span>], i[<span class="number">1</span>]), i[<span class="number">2</span>]])</span><br><span class="line">        b.append([max(i[<span class="number">2</span>], i[<span class="number">1</span>]), min(i[<span class="number">2</span>], i[<span class="number">1</span>]), i[<span class="number">0</span>]])</span><br><span class="line">        b.append([max(i[<span class="number">0</span>], i[<span class="number">2</span>]), min(i[<span class="number">0</span>], i[<span class="number">2</span>]), i[<span class="number">1</span>]])</span><br><span class="line">    b.sort(key=cmp_to_key(cmp))</span><br><span class="line">    b = [[]] + b</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>, <span class="number">3</span> * n + <span class="number">1</span>):</span><br><span class="line">        B = []</span><br><span class="line">        rec2 = []</span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> range(<span class="number">1</span>, i):</span><br><span class="line">            <span class="keyword">if</span> b[j][<span class="number">0</span>] &lt; b[i][<span class="number">0</span>] <span class="keyword">and</span> b[j][<span class="number">1</span>] &lt; b[i][<span class="number">1</span>]:</span><br><span class="line">                B.append(H[j] + b[i][<span class="number">2</span>])</span><br><span class="line">                rec2.append(j)</span><br><span class="line">        <span class="keyword">if</span> len(B) == <span class="number">0</span>:</span><br><span class="line">            H[i] = b[i][<span class="number">2</span>]</span><br><span class="line">            Rec[i] = <span class="number">0</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            H[i] = max(B)</span><br><span class="line">            <span class="keyword">for</span> l <span class="keyword">in</span> range(len(rec2)):</span><br><span class="line">                <span class="keyword">if</span> B[l] == max(B):</span><br><span class="line">                    Rec[i] = rec2[l]</span><br><span class="line">                    <span class="keyword">break</span></span><br><span class="line">        choose = []</span><br><span class="line">        maxH = max(H[i] <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>, <span class="number">3</span> * n + <span class="number">1</span>))</span><br><span class="line">        <span class="keyword">for</span> l <span class="keyword">in</span> range(<span class="number">1</span>, <span class="number">3</span> * n + <span class="number">1</span>):</span><br><span class="line">            <span class="keyword">if</span> maxH == H[l]:</span><br><span class="line">                k = l</span><br><span class="line">                <span class="keyword">break</span></span><br><span class="line">        <span class="keyword">while</span> k &gt; <span class="number">0</span>:</span><br><span class="line">            choose.append([b[k][<span class="number">0</span>], b[k][<span class="number">1</span>], b[k][<span class="number">2</span>]])</span><br><span class="line">            k = Rec[k]</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> [maxH, choose]</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">cmp</span><span class="params">(a:list, b:list)</span> -&gt; int:</span></span><br><span class="line">    <span class="keyword">if</span> a[<span class="number">0</span>] &gt; b[<span class="number">0</span>]:</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span></span><br><span class="line">    <span class="keyword">elif</span> b[<span class="number">0</span>] &gt; a[<span class="number">0</span>]:</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">if</span> a[<span class="number">1</span>] &gt; b[<span class="number">1</span>]:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">1</span></span><br><span class="line">        <span class="keyword">elif</span> b[<span class="number">1</span>] &gt; a[<span class="number">1</span>]:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">-1</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">if</span> a[<span class="number">2</span>] &gt; b[<span class="number">2</span>]:</span><br><span class="line">                <span class="keyword">return</span> <span class="number">1</span></span><br><span class="line">            <span class="keyword">elif</span> b[<span class="number">2</span>] &gt; a[<span class="number">2</span>]:</span><br><span class="line">                <span class="keyword">return</span> <span class="number">-1</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                <span class="keyword">return</span> <span class="number">1</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>时间复杂度分析：<br>&emsp;&emsp;将 $a[1..n]$ 转化成 $b[1..3n]$ 的复杂度为 $O(n)$；对 $b[1..3n]$ 排序的复杂度为 $O(n\log n)$；由于每次 $B_{i}$ 可以由线性遍历确定, 因此每次状态转移时的时间复杂度为 $O(n)$ ； 状态总数一共有 $O(n)$ 个，输出过程负责度为 $O(n)$， 因此总算法的总时间复杂度为 $O(n^{2})$ </p>
+</li>
+</ul>
+
+                
+                <hr>
+                <!-- Pager -->
+                <ul class="pager">
+                    
+                    <li class="previous">
+                        <a href="/2022/11/18/算法 - 第三次作业/" data-toggle="tooltip" data-placement="top" title="算法 - 第三次作业">&larr; Previous Post
+		<br>
+		<span><font size="2" face="Calibri" color="grey">算法 - 第三次作业</font></span>
+	       </a>
+                    </li>
+                    
+                    
+                    <li class="next">
+                        <a href="/2022/09/24/算法 - 第一次作业/" data-toggle="tooltip" data-placement="top" title="算法 - 第一次作业">Next Post &rarr;
+		<br>
+		<span><font size="2" face="Calibri" color="grey">算法 - 第一次作业</font></span>
+	        </a>
+                    </li>
+                    
+                </ul>
+
+                <!-- tip start -->
+                
+
+                
+                <div class="comment_notes">
+                    <p>
+                        by Tan
+                    </p>
+                </div>
+                
+                <!-- tip end -->
+
+                <!-- Music start-->
+                
+                <!-- Music end -->
+
+                <!-- Sharing -->
+                
+                <!-- Sharing -->
+
+                <!-- gitment start -->
+                
+                <!-- gitment end -->
+
+                <!-- 来必力City版安装代码 -->
+                
+                <!-- City版安装代码已完成 -->
+
+                <!-- disqus comment start -->
+                
+                <!-- disqus comment end -->
+            </div>
+            
+            <!-- Tabe of Content -->
+            <!-- Table of Contents -->
+
+    
+      
+        <aside id="sidebar">
+          <div id="toc" class="toc-article">
+          <strong class="toc-title">Contents</strong>
+          
+            
+              <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#1-小跳蛙问题-20-分"><span class="toc-nav-text">1 小跳蛙问题 (20 分)</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#2-二进制串变换问题-20-分"><span class="toc-nav-text">2 二进制串变换问题 (20 分)</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#3-球队组建问题-20-分"><span class="toc-nav-text">3 球队组建问题 (20 分)</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#4-括号匹配问题-20-分"><span class="toc-nav-text">4 括号匹配问题 (20 分)</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#5-箱子问题-20-分"><span class="toc-nav-text">5 箱子问题 (20 分)</span></a></li></ol>
+            
+          
+          </div>
+        </aside>
+      
+    
+
+                
+            <!-- Sidebar Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                       
+                          <a class="tag" href="/tags/#算法" title="算法">算法</a>
+                        
+                    </div>
+                </section>
+                
+
+            </div>
+			
+			<div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+				
+				<br>
+				<br>
+
+				<script src="https://utteranc.es/client.js"
+						repo="Master-Tan/Master-Tan.github.io"
+						issue-term="pathname"
+						label="Comment"
+						theme="github-light"
+						crossorigin="anonymous"
+						async>
+				</script>
+			</div>
+        </div>
+    </div>
+</article>
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("https://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'hover',
+          placement: 'left',
+          icon: 'ℬ'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+
+
+<style  type="text/css">
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
+
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+
+                
+                    <li>
+                        <a target="_blank"  href="https://github.com/Master-Tan">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+                    <li>
+                        <a target="_blank" href="https://twitter.com/None">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+                    <li>
+                        <a target="_blank" href="https://www.facebook.com/None">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                
+
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; Tan 2022 | Powered by 
+                    <a href="https://github.com/Master-Tan/Master-Tan.github.io" target="_blank" rel="noopener">
+                        <i>Tan's Blog</i>
+                    </a>
+                </p>
+            </div>
+        </div>
+    </div>
+
+</footer>
+
+<!-- jQuery -->
+
+<script src="/js/jquery.min.js"></script>
+
+
+<!-- Bootstrap Core JavaScript -->
+
+<script src="/js/bootstrap.min.js"></script>
+
+
+<!-- Custom Theme JavaScript -->
+
+<script src="/js/hux-blog.min.js"></script>
+
+
+<!-- Search -->
+
+<script src="/js/search.js"></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("https://master-tan.github.io/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("https://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+<script>
+    // dynamic User by Hux
+    var _gaId = 'UA-XXXXXXXX-X';
+    var _gaDomain = 'yoursite';
+
+    // Originial
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', _gaId, _gaDomain);
+    ga('send', 'pageview');
+</script>
+
+
+
+
+<!-- Baidu Tongji -->
+
+
+<!-- Search -->
+
+    <script type="text/javascript">      
+        var search_path = "search.xml";
+        if (search_path.length == 0) {
+            search_path = "search.xml";
+        }
+    var path = "/" + search_path;
+    searchFunc(path, 'local-search-input', 'local-search-result');
+    </script>
+
+
+<!-- busuanzi -->
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+
+	<a id="rocket" href="#top" class=""></a>
+	<script type="text/javascript" src="/js/totop.js?v=1.0.0" async=""></script>
+    <script type="text/javascript" src="/js/toc.js?v=1.0.0" async=""></script>
+
+    
+        <!-- background effects line -->
+        
+
+        
+            <script type="text/javascript" src="/js/mouse-click.js" content='[&quot;Sunny&quot;, &quot;💖&quot;, &quot;Sunny&quot;, &quot;🧡&quot;, &quot;Sunny&quot;, &quot;💛&quot;, &quot;Sunny&quot; , &quot;💚&quot;, &quot;Sunny&quot;, &quot;💙&quot;, &quot;Sunny&quot;, &quot;💜&quot;, &quot;Sunny&quot;, &quot;😍&quot;]' color='[&quot;rgb(255, 0, 0)&quot; ,&quot;rgb(255, 0, 0)&quot; ,&quot;rgb(255, 125, 0)&quot; ,&quot;rgb(255, 125, 0)&quot; ,&quot;rgb(255, 255, 0)&quot; ,&quot;rgb(255, 255, 0)&quot; ,&quot;rgb(0, 255, 0)&quot; ,&quot;rgb(0, 255, 0)&quot; ,&quot;rgb(0, 255, 255)&quot; ,&quot;rgb(0, 255, 255)&quot; ,&quot;rgb(0, 0, 255)&quot; ,&quot;rgb(0, 0, 255)&quot; ,&quot;rgb(255, 0, 255)&quot; ,&quot;rgb(255, 0, 255)&quot;]'></script>
+        
+
+        <!-- background effects end -->
+    
+
+    <!--<script size="50" alpha='0.3' zIndex="-999" src="/js/ribbonStatic.js"></script>-->
+    
+        <script src="/js/ribbonDynamic.js"></script>
+    
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+
+</html>
