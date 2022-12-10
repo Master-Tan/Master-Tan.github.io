@@ -1,0 +1,739 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="baidu-site-verification" content="093lY4ziMu" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="description" content="Tan&#39;s Blog">
+    <meta name="keyword"  content="Hello world">
+    <link rel="shortcut icon" href="/img/ironman-draw.png">
+    <!-- Place this tag in your head or just before your close body tag. -->
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+    <!--<link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>-->
+    <title>
+        
+          Ruby On Rails - Tan&#39;s Blog
+        
+    </title>
+
+    <link rel="canonical" href="https://master-tan.github.io/2022/11/27/Ruby - On - Rails/">
+
+    <!-- Bootstrap Core CSS -->
+    
+<link rel="stylesheet" href="/css/bootstrap.min.css">
+
+
+    <!-- Custom CSS --> 
+    
+        
+<link rel="stylesheet" href="/css/dusign-light.css">
+
+        
+<link rel="stylesheet" href="/css/dusign-common-light.css">
+
+        
+<link rel="stylesheet" href="/css/font-awesome.css">
+
+        
+<link rel="stylesheet" href="/css/toc.css">
+
+        <!-- background effects end -->
+    
+    
+    <!-- Pygments Highlight CSS -->
+    
+<link rel="stylesheet" href="/css/highlight.css">
+
+
+    
+<link rel="stylesheet" href="/css/widget.css">
+
+
+    
+<link rel="stylesheet" href="/css/rocket.css">
+
+
+    
+<link rel="stylesheet" href="/css/signature.css">
+
+
+    
+<link rel="stylesheet" href="/css/fonts.googleapis.css">
+
+
+    <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.3.0/css/font-awesome.min.css">
+
+    <!-- photography -->
+    
+<link rel="stylesheet" href="/css/photography.css">
+
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+
+    <!-- background effects start -->
+    
+    <!-- background effects end -->
+
+	<!-- Modified by Yu-Hsuan Yen -->
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        
+            
+                background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('../../../../img/default.jpg')
+                /*post*/
+            
+        
+    }
+    
+</style>
+
+<header class="intro-header" >
+    <!-- Signature -->
+    <div id="signature">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                
+                    <div class="post-heading">
+                        <div class="tags">
+                            
+                              <a class="tag" href="/tags/#Ruby" title="Ruby">Ruby</a>
+                            
+                        </div>
+                        <h1>Ruby On Rails</h1>
+                        <h2 class="subheading"></h2>
+                        <span class="meta">
+                            Posted by Tan on
+                            2022-11-27
+                        </span>
+
+	       
+                            <div class="blank_box"></div>
+                            <span class="meta">
+                                 <span class="post-count">2.2k</span> Words
+                            </span>
+                            <div class="blank_box"></div>
+                            <!-- 不蒜子统计 start -->
+                            <span class="meta">
+                                Viewed <span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span> Times
+                            </span>
+                            <!-- 不蒜子统计 end -->
+                        
+
+                    </div>
+                
+
+                </div>
+            </div>
+        </div>      
+    </div>
+
+    
+    <div class="waveWrapper">
+        <div class="wave wave_before" style="background-image: url('/img/wave-light.png')"></div>
+        <div class="wave wave_after" style="background-image: url('/img/wave-light.png')"></div>
+    </div>
+    
+</header>
+
+	
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Tan&#39;s Blog</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+
+                    
+
+                        
+                    
+
+                        
+                        	<li>
+                          	  <a href="/about/">About Tan</a>
+                        	</li>
+                        
+                    
+
+                        
+                        	<li>
+                          	  <a href="/archive/">Archives</a>
+                        	</li>
+                        
+                    
+
+                        
+                    
+
+                        
+                        	<li>
+                          	  <a href="/tags/">Tags</a>
+                        	</li>
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+    <!-- Main Content -->
+    <!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+            <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <h3 id="Rails-test"><a href="#Rails-test" class="headerlink" title="Rails test"></a>Rails test</h3><p>具体介绍：<a src='https://ruby-china.github.io/rails-guides/testing.html'>https://ruby-china.github.io/rails-guides/testing.html</a></p>
+<h5 id="使用步骤："><a href="#使用步骤：" class="headerlink" title="使用步骤："></a>使用步骤：</h5><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># miniTest</span></span><br><span class="line">rails db:migrate RAILS_ENV=<span class="built_in">test</span>  <span class="comment"># 调整 rails 环境为开发环境</span></span><br><span class="line">rails <span class="built_in">test</span> [文件名字] [-n 测试名字]  <span class="comment"># 如 rails test test/controllers/blogs_controller_test -n test_should_create_blog</span></span><br><span class="line">rails db:migrate  <span class="comment"># 返回开发环境</span></span><br></pre></td></tr></table></figure>
+<h5 id="本人使用总结："><a href="#本人使用总结：" class="headerlink" title="本人使用总结："></a>本人使用总结：</h5><ul>
+<li><p>使用 rails new application_name 命令创建一个 Rails 项目时，Rails 会生成 test 目录</p>
+</li>
+<li><p>默认情况下，Rails 应用有三个环境：开发环境、测试环境和生产环境。需要先转换到测试环境才能进行测试。</p>
+</li>
+<li><p>使用 MiniTest 思想，分块测试</p>
+</li>
+</ul>
+<h5 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h5><p><a src='https://www.jianshu.com/p/4be9be070951?utm_campaign=maleskine&utm_content=note&utm_medium=seo_notes&utm_source=recommendation'> https://www.jianshu.com/p/4be9be070951?utm_campaign=maleskine&amp;utm_content=note&amp;utm_medium=seo_notes&amp;utm_source=recommendation</a><br><a src='https://www.cnblogs.com/Geraint23/p/12971476.html'>https://www.cnblogs.com/Geraint23/p/12971476.html</a></p>
+<h3 id="Rails-Route"><a href="#Rails-Route" class="headerlink" title="Rails Route"></a>Rails Route</h3><p>具体介绍：<a src="https://www.kancloud.cn/wizardforcel/rails-guides/151974">https://www.kancloud.cn/wizardforcel/rails-guides/151974</a></p>
+<ul>
+<li>rails 中带 _path, _url 结尾的变量，定义不在文件，而定义于 rails 运行的进程中，在 config/routes.rb 中，resources :users 行这会创建多个路径（如 edit_user_path，users_path 等）；可以在命令行输入 <code>rails route</code> 查看已有路由</li>
+</ul>
+<h3 id="Rails-Server"><a href="#Rails-Server" class="headerlink" title="Rails Server"></a>Rails Server</h3><p>具体介绍：<a src='https://www.wenjiangs.com/doc/iof1c0a3'>https://www.wenjiangs.com/doc/iof1c0a3</a></p>
+<p>rails server 命令会启动 Ruby 内建的小型服务器 WEBrick。要想在浏览器中访问程序，就要执行这个命令。</p>
+<p>无需其他操作，执行 rails server 命令后就能运行刚创建的 Rails 程序，启动了一个 Rails 服务器，监听端口 3000。打开浏览器，访问 <a href="http://localhost:3000，会看到一个简单的">http://localhost:3000，会看到一个简单的</a> Rails 程序。</p>
+<p>启动服务器的命令还可使用别名 “s”：rails s。</p>
+<p>如果想让服务器监听其他端口，可通过 -p 选项指定。所处的环境可由 -e 选项指定。</p>
+<h3 id="Rails-命令行"><a href="#Rails-命令行" class="headerlink" title="Rails 命令行"></a>Rails 命令行</h3><p>具体介绍：<a src='https://ruby-china.github.io/rails-guides/command_line.html'>https://ruby-china.github.io/rails-guides/command_line.html</a></p>
+<h5 id="rails-generate"><a href="#rails-generate" class="headerlink" title="rails generate"></a>rails generate</h5><p>rails generate 为使用模板生成。单独执行 rails generate 命令，会列出可用的生成器列表。</p>
+<h5 id="rails-console"><a href="#rails-console" class="headerlink" title="rails console"></a>rails console</h5><p>使用 irb 和 Rails 程序交互。<br>这个命令还可以使用别名“c”：rails c。</p>
+<h5 id="rails-dbconsole"><a href="#rails-dbconsole" class="headerlink" title="rails dbconsole"></a>rails dbconsole</h5><p>rails dbconsole 能检测到你正在使用的数据库类型（还能理解传入的命令行参数），然后进入该数据库的命令行界面。该命令支持 MySQL，PostgreSQL，SQLite 和 SQLite3。</p>
+<p>这个命令还可使用别名“db”：rails db。</p>
+<h5 id="rails-destroy"><a href="#rails-destroy" class="headerlink" title="rails destroy"></a>rails destroy</h5><p>destroy 可以理解成 generate 的逆操作，能识别生成了什么，然后将其删除。</p>
+<p>这个命令还可使用别名“d”：rails d。</p>
+<h3 id="执行数据库操作"><a href="#执行数据库操作" class="headerlink" title="执行数据库操作"></a>执行数据库操作</h3><ul>
+<li>rails console：<ul>
+<li>运用 rails 配置方法，如 User.all， User.first.delete</li>
+<li>使用 ActiveRecord::Base.connection.execute 方法执行数据库语句，如： ActiveRecord::Base.connection.execute ‘select * from users’</li>
+</ul>
+</li>
+<li>rail dbconsole：<ul>
+<li>直接使用数据库语句操作数据库即可</li>
+</ul>
+</li>
+</ul>
+<h3 id="Rails-和-Mysql-数据类型的对应关系"><a href="#Rails-和-Mysql-数据类型的对应关系" class="headerlink" title="Rails 和 Mysql 数据类型的对应关系"></a>Rails 和 Mysql 数据类型的对应关系</h3><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>Rails</th>
+<th>mysql</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>:binary</td>
+<td>blob</td>
+</tr>
+<tr>
+<td>:boolean</td>
+<td>tinyint(1)</td>
+</tr>
+<tr>
+<td>:date</td>
+<td>date</td>
+</tr>
+<tr>
+<td>:datetime</td>
+<td>datetime</td>
+</tr>
+<tr>
+<td>:decimal</td>
+<td>decimal</td>
+</tr>
+<tr>
+<td>:float</td>
+<td>float</td>
+</tr>
+<tr>
+<td>:integer</td>
+<td>int(11)</td>
+</tr>
+<tr>
+<td>:string</td>
+<td>varchar(255)</td>
+</tr>
+<tr>
+<td>:text</td>
+<td>text</td>
+</tr>
+<tr>
+<td>:time</td>
+<td>time</td>
+</tr>
+<tr>
+<td>:timestamp</td>
+<td>datetime</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id="Rails-回滚迁移"><a href="#Rails-回滚迁移" class="headerlink" title="Rails 回滚迁移"></a>Rails 回滚迁移</h3><h5 id="回滚最近一次迁移"><a href="#回滚最近一次迁移" class="headerlink" title="回滚最近一次迁移"></a>回滚最近一次迁移</h5><p>rails db:rollback</p>
+<h5 id="回滚最近的3个迁移"><a href="#回滚最近的3个迁移" class="headerlink" title="回滚最近的3个迁移"></a>回滚最近的3个迁移</h5><p>rake db:rollback STEP=3</p>
+<ul>
+<li>STEP 提供要还原的迁移数量</li>
+</ul>
+<h5 id="回滚所有迁移"><a href="#回滚所有迁移" class="headerlink" title="回滚所有迁移"></a>回滚所有迁移</h5><p>rake db:rollback VERSION=0</p>
+<h3 id="命令行中-rails-和-rake-的关系"><a href="#命令行中-rails-和-rake-的关系" class="headerlink" title="命令行中 rails 和 rake 的关系"></a>命令行中 rails 和 rake 的关系</h3><ul>
+<li><p>Rails核心团队决定通过启用Rails命令来支持rake所做的一切来保持一致性。</p>
+</li>
+<li><p>例如，在导轨5级的命令喜欢db:migrate，db:setup，db:test等，这是在滑轨rake命令的部分4由导轨命令现在被支撑。但是，您仍然可以选择使用rake运行这些命令，类似于在Rails 4中运行这些命令。这是因为Rails社区引入了Rake Proxy，而不是完全将命令选项从rake移到rails。</p>
+</li>
+<li><p>内部发生的事情是，在rails db:migrate执行命令时，Rails会检查Rails db:migrate本身是否支持某种东西。在这种情况下db:migrate，Rails本身不支持它，因此Rails通过Rake Proxy将执行委托给Rake。</p>
+</li>
+<li><p>如果要查看Rails 5中rails支持的所有命令，则可以通过执行以下命令获得一长串选项 rails —help.<br>如果要查看rake支持的所有命令，则可以通过执行rake —task.</p>
+</li>
+<li><p>bin/rake routes 在 rails 6.1 上已弃用。您可以使用bin/rails routes</p>
+</li>
+</ul>
+<h3 id="关闭-CSRF-认证"><a href="#关闭-CSRF-认证" class="headerlink" title="关闭 CSRF 认证"></a>关闭 CSRF 认证</h3><p>在要禁用 CSRF 的 controller 中插入：<br>skip_before_action :verify_authenticity_token</p>
+<h3 id="MySQL-关于bool类型"><a href="#MySQL-关于bool类型" class="headerlink" title="MySQL 关于bool类型"></a>MySQL 关于bool类型</h3><p>mysql是不支持bool类型的,所以,当把一个数据设置成bool类型的时候,数据库会自动转换成tinyint(1)的数据类型,其实这个就是变相的bool。 默认值也就是1,0两种,分别对应了bool的true和false</p>
+<h3 id="前后端跨域问题"><a href="#前后端跨域问题" class="headerlink" title="前后端跨域问题"></a>前后端跨域问题</h3><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># gemfile</span></span><br><span class="line">gem <span class="string">'rack-cors'</span>, <span class="symbol">:require</span> =&gt; <span class="string">'rack/cors'</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#config/application.rb</span></span><br><span class="line">  config.middleware.insert_before <span class="number">0</span>, <span class="string">"Rack::Cors"</span>, <span class="symbol">:debug</span> =&gt; <span class="literal">true</span>, <span class="symbol">:logger</span> =&gt; (-&gt; &#123; Rails.logger &#125;) <span class="keyword">do</span></span><br><span class="line">    allow <span class="keyword">do</span></span><br><span class="line">      origins [<span class="string">'http://localhost:3000'</span>]</span><br><span class="line">      resource <span class="string">'*'</span>,</span><br><span class="line">        <span class="symbol">:headers</span> =&gt; <span class="symbol">:any</span>,</span><br><span class="line">        <span class="symbol">:methods</span> =&gt; [<span class="symbol">:get</span>, <span class="symbol">:post</span>, <span class="symbol">:delete</span>, <span class="symbol">:put</span>, <span class="symbol">:options</span>, <span class="symbol">:head</span>],</span><br><span class="line">        <span class="symbol">:max_age</span> =&gt; <span class="number">0</span></span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line">  <span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+<h3 id="两次访问时session清空问题"><a href="#两次访问时session清空问题" class="headerlink" title="两次访问时session清空问题"></a>两次访问时session清空问题</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 将session保存到数据库</span></span><br><span class="line"><span class="comment"># 创建sessions数据表</span></span><br><span class="line">rails db:session:create</span><br><span class="line">rails db:migrate</span><br><span class="line"><span class="comment"># config/environment.rb</span></span><br><span class="line">Rails.application.config.session_store :active_record_store</span><br><span class="line"><span class="comment"># 重启服务，配置就完成了，接下来就可以使用了</span></span><br></pre></td></tr></table></figure>
+<h3 id="Ruby-大作业"><a href="#Ruby-大作业" class="headerlink" title="Ruby 大作业"></a>Ruby 大作业</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br></pre></td><td class="code"><pre><span class="line">rails new project -G -d mysql</span><br><span class="line">rails db:create</span><br><span class="line"><span class="comment"># 用户（买家）表 （用户名，密码，电话）</span></span><br><span class="line">rails g scaffold user username:string password:string phone:string</span><br><span class="line">rails db:migrate</span><br><span class="line"><span class="comment"># 食堂表 （食堂名称）</span></span><br><span class="line">rails g scaffold canteen canteen_name:string</span><br><span class="line">rails db:migrate</span><br><span class="line"><span class="comment"># 商铺（卖家）表 （用户名，密码，电话，开始时间，结束时间，商家地址）</span></span><br><span class="line">rails g scaffold shop username:string password:string phone:string open_time:time close_time:time address:string canteen:references</span><br><span class="line">rails db:migrate</span><br><span class="line"><span class="comment"># 骑手表 （用户名，密码，电话）</span></span><br><span class="line">rails g scaffold deliver username:string password:string phone:string</span><br><span class="line">rails db:migrate</span><br><span class="line"><span class="comment"># 产品表 （所属商家id，名称，价格，销量，描述，图片路径，商品类型，上架时间）</span></span><br><span class="line">rails g scaffold product shop:references product_name:string retail_price:decimal favorites:<span class="built_in">integer</span> sales:<span class="built_in">integer</span> description:text image_directory:string product_type:string added_time:time</span><br><span class="line">rails db:migrate</span><br><span class="line"><span class="comment"># 购物车项表 （买家id，产品id，数量，价格，添加时间）</span></span><br><span class="line">rails g scaffold cart_item user:references product:references quantity:<span class="built_in">integer</span> sum_price:<span class="built_in">integer</span> added_time:time</span><br><span class="line">rails db:migrate</span><br><span class="line"><span class="comment"># 订单表 （添加时间，买家id，卖家id，配送地址，配送电话，订单状态，配送费，打包费，优惠金额，实付金额）</span></span><br><span class="line">rails g scaffold transaction_order added_time:time user:references shop:references  delivery_address:string delivery_phone:string order_status:string delivery_money:decimal packing_money:decimal discount_money:decimal pay_money:decimal</span><br><span class="line">rails db:migrate</span><br><span class="line"><span class="comment"># 订单项表 （买家id，产品id，数量，价格，所属订单id）</span></span><br><span class="line">rails g scaffold transaction_item user:references product:references quantity:<span class="built_in">integer</span> price:decimal transaction_order:references</span><br><span class="line">rails db:migrate</span><br><span class="line"><span class="comment"># 订单平台表 （订单id，添加时间，图片路径，详情）</span></span><br><span class="line">rails g scaffold order_platform transaction_order:references add_time:time image_directory:string detail:string</span><br><span class="line">rails db:migrate</span><br><span class="line"><span class="comment"># 用户配送地址表 （买家id，联系电话，是否默认地址，详细地址，标签）</span></span><br><span class="line">rails g scaffold delivery_address user:references phone:string default:boolean building:string floor:<span class="built_in">integer</span> complete_address:string tag:string</span><br><span class="line">rails db:migrate</span><br><span class="line"><span class="comment"># 帮送表 （添加时间，give_user_id，get_user_id，配送地址，配送电话，帮送状态）</span></span><br><span class="line">rails g scaffold help_delivery_order added_time:time user:references get_user:bigint delivery_address:references delivery_phone:string order_status:string </span><br><span class="line"><span class="comment"># 帮送项表 （give_user_id，帮送物品详情，所属帮送表id）</span></span><br><span class="line">rails g scaffold help_delivery_item user:references detail:string help_delivery_order:references</span><br><span class="line">rails db:migrate</span><br><span class="line"><span class="comment"># 帮送平台表 （订单id，添加时间，图片路径，详情）</span></span><br><span class="line">rails g scaffold help_delivery_order_platform help_delivery_order:references add_time:time image_directory:string detail:string</span><br><span class="line">rails db:migrate</span><br><span class="line"></span><br><span class="line"><span class="comment"># 优惠券表</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 订单配送表 （订单id，骑手id，添加时间，预计到达时间）</span></span><br><span class="line">rails g scaffold delivery_order transaction_order:references deliver:references added_time:time arrival_time:time</span><br><span class="line">rails db:migrate</span><br><span class="line"></span><br><span class="line"><span class="comment"># 用户搜索记录表 （买家id，搜索记录，添加时间）</span></span><br><span class="line">rails g scaffold user_search_record user:references content:string add_time:time</span><br><span class="line">rails db:migrate</span><br><span class="line"><span class="comment"># 管理员表 （用户名，密码，等级）</span></span><br><span class="line">rails g scaffold administrator username:string password:string level:<span class="built_in">integer</span> </span><br><span class="line">rails db:migrate</span><br><span class="line"><span class="comment"># 用户操作日志表 （买家id，动作，详情，状态（动作成功与否），添加时间）</span></span><br><span class="line">rails g scaffold user_log user:references action:string detail:string status:<span class="built_in">integer</span> add_time:time</span><br><span class="line">rails db:migrate</span><br><span class="line"><span class="comment"># 商家操作日志表 （卖家id，动作，详情，状态（动作成功与否），添加时间）</span></span><br><span class="line">rails g scaffold shop_log shop:references action:string detail:string status:<span class="built_in">integer</span> add_time:time</span><br><span class="line">rails db:migrate</span><br><span class="line"><span class="comment"># 骑手操作日志表 （骑手id，动作，详情，状态（动作成功与否），添加时间）</span></span><br><span class="line">rails g scaffold deliver_log deliver:references action:string detail:string status:<span class="built_in">integer</span> add_time:time</span><br><span class="line">rails db:migrate</span><br><span class="line"><span class="comment"># 管理员操作日志表 （管理员id，动作，详情，状态（动作成功与否），添加时间）</span></span><br><span class="line">rails g scaffold administrator_log administrator:references action:string detail:string status:<span class="built_in">integer</span> add_time:time</span><br><span class="line">rails db:migrate</span><br><span class="line"></span><br><span class="line"><span class="comment"># 添加用户登录过程参考：https://ruby-china.org/topics/25822</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建 base_controller</span></span><br><span class="line">rails g controller api/base</span><br><span class="line"><span class="comment"># do:修改base_controller.rb</span></span><br><span class="line"><span class="comment"># do:修改users/show.json.jbuilder</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 加入登录认证</span></span><br><span class="line">rails g migration add_authentication_token_to_users</span><br><span class="line"><span class="comment"># do：修改add_authentication_token_to_users.rb</span></span><br><span class="line">rails db:migrate</span><br><span class="line"></span><br><span class="line"><span class="comment"># 生成session控制器</span></span><br><span class="line">rails g scaffold api/sessions</span><br><span class="line"></span><br><span class="line"><span class="comment"># do:修改sessions_controller.rb</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 给 User 模型增加 password_digest 属性</span></span><br><span class="line">rails g migration add_password_digest_to_users</span><br><span class="line"></span><br><span class="line"><span class="comment"># 给数据库中已存在的测试用户增加密码和 authentication token</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 在base_controller.rb中添加当前用户current_user</span></span><br></pre></td></tr></table></figure>
+<h3 id="前后端请求"><a href="#前后端请求" class="headerlink" title="前后端请求"></a>前后端请求</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 登录</span></span><br><span class="line">curl -b cookies.txt -c cookies.txt -i -X POST -d <span class="string">"user[username]=test-user-00&amp;user[password]=123123"</span> http://localhost:3000/login.json</span><br><span class="line"><span class="comment"># 登出</span></span><br><span class="line">curl -b cookies.txt -c cookies.txt -i -X GET http://localhost:3000/logout.json</span><br><span class="line"><span class="comment"># 当前用户</span></span><br><span class="line">curl -b cookies.txt -c cookies.txt -i -X GET http://localhost:3000/current_user.json</span><br><span class="line"><span class="comment"># 注册</span></span><br><span class="line">curl -b cookies.txt -c cookies.txt -i -X POST -d <span class="string">"user[username]=tld&amp;user[password]=123&amp;user[phone]=13712312345"</span> http://localhost:3000/register.json</span><br></pre></td></tr></table></figure>
+                
+                <hr>
+                <!-- Pager -->
+                <ul class="pager">
+                    
+                    <li class="previous">
+                        <a href="/2022/11/30/编译技术 - 实验 - 设计文档/" data-toggle="tooltip" data-placement="top" title="编译技术 - 实验 - 设计文档">&larr; Previous Post
+		<br>
+		<span><font size="2" face="Calibri" color="grey">编译技术 - 实验 - 设计文档</font></span>
+	       </a>
+                    </li>
+                    
+                    
+                    <li class="next">
+                        <a href="/2022/11/18/算法 - 第三次作业/" data-toggle="tooltip" data-placement="top" title="算法 - 第三次作业">Next Post &rarr;
+		<br>
+		<span><font size="2" face="Calibri" color="grey">算法 - 第三次作业</font></span>
+	        </a>
+                    </li>
+                    
+                </ul>
+
+                <!-- tip start -->
+                
+
+                
+                <div class="comment_notes">
+                    <p>
+                        by Tan
+                    </p>
+                </div>
+                
+                <!-- tip end -->
+
+                <!-- Music start-->
+                
+                <!-- Music end -->
+
+                <!-- Sharing -->
+                
+                <!-- Sharing -->
+
+                <!-- gitment start -->
+                
+                <!-- gitment end -->
+
+                <!-- 来必力City版安装代码 -->
+                
+                <!-- City版安装代码已完成 -->
+
+                <!-- disqus comment start -->
+                
+                <!-- disqus comment end -->
+            </div>
+            
+            <!-- Tabe of Content -->
+            <!-- Table of Contents -->
+
+    
+      
+        <aside id="sidebar">
+          <div id="toc" class="toc-article">
+          <strong class="toc-title">Contents</strong>
+          
+            
+              <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#Rails-test"><span class="toc-nav-text">Rails test</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#使用步骤："><span class="toc-nav-text">使用步骤：</span></a></li><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#本人使用总结："><span class="toc-nav-text">本人使用总结：</span></a></li><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#参考"><span class="toc-nav-text">参考</span></a></li></ol></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#Rails-Route"><span class="toc-nav-text">Rails Route</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#Rails-Server"><span class="toc-nav-text">Rails Server</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#Rails-命令行"><span class="toc-nav-text">Rails 命令行</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#rails-generate"><span class="toc-nav-text">rails generate</span></a></li><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#rails-console"><span class="toc-nav-text">rails console</span></a></li><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#rails-dbconsole"><span class="toc-nav-text">rails dbconsole</span></a></li><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#rails-destroy"><span class="toc-nav-text">rails destroy</span></a></li></ol></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#执行数据库操作"><span class="toc-nav-text">执行数据库操作</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#Rails-和-Mysql-数据类型的对应关系"><span class="toc-nav-text">Rails 和 Mysql 数据类型的对应关系</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#Rails-回滚迁移"><span class="toc-nav-text">Rails 回滚迁移</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#回滚最近一次迁移"><span class="toc-nav-text">回滚最近一次迁移</span></a></li><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#回滚最近的3个迁移"><span class="toc-nav-text">回滚最近的3个迁移</span></a></li><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#回滚所有迁移"><span class="toc-nav-text">回滚所有迁移</span></a></li></ol></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#命令行中-rails-和-rake-的关系"><span class="toc-nav-text">命令行中 rails 和 rake 的关系</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#关闭-CSRF-认证"><span class="toc-nav-text">关闭 CSRF 认证</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#MySQL-关于bool类型"><span class="toc-nav-text">MySQL 关于bool类型</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#前后端跨域问题"><span class="toc-nav-text">前后端跨域问题</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#两次访问时session清空问题"><span class="toc-nav-text">两次访问时session清空问题</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#Ruby-大作业"><span class="toc-nav-text">Ruby 大作业</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#前后端请求"><span class="toc-nav-text">前后端请求</span></a></li></ol>
+            
+          
+          </div>
+        </aside>
+      
+    
+
+                
+            <!-- Sidebar Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                       
+                          <a class="tag" href="/tags/#Ruby" title="Ruby">Ruby</a>
+                        
+                    </div>
+                </section>
+                
+
+            </div>
+			
+			<div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+				
+				<br>
+				<br>
+
+				<script src="https://utteranc.es/client.js"
+						repo="Master-Tan/Master-Tan.github.io"
+						issue-term="pathname"
+						label="Comment"
+						theme="github-light"
+						crossorigin="anonymous"
+						async>
+				</script>
+			</div>
+        </div>
+    </div>
+</article>
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("https://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'hover',
+          placement: 'left',
+          icon: 'ℬ'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+
+
+<style  type="text/css">
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
+
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+
+                
+                    <li>
+                        <a target="_blank"  href="https://github.com/Master-Tan">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+                    <li>
+                        <a target="_blank" href="https://twitter.com/None">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+                    <li>
+                        <a target="_blank" href="https://www.facebook.com/None">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                
+
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; Tan 2022 | Powered by 
+                    <a href="https://github.com/Master-Tan/Master-Tan.github.io" target="_blank" rel="noopener">
+                        <i>Tan's Blog</i>
+                    </a>
+                </p>
+            </div>
+        </div>
+    </div>
+
+</footer>
+
+<!-- jQuery -->
+
+<script src="/js/jquery.min.js"></script>
+
+
+<!-- Bootstrap Core JavaScript -->
+
+<script src="/js/bootstrap.min.js"></script>
+
+
+<!-- Custom Theme JavaScript -->
+
+<script src="/js/hux-blog.min.js"></script>
+
+
+<!-- Search -->
+
+<script src="/js/search.js"></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("https://master-tan.github.io/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("https://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+<script>
+    // dynamic User by Hux
+    var _gaId = 'UA-XXXXXXXX-X';
+    var _gaDomain = 'yoursite';
+
+    // Originial
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', _gaId, _gaDomain);
+    ga('send', 'pageview');
+</script>
+
+
+
+
+<!-- Baidu Tongji -->
+
+
+<!-- Search -->
+
+    <script type="text/javascript">      
+        var search_path = "search.xml";
+        if (search_path.length == 0) {
+            search_path = "search.xml";
+        }
+    var path = "/" + search_path;
+    searchFunc(path, 'local-search-input', 'local-search-result');
+    </script>
+
+
+<!-- busuanzi -->
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+
+	<a id="rocket" href="#top" class=""></a>
+	<script type="text/javascript" src="/js/totop.js?v=1.0.0" async=""></script>
+    <script type="text/javascript" src="/js/toc.js?v=1.0.0" async=""></script>
+
+    
+        <!-- background effects line -->
+        
+
+        
+            <script type="text/javascript" src="/js/mouse-click.js" content='[&quot;Sunny&quot;, &quot;💖&quot;, &quot;Sunny&quot;, &quot;🧡&quot;, &quot;Sunny&quot;, &quot;💛&quot;, &quot;Sunny&quot; , &quot;💚&quot;, &quot;Sunny&quot;, &quot;💙&quot;, &quot;Sunny&quot;, &quot;💜&quot;, &quot;Sunny&quot;, &quot;😍&quot;]' color='[&quot;rgb(255, 0, 0)&quot; ,&quot;rgb(255, 0, 0)&quot; ,&quot;rgb(255, 125, 0)&quot; ,&quot;rgb(255, 125, 0)&quot; ,&quot;rgb(255, 255, 0)&quot; ,&quot;rgb(255, 255, 0)&quot; ,&quot;rgb(0, 255, 0)&quot; ,&quot;rgb(0, 255, 0)&quot; ,&quot;rgb(0, 255, 255)&quot; ,&quot;rgb(0, 255, 255)&quot; ,&quot;rgb(0, 0, 255)&quot; ,&quot;rgb(0, 0, 255)&quot; ,&quot;rgb(255, 0, 255)&quot; ,&quot;rgb(255, 0, 255)&quot;]'></script>
+        
+
+        <!-- background effects end -->
+    
+
+    <!--<script size="50" alpha='0.3' zIndex="-999" src="/js/ribbonStatic.js"></script>-->
+    
+        <script src="/js/ribbonDynamic.js"></script>
+    
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+
+</html>
