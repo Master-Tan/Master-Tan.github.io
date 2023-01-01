@@ -108,9 +108,11 @@
                     <div class="post-heading">
                         <div class="tags">
                             
+                              <a class="tag" href="/tags/#算法" title="算法">算法</a>
+                            
                         </div>
                         <h1>算法 - 第四次作业</h1>
-                        <h2 class="subheading"></h2>
+                        <h2 class="subheading">2022 算法设计与分析 - 第四次作业</h2>
                         <span class="meta">
                             Posted by Tan on
                             2022-12-11
@@ -119,7 +121,7 @@
 	       
                             <div class="blank_box"></div>
                             <span class="meta">
-                                 <span class="post-count">0</span> Words
+                                 <span class="post-count">2.5k</span> Words
                             </span>
                             <div class="blank_box"></div>
                             <!-- 不蒜子统计 start -->
@@ -186,12 +188,12 @@
                     
 
                         
+                    
+
+                        
                         	<li>
                           	  <a href="/archive/">Archives</a>
                         	</li>
-                        
-                    
-
                         
                     
 
@@ -261,11 +263,78 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                
+                <h4 id="1-对下面的每个描述-请判断其是正确或错误-或无法判断-正误。对于你判为错误-无法判断的描述-请说明它为什么-是错误-无法判断的。-每小题-5-分-共-20-分"><a href="#1-对下面的每个描述-请判断其是正确或错误-或无法判断-正误。对于你判为错误-无法判断的描述-请说明它为什么-是错误-无法判断的。-每小题-5-分-共-20-分" class="headerlink" title="1 对下面的每个描述, 请判断其是正确或错误, 或无法判断 正误。对于你判为错误/无法判断的描述, 请说明它为什么 是错误/无法判断的。(每小题 5 分, 共 20 分)"></a>1 对下面的每个描述, 请判断其是正确或错误, 或无法判断 正误。对于你判为错误/无法判断的描述, 请说明它为什么 是错误/无法判断的。(每小题 5 分, 共 20 分)</h4><ol>
+<li>$ P $ 类问题为 $ N P $ 类问题的真子集。</li>
+<li>如果假设 $ P \neq N P $ , 则 $ N P $ 完全问题可以在多项式时间内求解。</li>
+<li>若 $ S A T $ 问题可以用复杂度为 $ O\left(n^{9}\right) $ 的算法来解决, 则所有的 $ N P $ 完全问题都可以在多项式时间内被解决;</li>
+<li>对于一个 $ NP $ 完全问题, 其所有种类的输入均需要用指数级的时间求解。</li>
+</ol>
+<p>答：</p>
+<ol>
+<li>无法判断。</li>
+<li>错误，如果 NP 完全问题可以在多项式时间内求解，则所有 NP 问题可以在多项式时间内求解，与假设 P $\neq$ NP 矛盾。</li>
+<li>正确。</li>
+<li>错误。虽然 $ S A T $ 是 NP 完全问题, 但是对于所有满足 $ 2-S A T $ 条件的输入, 都可以在多项式时间内求解。</li>
+</ol>
+<h4 id="2-颜色交错最短路问题-20-分"><a href="#2-颜色交错最短路问题-20-分" class="headerlink" title="2 颜色交错最短路问题 (20 分)"></a>2 颜色交错最短路问题 (20 分)</h4><p>给定一个无权有向图 $ G=\langle V, E\rangle $ (所有边长度为 1 ), 其中 $ V=\left{v<em>{0}, v</em>{1}, \ldots v<em>{n-1}\right} $ , 且这个图中的每条边不是红色就是蓝色 $ (\forall e \in E , e.color  =  red 或  e . c o l o r=b l u e) $ , 图 $ G $ 中可能存在自环或平行边。<br>现给定图中两点 $ v</em>{x}, v<em>{y} $ , 请设计算法求出一条从 $ v</em>{x} $ 到 $ v_{y} $ , 且红色和蓝色边交替出现的最短路径。如果不存在这样的路径, 则输出-1。请给出分析过程、伪代码以及算法复杂度。</p>
+<p>答：</p>
+<ul>
+<li><p>分析过程：<br>&emsp;&emsp;有向图寻找有约束条件的从一个顶点到另一个顶点的的最短路，使用 $BFS$ 并在过程中判断约束条件即可，最先找到的路径即为最短路径</p>
+</li>
+<li><p>算法实现：</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">FindMin</span><span class="params">(G, Vx, Vy)</span>:</span></span><br><span class="line">  length = len(G) </span><br><span class="line">  visited = [<span class="number">0</span> <span class="keyword">for</span> i <span class="keyword">in</span> range(length)]</span><br><span class="line">  path = [<span class="number">-1</span> <span class="keyword">for</span> i <span class="keyword">in</span> range(length)]</span><br><span class="line">  Q = []</span><br><span class="line"></span><br><span class="line">  visited[Vx] = <span class="number">1</span></span><br><span class="line">  path[Vx] = <span class="number">-1</span></span><br><span class="line"></span><br><span class="line">  Q = [Vx]</span><br><span class="line">  now_color = <span class="string">"red"</span></span><br><span class="line">  <span class="keyword">while</span> Q:</span><br><span class="line">      v = Q[<span class="number">0</span>]</span><br><span class="line">      Q = Q[<span class="number">1</span>:]</span><br><span class="line">      flag = <span class="number">0</span></span><br><span class="line">      <span class="keyword">for</span> i <span class="keyword">in</span> range(len(G[v])):</span><br><span class="line">          <span class="keyword">if</span> G[v][i] == <span class="number">1</span> <span class="keyword">and</span> color[v][i] != now_color <span class="keyword">and</span> visited[i] != <span class="number">1</span>:</span><br><span class="line">              path[i] = v</span><br><span class="line">              visited[i] = <span class="number">1</span></span><br><span class="line">              <span class="keyword">if</span> i == Vy:</span><br><span class="line">                  flag = <span class="number">1</span></span><br><span class="line">                  <span class="keyword">break</span></span><br><span class="line">              Q.append(i)</span><br><span class="line">              now_color = <span class="string">"red"</span> <span class="keyword">if</span> now_color == <span class="string">"blue"</span> <span class="keyword">else</span> <span class="string">"blue"</span></span><br><span class="line">      <span class="keyword">if</span> flag:</span><br><span class="line">          <span class="keyword">break</span></span><br><span class="line">  print(path)</span><br><span class="line"></span><br><span class="line">  Q = [Vx]</span><br><span class="line">  now_color = <span class="string">"blue"</span></span><br><span class="line">  <span class="keyword">while</span> Q:</span><br><span class="line">      v = Q[<span class="number">0</span>]</span><br><span class="line">      Q = Q[<span class="number">1</span>:]</span><br><span class="line">      flag = <span class="number">0</span></span><br><span class="line">      <span class="keyword">for</span> i <span class="keyword">in</span> range(len(G[v])):</span><br><span class="line">          <span class="keyword">if</span> G[v][i] == <span class="number">1</span> <span class="keyword">and</span> color[v][i] != now_color <span class="keyword">and</span> visited[i] != <span class="number">1</span>:</span><br><span class="line">              path[i] = v</span><br><span class="line">              visited[i] = <span class="number">1</span></span><br><span class="line">              <span class="keyword">if</span> i == Vy:</span><br><span class="line">                  flag = <span class="number">1</span></span><br><span class="line">                  <span class="keyword">break</span></span><br><span class="line">              Q.append(i)</span><br><span class="line">              now_color = <span class="string">"red"</span> <span class="keyword">if</span> now_color == <span class="string">"blue"</span> <span class="keyword">else</span> <span class="string">"blue"</span></span><br><span class="line">      <span class="keyword">if</span> flag:</span><br><span class="line">          <span class="keyword">break</span></span><br><span class="line">  print(path)</span><br><span class="line">  </span><br><span class="line">  <span class="comment"># 挑选两path中较短者，输出</span></span><br></pre></td></tr></table></figure></li>
+<li>时间复杂度分析：<br>&emsp;&emsp;深度优先搜索的迭代次数的时间复杂度为 $ O(|V|) $, 而每次递归所延伸的边时间复杂度为 $O(|E|)$ , 故总的时间复杂度为 $ O(|V|+|E|) $ 。</li>
+</ul>
+<h4 id="3-最小闭合子图问题-20-分"><a href="#3-最小闭合子图问题-20-分" class="headerlink" title="3 最小闭合子图问题 (20 分)"></a>3 最小闭合子图问题 (20 分)</h4><p>对于一个有向图 $ G=\left\langle V, E\rangle\right. $, 其闭合子图是指一个顶点集为 $ V^{\prime} \subseteq V $ 的子图, 且保证点集 $ V^{\prime} $ 中的所有出边都还指向该点集。换言之, $ V^{\prime} $ 需满足对所有边 $ (u, v) \in E $ , 如果点 $ u $ 在集合 $ V^{\prime} $ 中, 则点 $ v $ 也一定在集合 $ V^{\prime} $ 中。<br>现给定一个包含 $ n $ 个点的有向图 $ G=\langle V, E\rangle $, 请设计算法求出该图中的闭合子图至少应包含几个顶点, 并分析其时间复杂度。<br>例如, 给定如下图所示的包含 $ 5 $ 个顶点的图, 其闭合子图可能为: $ \left{v<em>{3}\right},\left{v</em>{0}, v<em>{1}, v</em>{2}, v<em>{3}, v</em>{4}\right},\left{v<em>{2}, v</em>{4}\right} $ 。 最小的闭合子图仅包含 1 个顶点, 为 $ \left{v_{3}\right} $ 。请给出分析过程、伪代码以及算法复杂度。<br><img src='1.png'></p>
+<p>答：</p>
+<ul>
+<li><p>分析过程：<br>对于任一点，因为其出边均其在闭合子图中，因此其所在强连通分量及其后继均在其闭合子图中，因此所有强连通分量的最小值即为总最小值的下界，又因为此下界可以取到并且为闭合子图，因此没有后继节点的强连通分量包含顶点的最小者即为最小的闭合子图</p>
+</li>
+<li><p>算法实现：</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">FindMin</span><span class="params">(G)</span>:</span></span><br><span class="line">  <span class="keyword">global</span> G_</span><br><span class="line">  <span class="keyword">global</span> visited</span><br><span class="line">  <span class="keyword">global</span> close</span><br><span class="line">  <span class="keyword">global</span> finish</span><br><span class="line">  length = len(G)</span><br><span class="line">  G_ = np.array(G).T</span><br><span class="line">  visited = [<span class="number">0</span> <span class="keyword">for</span> i <span class="keyword">in</span> range(length)]</span><br><span class="line">  close = []</span><br><span class="line">  <span class="keyword">for</span> i <span class="keyword">in</span> range(len(visited)):</span><br><span class="line">      <span class="keyword">if</span> i <span class="keyword">not</span> <span class="keyword">in</span> close:</span><br><span class="line">        visited[i] = <span class="number">1</span></span><br><span class="line">        DFS_1(i)</span><br><span class="line">        close.append(i)</span><br><span class="line">  finish = []</span><br><span class="line">  total = []</span><br><span class="line">  now = []</span><br><span class="line">  <span class="keyword">for</span> i <span class="keyword">in</span> range(len(close)):</span><br><span class="line">      <span class="keyword">if</span> close[::<span class="number">-1</span>][i] <span class="keyword">not</span> <span class="keyword">in</span> finish:</span><br><span class="line">        <span class="keyword">if</span> now != []:</span><br><span class="line">            total.append(now.copy())</span><br><span class="line">            now = []</span><br><span class="line">        now.append(close[::<span class="number">-1</span>][i])</span><br><span class="line">        visited[close[::<span class="number">-1</span>][i]] = <span class="number">1</span></span><br><span class="line">        DFS_2(close[::<span class="number">-1</span>][i])</span><br><span class="line">        finish.append(close[::<span class="number">-1</span>][i])</span><br><span class="line">        flag = <span class="number">0</span></span><br><span class="line">      <span class="keyword">else</span>:</span><br><span class="line">        now.append(close[::<span class="number">-1</span>][i])</span><br><span class="line">  <span class="keyword">if</span> now != []:</span><br><span class="line">      total.append(now.copy())</span><br><span class="line">  print(total)</span><br><span class="line">  <span class="comment"># 找出无后继节点的最小强联通子图即可</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">DFS_1</span><span class="params">(x)</span>:</span></span><br><span class="line">  <span class="keyword">global</span> G_</span><br><span class="line">  <span class="keyword">global</span> visited</span><br><span class="line">  <span class="keyword">global</span> close</span><br><span class="line">  <span class="keyword">for</span> i <span class="keyword">in</span> range(len(G_[x])):</span><br><span class="line">      <span class="keyword">if</span> visited[i] == <span class="number">0</span> <span class="keyword">and</span> G_[x][i] == <span class="number">1</span>:</span><br><span class="line">        visited[i] = <span class="number">1</span></span><br><span class="line">        DFS_1(i)</span><br><span class="line">        visited[i] = <span class="number">0</span></span><br><span class="line">        close.append(i)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">DFS_2</span><span class="params">(x)</span>:</span></span><br><span class="line">  <span class="keyword">global</span> visited</span><br><span class="line">  <span class="keyword">global</span> finish</span><br><span class="line">  <span class="keyword">for</span> i <span class="keyword">in</span> range(len(G[x])):</span><br><span class="line">      <span class="keyword">if</span> visited[i] == <span class="number">0</span> <span class="keyword">and</span> G[x][i] == <span class="number">1</span>:</span><br><span class="line">        visited[i] = <span class="number">1</span></span><br><span class="line">        DFS_2(i)</span><br><span class="line">        visited[i] = <span class="number">0</span></span><br><span class="line">        finish.append(i)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>时间复杂度分析：<br>&emsp;&emsp;总时间复杂度即求解强连通分量的时间复杂度，为 $O(|V|+|E|)$</p>
+</li>
+</ul>
+<h4 id="4-食物链问题-20-分"><a href="#4-食物链问题-20-分" class="headerlink" title="4 食物链问题 (20 分)"></a>4 食物链问题 (20 分)</h4><p>给定一个食物网, 包含 $ n $ 个动物, $ m $ 个捕食关系, 第 $ i $ 个捕食关系使用 $ \left(s<em>{i}, t</em>{i}\right) $ 表示, $ s<em>{t} $ 捕 食者, $ t</em>{i} $ 表示被捕食者, 根据生物学定义, 食物网中不会存在环。<br>长度为 $ k $ 的食物链指包含 $ k $ 个动物的链: $ a<em>{1}, a</em>{2}, \cdots, a<em>{k} $ , 其中 $ a</em>{i} $ 会捕食 $ a<em>{i+1} $, 一个食物链 为最大食物链当且仅当 $ a</em>{1} $ 不会被任何动物捕食, 且 $ a_{k} $ 不会捕食任何动物。<br><img src=2.png><br>如图上图所示, 该食物网存在 $ 5 $ 个动物, $ 7 $ 个捕食关系, 其中红色和绿色均可以称为最大食物链, 而蓝色食物链则不能成为最大食物链, 图中一共包含 $ 5 $ 个最大食物链, 分别是 $ 1-2-5,  1-2-3-5,1-2-3-4-5,1-3-5,1-3-4-5 $ 。<br>请设计一个高效算法计算食物网中最大食物链的数量, 并给出分析过程、伪代码以及算法复杂度。</p>
+<p>答：</p>
+<ul>
+<li><p>题目分析：<br>把 $n$ 个动物作为顶点 $V$，$m$ 个捕食关系作为有向边 $E$， 构建图 $G=\left\langle V, E\rangle\right.$，将该图进行拓扑排序，采用动态规划求解问题：从所以初始入度为零的点开始，按拓扑排序的方式进行遍历，使用 $ d p[i] $ 表示编号为 $ i $ 的节点为路径终点的数量。每一次迭代为所有前驱结点的 $dp$ 之和，只到求出所有出度为零的点的 $dp$ 值，相加即为最大食物链数量</p>
+</li>
+<li><p>算法实现：</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">FindMax</span><span class="params">(G)</span>:</span></span><br><span class="line">  topo = []</span><br><span class="line">  Q = []</span><br><span class="line">  length = len(G)</span><br><span class="line">  du = [<span class="number">0</span> <span class="keyword">for</span> i <span class="keyword">in</span> range(length)]</span><br><span class="line">  <span class="keyword">for</span> i <span class="keyword">in</span> range(length):</span><br><span class="line">      <span class="keyword">for</span> j <span class="keyword">in</span> range(length):</span><br><span class="line">            <span class="keyword">if</span> G[i][j] == <span class="number">1</span>:</span><br><span class="line">                  du[j] += <span class="number">1</span></span><br><span class="line">  <span class="keyword">for</span> i <span class="keyword">in</span> range(length):</span><br><span class="line">      <span class="keyword">if</span> du[i] == <span class="number">0</span>:</span><br><span class="line">            Q.append(i)</span><br><span class="line">  <span class="keyword">while</span> Q:</span><br><span class="line">        v = Q[<span class="number">0</span>]</span><br><span class="line">        topo.append(Q[<span class="number">0</span>])</span><br><span class="line">        Q = Q[<span class="number">1</span>:]</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(length):</span><br><span class="line">            <span class="keyword">if</span> G[v][i] == <span class="number">1</span>:</span><br><span class="line">                  du[i] -= <span class="number">1</span></span><br><span class="line">                  <span class="keyword">if</span> du[i] == <span class="number">0</span>:</span><br><span class="line">                      Q.append(i)</span><br><span class="line">  dp = [<span class="number">0</span> <span class="keyword">for</span> i <span class="keyword">in</span> range(length)]</span><br><span class="line"></span><br><span class="line">  du = [<span class="number">0</span> <span class="keyword">for</span> i <span class="keyword">in</span> range(length)]</span><br><span class="line">  <span class="keyword">for</span> i <span class="keyword">in</span> range(length):</span><br><span class="line">      <span class="keyword">for</span> j <span class="keyword">in</span> range(length):</span><br><span class="line">            <span class="keyword">if</span> G[i][j] == <span class="number">1</span>:</span><br><span class="line">                  du[j] += <span class="number">1</span></span><br><span class="line">  <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">0</span>, length):</span><br><span class="line">        <span class="keyword">if</span> du[topo[i]] == <span class="number">0</span>:</span><br><span class="line">            dp[i] = <span class="number">1</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> range(length):</span><br><span class="line">                  <span class="keyword">if</span> G[topo[j]][topo[i]] == <span class="number">1</span>:</span><br><span class="line">                      dp[i] += dp[j]</span><br><span class="line">  print(max(dp))</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>时间复杂度分析：<br>&emsp;&emsp;状态转移的时间复杂度为 $O(n)$，总延伸边的时间复杂度为 $O(m)$，因此总的时间复杂度为 $O(m + n)$</p>
+</li>
+</ul>
+<h4 id="5-景区限流问题问题-20-分"><a href="#5-景区限流问题问题-20-分" class="headerlink" title="5 景区限流问题问题 (20 分)"></a>5 景区限流问题问题 (20 分)</h4><p>已知某市有热门景区 $ m $ 个, 可以表示为集合 $ S=\left{s<em>{1}, s</em>{2}, \ldots, s<em>{m}\right} $, 有游客 $ n $ 人, 可以表示为 $ T=\left{t</em>{1}, t<em>{2} \ldots, t</em>{n}\right} $ 。每名游客有 $ k $ 个心仪的景区, 但每个景区最多容纳 $ l $ 人, 问最多有多少人能 够去到自己心仪的景区, 并给出分析过程、伪代码以及算法复杂度。<br>对于游客与景区的偏好关系, 用 $ H $ 表示, 则 $ H $ 可以表示如下形式, 其中 $ \left(t<em>{u}, s</em>{v}\right) $ 表示游客 $ t<em>{u} $ 偏好景点 $ s</em>{v} $。</p>
+<script type="math/tex; mode=display">
+H=\left\{\begin{array}{ccc}
+\left(t_{1}, s_{11}\right), & \cdots & ,\left(t_{1}, s_{1 k}\right) \\
+\vdots & \ddots & \vdots \\
+,\left(t_{n}, s_{n 1}\right), & \cdots & ,\left(t_{n}, s_{n k}\right)
+\end{array}\right\}</script><p>答：</p>
+<ul>
+<li><p>题目分析：<br>&emsp;&emsp;建立二分图$ G=\left\langle L, R, E\rangle\right. $,将游客看作是左部点 $L$，景点看作是右部点 $R$，偏好关系看作是边 $E$，那么问题转化为在此二分图中求最大匹配数量，约束条件为左部点每个点只能链接一条匹配边，右部点每个点最多链接 $l$ 人<br>因此，对左侧的每一个点，依次使用 $DFS$ 尝试寻找一条交替路径，使得该路径以该顶点为首，并且末顶点为未达到 $l$ 的入度的一个右部点，除首尾中间经过的路径均为已匹配路径</p>
+</li>
+<li><p>算法实现：</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">FindMax</span><span class="params">(m, n, k, l, H)</span>:</span></span><br><span class="line">    <span class="keyword">global</span> visited</span><br><span class="line">    <span class="keyword">global</span> path</span><br><span class="line">    <span class="keyword">global</span> match</span><br><span class="line">    path = [[] <span class="keyword">for</span> i <span class="keyword">in</span> range(n)]</span><br><span class="line">    match = [<span class="number">0</span> <span class="keyword">for</span> i <span class="keyword">in</span> range(m)]</span><br><span class="line">    total = <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(n):</span><br><span class="line">        visited = [<span class="number">0</span> <span class="keyword">for</span> i <span class="keyword">in</span> range(m)]</span><br><span class="line">        <span class="keyword">if</span> FindPath(i):</span><br><span class="line">            total += <span class="number">1</span></span><br><span class="line">    print(total)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">FindPath</span><span class="params">(v)</span>:</span></span><br><span class="line">    <span class="keyword">global</span> visited</span><br><span class="line">    <span class="keyword">global</span> path</span><br><span class="line">    <span class="keyword">global</span> match</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(k):</span><br><span class="line">        <span class="keyword">if</span> visited[H[v][i][<span class="number">1</span>]] == <span class="number">1</span>:</span><br><span class="line">            <span class="keyword">continue</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            visited[H[v][i][<span class="number">1</span>]] = <span class="number">1</span></span><br><span class="line">            <span class="keyword">if</span> match[H[v][i][<span class="number">1</span>]] &lt; l:</span><br><span class="line">                path[H[v][i][<span class="number">1</span>]].append(v)</span><br><span class="line">                match[H[v][i][<span class="number">1</span>]] += <span class="number">1</span></span><br><span class="line">                <span class="keyword">return</span> <span class="literal">True</span></span><br><span class="line">            <span class="keyword">for</span> v_0 <span class="keyword">in</span> path[H[v][i][<span class="number">1</span>]]:</span><br><span class="line">                <span class="keyword">if</span> FindPath(v_0):</span><br><span class="line">                    path[H[v][i][<span class="number">1</span>]].remove(v_0)</span><br><span class="line">                    path[H[v][i][<span class="number">1</span>]].append(v)</span><br><span class="line">                    <span class="keyword">return</span> <span class="literal">True</span></span><br><span class="line">            visited[H[v][i][<span class="number">1</span>]] = <span class="number">0</span></span><br><span class="line">    <span class="keyword">return</span> <span class="literal">False</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>时间复杂度分析：<br>&emsp;&emsp;初始化匹配数组复杂度为 $O(|V|)$，对左部点的遍历均需初始化一遍标记数组和一遍DFS，因此复杂度为 $O(|V| \cdot (|V| + |E|))$；综上，总的时间复杂度为 $O(|V| \cdot |E|)$，即为 $O(n \cdot (n + m + n \cdot k))。$</p>
+</li>
+</ul>
+
                 
                 <hr>
                 <!-- Pager -->
                 <ul class="pager">
+                    
+                    <li class="previous">
+                        <a href="/2022/12/25/编译技术 - 实验 - 总结感想/" data-toggle="tooltip" data-placement="top" title="编译技术 - 实验 - 总结感想">&larr; Previous Post
+		<br>
+		<span><font size="2" face="Calibri" color="grey">编译技术 - 实验 - 总结感想</font></span>
+	       </a>
+                    </li>
                     
                     
                     <li class="next">
@@ -315,6 +384,17 @@
 
     
       
+        <aside id="sidebar">
+          <div id="toc" class="toc-article">
+          <strong class="toc-title">Contents</strong>
+          
+            
+              <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#1-对下面的每个描述-请判断其是正确或错误-或无法判断-正误。对于你判为错误-无法判断的描述-请说明它为什么-是错误-无法判断的。-每小题-5-分-共-20-分"><span class="toc-nav-text">1 对下面的每个描述, 请判断其是正确或错误, 或无法判断 正误。对于你判为错误&#x2F;无法判断的描述, 请说明它为什么 是错误&#x2F;无法判断的。(每小题 5 分, 共 20 分)</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#2-颜色交错最短路问题-20-分"><span class="toc-nav-text">2 颜色交错最短路问题 (20 分)</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#3-最小闭合子图问题-20-分"><span class="toc-nav-text">3 最小闭合子图问题 (20 分)</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#4-食物链问题-20-分"><span class="toc-nav-text">4 食物链问题 (20 分)</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#5-景区限流问题问题-20-分"><span class="toc-nav-text">5 景区限流问题问题 (20 分)</span></a></li></ol>
+            
+          
+          </div>
+        </aside>
+      
     
 
                 
@@ -331,6 +411,8 @@
                     <h5><a href="/tags/">FEATURED TAGS</a></h5>
                     <div class="tags">
                        
+                          <a class="tag" href="/tags/#算法" title="算法">算法</a>
+                        
                     </div>
                 </section>
                 
@@ -450,7 +532,7 @@
 
                 </ul>
                 <p class="copyright text-muted">
-                    Copyright &copy; Tan 2022 | Powered by 
+                    Copyright &copy; Tan 2023 | Powered by 
                     <a href="https://github.com/Master-Tan/Master-Tan.github.io" target="_blank" rel="noopener">
                         <i>Tan's Blog</i>
                     </a>
