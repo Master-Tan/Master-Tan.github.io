@@ -119,7 +119,7 @@
 	       
                             <div class="blank_box"></div>
                             <span class="meta">
-                                 <span class="post-count">491</span> Words
+                                 <span class="post-count">1.1k</span> Words
                             </span>
                             <div class="blank_box"></div>
                             <!-- 不蒜子统计 start -->
@@ -186,9 +186,6 @@
                     
 
                         
-                    
-
-                        
                         	<li>
                           	  <a href="/about/">About Tan</a>
                         	</li>
@@ -196,12 +193,15 @@
                     
 
                         
-                        	<li>
-                          	  <a href="/tags/">Tags</a>
-                        	</li>
+                    
+
                         
                     
 
+                        
+                        	<li>
+                          	  <a href="/tags/">Tags</a>
+                        	</li>
                         
                     
 
@@ -285,8 +285,8 @@
 </li>
 <li><p>线性分类：</p>
 <ul>
-<li>参数矩阵W（保存所有特征），图像拉伸的长向量x<pre><code>$$f(x,M) = M \cdot x + b$$
-</code></pre></li>
+<li>参数矩阵W（保存所有特征），图像拉伸的长向量x<script type="math/tex; mode=display">
+    f(x,M) = M \cdot x + b</script></li>
 <li>分数值越大，越可能属于此类</li>
 <li>学习可视化：将矩阵中的对应每一类的模板，对应于图像的像素值和该类的值之间的权重，取出该行并将其展开为图像</li>
 <li>一种解释：学习某个高维空间中像素之间的线性决策边界，其中空间的维度对应于图像的像素强度值</li>
@@ -311,7 +311,65 @@ s_{j}-s_{y_{i}}+1 & \text { otherwise }
 L_{i}=\sum_{j \neq y_{i}} \max \left(0, s_{j}-s_{y_{i}}+1\right)</script><p>Loss over full dataset is average:</p>
 <script type="math/tex; mode=display">
 L=\frac{1}{N} \sum_{i=1}^{N} L_{i}</script><ul>
-<li>机器学习 $\neq$ 拟合训练数据，其真正关心的是在训练出的分类器在测试数据上的性能</li>
+<li><p>机器学习 $\neq$ 拟合训练数据，其真正关心的是在训练出的分类器在测试数据上的性能</p>
+</li>
+<li><p>正则化惩罚项（Regularization）：鼓励模型以某种方式选择更“简单”的W（奥卡姆剃刀原则）</p>
+<script type="math/tex; mode=display">
+  \lambda R(W)</script><p>$\lambda$:正则化强度（超参数），权衡损失项和正则化项</p>
+</li>
+<li><p>简化模型方法</p>
+<ol>
+<li>限制模型类不包含更强大、更复杂的模型</li>
+<li>在模型仍然可以访问更复杂模型的地方添加软惩罚</li>
+</ol>
+</li>
+<li><p>$R(W)$:</p>
+<ul>
+<li>L2 regularization: $R(W)=\sum<em>{k} \sum</em>{l} W_{k, l}^{2}$</li>
+<li>L1 regularization等等  </li>
+</ul>
+</li>
+<li><p>Softmax 损失（多项逻辑回归）:对s取指数（保证非负），然后归一化（计算概率）</p>
+<script type="math/tex; mode=display">
+  P\left(Y=k \mid X=x_{i}\right)=\frac{e^{s_{k}}}{\sum_{j} e^{s_{j}}} \quad \text { where } \quad s=f\left(x_{i} ; W\right)</script></li>
+</ul>
+<script type="math/tex; mode=display">
+\begin{aligned}
+  L_{i} & = -\log P\left(Y=y_{i} \mid X=x_{i}\right)\\
+    &= -\log \left(\frac{e^{s_{y_i}}}{\sum_{j} e^{s_{j}}} \right)
+\end{aligned}</script><p>在这个公式上，在计算机中，$L_i$ 最小值只会趋于零而不等于零（计算机没有正无穷），最大值同理</p>
+<ul>
+<li><p>两者效用在大多数深度学习样例中相同</p>
+</li>
+<li><p>优化： -&gt; 迭代</p>
+<ol>
+<li>随机选W （不要使用！）</li>
+<li>计算函数梯度，然后使用这些梯度迭代更新参数向量<ul>
+<li>计算梯度：<ol>
+<li>数值梯度：有限差分法（太慢）</li>
+<li>解析梯度：对loss的表达式求梯度<br>不使用数值梯度作为迭代中的计算，但可以把数值计算作为一种单元测试确保解析梯度的计算正确性（一种调试策略）</li>
+</ol>
+</li>
+</ul>
+</li>
+</ol>
+</li>
+</ul>
+<ul>
+<li><p>梯度下降法<br>向负梯度方向迭代，迭代步长 $\rightarrow$ 学习率（超参数）（最重要）<br>迭代方式：多种多样</p>
+</li>
+<li><p>随机梯度下降<br>实际N很大，迭代所需计算太慢，解决方法：迭代时抽取一些小型训练示例集（惯例为2的幂，如32，64，128），通过小的训练集来计算全和的估计值以及真实梯度的估计值</p>
+</li>
+<li><p>二阶段方法<br>图像 $\rightarrow$ 计算图像的各种特征表示 $\rightarrow$ 连接不同的特征表示后送入线性分类器</p>
+<ul>
+<li>e.p:颜色直方图，定向边缘直方图等</li>
+<li>词袋：建立“单词本”(视觉词集) $\rightarrow$ 解析图片（建立直方图）</li>
+</ul>
+</li>
+<li><p>特征提取器 $\stackrel{链接}{\longrightarrow}$ 线性分类器（向下馈送）</p>
+</li>
+<li><p>卷积网络：通过许多不同层计算由数据驱动的某种类型的特征表示，然后为整个网络训练整个权重</p>
+</li>
 </ul>
 
                 
