@@ -108,6 +108,8 @@
                     <div class="post-heading">
                         <div class="tags">
                             
+                              <a class="tag" href="/tags/#机器学习" title="机器学习">机器学习</a>
+                            
                         </div>
                         <h1>用于视觉识别的卷积神经网络 - 学习笔记</h1>
                         <h2 class="subheading">Stanford University CS231n, Spring 2017</h2>
@@ -179,13 +181,6 @@
                     
 
                         
-                        	<li>
-                          	  <a href="/about/">About Tan</a>
-                        	</li>
-                        
-                    
-
-                        
                     
 
                         
@@ -208,6 +203,13 @@
                         
                     
 
+                        
+                    
+
+                        
+                        	<li>
+                          	  <a href="/about/">About Tan</a>
+                        	</li>
                         
                     
                     
@@ -332,14 +334,12 @@ L=\frac{1}{N} \sum_{i=1}^{N} L_{i}</script><ul>
 </li>
 <li><p>Softmax 损失（多项逻辑回归）:对s取指数（保证非负），然后归一化（计算概率）</p>
 <script type="math/tex; mode=display">
-  P\left(Y=k \mid X=x_{i}\right)=\frac{e^{s_{k}}}{\sum_{j} e^{s_{j}}} \quad \text { where } \quad s=f\left(x_{i} ; W\right)</script></li>
-</ul>
-<script type="math/tex; mode=display">
+  P\left(Y=k \mid X=x_{i}\right)=\frac{e^{s_{k}}}{\sum_{j} e^{s_{j}}} \quad \text { where } \quad s=f\left(x_{i} ; W\right)</script><script type="math/tex; mode=display">
 \begin{aligned}
-  L_{i} & = -\log P\left(Y=y_{i} \mid X=x_{i}\right)\\
-    &= -\log \left(\frac{e^{s_{y_i}}}{\sum_{j} e^{s_{j}}} \right)
+L_{i} & = -\log P\left(Y=y_{i} \mid X=x_{i}\right)\\
+  &= -\log \left(\frac{e^{s_{y_i}}}{\sum_{j} e^{s_{j}}} \right)
 \end{aligned}</script><p>在这个公式上，在计算机中，$L_i$ 最小值只会趋于零而不等于零（计算机没有正无穷），最大值同理</p>
-<ul>
+</li>
 <li><p>两者效用在大多数深度学习样例中相同</p>
 </li>
 <li><p>优化： -&gt; 迭代</p>
@@ -466,6 +466,8 @@ L=\frac{1}{N} \sum_{i=1}^{N} L_{i}</script><ul>
                     <h5><a href="/tags/">FEATURED TAGS</a></h5>
                     <div class="tags">
                        
+                          <a class="tag" href="/tags/#机器学习" title="机器学习">机器学习</a>
+                        
                     </div>
                 </section>
                 
