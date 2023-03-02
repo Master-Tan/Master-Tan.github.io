@@ -121,7 +121,7 @@
 	       
                             <div class="blank_box"></div>
                             <span class="meta">
-                                 <span class="post-count">1.2k</span> Words
+                                 <span class="post-count">1.8k</span> Words
                             </span>
                             <div class="blank_box"></div>
                             <!-- 不蒜子统计 start -->
@@ -345,7 +345,7 @@ L_{i} & = -\log P\left(Y=y_{i} \mid X=x_{i}\right)\\
 <li><p>优化： -&gt; 迭代</p>
 <ol>
 <li>随机选W （不要使用！）</li>
-<li>计算函数梯度，然后使用这些梯度迭代更新参数向量<ul>
+<li>计算函数梯度，然后使用这些梯度迭代更新参数向量 （容易出错）<ul>
 <li>计算梯度：<ol>
 <li>数值梯度：有限差分法（太慢）</li>
 <li>解析梯度：对loss的表达式求梯度<br>不使用数值梯度作为迭代中的计算，但可以把数值计算作为一种单元测试确保解析梯度的计算正确性（一种调试策略）</li>
@@ -373,7 +373,66 @@ L_{i} & = -\log P\left(Y=y_{i} \mid X=x_{i}\right)\\
 </li>
 </ul>
 <hr>
-<h3 id="Lecture-4-Introduction-to-Neural-Networks"><a href="#Lecture-4-Introduction-to-Neural-Networks" class="headerlink" title="Lecture 4 | Introduction to Neural Networks"></a>Lecture 4 | Introduction to Neural Networks</h3><hr>
+<h3 id="Lecture-4-Introduction-to-Neural-Networks"><a href="#Lecture-4-Introduction-to-Neural-Networks" class="headerlink" title="Lecture 4 | Introduction to Neural Networks"></a>Lecture 4 | Introduction to Neural Networks</h3><ul>
+<li><p>计算图：得到任意复杂函数的解析梯度</p>
+<ul>
+<li>用计算图来表示任何函数，图的节点为我们经历的计算步骤</li>
+</ul>
+</li>
+<li><p>反向传播：递归的使用链式法则来计算图中每个变量的梯度</p>
+<ul>
+<li>上游梯度下降 乘以 局部梯度 以获得 相对输入的梯度</li>
+<li>可以对任何你想要的节点进行分组，使其成为更复杂的节点（只要能写出局部梯度）（sigmoid）</li>
+<li>变量为矢量 $\rightarrow$ 雅克比矩阵，核心公式为 $\frac{\partial f}{\partial x}=\sum<em>{i} \frac{\partial f}{\partial q</em>{i}} \cdot \frac{\partial q_{i}}{\partial x}$</li>
+<li><p>e.g.<br>如果有：</p>
+<script type="math/tex; mode=display">
+\begin{array}{c}
+q=W \cdot x=\left(\begin{array}{c}
+W_{1,1} x_{1}+\cdots+W_{1, n} x_{n} \\
+\vdots \\
+W_{n, 1} x_{1}+\cdots+W_{n, n} x_{n}
+\end{array}\right) \\
+f(q)=\|q\|^{2}=q_{1}^{2}+\cdots+q^{2}
+\end{array}</script><p>则有：</p>
+<script type="math/tex; mode=display">
+\begin{array}{l}
+\frac{\partial f}{\partial q_{i}}=2 q_{i} \\
+\nabla_{q} f=2 q
+\end{array}</script><script type="math/tex; mode=display">
+\begin{aligned}
+\frac{\partial q_{k}}{\partial W_{i, j}} & =\mathbf{1}_{k=i} x_{j} \\
+\frac{\partial f}{\partial W_{i, j}} & =\sum_{k} \frac{\partial f}{\partial q_{k}} \frac{\partial q_{k}}{\partial W_{i, j}} \\
+& =\sum_{k}\left(2 q_{k}\right)\left(\mathbf{1}_{k=i} x_{j}\right)
+\end{aligned} \\
+\nabla_{W} f=2 q \cdot x^T</script><script type="math/tex; mode=display">
+\begin{aligned}
+\frac{\partial q_{k}}{\partial x_{i}} & =W_{k, i} \\
+\frac{\partial f}{\partial x_{i}} & =\sum_{k} \frac{\partial f}{\partial q_{k}} \frac{\partial q_{k}}{\partial x_{i}} \\
+& =\sum_{k} 2 q_{k} W_{k, i}
+\end{aligned} \\
+\nabla_{x} f=2 W^T \cdot q</script></li>
+<li><p>始终检查:关于变量的梯度应该与变量具有相同的形状</p>
+</li>
+</ul>
+</li>
+<li>程序:对于每一个门（节点），计算本地梯度并和上游梯度链接，实现一个前向函数和一个后向函数（API）<ul>
+<li>正向传递：一个计算该节点输出的函数，并保存输入的值</li>
+<li>反向传递：通过上游梯度和已有的值使用链式法则计算梯度</li>
+</ul>
+</li>
+<li><p>前向传递通过迭代图中的所有节点来得到整个图（拓扑顺序添加节点）并保存中间值，然后通过反向顺序通过所有节点，在每一个节点上调用后向函数</p>
+</li>
+<li><p>神经网络：在另一个之上进行非线性变换并线性堆叠（多层网络）</p>
+<script type="math/tex; mode=display">
+(Before)\ Linear\ score\ function:  f=W x \\
+\downarrow \\
+(Now)\ 2-layer\ Neural\ Network  \quad f=W_{2} \max \left(0, W_{1} x\right)</script></li>
+<li><p>多层神经网络：类比生物神经网络，但简化得多</p>
+</li>
+<li>完全连接层</li>
+<li>每一层隐藏层类比一组神经元</li>
+</ul>
+<hr>
 <h3 id="Lecture-5-Convolutional-Neural-Networks"><a href="#Lecture-5-Convolutional-Neural-Networks" class="headerlink" title="Lecture 5 | Convolutional Neural Networks"></a>Lecture 5 | Convolutional Neural Networks</h3><hr>
 <h3 id="Lecture-6-Training-Neural-Networks-I"><a href="#Lecture-6-Training-Neural-Networks-I" class="headerlink" title="Lecture 6 | Training Neural Networks I"></a>Lecture 6 | Training Neural Networks I</h3><hr>
 <h3 id="Lecture-7-Training-Neural-Networks-II"><a href="#Lecture-7-Training-Neural-Networks-II" class="headerlink" title="Lecture 7 | Training Neural Networks II"></a>Lecture 7 | Training Neural Networks II</h3><hr>
