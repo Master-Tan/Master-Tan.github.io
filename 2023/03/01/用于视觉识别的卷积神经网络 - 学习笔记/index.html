@@ -121,7 +121,7 @@
 	       
                             <div class="blank_box"></div>
                             <span class="meta">
-                                 <span class="post-count">1.8k</span> Words
+                                 <span class="post-count">2.6k</span> Words
                             </span>
                             <div class="blank_box"></div>
                             <!-- 不蒜子统计 start -->
@@ -182,24 +182,24 @@
 
                         
                         	<li>
-                          	  <a href="/about/">About Tan</a>
-                        	</li>
-                        
-                    
-
-                        
-                        	<li>
                           	  <a href="/archive/">Archives</a>
                         	</li>
                         
                     
 
                         
+                        	<li>
+                          	  <a href="/tags/">Tags</a>
+                        	</li>
+                        
+                    
+
+                        
                     
 
                         
                         	<li>
-                          	  <a href="/tags/">Tags</a>
+                          	  <a href="/about/">About Tan</a>
                         	</li>
                         
                     
@@ -433,7 +433,51 @@ f(q)=\|q\|^{2}=q_{1}^{2}+\cdots+q^{2}
 <li>每一层隐藏层类比一组神经元</li>
 </ul>
 <hr>
-<h3 id="Lecture-5-Convolutional-Neural-Networks"><a href="#Lecture-5-Convolutional-Neural-Networks" class="headerlink" title="Lecture 5 | Convolutional Neural Networks"></a>Lecture 5 | Convolutional Neural Networks</h3><hr>
+<h3 id="作业1"><a href="#作业1" class="headerlink" title="作业1"></a>作业1</h3><hr>
+<h3 id="Lecture-5-Convolutional-Neural-Networks"><a href="#Lecture-5-Convolutional-Neural-Networks" class="headerlink" title="Lecture 5 | Convolutional Neural Networks"></a>Lecture 5 | Convolutional Neural Networks</h3><ul>
+<li>全连接层: 32*32*3 的矢量（图片） $\stackrel{拉伸}{\longrightarrow}$ 3072 的矢量</li>
+<li>卷积层：要保留矢量的空间结构（上一行的例子中为三维），输出：激活图<ul>
+<li>权重：小过滤器（如5*5*3），“在空间上画过图像并计算每个空间位置的点积”，总是拓展输入体积的全部深度</li>
+<li>叠加在图像的一个空间位置上，然后做点积（将所有相应的值相乘）</li>
+<li>将过滤器居中放置在输入体积的每个像素的顶部，最后输出 28*28*1 的激活图 （过滤器划过整个图）</li>
+<li>多个相同维度的激活器，然后叠加求得的激活图，输出的深度为激活器的数目</li>
+<li>我们称该层为卷积层，因为它与两个信号的卷积有关:<br><script type="math/tex">f[x, y] * g[x, y]=\sum_{n_{1}=-\infty}^{\infty} \sum_{n_{2}=-\infty}^{\infty} f\left[n_{1}, n_{2}\right] \cdot g\left[x-n_{1}, y-n_{2}\right]</script>滤波器与信号(图像)的元素乘法和</li>
+<li>这种计算公式 $\rightarrow$ 卷积的标准定义，但实际计算我们仍用过滤器在空间上划动到图像上，并且计算各位置的点积</li>
+</ul>
+</li>
+<li>图片 $\rightarrow$ 低级特征 $\rightarrow$ 中级特征 $\rightarrow$ 高级特征 $\rightarrow$ 线性分类器</li>
+<li>图片N，过滤器F，步长stride，填充层数pad，则输出：$(N+2*pad-F)/stride+1$，若为小数，则步长不适合，步长不适合时，可以进行边缘0填充</li>
+<li>通常横竖处理相同的步长，通常处理的都是方形区域</li>
+<li>高步长 $\rightarrow$ 向下取样</li>
+<li>零填充：可以保持和输入一样的大小（否则在深层网络中尺寸会快速缩减 （丢失信息））</li>
+<li>常见过滤器尺寸：3*3（填充一圈0），5*5（填充两圈0），7*7（填充三圈0）</li>
+<li>参数数量：过滤器有几个数 + 1（偏差项）</li>
+<li>过滤器数量 K 通常是 2 的幂，e.g. 32，64，128…</li>
+<li>1 * 1 的过滤器：会遍历深度并加权计算，也很有意义</li>
+<li>“5x5过滤器” -&gt; “每个神经元5 * 5个感受野”</li>
+<li>池化层<ul>
+<li>使表示更小，更易于管理</li>
+<li>独立操作每个激活映射</li>
+<li>功能：只是下采样</li>
+<li>深度不变</li>
+<li>通常设置步幅以保证不重叠</li>
+</ul>
+</li>
+<li>最大池化：映射时不做点积，而是取其中的最大值（通常效果更好）<ul>
+<li>给出一个信号，表明该过滤器在此图像中的任何位置触发了多少</li>
+</ul>
+</li>
+<li>通常人们不会真正对池化层进行零填充，只是下采样</li>
+<li><p>趋势：更小的过滤器，更深的架构</p>
+</li>
+<li><p>卷积网络（ConvNets）堆叠卷积层（CONV）、池化层（POOL）、全连接层（FC），</p>
+</li>
+<li><p>趋势：取消POOL/FC层(只是CONV层)</p>
+</li>
+<li>典型的架构看起来像<script type="math/tex; mode=display">
+[(convl - relu)*N-POOL?] {}^{*} M-(FC-RELU)*K,SOFTMAX</script>其中 $\mathrm{N}$ 通常高达$\sim$ 5， $\mathrm{M}$ 很大，$0&lt;=\mathrm{K}&lt;=2$</li>
+</ul>
+<hr>
 <h3 id="Lecture-6-Training-Neural-Networks-I"><a href="#Lecture-6-Training-Neural-Networks-I" class="headerlink" title="Lecture 6 | Training Neural Networks I"></a>Lecture 6 | Training Neural Networks I</h3><hr>
 <h3 id="Lecture-7-Training-Neural-Networks-II"><a href="#Lecture-7-Training-Neural-Networks-II" class="headerlink" title="Lecture 7 | Training Neural Networks II"></a>Lecture 7 | Training Neural Networks II</h3><hr>
 <h3 id="Lecture-8-Deep-Learning-Software"><a href="#Lecture-8-Deep-Learning-Software" class="headerlink" title="Lecture 8 | Deep Learning Software"></a>Lecture 8 | Deep Learning Software</h3><hr>
@@ -503,7 +547,7 @@ f(q)=\|q\|^{2}=q_{1}^{2}+\cdots+q^{2}
           <strong class="toc-title">Contents</strong>
           
             
-              <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#Lecture-1-Introduction-to-Convolutional-Neural-Networks-for-Visual-Recognition"><span class="toc-nav-text">Lecture 1 | Introduction to Convolutional Neural Networks for Visual Recognition</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#Lecture-2-Image-Classification"><span class="toc-nav-text">Lecture 2 | Image Classification</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#Lecture-3-Loss-Functions-and-Optimization"><span class="toc-nav-text">Lecture 3 | Loss Functions and Optimization</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#Lecture-4-Introduction-to-Neural-Networks"><span class="toc-nav-text">Lecture 4 | Introduction to Neural Networks</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#Lecture-5-Convolutional-Neural-Networks"><span class="toc-nav-text">Lecture 5 | Convolutional Neural Networks</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#Lecture-6-Training-Neural-Networks-I"><span class="toc-nav-text">Lecture 6 | Training Neural Networks I</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#Lecture-7-Training-Neural-Networks-II"><span class="toc-nav-text">Lecture 7 | Training Neural Networks II</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#Lecture-8-Deep-Learning-Software"><span class="toc-nav-text">Lecture 8 | Deep Learning Software</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#Lecture-9-CNN-Architectures"><span class="toc-nav-text">Lecture 9 | CNN Architectures</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#Lecture-10-Recurrent-Neural-Networks"><span class="toc-nav-text">Lecture 10 | Recurrent Neural Networks</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#Lecture-11-Detection-and-Segmentation"><span class="toc-nav-text">Lecture 11 | Detection and Segmentation</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#Lecture-12-Visualizing-and-Understanding"><span class="toc-nav-text">Lecture 12 | Visualizing and Understanding</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#Lecture-13-Generative-Models"><span class="toc-nav-text">Lecture 13 | Generative Models</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#Lecture-14-Deep-Reinforcement-Learning"><span class="toc-nav-text">Lecture 14 | Deep Reinforcement Learning</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#Lecture-15-Efficient-Methods-and-Hardware-for-Deep-Learning"><span class="toc-nav-text">Lecture 15 | Efficient Methods and Hardware for Deep Learning</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#Lecture-16-Adversarial-Examples-and-Adversarial-Training"><span class="toc-nav-text">Lecture 16 | Adversarial Examples and Adversarial Training</span></a></li></ol>
+              <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#Lecture-1-Introduction-to-Convolutional-Neural-Networks-for-Visual-Recognition"><span class="toc-nav-text">Lecture 1 | Introduction to Convolutional Neural Networks for Visual Recognition</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#Lecture-2-Image-Classification"><span class="toc-nav-text">Lecture 2 | Image Classification</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#Lecture-3-Loss-Functions-and-Optimization"><span class="toc-nav-text">Lecture 3 | Loss Functions and Optimization</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#Lecture-4-Introduction-to-Neural-Networks"><span class="toc-nav-text">Lecture 4 | Introduction to Neural Networks</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#作业1"><span class="toc-nav-text">作业1</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#Lecture-5-Convolutional-Neural-Networks"><span class="toc-nav-text">Lecture 5 | Convolutional Neural Networks</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#Lecture-6-Training-Neural-Networks-I"><span class="toc-nav-text">Lecture 6 | Training Neural Networks I</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#Lecture-7-Training-Neural-Networks-II"><span class="toc-nav-text">Lecture 7 | Training Neural Networks II</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#Lecture-8-Deep-Learning-Software"><span class="toc-nav-text">Lecture 8 | Deep Learning Software</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#Lecture-9-CNN-Architectures"><span class="toc-nav-text">Lecture 9 | CNN Architectures</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#Lecture-10-Recurrent-Neural-Networks"><span class="toc-nav-text">Lecture 10 | Recurrent Neural Networks</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#Lecture-11-Detection-and-Segmentation"><span class="toc-nav-text">Lecture 11 | Detection and Segmentation</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#Lecture-12-Visualizing-and-Understanding"><span class="toc-nav-text">Lecture 12 | Visualizing and Understanding</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#Lecture-13-Generative-Models"><span class="toc-nav-text">Lecture 13 | Generative Models</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#Lecture-14-Deep-Reinforcement-Learning"><span class="toc-nav-text">Lecture 14 | Deep Reinforcement Learning</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#Lecture-15-Efficient-Methods-and-Hardware-for-Deep-Learning"><span class="toc-nav-text">Lecture 15 | Efficient Methods and Hardware for Deep Learning</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#Lecture-16-Adversarial-Examples-and-Adversarial-Training"><span class="toc-nav-text">Lecture 16 | Adversarial Examples and Adversarial Training</span></a></li></ol>
             
           
           </div>
