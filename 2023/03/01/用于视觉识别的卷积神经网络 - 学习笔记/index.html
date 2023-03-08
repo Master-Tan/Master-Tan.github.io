@@ -121,7 +121,7 @@
 	       
                             <div class="blank_box"></div>
                             <span class="meta">
-                                 <span class="post-count">2.6k</span> Words
+                                 <span class="post-count">2.9k</span> Words
                             </span>
                             <div class="blank_box"></div>
                             <!-- 不蒜子统计 start -->
@@ -189,7 +189,7 @@
 
                         
                         	<li>
-                          	  <a href="/tags/">Tags</a>
+                          	  <a href="/about/">About Tan</a>
                         	</li>
                         
                     
@@ -199,7 +199,7 @@
 
                         
                         	<li>
-                          	  <a href="/about/">About Tan</a>
+                          	  <a href="/tags/">Tags</a>
                         	</li>
                         
                     
@@ -478,7 +478,69 @@ f(q)=\|q\|^{2}=q_{1}^{2}+\cdots+q^{2}
 [(convl - relu)*N-POOL?] {}^{*} M-(FC-RELU)*K,SOFTMAX</script>其中 $\mathrm{N}$ 通常高达$\sim$ 5， $\mathrm{M}$ 很大，$0&lt;=\mathrm{K}&lt;=2$</li>
 </ul>
 <hr>
-<h3 id="Lecture-6-Training-Neural-Networks-I"><a href="#Lecture-6-Training-Neural-Networks-I" class="headerlink" title="Lecture 6 | Training Neural Networks I"></a>Lecture 6 | Training Neural Networks I</h3><hr>
+<h3 id="Lecture-6-Training-Neural-Networks-I"><a href="#Lecture-6-Training-Neural-Networks-I" class="headerlink" title="Lecture 6 | Training Neural Networks I"></a>Lecture 6 | Training Neural Networks I</h3><ul>
+<li><p>小批量随机梯度下降<br>步骤：</p>
+<ol>
+<li>采样一批数据</li>
+<li>通过计算图或神经网络转发它，获得Loss</li>
+<li>通过网络反向传播计算梯度</li>
+<li>使用梯度更新网络中的参数和权重</li>
+</ol>
+</li>
+<li><p>训练神经网络</p>
+</li>
+<li><p>Part1 首次设置</p>
+<ul>
+<li>激活函数，预处理，权重初始化，正则化，梯度检查</li>
+</ul>
+</li>
+<li><p>Part2 训练动态</p>
+<ul>
+<li>监督学习过程，参数更新规则，超参数优化</li>
+</ul>
+</li>
+<li><p>Part3 评估</p>
+<ul>
+<li>模型集成</li>
+</ul>
+</li>
+<li><p>激活函数：</p>
+<ul>
+<li>Sigmiod： $\sigma(x)=1 /\left(1+e^{-x}\right)$<ul>
+<li>将数字压缩到[0,1]范围</li>
+<li>这在历史上很受欢迎，因为它们可以很好地解释为神经元的饱和“放电率”</li>
+</ul>
+</li>
+<li><p>问题：</p>
+<ul>
+<li>饱和神经元会消除梯度：此函数梯度在远离0的地方梯度趋于0，上游梯度传递到这之后就因链式法则乘0而为0了，这消除了梯度流，并且将有一个0梯度向下传递到下游节点</li>
+<li>此函数输出不是以0为中心（均值）的：x均为正的后果：w的梯度总是全正或全负，会使效率降低（限制了梯度下降方向）</li>
+<li>exp计算代价有点昂贵 </li>
+</ul>
+</li>
+<li><p>tanh</p>
+<ul>
+<li>将数字压缩到[-1,1]范围</li>
+<li>0位中心（好！）</li>
+</ul>
+</li>
+<li><p>问题：</p>
+<ul>
+<li>仍会消除梯度</li>
+</ul>
+</li>
+<li><p>ReLU： $f(x) = max(0, x)$</p>
+<ul>
+<li>在正区域不会饱和</li>
+<li>计算简单</li>
+<li>收敛速度快（比上面两个快）</li>
+<li>比sigmiod在生物学上更合理</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
 <h3 id="Lecture-7-Training-Neural-Networks-II"><a href="#Lecture-7-Training-Neural-Networks-II" class="headerlink" title="Lecture 7 | Training Neural Networks II"></a>Lecture 7 | Training Neural Networks II</h3><hr>
 <h3 id="Lecture-8-Deep-Learning-Software"><a href="#Lecture-8-Deep-Learning-Software" class="headerlink" title="Lecture 8 | Deep Learning Software"></a>Lecture 8 | Deep Learning Software</h3><hr>
 <h3 id="Lecture-9-CNN-Architectures"><a href="#Lecture-9-CNN-Architectures" class="headerlink" title="Lecture 9 | CNN Architectures"></a>Lecture 9 | CNN Architectures</h3><hr>
@@ -493,6 +555,13 @@ f(q)=\|q\|^{2}=q_{1}^{2}+\cdots+q^{2}
                 <hr>
                 <!-- Pager -->
                 <ul class="pager">
+                    
+                    <li class="previous">
+                        <a href="/2023/03/09/实现微信与 GPT - 3 对话/" data-toggle="tooltip" data-placement="top" title="实现微信与GPT-3对话">&larr; Previous Post
+		<br>
+		<span><font size="2" face="Calibri" color="grey">实现微信与GPT-3对话</font></span>
+	       </a>
+                    </li>
                     
                     
                     <li class="next">
