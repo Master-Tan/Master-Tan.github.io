@@ -119,7 +119,7 @@
 	       
                             <div class="blank_box"></div>
                             <span class="meta">
-                                 <span class="post-count">0</span> Words
+                                 <span class="post-count">852</span> Words
                             </span>
                             <div class="blank_box"></div>
                             <!-- 不蒜子统计 start -->
@@ -186,9 +186,11 @@
                     
 
                         
-                        	<li>
-                          	  <a href="/about/">About Tan</a>
-                        	</li>
+                    
+
+                        
+                    
+
                         
                     
 
@@ -203,11 +205,9 @@
                     
 
                         
-                    
-
-                        
-                    
-
+                        	<li>
+                          	  <a href="/about/">About Tan</a>
+                        	</li>
                         
                     
                     
@@ -261,24 +261,43 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                
+                <p>ps: 我也是网上找的一堆教程，但由于 <code>gpt</code> 版本迭代有点快，所以最后凑出来一个能跑的，根据“程序员第一法则”，也就没继续管他<br>ps2: 由于 <code>gpt-3.5</code> （也就是现在的 <code>chatgpt</code>）的费用有点小贵（虽然有免费但有限）所以采用了 <code>gpt-3</code> ，也就是 <code>text-davinci-003</code></p>
+<h3 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h3><p>声明：以下只是本人 2023 年 1 月的注册全过程，并不保证成功性</p>
+<ol>
+<li>首先得有个openai的账号（官网：<a href="https://platform.openai.com" target="_blank" rel="noopener">https://platform.openai.com</a>）<ul>
+<li>tip:注册时需要海外手机，步骤：<ol>
+<li><a href="https://sms-activate.org/cn/getNumber" target="_blank" rel="noopener">https://sms-activate.org/cn/getNumber</a></li>
+<li>注册</li>
+<li>在左侧服务搜索中输入 <code>OpenAI</code>，然后选择马来西亚（当然印度尼西亚最便宜，但有一定概率收不到，也就是钱打水漂）（当然所有的都不贵，马来西亚的连 1 美金都不到）</li>
+<li>获取激活电话号码，等到openai官网发送验证码时在此网站上接收验证码即可</li>
+<li>完成openai账号注册</li>
+</ol>
+<ul>
+<li>ps：这个网站上也有一个教程，看了看感觉还不错 $\rightarrow$ <a href="https://sms-activate.org/cn/info/ChatGPT" target="_blank" rel="noopener">https://sms-activate.org/cn/info/ChatGPT</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>其次获取 openai 账号的 api-key，在登录后的这<br><img src='1.png'><br>然后直接 <code>Create new secret key</code>，在弹出的框中复制那一串东西（不复制就没了！）（当然这个create是不限次数的）（最好是在桌面新建个txt然后存进去保存）</li>
+<li>然后创个服务器，我用的是硅云（这个是我知道的最便宜的香港云了，其他内陆得云现在访问不了openai了，也就是被墙了），10元1个月（学生优惠，链接：<a href="https://www.vpsor.cn/ac/campus" target="_blank" rel="noopener">https://www.vpsor.cn/ac/campus</a>），只能优惠一次，我买了一年120元（当然不想部署的本地跑跑试试新也行）</li>
+<li>本地连上服务器，然后执行<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">$ sudo apt-get update</span><br><span class="line">$ sudo apt-get install git</span><br><span class="line">$ sudo apt-get install golang</span><br><span class="line"><span class="comment"># 获取项目</span></span><br><span class="line">$ git <span class="built_in">clone</span> https://github.com/ZYallers/chatgpt_wechat_robot</span><br><span class="line"><span class="comment"># 进入项目目录</span></span><br><span class="line">$ <span class="built_in">cd</span> chatgpt_wechat_robot</span><br><span class="line"><span class="comment"># 复制配置文件</span></span><br><span class="line">$ cp config.dev.json config.json</span><br><span class="line"><span class="comment"># 打开config.json</span></span><br><span class="line">$ vi config.json</span><br></pre></td></tr></table></figure>
+然后填充配置文件，配置说明：<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    "api_key": "your api key",        # openai账号里设置的api_key</span><br><span class="line">    "auto_pass": true,                # 是否自动通过好友添加</span><br><span class="line">    "session_timeout": 60,            # 会话超时时间，默认60秒，单位秒，在会话时间内所有发送给机器人的信息会作为上下文</span><br><span class="line">    "max_tokens": 1024,               # GPT响应字符数，最大2048，默认值512。会影响接口响应速度，字符越大响应越慢</span><br><span class="line">    "model": "text-davinci-003",      # GPT选用模型，默认text-davinci-003，具体选项参考官网训练场</span><br><span class="line">    "temperature": 1,                 # GPT热度，0到1，默认0.9，数字越大创造力越强，但更偏离训练事实，越低越接近训练事实</span><br><span class="line">    "reply_prefix": "来自机器人回复：", # 私聊回复前缀</span><br><span class="line">    "session_clear_token": "清空会话"  # 会话清空口令，默认`下一个问题`</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 启动项目</span></span><br><span class="line">$ go run main.go</span><br></pre></td></tr></table></figure></li>
+<li>此时会有一个网址，复制到浏览器打开是二维码，用<strong>已实名认证</strong>的微信<strong>小号</strong>扫码登录（会有第一次登陆危险提醒，点确认就行），然后这个微信号就不能退出或换号（我个人平板是小号常登，所以刚好适配）</li>
+<li>此时其他微信发给这个微信的所有消息（群聊消息除外）都会接入 gpt 接口并且自动给出回复，亲测可用且实用</li>
+<li>over</li>
+</ol>
+
                 
                 <hr>
                 <!-- Pager -->
                 <ul class="pager">
                     
-                    <li class="previous">
-                        <a href="/2023/03/09/实现微信与GPT-3对话/" data-toggle="tooltip" data-placement="top" title="实现微信与GPT-3对话">&larr; Previous Post
-		<br>
-		<span><font size="2" face="Calibri" color="grey">实现微信与GPT-3对话</font></span>
-	       </a>
-                    </li>
-                    
                     
                     <li class="next">
-                        <a href="/2023/03/01/用于视觉识别的卷积神经网络 - 学习笔记/" data-toggle="tooltip" data-placement="top" title="用于视觉识别的卷积神经网络 - 学习笔记">Next Post &rarr;
+                        <a href="/2023/03/09/实现微信与GPT-3对话/" data-toggle="tooltip" data-placement="top" title="实现微信与GPT-3对话">Next Post &rarr;
 		<br>
-		<span><font size="2" face="Calibri" color="grey">用于视觉识别的卷积神经网络 - 学习笔记</font></span>
+		<span><font size="2" face="Calibri" color="grey">实现微信与GPT-3对话</font></span>
 	        </a>
                     </li>
                     
@@ -321,6 +340,17 @@
             <!-- Table of Contents -->
 
     
+      
+        <aside id="sidebar">
+          <div id="toc" class="toc-article">
+          <strong class="toc-title">Contents</strong>
+          
+            
+              <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#步骤"><span class="toc-nav-text">步骤</span></a></li></ol>
+            
+          
+          </div>
+        </aside>
       
     
 
