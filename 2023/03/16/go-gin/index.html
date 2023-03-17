@@ -121,7 +121,7 @@
 	       
                             <div class="blank_box"></div>
                             <span class="meta">
-                                 <span class="post-count">1.9k</span> Words
+                                 <span class="post-count">3.2k</span> Words
                             </span>
                             <div class="blank_box"></div>
                             <!-- 不蒜子统计 start -->
@@ -182,18 +182,18 @@
 
                         
                         	<li>
-                          	  <a href="/archive/">Archives</a>
+                          	  <a href="/about/">About Tan</a>
                         	</li>
-                        
-                    
-
                         
                     
 
                         
                         	<li>
-                          	  <a href="/about/">About Tan</a>
+                          	  <a href="/archive/">Archives</a>
                         	</li>
+                        
+                    
+
                         
                     
 
@@ -287,11 +287,72 @@
 <h3 id="go-面向对象"><a href="#go-面向对象" class="headerlink" title="go 面向对象"></a>go 面向对象</h3><p>在 Go 语言中，没有类（class）和继承（inheritance）的概念。Go 语言使用结构体（struct）和接口（interface）来实现面向对象编程的特性。</p>
 <p>结构体可以包含字段和方法，可以通过组合其他结构体来实现代码复用和组合。而接口则定义了一组方法的签名，结构体可以通过实现接口来达到多态的效果，即在不同的结构体上调用相同的方法。</p>
 <p>Go 语言的设计哲学是简单、清晰和高效，通过简化语言的特性来提高开发效率和程序执行效率。因此，没有类和继承等概念，使得代码更加简洁、灵活，同时也能够很好地支持面向对象编程的特性。</p>
+<h3 id="Postman—支持http协议的接口调试与测试工具"><a href="#Postman—支持http协议的接口调试与测试工具" class="headerlink" title="Postman—支持http协议的接口调试与测试工具"></a>Postman—支持http协议的接口调试与测试工具</h3><ul>
+<li>汉化：<a href="https://github.com/hlmd/Postman-cn#Windows" target="_blank" rel="noopener">https://github.com/hlmd/Postman-cn#Windows</a></li>
+<li>本地测试接口</li>
+<li>服务器测试接口</li>
+<li>基础功能简介：<a href="https://cloud.tencent.com/developer/article/1876810" target="_blank" rel="noopener">https://cloud.tencent.com/developer/article/1876810</a></li>
+<li>Postman工具的优势<ul>
+<li>清晰的图形界面</li>
+<li>结合界面操作可以快速的配置接口请求信息，提供各种类型接口配置，以及数据配置</li>
+<li>有丰富响应断言，方便对于接口进行快速验证</li>
+<li>Postman满足了基本常见接口测试</li>
+</ul>
+</li>
+<li>Postman工具的不足<ul>
+<li>无法连接数据库</li>
+<li>无法进行共有的代码封装以及引入第三方插件</li>
+</ul>
+</li>
+</ul>
+<h3 id="OpenResty，nginx"><a href="#OpenResty，nginx" class="headerlink" title="OpenResty，nginx"></a>OpenResty，nginx</h3><ul>
+<li><p>nginx是一个高性能的HTTP和反向代理的web服务器，可以处理高并发的请求，占用内存少，支持多种功能。OpenResty是基于nginx和LuaJIT的一个平台，可以用Lua语言开发web应用。</p>
+</li>
+<li><p>OpenResty是啥：<a href="https://zhuanlan.zhihu.com/p/356808879" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/356808879</a></p>
+</li>
+<li><p>反向代理是一种服务器，它可以接收客户端的请求，并将其转发给内部网络上的其他服务器处理，然后将结果返回给客户端。反向代理可以用于提高性能、安全性、可靠性和可扩展性。</p>
+</li>
+<li><p>负载均衡器是一种设备或软件，它可以根据不同的策略，将客户端的请求分发到多个后端服务器去处理，从而实现负载均衡。负载均衡器可以用于提高系统的吞吐量、响应时间和容错能力</p>
+</li>
+</ul>
+<h3 id="Go-Modules"><a href="#Go-Modules" class="headerlink" title="Go Modules"></a>Go Modules</h3><ul>
+<li>官方文档：<a href="https://go.dev/blog/using-go-modules" target="_blank" rel="noopener">https://go.dev/blog/using-go-modules</a></li>
+<li>搜 100 篇别人的“教程”都不如看 1 遍 <strong>官方文档/Blog</strong>！</li>
+</ul>
+<h3 id="实际开始"><a href="#实际开始" class="headerlink" title="实际开始"></a>实际开始</h3><p>列出用Go+Gin写一个项目的写代码全过程，项目要求：<br>1.有用户，用户可以登录注册修改个人信息等常用功能<br>2.有课程，课程是给学生上课用的<br>3.有论坛，有题库，各自有默认课程<br>4.用户分为老师和学生，老师可以创建课程和题库，学生可以加入课程和做题<br>5.用户可以在论坛发帖子和评论别人的帖子，帖子有点赞功能，用户可以收藏帖子<br>6.题目可以做，每个题目有题解，很多题目可以组合成卷子，学生可以做卷子<br>7.支持题目的交互式可视化学习<br>8.参数分离化，有.yml文件控制<br>9.数据库要设计成可以分离的，既可以随意更换</p>
+<p>你的回答是：<br>以下是使用Go语言和Gin框架编写上述项目的大致流程：<br>1创建一个Go项目并使用Gin框架搭建HTTP服务器。<br>2根据项目需求创建数据库，并使用GORM框架进行ORM映射。<br>3实现用户登录和注册功能。在用户注册时需要对用户名、邮箱和密码进行验证。<br>4实现用户修改个人信息功能，包括头像、昵称和密码。<br>5创建课程表和题库表，并将其与用户表进行关联。<br>6实现老师创建课程和题库的功能，包括课程名称、课程介绍、课程封面、题目等。<br>7实现学生加入课程和做题的功能，包括加入课程、查看课程、查看题目、提交答案等。<br>8创建论坛表和帖子表，并将其与用户表进行关联。<br>9实现用户发帖、评论、点赞和收藏功能。<br>10创建题目表和题解表，并将其与课程表进行关联。<br>11实现学生做题和查看题解的功能，包括组合成卷子、做卷子等。<br>12支持题目的交互式可视化学习，可以使用Vue或React进行开发。<br>13使用Viper库对项目参数进行分离化，创建一个yaml文件进行控制。<br>14使用GORM库的DB接口和Dialects接口可以方便地切换数据库，实现数据库的分离。<br>以上是用Go+Gin写一个项目的代码全过程的大致流程。具体的实现细节和代码可以根据需求和实际情况进行调整和修改。</p>
+<h3 id="Viper-配置管理工具"><a href="#Viper-配置管理工具" class="headerlink" title="Viper - 配置管理工具"></a>Viper - 配置管理工具</h3><ul>
+<li>使用样例：<a href="https://blog.csdn.net/keenw/article/details/126216358" target="_blank" rel="noopener">https://blog.csdn.net/keenw/article/details/126216358</a> （’’2.5 从配置文件读取’’）<h3 id="Grom"><a href="#Grom" class="headerlink" title="Grom"></a>Grom</h3></li>
+</ul>
+<h3 id="JWT-JSON-Web-Token，用于实现用户认证和授权"><a href="#JWT-JSON-Web-Token，用于实现用户认证和授权" class="headerlink" title="JWT - JSON Web Token，用于实现用户认证和授权"></a>JWT - JSON Web Token，用于实现用户认证和授权</h3><h3 id="Docker"><a href="#Docker" class="headerlink" title="Docker"></a>Docker</h3><h3 id="Zap-日志工具"><a href="#Zap-日志工具" class="headerlink" title="Zap - 日志工具"></a>Zap - 日志工具</h3><ul>
+<li>官网：<a href="https://github.com/uber-go/zap" target="_blank" rel="noopener">https://github.com/uber-go/zap</a></li>
+<li>使用教程：<a href="https://blog.csdn.net/qq_43514659/article/details/121567519" target="_blank" rel="noopener">https://blog.csdn.net/qq_43514659/article/details/121567519</a> ， <a href="https://zhuanlan.zhihu.com/p/88856378" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/88856378</a> （一个东西）</li>
+<li><a href="https://zhuanlan.zhihu.com/p/371547318" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/371547318</a></li>
+<li>使用：  <figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">zapLogger := logger.GetZapLogger()</span><br><span class="line">zapLogger.Info(fmt.Sprintf(<span class="string">"hhh-%s"</span>, <span class="string">"lkkk"</span>))  <span class="comment">// 省事，要快还是不能用fmt，那样的话要格式化字符串要用suger()</span></span><br></pre></td></tr></table></figure>
+<h3 id="如何在同一台电脑通过ssh链接两个不同的Gitlab账号"><a href="#如何在同一台电脑通过ssh链接两个不同的Gitlab账号" class="headerlink" title="如何在同一台电脑通过ssh链接两个不同的Gitlab账号"></a>如何在同一台电脑通过ssh链接两个不同的Gitlab账号</h3>假设电脑已经有链接了一个 gitlab 账号<br>步骤：</li>
+</ul>
+<ol>
+<li>为新的邮箱建立新的 ssh key 密钥 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -t rsa -C <span class="string">"xx@xxx.com"</span> -f ~/.ssh/id_rsa2</span><br></pre></td></tr></table></figure></li>
+<li><p>在 config 文件中添加此 ssh key 并给新的 gitlab 账号起别称</p>
+ <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Host rg_gitlab.com  <span class="comment"># 别称，区别于原有的gitlab.com</span></span><br><span class="line">HostName altssh.gitlab.com  </span><br><span class="line">User git  </span><br><span class="line">Port 443</span><br><span class="line">IdentityFile C:\Users\tanli\.ssh\id_rsa2  <span class="comment"># 新密钥位置</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>把 id_rsa2.pub 文件中的密钥粘到新的 gitlab 账号中</p>
+</li>
+<li>验证是否连通<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh -T git@rg_gitlab.com</span><br></pre></td></tr></table></figure></li>
+<li>git clone 项目等操作时，把原本的 <code>git@gitlab.com</code> 改为 <code>git@rg_gitlab.com</code> 即可</li>
+</ol>
 
                 
                 <hr>
                 <!-- Pager -->
                 <ul class="pager">
+                    
+                    <li class="previous">
+                        <a href="/2023/03/17/软工后端项目搭建/" data-toggle="tooltip" data-placement="top" title="软工后端项目搭建">&larr; Previous Post
+		<br>
+		<span><font size="2" face="Calibri" color="grey">软工后端项目搭建</font></span>
+	       </a>
+                    </li>
                     
                     
                     <li class="next">
@@ -346,7 +407,7 @@
           <strong class="toc-title">Contents</strong>
           
             
-              <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#点运算符"><span class="toc-nav-text">点运算符</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#任意类型的方法"><span class="toc-nav-text">任意类型的方法</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#interface"><span class="toc-nav-text">interface{}</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#gin-H"><span class="toc-nav-text">gin.H</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#defer"><span class="toc-nav-text">defer</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#函数与方法"><span class="toc-nav-text">函数与方法</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#go-面向对象"><span class="toc-nav-text">go 面向对象</span></a></li></ol>
+              <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#点运算符"><span class="toc-nav-text">点运算符</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#任意类型的方法"><span class="toc-nav-text">任意类型的方法</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#interface"><span class="toc-nav-text">interface{}</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#gin-H"><span class="toc-nav-text">gin.H</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#defer"><span class="toc-nav-text">defer</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#函数与方法"><span class="toc-nav-text">函数与方法</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#go-面向对象"><span class="toc-nav-text">go 面向对象</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#Postman—支持http协议的接口调试与测试工具"><span class="toc-nav-text">Postman—支持http协议的接口调试与测试工具</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#OpenResty，nginx"><span class="toc-nav-text">OpenResty，nginx</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#Go-Modules"><span class="toc-nav-text">Go Modules</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#实际开始"><span class="toc-nav-text">实际开始</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#Viper-配置管理工具"><span class="toc-nav-text">Viper - 配置管理工具</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#Grom"><span class="toc-nav-text">Grom</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#JWT-JSON-Web-Token，用于实现用户认证和授权"><span class="toc-nav-text">JWT - JSON Web Token，用于实现用户认证和授权</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#Docker"><span class="toc-nav-text">Docker</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#Zap-日志工具"><span class="toc-nav-text">Zap - 日志工具</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#如何在同一台电脑通过ssh链接两个不同的Gitlab账号"><span class="toc-nav-text">如何在同一台电脑通过ssh链接两个不同的Gitlab账号</span></a></li></ol>
             
           
           </div>
