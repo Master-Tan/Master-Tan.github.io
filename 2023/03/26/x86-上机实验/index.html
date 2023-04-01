@@ -16,11 +16,11 @@
     <!--<link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>-->
     <title>
         
-          Tan&#39;s Blog
+          x86 上机实验 - Tan&#39;s Blog
         
     </title>
 
-    <link rel="canonical" href="https://master-tan.github.io/categories/">
+    <link rel="canonical" href="https://master-tan.github.io/2023/03/26/x86-上机实验/">
 
     <!-- Bootstrap Core CSS -->
     
@@ -90,8 +90,8 @@
     header.intro-header{
         
             
-                background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('/img/header_img/categories-bg.jpg')
-                /*page*/
+                background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('../../../../img/default.jpg')
+                /*post*/
             
         
     }
@@ -105,10 +105,30 @@
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                 
-                    <div class="site-heading">
-                        <h1>Tan&#39;s Blog</h1>
-                        <!--<hr class="small">-->
-                        <span id="subdusi" class="subheading">Approach the New Year with resolve to find the opportunities hidden in each new day.</span>
+                    <div class="post-heading">
+                        <div class="tags">
+                            
+                        </div>
+                        <h1>x86 上机实验</h1>
+                        <h2 class="subheading"></h2>
+                        <span class="meta">
+                            Posted by Tan on
+                            2023-03-26
+                        </span>
+
+	       
+                            <div class="blank_box"></div>
+                            <span class="meta">
+                                 <span class="post-count">156</span> Words
+                            </span>
+                            <div class="blank_box"></div>
+                            <!-- 不蒜子统计 start -->
+                            <span class="meta">
+                                Viewed <span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span> Times
+                            </span>
+                            <!-- 不蒜子统计 end -->
+                        
+
                     </div>
                 
 
@@ -230,22 +250,194 @@
 
 
     <!-- Main Content -->
-    <!-- Main Content -->
-<div class="container">
-    <div class="row">
-        <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-            <!-- 标签云 -->
-            <div id='tag_clouds' class="tags">
+    <!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+            <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <h3 id="lab1"><a href="#lab1" class="headerlink" title="lab1"></a>lab1</h3><ul>
+<li><code>r</code>: 查看寄存器</li>
+<li><code>d</code>: 查内存单元</li>
+<li><p><code>u</code>: 看反汇编程序</p>
+</li>
+<li><p><code>e</code>: 改内存单元</p>
+</li>
+<li><code>r</code>: 改寄存器<ul>
+<li><code>r IP</code>: 改执行点</li>
+</ul>
+</li>
+<li><p><code>a</code>: 改汇编指令</p>
+</li>
+<li><p><code>t</code>: 单步执行</p>
+</li>
+<li><code>p</code>: 单步 over</li>
+<li><p><code>g</code>: 执行到某个指令</p>
+</li>
+<li><p><code>q</code>: 退出</p>
+</li>
+</ul>
+<h4 id="3"><a href="#3" class="headerlink" title="3)"></a>3)</h4><ul>
+<li><code>debug TTTT.EXE</code>:<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">-g cs:003F  <span class="comment"># START1 所在，排序起点</span></span><br><span class="line">-e ds:0002  <span class="comment"># 插入学号</span></span><br><span class="line">    64  </span><br><span class="line">-e ds:0003  <span class="comment"># 插入班号</span></span><br><span class="line">    13</span><br><span class="line">-d ds:0     <span class="comment"># 截图</span></span><br><span class="line">-g cs:0067  <span class="comment"># EXIT 所在，排序终点</span></span><br><span class="line">-d ds:0     <span class="comment"># 截图</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h4 id="附加题"><a href="#附加题" class="headerlink" title="附加题"></a>附加题</h4><ul>
+<li><code>debug TTTT.EXE</code>:<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">-g cs:003F</span><br><span class="line">-d ds:0045</span><br><span class="line">-e ds:0045</span><br><span class="line">    64 38 13 06</span><br><span class="line">-d ds:0045</span><br></pre></td></tr></table></figure>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">-r cs</span><br><span class="line">    078F</span><br><span class="line">-r ip</span><br><span class="line">    002C</span><br><span class="line">-t</span><br></pre></td></tr></table></figure>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">-r cs</span><br><span class="line">    078F</span><br><span class="line">-r ip</span><br><span class="line">    0036</span><br><span class="line">-t </span><br><span class="line">-d SS:01F8</span><br></pre></td></tr></table></figure></li>
+</ul>
+
                 
+                <hr>
+                <!-- Pager -->
+                <ul class="pager">
+                    
+                    
+                    <li class="next">
+                        <a href="/2023/03/17/软工后端项目搭建/" data-toggle="tooltip" data-placement="top" title="软工后端项目搭建">Next Post &rarr;
+		<br>
+		<span><font size="2" face="Calibri" color="grey">软工后端项目搭建</font></span>
+	        </a>
+                    </li>
+                    
+                </ul>
+
+                <!-- tip start -->
+                
+
+                
+                <div class="comment_notes">
+                    <p>
+                        by Tan
+                    </p>
+                </div>
+                
+                <!-- tip end -->
+
+                <!-- Music start-->
+                
+                <!-- Music end -->
+
+                <!-- Sharing -->
+                
+                <!-- Sharing -->
+
+                <!-- gitment start -->
+                
+                <!-- gitment end -->
+
+                <!-- 来必力City版安装代码 -->
+                
+                <!-- City版安装代码已完成 -->
+
+                <!-- disqus comment start -->
+                
+                <!-- disqus comment end -->
             </div>
-
-            <!-- 标签列表 -->
-
             
+            <!-- Tabe of Content -->
+            <!-- Table of Contents -->
 
+    
+      
+        <aside id="sidebar">
+          <div id="toc" class="toc-article">
+          <strong class="toc-title">Contents</strong>
+          
+            
+              <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#lab1"><span class="toc-nav-text">lab1</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#3"><span class="toc-nav-text">3)</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#附加题"><span class="toc-nav-text">附加题</span></a></li></ol></li></ol>
+            
+          
+          </div>
+        </aside>
+      
+    
+
+                
+            <!-- Sidebar Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                       
+                    </div>
+                </section>
+                
+
+            </div>
+			
+			<div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+				
+				<br>
+				<br>
+
+				<script src="https://utteranc.es/client.js"
+						repo="Master-Tan/Master-Tan.github.io"
+						issue-term="pathname"
+						label="Comment"
+						theme="github-light"
+						crossorigin="anonymous"
+						async>
+				</script>
+			</div>
         </div>
     </div>
-</div>
+</article>
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("https://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'hover',
+          placement: 'left',
+          icon: 'ℬ'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+
+
+<style  type="text/css">
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
 
 
     <!-- Footer -->

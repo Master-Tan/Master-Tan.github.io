@@ -121,7 +121,7 @@
 	       
                             <div class="blank_box"></div>
                             <span class="meta">
-                                 <span class="post-count">3.2k</span> Words
+                                 <span class="post-count">5.5k</span> Words
                             </span>
                             <div class="blank_box"></div>
                             <!-- 不蒜子统计 start -->
@@ -182,14 +182,14 @@
 
                         
                         	<li>
-                          	  <a href="/about/">About Tan</a>
+                          	  <a href="/archive/">Archives</a>
                         	</li>
                         
                     
 
                         
                         	<li>
-                          	  <a href="/archive/">Archives</a>
+                          	  <a href="/about/">About Tan</a>
                         	</li>
                         
                     
@@ -319,8 +319,41 @@
 <li>官方文档：<a href="https://go.dev/blog/using-go-modules" target="_blank" rel="noopener">https://go.dev/blog/using-go-modules</a></li>
 <li>搜 100 篇别人的“教程”都不如看 1 遍 <strong>官方文档/Blog</strong>！</li>
 </ul>
-<h3 id="实际开始"><a href="#实际开始" class="headerlink" title="实际开始"></a>实际开始</h3><p>列出用Go+Gin写一个项目的写代码全过程，项目要求：<br>1.有用户，用户可以登录注册修改个人信息等常用功能<br>2.有课程，课程是给学生上课用的<br>3.有论坛，有题库，各自有默认课程<br>4.用户分为老师和学生，老师可以创建课程和题库，学生可以加入课程和做题<br>5.用户可以在论坛发帖子和评论别人的帖子，帖子有点赞功能，用户可以收藏帖子<br>6.题目可以做，每个题目有题解，很多题目可以组合成卷子，学生可以做卷子<br>7.支持题目的交互式可视化学习<br>8.参数分离化，有.yml文件控制<br>9.数据库要设计成可以分离的，既可以随意更换</p>
-<p>你的回答是：<br>以下是使用Go语言和Gin框架编写上述项目的大致流程：<br>1创建一个Go项目并使用Gin框架搭建HTTP服务器。<br>2根据项目需求创建数据库，并使用GORM框架进行ORM映射。<br>3实现用户登录和注册功能。在用户注册时需要对用户名、邮箱和密码进行验证。<br>4实现用户修改个人信息功能，包括头像、昵称和密码。<br>5创建课程表和题库表，并将其与用户表进行关联。<br>6实现老师创建课程和题库的功能，包括课程名称、课程介绍、课程封面、题目等。<br>7实现学生加入课程和做题的功能，包括加入课程、查看课程、查看题目、提交答案等。<br>8创建论坛表和帖子表，并将其与用户表进行关联。<br>9实现用户发帖、评论、点赞和收藏功能。<br>10创建题目表和题解表，并将其与课程表进行关联。<br>11实现学生做题和查看题解的功能，包括组合成卷子、做卷子等。<br>12支持题目的交互式可视化学习，可以使用Vue或React进行开发。<br>13使用Viper库对项目参数进行分离化，创建一个yaml文件进行控制。<br>14使用GORM库的DB接口和Dialects接口可以方便地切换数据库，实现数据库的分离。<br>以上是用Go+Gin写一个项目的代码全过程的大致流程。具体的实现细节和代码可以根据需求和实际情况进行调整和修改。</p>
+<h3 id="实际开始"><a href="#实际开始" class="headerlink" title="实际开始"></a>实际开始</h3><ul>
+<li><p>Go+Gin，项目要求：</p>
+<ol>
+<li>有用户，用户可以登录注册修改个人信息等常用功能</li>
+<li>有课程，课程是给学生上课用的</li>
+<li>有论坛，有题库，各自有默认课程</li>
+<li>用户分为老师和学生，老师可以创建课程和题库，学生可以加入课程和做题</li>
+<li>用户可以在论坛发帖子和评论别人的帖子，帖子有点赞功能，用户可以收藏帖子</li>
+<li>题目可以做，每个题目有题解，很多题目可以组合成卷子，学生可以做卷子</li>
+<li>支持题目的交互式可视化学习</li>
+<li>参数分离化，有.yml文件控制</li>
+<li>数据库要设计成可以分离的，既可以随意更换</li>
+</ol>
+</li>
+<li><p>项目大致流程与预期步骤：</p>
+<ol>
+<li>创建一个Go项目并使用Gin框架搭建HTTP服务器。</li>
+<li>根据项目需求创建数据库，并使用GORM框架进行ORM映射。</li>
+<li>实现用户登录和注册功能。在用户注册时需要对用户名、邮箱和密码进行验证。</li>
+<li>实现用户修改个人信息功能，包括头像、昵称和密码。</li>
+<li>创建课程表和题库表，并将其与用户表进行关联。</li>
+<li>实现老师创建课程和题库的功能，包括课程名称、课程介绍、课程封面、题目等。</li>
+<li>实现学生加入课程和做题的功能，包括加入课程、查看课程、查看题目、提交答案等。</li>
+<li>创建论坛表和帖子表，并将其与用户表进行关联。</li>
+<li>实现用户发帖、评论、点赞和收藏功能。</li>
+<li>创建题目表和题解表，并将其与课程表进行关联。</li>
+<li>实现学生做题和查看题解的功能，包括组合成卷子、做卷子等。</li>
+<li>支持题目的交互式可视化学习，可以使用Vue或React进行开发。</li>
+<li>使用Viper库对项目参数进行分离化，创建一个yaml文件进行控制。</li>
+<li>使用GORM库的DB接口和Dialects接口可以方便地切换数据库，实现数据库的分离。</li>
+</ol>
+</li>
+<li><p>具体的实现细节和代码会根据需求和实际情况进行调整和修改</p>
+</li>
+</ul>
 <h3 id="Viper-配置管理工具"><a href="#Viper-配置管理工具" class="headerlink" title="Viper - 配置管理工具"></a>Viper - 配置管理工具</h3><ul>
 <li>使用样例：<a href="https://blog.csdn.net/keenw/article/details/126216358" target="_blank" rel="noopener">https://blog.csdn.net/keenw/article/details/126216358</a> （’’2.5 从配置文件读取’’）<h3 id="Grom"><a href="#Grom" class="headerlink" title="Grom"></a>Grom</h3></li>
 </ul>
@@ -341,6 +374,58 @@
 <li>验证是否连通<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh -T git@rg_gitlab.com</span><br></pre></td></tr></table></figure></li>
 <li>git clone 项目等操作时，把原本的 <code>git@gitlab.com</code> 改为 <code>git@rg_gitlab.com</code> 即可</li>
 </ol>
+<h3 id="bcrypt-加密算法"><a href="#bcrypt-加密算法" class="headerlink" title="bcrypt - 加密算法"></a>bcrypt - 加密算法</h3><p>bcrypt.GenerateFromPassword([]byte(user.Password), bcrypt.DefaultCost) 是一个用于密码加密的函数，它使用了随机的盐，所以同一个密码每次加密的结果都不一样。您可以使用 bcrypt.CompareHashAndPassword 函数来验证密码是否正确。您可以将加密后的结果转成字符串存储在数据库中。</p>
+<p>bcrypt.CompareHashAndPassword 是一个用于比对 bcrypt 哈希密码和明文密码是否匹配的函数。它的第一个参数是哈希密码，第二个参数是明文密码。如果匹配，它会返回 nil，否则返回错误。bcrypt.CompareHashAndPassword 可以从哈希密码中提取盐，并用它来加密明文密码，然后比较两个哈希值是否相等</p>
+<h3 id="结构体标签（struct-tag）"><a href="#结构体标签（struct-tag）" class="headerlink" title="结构体标签（struct tag）"></a>结构体标签（struct tag）</h3><ul>
+<li><p>在 Golang 中，struct tag（结构体标签）是对 struct 的字段进行元数据描述的一种方式。它可以通过在字段类型的后面添加一段用反引号 `` 包含的字符串来定义，例如 json:”name”。这里的字符串包含了一些键值对，它们用于描述这个字段的一些元信息。常见的 struct tag 格式为：key1:”value1” key2:”value2” …。</p>
+</li>
+<li><p>常用的 struct tag 包括：</p>
+<p>  json:”name”：指定字段在 JSON 序列化时使用的名称。<br>  xml:”name”：指定字段在 XML 序列化时使用的名称。<br>  db:”name”：指定字段在数据库操作中使用的名称。<br>  form:”name”：指定字段在表单提交时使用的名称。<br>  yaml:”name”：指定字段在 YAML 序列化时使用的名称。<br>  protobuf:”name”：指定字段在 Protocol Buffers 中使用的名称。<br>  validate:”rule1|rule2|…”：指定字段的验证规则。<br>  swaggertag:”name,required”：指定字段在 Swagger API 文档中使用的名称和必填属性等。<br>  通过 struct tag，我们可以为字段添加一些额外的元数据信息，让程序在运行时更加灵活和方便。例如在 API 应用中，我们可以使用 struct tag 来指定哪些字段需要进行表单验证，哪些字段需要在 API 文档中显示等。而在数据库操作中，struct tag 可以帮助我们自动映射字段和数据库表中的列名，简化操作代码</p>
+</li>
+<li><p>gorm中的struct tag：<br>  常用的 struct tag 有：<br>  gorm:”column:name”：指定字段在数据库表中对应的列名。<br>  gorm:”type:type_name”：指定字段在数据库表中对应的数据类型。<br>  gorm:”unique”：指定字段在数据库表中是唯一约束。<br>  gorm:”index”：指定字段在数据库表中需要创建索引。<br>  gorm:”primary_key”：指定字段在数据库表中是主键。<br>  gorm:”default:value”：指定字段在数据库表中的默认值。<br>  gorm:”auto_increment”：指定字段在数据库表中自增。<br>  通过使用 GORM 的 struct tag，我们可以在编写 Golang 代码时指定与数据库相关的元数据信息，例如表名、字段名、索引等，从而简化代码，提高效率</p>
+</li>
+</ul>
+<h3 id="四层结构应用"><a href="#四层结构应用" class="headerlink" title="四层结构应用"></a>四层结构应用</h3><p>在一个Go项目中，通常会使用不同的包来组织不同的业务逻辑和功能模块。在这种情况下，user_route，user_repository，user_service，user_model和user_controller这些命名很可能代表不同的包。</p>
+<p>在一个典型的四层架构的应用中，user_model层通常是数据模型和数据结构的定义层，包括用户数据的结构定义，如User结构体。这个层次通常是最底层的，也是最基础的。</p>
+<p>user_repository层通常是数据访问层，负责实现访问数据库或其他数据存储服务的接口。这个层次负责管理用户数据的持久化存储，如CRUD操作。</p>
+<p>user_service层通常是业务逻辑层，它是中间层，实现具体的业务逻辑，如用户注册、登录、修改密码等功能。这个层次通常会调用user_repository层提供的接口来实现数据持久化，同时也会提供API给user_controller层调用。</p>
+<p>user_controller层通常是应用程序的控制层，它负责解析HTTP请求，调用user_service层提供的API，并将响应结果返回给客户端。这个层次通常会包含多个方法，每个方法处理不同的HTTP请求，如注册、登录、修改密码等请求。</p>
+<p>user_route层通常是路由层，它将HTTP请求分发到不同的user_controller层方法。这个层次负责定义HTTP路由，将请求路由到对应的控制器方法中。这个层次通常会使用一些第三方路由库来实现HTTP路由。</p>
+<p>因此，这些层之间的业务关系可以总结为：user_model定义了用户数据结构，user_repository层实现了对用户数据的持久化存储，user_service层实现了具体的业务逻辑，user_controller层负责处理HTTP请求，而user_route层负责定义HTTP路由，将请求路由到对应的控制器方法中</p>
+<h3 id="回调函数（针对要进行数据库操作的结构体）"><a href="#回调函数（针对要进行数据库操作的结构体）" class="headerlink" title="回调函数（针对要进行数据库操作的结构体）"></a>回调函数（针对要进行数据库操作的结构体）</h3><p>GORM 是一个强大的 ORM 库，它提供了多种回调函数，可以在数据模型的生命周期中插入自定义代码。这些回调函数包括：<br>BeforeSave: 在保存前触发，可以用来添加创建时间和更新时间等字段。<br>AfterSave: 在保存后触发，可以用来发送通知或更新缓存等操作。<br>BeforeCreate: 在创建前触发，可以用来添加默认值等操作。<br>AfterCreate: 在创建后触发，可以用来发送通知或更新缓存等操作。<br>BeforeUpdate: 在更新前触发，可以用来更新修改时间等字段。<br>AfterUpdate: 在更新后触发，可以用来发送通知或更新缓存等操作。<br>BeforeDelete: 在删除前触发，可以用来判断是否允许删除等操作。<br>AfterDelete: 在删除后触发，可以用来发送通知或更新缓存等操作。<br>通过使用这些回调函数，可以在数据库操作的不同阶段插入自定义代码，以实现各种复杂的功能。例如，在 BeforeSave 回调函数中可以对数据进行一些验证和处理操作，例如自动填充某些字段或者设置默认值；在 BeforeCreate 回调函数中可以对密码进行加密等操作。</p>
+<p>各操作的具体流程：</p>
+<ul>
+<li><p>创建对象</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// begin transaction 开始事物</span></span><br><span class="line">BeforeSave</span><br><span class="line">BeforeCreate</span><br><span class="line"><span class="comment">// save before associations 保存前关联</span></span><br><span class="line"><span class="comment">// update timestamp `CreatedAt`, `UpdatedAt` 更新`CreatedAt`, `UpdatedAt`时间戳</span></span><br><span class="line"><span class="comment">// save self 保存自己</span></span><br><span class="line"><span class="comment">// reload fields that have default value and its value is blank 重新加载具有默认值且其值为空的字段</span></span><br><span class="line"><span class="comment">// save after associations 保存后关联</span></span><br><span class="line">AfterCreate</span><br><span class="line">AfterSave</span><br><span class="line"><span class="comment">// commit or rollback transaction 提交或回滚事务</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>更新对象</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// begin transaction 开始事物</span></span><br><span class="line">BeforeSave</span><br><span class="line">BeforeUpdate</span><br><span class="line"><span class="comment">// save before associations 保存前关联</span></span><br><span class="line"><span class="comment">// update timestamp `UpdatedAt` 更新`UpdatedAt`时间戳</span></span><br><span class="line"><span class="comment">// save self 保存自己</span></span><br><span class="line"><span class="comment">// save after associations 保存后关联</span></span><br><span class="line">AfterUpdate</span><br><span class="line">AfterSave</span><br><span class="line"><span class="comment">// commit or rollback transaction 提交或回滚事务</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>删除对象</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// begin transaction 开始事物</span></span><br><span class="line">BeforeDelete</span><br><span class="line"><span class="comment">// delete self 删除自己</span></span><br><span class="line">AfterDelete</span><br><span class="line"><span class="comment">// commit or rollback transaction 提交或回滚事务</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>查询对象</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// load data from database 从数据库加载数据</span></span><br><span class="line"><span class="comment">// Preloading (edger loading) 预加载（加载）</span></span><br><span class="line">AfterFind</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>可以将回调方法定义为模型结构的指针，在创建，更新，查询，删除时将被调用，如果任何回调返回错误，gorm将停止未来操作并回滚所有更改。</p>
+<p>文档：<a href="https://gorm.io/zh_CN/docs/hooks.html" target="_blank" rel="noopener">https://gorm.io/zh_CN/docs/hooks.html</a></p>
+<h3 id="GORM-模型定义和约定"><a href="#GORM-模型定义和约定" class="headerlink" title="GORM 模型定义和约定"></a>GORM 模型定义和约定</h3><ul>
+<li><a href="https://gorm.io/zh_CN/docs/models.html" target="_blank" rel="noopener">https://gorm.io/zh_CN/docs/models.html</a></li>
+<li><a href="https://gorm.io/zh_CN/docs/conventions.html" target="_blank" rel="noopener">https://gorm.io/zh_CN/docs/conventions.html</a></li>
+</ul>
+<h3 id="GORM-模型关联"><a href="#GORM-模型关联" class="headerlink" title="GORM 模型关联"></a>GORM 模型关联</h3><ul>
+<li><a href="https://gorm.io/zh_CN/docs/associations.html#tags" target="_blank" rel="noopener">https://gorm.io/zh_CN/docs/associations.html#tags</a></li>
+</ul>
+<h3 id="HTTP请求"><a href="#HTTP请求" class="headerlink" title="HTTP请求"></a>HTTP请求</h3><p>样例：<br><figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">PUT /api/users/123 HTTP/1.1</span><br><span class="line"><span class="section">Host: example.com</span></span><br><span class="line"><span class="section">Content-Type: application/json</span></span><br><span class="line"><span class="section">Accept: application/json</span></span><br><span class="line"><span class="section">Authorization: Bearer xxxxxxxx</span></span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line">    <span class="string">"name"</span>: <span class="string">"Bob"</span>,</span><br><span class="line">    <span class="string">"age"</span>: 30,</span><br><span class="line">    <span class="string">"email"</span>: <span class="string">"bob@example.com"</span>,</span><br><span class="line">    <span class="string">"address"</span>: &#123;</span><br><span class="line">        <span class="string">"street"</span>: <span class="string">"123 Main St"</span>,</span><br><span class="line">        <span class="string">"city"</span>: <span class="string">"Anytown"</span>,</span><br><span class="line">        <span class="string">"state"</span>: <span class="string">"CA"</span>,</span><br><span class="line">        <span class="string">"zip"</span>: <span class="string">"12345"</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br>在这个请求中，Content-Type指示请求的body为JSON格式，Authorization头用于认证，传递了访问令牌，请求的body为一个JSON对象，包含了用户的更新信息，其中address属性也是一个嵌套的JSON对象</p>
+<h3 id="gin-处理-HTTP-请求的数据结构"><a href="#gin-处理-HTTP-请求的数据结构" class="headerlink" title="gin 处理 HTTP 请求的数据结构"></a>gin 处理 HTTP 请求的数据结构</h3><p><a href="https://lineng.blog.csdn.net/article/details/124755835" target="_blank" rel="noopener">https://lineng.blog.csdn.net/article/details/124755835</a></p>
+<p><a href="https://blog.csdn.net/baidu_41754205/article/details/104272645" target="_blank" rel="noopener">https://blog.csdn.net/baidu_41754205/article/details/104272645</a></p>
+<h3 id="处理-application-json-数据形式的请求"><a href="#处理-application-json-数据形式的请求" class="headerlink" title="处理 application/json 数据形式的请求"></a>处理 application/json 数据形式的请求</h3><p>BindJSON和ShouldBindJSON都是Gin框架用于将JSON数据绑定到结构体中的方法，但它们之间有一些关键的区别。</p>
+<p>BindJSON方法是将请求体中的JSON数据直接绑定到指定的结构体实例中，如果绑定失败则返回错误。如果请求体中包含的JSON数据无效，则可能会导致绑定失败。这可能会导致一些安全问题，例如攻击者可以通过构造恶意JSON数据来导致服务器崩溃或绕过身份验证。</p>
+<p>ShouldBindJSON方法与BindJSON方法相似，但它会先将请求体中的JSON数据绑定到一个匿名的结构体实例中，然后将该实例的值复制到指定的结构体实例中。如果绑定失败，则返回错误，但不会将错误信息直接暴露给客户端。如果请求体中包含的JSON数据无效，则将不会复制任何值，而不会导致服务器崩溃或绕过身份验证。因此，ShouldBindJSON方法更加安全，尤其是在处理用户输入时，建议使用该方法</p>
+<p>因此，当我们需要从JSON数据中绑定数据到结构体时，建议使用ShouldBindJSON方法，以确保安全性</p>
+<h3 id="go-gin-项目搭建："><a href="#go-gin-项目搭建：" class="headerlink" title="go + gin 项目搭建："></a>go + gin 项目搭建：</h3><p><a href="https://juejin.cn/user/3658790323624637" target="_blank" rel="noopener">https://juejin.cn/user/3658790323624637</a><br><a href="https://juejin.cn/post/7043587400131411976#heading-1" target="_blank" rel="noopener">https://juejin.cn/post/7043587400131411976#heading-1</a></p>
+<p>Go 语言编程 — validator 数据校验工具</p>
 
                 
                 <hr>
@@ -407,7 +492,7 @@
           <strong class="toc-title">Contents</strong>
           
             
-              <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#点运算符"><span class="toc-nav-text">点运算符</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#任意类型的方法"><span class="toc-nav-text">任意类型的方法</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#interface"><span class="toc-nav-text">interface{}</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#gin-H"><span class="toc-nav-text">gin.H</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#defer"><span class="toc-nav-text">defer</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#函数与方法"><span class="toc-nav-text">函数与方法</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#go-面向对象"><span class="toc-nav-text">go 面向对象</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#Postman—支持http协议的接口调试与测试工具"><span class="toc-nav-text">Postman—支持http协议的接口调试与测试工具</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#OpenResty，nginx"><span class="toc-nav-text">OpenResty，nginx</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#Go-Modules"><span class="toc-nav-text">Go Modules</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#实际开始"><span class="toc-nav-text">实际开始</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#Viper-配置管理工具"><span class="toc-nav-text">Viper - 配置管理工具</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#Grom"><span class="toc-nav-text">Grom</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#JWT-JSON-Web-Token，用于实现用户认证和授权"><span class="toc-nav-text">JWT - JSON Web Token，用于实现用户认证和授权</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#Docker"><span class="toc-nav-text">Docker</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#Zap-日志工具"><span class="toc-nav-text">Zap - 日志工具</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#如何在同一台电脑通过ssh链接两个不同的Gitlab账号"><span class="toc-nav-text">如何在同一台电脑通过ssh链接两个不同的Gitlab账号</span></a></li></ol>
+              <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#点运算符"><span class="toc-nav-text">点运算符</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#任意类型的方法"><span class="toc-nav-text">任意类型的方法</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#interface"><span class="toc-nav-text">interface{}</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#gin-H"><span class="toc-nav-text">gin.H</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#defer"><span class="toc-nav-text">defer</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#函数与方法"><span class="toc-nav-text">函数与方法</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#go-面向对象"><span class="toc-nav-text">go 面向对象</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#Postman—支持http协议的接口调试与测试工具"><span class="toc-nav-text">Postman—支持http协议的接口调试与测试工具</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#OpenResty，nginx"><span class="toc-nav-text">OpenResty，nginx</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#Go-Modules"><span class="toc-nav-text">Go Modules</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#实际开始"><span class="toc-nav-text">实际开始</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#Viper-配置管理工具"><span class="toc-nav-text">Viper - 配置管理工具</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#Grom"><span class="toc-nav-text">Grom</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#JWT-JSON-Web-Token，用于实现用户认证和授权"><span class="toc-nav-text">JWT - JSON Web Token，用于实现用户认证和授权</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#Docker"><span class="toc-nav-text">Docker</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#Zap-日志工具"><span class="toc-nav-text">Zap - 日志工具</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#如何在同一台电脑通过ssh链接两个不同的Gitlab账号"><span class="toc-nav-text">如何在同一台电脑通过ssh链接两个不同的Gitlab账号</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#bcrypt-加密算法"><span class="toc-nav-text">bcrypt - 加密算法</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#结构体标签（struct-tag）"><span class="toc-nav-text">结构体标签（struct tag）</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#四层结构应用"><span class="toc-nav-text">四层结构应用</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#回调函数（针对要进行数据库操作的结构体）"><span class="toc-nav-text">回调函数（针对要进行数据库操作的结构体）</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#GORM-模型定义和约定"><span class="toc-nav-text">GORM 模型定义和约定</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#GORM-模型关联"><span class="toc-nav-text">GORM 模型关联</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#HTTP请求"><span class="toc-nav-text">HTTP请求</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#gin-处理-HTTP-请求的数据结构"><span class="toc-nav-text">gin 处理 HTTP 请求的数据结构</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#处理-application-json-数据形式的请求"><span class="toc-nav-text">处理 application&#x2F;json 数据形式的请求</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#go-gin-项目搭建："><span class="toc-nav-text">go + gin 项目搭建：</span></a></li></ol>
             
           
           </div>
