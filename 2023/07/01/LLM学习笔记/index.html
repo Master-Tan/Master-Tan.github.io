@@ -16,11 +16,11 @@
     <!--<link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>-->
     <title>
         
-          x86 上机实验 - Tan&#39;s Blog
+          LLM学习笔记 - Tan&#39;s Blog
         
     </title>
 
-    <link rel="canonical" href="https://master-tan.github.io/2023/03/26/x86-上机实验/">
+    <link rel="canonical" href="https://master-tan.github.io/2023/07/01/LLM学习笔记/">
 
     <!-- Bootstrap Core CSS -->
     
@@ -109,17 +109,17 @@
                         <div class="tags">
                             
                         </div>
-                        <h1>x86 上机实验</h1>
-                        <h2 class="subheading"></h2>
+                        <h1>LLM学习笔记</h1>
+                        <h2 class="subheading">暑期实习笔记</h2>
                         <span class="meta">
                             Posted by Tan on
-                            2023-03-26
+                            2023-07-01
                         </span>
 
 	       
                             <div class="blank_box"></div>
                             <span class="meta">
-                                 <span class="post-count">169</span> Words
+                                 <span class="post-count">1.5k</span> Words
                             </span>
                             <div class="blank_box"></div>
                             <!-- 不蒜子统计 start -->
@@ -261,56 +261,315 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <h3 id="lab1"><a href="#lab1" class="headerlink" title="lab1"></a>lab1</h3><ul>
-<li><code>r</code>: 查看寄存器</li>
-<li><code>d</code>: 查内存单元</li>
-<li><p><code>u</code>: 看反汇编程序</p>
-</li>
-<li><p><code>e</code>: 改内存单元</p>
-</li>
-<li><code>r</code>: 改寄存器<ul>
-<li><code>r IP</code>: 改执行点</li>
+                <h1 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h1><h2 id="tar"><a href="#tar" class="headerlink" title="tar"></a>tar</h2><ul>
+<li>参数 <code>-xvzf</code> : 用于解压缩一个 gzip 压缩的 tar 文件其中，-x 表示解包，-v 表示显示详细的解包过程，-z 表示解压缩 gzip 压缩，-f 表示指定要解压缩的文件名例如，tar -xvzf archive.tar.gz 将解压缩名为 archive.tar.gz 的 gzip 压缩的 tar 文件</li>
+<li>参数 <code>-cvzf</code> : 用于创建一个 gzip 压缩的 tar 文件其中，-c 表示创建归档文件，-v 表示显示详细的打包过程，-z 表示使用 gzip 压缩，-f 表示指定要创建的文件名例如，tar -cvzf archive.tar.gz folder/ 将创建名为 archive.tar.gz 的 gzip 压缩的 tar 文件，其中包含名为 folder 的目录下的所有文件和子目录</li>
+</ul>
+<h1 id="示范流程"><a href="#示范流程" class="headerlink" title="示范流程"></a>示范流程</h1>   <!-- 65  30/06/23 08:59:42 ls
+   66  30/06/23 08:59:49 vim test.txt 
+   67  30/06/23 08:59:53 ls
+   68  30/06/23 09:03:23 pwd
+   69  30/06/23 09:04:15 ls
+   70  30/06/23 09:04:17 cd chatglm2-6b/
+   71  30/06/23 09:04:18 ls
+   72  30/06/23 09:05:31 cd ../
+   73  30/06/23 09:05:31 ls -->
+<p>   74  30/06/23 09:05:40 tar -xvzf ChatGLM-Efficient-Tuning.tar.gz<br>   <!-- 75  30/06/23 09:05:49 ls
+   76  30/06/23 09:06:10 cd ChatGLM-Efficient-Tuning/
+   77  30/06/23 09:06:11 ls
+   78  30/06/23 09:06:14 cd data/
+   79  30/06/23 09:06:14 ls
+   80  30/06/23 09:06:22 cd ../
+   81  30/06/23 09:06:25 cd examples/
+   82  30/06/23 09:06:25 ls
+   83  30/06/23 09:06:29 vim train_poi.sh 
+   84  30/06/23 09:09:05 cd
+   85  30/06/23 09:09:25 tar -cvzf env.tar.gz ~/env
+   86  30/06/23 09:09:29 tar -cvzf env.tar.gz 
+   87  30/06/23 09:09:34 tar -xvzf env.tar.gz  --><br>   88  30/06/23 09:09:37 tar -xvzf env.tar.gz<br>   <!-- 89  30/06/23 09:09:44 tar -xvzf env.tar.gz ~/env
+   90  30/06/23 09:09:53 tar -xvzf ~/env env.tar.gz
+   91  30/06/23 09:09:59 tar -xvzf env.tar.gz
+   92  30/06/23 09:10:04 ll -la
+   93  30/06/23 09:31:22 ls -ll
+   94  30/06/23 09:31:27 tar -xvzf env.tar.gz --><br>   95  30/06/23 09:34:58 slist<br>   96  30/06/23 09:35:08 sinfo<br>   97  30/06/23 09:35:54 conda activate chatglm_etuning<br>   <!-- 98  30/06/23 09:35:57 ls
+   99  30/06/23 09:36:02 cd ChatGLM-Efficient-Tuning/
+  100  30/06/23 09:36:02 ls
+  101  30/06/23 09:36:05 cd examples/
+  102  30/06/23 09:36:05 ls
+  103  30/06/23 09:38:33 cd
+  104  30/06/23 09:38:43 vim run.sh
+  105  30/06/23 09:40:35 vim run.slurm
+  106  30/06/23 09:42:49 pwd
+  107  30/06/23 09:42:55 vim run.slurm
+  108  30/06/23 09:43:23 cd ChatGLM-Efficient-Tuning/
+  109  30/06/23 09:43:24 pwd
+  110  30/06/23 09:43:32 cd
+  111  30/06/23 09:43:35 vim run.slurm
+  112  30/06/23 10:07:55 sbatch run.slurm 
+  113  30/06/23 10:08:20 vim run.slurm
+  114  30/06/23 10:08:34 sbatch run.slurm 
+  115  30/06/23 10:08:41 vim run.slurm
+  116  30/06/23 10:08:49 sbatch run.slurm 
+  117  30/06/23 10:09:02 vim run.slurm --><br>  118  30/06/23 10:35:01 pip install deepseed<br>  <!-- 119  30/06/23 10:35:10 python
+  120  30/06/23 10:37:44 vim run.slurm 
+  121  30/06/23 10:47:59 pwd
+  122  30/06/23 10:48:47 vim run.slurm 
+  123  30/06/23 10:50:30 ll
+  124  30/06/23 10:50:42 tar -xvzf env.tar.gz --><br>  125  30/06/23 10:55:45 accelerate config<br>  126  30/06/23 10:56:27 vim ~/.bashrc<br>  127  30/06/23 11:01:06 vim /gs/home/zhangzhibo/anaconda3/envs/chatglm_etuning/bin/accelerate<br>  128  30/06/23 11:01:34 accelerate config<br>  129  30/06/23 11:03:06 vim run.slurm<br>  130  30/06/23 11:03:15 sbatch run.slurm<br>  131  30/06/23 11:03:21 ls<br>  132  30/06/23 11:03:27 cat glm2.out<br>  133  30/06/23 11:03:33 tail -100f glm2.out<br>  134  30/06/23 11:03:37 tail -100f glm2.err<br>  135  30/06/23 11:03:57 conda init bash<br>  136  30/06/23 11:04:08 vim run.slurm<br>  137  30/06/23 11:05:48 scancel 8138036<br>  138  30/06/23 16:55:17 vim run.slurm<br>  139  30/06/23 16:55:52 conda activate chatglm-etuning<br>  140  30/06/23 16:55:58 conda info —envs<br>  <!-- 141  30/06/23 16:56:16 conda activate chatglm_etuning
+  142  30/06/23 16:56:18 ls
+  143  30/06/23 16:56:26 cd ChatGLM-Efficient-Tuning/
+  144  30/06/23 16:56:28 cd ../ --><br>  145  30/06/23 16:56:34 sbatch run.slurm<br>  146  30/06/23 16:56:47 tail -100f glm2.out<br>  147  30/06/23 16:56:51 tail -100f glm2.err<br>  148  30/06/23 16:57:02 scancel 8138197<br>  <!-- 149  30/06/23 16:57:12 vim run.slurm 
+  150  30/06/23 16:57:24 sbatch run.slurm 
+  151  30/06/23 16:57:29 tail -100f glm2.err 
+  152  30/06/23 16:57:35 tail -100f glm2.out
+  153  30/06/23 16:57:59 vim run.slurm 
+  154  30/06/23 16:58:09 scancel 8138198
+  155  30/06/23 16:58:20 accelerate config
+  156  30/06/23 17:05:18 sbatch run.slurm 
+  157  30/06/23 17:05:30 tail -100f glm2.err 
+  158  30/06/23 17:05:56 tail -100f glm2.out
+  159  30/06/23 17:06:05 tail f glm2.out
+  160  30/06/23 17:06:09 tail -f glm2.out --><br>  161  30/06/23 17:06:18 tail -f glm2.out glm2.err<br>  <!-- 162  30/06/23 17:06:33 tail -100f glm2.err 
+  163  30/06/23 17:06:39 cat glm2.err 
+  164  30/06/23 17:07:19 scancel 8138205
+  165  30/06/23 17:07:23 vim run.slurm 
+  166  30/06/23 17:07:44 rm -rf glm2.out 
+  167  30/06/23 17:07:47 rm -rf glm2.err 
+  168  30/06/23 17:07:53 sbatch run.slurm 
+  169  30/06/23 17:07:56 tail -f glm2.out glm2.err
+  170  30/06/23 17:13:46 scancel 8138208
+  171  30/06/23 17:13:48 vim run.slurm 
+  172  30/06/23 17:14:20 sbatch run.slurm 
+  173  30/06/23 17:14:57 tail -f glm2.out glm2.err
+  174  30/06/23 17:25:18 scancel 8138214
+  175  30/06/23 17:25:24 scancel 8138215
+  176  30/06/23 17:25:35 accelerate config
+  177  30/06/23 17:26:50 sbatch run.slurm 
+  178  30/06/23 17:26:53 tail -f glm2.out glm2.err
+  179  30/06/23 18:37:31 vim run.slurm 
+  180  30/06/23 18:43:31 sbatch run.slurm 
+  181  30/06/23 18:43:33 tail -f glm2.out glm2.err --></p>
+<h1 id="模型参数微调"><a href="#模型参数微调" class="headerlink" title="模型参数微调"></a>模型参数微调</h1><h2 id="参数详解"><a href="#参数详解" class="headerlink" title="参数详解"></a>参数详解</h2><h3 id="ModelArguments"><a href="#ModelArguments" class="headerlink" title="ModelArguments"></a>ModelArguments</h3><p>用于指定模型的参数</p>
+<ul>
+<li><p><code>model_name_or_path</code> (str):</p>
+<ul>
+<li>描述：预训练模型或模型标识符的路径，可以是 huggingface.co/models 上的模型。</li>
+<li>默认值：无</li>
 </ul>
 </li>
-<li><p><code>a</code>: 改汇编指令</p>
+<li><p><code>ptuning_checkpoint</code> (str):</p>
+<ul>
+<li>描述：p-tuning v2 检查点的路径。</li>
+<li>默认值：None</li>
+</ul>
 </li>
-<li><p><code>t</code>: 单步执行</p>
+<li><p><code>config_name</code> (Optional[str]):</p>
+<ul>
+<li>描述：预训练配置的名称或路径，如果不同于 <code>model_name_or_path</code>。</li>
+<li>默认值：None</li>
+</ul>
 </li>
-<li><code>p</code>: 单步 over</li>
-<li><p><code>g</code>: 执行到某个指令</p>
+<li><p><code>tokenizer_name</code> (Optional[str]):</p>
+<ul>
+<li>描述：预训练 tokenizer 的名称或路径，如果不同于 <code>model_name_or_path</code>。</li>
+<li>默认值：None</li>
+</ul>
 </li>
-<li><p><code>q</code>: 退出</p>
+<li><p><code>cache_dir</code> (Optional[str]):</p>
+<ul>
+<li>描述：存储从 huggingface.co 下载的预训练模型的目录。</li>
+<li>默认值：None</li>
+</ul>
+</li>
+<li><p><code>use_fast_tokenizer</code> (bool):</p>
+<ul>
+<li>描述：是否使用由 tokenizers 库支持的快速 tokenizer。</li>
+<li>默认值：True</li>
+</ul>
+</li>
+<li><p><code>model_revision</code> (str):</p>
+<ul>
+<li>描述：要使用的具体模型版本（可以是分支名称、标签名称或提交 ID）。</li>
+<li>默认值：”main”</li>
+</ul>
+</li>
+<li><p><code>use_auth_token</code> (bool):</p>
+<ul>
+<li>描述：是否使用运行 <code>huggingface-cli login</code> 时生成的令牌（用于使用私有模型）。</li>
+<li>默认值：False</li>
+</ul>
+</li>
+<li><p><code>resize_position_embeddings</code> (Optional[bool]):</p>
+<ul>
+<li>描述：是否在 <code>max_source_length</code> 超过模型位置嵌入时自动调整位置嵌入大小。</li>
+<li>默认值：None</li>
+</ul>
+</li>
+<li><p><code>quantization_bit</code> (Optional[int]):</p>
+<ul>
+<li>描述：量化的位数。</li>
+<li>默认值：None</li>
+</ul>
+</li>
+<li><p><code>pre_seq_len</code> (Optional[int]):</p>
+<ul>
+<li>描述：预处理的序列长度。</li>
+<li>默认值：None</li>
+</ul>
+</li>
+<li><p><code>prefix_projection</code> (bool):</p>
+<ul>
+<li>描述：是否对输入文本应用前缀投影。</li>
+<li>默认值：False</li>
+</ul>
 </li>
 </ul>
-<h4 id="3"><a href="#3" class="headerlink" title="3)"></a>3)</h4><ul>
-<li><code>debug TTTT.EXE</code>:<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">-g cs:003F  <span class="comment"># START1 所在，排序起点</span></span><br><span class="line">-e ds:0002  <span class="comment"># 插入学号</span></span><br><span class="line">    64  </span><br><span class="line">-e ds:0003  <span class="comment"># 插入班号</span></span><br><span class="line">    13</span><br><span class="line">-d ds:0     <span class="comment"># 截图</span></span><br><span class="line">-g cs:0067  <span class="comment"># EXIT 所在，排序终点</span></span><br><span class="line">-d ds:0     <span class="comment"># 截图</span></span><br></pre></td></tr></table></figure>
+<h3 id="DataTrainingArguments"><a href="#DataTrainingArguments" class="headerlink" title="DataTrainingArguments"></a>DataTrainingArguments</h3><p>用于指定训练和评估数据的参数</p>
+<ul>
+<li><p><code>lang</code> (Optional[str]):</p>
+<ul>
+<li>描述：摘要的语言 ID。</li>
+<li>默认值：None</li>
+</ul>
+</li>
+<li><p><code>dataset_name</code> (Optional[str]):</p>
+<ul>
+<li>描述：要使用的数据集名称（通过 datasets 库）。</li>
+<li>默认值：None</li>
+</ul>
+</li>
+<li><p><code>dataset_config_name</code> (Optional[str]):</p>
+<ul>
+<li>描述：要使用的数据集配置名称（通过 datasets 库）。</li>
+<li>默认值：None</li>
+</ul>
+</li>
+<li><p><code>prompt_column</code> (Optional[str]):</p>
+<ul>
+<li>描述：数据集中包含完整文本的列名（用于摘要）。</li>
+<li>默认值：None</li>
+</ul>
+</li>
+<li><p><code>response_column</code> (Optional[str]):</p>
+<ul>
+<li>描述：数据集中包含摘要的列名（用于摘要）。</li>
+<li>默认值：None</li>
+</ul>
+</li>
+<li><p><code>history_column</code> (Optional[str]):</p>
+<ul>
+<li>描述：数据集中包含聊天历史的列名。</li>
+<li>默认值：None</li>
+</ul>
+</li>
+<li><p><code>train_file</code> (Optional[str]):</p>
+<ul>
+<li>描述：输入的训练数据文件（jsonlines 或 csv 文件）。</li>
+<li>默认值：None</li>
+</ul>
+</li>
+<li><p><code>validation_file</code> (Optional[str]):</p>
+<ul>
+<li>描述：用于评估指标（rouge）的可选输入评估数据文件（jsonlines 或 csv 文件）。</li>
+<li>默认值：None</li>
+</ul>
+</li>
+<li><p><code>test_file</code> (Optional[str]):</p>
+<ul>
+<li>描述：用于评估指标（rouge）的可选输入测试数据文件（jsonlines 或 csv 文件）。</li>
+<li>默认值：None</li>
+</ul>
+</li>
+<li><p><code>overwrite_cache</code> (bool):</p>
+<ul>
+<li>描述：是否覆盖缓存的训练和评估集。</li>
+<li>默认值：False</li>
+</ul>
+</li>
+<li><p><code>preprocessing_num_workers</code> (Optional[int]):</p>
+<ul>
+<li>描述：用于预处理的进程数。</li>
+<li>默认值：None</li>
+</ul>
+</li>
+<li><p><code>max_source_length</code> (Optional[int]):</p>
+<ul>
+<li>描述：标记化后的最大输入序列长度。超过此长度的序列将被截断，较短的序列将被填充。</li>
+<li>默认值：1024</li>
+</ul>
+</li>
+<li><p><code>max_target_length</code> (Optional[int]):</p>
+<ul>
+<li>描述：标记化后的目标文本的最大序列长度。超过此长度的序列将被截断，较短的序列将被填充。</li>
+<li>默认值：128</li>
+</ul>
+</li>
+<li><p><code>val_max_target_length</code> (Optional[int]):</p>
+<ul>
+<li>描述：验证目标文本的最大序列长度。超过此长度的序列将被截断，较短的序列将被填充。默认为 <code>max_target_length</code>。</li>
+<li>默认值：None</li>
+</ul>
+</li>
+<li><p><code>pad_to_max_length</code> (bool):</p>
+<ul>
+<li>描述：是否将所有样本填充到模型的最大句子长度。如果为 False，将在批处理时动态地将样本填充到批次中的最大长度。在 GPU 上更高效，但对 TPU 来说非常低效。</li>
+<li>默认值：False</li>
+</ul>
+</li>
+<li><p><code>max_train_samples</code> (Optional[int]):</p>
+<ul>
+<li>描述：为调试或更快的训练而将训练示例的数量截断到该值。</li>
+<li>默认值：None</li>
+</ul>
+</li>
+<li><p><code>max_eval_samples</code> (Optional[int]):</p>
+<ul>
+<li>描述：为调试或更快的训练而将评估示例的数量截断到该值。</li>
+<li>默认值：None</li>
+</ul>
+</li>
+<li><p><code>max_predict_samples</code> (Optional[int]):</p>
+<ul>
+<li>描述：为调试或更快的训练而将预测示例的数量截断到该值。</li>
+<li>默认值：None</li>
+</ul>
+</li>
+<li><p><code>num_beams</code> (Optional[int]):</p>
+<ul>
+<li>描述：用于评估的 beam 数。此参数将传递给 <code>model.generate</code>，用于 <code>evaluate</code> 和 <code>predict</code>。</li>
+<li>默认值：None</li>
+</ul>
+</li>
+<li><p><code>ignore_pad_token_for_loss</code> (bool):</p>
+<ul>
+<li>描述：是否在损失计算中忽略与填充标签对应的令牌。</li>
+<li>默认值：True</li>
+</ul>
+</li>
+<li><p><code>source_prefix</code> (Optional[str]):</p>
+<ul>
+<li>描述：在每个源文本之前要添加的前缀（适用于 T5 模型）。</li>
+<li>默认值：””（空字符串）</li>
+</ul>
+</li>
+<li><p><code>forced_bos_token</code> (Optional[str]):</p>
+<ul>
+<li>描述：在 <code>decoder_start_token_id</code> 之后强制作为第一个生成的令牌的令牌。对于类似 mBART 的多语言模型很有用，其中第一个生成的令牌需要是目标语言令牌（通常是目标语言令牌）。</li>
+<li>默认值：Nones</li>
+</ul>
 </li>
 </ul>
-<h4 id="附加题"><a href="#附加题" class="headerlink" title="附加题"></a>附加题</h4><ul>
-<li><code>debug TTTT.EXE</code>:<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">-g cs:003F</span><br><span class="line">-d ds:0045</span><br><span class="line">-e ds:0045</span><br><span class="line">    64 38 13 06</span><br><span class="line">-d ds:0045</span><br></pre></td></tr></table></figure>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">-r cs</span><br><span class="line">    078F</span><br><span class="line">-r ip</span><br><span class="line">    002C</span><br><span class="line">-t</span><br></pre></td></tr></table></figure>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">-r cs</span><br><span class="line">    078F</span><br><span class="line">-r ip</span><br><span class="line">    0036</span><br><span class="line">-t </span><br><span class="line">-d SS:01F8</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<h3 id="lab2"><a href="#lab2" class="headerlink" title="lab2"></a>lab2</h3><p>vscode 编写 x86:<br>插件：x86 and x86_64 Assembly v3.0.0</p>
-
+<h3 id="各训练情况"><a href="#各训练情况" class="headerlink" title="各训练情况"></a>各训练情况</h3><h2 id="p-tuning"><a href="#p-tuning" class="headerlink" title="p-tuning"></a>p-tuning</h2><h2 id="lora"><a href="#lora" class="headerlink" title="lora"></a>lora</h2>
                 
                 <hr>
                 <!-- Pager -->
                 <ul class="pager">
                     
-                    <li class="previous">
-                        <a href="/2023/07/01/LLM学习笔记/" data-toggle="tooltip" data-placement="top" title="LLM学习笔记">&larr; Previous Post
-		<br>
-		<span><font size="2" face="Calibri" color="grey">LLM学习笔记</font></span>
-	       </a>
-                    </li>
-                    
                     
                     <li class="next">
-                        <a href="/2023/03/17/软工后端项目搭建/" data-toggle="tooltip" data-placement="top" title="软工后端项目搭建">Next Post &rarr;
+                        <a href="/2023/03/26/x86-上机实验/" data-toggle="tooltip" data-placement="top" title="x86 上机实验">Next Post &rarr;
 		<br>
-		<span><font size="2" face="Calibri" color="grey">软工后端项目搭建</font></span>
+		<span><font size="2" face="Calibri" color="grey">x86 上机实验</font></span>
 	        </a>
                     </li>
                     
@@ -359,7 +618,7 @@
           <strong class="toc-title">Contents</strong>
           
             
-              <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#lab1"><span class="toc-nav-text">lab1</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#3"><span class="toc-nav-text">3)</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#附加题"><span class="toc-nav-text">附加题</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#lab2"><span class="toc-nav-text">lab2</span></a></li></ol>
+              <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#常用命令"><span class="toc-nav-text">常用命令</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#tar"><span class="toc-nav-text">tar</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#示范流程"><span class="toc-nav-text">示范流程</span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#模型参数微调"><span class="toc-nav-text">模型参数微调</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#参数详解"><span class="toc-nav-text">参数详解</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#ModelArguments"><span class="toc-nav-text">ModelArguments</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#DataTrainingArguments"><span class="toc-nav-text">DataTrainingArguments</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#各训练情况"><span class="toc-nav-text">各训练情况</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#p-tuning"><span class="toc-nav-text">p-tuning</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#lora"><span class="toc-nav-text">lora</span></a></li></ol></li></ol>
             
           
           </div>
