@@ -1,8 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://master-tan.github.io/2023/07/13/RLHF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</loc>
+    <lastmod>2023-07-17</lastmod>
+  </url>
+  <url>
+    <loc>https://master-tan.github.io/2023/07/06/OpenStreetMap%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</loc>
+    <lastmod>2023-07-17</lastmod>
+  </url>
+  <url>
     <loc>https://master-tan.github.io/2023/07/01/ChatGLM%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</loc>
-    <lastmod>2023-07-04</lastmod>
+    <lastmod>2023-07-09</lastmod>
   </url>
   <url>
     <loc>https://master-tan.github.io/2023/03/16/go-gin/</loc>
