@@ -123,7 +123,7 @@
 	       
                             <div class="blank_box"></div>
                             <span class="meta">
-                                 <span class="post-count">458</span> Words
+                                 <span class="post-count">972</span> Words
                             </span>
                             <div class="blank_box"></div>
                             <!-- 不蒜子统计 start -->
@@ -184,6 +184,13 @@
 
                         
                         	<li>
+                          	  <a href="/archive/">Archives</a>
+                        	</li>
+                        
+                    
+
+                        
+                        	<li>
                           	  <a href="/about/">About Tan</a>
                         	</li>
                         
@@ -191,21 +198,14 @@
 
                         
                         	<li>
-                          	  <a href="/archive/">Archives</a>
-                        	</li>
-                        
-                    
-
-                        
-                    
-
-                        
-                    
-
-                        
-                        	<li>
                           	  <a href="/tags/">Tags</a>
                         	</li>
+                        
+                    
+
+                        
+                    
+
                         
                     
 
@@ -267,6 +267,13 @@
 
                 <h1 id="OpenStreetMap"><a href="#OpenStreetMap" class="headerlink" title="OpenStreetMap"></a>OpenStreetMap</h1><h2 id="项目地址"><a href="#项目地址" class="headerlink" title="项目地址"></a>项目地址</h2><p><a href="https://www.openstreetmap.org/" target="_blank" rel="noopener">https://www.openstreetmap.org/</a></p>
 <h2 id="官方帮助"><a href="#官方帮助" class="headerlink" title="官方帮助"></a>官方帮助</h2><p><a href="https://www.openstreetmap.org/help" target="_blank" rel="noopener">https://www.openstreetmap.org/help</a></p>
+<h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>开放街道图（OpenStreetMap，简称OSM）是一个网上地图协作计划，其目标是创造一个内容自由且能让所有人编辑的世界地图，其OSM数据开源，可以自由下载使用</p>
+<h1 id="空间数据"><a href="#空间数据" class="headerlink" title="空间数据"></a>空间数据</h1><p><strong>开放街道图</strong>（OpenStreetMap，简称OSM）包括空间数据以及属性数据。<br>其中，空间数据主要包括三种：点（Nodes）、路（Ways）和关系（Relations），这三种原始构成了整个地图画面。Nodes定义了空间中点的位置；Ways定义了线或区域；Relations（可选的）定义了元素间的关系。</p>
+<ul>
+<li><strong>Node</strong><br>node通过经纬度定义了一个地理坐标点。同时，还可以height=<em>标示物体所海拔；通过layer=</em>和level=<em>，可以标示物体所在的地图层面与所在建筑物内的层数；通过place=</em>andname=*来表示对象的名称。同时，way也是通过多个点（node）连接成线（面）来构成的。</li>
+<li><strong>Way</strong><br>通过2-2000个点（nodes）构成了way。way可表示如下3种图形事物（非闭合线（Open polyline）、闭合线（Closed polyline）、区域（Area））。对于超过2000 nodes的way，可以通过分割来处理。<br>a）Open polyline<br>b）Closed polyline<br>闭合线：收尾相连的线。例如可以表示现实中的环线地铁。<br>c）Area<br>区域：闭合区域。通常使用landuse=*来标示区域等。</li>
+<li><strong>Relation</strong><br>一个Relation是用来描述两个或多个基元的相互关系（nodes, ways 或者其他的relations），相互的关系通过role来定义，包括：<br>a）route ：定义公路、自行车道、铁路等；<br>b）多个多边形：定义area例如建筑、河堤等；<br>c）边界：装门用来定义行政边界；<br>d）限制：用于描述限制比如“非左转”。</li>
+</ul>
 <h1 id="shapefile"><a href="#shapefile" class="headerlink" title="shapefile"></a>shapefile</h1><p>可能的数据预处理：</p>
 <ul>
 <li>读取.shp文件：使用适当的库（如geopandas）读取.shp文件并加载几何和属性数据。</li>
@@ -282,6 +289,9 @@
 <h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
 <li>OpenStreetMap开源地图数据下载方法（含shp格式） <a href="https://zhuanlan.zhihu.com/p/150575860" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/150575860</a></li>
 <li>ERNIE-GeoL：“地理位置-语言”预训练模型 <a href="https://mp.weixin.qq.com/s?__biz=MzUxNzk5MTU3OQ==&amp;mid=2247490704&amp;idx=1&amp;sn=d81a30c20701c9924c233bdb7263d570&amp;scene=21#wechat_redirect" target="_blank" rel="noopener">https://mp.weixin.qq.com/s?__biz=MzUxNzk5MTU3OQ==&amp;mid=2247490704&amp;idx=1&amp;sn=d81a30c20701c9924c233bdb7263d570&amp;scene=21#wechat_redirect</a> </li>
+<li>Openstreetmap 从入门到放弃 <a href="https://loveyu.org/5344.html" target="_blank" rel="noopener">https://loveyu.org/5344.html</a></li>
+<li>Open Street Map介绍以及相关使用教程 <a href="https://blog.csdn.net/ZauberC/article/details/125856277" target="_blank" rel="noopener">https://blog.csdn.net/ZauberC/article/details/125856277</a></li>
+<li>开放街道地图（百度百科） <a href="https://baike.baidu.com/item/%E5%BC%80%E6%94%BE%E8%A1%97%E9%81%93%E5%9C%B0%E5%9B%BE/2588602?fr=aladdin&amp;fromtitle=Open%20Street%20Map&amp;fromid=11057294" target="_blank" rel="noopener">https://baike.baidu.com/item/%E5%BC%80%E6%94%BE%E8%A1%97%E9%81%93%E5%9C%B0%E5%9B%BE/2588602?fr=aladdin&amp;fromtitle=Open%20Street%20Map&amp;fromid=11057294</a></li>
 </ul>
 
                 
@@ -349,7 +359,7 @@
           <strong class="toc-title">Contents</strong>
           
             
-              <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#OpenStreetMap"><span class="toc-nav-text">OpenStreetMap</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#项目地址"><span class="toc-nav-text">项目地址</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#官方帮助"><span class="toc-nav-text">官方帮助</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#shapefile"><span class="toc-nav-text">shapefile</span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#参考资料"><span class="toc-nav-text">参考资料</span></a></li></ol>
+              <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#OpenStreetMap"><span class="toc-nav-text">OpenStreetMap</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#项目地址"><span class="toc-nav-text">项目地址</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#官方帮助"><span class="toc-nav-text">官方帮助</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#简介"><span class="toc-nav-text">简介</span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#空间数据"><span class="toc-nav-text">空间数据</span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#shapefile"><span class="toc-nav-text">shapefile</span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#参考资料"><span class="toc-nav-text">参考资料</span></a></li></ol>
             
           
           </div>
