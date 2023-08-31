@@ -123,7 +123,7 @@
 	       
                             <div class="blank_box"></div>
                             <span class="meta">
-                                 <span class="post-count">972</span> Words
+                                 <span class="post-count">1k</span> Words
                             </span>
                             <div class="blank_box"></div>
                             <!-- 不蒜子统计 start -->
@@ -190,6 +190,9 @@
                     
 
                         
+                    
+
+                        
                         	<li>
                           	  <a href="/about/">About Tan</a>
                         	</li>
@@ -197,15 +200,12 @@
                     
 
                         
+                    
+
+                        
                         	<li>
                           	  <a href="/tags/">Tags</a>
                         	</li>
-                        
-                    
-
-                        
-                    
-
                         
                     
 
@@ -270,21 +270,24 @@
 <h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>开放街道图（OpenStreetMap，简称OSM）是一个网上地图协作计划，其目标是创造一个内容自由且能让所有人编辑的世界地图，其OSM数据开源，可以自由下载使用</p>
 <h1 id="空间数据"><a href="#空间数据" class="headerlink" title="空间数据"></a>空间数据</h1><p><strong>开放街道图</strong>（OpenStreetMap，简称OSM）包括空间数据以及属性数据。<br>其中，空间数据主要包括三种：点（Nodes）、路（Ways）和关系（Relations），这三种原始构成了整个地图画面。Nodes定义了空间中点的位置；Ways定义了线或区域；Relations（可选的）定义了元素间的关系。</p>
 <ul>
-<li><strong>Node</strong><br>node通过经纬度定义了一个地理坐标点。同时，还可以height=<em>标示物体所海拔；通过layer=</em>和level=<em>，可以标示物体所在的地图层面与所在建筑物内的层数；通过place=</em>andname=*来表示对象的名称。同时，way也是通过多个点（node）连接成线（面）来构成的。</li>
-<li><strong>Way</strong><br>通过2-2000个点（nodes）构成了way。way可表示如下3种图形事物（非闭合线（Open polyline）、闭合线（Closed polyline）、区域（Area））。对于超过2000 nodes的way，可以通过分割来处理。<br>a）Open polyline<br>b）Closed polyline<br>闭合线：收尾相连的线。例如可以表示现实中的环线地铁。<br>c）Area<br>区域：闭合区域。通常使用landuse=*来标示区域等。</li>
-<li><strong>Relation</strong><br>一个Relation是用来描述两个或多个基元的相互关系（nodes, ways 或者其他的relations），相互的关系通过role来定义，包括：<br>a）route ：定义公路、自行车道、铁路等；<br>b）多个多边形：定义area例如建筑、河堤等；<br>c）边界：装门用来定义行政边界；<br>d）限制：用于描述限制比如“非左转”。</li>
+<li><p><strong>Node</strong><br>node通过经纬度定义了一个地理坐标点。同时，还可以height=*标示物体所海拔；通过layer=*和level=*，可以标示物体所在的地图层面与所在建筑物内的层数；通过place=*和name=*来表示对象的名称。同时，way也是通过多个点（node）连接成线（面）来构成的。</p>
+</li>
+<li><p><strong>Way</strong><br>通过2-2000个点（nodes）构成了way。way可表示如下3种图形事物（非闭合线（Open polyline）、闭合线（Closed polyline）、区域（Area））。对于超过2000 nodes的way，可以通过分割来处理。<br>a）Open polyline<br>b）Closed polyline<br>闭合线：收尾相连的线。例如可以表示现实中的环线地铁。<br>c）Area<br>区域：闭合区域。通常使用landuse=*来标示区域等。</p>
+</li>
+<li><p><strong>Relation</strong><br>一个Relation是用来描述两个或多个基元的相互关系（nodes, ways 或者其他的relations），相互的关系通过role来定义，包括：<br>a）route ：定义公路、自行车道、铁路等；<br>b）多个多边形：定义area例如建筑、河堤等；<br>c）边界：专门用来定义行政边界；<br>d）限制：用于描述限制比如“非左转”。</p>
+</li>
 </ul>
 <h1 id="shapefile"><a href="#shapefile" class="headerlink" title="shapefile"></a>shapefile</h1><p>可能的数据预处理：</p>
 <ul>
 <li>读取.shp文件：使用适当的库（如geopandas）读取.shp文件并加载几何和属性数据。</li>
-<li>投影变换：如果数据使用的是特定的投影坐标系，你可能需要将其转换为适合你的模型的坐标系统。这可以通过geopandas或其他地理信息库中的投影转换功能来实现。</li>
-<li>空间索引：根据你的任务要求，可以使用空间索引方法（如R树）对几何图形进行索引，以便更高效地访问和查询数据。</li>
+<li>投影变换：如果数据使用的是特定的投影坐标系，可能需要将其转换为适合模型的坐标系统。这可以通过geopandas或其他地理信息库中的投影转换功能来实现。</li>
+<li>空间索引：根据任务要求，可以使用空间索引方法（如R树）对几何图形进行索引，以便更高效地访问和查询数据。</li>
 </ul>
 <p>可能的输入格式设计：</p>
 <ul>
 <li>栅格化：将矢量数据转换为栅格数据（如栅格图像）。这可以通过将几何图形投影到平面上，然后根据像素分辨率将其转换为栅格图像来实现。每个像素可以表示地物的存在与否或具有某种属性值。</li>
 <li>特征提取：从矢量数据中提取有意义的地理特征作为输入。这可以包括从几何图形中提取的属性信息（如面积、长度等），或者计算特定地理特征（如道路网络的拓扑关系、建筑物的数量等）。</li>
-<li>矢量表示：将矢量数据表示为特征向量形式。你可以使用独热编码（one-hot encoding）或其他向量化方法来表示每个地理特征或属性。这将使模型能够以向量形式处理输入数据。</li>
+<li>矢量表示：将矢量数据表示为特征向量形式。可以使用独热编码（one-hot encoding）或其他向量化方法来表示每个地理特征或属性。这将使模型能够以向量形式处理输入数据。</li>
 </ul>
 <h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
 <li>OpenStreetMap开源地图数据下载方法（含shp格式） <a href="https://zhuanlan.zhihu.com/p/150575860" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/150575860</a></li>
@@ -292,6 +295,9 @@
 <li>Openstreetmap 从入门到放弃 <a href="https://loveyu.org/5344.html" target="_blank" rel="noopener">https://loveyu.org/5344.html</a></li>
 <li>Open Street Map介绍以及相关使用教程 <a href="https://blog.csdn.net/ZauberC/article/details/125856277" target="_blank" rel="noopener">https://blog.csdn.net/ZauberC/article/details/125856277</a></li>
 <li>开放街道地图（百度百科） <a href="https://baike.baidu.com/item/%E5%BC%80%E6%94%BE%E8%A1%97%E9%81%93%E5%9C%B0%E5%9B%BE/2588602?fr=aladdin&amp;fromtitle=Open%20Street%20Map&amp;fromid=11057294" target="_blank" rel="noopener">https://baike.baidu.com/item/%E5%BC%80%E6%94%BE%E8%A1%97%E9%81%93%E5%9C%B0%E5%9B%BE/2588602?fr=aladdin&amp;fromtitle=Open%20Street%20Map&amp;fromid=11057294</a></li>
+<li>openstreetmap基础教程 <a href="https://blog.csdn.net/sinat_41895958/article/details/81450813" target="_blank" rel="noopener">https://blog.csdn.net/sinat_41895958/article/details/81450813</a></li>
+<li>Android地图开发之OpenStreetMap基础教程 <a href="https://blog.csdn.net/mad1989/article/details/9733985" target="_blank" rel="noopener">https://blog.csdn.net/mad1989/article/details/9733985</a></li>
+<li>openstreetmap地图下载的几种方法 <a href="https://blog.csdn.net/weixin_38233769/article/details/109755046" target="_blank" rel="noopener">https://blog.csdn.net/weixin_38233769/article/details/109755046</a></li>
 </ul>
 
                 
