@@ -16,11 +16,11 @@
     <!--<link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>-->
     <title>
         
-          实现微信与GPT-3对话 - Tan&#39;s Blog
+          保研全过程分享 - Tan&#39;s Blog
         
     </title>
 
-    <link rel="canonical" href="https://master-tan.github.io/2023/03/09/实现微信与 GPT - 3 对话/">
+    <link rel="canonical" href="https://master-tan.github.io/2023/09/30/保研全过程分享/">
 
     <!-- Bootstrap Core CSS -->
     
@@ -108,18 +108,20 @@
                     <div class="post-heading">
                         <div class="tags">
                             
+                              <a class="tag" href="/tags/#碎碎念" title="碎碎念">碎碎念</a>
+                            
                         </div>
-                        <h1>实现微信与GPT-3对话</h1>
-                        <h2 class="subheading"></h2>
+                        <h1>保研全过程分享</h1>
+                        <h2 class="subheading">所思，所念，所感</h2>
                         <span class="meta">
                             Posted by Tan on
-                            2023-03-09
+                            2023-09-30
                         </span>
 
 	       
                             <div class="blank_box"></div>
                             <span class="meta">
-                                 <span class="post-count">853</span> Words
+                                 <span class="post-count">494</span> Words
                             </span>
                             <div class="blank_box"></div>
                             <!-- 不蒜子统计 start -->
@@ -261,50 +263,35 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <p>ps: 我也是网上找的一堆教程，但由于 <code>gpt</code> 版本迭代有点快，所以最后凑出来一个能跑的，根据“程序员第一法则”，也就没继续管他<br>ps2: 由于 <code>gpt-3.5</code> （也就是现在的 <code>chatgpt</code>）的费用有点小贵（虽然有免费但有限）所以采用了 <code>gpt-3</code> ，也就是 <code>text-davinci-003</code></p>
-<h3 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h3><p>声明：以下只是本人 2023 年 1 月的注册全过程，并不保证成功性</p>
-<ol>
-<li>首先得有个openai的账号（官网：<a href="https://platform.openai.com" target="_blank" rel="noopener">https://platform.openai.com</a>）<ul>
-<li>tip:注册时需要海外手机，步骤：<ol>
-<li><a href="https://sms-activate.org/cn/getNumber" target="_blank" rel="noopener">https://sms-activate.org/cn/getNumber</a></li>
-<li>注册</li>
-<li>在左侧服务搜索中输入 <code>OpenAI</code>，然后选择马来西亚（当然印度尼西亚最便宜，但有一定概率收不到，也就是钱打水漂）（当然所有的都不贵，马来西亚的连 1 美金都不到）</li>
-<li>获取激活电话号码，等到openai官网发送验证码时在此网站上接收验证码即可</li>
-<li>完成openai账号注册</li>
-</ol>
-<ul>
-<li>ps：这个网站上也有一个教程，看了看感觉还不错 $\rightarrow$ <a href="https://sms-activate.org/cn/info/ChatGPT" target="_blank" rel="noopener">https://sms-activate.org/cn/info/ChatGPT</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li>其次获取 openai 账号的 api-key，在登录后的这<br><img src='1.png'><br>然后直接 <code>Create new secret key</code>，在弹出的框中复制那一串东西（不复制就没了！）（当然这个create是不限次数的）（最好是在桌面新建个txt然后存进去保存）</li>
-<li>然后创个服务器，我用的是硅云（这个是我知道的最便宜的香港云了，其他内陆的云现在ping不到openai了，也就是被墙了），10元1个月（学生优惠，链接：<a href="https://www.vpsor.cn/ac/campus" target="_blank" rel="noopener">https://www.vpsor.cn/ac/campus</a>），只能优惠一次，我买了一年120元的Ubuntu22（当然不想部署的只在本地跑跑试试新也行）</li>
-<li>本地连上服务器，然后执行<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">$ sudo apt-get update</span><br><span class="line">$ sudo apt-get install git</span><br><span class="line">$ sudo apt-get install golang</span><br><span class="line"><span class="comment"># 获取项目</span></span><br><span class="line">$ git <span class="built_in">clone</span> https://github.com/ZYallers/chatgpt_wechat_robot</span><br><span class="line"><span class="comment"># 进入项目目录</span></span><br><span class="line">$ <span class="built_in">cd</span> chatgpt_wechat_robot</span><br><span class="line"><span class="comment"># 复制配置文件</span></span><br><span class="line">$ cp config.dev.json config.json</span><br><span class="line"><span class="comment"># 打开config.json</span></span><br><span class="line">$ vi config.json</span><br></pre></td></tr></table></figure>
-然后填充配置文件，配置说明：<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    "api_key": "your api key",        # openai账号里设置的api_key</span><br><span class="line">    "auto_pass": true,                # 是否自动通过好友添加</span><br><span class="line">    "session_timeout": 60,            # 会话超时时间，默认60秒，单位秒，在会话时间内所有发送给机器人的信息会作为上下文</span><br><span class="line">    "max_tokens": 1024,               # GPT响应字符数，最大2048，默认值512。会影响接口响应速度，字符越大响应越慢</span><br><span class="line">    "model": "text-davinci-003",      # GPT选用模型，默认text-davinci-003，具体选项参考官网训练场</span><br><span class="line">    "temperature": 1,                 # GPT热度，0到1，默认0.9，数字越大创造力越强，但更偏离训练事实，越低越接近训练事实</span><br><span class="line">    "reply_prefix": "来自机器人回复：", # 私聊回复前缀</span><br><span class="line">    "session_clear_token": "清空会话"  # 会话清空口令，默认`下一个问题`</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 启动项目</span></span><br><span class="line">$ go run main.go</span><br></pre></td></tr></table></figure></li>
-<li>此时会有一个网址，复制到浏览器打开是二维码，用<strong>已实名认证</strong>的微信<strong>小号</strong>扫码登录（会有第一次登陆危险提醒，点确认就行），然后这个微信号就不能退出或换号（我个人平板是小号常登，所以刚好适配）</li>
-<li>此时其他微信发给这个微信的所有消息（群聊消息除外）都会接入 gpt 接口并且自动给出回复，亲测可用且实用</li>
-<li>over</li>
-</ol>
+                <p>&emsp;&emsp;2023年9月30日凌晨2：27。<br>&emsp;&emsp;一切都在短短的三天内尘埃落定了，回想起这一整个多次让我大喜大悲的过程，不禁仍然有所唏嘘，作为一个微不足道的永远在候补的路上的边缘人物，是真真切切站在了整个过程的边缘之处，祈祷着颤抖着向前进，好在最后终于有个好结果。也正是因为如此，在我的视角中，保研这个过程不同于往届学长的各个成功案例的分享，因为我认为我这段充满磕绊的过程实在很难和成功两字挂上钩，但是，我相信我的经历还是能给每一届的如果面临到了和我相同处境的一两个人带来参考和信念的，我也认为这段经历值得我去记录、去留念，遂作此文。<br>&emsp;&emsp;祝大家所思皆达，所念皆成。</p>
+<hr>
+<p>（以下为<strong>按时间顺序</strong>回顾从材料提交准备开始到确认导师结束的整个九推流程，文笔有限，偏流水账，读者莫怪）</p>
+<hr>
+<h3 id="2023-9-7"><a href="#2023-9-7" class="headerlink" title="2023.9.7"></a>2023.9.7</h3><h4 id="推免加分材料要求公布"><a href="#推免加分材料要求公布" class="headerlink" title="推免加分材料要求公布"></a>推免加分材料要求公布</h4><hr>
+<h3 id="2023-9-10"><a href="#2023-9-10" class="headerlink" title="2023.9.10"></a>2023.9.10</h3><h4 id="加分材料、五门自选一般专业课提交"><a href="#加分材料、五门自选一般专业课提交" class="headerlink" title="加分材料、五门自选一般专业课提交"></a>加分材料、五门自选一般专业课提交</h4><hr>
+<h3 id="2023-9-11"><a href="#2023-9-11" class="headerlink" title="2023.9.11"></a>2023.9.11</h3><h4 id="公布保研加权成绩"><a href="#公布保研加权成绩" class="headerlink" title="公布保研加权成绩"></a>公布保研加权成绩</h4><hr>
+<h3 id="2023-9-12"><a href="#2023-9-12" class="headerlink" title="2023.9.12"></a>2023.9.12</h3><h4 id="公布保研排名"><a href="#公布保研排名" class="headerlink" title="公布保研排名"></a>公布保研排名</h4><hr>
+<h3 id="2023-9-14"><a href="#2023-9-14" class="headerlink" title="2023.9.14"></a>2023.9.14</h3><h4 id="公布接收推免工作方案"><a href="#公布接收推免工作方案" class="headerlink" title="公布接收推免工作方案"></a>公布接收推免工作方案</h4><hr>
+<h3 id="2023-9-18"><a href="#2023-9-18" class="headerlink" title="2023.9.18"></a>2023.9.18</h3><hr>
+<h3 id="2023-9-19"><a href="#2023-9-19" class="headerlink" title="2023.9.19"></a>2023.9.19</h3><h4 id="公布推免名额"><a href="#公布推免名额" class="headerlink" title="公布推免名额"></a>公布推免名额</h4><h4 id="卓工报名通知、卓工报名截止"><a href="#卓工报名通知、卓工报名截止" class="headerlink" title="卓工报名通知、卓工报名截止"></a>卓工报名通知、卓工报名截止</h4><hr>
+<h3 id="2023-9-20"><a href="#2023-9-20" class="headerlink" title="2023.9.20"></a>2023.9.20</h3><h4 id="等候推免候补"><a href="#等候推免候补" class="headerlink" title="等候推免候补"></a>等候推免候补</h4><h4 id="报名"><a href="#报名" class="headerlink" title="报名"></a>报名</h4><hr>
+<h3 id="2023-9-21"><a href="#2023-9-21" class="headerlink" title="2023.9.21"></a>2023.9.21</h3><h4 id="公布招收推免名额"><a href="#公布招收推免名额" class="headerlink" title="公布招收推免名额"></a>公布招收推免名额</h4><hr>
+<h3 id="2023-9-22"><a href="#2023-9-22" class="headerlink" title="2023.9.22"></a>2023.9.22</h3><h4 id="公布复试名单"><a href="#公布复试名单" class="headerlink" title="公布复试名单"></a>公布复试名单</h4><hr>
+<h3 id="2023-9-26"><a href="#2023-9-26" class="headerlink" title="2023.9.26"></a>2023.9.26</h3><h4 id="复试报到"><a href="#复试报到" class="headerlink" title="复试报到"></a>复试报到</h4><h4 id="公布机试结果、面试名单分组"><a href="#公布机试结果、面试名单分组" class="headerlink" title="公布机试结果、面试名单分组"></a>公布机试结果、面试名单分组</h4><hr>
+<h3 id="2023-9-27"><a href="#2023-9-27" class="headerlink" title="2023.9.27"></a>2023.9.27</h3><h4 id="面试"><a href="#面试" class="headerlink" title="面试"></a>面试</h4><h4 id="面试结果公布"><a href="#面试结果公布" class="headerlink" title="面试结果公布"></a>面试结果公布</h4><hr>
+<h3 id="2023-9-28"><a href="#2023-9-28" class="headerlink" title="2023.9.28"></a>2023.9.28</h3><h4 id="等候补，找后路"><a href="#等候补，找后路" class="headerlink" title="等候补，找后路"></a>等候补，找后路</h4><hr>
+<h3 id="2023-9-29"><a href="#2023-9-29" class="headerlink" title="2023.9.29"></a>2023.9.29</h3><h4 id="第一次递补"><a href="#第一次递补" class="headerlink" title="第一次递补"></a>第一次递补</h4><h4 id="第二次递补"><a href="#第二次递补" class="headerlink" title="第二次递补"></a>第二次递补</h4><h4 id="递补定向研究专硕"><a href="#递补定向研究专硕" class="headerlink" title="递补定向研究专硕"></a>递补定向研究专硕</h4><h4 id="递补普通专硕"><a href="#递补普通专硕" class="headerlink" title="递补普通专硕"></a>递补普通专硕</h4><h4 id="预推免确认"><a href="#预推免确认" class="headerlink" title="预推免确认"></a>预推免确认</h4><h4 id="导师双选并签字提交"><a href="#导师双选并签字提交" class="headerlink" title="导师双选并签字提交"></a>导师双选并签字提交</h4><hr>
 
                 
                 <hr>
                 <!-- Pager -->
                 <ul class="pager">
                     
-                    <li class="previous">
-                        <a href="/2023/03/16/go-gin/" data-toggle="tooltip" data-placement="top" title="go+gin">&larr; Previous Post
-		<br>
-		<span><font size="2" face="Calibri" color="grey">go+gin</font></span>
-	       </a>
-                    </li>
-                    
                     
                     <li class="next">
-                        <a href="/2023/03/01/用于视觉识别的卷积神经网络 - 学习笔记/" data-toggle="tooltip" data-placement="top" title="用于视觉识别的卷积神经网络 - 学习笔记">Next Post &rarr;
+                        <a href="/2023/07/23/POI表征学习/" data-toggle="tooltip" data-placement="top" title="POI表征学习">Next Post &rarr;
 		<br>
-		<span><font size="2" face="Calibri" color="grey">用于视觉识别的卷积神经网络 - 学习笔记</font></span>
+		<span><font size="2" face="Calibri" color="grey">POI表征学习</font></span>
 	        </a>
                     </li>
                     
@@ -353,7 +340,7 @@
           <strong class="toc-title">Contents</strong>
           
             
-              <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#步骤"><span class="toc-nav-text">步骤</span></a></li></ol>
+              <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#2023-9-7"><span class="toc-nav-text">2023.9.7</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#推免加分材料要求公布"><span class="toc-nav-text">推免加分材料要求公布</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#2023-9-10"><span class="toc-nav-text">2023.9.10</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#加分材料、五门自选一般专业课提交"><span class="toc-nav-text">加分材料、五门自选一般专业课提交</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#2023-9-11"><span class="toc-nav-text">2023.9.11</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#公布保研加权成绩"><span class="toc-nav-text">公布保研加权成绩</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#2023-9-12"><span class="toc-nav-text">2023.9.12</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#公布保研排名"><span class="toc-nav-text">公布保研排名</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#2023-9-14"><span class="toc-nav-text">2023.9.14</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#公布接收推免工作方案"><span class="toc-nav-text">公布接收推免工作方案</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#2023-9-18"><span class="toc-nav-text">2023.9.18</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#2023-9-19"><span class="toc-nav-text">2023.9.19</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#公布推免名额"><span class="toc-nav-text">公布推免名额</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#卓工报名通知、卓工报名截止"><span class="toc-nav-text">卓工报名通知、卓工报名截止</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#2023-9-20"><span class="toc-nav-text">2023.9.20</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#等候推免候补"><span class="toc-nav-text">等候推免候补</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#报名"><span class="toc-nav-text">报名</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#2023-9-21"><span class="toc-nav-text">2023.9.21</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#公布招收推免名额"><span class="toc-nav-text">公布招收推免名额</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#2023-9-22"><span class="toc-nav-text">2023.9.22</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#公布复试名单"><span class="toc-nav-text">公布复试名单</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#2023-9-26"><span class="toc-nav-text">2023.9.26</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#复试报到"><span class="toc-nav-text">复试报到</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#公布机试结果、面试名单分组"><span class="toc-nav-text">公布机试结果、面试名单分组</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#2023-9-27"><span class="toc-nav-text">2023.9.27</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#面试"><span class="toc-nav-text">面试</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#面试结果公布"><span class="toc-nav-text">面试结果公布</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#2023-9-28"><span class="toc-nav-text">2023.9.28</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#等候补，找后路"><span class="toc-nav-text">等候补，找后路</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#2023-9-29"><span class="toc-nav-text">2023.9.29</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#第一次递补"><span class="toc-nav-text">第一次递补</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#第二次递补"><span class="toc-nav-text">第二次递补</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#递补定向研究专硕"><span class="toc-nav-text">递补定向研究专硕</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#递补普通专硕"><span class="toc-nav-text">递补普通专硕</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#预推免确认"><span class="toc-nav-text">预推免确认</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#导师双选并签字提交"><span class="toc-nav-text">导师双选并签字提交</span></a></li></ol></li></ol>
             
           
           </div>
@@ -375,6 +362,8 @@
                     <h5><a href="/tags/">FEATURED TAGS</a></h5>
                     <div class="tags">
                        
+                          <a class="tag" href="/tags/#碎碎念" title="碎碎念">碎碎念</a>
+                        
                     </div>
                 </section>
                 

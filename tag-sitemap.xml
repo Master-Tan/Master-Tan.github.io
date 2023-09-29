@@ -3,6 +3,13 @@
 
 
     <url>
+        <loc>https://master-tan.github.io/tags/%25E7%25A2%258E%25E7%25A2%258E%25E5%25BF%25B5/</loc>
+        <lastmod>2023-09-29T19:48:16.399Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
         <loc>https://master-tan.github.io/tags/%25E6%259A%2591%25E6%259C%259F%25E5%25AE%259E%25E4%25B9%25A0/</loc>
         <lastmod>2023-08-31T14:10:26.680Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -12,13 +19,6 @@
     <url>
         <loc>https://master-tan.github.io/tags/%25E6%259C%25BA%25E5%2599%25A8%25E5%25AD%25A6%25E4%25B9%25A0/</loc>
         <lastmod>2023-08-31T14:10:26.680Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://master-tan.github.io/tags/%25E7%25A2%258E%25E7%25A2%258E%25E5%25BF%25B5/</loc>
-        <lastmod>2023-08-27T12:28:43.992Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
