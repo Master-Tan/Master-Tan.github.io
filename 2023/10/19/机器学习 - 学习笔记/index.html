@@ -1,0 +1,742 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="baidu-site-verification" content="093lY4ziMu" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="description" content="Tan&#39;s Blog">
+    <meta name="keyword"  content="Hello world">
+    <link rel="shortcut icon" href="/img/ironman-draw.png">
+    <!-- Place this tag in your head or just before your close body tag. -->
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+    <!--<link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>-->
+    <title>
+        
+          机器学习 - 学习笔记 - Tan&#39;s Blog
+        
+    </title>
+
+    <link rel="canonical" href="https://master-tan.github.io/2023/10/19/机器学习 - 学习笔记/">
+
+    <!-- Bootstrap Core CSS -->
+    
+<link rel="stylesheet" href="/css/bootstrap.min.css">
+
+
+    <!-- Custom CSS --> 
+    
+        
+<link rel="stylesheet" href="/css/dusign-light.css">
+
+        
+<link rel="stylesheet" href="/css/dusign-common-light.css">
+
+        
+<link rel="stylesheet" href="/css/font-awesome.css">
+
+        
+<link rel="stylesheet" href="/css/toc.css">
+
+        <!-- background effects end -->
+    
+    
+    <!-- Pygments Highlight CSS -->
+    
+<link rel="stylesheet" href="/css/highlight.css">
+
+
+    
+<link rel="stylesheet" href="/css/widget.css">
+
+
+    
+<link rel="stylesheet" href="/css/rocket.css">
+
+
+    
+<link rel="stylesheet" href="/css/signature.css">
+
+
+    
+<link rel="stylesheet" href="/css/fonts.googleapis.css">
+
+
+    <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.3.0/css/font-awesome.min.css">
+
+    <!-- photography -->
+    
+<link rel="stylesheet" href="/css/photography.css">
+
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+
+    <!-- background effects start -->
+    
+    <!-- background effects end -->
+
+	<!-- Modified by Yu-Hsuan Yen -->
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        
+            
+                background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('../../../../img/default.jpg')
+                /*post*/
+            
+        
+    }
+    
+</style>
+
+<header class="intro-header" >
+    <!-- Signature -->
+    <div id="signature">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                
+                    <div class="post-heading">
+                        <div class="tags">
+                            
+                              <a class="tag" href="/tags/#机器学习" title="机器学习">机器学习</a>
+                            
+                        </div>
+                        <h1>机器学习 - 学习笔记</h1>
+                        <h2 class="subheading">李宏毅2023春机器学习课程</h2>
+                        <span class="meta">
+                            Posted by Tan on
+                            2023-10-19
+                        </span>
+
+	       
+                            <div class="blank_box"></div>
+                            <span class="meta">
+                                 <span class="post-count">837</span> Words
+                            </span>
+                            <div class="blank_box"></div>
+                            <!-- 不蒜子统计 start -->
+                            <span class="meta">
+                                Viewed <span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span> Times
+                            </span>
+                            <!-- 不蒜子统计 end -->
+                        
+
+                    </div>
+                
+
+                </div>
+            </div>
+        </div>      
+    </div>
+
+    
+    <div class="waveWrapper">
+        <div class="wave wave_before" style="background-image: url('/img/wave-light.png')"></div>
+        <div class="wave wave_after" style="background-image: url('/img/wave-light.png')"></div>
+    </div>
+    
+</header>
+
+	
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Tan&#39;s Blog</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+
+                    
+
+                        
+                    
+
+                        
+                        	<li>
+                          	  <a href="/archive/">Archives</a>
+                        	</li>
+                        
+                    
+
+                        
+                    
+
+                        
+                        	<li>
+                          	  <a href="/about/">About Tan</a>
+                        	</li>
+                        
+                    
+
+                        
+                        	<li>
+                          	  <a href="/tags/">Tags</a>
+                        	</li>
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+    <!-- Main Content -->
+    <!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+            <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <p>课程视频：<a href='https://b23.tv/BV1Wv411h7kN' target="_blank" rel="noopener">https://b23.tv/BV1Wv411h7kN</a> 或 <a href='https://www.youtube.com/playlist?list=PLJV_el3uVTsMhtt7_Y6sgTHGHp1Vb2P2J' target="_blank" rel="noopener">https://www.youtube.com/playlist?list=PLJV_el3uVTsMhtt7_Y6sgTHGHp1Vb2P2J</a></p>
+<p>课程网站：<a href='https://speech.ee.ntu.edu.tw/~hylee/ml/2022-spring.php' target="_blank" rel="noopener">https://speech.ee.ntu.edu.tw/~hylee/ml/2022-spring.php</a></p>
+<p>课程Github：<a href='https://github.com/Fafa-DL/Lhy_Machine_Learning' target="_blank" rel="noopener">https://github.com/Fafa-DL/Lhy_Machine_Learning</a></p>
+<hr>
+<h2 id="Lecture-1-Introduction-of-Deep-Learning"><a href="#Lecture-1-Introduction-of-Deep-Learning" class="headerlink" title="Lecture 1:Introduction of Deep Learning"></a>Lecture 1:Introduction of Deep Learning</h2><p>机器学习 -&gt; 让机器具备找函式的能力</p>
+<p>专有名词：</p>
+<ul>
+<li>Regression：输出为数值的函式</li>
+<li>Classification：给予选项，输出为选项之一的函式</li>
+<li>Structured Learning：输出为结构化数据（图像，文本等）的函式</li>
+</ul>
+<p>机器学习找函式的过程:</p>
+<ol>
+<li>写出一个带有未知参数的函式（基于领域知识） -&gt; 机器学习的模型</li>
+<li>从训练数据中定义Loss （Loss也为一个关于参数的函式，代表了模型好坏程度）<ul>
+<li>error surface</li>
+</ul>
+</li>
+<li>最优化：Gradient Descent（梯度下降）<ul>
+<li>取初始点</li>
+<li>求该点梯度</li>
+<li>向梯度方向根据学习率（hyperparameters）更新参数</li>
+<li>迭代</li>
+</ul>
+</li>
+</ol>
+<p>Linear Model（线性模型）： sum of (feature * weight) + bias  -&gt; 有很大局限性(Model Bias)</p>
+<p>Piecewise Linear Model（分段线性模型）： constraint + sum of  a set of <strong>*Activation function*</strong> （Hard Sigmoid）</p>
+<ul>
+<li>曲线：取点分割后可以视为分段线性模型</li>
+</ul>
+<p><strong>*Activation function*</strong>:</p>
+<ul>
+<li><p>Sigmoid Function:</p>
+<script type="math/tex; mode=display">
+  \begin{align*}
+      y &= c*\frac{1}{1+e^{-(b+w*x_1)}} \\
+      &= c*sigmoid(b+w*x_1)
+  \end{align*}</script><p>  线性模型到分段线性模型转化：</p>
+<script type="math/tex; mode=display">
+  \begin{array}{l}
+      y=b+w x_{1} \rightarrow 
+      y=b+\sum_{i} c_{i} sigmoid\left(\left.b_{i}+w_{i} x_{1}\right)\right. \\
+      y=b+\sum_{j} w_{i} x_{i} \rightarrow 
+      y=b+\sum_{i} c_{i} sigmoid\left(b_{i}+\sum_{j} w_{i j} x_{i}\right)
+  \end{array}</script><p>  写成矩阵形式样例：</p>
+<script type="math/tex; mode=display">
+  \left[\begin{array}{l}
+  r_{1} \\
+  r_{2} \\
+  r_{3}
+  \end{array}\right]=\left[\begin{array}{l}
+  b_{1} \\
+  b_{2} \\
+  b_{3}
+  \end{array}\right]+\left[\begin{array}{lll}
+  w_{11} & w_{12} & w_{13} \\
+  w_{21} & w_{22} & w_{23} \\
+  w_{31} & w_{32} & w_{33}
+  \end{array}\right]\left[\begin{array}{l}
+  x_{1} \\
+  x_{2} \\
+  x_{3}
+  \end{array}\right]</script><p>  即:</p>
+<script type="math/tex; mode=display">
+  \vec{r}=\vec{b}+\vec{W}  \vec{x}</script><p>  然后：$定义~\sigma = sigmoid~~, ~~\vec{a} = \sigma(\vec{r}) ~~, ~~则：y = b + \vec{c}^{~T} \vec{a}$</p>
+<p>  所以：$y = b + \vec{c}^{~T} \sigma(\vec{b}+\vec{W}  \vec{x})$ ，其中 $\vec{x}$ ：feature； $\vec{W}, \vec{b}, \vec{c}^{~T}, b$ ：Unknown parameters</p>
+<p>  定义：列向量$\bold{\vec{\theta}}$为所有Unknown parameters的展开的集合（如果是矩阵，就是所有元素展开的集合）</p>
+<p>  最小化：</p>
+<script type="math/tex; mode=display">
+  \boldsymbol{\theta}^{*}=\arg \min _{\boldsymbol{\theta}} L~~~~
+  其中：
+  \boldsymbol{\theta}=\left[\begin{array}{c}
+  \theta_{1} \\
+  {\theta}_{2} \\
+  {\theta}_{3} \\
+  \vdots
+  \end{array}\right]
+
+  \\
+
+  （随机）选择初始值\ \ \boldsymbol{\theta}^{0} \\ 
+
+  ~\\
+
+  取：\begin{array}{l}
+  \boldsymbol{g}=\nabla L\left(\boldsymbol{\theta}^{0}\right) \quad ，则参数更新：\boldsymbol{\theta}^{1} \leftarrow \boldsymbol{\theta}^{0}-\eta \boldsymbol{g} \\
+  \end{array}
+
+  ~\\
+  ~\\
+
+  取：\begin{array}{l}
+  \boldsymbol{g}=\nabla L\left(\boldsymbol{\theta}^{1}\right) \quad ，则参数更新：\boldsymbol{\theta}^{2} \leftarrow \boldsymbol{\theta}^{1}-\eta \boldsymbol{g} \\
+  \end{array}
+
+  ~\\
+  ~\\
+  ......</script><p>  每对一个Barch 一次更新参数： Update<br>  遍历一遍 Batch： Epoch</p>
+</li>
+<li><p>ReLU（Rectified Linear Unit）：</p>
+<script type="math/tex; mode=display">
+      c ~ max(0, b+w*x_1)</script><p>  则 Hard Sigmoid 可以写成：</p>
+<script type="math/tex; mode=display">
+      c ~ max(0, b+w*x_1) + c' ~ max(0, b'+w'*x_1)</script><p>  相当于用两个 ReLU 合成一个 Sigmoid</p>
+</li>
+</ul>
+<p>可以套多个Activation function，如$y = b + \vec{c}^{~T} \sigma\left(\vec{b ‘} + \vec{W’}\sigma(\vec{b}+\vec{W}  \vec{x})\right)$</p>
+<p><strong>为什么要套用多层Activation function（Deep）？</strong>：</p>
+<p>Neuron -&gt; Neurl Network<br>layers：一层Neuron<br>many hidden layers -&gt; Deep Learning</p>
+<p>在训练集上表现更好而在测试集上变现变差：Overfitting（过拟合） </p>
+<hr>
+<h2 id="Lect-ure-2-What-to-do-if-my-network-fails-to-train"><a href="#Lect-ure-2-What-to-do-if-my-network-fails-to-train" class="headerlink" title="Lect ure 2:What to do if my network fails to train"></a>Lect ure 2:What to do if my network fails to train</h2><hr>
+<h2 id="Lecture-3-Image-as-input"><a href="#Lecture-3-Image-as-input" class="headerlink" title="Lecture 3:Image as input"></a>Lecture 3:Image as input</h2><hr>
+<h2 id="Lecture-4-Sequence-as-input"><a href="#Lecture-4-Sequence-as-input" class="headerlink" title="Lecture 4:Sequence as input"></a>Lecture 4:Sequence as input</h2><hr>
+<h2 id="Lecture-5-Sequence-to-sequence"><a href="#Lecture-5-Sequence-to-sequence" class="headerlink" title="Lecture 5:Sequence to sequence"></a>Lecture 5:Sequence to sequence</h2><hr>
+<h2 id="Lecture-6-Generation"><a href="#Lecture-6-Generation" class="headerlink" title="Lecture 6:Generation"></a>Lecture 6:Generation</h2><hr>
+<h2 id="Recent-Advance-of-Self-supervised-learning-for-NLP"><a href="#Recent-Advance-of-Self-supervised-learning-for-NLP" class="headerlink" title="Recent Advance of Self-supervised learning for NLP"></a>Recent Advance of Self-supervised learning for NLP</h2><hr>
+<h2 id="Lecture-7-Self-supervised-learning-for-Speech-and-Image"><a href="#Lecture-7-Self-supervised-learning-for-Speech-and-Image" class="headerlink" title="Lecture 7:Self-supervised learning for Speech and Image"></a>Lecture 7:Self-supervised learning for Speech and Image</h2><hr>
+<h2 id="Lecture-8-Auto-encoder-Anomaly-Detection"><a href="#Lecture-8-Auto-encoder-Anomaly-Detection" class="headerlink" title="Lecture 8:Auto-encoder/ Anomaly Detection"></a>Lecture 8:Auto-encoder/ Anomaly Detection</h2><hr>
+<h2 id="Lecture-9-Explainable-AI"><a href="#Lecture-9-Explainable-AI" class="headerlink" title="Lecture 9:Explainable AI"></a>Lecture 9:Explainable AI</h2><hr>
+<h2 id="Lecture-10-Attack"><a href="#Lecture-10-Attack" class="headerlink" title="Lecture 10:Attack"></a>Lecture 10:Attack</h2><hr>
+<h2 id="Lecture-11-Adaptation"><a href="#Lecture-11-Adaptation" class="headerlink" title="Lecture 11:Adaptation"></a>Lecture 11:Adaptation</h2><hr>
+<h2 id="Lecture-12-Reinforcement-Learning"><a href="#Lecture-12-Reinforcement-Learning" class="headerlink" title="Lecture 12:Reinforcement Learning"></a>Lecture 12:Reinforcement Learning</h2><hr>
+<h2 id="Lecture-13-Network-Compression"><a href="#Lecture-13-Network-Compression" class="headerlink" title="Lecture 13:Network Compression"></a>Lecture 13:Network Compression</h2><hr>
+<h2 id="Lecture-14-Life-long-Learning"><a href="#Lecture-14-Life-long-Learning" class="headerlink" title="Lecture 14:Life-long Learning"></a>Lecture 14:Life-long Learning</h2><hr>
+<h2 id="Lecture-15-Meta-Learning"><a href="#Lecture-15-Meta-Learning" class="headerlink" title="Lecture 15:Meta Learning"></a>Lecture 15:Meta Learning</h2><hr>
+
+                
+                <hr>
+                <!-- Pager -->
+                <ul class="pager">
+                    
+                    
+                    <li class="next">
+                        <a href="/2023/09/30/保研全过程分享/" data-toggle="tooltip" data-placement="top" title="保研全过程分享">Next Post &rarr;
+		<br>
+		<span><font size="2" face="Calibri" color="grey">保研全过程分享</font></span>
+	        </a>
+                    </li>
+                    
+                </ul>
+
+                <!-- tip start -->
+                
+
+                
+                <div class="comment_notes">
+                    <p>
+                        by Tan
+                    </p>
+                </div>
+                
+                <!-- tip end -->
+
+                <!-- Music start-->
+                
+                <!-- Music end -->
+
+                <!-- Sharing -->
+                
+                <!-- Sharing -->
+
+                <!-- gitment start -->
+                
+                <!-- gitment end -->
+
+                <!-- 来必力City版安装代码 -->
+                
+                <!-- City版安装代码已完成 -->
+
+                <!-- disqus comment start -->
+                
+                <!-- disqus comment end -->
+            </div>
+            
+            <!-- Tabe of Content -->
+            <!-- Table of Contents -->
+
+    
+      
+        <aside id="sidebar">
+          <div id="toc" class="toc-article">
+          <strong class="toc-title">Contents</strong>
+          
+            
+              <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#Lecture-1-Introduction-of-Deep-Learning"><span class="toc-nav-text">Lecture 1:Introduction of Deep Learning</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#Lect-ure-2-What-to-do-if-my-network-fails-to-train"><span class="toc-nav-text">Lect ure 2:What to do if my network fails to train</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#Lecture-3-Image-as-input"><span class="toc-nav-text">Lecture 3:Image as input</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#Lecture-4-Sequence-as-input"><span class="toc-nav-text">Lecture 4:Sequence as input</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#Lecture-5-Sequence-to-sequence"><span class="toc-nav-text">Lecture 5:Sequence to sequence</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#Lecture-6-Generation"><span class="toc-nav-text">Lecture 6:Generation</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#Recent-Advance-of-Self-supervised-learning-for-NLP"><span class="toc-nav-text">Recent Advance of Self-supervised learning for NLP</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#Lecture-7-Self-supervised-learning-for-Speech-and-Image"><span class="toc-nav-text">Lecture 7:Self-supervised learning for Speech and Image</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#Lecture-8-Auto-encoder-Anomaly-Detection"><span class="toc-nav-text">Lecture 8:Auto-encoder&#x2F; Anomaly Detection</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#Lecture-9-Explainable-AI"><span class="toc-nav-text">Lecture 9:Explainable AI</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#Lecture-10-Attack"><span class="toc-nav-text">Lecture 10:Attack</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#Lecture-11-Adaptation"><span class="toc-nav-text">Lecture 11:Adaptation</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#Lecture-12-Reinforcement-Learning"><span class="toc-nav-text">Lecture 12:Reinforcement Learning</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#Lecture-13-Network-Compression"><span class="toc-nav-text">Lecture 13:Network Compression</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#Lecture-14-Life-long-Learning"><span class="toc-nav-text">Lecture 14:Life-long Learning</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#Lecture-15-Meta-Learning"><span class="toc-nav-text">Lecture 15:Meta Learning</span></a></li></ol>
+            
+          
+          </div>
+        </aside>
+      
+    
+
+                
+            <!-- Sidebar Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                       
+                          <a class="tag" href="/tags/#机器学习" title="机器学习">机器学习</a>
+                        
+                    </div>
+                </section>
+                
+
+            </div>
+			
+			<div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+				
+				<br>
+				<br>
+
+				<script src="https://utteranc.es/client.js"
+						repo="Master-Tan/Master-Tan.github.io"
+						issue-term="pathname"
+						label="Comment"
+						theme="github-light"
+						crossorigin="anonymous"
+						async>
+				</script>
+			</div>
+        </div>
+    </div>
+</article>
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("https://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'hover',
+          placement: 'left',
+          icon: 'ℬ'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+
+
+<style  type="text/css">
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
+
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+
+                
+                    <li>
+                        <a target="_blank"  href="https://github.com/Master-Tan">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+                    <li>
+                        <a target="_blank" href="https://twitter.com/None">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+                    <li>
+                        <a target="_blank" href="https://www.facebook.com/None">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                
+
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; Tan 2023 | Powered by 
+                    <a href="https://github.com/Master-Tan/Master-Tan.github.io" target="_blank" rel="noopener">
+                        <i>Tan's Blog</i>
+                    </a>
+                </p>
+            </div>
+        </div>
+    </div>
+
+</footer>
+
+<!-- jQuery -->
+
+<script src="/js/jquery.min.js"></script>
+
+
+<!-- Bootstrap Core JavaScript -->
+
+<script src="/js/bootstrap.min.js"></script>
+
+
+<!-- Custom Theme JavaScript -->
+
+<script src="/js/hux-blog.min.js"></script>
+
+
+<!-- Search -->
+
+<script src="/js/search.js"></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("https://master-tan.github.io/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("https://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+<script>
+    // dynamic User by Hux
+    var _gaId = 'UA-XXXXXXXX-X';
+    var _gaDomain = 'yoursite';
+
+    // Originial
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', _gaId, _gaDomain);
+    ga('send', 'pageview');
+</script>
+
+
+
+
+<!-- Baidu Tongji -->
+
+
+<!-- Search -->
+
+    <script type="text/javascript">      
+        var search_path = "search.xml";
+        if (search_path.length == 0) {
+            search_path = "search.xml";
+        }
+    var path = "/" + search_path;
+    searchFunc(path, 'local-search-input', 'local-search-result');
+    </script>
+
+
+<!-- busuanzi -->
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+
+	<a id="rocket" href="#top" class=""></a>
+	<script type="text/javascript" src="/js/totop.js?v=1.0.0" async=""></script>
+    <script type="text/javascript" src="/js/toc.js?v=1.0.0" async=""></script>
+
+    
+        <!-- background effects line -->
+        
+
+        
+            <script type="text/javascript" src="/js/mouse-click.js" content='[&quot;Sunny&quot;, &quot;💖&quot;, &quot;Sunny&quot;, &quot;🧡&quot;, &quot;Sunny&quot;, &quot;💛&quot;, &quot;Sunny&quot; , &quot;💚&quot;, &quot;Sunny&quot;, &quot;💙&quot;, &quot;Sunny&quot;, &quot;💜&quot;, &quot;Sunny&quot;, &quot;😍&quot;]' color='[&quot;rgb(255, 0, 0)&quot; ,&quot;rgb(255, 0, 0)&quot; ,&quot;rgb(255, 125, 0)&quot; ,&quot;rgb(255, 125, 0)&quot; ,&quot;rgb(255, 255, 0)&quot; ,&quot;rgb(255, 255, 0)&quot; ,&quot;rgb(0, 255, 0)&quot; ,&quot;rgb(0, 255, 0)&quot; ,&quot;rgb(0, 255, 255)&quot; ,&quot;rgb(0, 255, 255)&quot; ,&quot;rgb(0, 0, 255)&quot; ,&quot;rgb(0, 0, 255)&quot; ,&quot;rgb(255, 0, 255)&quot; ,&quot;rgb(255, 0, 255)&quot;]'></script>
+        
+
+        <!-- background effects end -->
+    
+
+    <!--<script size="50" alpha='0.3' zIndex="-999" src="/js/ribbonStatic.js"></script>-->
+    
+        <script src="/js/ribbonDynamic.js"></script>
+    
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+
+</html>
