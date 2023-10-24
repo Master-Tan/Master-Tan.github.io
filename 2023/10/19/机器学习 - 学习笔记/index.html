@@ -121,7 +121,7 @@
 	       
                             <div class="blank_box"></div>
                             <span class="meta">
-                                 <span class="post-count">837</span> Words
+                                 <span class="post-count">936</span> Words
                             </span>
                             <div class="blank_box"></div>
                             <!-- 不蒜子统计 start -->
@@ -274,7 +274,7 @@
 <li>Classification：给予选项，输出为选项之一的函式</li>
 <li>Structured Learning：输出为结构化数据（图像，文本等）的函式</li>
 </ul>
-<p>机器学习找函式的过程:</p>
+<p><strong>机器学习找函式（训练Model）的过程</strong>:</p>
 <ol>
 <li>写出一个带有未知参数的函式（基于领域知识） -&gt; 机器学习的模型</li>
 <li>从训练数据中定义Loss （Loss也为一个关于参数的函式，代表了模型好坏程度）<ul>
@@ -330,7 +330,7 @@
 <script type="math/tex; mode=display">
   \vec{r}=\vec{b}+\vec{W}  \vec{x}</script><p>  然后：$定义~\sigma = sigmoid~~, ~~\vec{a} = \sigma(\vec{r}) ~~, ~~则：y = b + \vec{c}^{~T} \vec{a}$</p>
 <p>  所以：$y = b + \vec{c}^{~T} \sigma(\vec{b}+\vec{W}  \vec{x})$ ，其中 $\vec{x}$ ：feature； $\vec{W}, \vec{b}, \vec{c}^{~T}, b$ ：Unknown parameters</p>
-<p>  定义：列向量$\bold{\vec{\theta}}$为所有Unknown parameters的展开的集合（如果是矩阵，就是所有元素展开的集合）</p>
+<p>  定义：列向量$\vec{\theta}$为所有Unknown parameters的展开的集合（如果是矩阵，就是所有元素展开的集合）</p>
 <p>  最小化：</p>
 <script type="math/tex; mode=display">
   \boldsymbol{\theta}^{*}=\arg \min _{\boldsymbol{\theta}} L~~~~
@@ -371,11 +371,17 @@
 </li>
 </ul>
 <p>可以套多个Activation function，如$y = b + \vec{c}^{~T} \sigma\left(\vec{b ‘} + \vec{W’}\sigma(\vec{b}+\vec{W}  \vec{x})\right)$</p>
-<p><strong>为什么要套用多层Activation function（Deep）？</strong>：</p>
+<p><strong>为什么要套用多层Activation function（Deep）？</strong>：后面解答。</p>
 <p>Neuron -&gt; Neurl Network<br>layers：一层Neuron<br>many hidden layers -&gt; Deep Learning</p>
 <p>在训练集上表现更好而在测试集上变现变差：Overfitting（过拟合） </p>
 <hr>
-<h2 id="Lect-ure-2-What-to-do-if-my-network-fails-to-train"><a href="#Lect-ure-2-What-to-do-if-my-network-fails-to-train" class="headerlink" title="Lect ure 2:What to do if my network fails to train"></a>Lect ure 2:What to do if my network fails to train</h2><hr>
+<h2 id="Lecture-2-What-to-do-if-my-network-fails-to-train"><a href="#Lecture-2-What-to-do-if-my-network-fails-to-train" class="headerlink" title="Lecture 2:What to do if my network fails to train"></a>Lecture 2:What to do if my network fails to train</h2><p>机器学习框架：</p>
+<p><strong>Training data:</strong>  $\left{\left(x^{1}, \hat{y}^{1}\right),\left(x^{2}, \hat{y}^{2}\right), \ldots,\left(x^{N}, \hat{y}^{N}\right)\right}$</p>
+<p><strong>Training:</strong> $y=f<em>{\boldsymbol{\theta}}(\boldsymbol{x})\rightarrow L\left(\boldsymbol{\theta}\right)\rightarrow\boldsymbol{\theta}^{*} = arg\text{min}</em>{\boldsymbol{\theta}}L$</p>
+<p><strong>Testing data:</strong> $\left{x^{N+1}, x^{N+2}, \ldots, x^{N+M}\right}$</p>
+<p><strong>Use</strong>  $y<em>{0}=f</em>{\boldsymbol{\theta}^{<em>}}(\boldsymbol{x})$  <em>*to label the testing data</em></em>  </p>
+<p><strong>Get</strong> $\left{y^{N+1}, y^{N+2}, \ldots, y^{N+M}\right}$ </p>
+<hr>
 <h2 id="Lecture-3-Image-as-input"><a href="#Lecture-3-Image-as-input" class="headerlink" title="Lecture 3:Image as input"></a>Lecture 3:Image as input</h2><hr>
 <h2 id="Lecture-4-Sequence-as-input"><a href="#Lecture-4-Sequence-as-input" class="headerlink" title="Lecture 4:Sequence as input"></a>Lecture 4:Sequence as input</h2><hr>
 <h2 id="Lecture-5-Sequence-to-sequence"><a href="#Lecture-5-Sequence-to-sequence" class="headerlink" title="Lecture 5:Sequence to sequence"></a>Lecture 5:Sequence to sequence</h2><hr>
@@ -449,7 +455,7 @@
           <strong class="toc-title">Contents</strong>
           
             
-              <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#Lecture-1-Introduction-of-Deep-Learning"><span class="toc-nav-text">Lecture 1:Introduction of Deep Learning</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#Lect-ure-2-What-to-do-if-my-network-fails-to-train"><span class="toc-nav-text">Lect ure 2:What to do if my network fails to train</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#Lecture-3-Image-as-input"><span class="toc-nav-text">Lecture 3:Image as input</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#Lecture-4-Sequence-as-input"><span class="toc-nav-text">Lecture 4:Sequence as input</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#Lecture-5-Sequence-to-sequence"><span class="toc-nav-text">Lecture 5:Sequence to sequence</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#Lecture-6-Generation"><span class="toc-nav-text">Lecture 6:Generation</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#Recent-Advance-of-Self-supervised-learning-for-NLP"><span class="toc-nav-text">Recent Advance of Self-supervised learning for NLP</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#Lecture-7-Self-supervised-learning-for-Speech-and-Image"><span class="toc-nav-text">Lecture 7:Self-supervised learning for Speech and Image</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#Lecture-8-Auto-encoder-Anomaly-Detection"><span class="toc-nav-text">Lecture 8:Auto-encoder&#x2F; Anomaly Detection</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#Lecture-9-Explainable-AI"><span class="toc-nav-text">Lecture 9:Explainable AI</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#Lecture-10-Attack"><span class="toc-nav-text">Lecture 10:Attack</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#Lecture-11-Adaptation"><span class="toc-nav-text">Lecture 11:Adaptation</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#Lecture-12-Reinforcement-Learning"><span class="toc-nav-text">Lecture 12:Reinforcement Learning</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#Lecture-13-Network-Compression"><span class="toc-nav-text">Lecture 13:Network Compression</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#Lecture-14-Life-long-Learning"><span class="toc-nav-text">Lecture 14:Life-long Learning</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#Lecture-15-Meta-Learning"><span class="toc-nav-text">Lecture 15:Meta Learning</span></a></li></ol>
+              <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#Lecture-1-Introduction-of-Deep-Learning"><span class="toc-nav-text">Lecture 1:Introduction of Deep Learning</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#Lecture-2-What-to-do-if-my-network-fails-to-train"><span class="toc-nav-text">Lecture 2:What to do if my network fails to train</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#Lecture-3-Image-as-input"><span class="toc-nav-text">Lecture 3:Image as input</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#Lecture-4-Sequence-as-input"><span class="toc-nav-text">Lecture 4:Sequence as input</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#Lecture-5-Sequence-to-sequence"><span class="toc-nav-text">Lecture 5:Sequence to sequence</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#Lecture-6-Generation"><span class="toc-nav-text">Lecture 6:Generation</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#Recent-Advance-of-Self-supervised-learning-for-NLP"><span class="toc-nav-text">Recent Advance of Self-supervised learning for NLP</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#Lecture-7-Self-supervised-learning-for-Speech-and-Image"><span class="toc-nav-text">Lecture 7:Self-supervised learning for Speech and Image</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#Lecture-8-Auto-encoder-Anomaly-Detection"><span class="toc-nav-text">Lecture 8:Auto-encoder&#x2F; Anomaly Detection</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#Lecture-9-Explainable-AI"><span class="toc-nav-text">Lecture 9:Explainable AI</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#Lecture-10-Attack"><span class="toc-nav-text">Lecture 10:Attack</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#Lecture-11-Adaptation"><span class="toc-nav-text">Lecture 11:Adaptation</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#Lecture-12-Reinforcement-Learning"><span class="toc-nav-text">Lecture 12:Reinforcement Learning</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#Lecture-13-Network-Compression"><span class="toc-nav-text">Lecture 13:Network Compression</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#Lecture-14-Life-long-Learning"><span class="toc-nav-text">Lecture 14:Life-long Learning</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#Lecture-15-Meta-Learning"><span class="toc-nav-text">Lecture 15:Meta Learning</span></a></li></ol>
             
           
           </div>
