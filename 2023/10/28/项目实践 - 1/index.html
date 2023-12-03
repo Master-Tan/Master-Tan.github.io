@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="baidu-site-verification" content="093lY4ziMu" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="description" content="Tan&#39;s Blog">
+    <meta name="keyword"  content="Hello world">
+    <link rel="shortcut icon" href="/img/ironman-draw.png">
+    <!-- Place this tag in your head or just before your close body tag. -->
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+    <!--<link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>-->
+    <title>
+        
+          项目实践 - 1 - Tan&#39;s Blog
+        
+    </title>
+
+    <link rel="canonical" href="https://master-tan.github.io/2023/10/28/项目实践 - 1/">
+
+    <!-- Bootstrap Core CSS -->
+    
+<link rel="stylesheet" href="/css/bootstrap.min.css">
+
+
+    <!-- Custom CSS --> 
+    
+        
+<link rel="stylesheet" href="/css/dusign-light.css">
+
+        
+<link rel="stylesheet" href="/css/dusign-common-light.css">
+
+        
+<link rel="stylesheet" href="/css/font-awesome.css">
+
+        
+<link rel="stylesheet" href="/css/toc.css">
+
+        <!-- background effects end -->
+    
+    
+    <!-- Pygments Highlight CSS -->
+    
+<link rel="stylesheet" href="/css/highlight.css">
+
+
+    
+<link rel="stylesheet" href="/css/widget.css">
+
+
+    
+<link rel="stylesheet" href="/css/rocket.css">
+
+
+    
+<link rel="stylesheet" href="/css/signature.css">
+
+
+    
+<link rel="stylesheet" href="/css/fonts.googleapis.css">
+
+
+    <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.3.0/css/font-awesome.min.css">
+
+    <!-- photography -->
+    
+<link rel="stylesheet" href="/css/photography.css">
+
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+
+    <!-- background effects start -->
+    
+    <!-- background effects end -->
+
+	<!-- Modified by Yu-Hsuan Yen -->
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        
+            
+                background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('../../../../img/default.jpg')
+                /*post*/
+            
+        
+    }
+    
+</style>
+
+<header class="intro-header" >
+    <!-- Signature -->
+    <div id="signature">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                
+                    <div class="post-heading">
+                        <div class="tags">
+                            
+                        </div>
+                        <h1>项目实践 - 1</h1>
+                        <h2 class="subheading"></h2>
+                        <span class="meta">
+                            Posted by Tan on
+                            2023-10-28
+                        </span>
+
+	       
+                            <div class="blank_box"></div>
+                            <span class="meta">
+                                 <span class="post-count">1.7k</span> Words
+                            </span>
+                            <div class="blank_box"></div>
+                            <!-- 不蒜子统计 start -->
+                            <span class="meta">
+                                Viewed <span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span> Times
+                            </span>
+                            <!-- 不蒜子统计 end -->
+                        
+
+                    </div>
+                
+
+                </div>
+            </div>
+        </div>      
+    </div>
+
+    
+    <div class="waveWrapper">
+        <div class="wave wave_before" style="background-image: url('/img/wave-light.png')"></div>
+        <div class="wave wave_after" style="background-image: url('/img/wave-light.png')"></div>
+    </div>
+    
+</header>
+
+	
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Tan&#39;s Blog</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+
+                    
+
+                        
+                    
+
+                        
+                        	<li>
+                          	  <a href="/about/">About Tan</a>
+                        	</li>
+                        
+                    
+
+                        
+                        	<li>
+                          	  <a href="/archive/">Archives</a>
+                        	</li>
+                        
+                    
+
+                        
+                    
+
+                        
+                        	<li>
+                          	  <a href="/tags/">Tags</a>
+                        	</li>
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+    <!-- Main Content -->
+    <!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+            <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <h2 id="配置环境"><a href="#配置环境" class="headerlink" title="配置环境"></a>配置环境</h2><h3 id="问题1："><a href="#问题1：" class="headerlink" title="问题1："></a>问题1：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda env create -f environment.yml</span><br></pre></td></tr></table></figure>
+<p>时报错:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Collecting package metadata (repodata.json): failed</span><br><span class="line"></span><br><span class="line">ProxyError: Conda cannot proceed due to an error in your proxy configuration.</span><br><span class="line">Check for typos and other configuration errors in any &#39;.netrc&#39; file in your home directory,</span><br><span class="line">any environment variables ending in &#39;_PROXY&#39;, and any other system-wide proxy</span><br><span class="line">configuration settings.</span><br></pre></td></tr></table></figure></p>
+<p>解决方法（Win10）：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">在Internet中打开“Internet选项”-&gt;连接-&gt;LAN设置-&gt;取消选中“为Lan使用代理服务器”（会导致VPN失效，不能同时进行）</span><br></pre></td></tr></table></figure></p>
+<h3 id="问题2："><a href="#问题2：" class="headerlink" title="问题2："></a>问题2：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda env create -f environment.yml</span><br></pre></td></tr></table></figure>
+<p>时报错:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">Collecting package metadata (repodata.json): done</span><br><span class="line">Solving environment: failed          </span><br><span class="line"></span><br><span class="line">ResolvePackageNotFound: </span><br><span class="line">  - certifi&#x3D;&#x3D;2021.5.30&#x3D;py36h06a4308_0</span><br><span class="line">  - xz&#x3D;&#x3D;5.2.5&#x3D;h7b6447c_0</span><br><span class="line">  - gmp&#x3D;&#x3D;6.2.1&#x3D;h2531618_2</span><br><span class="line">  - pillow&#x3D;&#x3D;8.3.1&#x3D;py36h2c7a002_0</span><br><span class="line">  - ld_impl_linux-64&#x3D;&#x3D;2.35.1&#x3D;h7274673_9</span><br><span class="line">    .....</span><br></pre></td></tr></table></figure></p>
+<p>解决方法（Win10）：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">执行 &gt; conda update conda</span><br></pre></td></tr></table></figure></p>
+<h3 id="问题3："><a href="#问题3：" class="headerlink" title="问题3："></a>问题3：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Anaconda Navigator 打不开</span><br></pre></td></tr></table></figure>
+<p>解决方法：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">1.使用管理员权限运行 Anaconda Prompt</span><br><span class="line">2.升级navigator，执行conda update anaconda-navigator</span><br><span class="line">3.重置navigator，执行anaconda-navigator --reset</span><br><span class="line">4.升级客户端，执行conda update anaconda-client</span><br><span class="line">5.升级安装依赖包，执行conda update -f anaconda-client</span><br></pre></td></tr></table></figure></p>
+<p>conda有问题多看官网的用户手册：<br><a href="https://conda.io/projects/conda/en/latest/user-guide" target="_blank" rel="noopener">https://conda.io/projects/conda/en/latest/user-guide</a></p>
+<h2 id="看代码"><a href="#看代码" class="headerlink" title="看代码"></a>看代码</h2><h3 id="yacs-config"><a href="#yacs-config" class="headerlink" title="yacs.config"></a>yacs.config</h3><p>python库源码：<a href="https://github.com/rbgirshick/yacs" target="_blank" rel="noopener">https://github.com/rbgirshick/yacs</a></p>
+<p>yacs.config是一个轻量级的配置系统，用于管理实验中的配置参数。它的设计目标是：</p>
+<h3 id="torch-utils-data-DataLoader"><a href="#torch-utils-data-DataLoader" class="headerlink" title="torch.utils.data.DataLoader"></a>torch.utils.data.DataLoader</h3><p>官方文档：<a href="https://pytorch.org/docs/stable/data.html#torch.utils.data.DataLoader" target="_blank" rel="noopener">https://pytorch.org/docs/stable/data.html#torch.utils.data.DataLoader</a></p>
+<h3 id="sh文件提示有-r执行不了"><a href="#sh文件提示有-r执行不了" class="headerlink" title=".sh文件提示有\r执行不了"></a>.sh文件提示有\r执行不了</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sed -i &#39;s&#x2F;\r&#x2F;&#x2F;&#39; download_dataset.sh</span><br></pre></td></tr></table></figure>
+<h3 id="metadata-json"><a href="#metadata-json" class="headerlink" title="metadata.json"></a>metadata.json</h3><ul>
+<li><p>“bounds”: 表示数据的空间边界，它是一个二维数组，包含了两个坐标点，分别表示数据的最小和最大边界。</p>
+</li>
+<li><p>“sequence_length”: 表示序列的长度，它指定了数据中每个序列的时间步数。</p>
+</li>
+<li><p>“default_connectivity_radius”: 表示默认的连接半径，用于定义数据中的连接性。具体含义可能取决于上下文，可能用于定义数据中的邻近关系或相似性。</p>
+</li>
+<li><p>“dim”: 表示数据的维度，这里是二维数据。</p>
+</li>
+<li><p>“dt”: 表示时间步长，表示数据中每个时间步的时间间隔。</p>
+</li>
+<li><p>“vel_mean”: 表示速度的均值，它是一个二维数组，包含了两个分量的均值值。</p>
+</li>
+<li><p>“vel_std”: 表示速度的标准差，也是一个二维数组，包含了两个分量的标准差值。</p>
+</li>
+<li><p>“acc_mean”: 表示加速度的均值，同样是一个二维数组，包含了两个分量的均值值。</p>
+</li>
+<li><p>“acc_std”: 表示加速度的标准差，同样是一个二维数组，包含了两个分量的标准差值。</p>
+</li>
+</ul>
+<h3 id="处理数据-extract-tfrs-py-gt-data-test、train、vaild-pkl"><a href="#处理数据-extract-tfrs-py-gt-data-test、train、vaild-pkl" class="headerlink" title="处理数据 extract_tfrs.py -&gt; data/(test、train、vaild)/.pkl"></a>处理数据 extract_tfrs.py -&gt; data/(test、train、vaild)/.pkl</h3><p>“extract_tfrs.py” （extract tensorflow records.py）的主要作用是从 TensorFlow 记录（TensorFlow Records）文件中提取数据。</p>
+<p>TensorFlow Records 是一种用于存储大规模数据集的二进制文件格式。它可以有效地存储和读取大量训练数据，提供高性能的数据加载能力，特别适用于使用 TensorFlow 进行深度学习训练。</p>
+<p>“extract_tfrs.py” 是一个自定义的 Python 脚本，其目的是从 TensorFlow Records 文件中解析和提取数据。这个脚本可能会使用 TensorFlow 或其他相关的库来读取和处理 TensorFlow Records 文件，并将数据转换为适合特定任务的格式。</p>
+<h3 id="pkl"><a href="#pkl" class="headerlink" title=".pkl"></a>.pkl</h3><p>‘particle_type’:  表示粒子的类型，np.ndarray, particle_num <em> 1<br>‘position’:     表示粒子的位置，np.ndarray, (sequence_length + 1) </em> particle_num * 2</p>
+<h3 id="我的-pkl"><a href="#我的-pkl" class="headerlink" title="我的.pkl"></a>我的.pkl</h3><p>‘particle_id’:  表示粒子的id，np.ndarray, particle_num <em> 1<br>‘particle_type’:  表示粒子的类型，np.ndarray, particle_num </em> 1，(0 -&gt; ball, 1 -&gt; clump)<br>‘clump_id’:   如果类型是”1”(clump)，表示粒子所属的团，np.ndarray, particle_num <em> 1, ball对应此项为-1<br>‘radius’:      表示粒子的半径，np.ndarray, particle_num </em> 1<br>‘position’:     表示粒子的位置，np.ndarray, (sequence_length + 1) <em> particle_num </em> 2</p>
+<h3 id="animation-FuncAnimation"><a href="#animation-FuncAnimation" class="headerlink" title="animation.FuncAnimation"></a>animation.FuncAnimation</h3><p><a href="https://matplotlib.org/stable/api/_as_gen/matplotlib.animation.FuncAnimation.html" target="_blank" rel="noopener">https://matplotlib.org/stable/api/_as_gen/matplotlib.animation.FuncAnimation.html</a></p>
+<p>animation.FuncAnimation 是一个用于创建动画的函数。下面是对参数的解释：</p>
+<p>fig: 这是一个 matplotlib 的图形对象，指定了动画将在哪个图形上进行绘制。<br>update_points: 这是一个函数，用于在每个动画帧中更新图形的点的位置。<br>frames: 这是动画的总帧数，控制动画的长度。<br>fargs: 这是传递给 update_points 函数的额外参数。它们是 pts1、pts2、tgt_pos_seq 和 pred_pos_seq，用于更新图形中的点位置。<br>动画对象 ani 是通过调用 animation.FuncAnimation 创建的。创建动画后，可以将其用于显示或保存动画效果</p>
+<h3 id="变量命名"><a href="#变量命名" class="headerlink" title="变量命名"></a>变量命名</h3><p>tgt_pos_seq: 目标位置序列（Target Position Sequence）<br>pred_pos_seq: 预测位置序列（Predicted Position Sequence）</p>
+<h3 id="TORCH-UTILS-DATA"><a href="#TORCH-UTILS-DATA" class="headerlink" title="TORCH.UTILS.DATA"></a>TORCH.UTILS.DATA</h3><p>官方文档：<a href="https://pytorch.org/docs/stable/data.html" target="_blank" rel="noopener">https://pytorch.org/docs/stable/data.html</a> (英文)<br><a href="https://www.pytorchtutorial.com/docs/package_references/data/" target="_blank" rel="noopener">https://www.pytorchtutorial.com/docs/package_references/data/</a> (中文)</p>
+<p>更好理解的版本：<a href="https://blog.csdn.net/zhangjipinggom/article/details/100310823" target="_blank" rel="noopener">https://blog.csdn.net/zhangjipinggom/article/details/100310823</a></p>
+<p>在代码中，使用 for batch_idx, data in enumerate(self.data_loader): 这样的循环遍历 data_loader 中的数据时，data 的维度通常会增加一维。这是因为 data_loader 会返回一个批次的数据，而每个批次的数据通常是一个多维数组或张量。</p>
+<p>如果原始数据的形状是 (…, dim1, dim2, …)，那么在遍历 data_loader 后，data 的形状将变为 (batch_size, …, dim1, dim2, …) 。也就是说，原始数据的维度保持不变，但新添加了一个维度来表示批次。</p>
+<p>这是为了方便批处理操作和并行计算。在许多深度学习框架中，数据通常以批次的形式传递给模型进行训练或推理。通过在数据加载过程中添加批次维度，可以更方便地进行批处理操作和并行计算，从而提高训练和推理的效率。</p>
+<h3 id="plt-figure"><a href="#plt-figure" class="headerlink" title="plt.figure"></a>plt.figure</h3><p>直接使用plt.plot()的好处是它可以方便地在简单的情况下进行绘图，无需显式地创建和管理图形对象。但是，如果需要在一个图形中绘制多个子图或进行更复杂的图形操作，使用图形对象（fig）和轴对象（ax）的方式更加灵活和可扩展。</p>
+<h3 id="在远程上无法使用python进行代码补全"><a href="#在远程上无法使用python进行代码补全" class="headerlink" title="在远程上无法使用python进行代码补全"></a>在远程上无法使用python进行代码补全</h3><p>错误：Python Jedi client: couldn’t create connection to server.（Vscode在select interpret时候）<br>解决方法：</p>
+<ol>
+<li>在远程安装Pylance拓展</li>
+<li>在远程的vscode的设置里：”python.languageServer”: “Pylance”</li>
+</ol>
+<p>原因：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">我在 Ubuntu 18.04 LTS 上使用 python 解释器 python3.6.9 + VS code python 扩展 2022.14 遇到了这个问题</span><br><span class="line"></span><br><span class="line">如果我将 VS code python 扩展降级到 2022.06，它就可以工作。</span><br><span class="line">如果我安装新版本的python（例如python3.9），它就可以工作。</span><br><span class="line">所以原因应该是：</span><br><span class="line"></span><br><span class="line">新版本的 python 扩展与旧的 python 版本 3.6.9 不兼容。</span><br><span class="line"></span><br><span class="line">解决方案：</span><br><span class="line"></span><br><span class="line">将 python 扩展降级到 2022.06（甚至可以更早，未经过充分测试）；或者升级python解释器版本。</span><br></pre></td></tr></table></figure>
+<p><a href="https://bobbyhadz.com/blog/vscode-python-jedi-client-couldnt-create-connection-to-server" target="_blank" rel="noopener">https://bobbyhadz.com/blog/vscode-python-jedi-client-couldnt-create-connection-to-server</a><br><a href="https://stackoverflow.com/questions/72210026/vscode-python-jedi-client-couldnt-create-connection-to-server" target="_blank" rel="noopener">https://stackoverflow.com/questions/72210026/vscode-python-jedi-client-couldnt-create-connection-to-server</a></p>
+<h3 id="scatter的散点大小与坐标轴如何一致"><a href="#scatter的散点大小与坐标轴如何一致" class="headerlink" title="scatter的散点大小与坐标轴如何一致"></a>scatter的散点大小与坐标轴如何一致</h3><p><a href="https://zhuanlan.zhihu.com/p/390859135" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/390859135</a></p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"> = radius.cpu().numpy()</span><br><span class="line">rr_pix = (ax1.transData.transform(np.vstack([r, r]).T) - ax1.transData.transform(np.vstack([np.zeros(len(r)), np.zeros(len(r))]).T))</span><br><span class="line">rpix, _ = rr_pix.T</span><br><span class="line">size_pt = (<span class="number">2</span>*rpix/fig.dpi*<span class="number">72</span>)**<span class="number">2</span></span><br><span class="line">print(size_pt)</span><br></pre></td></tr></table></figure>
+                
+                <hr>
+                <!-- Pager -->
+                <ul class="pager">
+                    
+                    
+                    <li class="next">
+                        <a href="/2023/10/19/机器学习 - 学习笔记/" data-toggle="tooltip" data-placement="top" title="机器学习 - 学习笔记">Next Post &rarr;
+		<br>
+		<span><font size="2" face="Calibri" color="grey">机器学习 - 学习笔记</font></span>
+	        </a>
+                    </li>
+                    
+                </ul>
+
+                <!-- tip start -->
+                
+
+                
+                <div class="comment_notes">
+                    <p>
+                        by Tan
+                    </p>
+                </div>
+                
+                <!-- tip end -->
+
+                <!-- Music start-->
+                
+                <!-- Music end -->
+
+                <!-- Sharing -->
+                
+                <!-- Sharing -->
+
+                <!-- gitment start -->
+                
+                <!-- gitment end -->
+
+                <!-- 来必力City版安装代码 -->
+                
+                <!-- City版安装代码已完成 -->
+
+                <!-- disqus comment start -->
+                
+                <!-- disqus comment end -->
+            </div>
+            
+            <!-- Tabe of Content -->
+            <!-- Table of Contents -->
+
+    
+      
+        <aside id="sidebar">
+          <div id="toc" class="toc-article">
+          <strong class="toc-title">Contents</strong>
+          
+            
+              <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#配置环境"><span class="toc-nav-text">配置环境</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#问题1："><span class="toc-nav-text">问题1：</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#问题2："><span class="toc-nav-text">问题2：</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#问题3："><span class="toc-nav-text">问题3：</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#看代码"><span class="toc-nav-text">看代码</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#yacs-config"><span class="toc-nav-text">yacs.config</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#torch-utils-data-DataLoader"><span class="toc-nav-text">torch.utils.data.DataLoader</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#sh文件提示有-r执行不了"><span class="toc-nav-text">.sh文件提示有\r执行不了</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#metadata-json"><span class="toc-nav-text">metadata.json</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#处理数据-extract-tfrs-py-gt-data-test、train、vaild-pkl"><span class="toc-nav-text">处理数据 extract_tfrs.py -&gt; data&#x2F;(test、train、vaild)&#x2F;.pkl</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#pkl"><span class="toc-nav-text">.pkl</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#我的-pkl"><span class="toc-nav-text">我的.pkl</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#animation-FuncAnimation"><span class="toc-nav-text">animation.FuncAnimation</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#变量命名"><span class="toc-nav-text">变量命名</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#TORCH-UTILS-DATA"><span class="toc-nav-text">TORCH.UTILS.DATA</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#plt-figure"><span class="toc-nav-text">plt.figure</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#在远程上无法使用python进行代码补全"><span class="toc-nav-text">在远程上无法使用python进行代码补全</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#scatter的散点大小与坐标轴如何一致"><span class="toc-nav-text">scatter的散点大小与坐标轴如何一致</span></a></li></ol></li></ol>
+            
+          
+          </div>
+        </aside>
+      
+    
+
+                
+            <!-- Sidebar Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                       
+                    </div>
+                </section>
+                
+
+            </div>
+			
+			<div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+				
+				<br>
+				<br>
+
+				<script src="https://utteranc.es/client.js"
+						repo="Master-Tan/Master-Tan.github.io"
+						issue-term="pathname"
+						label="Comment"
+						theme="github-light"
+						crossorigin="anonymous"
+						async>
+				</script>
+			</div>
+        </div>
+    </div>
+</article>
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("https://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'hover',
+          placement: 'left',
+          icon: 'ℬ'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+
+
+<style  type="text/css">
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
+
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+
+                
+                    <li>
+                        <a target="_blank"  href="https://github.com/Master-Tan">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+                    <li>
+                        <a target="_blank" href="https://twitter.com/None">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+                    <li>
+                        <a target="_blank" href="https://www.facebook.com/None">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                
+
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; Tan 2023 | Powered by 
+                    <a href="https://github.com/Master-Tan/Master-Tan.github.io" target="_blank" rel="noopener">
+                        <i>Tan's Blog</i>
+                    </a>
+                </p>
+            </div>
+        </div>
+    </div>
+
+</footer>
+
+<!-- jQuery -->
+
+<script src="/js/jquery.min.js"></script>
+
+
+<!-- Bootstrap Core JavaScript -->
+
+<script src="/js/bootstrap.min.js"></script>
+
+
+<!-- Custom Theme JavaScript -->
+
+<script src="/js/hux-blog.min.js"></script>
+
+
+<!-- Search -->
+
+<script src="/js/search.js"></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("https://master-tan.github.io/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("https://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+<script>
+    // dynamic User by Hux
+    var _gaId = 'UA-XXXXXXXX-X';
+    var _gaDomain = 'yoursite';
+
+    // Originial
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', _gaId, _gaDomain);
+    ga('send', 'pageview');
+</script>
+
+
+
+
+<!-- Baidu Tongji -->
+
+
+<!-- Search -->
+
+    <script type="text/javascript">      
+        var search_path = "search.xml";
+        if (search_path.length == 0) {
+            search_path = "search.xml";
+        }
+    var path = "/" + search_path;
+    searchFunc(path, 'local-search-input', 'local-search-result');
+    </script>
+
+
+<!-- busuanzi -->
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+
+	<a id="rocket" href="#top" class=""></a>
+	<script type="text/javascript" src="/js/totop.js?v=1.0.0" async=""></script>
+    <script type="text/javascript" src="/js/toc.js?v=1.0.0" async=""></script>
+
+    
+        <!-- background effects line -->
+        
+
+        
+            <script type="text/javascript" src="/js/mouse-click.js" content='[&quot;Sunny&quot;, &quot;💖&quot;, &quot;Sunny&quot;, &quot;🧡&quot;, &quot;Sunny&quot;, &quot;💛&quot;, &quot;Sunny&quot; , &quot;💚&quot;, &quot;Sunny&quot;, &quot;💙&quot;, &quot;Sunny&quot;, &quot;💜&quot;, &quot;Sunny&quot;, &quot;😍&quot;]' color='[&quot;rgb(255, 0, 0)&quot; ,&quot;rgb(255, 0, 0)&quot; ,&quot;rgb(255, 125, 0)&quot; ,&quot;rgb(255, 125, 0)&quot; ,&quot;rgb(255, 255, 0)&quot; ,&quot;rgb(255, 255, 0)&quot; ,&quot;rgb(0, 255, 0)&quot; ,&quot;rgb(0, 255, 0)&quot; ,&quot;rgb(0, 255, 255)&quot; ,&quot;rgb(0, 255, 255)&quot; ,&quot;rgb(0, 0, 255)&quot; ,&quot;rgb(0, 0, 255)&quot; ,&quot;rgb(255, 0, 255)&quot; ,&quot;rgb(255, 0, 255)&quot;]'></script>
+        
+
+        <!-- background effects end -->
+    
+
+    <!--<script size="50" alpha='0.3' zIndex="-999" src="/js/ribbonStatic.js"></script>-->
+    
+        <script src="/js/ribbonDynamic.js"></script>
+    
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+
+</html>
