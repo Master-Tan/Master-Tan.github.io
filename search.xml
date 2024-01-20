@@ -14,15 +14,6 @@
     
     
     <entry>
-      <title>About Tan</title>
-      <link href="/about/index.html"/>
-      <url>/about/index.html</url>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>Archives</title>
       <link href="/archive/index.html"/>
       <url>/archive/index.html</url>
@@ -50,6 +41,24 @@
     
     
     <entry>
+      <title>About Tan</title>
+      <link href="/about/index.html"/>
+      <url>/about/index.html</url>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>tanlide</title>
+      <link href="/tanlide/index%20-%20%E5%8E%9F.html"/>
+      <url>/tanlide/index%20-%20%E5%8E%9F.html</url>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>tanlide</title>
       <link href="/tanlide/index.html"/>
       <url>/tanlide/index.html</url>
@@ -62,15 +71,6 @@
       <title>tld &amp; dsn</title>
       <link href="/tld-dsn/index.html"/>
       <url>/tld-dsn/index.html</url>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>tanlide</title>
-      <link href="/tanlide/index%20-%20%E5%8E%9F.html"/>
-      <url>/tanlide/index%20-%20%E5%8E%9F.html</url>
       
     </entry>
     

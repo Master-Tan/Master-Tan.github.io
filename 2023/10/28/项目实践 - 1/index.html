@@ -119,7 +119,7 @@
 	       
                             <div class="blank_box"></div>
                             <span class="meta">
-                                 <span class="post-count">1.7k</span> Words
+                                 <span class="post-count">3.2k</span> Words
                             </span>
                             <div class="blank_box"></div>
                             <!-- 不蒜子统计 start -->
@@ -180,13 +180,6 @@
 
                         
                         	<li>
-                          	  <a href="/about/">About Tan</a>
-                        	</li>
-                        
-                    
-
-                        
-                        	<li>
                           	  <a href="/archive/">Archives</a>
                         	</li>
                         
@@ -198,6 +191,13 @@
                         
                         	<li>
                           	  <a href="/tags/">Tags</a>
+                        	</li>
+                        
+                    
+
+                        
+                        	<li>
+                          	  <a href="/about/">About Tan</a>
                         	</li>
                         
                     
@@ -298,7 +298,7 @@
 <p>TensorFlow Records 是一种用于存储大规模数据集的二进制文件格式。它可以有效地存储和读取大量训练数据，提供高性能的数据加载能力，特别适用于使用 TensorFlow 进行深度学习训练。</p>
 <p>“extract_tfrs.py” 是一个自定义的 Python 脚本，其目的是从 TensorFlow Records 文件中解析和提取数据。这个脚本可能会使用 TensorFlow 或其他相关的库来读取和处理 TensorFlow Records 文件，并将数据转换为适合特定任务的格式。</p>
 <h3 id="pkl"><a href="#pkl" class="headerlink" title=".pkl"></a>.pkl</h3><p>‘particle_type’:  表示粒子的类型，np.ndarray, particle_num <em> 1<br>‘position’:     表示粒子的位置，np.ndarray, (sequence_length + 1) </em> particle_num * 2</p>
-<h3 id="我的-pkl"><a href="#我的-pkl" class="headerlink" title="我的.pkl"></a>我的.pkl</h3><p>‘particle_id’:  表示粒子的id，np.ndarray, particle_num <em> 1<br>‘particle_type’:  表示粒子的类型，np.ndarray, particle_num </em> 1，(0 -&gt; ball, 1 -&gt; clump)<br>‘clump_id’:   如果类型是”1”(clump)，表示粒子所属的团，np.ndarray, particle_num <em> 1, ball对应此项为-1<br>‘radius’:      表示粒子的半径，np.ndarray, particle_num </em> 1<br>‘position’:     表示粒子的位置，np.ndarray, (sequence_length + 1) <em> particle_num </em> 2</p>
+<h3 id="我的-pkl"><a href="#我的-pkl" class="headerlink" title="我的.pkl"></a>我的.pkl</h3><p>‘particle_id’:  表示粒子的id，np.ndarray, particle_num <em> 1<br>‘particle_type’:  表示粒子的类型，np.ndarray, particle_num </em> 1，(0 -&gt; ball, 1 -&gt; clump)<br>‘clump_id’:   如果类型是”1”(clump)，表示粒子所属的团，np.ndarray, particle_num <em> 1, ball对应此项为-1<br>‘radius’:      表示粒子的半径，np.ndarray, particle_num </em> 1<br>‘position’:     表示粒子的位置，np.ndarray, (sequence_length + 1) <em> particle_num </em> 2<br>‘sequence_length’:  表示步骤数，int</p>
 <h3 id="animation-FuncAnimation"><a href="#animation-FuncAnimation" class="headerlink" title="animation.FuncAnimation"></a>animation.FuncAnimation</h3><p><a href="https://matplotlib.org/stable/api/_as_gen/matplotlib.animation.FuncAnimation.html" target="_blank" rel="noopener">https://matplotlib.org/stable/api/_as_gen/matplotlib.animation.FuncAnimation.html</a></p>
 <p>animation.FuncAnimation 是一个用于创建动画的函数。下面是对参数的解释：</p>
 <p>fig: 这是一个 matplotlib 的图形对象，指定了动画将在哪个图形上进行绘制。<br>update_points: 这是一个函数，用于在每个动画帧中更新图形的点的位置。<br>frames: 这是动画的总帧数，控制动画的长度。<br>fargs: 这是传递给 update_points 函数的额外参数。它们是 pts1、pts2、tgt_pos_seq 和 pred_pos_seq，用于更新图形中的点位置。<br>动画对象 ani 是通过调用 animation.FuncAnimation 创建的。创建动画后，可以将其用于显示或保存动画效果</p>
@@ -319,10 +319,73 @@
 <p><a href="https://bobbyhadz.com/blog/vscode-python-jedi-client-couldnt-create-connection-to-server" target="_blank" rel="noopener">https://bobbyhadz.com/blog/vscode-python-jedi-client-couldnt-create-connection-to-server</a><br><a href="https://stackoverflow.com/questions/72210026/vscode-python-jedi-client-couldnt-create-connection-to-server" target="_blank" rel="noopener">https://stackoverflow.com/questions/72210026/vscode-python-jedi-client-couldnt-create-connection-to-server</a></p>
 <h3 id="scatter的散点大小与坐标轴如何一致"><a href="#scatter的散点大小与坐标轴如何一致" class="headerlink" title="scatter的散点大小与坐标轴如何一致"></a>scatter的散点大小与坐标轴如何一致</h3><p><a href="https://zhuanlan.zhihu.com/p/390859135" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/390859135</a></p>
 <figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"> = radius.cpu().numpy()</span><br><span class="line">rr_pix = (ax1.transData.transform(np.vstack([r, r]).T) - ax1.transData.transform(np.vstack([np.zeros(len(r)), np.zeros(len(r))]).T))</span><br><span class="line">rpix, _ = rr_pix.T</span><br><span class="line">size_pt = (<span class="number">2</span>*rpix/fig.dpi*<span class="number">72</span>)**<span class="number">2</span></span><br><span class="line">print(size_pt)</span><br></pre></td></tr></table></figure>
+<h3 id="主要区别"><a href="#主要区别" class="headerlink" title="主要区别"></a>主要区别</h3><p>半径不同</p>
+<p>clump</p>
+<h3 id="torch-nn-model"><a href="#torch-nn-model" class="headerlink" title="torch.nn.model"></a>torch.nn.model</h3><p><a href="https://pytorch.org/docs/stable/generated/torch.nn.Module.html" target="_blank" rel="noopener">https://pytorch.org/docs/stable/generated/torch.nn.Module.html</a></p>
+<ul>
+<li>forward(<em>input: Any, *</em>kwargs: Any) → Any<ul>
+<li><a href="https://pytorch.org/docs/stable/generated/torch.nn.Module.html#torch.nn.Module.forward" target="_blank" rel="noopener">https://pytorch.org/docs/stable/generated/torch.nn.Module.html#torch.nn.Module.forward</a></li>
+</ul>
+</li>
+</ul>
+<p>每次调用时执行forward操作。</p>
+<p>我们在定义自已的网络的时候，需要继承nn.Module类，并重新实现构造函数<strong>init</strong>和forward这两个方法。但有一些注意技巧：</p>
+<p>（1）一般把网络中具有可学习参数的层（如全连接层、卷积层等）放在构造函数<strong>init</strong>()中，当然我也可以吧不具有参数的层也放在里面；</p>
+<p>（2）一般把不具有可学习参数的层(如ReLU、dropout、BatchNormanation层)可放在构造函数中，也可不放在构造函数中，如果不放在构造函数<strong>init</strong>里面，则在forward方法里面可以使用nn.functional来代替</p>
+<h3 id="为什么要写成-super-ChildClass-self-init"><a href="#为什么要写成-super-ChildClass-self-init" class="headerlink" title="为什么要写成 super(ChildClass, self).init()"></a>为什么要写成 super(ChildClass, self).<strong>init</strong>()</h3><p><a href="https://blog.csdn.net/m0_49963403/article/details/129573033" target="_blank" rel="noopener">https://blog.csdn.net/m0_49963403/article/details/129573033</a><br><a href="https://www.zhihu.com/question/59973860/answer/3067624800?utm_id=0" target="_blank" rel="noopener">https://www.zhihu.com/question/59973860/answer/3067624800?utm_id=0</a></p>
+<p>python3 之后，在类的内部调用 super 的时候，可以省略两个参数，python 解析器会自动把当前的类和 self 填入；因此， super().<strong>init</strong>() 和 super(ChildClass, self).<strong>init</strong>() 是等价的。</p>
+<h3 id="spatial-cKDTree"><a href="#spatial-cKDTree" class="headerlink" title="spatial.cKDTree"></a>spatial.cKDTree</h3><p>spatial.cKDTree 是 Scipy 库中提供的用于构建 K-dimensional Tree（KDTree）的类。KDTree 是一种数据结构，用于在 K 维空间中对数据点进行快速的最近邻搜索。在上下文中，K 表示数据的维度。</p>
+<p>具体来说，spatial.cKDTree 可以用于：</p>
+<p>构建 KDTree： 通过将数据传递给 spatial.cKDTree 构造函数，可以创建一个 KDTree。这个树结构将使得在高维空间中执行最近邻搜索变得更加高效。</p>
+<p>最近邻搜索： 一旦 KDTree 被构建，可以使用它来执行最近邻搜索。对于给定的查询点，KDTree 可以快速找到与该点最近的数据点。</p>
+<h3 id="spatial-cKDTree-query-pairs"><a href="#spatial-cKDTree-query-pairs" class="headerlink" title="spatial.cKDTree.query_pairs"></a>spatial.cKDTree.query_pairs</h3><p>spatial.cKDTree.query_pairs 方法是 cKDTree 类中的一个功能，用于查找在给定半径内的所有数据点对。query_pairs 方法返回一个表示成对邻居的集合，其中每个邻居对都表示为一个包含两个索引的元组。这些索引对应于 KD 树中的点的索引。</p>
+<p>具体来说，query_pairs 方法的语法如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">query_pairs(r, p=<span class="number">2</span>, eps=<span class="number">0</span>)</span><br></pre></td></tr></table></figure>
+<p>r：半径，表示要查询的距离。<br>p：距离计算的指数，默认值为2，表示欧氏距离。<br>eps：容忍度（tolerance），用于处理数值精度问题。</p>
+<h3 id="为什么-loss-backward-能跟踪到-model-并将进行反向传播计算"><a href="#为什么-loss-backward-能跟踪到-model-并将进行反向传播计算" class="headerlink" title="为什么 loss.backward() 能跟踪到 model 并将进行反向传播计算"></a>为什么 loss.backward() 能跟踪到 model 并将进行反向传播计算</h3><p>PyTorch中每一个计算的张量/标量如：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">tensor([[1.0120],</span><br><span class="line">        [0.5068],</span><br><span class="line">        [0.8240]], grad_fn&#x3D;&lt;AddBackward0&gt;)</span><br></pre></td></tr></table></figure><br>中，grad_fn是一个用于跟踪创建张量的函数的属性。它保存了创建张量的操作，从而构建了计算图。计算图是一个表示张量之间关系的图形结构，它记录了如何通过一系列操作从输入到输出。</p>
+<p>在你提供的张量中，grad_fn是 <AddBackward0>，这表明这个张量是通过加法操作得到的。具体而言，这个 <AddBackward0> 表示了张量是通过一个加法操作（Add）得到的，而数字 0 表示这是计算图中的第一个操作。</p>
+<p>这是自动求导（automatic differentiation）的一部分，PyTorch使用计算图来跟踪操作，以便能够执行反向传播算法，计算梯度并更新模型参数。通过grad_fn，PyTorch能够追踪整个计算图的操作历史，从而实现自动求导。</p>
+<h3 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h3><ol>
+<li><p>配置文件中某些配置不明白</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">ROLLOUT_STEPS:</span> <span class="number">601</span>  <span class="comment"># 全局改动：需要</span></span><br><span class="line"><span class="attr">KINEMATIC_PARTICLE_ID:</span> <span class="number">3</span>  <span class="comment"># 什么叫non_kinematic：“不动”的粒子</span></span><br><span class="line"><span class="attr">NUM_PARTICLE_TYPES:</span> <span class="number">9</span>  <span class="comment"># 9 种粒子类型？ ball &amp; clump 物理属性</span></span><br><span class="line"><span class="attr">SOLVER:</span>     <span class="comment"># 不改动 ？对</span></span><br><span class="line">  <span class="attr">BASE_LR:</span> <span class="number">1.0e-4</span></span><br><span class="line">  <span class="attr">MIN_LR:</span> <span class="number">1.0e-6</span></span><br><span class="line">  <span class="attr">WEIGHT_DECAY:</span> <span class="number">0.0</span></span><br><span class="line">  <span class="attr">MAX_ITERS:</span> <span class="number">5e6</span></span><br><span class="line">  <span class="attr">WARMUP_ITERS:</span> <span class="number">0</span></span><br><span class="line">  <span class="attr">VAL_INTERVAL:</span> <span class="number">25000</span></span><br><span class="line">  <span class="attr">BATCH_SIZE:</span> <span class="number">1</span></span><br><span class="line">  <span class="attr">LR_DECAY_INTERVAL:</span> <span class="number">5e6</span></span><br><span class="line"><span class="attr">NET:</span></span><br><span class="line">  <span class="attr">SELF_EDGE:</span> <span class="literal">True</span>  <span class="comment"># 自环边的作用？ 对物体影响的力的作用</span></span><br><span class="line">  <span class="attr">NODE_FEAT_DIM_IN:</span> <span class="number">30</span></span><br><span class="line">  <span class="attr">EDGE_FEAT_DIM_IN:</span> <span class="number">3</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>_construct_graph_nodes</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">dist_to_walls = torch.cat(</span><br><span class="line">    [pos_last - metadata[<span class="string">'bounds'</span>][:, <span class="number">0</span>],</span><br><span class="line">      -pos_last + metadata[<span class="string">'bounds'</span>][:, <span class="number">1</span>]], <span class="number">1</span>)  <span class="comment"># 计算到墙壁的距离</span></span><br><span class="line">dist_to_walls = torch.clip(dist_to_walls / C.NET.RADIUS, <span class="number">-1</span>, <span class="number">1</span>)  <span class="comment"># 将距离归一化到[-1, 1]</span></span><br></pre></td></tr></table></figure>
+<p>源代码里计算的是到墙壁的距离，但是现在的应用场景好像没墙壁?</p>
+</li>
+</ol>
+<p>Q: wall - t</p>
+<ol>
+<li>edge 类型相关</li>
+</ol>
+<h3 id="torch-nn-embedding"><a href="#torch-nn-embedding" class="headerlink" title="torch.nn.embedding"></a>torch.nn.embedding</h3><p><a href="https://pytorch.org/docs/stable/generated/torch.nn.Embedding.html" target="_blank" rel="noopener">https://pytorch.org/docs/stable/generated/torch.nn.Embedding.html</a></p>
+<h3 id="torch-clip"><a href="#torch-clip" class="headerlink" title="torch.clip"></a>torch.clip</h3><p>torch.clip() 是 PyTorch 中的一个函数，用于对张量的元素进行裁剪操作。</p>
+<p>函数的语法如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">torch.clip(input, min, max, out=<span class="literal">None</span>)</span><br></pre></td></tr></table></figure>
+<p>其中，input 是要进行裁剪操作的输入张量，min 和 max 是指定裁剪范围的最小值和最大值。out 是一个可选的输出张量，用于存储结果。</p>
+<p>torch.clip() 函数将输入张量 input 中的元素限制在最小值 min 和最大值 max 之间。所有小于最小值的元素将被替换为最小值，所有大于最大值的元素将被替换为最大值。</p>
+<p>请注意，torch.clip() 函数会生成一个新的张量作为输出，而不会修改原始张量。如果提供了输出张量 out，裁剪结果将被存储在 out 张量中，而不是创建一个新的张量。</p>
+<h3 id="torch-where"><a href="#torch-where" class="headerlink" title="torch.where"></a>torch.where</h3><p>torch.where(condition, x, y)<br>根据条件，也就是condiction，返回从x或y中选择的元素的张量（这里会创建一个新的张量，新张量的元素就是从x或y中选的，形状要符合x和y的广播条件）。<br>Parameters解释如下：<br>1、condition (bool型张量) ：当condition为真，返回x的值，否则返回y的值<br>2、x (张量或标量)：当condition=True时选x的值<br>2、y (张量或标量)：当condition=False时选y的值</p>
+<h3 id="问题-1"><a href="#问题-1" class="headerlink" title="问题"></a>问题</h3><ol>
+<li>使用pytorch张量代替数组进行运算的意义</li>
+<li>什么时候需要.to(device)</li>
+<li>wall - t 以及 wall边界如何体现</li>
+<li>确认edge-type数量</li>
+<li>毕设需要写啥</li>
+<li>回家要干活吗</li>
+</ol>
+
                 
                 <hr>
                 <!-- Pager -->
                 <ul class="pager">
+                    
+                    <li class="previous">
+                        <a href="/2024/01/20/大四上总结/" data-toggle="tooltip" data-placement="top" title="大四上总结">&larr; Previous Post
+		<br>
+		<span><font size="2" face="Calibri" color="grey">大四上总结</font></span>
+	       </a>
+                    </li>
                     
                     
                     <li class="next">
@@ -377,7 +440,7 @@
           <strong class="toc-title">Contents</strong>
           
             
-              <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#配置环境"><span class="toc-nav-text">配置环境</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#问题1："><span class="toc-nav-text">问题1：</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#问题2："><span class="toc-nav-text">问题2：</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#问题3："><span class="toc-nav-text">问题3：</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#看代码"><span class="toc-nav-text">看代码</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#yacs-config"><span class="toc-nav-text">yacs.config</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#torch-utils-data-DataLoader"><span class="toc-nav-text">torch.utils.data.DataLoader</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#sh文件提示有-r执行不了"><span class="toc-nav-text">.sh文件提示有\r执行不了</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#metadata-json"><span class="toc-nav-text">metadata.json</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#处理数据-extract-tfrs-py-gt-data-test、train、vaild-pkl"><span class="toc-nav-text">处理数据 extract_tfrs.py -&gt; data&#x2F;(test、train、vaild)&#x2F;.pkl</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#pkl"><span class="toc-nav-text">.pkl</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#我的-pkl"><span class="toc-nav-text">我的.pkl</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#animation-FuncAnimation"><span class="toc-nav-text">animation.FuncAnimation</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#变量命名"><span class="toc-nav-text">变量命名</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#TORCH-UTILS-DATA"><span class="toc-nav-text">TORCH.UTILS.DATA</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#plt-figure"><span class="toc-nav-text">plt.figure</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#在远程上无法使用python进行代码补全"><span class="toc-nav-text">在远程上无法使用python进行代码补全</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#scatter的散点大小与坐标轴如何一致"><span class="toc-nav-text">scatter的散点大小与坐标轴如何一致</span></a></li></ol></li></ol>
+              <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#配置环境"><span class="toc-nav-text">配置环境</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#问题1："><span class="toc-nav-text">问题1：</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#问题2："><span class="toc-nav-text">问题2：</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#问题3："><span class="toc-nav-text">问题3：</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#看代码"><span class="toc-nav-text">看代码</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#yacs-config"><span class="toc-nav-text">yacs.config</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#torch-utils-data-DataLoader"><span class="toc-nav-text">torch.utils.data.DataLoader</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#sh文件提示有-r执行不了"><span class="toc-nav-text">.sh文件提示有\r执行不了</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#metadata-json"><span class="toc-nav-text">metadata.json</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#处理数据-extract-tfrs-py-gt-data-test、train、vaild-pkl"><span class="toc-nav-text">处理数据 extract_tfrs.py -&gt; data&#x2F;(test、train、vaild)&#x2F;.pkl</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#pkl"><span class="toc-nav-text">.pkl</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#我的-pkl"><span class="toc-nav-text">我的.pkl</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#animation-FuncAnimation"><span class="toc-nav-text">animation.FuncAnimation</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#变量命名"><span class="toc-nav-text">变量命名</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#TORCH-UTILS-DATA"><span class="toc-nav-text">TORCH.UTILS.DATA</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#plt-figure"><span class="toc-nav-text">plt.figure</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#在远程上无法使用python进行代码补全"><span class="toc-nav-text">在远程上无法使用python进行代码补全</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#scatter的散点大小与坐标轴如何一致"><span class="toc-nav-text">scatter的散点大小与坐标轴如何一致</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#主要区别"><span class="toc-nav-text">主要区别</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#torch-nn-model"><span class="toc-nav-text">torch.nn.model</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#为什么要写成-super-ChildClass-self-init"><span class="toc-nav-text">为什么要写成 super(ChildClass, self).init()</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#spatial-cKDTree"><span class="toc-nav-text">spatial.cKDTree</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#spatial-cKDTree-query-pairs"><span class="toc-nav-text">spatial.cKDTree.query_pairs</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#为什么-loss-backward-能跟踪到-model-并将进行反向传播计算"><span class="toc-nav-text">为什么 loss.backward() 能跟踪到 model 并将进行反向传播计算</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#问题"><span class="toc-nav-text">问题</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#torch-nn-embedding"><span class="toc-nav-text">torch.nn.embedding</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#torch-clip"><span class="toc-nav-text">torch.clip</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#torch-where"><span class="toc-nav-text">torch.where</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#问题-1"><span class="toc-nav-text">问题</span></a></li></ol></li></ol>
             
           
           </div>
@@ -518,7 +581,7 @@
 
                 </ul>
                 <p class="copyright text-muted">
-                    Copyright &copy; Tan 2023 | Powered by 
+                    Copyright &copy; Tan 2024 | Powered by 
                     <a href="https://github.com/Master-Tan/Master-Tan.github.io" target="_blank" rel="noopener">
                         <i>Tan's Blog</i>
                     </a>
@@ -638,7 +701,7 @@
         
 
         
-            <script type="text/javascript" src="/js/mouse-click.js" content='[&quot;Sunny&quot;, &quot;💖&quot;, &quot;Sunny&quot;, &quot;🧡&quot;, &quot;Sunny&quot;, &quot;💛&quot;, &quot;Sunny&quot; , &quot;💚&quot;, &quot;Sunny&quot;, &quot;💙&quot;, &quot;Sunny&quot;, &quot;💜&quot;, &quot;Sunny&quot;, &quot;😍&quot;]' color='[&quot;rgb(255, 0, 0)&quot; ,&quot;rgb(255, 0, 0)&quot; ,&quot;rgb(255, 125, 0)&quot; ,&quot;rgb(255, 125, 0)&quot; ,&quot;rgb(255, 255, 0)&quot; ,&quot;rgb(255, 255, 0)&quot; ,&quot;rgb(0, 255, 0)&quot; ,&quot;rgb(0, 255, 0)&quot; ,&quot;rgb(0, 255, 255)&quot; ,&quot;rgb(0, 255, 255)&quot; ,&quot;rgb(0, 0, 255)&quot; ,&quot;rgb(0, 0, 255)&quot; ,&quot;rgb(255, 0, 255)&quot; ,&quot;rgb(255, 0, 255)&quot;]'></script>
+            <script type="text/javascript" src="/js/mouse-click.js" content='[&#34;Sunny&#34;, &#34;💖&#34;, &#34;Sunny&#34;, &#34;🧡&#34;, &#34;Sunny&#34;, &#34;💛&#34;, &#34;Sunny&#34; , &#34;💚&#34;, &#34;Sunny&#34;, &#34;💙&#34;, &#34;Sunny&#34;, &#34;💜&#34;, &#34;Sunny&#34;, &#34;😍&#34;]' color='[&#34;rgb(255, 0, 0)&#34; ,&#34;rgb(255, 0, 0)&#34; ,&#34;rgb(255, 125, 0)&#34; ,&#34;rgb(255, 125, 0)&#34; ,&#34;rgb(255, 255, 0)&#34; ,&#34;rgb(255, 255, 0)&#34; ,&#34;rgb(0, 255, 0)&#34; ,&#34;rgb(0, 255, 0)&#34; ,&#34;rgb(0, 255, 255)&#34; ,&#34;rgb(0, 255, 255)&#34; ,&#34;rgb(0, 0, 255)&#34; ,&#34;rgb(0, 0, 255)&#34; ,&#34;rgb(255, 0, 255)&#34; ,&#34;rgb(255, 0, 255)&#34;]'></script>
         
 
         <!-- background effects end -->
@@ -648,21 +711,6 @@
     
         <script src="/js/ribbonDynamic.js"></script>
     
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
-            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-            processEscapes: true
-        }
-    });
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax();
-        for (var i = 0; i < all.length; ++i)
-            all[i].SourceElement().parentNode.className += ' has-jax';
-    });
-</script>
-<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 </body>
 
 </html>

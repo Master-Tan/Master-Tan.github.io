@@ -182,13 +182,6 @@
 
                         
                         	<li>
-                          	  <a href="/about/">About Tan</a>
-                        	</li>
-                        
-                    
-
-                        
-                        	<li>
                           	  <a href="/archive/">Archives</a>
                         	</li>
                         
@@ -200,6 +193,13 @@
                         
                         	<li>
                           	  <a href="/tags/">Tags</a>
+                        	</li>
+                        
+                    
+
+                        
+                        	<li>
+                          	  <a href="/about/">About Tan</a>
                         	</li>
                         
                     
@@ -642,9 +642,162 @@
 <li><p>改变损失函数可以改变优化的难度</p>
 </li>
 </ul>
-<h3 id="類神經網路訓練不起來怎麼辦-五-：-批次標準化-Batch-Normalization-簡介"><a href="#類神經網路訓練不起來怎麼辦-五-：-批次標準化-Batch-Normalization-簡介" class="headerlink" title="類神經網路訓練不起來怎麼辦 (五)： 批次標準化 (Batch Normalization) 簡介"></a>類神經網路訓練不起來怎麼辦 (五)： 批次標準化 (Batch Normalization) 簡介</h3><hr>
-<h2 id="Lecture-3-Image-as-input"><a href="#Lecture-3-Image-as-input" class="headerlink" title="Lecture 3:Image as input"></a>Lecture 3:Image as input</h2><hr>
-<h2 id="Lecture-4-Sequence-as-input"><a href="#Lecture-4-Sequence-as-input" class="headerlink" title="Lecture 4:Sequence as input"></a>Lecture 4:Sequence as input</h2><hr>
+<h3 id="類神經網路訓練不起來怎麼辦-五-：-批次標準化-Batch-Normalization-簡介"><a href="#類神經網路訓練不起來怎麼辦-五-：-批次標準化-Batch-Normalization-簡介" class="headerlink" title="類神經網路訓練不起來怎麼辦 (五)： 批次標準化 (Batch Normalization) 簡介"></a>類神經網路訓練不起來怎麼辦 (五)： 批次標準化 (Batch Normalization) 簡介</h3><p>Changing Landscape of Machine Learning</p>
+<p>不同方向坡度非常不同的error surface：input 的 feature 每一个 dimension 的值 scale 差距很大时</p>
+<p>解决：给不同 dimension 同样的数值范围 -&gt; 方法：Feature Normalization</p>
+<ul>
+<li><p>对 $\boldsymbol{x}^{1} = (\boldsymbol{x}<em>{1}^{1}, \boldsymbol{x}</em>{2}^{1},\dots), \boldsymbol{x}^{2} = (\boldsymbol{x}<em>{1}^{2}, \boldsymbol{x}</em>{2}^{2},\dots),\dots$ 的每个维度 $i$ 取均值 $m<em>i$ 和标准差 $\sigma_i$，然后对每个维度 $i$ 进行标准化（standardization）（也是normalization）： $\tilde{\boldsymbol{x}}</em>{i}^{k} \leftarrow \frac{\boldsymbol{x}<em>{i}^{k}-m</em>{i}}{\sigma_{i}}$ （好处：该维度处理后平均值为0，方差为1）</p>
+</li>
+<li><p>一般来说，特征归一化会使梯度下降收敛更快速</p>
+</li>
+<li><p>每一层的输入 / 上一层的输出 都要做 normalization ，在activation function之前还是之后做 normalization 影响不大，根据 activation function 的不同而选择</p>
+</li>
+<li><p>$z^{1}, z^{2}, z^{3} \dots \rightarrow \mu=\frac{1}{3} \sum<em>{i=1}^{3} z^{i} , ~ \sigma</em>{o}=\sqrt{\frac{1}{3} \sum_{i=1}^{3}\left(z^{i}-\mu\right)^{2}}, ~ \tilde{\mathbf{z}}^{i}=\frac{\mathbf{z}^{i}-\mathbf{\mu}}{\mathbf{\sigma}}$ 这导致了之后的每一个 feature 因标准化不再相互独立，变得相互影响</p>
+</li>
+</ul>
+<p>Batch Normalization</p>
+<ul>
+<li><p>实作只对一个 batch 做 normalization，而不是对整个 dataset 做 normalization  -&gt; Batch Normalization</p>
+</li>
+<li><p>Batch Normalization：适用于batch size较大的情况</p>
+</li>
+<li><p>通常还会做：$\hat{\mathbf{z}}^{i}=\boldsymbol{\gamma} \odot \tilde{\mathbf{z}}^{i}+\boldsymbol{\beta}$, $\boldsymbol{\gamma}$ 和 $\boldsymbol{\beta}$ 是可学习的参数（learnable parameters），$\odot$ 是 element-wise multiplication。原因: 可能标准化后均值为 0 给 network 的限制会带来负面影响，$\boldsymbol{\gamma}$ 和 $\boldsymbol{\beta}$ 用于调整分布。$\boldsymbol{\gamma}$ 和 $\boldsymbol{\beta}$ 的初始值：$\boldsymbol{\gamma}=\mathbf{1}, \boldsymbol{\beta}=\mathbf{0}$</p>
+</li>
+</ul>
+<p>Batch Normalization - Testing</p>
+<ul>
+<li>问题：我们并不总是在测试阶段有批处理（凑不够一个batch的数据无法计算均值和方差） -&gt; 解决：计算训练过程中批次的μ和σ的移动平均值，用作测试阶段的μ和σ</li>
+</ul>
+<p>Batch Normalization 为什么能帮助训练优化？</p>
+<ul>
+<li><p>实验结果(和理论分析)支持 Batch Normalization 会改变error surface 的 landscape</p>
+</li>
+<li><p>但是改变error surface 的 landscape 的方式还有其它的很多种，所以 Batch Normalization 属于偶然的一次发现</p>
+</li>
+</ul>
+<hr>
+<h2 id="Lecture-3-Image-as-input"><a href="#Lecture-3-Image-as-input" class="headerlink" title="Lecture 3:Image as input"></a>Lecture 3:Image as input</h2><h3 id="【機器學習2021】卷積神經網路-Convolutional-Neural-Networks-CNN"><a href="#【機器學習2021】卷積神經網路-Convolutional-Neural-Networks-CNN" class="headerlink" title="【機器學習2021】卷積神經網路 (Convolutional Neural Networks, CNN)"></a>【機器學習2021】卷積神經網路 (Convolutional Neural Networks, CNN)</h3><p>Convolutional Neural Network (CNN)：Network Architecture designed for Image（为图像设计的网络架构） </p>
+<p>Image Classification</p>
+<ul>
+<li><p>假设：所有输入的图片都是同样的大小（$100 \times 100$）</p>
+</li>
+<li><p>模型目标：分类（把每一个类别表示成一个 One-Hot 的 Vector）（维度多少：能区分类别的数量）</p>
+</li>
+<li><p>图片：3 - D Tensor（$100 \times 100 \times 3$）（3：RGB）</p>
+<ul>
+<li>拉直为一个向量（3·100·100），其中每一维的数值表某一个位置某一个颜色的强度</li>
+<li>如果把上述向量输入Fully Connected Network，那么参数数量会非常大（$3 \times 100 \times 100 \times 1000 = 30,000,000$）,虽然增加了模型的弹性及能力，但是也增加了 Overfitting 的风险 -&gt; 不一定要用 Fully Connected Network</li>
+<li>观察一：图像识别一些关键的特征（Pattern）即可<ul>
+<li>每一个 Neuron 只看图片的一小块（Receptive Field），如：$3 \times 3 \times 3$，然后将其展开为 3·3·3 维的向量，再作为 Neuron 的输入，Neruon 给 27 维向量每一个 dimension 一个 weight，再加上 bias 得到输出，作为下一层 Neruon 的输入</li>
+<li>如何决定每一个 Neuron 的 Receptive Field？。。。 </li>
+<li>Receptive Field 之间可以重叠，甚至可以完全重合，也可以只选择三个  channels 中的一个或两个…（任意像素及channel的组合都可以）</li>
+</ul>
+</li>
+<li>简化一：最经典的 Receptive Field 安排方式（Typical Setting）：<ul>
+<li>all channels：所有的 Receptive Field 均包括所有的 channels，因此表述 Receptive Field 的时候不需要表明 channels，只需要表明长和宽，长和宽合起来称为 kernel size（$e.g.,3 \times 3$）</li>
+<li>每一个 Receptive Field 均有一组 Neurons （e.g.，64 neurons）</li>
+<li>一个 Receptive Field 向右移动 stride（Hyperparameter）个像素，就得到了下一个 Receptive Field，通常 stride 会是 1 或 2（overlap），因为 stride 太大会导致信息丢失（两个 Receptive Field 不重叠了，信息出现在交界处时会丢失）</li>
+<li>padding：当 stride 大于 1 时，可能会导致最后一个 Receptive Field 无法完全覆盖图片，因此需要在图片的边缘补 0，或者行平均值等合适值（padding 方法有很多种）</li>
+</ul>
+</li>
+<li>观察二：相同的 patterns 会出现在图片不同的地方<ul>
+<li>让不同 Receptive Field 的 Neuron 共享参数</li>
+<li>两个完全重合的 Receptive Field 不会共享参数</li>
+<li>如何共享参数有多种方法 </li>
+</ul>
+</li>
+<li>简化二：最经典的参数共享的方式<ul>
+<li>每个 Receptive Field 都有一组 neurons (e.g., 64 neurons)</li>
+<li>每个 Receptive Field 对应的 neurons 参数都相同（都只有一组参数）（公用的参数称为 filter，则对应的 neurons 参数分别为 filter1，filter2，…）</li>
+</ul>
+</li>
+<li>Convolutional Layer = Receptive Field + Parameter Sharing</li>
+<li>Convolutional Neural Network （CNN） ：用Convolutional Layer 的 Network<ul>
+<li>model bias（模型偏差）较大，但是 Overfitting 的风险较小，但因为是专门为影像的特性设计优化，因此在影像上的表现与 Fully Connected Network 相比仍然不错</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Convolutional Layer</p>
+<ul>
+<li>Convolution：包含很多 Filter，每个 Filter 是 $3 \times 3 \times channel$ 的 Tensor （也就是有 3·3·channel 个参数） </li>
+<li>每个 Filter 的作用：在对应的 $3 \times 3 \times channel$ 范围内识别（抓取）pattern</li>
+<li>每一个 Filter 都以 stride 的间隔扫过整张图片（convolve），得到 Feature Map -&gt; 得到一张 filter_num 个 channel 的新图片</li>
+</ul>
+</li>
+<li><p>neurons 对不同的 receptive fields 共享参数 $\leftrightarrow$ 每一个 filter 扫过整张图片（对整个输入的 image 作卷积）（Convolution）</p>
+</li>
+<li><p>Pooling：观察三：对一张比较大的图片做 subsampling （降采样）（e.g., 将图片的像素的奇数行去掉，偶数列去掉）后，图片具有的信息并没有丢失太多</p>
+<ul>
+<li>Pooling 本身没有参数，只是对图片做一些操作</li>
+<li>Max Pooling：将图片划分为不重叠的小块，每一块取最大值，得到新的图片</li>
+<li>各种 Pooling 的方式有很多种，均为对图片划分为不重叠的小块，然后对每一块做一些操作（降采样），得到新的图片</li>
+<li>在实作上，Convolution 和 Pooling 通常交替使用</li>
+<li>Pooling 的作用：降低图片的大小（subsampling），减少参数数量，减少计算量，减少 Overfitting 的风险；但如果 Pooling 太多，可能会导致信息丢失，因此如果运算资源足够支撑，可以不用 Pooling</li>
+</ul>
+</li>
+<li><p>Flatten：将图片展开为向量，作为 Fully Connected Network 的输入</p>
+</li>
+<li><p>整个经典 CNN 的架构</p>
+<ul>
+<li>图片 -&gt; Convolution -&gt; Pooling -&gt; Convolution -&gt; Pooling -&gt; Flatten -&gt; Fully Connected Network -&gt; Softmax -&gt; 输出</li>
+</ul>
+</li>
+<li><p>Application: Playing Go</p>
+<ul>
+<li>围棋：19 x 19 vector -&gt; Neural Network -&gt; Next Move（19 x 19 positions） 19 x 19 classes</li>
+<li>在这个项目上，CNN 有着比 Fully Connected Network 更好的表现</li>
+<li>CNN：把围棋的棋盘当作图片，每一个位置都是一个 pixel，每一个 pixel 都有 48 个 channels 来表示不同的信息（e.g., 有没有棋子，棋子的颜色，棋子的气等等），因此输入的图片是 19 x 19 x 48 的 Tensor</li>
+<li>为什么 CNN 能用于围棋？：围棋具有和图像相似的特性<ul>
+<li>有些 pattern 比整个图像小得多</li>
+<li>相同的 patterns 出现在不同的地区</li>
+<li>不使用 Pooling ，因为围棋并不是降采样不影响结果的情况 </li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>More Applications</p>
+<ul>
+<li>Speech</li>
+<li>Natural Language Processing</li>
+<li>均需要根据对应的特性设计合适的 Receptive Field</li>
+</ul>
+</li>
+<li><p>CNN 不能处理影像放大、缩小、旋转等操作，因为这些操作会导致图片的 pattern 发生变化，因此 CNN 对于这些操作并不具有 Invariance（不变性）</p>
+<ul>
+<li>因此我们需要 Data Augmentation（数据增强）来增加数据量，同时也可以减少 Overfitting 的风险</li>
+<li>可以处理上述问题的 Network：Spatial Transformer Layer</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="Lecture-4-Sequence-as-input"><a href="#Lecture-4-Sequence-as-input" class="headerlink" title="Lecture 4:Sequence as input"></a>Lecture 4:Sequence as input</h2><h3 id="【機器學習2021】自注意力機制-Self-attention-上"><a href="#【機器學習2021】自注意力機制-Self-attention-上" class="headerlink" title="【機器學習2021】自注意力機制 (Self-attention) (上)"></a>【機器學習2021】自注意力機制 (Self-attention) (上)</h3><p>复杂的输入</p>
+<ul>
+<li><p>输入为一个向量 </p>
+<ul>
+<li>a vector -&gt; Model -&gt; Scalar or Class</li>
+</ul>
+</li>
+<li><p>输入为一组向量？</p>
+<ul>
+<li><p>a set of vector(may change length) -&gt; Model -&gt; Scalars or Classes</p>
+</li>
+<li><p>例子1：文字处理，每个句子长度不一样，把句子中每个词汇描述成一个向量，一句中的所有词汇作为一组向量输入模型</p>
+<ul>
+<li>如何用向量表示一个单词？</li>
+<li>One-hot Encoding -&gt; 每个单词均对应且只对应一个维度 -&gt; 无法体现词汇之间的关联性</li>
+<li>Word Embedding -&gt; 给要处理的每一个词汇一个向量，此向量具有语义资讯</li>
+</ul>
+</li>
+<li><p>例子2：音频处理，对一段声音讯号取一个范围（Window）（通常取25ms），此范围中的讯号描述为一个向量（Frame），然后平移该范围（通常取10ms），得到下一小段声音讯号，转化为下一个向量</p>
+</li>
+<li><p>例子3：图（包括许多可以使用图解释的需要输入模型的东西，如分子），把图中每一个节点视作一个向量</p>
+</li>
+</ul>
+</li>
+</ul>
+<p>输出是？</p>
+<hr>
 <h2 id="Lecture-5-Sequence-to-sequence"><a href="#Lecture-5-Sequence-to-sequence" class="headerlink" title="Lecture 5:Sequence to sequence"></a>Lecture 5:Sequence to sequence</h2><hr>
 <h2 id="Lecture-6-Generation"><a href="#Lecture-6-Generation" class="headerlink" title="Lecture 6:Generation"></a>Lecture 6:Generation</h2><hr>
 <h2 id="Recent-Advance-of-Self-supervised-learning-for-NLP"><a href="#Recent-Advance-of-Self-supervised-learning-for-NLP" class="headerlink" title="Recent Advance of Self-supervised learning for NLP"></a>Recent Advance of Self-supervised learning for NLP</h2><hr>
@@ -723,7 +876,7 @@
           <strong class="toc-title">Contents</strong>
           
             
-              <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#Lecture-1-Introduction-of-Deep-Learning"><span class="toc-nav-text">Lecture 1:Introduction of Deep Learning</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#預測本頻道觀看人數-上-機器學習基本概念簡介"><span class="toc-nav-text">預測本頻道觀看人數 (上) - 機器學習基本概念簡介</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#預測本頻道觀看人數-下-深度學習基本概念簡介"><span class="toc-nav-text">預測本頻道觀看人數 (下) - 深度學習基本概念簡介</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#Lecture-2-What-to-do-if-my-network-fails-to-train"><span class="toc-nav-text">Lecture 2:What to do if my network fails to train</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#機器學習任務攻略"><span class="toc-nav-text">機器學習任務攻略</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#類神經網路訓練不起來怎麼辦-一-：-局部最小值-local-minima-與鞍點-saddle-point"><span class="toc-nav-text">類神經網路訓練不起來怎麼辦 (一)： 局部最小值 (local minima) 與鞍點 (saddle point)</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#類神經網路訓練不起來怎麼辦-二-：-批次-batch-與動量-momentum"><span class="toc-nav-text">類神經網路訓練不起來怎麼辦 (二)： 批次 (batch) 與動量 (momentum)</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#類神經網路訓練不起來怎麼辦-三-：自動調整學習速率-Learning-Rate"><span class="toc-nav-text">類神經網路訓練不起來怎麼辦 (三)：自動調整學習速率 (Learning Rate)</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#類神經網路訓練不起來怎麼辦-四-：損失函數-Loss-也可能有影響"><span class="toc-nav-text">類神經網路訓練不起來怎麼辦 (四)：損失函數 (Loss) 也可能有影響</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#類神經網路訓練不起來怎麼辦-五-：-批次標準化-Batch-Normalization-簡介"><span class="toc-nav-text">類神經網路訓練不起來怎麼辦 (五)： 批次標準化 (Batch Normalization) 簡介</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#Lecture-3-Image-as-input"><span class="toc-nav-text">Lecture 3:Image as input</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#Lecture-4-Sequence-as-input"><span class="toc-nav-text">Lecture 4:Sequence as input</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#Lecture-5-Sequence-to-sequence"><span class="toc-nav-text">Lecture 5:Sequence to sequence</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#Lecture-6-Generation"><span class="toc-nav-text">Lecture 6:Generation</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#Recent-Advance-of-Self-supervised-learning-for-NLP"><span class="toc-nav-text">Recent Advance of Self-supervised learning for NLP</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#Lecture-7-Self-supervised-learning-for-Speech-and-Image"><span class="toc-nav-text">Lecture 7:Self-supervised learning for Speech and Image</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#Lecture-8-Auto-encoder-Anomaly-Detection"><span class="toc-nav-text">Lecture 8:Auto-encoder&#x2F; Anomaly Detection</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#Lecture-9-Explainable-AI"><span class="toc-nav-text">Lecture 9:Explainable AI</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#Lecture-10-Attack"><span class="toc-nav-text">Lecture 10:Attack</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#Lecture-11-Adaptation"><span class="toc-nav-text">Lecture 11:Adaptation</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#Lecture-12-Reinforcement-Learning"><span class="toc-nav-text">Lecture 12:Reinforcement Learning</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#Lecture-13-Network-Compression"><span class="toc-nav-text">Lecture 13:Network Compression</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#Lecture-14-Life-long-Learning"><span class="toc-nav-text">Lecture 14:Life-long Learning</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#Lecture-15-Meta-Learning"><span class="toc-nav-text">Lecture 15:Meta Learning</span></a></li></ol>
+              <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#Lecture-1-Introduction-of-Deep-Learning"><span class="toc-nav-text">Lecture 1:Introduction of Deep Learning</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#預測本頻道觀看人數-上-機器學習基本概念簡介"><span class="toc-nav-text">預測本頻道觀看人數 (上) - 機器學習基本概念簡介</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#預測本頻道觀看人數-下-深度學習基本概念簡介"><span class="toc-nav-text">預測本頻道觀看人數 (下) - 深度學習基本概念簡介</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#Lecture-2-What-to-do-if-my-network-fails-to-train"><span class="toc-nav-text">Lecture 2:What to do if my network fails to train</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#機器學習任務攻略"><span class="toc-nav-text">機器學習任務攻略</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#類神經網路訓練不起來怎麼辦-一-：-局部最小值-local-minima-與鞍點-saddle-point"><span class="toc-nav-text">類神經網路訓練不起來怎麼辦 (一)： 局部最小值 (local minima) 與鞍點 (saddle point)</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#類神經網路訓練不起來怎麼辦-二-：-批次-batch-與動量-momentum"><span class="toc-nav-text">類神經網路訓練不起來怎麼辦 (二)： 批次 (batch) 與動量 (momentum)</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#類神經網路訓練不起來怎麼辦-三-：自動調整學習速率-Learning-Rate"><span class="toc-nav-text">類神經網路訓練不起來怎麼辦 (三)：自動調整學習速率 (Learning Rate)</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#類神經網路訓練不起來怎麼辦-四-：損失函數-Loss-也可能有影響"><span class="toc-nav-text">類神經網路訓練不起來怎麼辦 (四)：損失函數 (Loss) 也可能有影響</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#類神經網路訓練不起來怎麼辦-五-：-批次標準化-Batch-Normalization-簡介"><span class="toc-nav-text">類神經網路訓練不起來怎麼辦 (五)： 批次標準化 (Batch Normalization) 簡介</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#Lecture-3-Image-as-input"><span class="toc-nav-text">Lecture 3:Image as input</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#【機器學習2021】卷積神經網路-Convolutional-Neural-Networks-CNN"><span class="toc-nav-text">【機器學習2021】卷積神經網路 (Convolutional Neural Networks, CNN)</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#Lecture-4-Sequence-as-input"><span class="toc-nav-text">Lecture 4:Sequence as input</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#【機器學習2021】自注意力機制-Self-attention-上"><span class="toc-nav-text">【機器學習2021】自注意力機制 (Self-attention) (上)</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#Lecture-5-Sequence-to-sequence"><span class="toc-nav-text">Lecture 5:Sequence to sequence</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#Lecture-6-Generation"><span class="toc-nav-text">Lecture 6:Generation</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#Recent-Advance-of-Self-supervised-learning-for-NLP"><span class="toc-nav-text">Recent Advance of Self-supervised learning for NLP</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#Lecture-7-Self-supervised-learning-for-Speech-and-Image"><span class="toc-nav-text">Lecture 7:Self-supervised learning for Speech and Image</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#Lecture-8-Auto-encoder-Anomaly-Detection"><span class="toc-nav-text">Lecture 8:Auto-encoder&#x2F; Anomaly Detection</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#Lecture-9-Explainable-AI"><span class="toc-nav-text">Lecture 9:Explainable AI</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#Lecture-10-Attack"><span class="toc-nav-text">Lecture 10:Attack</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#Lecture-11-Adaptation"><span class="toc-nav-text">Lecture 11:Adaptation</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#Lecture-12-Reinforcement-Learning"><span class="toc-nav-text">Lecture 12:Reinforcement Learning</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#Lecture-13-Network-Compression"><span class="toc-nav-text">Lecture 13:Network Compression</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#Lecture-14-Life-long-Learning"><span class="toc-nav-text">Lecture 14:Life-long Learning</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#Lecture-15-Meta-Learning"><span class="toc-nav-text">Lecture 15:Meta Learning</span></a></li></ol>
             
           
           </div>
@@ -866,7 +1019,7 @@
 
                 </ul>
                 <p class="copyright text-muted">
-                    Copyright &copy; Tan 2023 | Powered by 
+                    Copyright &copy; Tan 2024 | Powered by 
                     <a href="https://github.com/Master-Tan/Master-Tan.github.io" target="_blank" rel="noopener">
                         <i>Tan's Blog</i>
                     </a>
@@ -986,7 +1139,7 @@
         
 
         
-            <script type="text/javascript" src="/js/mouse-click.js" content='[&quot;Sunny&quot;, &quot;💖&quot;, &quot;Sunny&quot;, &quot;🧡&quot;, &quot;Sunny&quot;, &quot;💛&quot;, &quot;Sunny&quot; , &quot;💚&quot;, &quot;Sunny&quot;, &quot;💙&quot;, &quot;Sunny&quot;, &quot;💜&quot;, &quot;Sunny&quot;, &quot;😍&quot;]' color='[&quot;rgb(255, 0, 0)&quot; ,&quot;rgb(255, 0, 0)&quot; ,&quot;rgb(255, 125, 0)&quot; ,&quot;rgb(255, 125, 0)&quot; ,&quot;rgb(255, 255, 0)&quot; ,&quot;rgb(255, 255, 0)&quot; ,&quot;rgb(0, 255, 0)&quot; ,&quot;rgb(0, 255, 0)&quot; ,&quot;rgb(0, 255, 255)&quot; ,&quot;rgb(0, 255, 255)&quot; ,&quot;rgb(0, 0, 255)&quot; ,&quot;rgb(0, 0, 255)&quot; ,&quot;rgb(255, 0, 255)&quot; ,&quot;rgb(255, 0, 255)&quot;]'></script>
+            <script type="text/javascript" src="/js/mouse-click.js" content='[&#34;Sunny&#34;, &#34;💖&#34;, &#34;Sunny&#34;, &#34;🧡&#34;, &#34;Sunny&#34;, &#34;💛&#34;, &#34;Sunny&#34; , &#34;💚&#34;, &#34;Sunny&#34;, &#34;💙&#34;, &#34;Sunny&#34;, &#34;💜&#34;, &#34;Sunny&#34;, &#34;😍&#34;]' color='[&#34;rgb(255, 0, 0)&#34; ,&#34;rgb(255, 0, 0)&#34; ,&#34;rgb(255, 125, 0)&#34; ,&#34;rgb(255, 125, 0)&#34; ,&#34;rgb(255, 255, 0)&#34; ,&#34;rgb(255, 255, 0)&#34; ,&#34;rgb(0, 255, 0)&#34; ,&#34;rgb(0, 255, 0)&#34; ,&#34;rgb(0, 255, 255)&#34; ,&#34;rgb(0, 255, 255)&#34; ,&#34;rgb(0, 0, 255)&#34; ,&#34;rgb(0, 0, 255)&#34; ,&#34;rgb(255, 0, 255)&#34; ,&#34;rgb(255, 0, 255)&#34;]'></script>
         
 
         <!-- background effects end -->
@@ -996,21 +1149,6 @@
     
         <script src="/js/ribbonDynamic.js"></script>
     
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
-            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-            processEscapes: true
-        }
-    });
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax();
-        for (var i = 0; i < all.length; ++i)
-            all[i].SourceElement().parentNode.className += ' has-jax';
-    });
-</script>
-<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 </body>
 
 </html>
