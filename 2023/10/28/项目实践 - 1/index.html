@@ -119,7 +119,7 @@
 	       
                             <div class="blank_box"></div>
                             <span class="meta">
-                                 <span class="post-count">3.2k</span> Words
+                                 <span class="post-count">3.3k</span> Words
                             </span>
                             <div class="blank_box"></div>
                             <!-- 不蒜子统计 start -->
@@ -179,6 +179,9 @@
                     
 
                         
+                    
+
+                        
                         	<li>
                           	  <a href="/archive/">Archives</a>
                         	</li>
@@ -186,18 +189,15 @@
                     
 
                         
-                    
-
-                        
                         	<li>
-                          	  <a href="/tags/">Tags</a>
+                          	  <a href="/about/">About Tan</a>
                         	</li>
                         
                     
 
                         
                         	<li>
-                          	  <a href="/about/">About Tan</a>
+                          	  <a href="/tags/">Tags</a>
                         	</li>
                         
                     
@@ -368,12 +368,14 @@
 <h3 id="torch-where"><a href="#torch-where" class="headerlink" title="torch.where"></a>torch.where</h3><p>torch.where(condition, x, y)<br>根据条件，也就是condiction，返回从x或y中选择的元素的张量（这里会创建一个新的张量，新张量的元素就是从x或y中选的，形状要符合x和y的广播条件）。<br>Parameters解释如下：<br>1、condition (bool型张量) ：当condition为真，返回x的值，否则返回y的值<br>2、x (张量或标量)：当condition=True时选x的值<br>2、y (张量或标量)：当condition=False时选y的值</p>
 <h3 id="问题-1"><a href="#问题-1" class="headerlink" title="问题"></a>问题</h3><ol>
 <li>使用pytorch张量代替数组进行运算的意义</li>
-<li>什么时候需要.to(device)</li>
-<li>wall - t 以及 wall边界如何体现</li>
+<li>什么时候需要.to(device)，可以一部分在cuda:0一部分在cuda:1吗</li>
+<li>wall - t 以及 wall边界如何体现（现在做法不知道对不对</li>
 <li>确认edge-type数量</li>
-<li>毕设需要写啥</li>
-<li>回家要干活吗</li>
+<li>毕设需要写啥/提前准备啥<!-- 6. 在家需要干啥活 --></li>
+<li>loss怎么看，如何调参数/看出模型是否有问题（根据loss），loss数量级太小（e-7）会有问题吗</li>
+<li>12h 2500次迭代 速度是不是太慢了 等待时间干嘛</li>
 </ol>
+<h3 id="nohup"><a href="#nohup" class="headerlink" title="nohup"></a>nohup</h3><p><a href="https://blog.csdn.net/weixin_43279138/article/details/124441700" target="_blank" rel="noopener">https://blog.csdn.net/weixin_43279138/article/details/124441700</a></p>
 
                 
                 <hr>
@@ -440,7 +442,7 @@
           <strong class="toc-title">Contents</strong>
           
             
-              <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#配置环境"><span class="toc-nav-text">配置环境</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#问题1："><span class="toc-nav-text">问题1：</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#问题2："><span class="toc-nav-text">问题2：</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#问题3："><span class="toc-nav-text">问题3：</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#看代码"><span class="toc-nav-text">看代码</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#yacs-config"><span class="toc-nav-text">yacs.config</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#torch-utils-data-DataLoader"><span class="toc-nav-text">torch.utils.data.DataLoader</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#sh文件提示有-r执行不了"><span class="toc-nav-text">.sh文件提示有\r执行不了</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#metadata-json"><span class="toc-nav-text">metadata.json</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#处理数据-extract-tfrs-py-gt-data-test、train、vaild-pkl"><span class="toc-nav-text">处理数据 extract_tfrs.py -&gt; data&#x2F;(test、train、vaild)&#x2F;.pkl</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#pkl"><span class="toc-nav-text">.pkl</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#我的-pkl"><span class="toc-nav-text">我的.pkl</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#animation-FuncAnimation"><span class="toc-nav-text">animation.FuncAnimation</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#变量命名"><span class="toc-nav-text">变量命名</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#TORCH-UTILS-DATA"><span class="toc-nav-text">TORCH.UTILS.DATA</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#plt-figure"><span class="toc-nav-text">plt.figure</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#在远程上无法使用python进行代码补全"><span class="toc-nav-text">在远程上无法使用python进行代码补全</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#scatter的散点大小与坐标轴如何一致"><span class="toc-nav-text">scatter的散点大小与坐标轴如何一致</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#主要区别"><span class="toc-nav-text">主要区别</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#torch-nn-model"><span class="toc-nav-text">torch.nn.model</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#为什么要写成-super-ChildClass-self-init"><span class="toc-nav-text">为什么要写成 super(ChildClass, self).init()</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#spatial-cKDTree"><span class="toc-nav-text">spatial.cKDTree</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#spatial-cKDTree-query-pairs"><span class="toc-nav-text">spatial.cKDTree.query_pairs</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#为什么-loss-backward-能跟踪到-model-并将进行反向传播计算"><span class="toc-nav-text">为什么 loss.backward() 能跟踪到 model 并将进行反向传播计算</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#问题"><span class="toc-nav-text">问题</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#torch-nn-embedding"><span class="toc-nav-text">torch.nn.embedding</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#torch-clip"><span class="toc-nav-text">torch.clip</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#torch-where"><span class="toc-nav-text">torch.where</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#问题-1"><span class="toc-nav-text">问题</span></a></li></ol></li></ol>
+              <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#配置环境"><span class="toc-nav-text">配置环境</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#问题1："><span class="toc-nav-text">问题1：</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#问题2："><span class="toc-nav-text">问题2：</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#问题3："><span class="toc-nav-text">问题3：</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#看代码"><span class="toc-nav-text">看代码</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#yacs-config"><span class="toc-nav-text">yacs.config</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#torch-utils-data-DataLoader"><span class="toc-nav-text">torch.utils.data.DataLoader</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#sh文件提示有-r执行不了"><span class="toc-nav-text">.sh文件提示有\r执行不了</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#metadata-json"><span class="toc-nav-text">metadata.json</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#处理数据-extract-tfrs-py-gt-data-test、train、vaild-pkl"><span class="toc-nav-text">处理数据 extract_tfrs.py -&gt; data&#x2F;(test、train、vaild)&#x2F;.pkl</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#pkl"><span class="toc-nav-text">.pkl</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#我的-pkl"><span class="toc-nav-text">我的.pkl</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#animation-FuncAnimation"><span class="toc-nav-text">animation.FuncAnimation</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#变量命名"><span class="toc-nav-text">变量命名</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#TORCH-UTILS-DATA"><span class="toc-nav-text">TORCH.UTILS.DATA</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#plt-figure"><span class="toc-nav-text">plt.figure</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#在远程上无法使用python进行代码补全"><span class="toc-nav-text">在远程上无法使用python进行代码补全</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#scatter的散点大小与坐标轴如何一致"><span class="toc-nav-text">scatter的散点大小与坐标轴如何一致</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#主要区别"><span class="toc-nav-text">主要区别</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#torch-nn-model"><span class="toc-nav-text">torch.nn.model</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#为什么要写成-super-ChildClass-self-init"><span class="toc-nav-text">为什么要写成 super(ChildClass, self).init()</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#spatial-cKDTree"><span class="toc-nav-text">spatial.cKDTree</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#spatial-cKDTree-query-pairs"><span class="toc-nav-text">spatial.cKDTree.query_pairs</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#为什么-loss-backward-能跟踪到-model-并将进行反向传播计算"><span class="toc-nav-text">为什么 loss.backward() 能跟踪到 model 并将进行反向传播计算</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#问题"><span class="toc-nav-text">问题</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#torch-nn-embedding"><span class="toc-nav-text">torch.nn.embedding</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#torch-clip"><span class="toc-nav-text">torch.clip</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#torch-where"><span class="toc-nav-text">torch.where</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#问题-1"><span class="toc-nav-text">问题</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#nohup"><span class="toc-nav-text">nohup</span></a></li></ol></li></ol>
             
           
           </div>
@@ -701,7 +703,7 @@
         
 
         
-            <script type="text/javascript" src="/js/mouse-click.js" content='[&#34;Sunny&#34;, &#34;💖&#34;, &#34;Sunny&#34;, &#34;🧡&#34;, &#34;Sunny&#34;, &#34;💛&#34;, &#34;Sunny&#34; , &#34;💚&#34;, &#34;Sunny&#34;, &#34;💙&#34;, &#34;Sunny&#34;, &#34;💜&#34;, &#34;Sunny&#34;, &#34;😍&#34;]' color='[&#34;rgb(255, 0, 0)&#34; ,&#34;rgb(255, 0, 0)&#34; ,&#34;rgb(255, 125, 0)&#34; ,&#34;rgb(255, 125, 0)&#34; ,&#34;rgb(255, 255, 0)&#34; ,&#34;rgb(255, 255, 0)&#34; ,&#34;rgb(0, 255, 0)&#34; ,&#34;rgb(0, 255, 0)&#34; ,&#34;rgb(0, 255, 255)&#34; ,&#34;rgb(0, 255, 255)&#34; ,&#34;rgb(0, 0, 255)&#34; ,&#34;rgb(0, 0, 255)&#34; ,&#34;rgb(255, 0, 255)&#34; ,&#34;rgb(255, 0, 255)&#34;]'></script>
+            <script type="text/javascript" src="/js/mouse-click.js" content='[&quot;Sunny&quot;, &quot;💖&quot;, &quot;Sunny&quot;, &quot;🧡&quot;, &quot;Sunny&quot;, &quot;💛&quot;, &quot;Sunny&quot; , &quot;💚&quot;, &quot;Sunny&quot;, &quot;💙&quot;, &quot;Sunny&quot;, &quot;💜&quot;, &quot;Sunny&quot;, &quot;😍&quot;]' color='[&quot;rgb(255, 0, 0)&quot; ,&quot;rgb(255, 0, 0)&quot; ,&quot;rgb(255, 125, 0)&quot; ,&quot;rgb(255, 125, 0)&quot; ,&quot;rgb(255, 255, 0)&quot; ,&quot;rgb(255, 255, 0)&quot; ,&quot;rgb(0, 255, 0)&quot; ,&quot;rgb(0, 255, 0)&quot; ,&quot;rgb(0, 255, 255)&quot; ,&quot;rgb(0, 255, 255)&quot; ,&quot;rgb(0, 0, 255)&quot; ,&quot;rgb(0, 0, 255)&quot; ,&quot;rgb(255, 0, 255)&quot; ,&quot;rgb(255, 0, 255)&quot;]'></script>
         
 
         <!-- background effects end -->
@@ -711,6 +713,21 @@
     
         <script src="/js/ribbonDynamic.js"></script>
     
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 </body>
 
 </html>
