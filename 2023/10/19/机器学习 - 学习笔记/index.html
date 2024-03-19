@@ -797,9 +797,274 @@
 </li>
 </ul>
 <p>输出是？</p>
+<ol>
+<li><p>每一个向量对应一个标签（Scalar or Class）：此时输入和输出等长（Sequence Labeling）</p>
+<ul>
+<li>举例：POS Tagging（Part of Speech Tagging）：给每一个词汇标注词性 </li>
+<li>举例：语音识别：给每一个 Frame 标注音素（Phoneme）</li>
+<li>举例：social network analysis：给每一个节点标注类别 </li>
+</ul>
+</li>
+<li><p>一组向量（sequence）只输出一个标签</p>
+<ul>
+<li>举例：Sentiment Analysis：给一段话标注情感（positive or negative）</li>
+<li>举例：语者识别：给一段声音讯号标注说话者</li>
+<li>举例：Graph Classification：给一个图标注类别</li>
+</ul>
+</li>
+<li>模型自己决定输出几个标签（seq2seq）<ul>
+<li>举例：Translation：给一段话翻译成另一种语言</li>
+<li>真·语音识别：输入一段音频，输出一段话</li>
+</ul>
+</li>
+</ol>
+<p>Sequence Labeling：</p>
+<ul>
+<li>不能直接使用Fully Connected Network，因为相同的输入可能因为上下文不同需要不同的输出（此时一种不那么优的解：输入为Window，其中包含需要识别的向量以及上下文各一部分向量）</li>
+<li>需要考虑整个Input Sequence的信息（全局信息）：Self-attention</li>
+</ul>
+<p>Self-attention：</p>
+<ul>
+<li>输入n个向量 -&gt; Self-attention -&gt; 输出n个向量（每一个向量都考虑了整个输入序列的信息（包含context）） -&gt; 每个向量均输入 Fully Connected Network -&gt; 输出</li>
+<li>上述输出还可以再输入一个 Self-attention Layer，再输入 Fully Connected Network，如此循环多次 </li>
+<li>Self-attention 经典应用：Transformer （Paper：Attention is All You Need）</li>
+<li>输入： 一组向量（$a^1, a^2, \dots, a^n$），可以是整个network的输入，也可以是某一层（hidden layer）的输出</li>
+<li>输出： 一组向量（$b^1, b^2, \dots, b^n$），每个向量都考虑了整个输入序列的信息（包含context）</li>
+<li>如何产生 $b^1$ ？：<ol>
+<li>根据 $a^1$ 找出 sequence 中每一个与 $a^1$ “相关”的其他向量</li>
+<li>如何确定两个向量之间的相关性 $\alpha$ （attention score）？有多种做法。常见做法：Dot-product：$\alpha = a^i W^q \cdot a^j W^k$（最常用且被用在Transformer中），Additive：$\alpha = W \tanh(W^q a^i + W^k a^j)$ …</li>
+<li>计算 query：$q^1 = W^q a^1$，计算 key：$k^{2,3,…,n} = W^k a^{2,3,…,n}$，计算 attention score：$\alpha<em>{1,1} = q^1 k^1$（自身之间也需要计算关联性）, $\alpha</em>{1,2} = q^1 k^2$，$\alpha<em>{1,3} = q^1 k^3$，…，$\alpha</em>{1,n} = q^1 k^n$</li>
+<li>对 attention score $\alpha<em>{1,1}, \alpha</em>{1,2}…$ 使用 softmax：$\alpha<em>{1,1}^{\prime} = \frac{\exp(\alpha</em>{1,1})}{\sum<em>{j=1}^{n} \exp(\alpha</em>{1,j})}$，$\alpha<em>{1,2}^{\prime} = \frac{\exp(\alpha</em>{1,2})}{\sum<em>{j=1}^{n} \exp(\alpha</em>{1,j})}$，…，$\alpha<em>{1,n}^{\prime} = \frac{\exp(\alpha</em>{1,n})}{\sum<em>{j=1}^{n} \exp(\alpha</em>{1,j})}$ （不一定使用 softmax，也可以使用别的 Activation Function）（normalization）</li>
+<li>根据得到的 attention score $\alpha<em>{1,1}^{\prime}, \alpha</em>{1,2}^{\prime}…$ 抽取出 sequence 中重要的信息：取 $v^1 = W^v a^1$，$v^2 = W^v a^2$，…，$v^n = W^v a^n$，然后根据 attention score $\alpha<em>{1,1}^{\prime}, \alpha</em>{1,2}^{\prime}…$ 得到 $b^1 = \sum<em>{j=1}^{n} \alpha</em>{1,j}^{\prime} v^j = \alpha<em>{1,1}^{\prime} v^1 + \alpha</em>{1,2}^{\prime} v^2 + … + \alpha_{1,n}^{\prime} v^n$</li>
+<li>关联性可以通过 $b^1$ 和每一个 $v^i$ 的接近程度体现</li>
+</ol>
+</li>
+<li>$b^2, b^3, …$ 的计算与 $b^1$ 的计算类似，并且不需要有先后计算关系，因此可以并行计算（parallel）</li>
+</ul>
+<h3 id="【機器學習2021】自注意力機制-Self-attention-下"><a href="#【機器學習2021】自注意力機制-Self-attention-下" class="headerlink" title="【機器學習2021】自注意力機制 (Self-attention) (下)"></a>【機器學習2021】自注意力機制 (Self-attention) (下)</h3><p>从矩阵乘法角度看 Self-attention 是如何工作的？</p>
+<ul>
+<li>每一个 $a^i$ 都分别产生 $q^i, k^i, v^i$ ：$q^i = W^q a^i$，$k^i = W^k a^i$，$v^i = W^v a^i$</li>
+<li>则有：$\left[q^1 \quad q^2 \quad \cdots \quad q^n\right] = W^q \left[a^1 \quad a^2 \quad \cdots \quad a^n\right]$，$\left[k^1 \quad k^2 \quad \cdots \quad k^n\right] = W^k \left[a^1 \quad a^2 \quad \cdots \quad a^n\right]$，$\left[v^1 \quad v^2 \quad \cdots \quad v^n\right] = W^v \left[a^1 \quad a^2 \quad \cdots \quad a^n\right]$，令 $Q = \left[q^1 \quad q^2 \quad \cdots \quad q^n\right]$，$K = \left[k^1 \quad k^2 \quad \cdots \quad k^n\right]$，$V = \left[v^1 \quad v^2 \quad \cdots \quad v^n\right]$，$I = \left[a^1 \quad a^2 \quad \cdots \quad a^n\right]$, 则有 $Q = W^q I$，$K = W^k I$，$V = W^v I$</li>
+<li>$\alpha<em>{1,1} = {k^1}^T q^1$，$\alpha</em>{1,2} = {k^2}^T q^1$，…，$\alpha_{1,n} = {k^n}^T q^1$</li>
+<li>则有 $\left[\begin{array}{cccc} \alpha<em>{1,1} \ \alpha</em>{1,2} \ \vdots \ \alpha_{1,n} \end{array}\right] = \left[\begin{array}{cccc} {k^1}^T \ {k^2}^T \ \vdots \ {k^n}^T \end{array}\right] \left[\begin{array}{c} q^1 \ q^1 \ \vdots \ q^1 \end{array}\right]$</li>
+<li>则有 $\left[\begin{array}{cccc} \alpha<em>{1,1} &amp; \alpha</em>{2, 1} &amp; … &amp; \alpha<em>{n, 1} \ \alpha</em>{1,2} &amp; \alpha<em>{2, 2} &amp; … &amp; \alpha</em>{n, 2} \ \vdots &amp; \vdots &amp; \ddots &amp; \vdots \ \alpha<em>{1, n} &amp; \alpha</em>{2, n} &amp; … &amp; \alpha_{n, n} \end{array}\right] = \left[\begin{array}{cccc} {k^1}^T \ {k^2}^T \ \vdots \ {k^n}^T \end{array}\right] \left[\begin{array}{cccc} q^1 &amp; q^2 &amp; … &amp; q^n \end{array}\right]$ , 记作 $A = K^T Q$</li>
+<li>对A中的每一列使用softmax： $A^{\prime} = softmax(A) = \left[\begin{array}{cccc} \alpha<em>{1,1}^{\prime} &amp; \alpha</em>{2, 1}^{\prime} &amp; … &amp; \alpha<em>{n, 1}^{\prime} \ \alpha</em>{1,2}^{\prime} &amp; \alpha<em>{2, 2}^{\prime} &amp; … &amp; \alpha</em>{n, 2}^{\prime} \ \vdots &amp; \vdots &amp; \ddots &amp; \vdots \ \alpha<em>{1, n}^{\prime} &amp; \alpha</em>{2, n}^{\prime} &amp; … &amp; \alpha_{n, n}^{\prime} \end{array}\right]$，（Attention Matrix）</li>
+<li>$\left[b^1 \quad b^2 \quad \cdots \quad b^n\right] = \left[v^1 \quad v^2 \quad \cdots \quad v^n\right] \left[\begin{array}{cccc} \alpha<em>{1,1}^{\prime} &amp; \alpha</em>{2, 1}^{\prime} &amp; … &amp; \alpha<em>{n, 1}^{\prime} \ \alpha</em>{1,2}^{\prime} &amp; \alpha<em>{2, 2}^{\prime} &amp; … &amp; \alpha</em>{n, 2}^{\prime} \ \vdots &amp; \vdots &amp; \ddots &amp; \vdots \ \alpha<em>{1, n}^{\prime} &amp; \alpha</em>{2, n}^{\prime} &amp; … &amp; \alpha_{n, n}^{\prime} \end{array}\right]$，记作 $O = V A^{\prime}$</li>
+<li>此时 O 即为 self-attention 输出： $b^1, b^2, \dots, b^n$</li>
+<li>Attention score $\alpha<em>{1,1}^{\prime}, \alpha</em>{1,2}^{\prime}…$ 体现了每一个 $a^i$ 与 $a^1$ 的相关性</li>
+<li>$b^1, b^2, \dots, b^n$ 体现了每一个 $a^i$ 与整个输入序列的相关性</li>
+<li>因此，训练参数只有 $W^q, W^k, W^v$</li>
+</ul>
+<p>认为问题有多种不同的相关性：Multi-head Self-attention：</p>
+<ul>
+<li>$q^i = W^q_i a^i$，$q^{i, 1} = W^{q, 1} q^i$，$q^{i, 2} = W^{q, 2} q^i$…</li>
+<li>相当于有多个 Self-attention Layer，每一个 Self-attention Layer 有不同的 $W^q, W^k, W^v$，最后得到 $b^{i, 1}, b^{i, 2}, …$，这个就是不同的相关性，可以把这些相关性合并起来（如通过一个Transform），得到 $b^i$</li>
+</ul>
+<p>Positional Encoding（位置编码）：</p>
+<ul>
+<li>在 self-attention 中，并没有位置信息，如果需要位置信息，可以加上位置编码（Positional Encoding），比如在词性标注中，词的位置对词性标注有影响</li>
+<li>为每一个位置设定一个向量（positional vector）$e^i$，然后加到输入向量中：$a^i = a^i + e^i$</li>
+<li>$e^i$ 是手动设计的（hand-crafted），可以是任意的，但是需要有规律，可以通过公式生成，甚至可以是根据资料学习出来的</li>
+<li>每一个位置都有专属的 $e^i$，希望透过给每一个位置不同的 $e^i$，让模型在处理 Input Sequence 时能够考虑到位置信息</li>
+</ul>
+<p>Self-attention 的应用：</p>
+<ul>
+<li>Transformer：用于语言模型、翻译、语音识别等</li>
+<li>BERT：用于自然语言处理</li>
+<li>广泛应用于自然语言处理领域（NLP）</li>
+<li>其他领域：</li>
+<li>语音识别：<ul>
+<li>语音是一排非常长的向量序列（因为声音讯号识别的时间间隔通常是10ms，因此一句话通常有成千上万个向量） </li>
+<li>问题：self-attention 中计算输入长度为L的向量序列的 Attention Matrix 的时间复杂度是 $L^2$，因此对于长序列的计算量非常大，训练时间非常长</li>
+<li>解决方法：Truncated Self-attention，不看一整句话，而是只看一小范围中的话，这样可以加快训练速度</li>
+</ul>
+</li>
+<li>图片处理：<ul>
+<li>图片除了在CNN中视为一整个向量，也可以视为一个向量序列（每一个像素点都是一个向量）</li>
+<li>应用：Self-Attention GAN，DEtection Transformer（DETR）</li>
+</ul>
+</li>
+<li>图（Graph）：<ul>
+<li>图中的每一个节点都是一个向量，因此可以视为一个向量序列</li>
+<li>图中的边：Attention Matrix 可以只计算有边相连的节点之间的关联性，其他节点之间的attention score为0</li>
+<li>此时的 Self-attention 可以视为一种 Graph Neural Network（GNN）</li>
+</ul>
+</li>
+</ul>
+<p>Self-attention 最大问题：计算量大。<br>Self-attention 最早使用于 Transformer，因此Self-attention 的许多变形都是xxx-former</p>
+<p>Self Attention 和 CNN 比较：</p>
+<ul>
+<li>CNN：通过局部的 Receptive Field 来识别 pattern -&gt; CNN 是一种简化的 Self-attention</li>
+<li>Self-attention：通过全局的信息来识别 pattern -&gt; Self-attention 是一种更复杂的 CNN。通过attention找出相关的pixel，就好像receptive field是自动被学出来的</li>
+<li>其实CNN就是一种特殊的Self-attention，通过对Self-attention设定一定的参数，就可以做到和CNN一样的效果</li>
+<li>Self-attention 更flexible（灵活），但是需要更多的 data 来训练，data不够则容易overfitting</li>
+<li>CNN 更适合于小数据集，因为CNN的参数更少，更不容易overfitting</li>
+</ul>
+<p>Self-attention 和 RNN 比较：</p>
+<ul>
+<li>输入和输出均为一组向量 </li>
+<li>不同：Self-attention 可以轻易地考虑输入向量序列中间隔很远的向量的信息</li>
+<li>不同：Self-attention 可以并行计算，而RNN只能串行计算，因此Self-attention 计算速度更快，效率更高，更有优势，因此在很多领域取代了RNN</li>
+</ul>
 <hr>
-<h2 id="Lecture-5-Sequence-to-sequence"><a href="#Lecture-5-Sequence-to-sequence" class="headerlink" title="Lecture 5:Sequence to sequence"></a>Lecture 5:Sequence to sequence</h2><hr>
-<h2 id="Lecture-6-Generation"><a href="#Lecture-6-Generation" class="headerlink" title="Lecture 6:Generation"></a>Lecture 6:Generation</h2><hr>
+<h2 id="Lecture-5-Sequence-to-sequence"><a href="#Lecture-5-Sequence-to-sequence" class="headerlink" title="Lecture 5:Sequence to sequence"></a>Lecture 5:Sequence to sequence</h2><h3 id="【機器學習2021】Transformer-上"><a href="#【機器學習2021】Transformer-上" class="headerlink" title="【機器學習2021】Transformer (上)"></a>【機器學習2021】Transformer (上)</h3><p>Transformer：Sequence to Sequence Model（Seq2seq）<br>输出是一组向量（sequence）：输入一组向量（sequence） -&gt; Model -&gt; 输出一组向量（sequence），此时输出向量的长度是由模型决定的</p>
+<p>应用场景：</p>
+<ul>
+<li>语音识别（Speech Recognition）：输入一段音频，输出一段文字</li>
+<li>机器翻译（Machine Translation）：输入一段文字，输出另一种语言的文字 </li>
+<li>语音翻译（Speech Translation）：输入一段音频，输出另一种语言的文字（原因：有很多种语言没有文字，只有口语）（训练数据可以从电视剧中得到，因为电视剧有语音-&gt;文字字幕）</li>
+</ul>
+<p>“硬train一发”：不考虑其他因素，直接向模型倒进去大量的数据，然后让模型自己学习</p>
+<p>Text-to-Speech Synthesis（TTS）：输入一段文字，输出一段音频</p>
+<p>Seq2seq for Chatbot: 输入一段文字，输出一段文字（vector sequence）。</p>
+<ul>
+<li>训练：收集大量人与人的对话</li>
+<li>在 natural language processing 中，seq2seq 是一个非常重要的模型，很多 natural language processing 可以视为 Question-Answering （QA）问题（给机器 Context，问机器 Question，机器给出 Answer）（如翻译，摘要（entailment），判断评价（sentiment analysis）等），可以被 Seq2seq 解决，因此 seq2seq 在 natural language processing 中有着非常广泛的应用。</li>
+<li>question, context -&gt; seq2seq -&gt; answer</li>
+<li>对各种任务客制化模型会比单用Seq2seq更好</li>
+</ul>
+<p>文法剖析（Syntactic Parsing）：输入一段文字，输出文法树（Syntactic Tree）</p>
+<ul>
+<li>可以硬用 Seq2seq，输出变为文法树的前序遍历（字符串），把文法当做是一种语言，转变为翻译问题，然后用 Seq2seq 做翻译</li>
+</ul>
+<p>多标记分类（Multi-label Classification）：一个物体可以属于多个类别</p>
+<ul>
+<li>可以硬用 Seq2seq，输出变为多个向量，每一个向量对应一个Class</li>
+</ul>
+<p>对象检测（Object Detection）： 输入一张图片，输出图片中的物体的位置和类别（矩形框）</p>
+<ul>
+<li>也可以硬用 Seq2seq</li>
+</ul>
+<p>Seq2seq Model：</p>
+<ul>
+<li>Encoder-Decoder Model：输入一组向量（Input sequence） -&gt; Encoder -&gt; Decoder -&gt; 输出一组向量（Output sequence）</li>
+</ul>
+<p>Encoder：</p>
+<ul>
+<li>输入：一组向量（$x^1, x^2, \dots, x^n$），输出：一组向量（$h^1, h^2, \dots, h^n$）</li>
+<li>Block：一组层（Layer）的集合，输入输出都是一排向量，（$x^1, x^2, \dots, x^n$）-&gt; Block -&gt; Block -&gt; … -&gt; Block -&gt; （$h^1, h^2, \dots, h^n$）<ul>
+<li>在 Transformer 的 Encoder 中，Block 通常是 Self-attention （Multi-Head Attention） + 对 Self-attention 的输出逐个向量做 Fully Connected 的 Feed Forward Network（FFN）</li>
+<li>Self-attention 里面需要额外做的：(Add &amp; Norm)<ul>
+<li>residual connection：每一个输入向量 $a^i$ 经过 Self-attention 得到 $b^i$ 后，$b^i$ 与 $a^i$ 相加，得到 $c^i$，$c^i$ 作为接下来的输入</li>
+<li>layer normalization：在 $c^i$ 上做 normalization，得到 $d^i$，$d^i$ 作为接下来的输入<ul>
+<li>对同一个example里面不同的dimension计算mean（m）和standard deviation（$\sigma$），然后对每一个dimension都减去m再除以 $\sigma$ : $x^{i’} = \frac{x^i - m}{\sigma}$</li>
+</ul>
+</li>
+<li>$d^i$ 才是 Feed Forward Network（FFN）的输入</li>
+</ul>
+</li>
+<li>FFN 里面也有需要额外做的：(Add &amp; Norm)<ul>
+<li>residual connection：在 $d^i$ 经过 FFN 得到 $e^i$ 后，$e^i$ 与 $d^i$ 相加，得到 $f^i$，$f^i$ 作为接下来的输入</li>
+<li>layer normalization：在 $f^i$ 上做 normalization，得到 $g^i$，$g^i$ 作为接下来的输入</li>
+</ul>
+</li>
+<li>Positional Encoding：在输入向量中需要在输入之前先加入位置信息</li>
+</ul>
+</li>
+</ul>
+<h3 id="【機器學習2021】Transformer-下"><a href="#【機器學習2021】Transformer-下" class="headerlink" title="【機器學習2021】Transformer (下)"></a>【機器學習2021】Transformer (下)</h3><p>Decoder：</p>
+<p>Auto-regressive Model（AT）：（使用语音识别举例）一次输出一个词，输出的词会作为输入的一部分影响下一个词的输出</p>
+<ul>
+<li>Begin（Special Token）：第一个输入（当做“初始”文字），作用是告诉模型开始生成输出</li>
+<li>Vocabulary：模型的输出是一个词汇表中的词，词汇表中的词是模型训练时见过的词，中文的词汇表可以使用常用的几千个方块字，英文的词汇表使用 Subword（就是把单词拆成更小的单元，如：unbelievable -&gt; un, be, lie, vable）</li>
+<li>输入 Decoder 中均为 One-hot Vector</li>
+<li>一开始为 Begin，然后输入模型，模型输出一个词，然后把这个词与begin一起作为下一个输入，再输出一个词，然后与前两个输入词一起构成下一个输入，…，如此循环，直到输出 End（Special Token）</li>
+<li>Mask Self-attention：在 Decoder 中，不能看到未来的信息，因此需要 Mask Self-attention，即在计算 attention score 时，未来的信息的 attention score 为0（如计算 $b^2$ 时， $q^2$ 只能看到 $a^1$ 和 $a^2$，不能看到 $a^3$，因此不与 $a^3$ 计算）</li>
+<li>Decoder 输出应该如何决定多长？ END （Special Token）和 Begin 都在词汇表中，当Decoder输出 End 时，就可以停止输出了</li>
+</ul>
+<p>Non-Auto-regressive Model（NAT）：（使用语音识别举例）一次性输出所有的词</p>
+<ul>
+<li>一次性输入多个BEGIN，模型一次性输出对应数量的词</li>
+<li>此时如何决定输出的长度？可以使用一个额外的模型来决定输出的长度，如：一个RNN，输入为Encoder的输出，输出为一个标量，表示输出的长度；也可以输入的BEGIN很多很多，最后忽略输出中的END之后的词</li>
+<li>优点：平行化，速度快；比较能控制输出的长度（通过控制输入的BEGIN的数量）</li>
+<li>但是 NAT 的表现通常不如 AT （为什么？Multi-modality）</li>
+</ul>
+<p>Encoder-Decoder：   </p>
+<ul>
+<li>Cross-attention：Decoder 中的每一个向量都需要考虑整个输入序列的信息（包含context），因此需要使用 Cross-attention，即 Decoder 中的每一个向量都需要与 Encoder 中的每一个向量计算 attention score<ul>
+<li>具体计算：$q$ 为 Decoder 中经过 Self-attention（Mask），在经过 Transform 后 得到的向量，$k^i$，$v^i$ 为 Encoder 中 $a^i$ 经过 Transform 得到的向量，计算 attention score $\alpha<em>{i} = q k^i$，然后使用 softmax 得到 $\alpha</em>{i}^{\prime}$，最后得到 $v = \sum<em>{i=1}^{n} \alpha</em>{i}^{\prime} v^i$</li>
+<li>$v$ 即为 Decoder 中的每一个向量与整个输入序列的信息（包含context）的结合，作为 Decoder 下一个 FFN 的输入</li>
+</ul>
+</li>
+</ul>
+<p>Training：</p>
+<ul>
+<li>训练资料：人工标注语音讯号和文字的对应关系</li>
+<li>每一个字表示为一个 One-hot Vector，训练时 Decoder 输出的 distribution 与 One-hot Vector 之间的交叉熵（Cross Entropy）作为 Loss Function （和分类问题相似）</li>
+<li>minimize Loss Function，得到模型的参数</li>
+<li>Teacher Forcing：训练时，Decoder 的输入是真实的输出，而不是模型的输出，这样可以加速训练，但是可能会导致模型在测试时表现不佳（因为模型在训练时没有看到自己的输出）</li>
+<li>Tips:<ul>
+<li>Copy Mechanism：如果输入和输出有重叠，可以直接复制输入到输出中<ul>
+<li>如：Chat Bot（例子：输入：我是某某某，输出：你好，某某某）</li>
+<li>如：Summarization，document -&gt; Model -&gt; summary</li>
+</ul>
+</li>
+<li>Guided Attention：如果输入和输出有对应关系，可以在计算 attention score 时，加入额外的信息，让模型更容易学习到对应关系<ul>
+<li>如：语音识别中，输入和输出有对应关系，可以在计算 attention score 时，加入额外的信息，让模型更容易学习到对应关系</li>
+</ul>
+</li>
+<li>Beam Search：原本输出的策略是 Greedy Decoding，即每一步输出概率最大的词，但是这样可能会导致输出的结果不是最好的，因此可以使用 Beam Search，即每一步输出概率最大的几个词，然后选择最好的几个词，再继续输出，如此循环，直到输出 End，这样可以得到一条较好得分的路径输出<ul>
+<li>这样有可能有效，也有可能无效，要根据任务本身的特性而定：如答案非常明确时，Beam Search 可能会有效；如答案需要机器发挥创造力时（答案不唯一），Beam Search 可能会无效</li>
+</ul>
+</li>
+<li>Randomness：在一些任务(如句子补全、PTS)中，解码器（Decoder） 在生成序列时需要随机性</li>
+<li>当你不知道如何优化（Optimize）的 Loss Function 时，就使用强化学习（Reinforcement Learning）！（把他当做 RL 的 Reward，把Decoder 当做 Agent，把输出当做 Action，然后用RL的方法来训练Decoder）</li>
+<li>Scheduled Sampling：在训练时，有一定概率使用模型的输出作为下一个输入，有一定概率使用真实的输出作为下一个输入，这样可以减少模型在测试时表现不佳的风险，但是这一招会伤害到 Transformer 的平行化的能力，需要改良此方法<ul>
+<li>Exposure Bias：模型在训练时只看到真实的输出，而在测试时可能会看到模型的输出，因此可能会导致模型在测试时表现不佳。解决方案就是 Scheduled Sampling</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="Lecture-6-Generation"><a href="#Lecture-6-Generation" class="headerlink" title="Lecture 6:Generation"></a>Lecture 6:Generation</h2><h3 id="【機器學習2021】生成式對抗網路-Generative-Adversarial-Network-GAN-一-–-基本概念介紹"><a href="#【機器學習2021】生成式對抗網路-Generative-Adversarial-Network-GAN-一-–-基本概念介紹" class="headerlink" title="【機器學習2021】生成式對抗網路 (Generative Adversarial Network, GAN) (一) – 基本概念介紹"></a>【機器學習2021】生成式對抗網路 (Generative Adversarial Network, GAN) (一) – 基本概念介紹</h3><p>Network as Generator：</p>
+<ul>
+<li>network 输入除了 x 还有加上一个随机的变量 z，输出是y</li>
+<li>z 是 simple distribution （简单分布），每次使用都是从 distribution 中 sample（取样） 出来的，distribution 可以是任意的，但是必须够简单以至于可以从中 sample 出来（如：高斯分布（Gaussian Distribution），均匀分布（Uniform Distribution），正态分布（Normal Distribution））</li>
+<li>此时 y 为 complex distribution（复杂分布）</li>
+<li>此时输出变为 y = G(x, z)，把这种可以输出复杂分布的 G 称作 Generator</li>
+</ul>
+<p>为什么输出需要是一个分布：</p>
+<ul>
+<li>视频预测： Previous Frame  -&gt; Model -&gt; Next Frame，此时输出应该是一个分布，而不是一个确定的值，因为下一帧有很多种可能</li>
+</ul>
+<p>什么时候需要用到 Generator：</p>
+<ul>
+<li>任务需要一点“创造力”的时候</li>
+<li>同样的输入有多种可能的输出，且这些输出都是正确的时候</li>
+<li>Drawing</li>
+<li>Chatbot</li>
+</ul>
+<p>normal distribution sample 样例： 二维正态分布取样：$z = \left[\begin{array}{c} z_1 \ z_2 \end{array}\right]$，$z_1$ 和 $z_2$ 都是从正态分布中取样出来的，然后 $z$ 作为输入输入到 Generator 中，得到 $y = G(z)$，$y$ 是一个二维的向量，可以视为一个点，这样可以得到一个二维的分布，这个分布是由 Generator 生成的</p>
+<p>Generative Adversarial Network（GAN）：</p>
+<ul>
+<li><p>Anime Face Generation （二次元头像生成）</p>
+<ul>
+<li>Unconditional Generation： z -&gt; G -&gt; y（z: low dimension vector，y: anime face，hign dimension vector）（z是normal distribution sample出来的）</li>
+<li>Discriminator：也是一个 Neural Network（架构自己设计），输入是 y，输出是一个标量，表示 y 的真实性（真实的概率）</li>
+<li>Discriminator 的训练目标：让 Discriminator 能够区分真实的 y 和 G 生成的 y</li>
+<li>Discriminator 的存在的意义：与 Generator 对抗（Adversarial），让 Generator 生成的 y 越来越真实</li>
+</ul>
+</li>
+<li><p>Algorithm（算法）：</p>
+<ul>
+<li>初始化 Generator 和 Discriminator 的参数</li>
+<li>在每一次训练中：<ul>
+<li>固定 Generator，训练（更新） Discriminator，训练材料为 Generator 生成的图像和真实的图像，目标是让 Discriminator 能够区分真实的图像和 Generator 生成的图像</li>
+<li>固定 Discriminator，训练（更新） Generator，目的是让 Discriminator 识别 Generator 生成的图像为真实的图像，实际上：把 Generator 和 Discriminator 整体看作一个大的 network，此时输入为 vector ，输出为 Discriminator 的输出（评分标量） ，目标是让 Discriminator 的输出尽可能大，但在训练过程中调整的参数只是 Generator 的参数，同样是使用 Gradient Descent 或者 Gradient Ascent 来调整参数</li>
+<li>重复上述步骤直到收敛</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="【機器學習2021】生成式對抗網路-Generative-Adversarial-Network-GAN-二-–-理論介紹與WGAN"><a href="#【機器學習2021】生成式對抗網路-Generative-Adversarial-Network-GAN-二-–-理論介紹與WGAN" class="headerlink" title="【機器學習2021】生成式對抗網路 (Generative Adversarial Network, GAN) (二) – 理論介紹與WGAN"></a>【機器學習2021】生成式對抗網路 (Generative Adversarial Network, GAN) (二) – 理論介紹與WGAN</h3><p>目标： </p>
+<ul>
+<li>Normal Distribution -&gt; Generator -&gt; $P_G$ </li>
+<li>真实的分布 $P_data$ 和 $P_G$ 越接近越好</li>
+<li>使用 Divergence： $G^* = \arg \min<em>G Div(P</em>{data} || P_G)$</li>
+</ul>
+<hr>
 <h2 id="Recent-Advance-of-Self-supervised-learning-for-NLP"><a href="#Recent-Advance-of-Self-supervised-learning-for-NLP" class="headerlink" title="Recent Advance of Self-supervised learning for NLP"></a>Recent Advance of Self-supervised learning for NLP</h2><hr>
 <h2 id="Lecture-7-Self-supervised-learning-for-Speech-and-Image"><a href="#Lecture-7-Self-supervised-learning-for-Speech-and-Image" class="headerlink" title="Lecture 7:Self-supervised learning for Speech and Image"></a>Lecture 7:Self-supervised learning for Speech and Image</h2><hr>
 <h2 id="Lecture-8-Auto-encoder-Anomaly-Detection"><a href="#Lecture-8-Auto-encoder-Anomaly-Detection" class="headerlink" title="Lecture 8:Auto-encoder/ Anomaly Detection"></a>Lecture 8:Auto-encoder/ Anomaly Detection</h2><hr>
@@ -876,7 +1141,7 @@
           <strong class="toc-title">Contents</strong>
           
             
-              <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#Lecture-1-Introduction-of-Deep-Learning"><span class="toc-nav-text">Lecture 1:Introduction of Deep Learning</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#預測本頻道觀看人數-上-機器學習基本概念簡介"><span class="toc-nav-text">預測本頻道觀看人數 (上) - 機器學習基本概念簡介</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#預測本頻道觀看人數-下-深度學習基本概念簡介"><span class="toc-nav-text">預測本頻道觀看人數 (下) - 深度學習基本概念簡介</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#Lecture-2-What-to-do-if-my-network-fails-to-train"><span class="toc-nav-text">Lecture 2:What to do if my network fails to train</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#機器學習任務攻略"><span class="toc-nav-text">機器學習任務攻略</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#類神經網路訓練不起來怎麼辦-一-：-局部最小值-local-minima-與鞍點-saddle-point"><span class="toc-nav-text">類神經網路訓練不起來怎麼辦 (一)： 局部最小值 (local minima) 與鞍點 (saddle point)</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#類神經網路訓練不起來怎麼辦-二-：-批次-batch-與動量-momentum"><span class="toc-nav-text">類神經網路訓練不起來怎麼辦 (二)： 批次 (batch) 與動量 (momentum)</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#類神經網路訓練不起來怎麼辦-三-：自動調整學習速率-Learning-Rate"><span class="toc-nav-text">類神經網路訓練不起來怎麼辦 (三)：自動調整學習速率 (Learning Rate)</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#類神經網路訓練不起來怎麼辦-四-：損失函數-Loss-也可能有影響"><span class="toc-nav-text">類神經網路訓練不起來怎麼辦 (四)：損失函數 (Loss) 也可能有影響</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#類神經網路訓練不起來怎麼辦-五-：-批次標準化-Batch-Normalization-簡介"><span class="toc-nav-text">類神經網路訓練不起來怎麼辦 (五)： 批次標準化 (Batch Normalization) 簡介</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#Lecture-3-Image-as-input"><span class="toc-nav-text">Lecture 3:Image as input</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#【機器學習2021】卷積神經網路-Convolutional-Neural-Networks-CNN"><span class="toc-nav-text">【機器學習2021】卷積神經網路 (Convolutional Neural Networks, CNN)</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#Lecture-4-Sequence-as-input"><span class="toc-nav-text">Lecture 4:Sequence as input</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#【機器學習2021】自注意力機制-Self-attention-上"><span class="toc-nav-text">【機器學習2021】自注意力機制 (Self-attention) (上)</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#Lecture-5-Sequence-to-sequence"><span class="toc-nav-text">Lecture 5:Sequence to sequence</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#Lecture-6-Generation"><span class="toc-nav-text">Lecture 6:Generation</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#Recent-Advance-of-Self-supervised-learning-for-NLP"><span class="toc-nav-text">Recent Advance of Self-supervised learning for NLP</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#Lecture-7-Self-supervised-learning-for-Speech-and-Image"><span class="toc-nav-text">Lecture 7:Self-supervised learning for Speech and Image</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#Lecture-8-Auto-encoder-Anomaly-Detection"><span class="toc-nav-text">Lecture 8:Auto-encoder&#x2F; Anomaly Detection</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#Lecture-9-Explainable-AI"><span class="toc-nav-text">Lecture 9:Explainable AI</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#Lecture-10-Attack"><span class="toc-nav-text">Lecture 10:Attack</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#Lecture-11-Adaptation"><span class="toc-nav-text">Lecture 11:Adaptation</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#Lecture-12-Reinforcement-Learning"><span class="toc-nav-text">Lecture 12:Reinforcement Learning</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#Lecture-13-Network-Compression"><span class="toc-nav-text">Lecture 13:Network Compression</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#Lecture-14-Life-long-Learning"><span class="toc-nav-text">Lecture 14:Life-long Learning</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#Lecture-15-Meta-Learning"><span class="toc-nav-text">Lecture 15:Meta Learning</span></a></li></ol>
+              <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#Lecture-1-Introduction-of-Deep-Learning"><span class="toc-nav-text">Lecture 1:Introduction of Deep Learning</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#預測本頻道觀看人數-上-機器學習基本概念簡介"><span class="toc-nav-text">預測本頻道觀看人數 (上) - 機器學習基本概念簡介</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#預測本頻道觀看人數-下-深度學習基本概念簡介"><span class="toc-nav-text">預測本頻道觀看人數 (下) - 深度學習基本概念簡介</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#Lecture-2-What-to-do-if-my-network-fails-to-train"><span class="toc-nav-text">Lecture 2:What to do if my network fails to train</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#機器學習任務攻略"><span class="toc-nav-text">機器學習任務攻略</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#類神經網路訓練不起來怎麼辦-一-：-局部最小值-local-minima-與鞍點-saddle-point"><span class="toc-nav-text">類神經網路訓練不起來怎麼辦 (一)： 局部最小值 (local minima) 與鞍點 (saddle point)</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#類神經網路訓練不起來怎麼辦-二-：-批次-batch-與動量-momentum"><span class="toc-nav-text">類神經網路訓練不起來怎麼辦 (二)： 批次 (batch) 與動量 (momentum)</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#類神經網路訓練不起來怎麼辦-三-：自動調整學習速率-Learning-Rate"><span class="toc-nav-text">類神經網路訓練不起來怎麼辦 (三)：自動調整學習速率 (Learning Rate)</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#類神經網路訓練不起來怎麼辦-四-：損失函數-Loss-也可能有影響"><span class="toc-nav-text">類神經網路訓練不起來怎麼辦 (四)：損失函數 (Loss) 也可能有影響</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#類神經網路訓練不起來怎麼辦-五-：-批次標準化-Batch-Normalization-簡介"><span class="toc-nav-text">類神經網路訓練不起來怎麼辦 (五)： 批次標準化 (Batch Normalization) 簡介</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#Lecture-3-Image-as-input"><span class="toc-nav-text">Lecture 3:Image as input</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#【機器學習2021】卷積神經網路-Convolutional-Neural-Networks-CNN"><span class="toc-nav-text">【機器學習2021】卷積神經網路 (Convolutional Neural Networks, CNN)</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#Lecture-4-Sequence-as-input"><span class="toc-nav-text">Lecture 4:Sequence as input</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#【機器學習2021】自注意力機制-Self-attention-上"><span class="toc-nav-text">【機器學習2021】自注意力機制 (Self-attention) (上)</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#【機器學習2021】自注意力機制-Self-attention-下"><span class="toc-nav-text">【機器學習2021】自注意力機制 (Self-attention) (下)</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#Lecture-5-Sequence-to-sequence"><span class="toc-nav-text">Lecture 5:Sequence to sequence</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#【機器學習2021】Transformer-上"><span class="toc-nav-text">【機器學習2021】Transformer (上)</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#【機器學習2021】Transformer-下"><span class="toc-nav-text">【機器學習2021】Transformer (下)</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#Lecture-6-Generation"><span class="toc-nav-text">Lecture 6:Generation</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#【機器學習2021】生成式對抗網路-Generative-Adversarial-Network-GAN-一-–-基本概念介紹"><span class="toc-nav-text">【機器學習2021】生成式對抗網路 (Generative Adversarial Network, GAN) (一) – 基本概念介紹</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#【機器學習2021】生成式對抗網路-Generative-Adversarial-Network-GAN-二-–-理論介紹與WGAN"><span class="toc-nav-text">【機器學習2021】生成式對抗網路 (Generative Adversarial Network, GAN) (二) – 理論介紹與WGAN</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#Recent-Advance-of-Self-supervised-learning-for-NLP"><span class="toc-nav-text">Recent Advance of Self-supervised learning for NLP</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#Lecture-7-Self-supervised-learning-for-Speech-and-Image"><span class="toc-nav-text">Lecture 7:Self-supervised learning for Speech and Image</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#Lecture-8-Auto-encoder-Anomaly-Detection"><span class="toc-nav-text">Lecture 8:Auto-encoder&#x2F; Anomaly Detection</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#Lecture-9-Explainable-AI"><span class="toc-nav-text">Lecture 9:Explainable AI</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#Lecture-10-Attack"><span class="toc-nav-text">Lecture 10:Attack</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#Lecture-11-Adaptation"><span class="toc-nav-text">Lecture 11:Adaptation</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#Lecture-12-Reinforcement-Learning"><span class="toc-nav-text">Lecture 12:Reinforcement Learning</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#Lecture-13-Network-Compression"><span class="toc-nav-text">Lecture 13:Network Compression</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#Lecture-14-Life-long-Learning"><span class="toc-nav-text">Lecture 14:Life-long Learning</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#Lecture-15-Meta-Learning"><span class="toc-nav-text">Lecture 15:Meta Learning</span></a></li></ol>
             
           
           </div>
