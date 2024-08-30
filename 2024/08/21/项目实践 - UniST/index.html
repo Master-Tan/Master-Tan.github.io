@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="baidu-site-verification" content="093lY4ziMu" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="description" content="Tan&#39;s Blog">
+    <meta name="keyword"  content="Hello world">
+    <link rel="shortcut icon" href="/img/ironman-draw.png">
+    <!-- Place this tag in your head or just before your close body tag. -->
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+    <!--<link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>-->
+    <title>
+        
+          项目实践 - UniST - Tan&#39;s Blog
+        
+    </title>
+
+    <link rel="canonical" href="https://master-tan.github.io/2024/08/21/项目实践 - UniST/">
+
+    <!-- Bootstrap Core CSS -->
+    
+<link rel="stylesheet" href="/css/bootstrap.min.css">
+
+
+    <!-- Custom CSS --> 
+    
+        
+<link rel="stylesheet" href="/css/dusign-light.css">
+
+        
+<link rel="stylesheet" href="/css/dusign-common-light.css">
+
+        
+<link rel="stylesheet" href="/css/font-awesome.css">
+
+        
+<link rel="stylesheet" href="/css/toc.css">
+
+        <!-- background effects end -->
+    
+    
+    <!-- Pygments Highlight CSS -->
+    
+<link rel="stylesheet" href="/css/highlight.css">
+
+
+    
+<link rel="stylesheet" href="/css/widget.css">
+
+
+    
+<link rel="stylesheet" href="/css/rocket.css">
+
+
+    
+<link rel="stylesheet" href="/css/signature.css">
+
+
+    
+<link rel="stylesheet" href="/css/fonts.googleapis.css">
+
+
+    <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.3.0/css/font-awesome.min.css">
+
+    <!-- photography -->
+    
+<link rel="stylesheet" href="/css/photography.css">
+
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+
+    <!-- background effects start -->
+    
+    <!-- background effects end -->
+
+	<!-- Modified by Yu-Hsuan Yen -->
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        
+            
+                background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('../../../../img/default.jpg')
+                /*post*/
+            
+        
+    }
+    
+</style>
+
+<header class="intro-header" >
+    <!-- Signature -->
+    <div id="signature">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                
+                    <div class="post-heading">
+                        <div class="tags">
+                            
+                        </div>
+                        <h1>项目实践 - UniST</h1>
+                        <h2 class="subheading"></h2>
+                        <span class="meta">
+                            Posted by Tan on
+                            2024-08-21
+                        </span>
+
+	       
+                            <div class="blank_box"></div>
+                            <span class="meta">
+                                 <span class="post-count">1.3k</span> Words
+                            </span>
+                            <div class="blank_box"></div>
+                            <!-- 不蒜子统计 start -->
+                            <span class="meta">
+                                Viewed <span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span> Times
+                            </span>
+                            <!-- 不蒜子统计 end -->
+                        
+
+                    </div>
+                
+
+                </div>
+            </div>
+        </div>      
+    </div>
+
+    
+    <div class="waveWrapper">
+        <div class="wave wave_before" style="background-image: url('/img/wave-light.png')"></div>
+        <div class="wave wave_after" style="background-image: url('/img/wave-light.png')"></div>
+    </div>
+    
+</header>
+
+	
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Tan&#39;s Blog</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+
+                    
+
+                        
+                    
+
+                        
+                        	<li>
+                          	  <a href="/archive/">Archives</a>
+                        	</li>
+                        
+                    
+
+                        
+                    
+
+                        
+                        	<li>
+                          	  <a href="/about/">About Tan</a>
+                        	</li>
+                        
+                    
+
+                        
+                        	<li>
+                          	  <a href="/tags/">Tags</a>
+                        	</li>
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+    <!-- Main Content -->
+    <!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+            <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <h2 id="CentOS7-安装-Python3-9-19"><a href="#CentOS7-安装-Python3-9-19" class="headerlink" title="CentOS7 安装 Python3.9.19"></a>CentOS7 安装 Python3.9.19</h2><p>Installing Python Package Manager PIP</p>
+<ul>
+<li>Step1.<br>  Before we can install the Python package manager, PIP, we need to enable additional software repositories using the following command:  <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo yum install epel-release</span><br></pre></td></tr></table></figure></li>
+<li>Step2.<br>  Next, install PIP using the following command:  <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo yum install python-pip</span><br></pre></td></tr></table></figure></li>
+<li>Step3.<br>  Finally, confirm that the installation was successful using the following command:  <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip --version</span><br></pre></td></tr></table></figure></li>
+<li>Step4.<br>  If successful, the system should display the PIP version as well as your current Python version.</li>
+</ul>
+<p>Installing Python 3.9 </p>
+<p>Now that we have PIP installed, we can proceed with installing the latest version of Python, 3.9. </p>
+<ul>
+<li>Step1.<br>  Before installing Python you will first need to install the requisite software packages using the following command:   <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo yum install gcc openssl-devel bzip2-devel libffi-devel zlib-devel</span><br></pre></td></tr></table></figure></li>
+<li>Step2.<br>  Once that is done, navigate to the /usr/local/src directory:  <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd /usr/local/src</span><br></pre></td></tr></table></figure></li>
+<li>Step3.<br>  Download the latest version of Python using the wget command as follows:  <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget https://www.python.org/ftp/python/3.9.19/Python-3.9.19.tgz</span><br></pre></td></tr></table></figure></li>
+<li>Step4.<br>  Once the file is downloaded, extract it using the following command:  <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tar -xvf Python-3.9.19.tgz</span><br></pre></td></tr></table></figure></li>
+<li>Step5.<br>  Once the file has extracted, move into the directory that was created  <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd Python-3.9.19</span><br></pre></td></tr></table></figure></li>
+<li>Step6.<br>  Configure the installation using the following command:  <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./configure --with-openssl=/path/to/new/openssl --prefix=/usr/local/python39</span><br></pre></td></tr></table></figure></li>
+<li>Step7.<br>  Run the following command:  <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo make</span><br></pre></td></tr></table></figure></li>
+<li>Step8.<br>  Next, build Python using the following command:  <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo make altinstall</span><br></pre></td></tr></table></figure></li>
+<li>Step9.<br>  After the installation process has finished, confirm the version using the following command:  <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python3.9 --version</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="requirements-txt-中的-torch-2-0-0-cu117-如何安装"><a href="#requirements-txt-中的-torch-2-0-0-cu117-如何安装" class="headerlink" title="requirements.txt 中的 torch==2.0.0+cu117 如何安装"></a>requirements.txt 中的 torch==2.0.0+cu117 如何安装</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install torch==2.0.0+cu117 -f https://download.pytorch.org/whl/torch_stable.html</span><br></pre></td></tr></table></figure>
+<p>检查安装<br><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> torch</span><br><span class="line">print(torch.version.cuda)  <span class="comment"># 应该输出 12.0</span></span><br><span class="line">print(torch.cuda.is_available())  <span class="comment"># 应该输出 True，如果 CUDA 和 GPU 驱动程序都配置正确</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="pretrain-sh-运行报错：-ImportError-urllib3-v2-only-supports-OpenSSL-1-1-1-currently-the-‘ssl’-module-is-compiled-with-‘OpenSSL-1-0-2k-fips-26-Jan-2017’"><a href="#pretrain-sh-运行报错：-ImportError-urllib3-v2-only-supports-OpenSSL-1-1-1-currently-the-‘ssl’-module-is-compiled-with-‘OpenSSL-1-0-2k-fips-26-Jan-2017’" class="headerlink" title="pretrain .sh 运行报错： ImportError: urllib3 v2 only supports OpenSSL 1.1.1+, currently the ‘ssl’ module is compiled with ‘OpenSSL 1.0.2k-fips  26 Jan 2017’."></a>pretrain .sh 运行报错： ImportError: urllib3 v2 only supports OpenSSL 1.1.1+, currently the ‘ssl’ module is compiled with ‘OpenSSL 1.0.2k-fips  26 Jan 2017’.</h3><ul>
+<li>检查当前系统的 OpenSSL 版本  <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">openssl version</span><br></pre></td></tr></table></figure></li>
+<li><p>查看 OpenSSL 安装路径</p>
+  <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">which openssl</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>解决方案</p>
+<ul>
+<li>安装OpenSSL 1.1.1<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">cd /usr/local/src/</span><br><span class="line">sudo wget https://www.openssl.org/source/openssl-1.1.1u.tar.gz</span><br><span class="line">sudo tar -zxf openssl-1.1.1u.tar.gz</span><br><span class="line">cd openssl-1.1.1u</span><br><span class="line">sudo ./config --prefix=/usr/local/openssl --openssldir=/usr/local/openssl shared zlib</span><br><span class="line">sudo make</span><br><span class="line">sudo make install</span><br></pre></td></tr></table></figure></li>
+<li>重新编译 Python<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">./configure --with-openssl=/path/to/new/openssl --prefix=/usr/local/python39</span><br><span class="line">sudo make</span><br><span class="line">sudo make altinstall</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>检查 Python 编译时的 OpenSSL 版本</p>
+  <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python3.9 -c "import ssl; print(ssl.OPENSSL_VERSION)"</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="yum-install-时下载源访问不到"><a href="#yum-install-时下载源访问不到" class="headerlink" title="yum install 时下载源访问不到"></a>yum install 时下载源访问不到</h3><p>Could not retrieve mirrorlist <a href="http://mirrorlist.centos.org?arch=x86_64&amp;release=7&amp;repo=sclo-rh" target="_blank" rel="noopener">http://mirrorlist.centos.org?arch=x86_64&amp;release=7&amp;repo=sclo-rh</a> error was<br>14: curl#6 - “Could not resolve host: mirrorlist.centos.org; Unknown error”</p>
+<ul>
+<li><p>解决方案</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo vi &#x2F;etc&#x2F;yum.repos.d&#x2F;CentOS-SCLo-scl.repo</span><br></pre></td></tr></table></figure>
+<p>编辑找到的相关文件并将 mirrorlist 替换为 baseurl，修改类似以下内容：</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">[centos-sclo-sclo]</span><br><span class="line">name&#x3D;CentOS-7 - SCLo sclo</span><br><span class="line">#baseurl&#x3D;http:&#x2F;&#x2F;mirror.centos.org&#x2F;centos&#x2F;7&#x2F;sclo&#x2F;$basearch&#x2F;sclo&#x2F;</span><br><span class="line">baseurl&#x3D;http:&#x2F;&#x2F;vault.centos.org&#x2F;7.9.2009&#x2F;sclo&#x2F;$basearch&#x2F;sclo&#x2F;</span><br><span class="line">gpgcheck&#x3D;1</span><br><span class="line">enabled&#x3D;1</span><br><span class="line">gpgkey&#x3D;file:&#x2F;&#x2F;&#x2F;etc&#x2F;pki&#x2F;rpm-gpg&#x2F;RPM-GPG-KEY-CentOS-SIG-SCLo</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="额外缺失的库"><a href="#额外缺失的库" class="headerlink" title="额外缺失的库"></a>额外缺失的库</h3><ul>
+<li>tensorboard<ul>
+<li>安装<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install tensorboard</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="获得数据集"><a href="#获得数据集" class="headerlink" title="获得数据集"></a>获得数据集</h3><p>下载地址：<br><a href="https://cloud.tsinghua.edu.cn/d/87f5954d4f6f4ebd9d70/" target="_blank" rel="noopener">https://cloud.tsinghua.edu.cn/d/87f5954d4f6f4ebd9d70/</a></p>
+<h3 id="pretrain-运行"><a href="#pretrain-运行" class="headerlink" title="pretrain 运行"></a>pretrain 运行</h3><p>nohup python main.py —device_id 3 —machine machine —dataset Cellular<em>BikeNYC</em>TaxiNYC2<em>TaxiNYC</em>BikeNYC2<em>Crowd</em>TrafficHZ<em>TrafficJN</em>TrafficCD<em>TrafficTJ</em>TrafficNJ<em>TrafficZZ</em>TrafficSH*TDrive —task short —size middle —mask_strategy_random ‘batch’ —lr 3e-4 —used_data ‘single’ —prompt_ST 0 &gt; train.log 2&gt;&amp;1 &amp;</p>
+<h3 id="论文总结-UniST-A-Prompt-Empowered-Universal-Model-for-Urban-Spatio-Temporal-Prediction"><a href="#论文总结-UniST-A-Prompt-Empowered-Universal-Model-for-Urban-Spatio-Temporal-Prediction" class="headerlink" title="论文总结: UniST: A Prompt-Empowered Universal Model for Urban Spatio-Temporal Prediction"></a>论文总结: UniST: A Prompt-Empowered Universal Model for Urban Spatio-Temporal Prediction</h3><h4 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h4><ul>
+<li>城市时空预测对于交通管理、资源优化和应急响应等决策至关重要。</li>
+<li>现有模型通常针对特定场景设计，并需要大量的领域特定训练数据，难以实现通用性。</li>
+</ul>
+<h4 id="主要贡献"><a href="#主要贡献" class="headerlink" title="主要贡献"></a>主要贡献</h4><ol>
+<li><p><strong>通用模型设计</strong>：</p>
+<ul>
+<li>提出了UniST，一个面向广泛城市时空预测任务的通用模型。</li>
+<li>通过统一架构和方法，处理不同场景下的多样化时空数据。</li>
+</ul>
+</li>
+<li><p><strong>多样化数据利用</strong>：</p>
+<ul>
+<li>UniST利用来自多个领域和城市的时空数据，捕捉复杂的时空动态，提高模型在不同场景下的预测能力。</li>
+</ul>
+</li>
+<li><p><strong>提示学习</strong>：</p>
+<ul>
+<li>基于领域知识的提示学习，能够动态生成提示，提升模型的泛化能力，尤其是在零样本和少样本情况下。</li>
+</ul>
+</li>
+<li><p><strong>实验验证</strong>：</p>
+<ul>
+<li>通过20多个时空场景的实验验证，UniST在各种预测任务中表现优越，特别是在少样本和零样本预测任务中表现突出。</li>
+</ul>
+</li>
+</ol>
+<h4 id="研究意义"><a href="#研究意义" class="headerlink" title="研究意义"></a>研究意义</h4><ul>
+<li>该研究首次提出了一个适用于多场景的通用时空预测模型，为城市时空数据建模提供了新范式。</li>
+<li>UniST展示了其在训练数据有限的情况下保持高性能的潜力，并为未来时空建模领域的发展提供了方向。</li>
+</ul>
+<h3 id="mask-strategy-py"><a href="#mask-strategy-py" class="headerlink" title="mask_strategy.py"></a>mask_strategy.py</h3><p>这段代码实现了几种掩码策略及其对应的恢复方法。这些函数可以用于自监督学习模型的训练，特别是用于处理时间序列或图像数据的场景。主要包括：</p>
+<p>随机掩码：在输入数据上随机选择部分数据进行掩码。<br>tube掩码：用于处理具有时间维度的数据，掩码的部分是沿着时间维度连续的。<br>块掩码：在数据块中进行掩码操作，以更好地模拟图像或视频中的缺失部分。<br>因果掩码：主要用于时间序列数据，确保掩码后的数据仍保留一定的时间信息。</p>
+<h3 id="debug"><a href="#debug" class="headerlink" title="debug"></a>debug</h3><p>DataLoader.py line 117: H + W &gt; 64 时 batch_size 未定义</p>
+
+                
+                <hr>
+                <!-- Pager -->
+                <ul class="pager">
+                    
+                    <li class="previous">
+                        <a href="/2024/08/30/研究生抢课软件/" data-toggle="tooltip" data-placement="top" title="研究生抢课软件">&larr; Previous Post
+		<br>
+		<span><font size="2" face="Calibri" color="grey">研究生抢课软件</font></span>
+	       </a>
+                    </li>
+                    
+                    
+                    <li class="next">
+                        <a href="/2024/07/31/面试记录/" data-toggle="tooltip" data-placement="top" title="面试记录">Next Post &rarr;
+		<br>
+		<span><font size="2" face="Calibri" color="grey">面试记录</font></span>
+	        </a>
+                    </li>
+                    
+                </ul>
+
+                <!-- tip start -->
+                
+
+                
+                <div class="comment_notes">
+                    <p>
+                        by Tan
+                    </p>
+                </div>
+                
+                <!-- tip end -->
+
+                <!-- Music start-->
+                
+                <!-- Music end -->
+
+                <!-- Sharing -->
+                
+                <!-- Sharing -->
+
+                <!-- gitment start -->
+                
+                <!-- gitment end -->
+
+                <!-- 来必力City版安装代码 -->
+                
+                <!-- City版安装代码已完成 -->
+
+                <!-- disqus comment start -->
+                
+                <!-- disqus comment end -->
+            </div>
+            
+            <!-- Tabe of Content -->
+            <!-- Table of Contents -->
+
+    
+      
+        <aside id="sidebar">
+          <div id="toc" class="toc-article">
+          <strong class="toc-title">Contents</strong>
+          
+            
+              <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#CentOS7-安装-Python3-9-19"><span class="toc-nav-text">CentOS7 安装 Python3.9.19</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#requirements-txt-中的-torch-2-0-0-cu117-如何安装"><span class="toc-nav-text">requirements.txt 中的 torch&#x3D;&#x3D;2.0.0+cu117 如何安装</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#pretrain-sh-运行报错：-ImportError-urllib3-v2-only-supports-OpenSSL-1-1-1-currently-the-‘ssl’-module-is-compiled-with-‘OpenSSL-1-0-2k-fips-26-Jan-2017’"><span class="toc-nav-text">pretrain .sh 运行报错： ImportError: urllib3 v2 only supports OpenSSL 1.1.1+, currently the ‘ssl’ module is compiled with ‘OpenSSL 1.0.2k-fips  26 Jan 2017’.</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#yum-install-时下载源访问不到"><span class="toc-nav-text">yum install 时下载源访问不到</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#额外缺失的库"><span class="toc-nav-text">额外缺失的库</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#获得数据集"><span class="toc-nav-text">获得数据集</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#pretrain-运行"><span class="toc-nav-text">pretrain 运行</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#论文总结-UniST-A-Prompt-Empowered-Universal-Model-for-Urban-Spatio-Temporal-Prediction"><span class="toc-nav-text">论文总结: UniST: A Prompt-Empowered Universal Model for Urban Spatio-Temporal Prediction</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#背景"><span class="toc-nav-text">背景</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#主要贡献"><span class="toc-nav-text">主要贡献</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#研究意义"><span class="toc-nav-text">研究意义</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#mask-strategy-py"><span class="toc-nav-text">mask_strategy.py</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#debug"><span class="toc-nav-text">debug</span></a></li></ol></li></ol>
+            
+          
+          </div>
+        </aside>
+      
+    
+
+                
+            <!-- Sidebar Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                       
+                    </div>
+                </section>
+                
+
+            </div>
+			
+			<div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+				
+				<br>
+				<br>
+
+				<script src="https://utteranc.es/client.js"
+						repo="Master-Tan/Master-Tan.github.io"
+						issue-term="pathname"
+						label="Comment"
+						theme="github-light"
+						crossorigin="anonymous"
+						async>
+				</script>
+			</div>
+        </div>
+    </div>
+</article>
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("https://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'hover',
+          placement: 'left',
+          icon: 'ℬ'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+
+
+<style  type="text/css">
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
+
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+
+                
+                    <li>
+                        <a target="_blank"  href="https://github.com/Master-Tan">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+                    <li>
+                        <a target="_blank" href="https://twitter.com/None">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+                    <li>
+                        <a target="_blank" href="https://www.facebook.com/None">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                
+
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; Tan 2024 | Powered by 
+                    <a href="https://github.com/Master-Tan/Master-Tan.github.io" target="_blank" rel="noopener">
+                        <i>Tan's Blog</i>
+                    </a>
+                </p>
+            </div>
+        </div>
+    </div>
+
+</footer>
+
+<!-- jQuery -->
+
+<script src="/js/jquery.min.js"></script>
+
+
+<!-- Bootstrap Core JavaScript -->
+
+<script src="/js/bootstrap.min.js"></script>
+
+
+<!-- Custom Theme JavaScript -->
+
+<script src="/js/hux-blog.min.js"></script>
+
+
+<!-- Search -->
+
+<script src="/js/search.js"></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("https://master-tan.github.io/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("https://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+<script>
+    // dynamic User by Hux
+    var _gaId = 'UA-XXXXXXXX-X';
+    var _gaDomain = 'yoursite';
+
+    // Originial
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', _gaId, _gaDomain);
+    ga('send', 'pageview');
+</script>
+
+
+
+
+<!-- Baidu Tongji -->
+
+
+<!-- Search -->
+
+    <script type="text/javascript">      
+        var search_path = "search.xml";
+        if (search_path.length == 0) {
+            search_path = "search.xml";
+        }
+    var path = "/" + search_path;
+    searchFunc(path, 'local-search-input', 'local-search-result');
+    </script>
+
+
+<!-- busuanzi -->
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+
+	<a id="rocket" href="#top" class=""></a>
+	<script type="text/javascript" src="/js/totop.js?v=1.0.0" async=""></script>
+    <script type="text/javascript" src="/js/toc.js?v=1.0.0" async=""></script>
+
+    
+        <!-- background effects line -->
+        
+
+        
+            <script type="text/javascript" src="/js/mouse-click.js" content='[&quot;Sunny&quot;, &quot;💖&quot;, &quot;Sunny&quot;, &quot;🧡&quot;, &quot;Sunny&quot;, &quot;💛&quot;, &quot;Sunny&quot; , &quot;💚&quot;, &quot;Sunny&quot;, &quot;💙&quot;, &quot;Sunny&quot;, &quot;💜&quot;, &quot;Sunny&quot;, &quot;😍&quot;]' color='[&quot;rgb(255, 0, 0)&quot; ,&quot;rgb(255, 0, 0)&quot; ,&quot;rgb(255, 125, 0)&quot; ,&quot;rgb(255, 125, 0)&quot; ,&quot;rgb(255, 255, 0)&quot; ,&quot;rgb(255, 255, 0)&quot; ,&quot;rgb(0, 255, 0)&quot; ,&quot;rgb(0, 255, 0)&quot; ,&quot;rgb(0, 255, 255)&quot; ,&quot;rgb(0, 255, 255)&quot; ,&quot;rgb(0, 0, 255)&quot; ,&quot;rgb(0, 0, 255)&quot; ,&quot;rgb(255, 0, 255)&quot; ,&quot;rgb(255, 0, 255)&quot;]'></script>
+        
+
+        <!-- background effects end -->
+    
+
+    <!--<script size="50" alpha='0.3' zIndex="-999" src="/js/ribbonStatic.js"></script>-->
+    
+        <script src="/js/ribbonDynamic.js"></script>
+    
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+
+</html>

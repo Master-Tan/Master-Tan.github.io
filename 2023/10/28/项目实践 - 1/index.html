@@ -119,7 +119,7 @@
 	       
                             <div class="blank_box"></div>
                             <span class="meta">
-                                 <span class="post-count">3.3k</span> Words
+                                 <span class="post-count">4.1k</span> Words
                             </span>
                             <div class="blank_box"></div>
                             <!-- 不蒜子统计 start -->
@@ -180,18 +180,18 @@
 
                         
                         	<li>
-                          	  <a href="/about/">About Tan</a>
-                        	</li>
-                        
-                    
-
-                        
-                        	<li>
                           	  <a href="/archive/">Archives</a>
                         	</li>
                         
                     
 
+                        
+                    
+
+                        
+                        	<li>
+                          	  <a href="/about/">About Tan</a>
+                        	</li>
                         
                     
 
@@ -377,6 +377,58 @@
 </ol>
 <h3 id="nohup"><a href="#nohup" class="headerlink" title="nohup"></a>nohup</h3><p><a href="https://blog.csdn.net/weixin_43279138/article/details/124441700" target="_blank" rel="noopener">https://blog.csdn.net/weixin_43279138/article/details/124441700</a></p>
 <h3 id="运行"><a href="#运行" class="headerlink" title="运行"></a>运行</h3><p>nohup /home/tld/gns/bin/python3 /home/tld/GNS-PyTorch/train.py &gt; train.log 2&gt;&amp;1 &amp;</p>
+<p>nohup /hy-tmp/gns/bin/python3 /hy-tmp/GNS-PyTorch.1/train.py &gt; train.log 2&gt;&amp;1 &amp;</p>
+<h3 id="Q"><a href="#Q" class="headerlink" title="Q"></a>Q</h3><ul>
+<li>不同 ball 之间的材质（质量）是否相同？还是视作相同</li>
+<li>update_metadata？</li>
+<li>实验目的：需要的是预测啥时候开裂？</li>
+<li>怎么从图中识别出裂缝？</li>
+</ul>
+<h3 id="A"><a href="#A" class="headerlink" title="A"></a>A</h3><ol>
+<li>现实应用场景是三维的情况下，二维的模拟有什么意义？</li>
+</ol>
+<ul>
+<li>由于开裂问题需要关注到粒径较小的集料，因为计算算力的限制，无法直接使用三维离散元进行仿真。因此尽管实际应用场景是三维的，因为特定的力学条件，二维模拟在研究开裂机理方面仍然具有意义。</li>
+</ul>
+<ol>
+<li>ball之间，clump之间视作相同材质吗？</li>
+</ol>
+<ul>
+<li>ball是细集料，而clump是粗集料，粒径不同，材料相同。</li>
+</ul>
+<ol>
+<li>试验结束条件是承载能力到达最高值的40%结束，这个承载能力最高值的标准怎么求的，如何知道当前达到了40%？</li>
+</ol>
+<ul>
+<li>在标准间接拉伸过程中，一般给试件施加的荷载先上升，随着试件收到破坏和损伤，荷    载达到一个峰值并开始下降，标准试验后续一般都是下降趋势。根据标准试验要求，当    荷载下降到80%时候停止加载。提供的数据为非标准试验，因此试验结束条件有所修改。</li>
+</ul>
+<h3 id="a"><a href="#a" class="headerlink" title="a"></a>a</h3><script type="math/tex; mode=display">\mathrm{v}_{\mathrm{i}}^{\mathrm{t}}=\varepsilon_{\Theta}^{\mathrm{v}}\left(\mathrm{x}_{\mathrm{i}}^{\mathrm{t}}\right), \mathrm{e}_{\mathrm{i}, \mathrm{j}}^{\mathrm{t}}=\varepsilon_{\Theta}^{\mathrm{e}}\left(\mathrm{r}_{\mathrm{i}, \mathrm{j}}^{\mathrm{t}}\right)</script><script type="math/tex; mode=display">\mathrm{x}_{\mathrm{i}}^{\mathrm{t}}=\left[\mathrm{p}_{\mathrm{i}}^{\mathrm{t}}, \dot{\mathrm{p}}_{\mathrm{i}}^{\leq \mathrm{t}}, \mathrm{b}_{\mathrm{i}}^{\mathrm{t}}, \mathrm{f}\right]</script><script type="math/tex; mode=display">r_{i, j}^{t}=\left[\left(p_{i}^{t}-p_{j}^{t}\right),\left\|p_{i}^{t}-p_{j}^{t}\right\|\right]</script><script type="math/tex; mode=display">y_{i}^{t}=\delta_{\Theta}^{v}\left(v_{i}^{t^{\prime}}\right)</script><script type="math/tex; mode=display">\begin{array}{c}
+\dot{\mathrm{p}}_{\mathrm{i}}^{\mathrm{t}+1}=\dot{\mathrm{p}}_{\mathrm{i}}^{\mathrm{t}}+\mathrm{y}_{\mathrm{i}}^{\mathrm{t}} \Delta \mathrm{t} \\
+\mathrm{p}_{\mathrm{i}}^{\mathrm{t}+1}=\mathrm{p}_{\mathrm{i}}^{\mathrm{t}}+\dot{\mathrm{p}}_{\mathrm{i}}^{\mathrm{t}+1} \Delta \mathrm{t}
+\end{array}</script><script type="math/tex; mode=display">\begin{array}{l}
+\begin{array}{c}
+e_{i, j}^{\prime}=\phi_{\Theta_{\phi}}\left(v_{i}, v_{j}, e_{i, j}\right) \\
+\bar{v}_{i}=\sum_{j \in N(i)} e_{i, j}^{\prime}
+\end{array}\\
+\mathrm{v}_{\mathrm{i}}^{\prime}=\gamma_{\Theta_{\gamma}}\left(\mathrm{v}_{\mathrm{i}}, \overline{\mathrm{v}}_{\mathrm{i}}\right)
+\end{array}</script><script type="math/tex; mode=display">\begin{equation}
+MAPE = \frac{1}{n} \sum_{i=1}^{n} \left|\frac{P_i - Y_i}{Y_i}\right| * 100\%
+\end{equation}</script><h3 id="Q-1"><a href="#Q-1" class="headerlink" title="Q"></a>Q</h3><!-- 1. 集料之间会有重合？ -->
+<ol>
+<li>frature.txt 中pos-&gt;x,pos-&gt;y,gap,step_number_at_which_the_crack_formed意义。（怎么描述的裂缝</li>
+<li>IDEAL-CT实验需要步进过程中的压力板的受力曲线以求PPP75，好像没给</li>
+<li>contact，怎么确定有边（力）？</li>
+<li>gap？</li>
+<li>gap -&gt; loss ?</li>
+<li>contact 逻辑优化训练（替换R）</li>
+</ol>
+<h3 id="DO"><a href="#DO" class="headerlink" title="DO"></a>DO</h3><p>消融实验？对比之前何如<br>多放点图？<br>参数敏感性？</p>
+<h1 id="a-1"><a href="#a-1" class="headerlink" title="a"></a>a</h1><p>batchsize -&gt; lr</p>
+<p><a href="https://blog.csdn.net/weixin_52546971/article/details/130095710" target="_blank" rel="noopener">https://blog.csdn.net/weixin_52546971/article/details/130095710</a></p>
+<p><a href="https://docs.itascacg.com/pfc700/pfc/docproject/source/manual/numerical_simulations_with_pfc/pfc_formulation/model_components.html" target="_blank" rel="noopener">https://docs.itascacg.com/pfc700/pfc/docproject/source/manual/numerical_simulations_with_pfc/pfc_formulation/model_components.html</a></p>
+<h3 id="显示显卡全称"><a href="#显示显卡全称" class="headerlink" title="显示显卡全称"></a>显示显卡全称</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nvidia-smi --query-gpu=name --format=csv,noheader</span><br></pre></td></tr></table></figure>
+<p>投paper<br>仿真意义 优点：准？快？<br>考虑、评价指标</p>
+<h3 id="Q-2"><a href="#Q-2" class="headerlink" title="Q"></a>Q</h3><p>接触点有点少，过于近似<br>压力板厚度？ -&gt; 忽略<br>md 居然板的速度和时间步长都是1/2，要重新训练。艹<br><!-- 同一输入loss不同，模型预测不同？ --><br>有些颗粒预测在板子上方，需要加loss约束 -&gt; 什么时候可以迁移学习</p>
 
                 
                 <hr>
@@ -443,7 +495,7 @@
           <strong class="toc-title">Contents</strong>
           
             
-              <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#配置环境"><span class="toc-nav-text">配置环境</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#问题1："><span class="toc-nav-text">问题1：</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#问题2："><span class="toc-nav-text">问题2：</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#问题3："><span class="toc-nav-text">问题3：</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#看代码"><span class="toc-nav-text">看代码</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#yacs-config"><span class="toc-nav-text">yacs.config</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#torch-utils-data-DataLoader"><span class="toc-nav-text">torch.utils.data.DataLoader</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#sh文件提示有-r执行不了"><span class="toc-nav-text">.sh文件提示有\r执行不了</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#metadata-json"><span class="toc-nav-text">metadata.json</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#处理数据-extract-tfrs-py-gt-data-test、train、vaild-pkl"><span class="toc-nav-text">处理数据 extract_tfrs.py -&gt; data&#x2F;(test、train、vaild)&#x2F;.pkl</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#pkl"><span class="toc-nav-text">.pkl</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#我的-pkl"><span class="toc-nav-text">我的.pkl</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#animation-FuncAnimation"><span class="toc-nav-text">animation.FuncAnimation</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#变量命名"><span class="toc-nav-text">变量命名</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#TORCH-UTILS-DATA"><span class="toc-nav-text">TORCH.UTILS.DATA</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#plt-figure"><span class="toc-nav-text">plt.figure</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#在远程上无法使用python进行代码补全"><span class="toc-nav-text">在远程上无法使用python进行代码补全</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#scatter的散点大小与坐标轴如何一致"><span class="toc-nav-text">scatter的散点大小与坐标轴如何一致</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#主要区别"><span class="toc-nav-text">主要区别</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#torch-nn-model"><span class="toc-nav-text">torch.nn.model</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#为什么要写成-super-ChildClass-self-init"><span class="toc-nav-text">为什么要写成 super(ChildClass, self).init()</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#spatial-cKDTree"><span class="toc-nav-text">spatial.cKDTree</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#spatial-cKDTree-query-pairs"><span class="toc-nav-text">spatial.cKDTree.query_pairs</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#为什么-loss-backward-能跟踪到-model-并将进行反向传播计算"><span class="toc-nav-text">为什么 loss.backward() 能跟踪到 model 并将进行反向传播计算</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#问题"><span class="toc-nav-text">问题</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#torch-nn-embedding"><span class="toc-nav-text">torch.nn.embedding</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#torch-clip"><span class="toc-nav-text">torch.clip</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#torch-where"><span class="toc-nav-text">torch.where</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#问题-1"><span class="toc-nav-text">问题</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#nohup"><span class="toc-nav-text">nohup</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#运行"><span class="toc-nav-text">运行</span></a></li></ol></li></ol>
+              <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#配置环境"><span class="toc-nav-text">配置环境</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#问题1："><span class="toc-nav-text">问题1：</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#问题2："><span class="toc-nav-text">问题2：</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#问题3："><span class="toc-nav-text">问题3：</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#看代码"><span class="toc-nav-text">看代码</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#yacs-config"><span class="toc-nav-text">yacs.config</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#torch-utils-data-DataLoader"><span class="toc-nav-text">torch.utils.data.DataLoader</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#sh文件提示有-r执行不了"><span class="toc-nav-text">.sh文件提示有\r执行不了</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#metadata-json"><span class="toc-nav-text">metadata.json</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#处理数据-extract-tfrs-py-gt-data-test、train、vaild-pkl"><span class="toc-nav-text">处理数据 extract_tfrs.py -&gt; data&#x2F;(test、train、vaild)&#x2F;.pkl</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#pkl"><span class="toc-nav-text">.pkl</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#我的-pkl"><span class="toc-nav-text">我的.pkl</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#animation-FuncAnimation"><span class="toc-nav-text">animation.FuncAnimation</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#变量命名"><span class="toc-nav-text">变量命名</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#TORCH-UTILS-DATA"><span class="toc-nav-text">TORCH.UTILS.DATA</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#plt-figure"><span class="toc-nav-text">plt.figure</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#在远程上无法使用python进行代码补全"><span class="toc-nav-text">在远程上无法使用python进行代码补全</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#scatter的散点大小与坐标轴如何一致"><span class="toc-nav-text">scatter的散点大小与坐标轴如何一致</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#主要区别"><span class="toc-nav-text">主要区别</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#torch-nn-model"><span class="toc-nav-text">torch.nn.model</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#为什么要写成-super-ChildClass-self-init"><span class="toc-nav-text">为什么要写成 super(ChildClass, self).init()</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#spatial-cKDTree"><span class="toc-nav-text">spatial.cKDTree</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#spatial-cKDTree-query-pairs"><span class="toc-nav-text">spatial.cKDTree.query_pairs</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#为什么-loss-backward-能跟踪到-model-并将进行反向传播计算"><span class="toc-nav-text">为什么 loss.backward() 能跟踪到 model 并将进行反向传播计算</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#问题"><span class="toc-nav-text">问题</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#torch-nn-embedding"><span class="toc-nav-text">torch.nn.embedding</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#torch-clip"><span class="toc-nav-text">torch.clip</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#torch-where"><span class="toc-nav-text">torch.where</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#问题-1"><span class="toc-nav-text">问题</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#nohup"><span class="toc-nav-text">nohup</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#运行"><span class="toc-nav-text">运行</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#Q"><span class="toc-nav-text">Q</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#A"><span class="toc-nav-text">A</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#a"><span class="toc-nav-text">a</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#Q-1"><span class="toc-nav-text">Q</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#DO"><span class="toc-nav-text">DO</span></a></li></ol></li></ol></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#a-1"><span class="toc-nav-text">a</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#显示显卡全称"><span class="toc-nav-text">显示显卡全称</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#Q-2"><span class="toc-nav-text">Q</span></a></li></ol></li></ol>
             
           
           </div>

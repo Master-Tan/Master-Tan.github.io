@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="baidu-site-verification" content="093lY4ziMu" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="description" content="Tan&#39;s Blog">
+    <meta name="keyword"  content="Hello world">
+    <link rel="shortcut icon" href="/img/ironman-draw.png">
+    <!-- Place this tag in your head or just before your close body tag. -->
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+    <!--<link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>-->
+    <title>
+        
+          研究生算法 - Assignment 1 - Tan&#39;s Blog
+        
+    </title>
+
+    <link rel="canonical" href="https://master-tan.github.io/2024/04/24/研究生算法 - Assignment 1/">
+
+    <!-- Bootstrap Core CSS -->
+    
+<link rel="stylesheet" href="/css/bootstrap.min.css">
+
+
+    <!-- Custom CSS --> 
+    
+        
+<link rel="stylesheet" href="/css/dusign-light.css">
+
+        
+<link rel="stylesheet" href="/css/dusign-common-light.css">
+
+        
+<link rel="stylesheet" href="/css/font-awesome.css">
+
+        
+<link rel="stylesheet" href="/css/toc.css">
+
+        <!-- background effects end -->
+    
+    
+    <!-- Pygments Highlight CSS -->
+    
+<link rel="stylesheet" href="/css/highlight.css">
+
+
+    
+<link rel="stylesheet" href="/css/widget.css">
+
+
+    
+<link rel="stylesheet" href="/css/rocket.css">
+
+
+    
+<link rel="stylesheet" href="/css/signature.css">
+
+
+    
+<link rel="stylesheet" href="/css/fonts.googleapis.css">
+
+
+    <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.3.0/css/font-awesome.min.css">
+
+    <!-- photography -->
+    
+<link rel="stylesheet" href="/css/photography.css">
+
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+
+    <!-- background effects start -->
+    
+    <!-- background effects end -->
+
+	<!-- Modified by Yu-Hsuan Yen -->
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        
+            
+                background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('../../../../img/default.jpg')
+                /*post*/
+            
+        
+    }
+    
+</style>
+
+<header class="intro-header" >
+    <!-- Signature -->
+    <div id="signature">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                
+                    <div class="post-heading">
+                        <div class="tags">
+                            
+                              <a class="tag" href="/tags/#研究生算法" title="研究生算法">研究生算法</a>
+                            
+                        </div>
+                        <h1>研究生算法 - Assignment 1</h1>
+                        <h2 class="subheading"></h2>
+                        <span class="meta">
+                            Posted by Tan on
+                            2024-04-24
+                        </span>
+
+	       
+                            <div class="blank_box"></div>
+                            <span class="meta">
+                                 <span class="post-count">1.3k</span> Words
+                            </span>
+                            <div class="blank_box"></div>
+                            <!-- 不蒜子统计 start -->
+                            <span class="meta">
+                                Viewed <span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span> Times
+                            </span>
+                            <!-- 不蒜子统计 end -->
+                        
+
+                    </div>
+                
+
+                </div>
+            </div>
+        </div>      
+    </div>
+
+    
+    <div class="waveWrapper">
+        <div class="wave wave_before" style="background-image: url('/img/wave-light.png')"></div>
+        <div class="wave wave_after" style="background-image: url('/img/wave-light.png')"></div>
+    </div>
+    
+</header>
+
+	
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Tan&#39;s Blog</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+
+                    
+
+                        
+                    
+
+                        
+                        	<li>
+                          	  <a href="/archive/">Archives</a>
+                        	</li>
+                        
+                    
+
+                        
+                    
+
+                        
+                        	<li>
+                          	  <a href="/about/">About Tan</a>
+                        	</li>
+                        
+                    
+
+                        
+                        	<li>
+                          	  <a href="/tags/">Tags</a>
+                        	</li>
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+    <!-- Main Content -->
+    <!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+            <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <p>author: 20373864 谭立德</p>
+<h1 id="一、用动态规划方法手工求解下面的问题"><a href="#一、用动态规划方法手工求解下面的问题" class="headerlink" title="一、用动态规划方法手工求解下面的问题:"></a>一、用动态规划方法手工求解下面的问题:</h1><p>某工厂调查了解市场情况, 估计在今后四个月内, 市场对其产品的需求量如下表所示。</p>
+<script type="math/tex; mode=display">\begin{aligned}
+&时期 (月) ~~~~~~~~~~~~~~ 需要量 (产品单位) \\
+&~~~~~~~1 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 2 \\
+&~~~~~~~2 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 3 \\
+&~~~~~~~3 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 2 \\
+&~~~~~~~4 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 4 \\
+\end{aligned}</script><p>已知: 对每个月来讲, 生产一批产品的固定成本费为 3 (千元), 若不生产, 则为零。每生产单位产品的成本费为 1 (千元)。同时, 在任何一个月内, 生产能力所允许的最大生产批量为不超过 6 个单位。</p>
+<p>又知每单位产品的库存费用为每月 0.5 (千元), 同时要求在第一个月开始之初, 及在第四个月末, 均无产品库存。</p>
+<p>问: 在满足上述条件下, 该厂应如何安排各个时期的生产与库存, 使所花的总成本费用最低?</p>
+<p>要求: 写出各种变量、状态转移方程、递推关系式、和详细计算步骤。</p>
+<h2 id="答："><a href="#答：" class="headerlink" title="答："></a>答：</h2><p>求: $dp[4, 11]$  , 其中 $dp[i, j]$ 表示第 $i$ 个月总生产 $j$ 个产品的最小成本。</p>
+<p>状态转移：</p>
+<script type="math/tex; mode=display">
+need[4] = {2, 5, 7, 11}
+\\
+\ 
+\\
+cost[i, j]=\left\{\begin{aligned}
+cost[i-1, k] + 0.5*(j-k) ，& k = j\\ 
+cost[i-1, k] + 3 + 1*(j-k)  + 0.5*(&k-need[i-1])  \\
+， k \in [need[i-1], &min\left(6 * (i-1), 11\right)]
+\end{aligned}\right.</script><p>递推关系式：</p>
+<script type="math/tex; mode=display">
+dp[i, j]=\min \{cost[i, j]\}</script><p>详细计算步骤：</p>
+<script type="math/tex; mode=display">\begin{aligned}
+& dp[1, 2] = 3 + 1*2 = 5 \\
+& dp[1, 3] = 6 \\
+& dp[1, 4] = 7 \\
+& dp[1, 5] = 8 \\
+& dp[1, 6] = 9 \\
+\\
+& dp[2, 5] = min\{dp[1, 2] + 3 + 1*(5-2), dp[1, 3] + 3 + 1*(5-3) + 0.5*(3-2)\\
+&~~~~~~~~~~~~~~~~~~~~~~~~~, dp[1, 4] + 3 + 1*(5-4) + 0.5*(4-2), dp[1, 5] + 0.5*(5-2)\} = 9.5 \\
+& dp[2,6] = 11 \\ 
+& dp[2,7] = 13 \\
+& dp[2,8] = 14 \\
+& dp[2,9] = 15 \\
+& dp[2,10] = 16 \\
+& dp[2,11] = 17 \\
+\\
+& dp[3, 7] = min\{dp[2, 5] + 3 + 1*(7-5), dp[2, 6] + 3 + 1*(7-6) + 0.5*(6-5)\\
+&~~~~~~~~~~~~~~~~~~~~~~~~~, dp[2, 7] + 0.5*(7-5)\} = 14 \\
+& dp[3, 8] = 15.5 \\
+& dp[3, 9] = 16.5 \\
+& dp[3, 10] = 17.5 \\
+& dp[3, 11] = 18.5 \\
+\\
+& dp[4, 11] = min\{dp[3, 7] + 3 + 1*(11-7), dp[3, 8] + 3 + 1*(11-8) + 0.5*(8-7)\\
+&~~~~~~~~~~~~~~~~~~~~~~~~~~, dp[3, 9] + 0.5*(9-7), dp[3, 10] + 0.5*(10-7)\} = 20.5
+\end{aligned}</script><p>结论：<br>安排为：4天生产分别为5，0，6，0个产品的情况下，总成本最低，为20.5千元。</p>
+<hr>
+<h1 id="二、用动态规划方法编程求解下面的问题"><a href="#二、用动态规划方法编程求解下面的问题" class="headerlink" title="二、用动态规划方法编程求解下面的问题:"></a>二、用动态规划方法编程求解下面的问题:</h1><p>某推销员要从城市 $ v<em>{1} $ 出发, 访问其它城市 $ v</em>{2}, v<em>{3}, \ldots, v</em>{6} $ 各一次且仅一次, 最后返回 $ v_{1} $ 。$D$ 为各城市间的距离矩阵。</p>
+<p>问: 该推销员应如何选择路线, 才能使总的行程最短?</p>
+<script type="math/tex; mode=display">
+D=\begin{array}{c}
+v_{1} \\
+v_{2} \\
+v_{3} \\
+v_{4} \\
+v_{5} \\
+v_{6}
+\end{array}\left[\begin{array}{cccccc}
+0 & 10 & 20 & 30 & 40 & 50 \\
+12 & 0 & 18 & 30 & 25 & 21 \\
+23 & 19 & 0 & 5 & 10 & 15 \\
+34 & 32 & 4 & 0 & 8 & 16 \\
+45 & 27 & 11 & 10 & 0 & 18 \\
+56 & 22 & 16 & 20 & 12 & 0
+\end{array}\right]</script><p>要求: 写出递推关系式、伪代码和程序相关说明, 并分析时间复杂性。(请遵守第一节课提出的有关 assignment 的要求)</p>
+<h2 id="答：-1"><a href="#答：-1" class="headerlink" title="答："></a>答：</h2><p>递推关系：<br>设 $dp[i, V]$ 是从 $v_i$ 出发经过集合 $V$ 中所有点一次最后回到 $v_1$ 的最短路径长度，则有递推关系式：</p>
+<script type="math/tex; mode=display">
+dp({i}, {V})=\left\{\begin{aligned}
+{D}\left[{i}, {v}_{1}\right], & {V}=\emptyset, \mathrm{i} \neq {v}_1 \\
+\min \{ D[i, k]+dp(k, V-\{k\}) \}, & {k} \in {V}, {V} \neq \emptyset
+\end{aligned}\right.</script><p>伪代码：<br><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># input: D</span></span><br><span class="line"><span class="comment"># output: path</span></span><br><span class="line">function TSP(D):</span><br><span class="line">    n = number of rows <span class="keyword">in</span> D</span><br><span class="line">    Initialize dp[<span class="number">1.</span>.n][<span class="number">0.</span>.(<span class="number">2</span>^n<span class="number">-1</span>)] to infinity</span><br><span class="line">    dp[<span class="number">1</span>][<span class="number">1</span>] = <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> each subset V of size <span class="number">2</span> to n:</span><br><span class="line">        <span class="keyword">for</span> each j contained <span class="keyword">in</span> subset V:</span><br><span class="line">            <span class="keyword">if</span> j != <span class="number">1</span> <span class="keyword">and</span> j <span class="keyword">in</span> V:</span><br><span class="line">                dp[j][V] = min&#123; dp[i][V-&#123;j&#125;] + D[i][j] | i <span class="keyword">in</span> V <span class="keyword">and</span> i != j  &#125;</span><br><span class="line">    <span class="keyword">return</span> min&#123; dp[j][all] + D[j][<span class="number">1</span>] | j <span class="keyword">from</span> <span class="number">2</span> to n  &#125;</span><br></pre></td></tr></table></figure></p>
+<p>最终程序：(C)<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;string.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;math.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;ctype.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> D[<span class="number">6</span>][<span class="number">6</span>] = &#123;&#123;<span class="number">0</span>, <span class="number">10</span>, <span class="number">20</span>, <span class="number">30</span>, <span class="number">40</span>, <span class="number">50</span>&#125;, </span><br><span class="line">			   &#123;<span class="number">12</span>, <span class="number">0</span>, <span class="number">18</span>, <span class="number">30</span>, <span class="number">25</span>, <span class="number">21</span>&#125;, </span><br><span class="line">			   &#123;<span class="number">23</span>, <span class="number">19</span>, <span class="number">0</span>, <span class="number">5</span>, <span class="number">10</span>, <span class="number">15</span>&#125;, </span><br><span class="line">			   &#123;<span class="number">34</span>, <span class="number">32</span>, <span class="number">4</span>, <span class="number">0</span>, <span class="number">8</span>, <span class="number">16</span>&#125;, </span><br><span class="line">			   &#123;<span class="number">45</span>, <span class="number">27</span>, <span class="number">11</span>, <span class="number">10</span>, <span class="number">0</span>, <span class="number">18</span>&#125;, </span><br><span class="line">			   &#123;<span class="number">56</span>, <span class="number">22</span>, <span class="number">16</span>, <span class="number">20</span>, <span class="number">12</span>, <span class="number">0</span>&#125;&#125;;</span><br><span class="line">			   </span><br><span class="line"><span class="keyword">int</span> dp[<span class="number">6</span>][(<span class="number">1</span>&lt;&lt;<span class="number">6</span>)];</span><br><span class="line"><span class="keyword">int</span> p[<span class="number">6</span>][(<span class="number">1</span>&lt;&lt;<span class="number">6</span>)];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span>* <span class="title">select</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span>* path;</span><br><span class="line">	path = select();</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"1 "</span>);</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">6</span>; i++) &#123;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"%d "</span>, *(path + i) + <span class="number">1</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">select</span></span><br><span class="line"><span class="comment">input: D</span></span><br><span class="line"><span class="comment">output: path</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="function"><span class="keyword">int</span>* <span class="title">select</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span> *path = (<span class="keyword">int</span> *)<span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(<span class="keyword">int</span>) * <span class="number">6</span>);</span><br><span class="line">	</span><br><span class="line">	<span class="comment">// dp过程</span></span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; (<span class="number">1</span>&lt;&lt;<span class="number">6</span>); j++) &#123;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">6</span>; i++) &#123;</span><br><span class="line">			<span class="keyword">if</span> (j == <span class="number">0</span>) &#123;</span><br><span class="line">				dp[i][j] = D[i][<span class="number">0</span>];</span><br><span class="line">			&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">				<span class="keyword">int</span> mindp = <span class="number">99999</span>;</span><br><span class="line">				<span class="keyword">int</span> minp = <span class="number">-1</span>;</span><br><span class="line">				<span class="keyword">for</span> (<span class="keyword">int</span> k = <span class="number">0</span>; k &lt; <span class="number">6</span>; k++) &#123;</span><br><span class="line">					<span class="keyword">if</span> ((j &gt;&gt; k) &amp; <span class="number">1</span>) &#123;</span><br><span class="line">						<span class="keyword">if</span> (mindp &gt; D[i][k] + dp[k][j-(<span class="number">1</span>&lt;&lt;k)]) &#123;</span><br><span class="line">							mindp = D[i][k] + dp[k][j-(<span class="number">1</span>&lt;&lt;k)];</span><br><span class="line">							minp = k;</span><br><span class="line">						&#125;</span><br><span class="line">					&#125;</span><br><span class="line">				&#125;</span><br><span class="line">				dp[i][j] = mindp;</span><br><span class="line">				p[i][j] = minp;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125; </span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="comment">// 选择最优路径过程</span></span><br><span class="line">	<span class="keyword">int</span> x = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">int</span> V = <span class="number">0b111110</span>;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">6</span>; i++) &#123;</span><br><span class="line">		*(path + i) = p[x][V];</span><br><span class="line">		x = p[x][V];</span><br><span class="line">		V = V - (<span class="number">1</span> &lt;&lt; p[x][V]);</span><br><span class="line">	&#125;</span><br><span class="line">		</span><br><span class="line">	<span class="keyword">return</span> path;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>结果:<br><img src="./2024-04-24-研究生算法 - Assignment 1/1.png"/></p>
+<p>时间复杂度：dp过程三重循环，$O(n^2<em>2^n)$，选择最优路径过程一重循环，$O(n)$，总时间复杂度为$O(n^2</em>2^n)$。</p>
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({ tex2jax: {inlineMath: [['$', '$']]}, messageStyle: "none" });
+</script>
+                
+                <hr>
+                <!-- Pager -->
+                <ul class="pager">
+                    
+                    <li class="previous">
+                        <a href="/2024/05/21/研究生算法 - Assignment 2/" data-toggle="tooltip" data-placement="top" title="研究生算法 - Assignment 2">&larr; Previous Post
+		<br>
+		<span><font size="2" face="Calibri" color="grey">研究生算法 - Assignment 2</font></span>
+	       </a>
+                    </li>
+                    
+                    
+                    <li class="next">
+                        <a href="/2024/01/21/实验室周报/" data-toggle="tooltip" data-placement="top" title="实验室周报">Next Post &rarr;
+		<br>
+		<span><font size="2" face="Calibri" color="grey">实验室周报</font></span>
+	        </a>
+                    </li>
+                    
+                </ul>
+
+                <!-- tip start -->
+                
+
+                
+                <div class="comment_notes">
+                    <p>
+                        by Tan
+                    </p>
+                </div>
+                
+                <!-- tip end -->
+
+                <!-- Music start-->
+                
+                <!-- Music end -->
+
+                <!-- Sharing -->
+                
+                <!-- Sharing -->
+
+                <!-- gitment start -->
+                
+                <!-- gitment end -->
+
+                <!-- 来必力City版安装代码 -->
+                
+                <!-- City版安装代码已完成 -->
+
+                <!-- disqus comment start -->
+                
+                <!-- disqus comment end -->
+            </div>
+            
+            <!-- Tabe of Content -->
+            <!-- Table of Contents -->
+
+    
+      
+        <aside id="sidebar">
+          <div id="toc" class="toc-article">
+          <strong class="toc-title">Contents</strong>
+          
+            
+              <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#一、用动态规划方法手工求解下面的问题"><span class="toc-nav-text">一、用动态规划方法手工求解下面的问题:</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#答："><span class="toc-nav-text">答：</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#二、用动态规划方法编程求解下面的问题"><span class="toc-nav-text">二、用动态规划方法编程求解下面的问题:</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#答：-1"><span class="toc-nav-text">答：</span></a></li></ol></li></ol>
+            
+          
+          </div>
+        </aside>
+      
+    
+
+                
+            <!-- Sidebar Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                       
+                          <a class="tag" href="/tags/#研究生算法" title="研究生算法">研究生算法</a>
+                        
+                    </div>
+                </section>
+                
+
+            </div>
+			
+			<div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+				
+				<br>
+				<br>
+
+				<script src="https://utteranc.es/client.js"
+						repo="Master-Tan/Master-Tan.github.io"
+						issue-term="pathname"
+						label="Comment"
+						theme="github-light"
+						crossorigin="anonymous"
+						async>
+				</script>
+			</div>
+        </div>
+    </div>
+</article>
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("https://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'hover',
+          placement: 'left',
+          icon: 'ℬ'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+
+
+<style  type="text/css">
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
+
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+
+                
+                    <li>
+                        <a target="_blank"  href="https://github.com/Master-Tan">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+                    <li>
+                        <a target="_blank" href="https://twitter.com/None">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+                    <li>
+                        <a target="_blank" href="https://www.facebook.com/None">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                
+
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; Tan 2024 | Powered by 
+                    <a href="https://github.com/Master-Tan/Master-Tan.github.io" target="_blank" rel="noopener">
+                        <i>Tan's Blog</i>
+                    </a>
+                </p>
+            </div>
+        </div>
+    </div>
+
+</footer>
+
+<!-- jQuery -->
+
+<script src="/js/jquery.min.js"></script>
+
+
+<!-- Bootstrap Core JavaScript -->
+
+<script src="/js/bootstrap.min.js"></script>
+
+
+<!-- Custom Theme JavaScript -->
+
+<script src="/js/hux-blog.min.js"></script>
+
+
+<!-- Search -->
+
+<script src="/js/search.js"></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("https://master-tan.github.io/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("https://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+<script>
+    // dynamic User by Hux
+    var _gaId = 'UA-XXXXXXXX-X';
+    var _gaDomain = 'yoursite';
+
+    // Originial
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', _gaId, _gaDomain);
+    ga('send', 'pageview');
+</script>
+
+
+
+
+<!-- Baidu Tongji -->
+
+
+<!-- Search -->
+
+    <script type="text/javascript">      
+        var search_path = "search.xml";
+        if (search_path.length == 0) {
+            search_path = "search.xml";
+        }
+    var path = "/" + search_path;
+    searchFunc(path, 'local-search-input', 'local-search-result');
+    </script>
+
+
+<!-- busuanzi -->
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+
+	<a id="rocket" href="#top" class=""></a>
+	<script type="text/javascript" src="/js/totop.js?v=1.0.0" async=""></script>
+    <script type="text/javascript" src="/js/toc.js?v=1.0.0" async=""></script>
+
+    
+        <!-- background effects line -->
+        
+
+        
+            <script type="text/javascript" src="/js/mouse-click.js" content='[&quot;Sunny&quot;, &quot;💖&quot;, &quot;Sunny&quot;, &quot;🧡&quot;, &quot;Sunny&quot;, &quot;💛&quot;, &quot;Sunny&quot; , &quot;💚&quot;, &quot;Sunny&quot;, &quot;💙&quot;, &quot;Sunny&quot;, &quot;💜&quot;, &quot;Sunny&quot;, &quot;😍&quot;]' color='[&quot;rgb(255, 0, 0)&quot; ,&quot;rgb(255, 0, 0)&quot; ,&quot;rgb(255, 125, 0)&quot; ,&quot;rgb(255, 125, 0)&quot; ,&quot;rgb(255, 255, 0)&quot; ,&quot;rgb(255, 255, 0)&quot; ,&quot;rgb(0, 255, 0)&quot; ,&quot;rgb(0, 255, 0)&quot; ,&quot;rgb(0, 255, 255)&quot; ,&quot;rgb(0, 255, 255)&quot; ,&quot;rgb(0, 0, 255)&quot; ,&quot;rgb(0, 0, 255)&quot; ,&quot;rgb(255, 0, 255)&quot; ,&quot;rgb(255, 0, 255)&quot;]'></script>
+        
+
+        <!-- background effects end -->
+    
+
+    <!--<script size="50" alpha='0.3' zIndex="-999" src="/js/ribbonStatic.js"></script>-->
+    
+        <script src="/js/ribbonDynamic.js"></script>
+    
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+
+</html>
