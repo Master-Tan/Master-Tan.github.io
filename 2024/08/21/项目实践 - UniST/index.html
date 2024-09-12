@@ -119,7 +119,7 @@
 	       
                             <div class="blank_box"></div>
                             <span class="meta">
-                                 <span class="post-count">1.3k</span> Words
+                                 <span class="post-count">2.4k</span> Words
                             </span>
                             <div class="blank_box"></div>
                             <!-- 不蒜子统计 start -->
@@ -180,14 +180,14 @@
 
                         
                         	<li>
-                          	  <a href="/archive/">Archives</a>
+                          	  <a href="/about/">About Tan</a>
                         	</li>
                         
                     
 
                         
                         	<li>
-                          	  <a href="/about/">About Tan</a>
+                          	  <a href="/archive/">Archives</a>
                         	</li>
                         
                     
@@ -316,7 +316,8 @@
 </li>
 </ul>
 <h3 id="获得数据集"><a href="#获得数据集" class="headerlink" title="获得数据集"></a>获得数据集</h3><p>下载地址：<br><a href="https://cloud.tsinghua.edu.cn/d/87f5954d4f6f4ebd9d70/" target="_blank" rel="noopener">https://cloud.tsinghua.edu.cn/d/87f5954d4f6f4ebd9d70/</a></p>
-<h3 id="pretrain-运行"><a href="#pretrain-运行" class="headerlink" title="pretrain 运行"></a>pretrain 运行</h3><p>nohup python main.py —device_id 3 —machine machine —dataset Cellular<em>BikeNYC</em>TaxiNYC2<em>TaxiNYC</em>BikeNYC2<em>Crowd</em>TrafficHZ<em>TrafficJN</em>TrafficCD<em>TrafficTJ</em>TrafficNJ<em>TrafficZZ</em>TrafficSH*TDrive —task short —size middle —mask_strategy_random ‘batch’ —lr 3e-4 —used_data ‘single’ —prompt_ST 0 &gt; train.log 2&gt;&amp;1 &amp;</p>
+<h3 id="pretrain-运行"><a href="#pretrain-运行" class="headerlink" title="pretrain 运行"></a>pretrain 运行</h3><p>cd src/</p>
+<p>nohup python main.py —mode training —device_id 3 —machine machine —dataset Cellular<em>BikeNYC</em>TaxiNYC2<em>TaxiNYC</em>BikeNYC2<em>Crowd</em>TrafficHZ<em>TrafficJN</em>TrafficCD<em>TrafficTJ</em>TrafficNJ<em>TrafficZZ</em>TrafficSH*TDrive —task short —size middle —mask_strategy_random ‘batch’ —lr 3e-4 —used_data ‘single’ —prompt_ST 0 &gt; train.log 2&gt;&amp;1 &amp;</p>
 <h3 id="论文总结-UniST-A-Prompt-Empowered-Universal-Model-for-Urban-Spatio-Temporal-Prediction"><a href="#论文总结-UniST-A-Prompt-Empowered-Universal-Model-for-Urban-Spatio-Temporal-Prediction" class="headerlink" title="论文总结: UniST: A Prompt-Empowered Universal Model for Urban Spatio-Temporal Prediction"></a>论文总结: UniST: A Prompt-Empowered Universal Model for Urban Spatio-Temporal Prediction</h3><h4 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h4><ul>
 <li>城市时空预测对于交通管理、资源优化和应急响应等决策至关重要。</li>
 <li>现有模型通常针对特定场景设计，并需要大量的领域特定训练数据，难以实现通用性。</li>
@@ -335,12 +336,12 @@
 </li>
 <li><p><strong>提示学习</strong>：</p>
 <ul>
-<li>基于领域知识的提示学习，能够动态生成提示，提升模型的泛化能力，尤其是在零样本和少样本情况下。</li>
+<li>能够基于领域知识的提示学习动态生成提示，尤其是在零样本和少样本情况下提升模型的泛化能力。</li>
 </ul>
 </li>
 <li><p><strong>实验验证</strong>：</p>
 <ul>
-<li>通过20多个时空场景的实验验证，UniST在各种预测任务中表现优越，特别是在少样本和零样本预测任务中表现突出。</li>
+<li>UniST通过20多个时空场景的实验验证，在各种预测任务中表现优越，特别地在少样本和零样本预测任务中表现突出。</li>
 </ul>
 </li>
 </ol>
@@ -351,7 +352,84 @@
 <h3 id="mask-strategy-py"><a href="#mask-strategy-py" class="headerlink" title="mask_strategy.py"></a>mask_strategy.py</h3><p>这段代码实现了几种掩码策略及其对应的恢复方法。这些函数可以用于自监督学习模型的训练，特别是用于处理时间序列或图像数据的场景。主要包括：</p>
 <p>随机掩码：在输入数据上随机选择部分数据进行掩码。<br>tube掩码：用于处理具有时间维度的数据，掩码的部分是沿着时间维度连续的。<br>块掩码：在数据块中进行掩码操作，以更好地模拟图像或视频中的缺失部分。<br>因果掩码：主要用于时间序列数据，确保掩码后的数据仍保留一定的时间信息。</p>
 <h3 id="debug"><a href="#debug" class="headerlink" title="debug"></a>debug</h3><p>DataLoader.py line 117: H + W &gt; 64 时 batch_size 未定义</p>
-
+<h3 id="目标"><a href="#目标" class="headerlink" title="目标"></a>目标</h3><p>复现实验并评估，查看是否与论文中的结果一致。</p>
+<h3 id="方案"><a href="#方案" class="headerlink" title="方案"></a>方案</h3><p>只需关注论文的第四章节，即实验部分</p>
+<p>使用 RMSE 和 MAE 作为评估指标，分别在 20 个数据集上进行实验。</p>
+<p>短期预测结果：表2、表11和表12</p>
+<p>长期预测结果：表3、表13</p>
+<p>Few-shot（少样本）预测结果：图4、表14表15表16</p>
+<p>Zero-shot（零样本）预测结果：图4</p>
+<ul>
+<li><p>如何修改 Short/Long？</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">his_len = <span class="number">6</span>,  <span class="comment"># 历史数据长度，默认为6</span></span><br><span class="line">pred_len = <span class="number">6</span>,  <span class="comment"># 预测数据长度，默认为6</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>used_data: single, diverse (作用：single表示只使用单个数据集，diverse表示使用多个数据集) 但在实际代码中为无效参数</p>
+</li>
+<li><p>random, temporal, tube, block：掩码策略</p>
+</li>
+<li><p>machine 无效参数</p>
+</li>
+<li><p>输出格式：</p>
+</li>
+</ul>
+<h3 id="Mask"><a href="#Mask" class="headerlink" title="Mask"></a>Mask</h3><p>在UniST模型中，<strong>Mask（遮罩）</strong>技术在预训练过程中扮演着关键角色，特别是在<strong>自监督学习</strong>阶段。通过遮罩部分数据并要求模型重建这些被遮罩的部分，模型能够在缺乏明确标签的情况下学习时空数据的内在结构和复杂关系。以下是Mask的具体用途及其在预训练中的重要性：</p>
+<h4 id="Mask的作用"><a href="#Mask的作用" class="headerlink" title="Mask的作用"></a>Mask的作用</h4><ol>
+<li><p><strong>学习时空关系</strong></p>
+<ul>
+<li>通过遮罩（Mask）部分时空数据，模型被迫去预测或重建这些被隐藏的信息，这使得模型学会如何利用未被遮罩的数据来推断被遮罩部分的时空依赖关系。</li>
+<li>这种方式帮助模型更好地理解时间序列的动态变化和空间之间的关联性。</li>
+</ul>
+</li>
+<li><p><strong>捕捉多种模式</strong></p>
+<ul>
+<li>Mask可以以不同的策略（如随机遮罩、Tube遮罩、Block遮罩、时间遮罩等）来应用，从而让模型学会捕捉细粒度到粗粒度的时空模式。</li>
+<li>不同的遮罩策略模拟现实中可能出现的各种数据缺失情况，例如某些传感器故障导致的空间数据缺失或未来数据预测需求。</li>
+</ul>
+</li>
+<li><p><strong>增强模型的鲁棒性</strong></p>
+<ul>
+<li>遮罩技术模拟了实际场景中数据缺失或数据不完美的情况，从而训练出更加鲁棒（稳健）的模型，使其在面对不完整或不确定数据时仍能做出合理的预测。</li>
+</ul>
+</li>
+<li><p><strong>减少对人工标注的依赖</strong></p>
+<ul>
+<li>通过自监督学习，模型可以从大量未标注的时空数据中学习，而不需要大量昂贵的人工标注数据。</li>
+<li>Mask策略使得预训练成为可能，使模型在后续的有监督微调中更加高效。</li>
+</ul>
+</li>
+</ol>
+<h4 id="UniST中的特定Mask策略"><a href="#UniST中的特定Mask策略" class="headerlink" title="UniST中的特定Mask策略"></a>UniST中的特定Mask策略</h4><p>UniST模型采用了多种Mask策略来最大化模型对时空数据的理解能力：</p>
+<ol>
+<li><p><strong>随机遮罩（Random Masking）</strong></p>
+<ul>
+<li>类似于在图像或文本中遮盖部分内容，随机遮罩让模型专注于细节和局部信息的学习。</li>
+</ul>
+</li>
+<li><p><strong>Tube遮罩（Tube Masking）</strong></p>
+<ul>
+<li>这种策略模拟某一空间单元在所有时间点的数据缺失情况，训练模型在空间信息缺失时仍能做出预测，提升了模型的空间外推能力。</li>
+</ul>
+</li>
+<li><p><strong>Block遮罩（Block Masking）</strong></p>
+<ul>
+<li>这种遮罩会让模型在空间大范围信息缺失的情况下进行重建，考验模型的空间迁移能力和对整体时空结构的理解。</li>
+</ul>
+</li>
+<li><p><strong>时间遮罩（Temporal Masking）</strong></p>
+<ul>
+<li>模拟未来数据的缺失，模型必须利用历史信息来预测未来，从而提升对时间依赖的把握能力。</li>
+</ul>
+</li>
+</ol>
+<h4 id="Mask技术的综合效果"><a href="#Mask技术的综合效果" class="headerlink" title="Mask技术的综合效果"></a>Mask技术的综合效果</h4><ul>
+<li><strong>提升预测精度</strong>：通过多样化的遮罩策略，模型能够学习到丰富的时空关系，提高对未来的预测能力。</li>
+<li><strong>增强泛化能力</strong>：Mask策略帮助模型在面对不同城市、不同场景的数据时保持较高的泛化能力。</li>
+<li><strong>支持多任务学习</strong>：遮罩学习可以在不更改核心训练方法的情况下支持模型适应多样化的任务。</li>
+</ul>
+<h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4><p>Mask技术在UniST模型中的应用，是其自监督预训练的核心，通过模拟数据缺失场景，提升模型的学习效果、鲁棒性和泛化能力，使得模型能够在多种复杂的时空预测任务中表现出色。</p>
+<h3 id="Prompt-Tuning-运行"><a href="#Prompt-Tuning-运行" class="headerlink" title="Prompt-Tuning 运行"></a>Prompt-Tuning 运行</h3><p>cd src/</p>
+<p>python main.py —mode prompting —device_id 2 —machine machine —task short —size middle   —prompt_ST 1  —pred_len 6 —his_len 6  —num_memory_spatial 512 —num_memory_temporal 512  —prompt_content ‘s_p_c’  —dataset Cellular    —lr 3e-4 —used_data ‘single’ —file_load_path  ./experiments/Pretrain_Dataset_Cellular<em>BikeNYC</em>TaxiNYC2<em>TaxiNYC</em>BikeNYC2<em>Crowd</em>TrafficHZ<em>TrafficJN</em>TrafficCD<em>TrafficTJ</em>TrafficNJ<em>TrafficZZ</em>TrafficSH*TDrive_Task_short_FewRatio_0.5/model_save/model_best</p>
+<h3 id="SummaryWriter-使用"><a href="#SummaryWriter-使用" class="headerlink" title="SummaryWriter 使用"></a>SummaryWriter 使用</h3>
                 
                 <hr>
                 <!-- Pager -->
@@ -417,7 +495,7 @@
           <strong class="toc-title">Contents</strong>
           
             
-              <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#CentOS7-安装-Python3-9-19"><span class="toc-nav-text">CentOS7 安装 Python3.9.19</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#requirements-txt-中的-torch-2-0-0-cu117-如何安装"><span class="toc-nav-text">requirements.txt 中的 torch&#x3D;&#x3D;2.0.0+cu117 如何安装</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#pretrain-sh-运行报错：-ImportError-urllib3-v2-only-supports-OpenSSL-1-1-1-currently-the-‘ssl’-module-is-compiled-with-‘OpenSSL-1-0-2k-fips-26-Jan-2017’"><span class="toc-nav-text">pretrain .sh 运行报错： ImportError: urllib3 v2 only supports OpenSSL 1.1.1+, currently the ‘ssl’ module is compiled with ‘OpenSSL 1.0.2k-fips  26 Jan 2017’.</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#yum-install-时下载源访问不到"><span class="toc-nav-text">yum install 时下载源访问不到</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#额外缺失的库"><span class="toc-nav-text">额外缺失的库</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#获得数据集"><span class="toc-nav-text">获得数据集</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#pretrain-运行"><span class="toc-nav-text">pretrain 运行</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#论文总结-UniST-A-Prompt-Empowered-Universal-Model-for-Urban-Spatio-Temporal-Prediction"><span class="toc-nav-text">论文总结: UniST: A Prompt-Empowered Universal Model for Urban Spatio-Temporal Prediction</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#背景"><span class="toc-nav-text">背景</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#主要贡献"><span class="toc-nav-text">主要贡献</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#研究意义"><span class="toc-nav-text">研究意义</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#mask-strategy-py"><span class="toc-nav-text">mask_strategy.py</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#debug"><span class="toc-nav-text">debug</span></a></li></ol></li></ol>
+              <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#CentOS7-安装-Python3-9-19"><span class="toc-nav-text">CentOS7 安装 Python3.9.19</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#requirements-txt-中的-torch-2-0-0-cu117-如何安装"><span class="toc-nav-text">requirements.txt 中的 torch&#x3D;&#x3D;2.0.0+cu117 如何安装</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#pretrain-sh-运行报错：-ImportError-urllib3-v2-only-supports-OpenSSL-1-1-1-currently-the-‘ssl’-module-is-compiled-with-‘OpenSSL-1-0-2k-fips-26-Jan-2017’"><span class="toc-nav-text">pretrain .sh 运行报错： ImportError: urllib3 v2 only supports OpenSSL 1.1.1+, currently the ‘ssl’ module is compiled with ‘OpenSSL 1.0.2k-fips  26 Jan 2017’.</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#yum-install-时下载源访问不到"><span class="toc-nav-text">yum install 时下载源访问不到</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#额外缺失的库"><span class="toc-nav-text">额外缺失的库</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#获得数据集"><span class="toc-nav-text">获得数据集</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#pretrain-运行"><span class="toc-nav-text">pretrain 运行</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#论文总结-UniST-A-Prompt-Empowered-Universal-Model-for-Urban-Spatio-Temporal-Prediction"><span class="toc-nav-text">论文总结: UniST: A Prompt-Empowered Universal Model for Urban Spatio-Temporal Prediction</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#背景"><span class="toc-nav-text">背景</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#主要贡献"><span class="toc-nav-text">主要贡献</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#研究意义"><span class="toc-nav-text">研究意义</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#mask-strategy-py"><span class="toc-nav-text">mask_strategy.py</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#debug"><span class="toc-nav-text">debug</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#目标"><span class="toc-nav-text">目标</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#方案"><span class="toc-nav-text">方案</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#Mask"><span class="toc-nav-text">Mask</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#Mask的作用"><span class="toc-nav-text">Mask的作用</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#UniST中的特定Mask策略"><span class="toc-nav-text">UniST中的特定Mask策略</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#Mask技术的综合效果"><span class="toc-nav-text">Mask技术的综合效果</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#总结"><span class="toc-nav-text">总结</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#Prompt-Tuning-运行"><span class="toc-nav-text">Prompt-Tuning 运行</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#SummaryWriter-使用"><span class="toc-nav-text">SummaryWriter 使用</span></a></li></ol></li></ol>
             
           
           </div>
@@ -678,7 +756,7 @@
         
 
         
-            <script type="text/javascript" src="/js/mouse-click.js" content='[&#34;Sunny&#34;, &#34;💖&#34;, &#34;Sunny&#34;, &#34;🧡&#34;, &#34;Sunny&#34;, &#34;💛&#34;, &#34;Sunny&#34; , &#34;💚&#34;, &#34;Sunny&#34;, &#34;💙&#34;, &#34;Sunny&#34;, &#34;💜&#34;, &#34;Sunny&#34;, &#34;😍&#34;]' color='[&#34;rgb(255, 0, 0)&#34; ,&#34;rgb(255, 0, 0)&#34; ,&#34;rgb(255, 125, 0)&#34; ,&#34;rgb(255, 125, 0)&#34; ,&#34;rgb(255, 255, 0)&#34; ,&#34;rgb(255, 255, 0)&#34; ,&#34;rgb(0, 255, 0)&#34; ,&#34;rgb(0, 255, 0)&#34; ,&#34;rgb(0, 255, 255)&#34; ,&#34;rgb(0, 255, 255)&#34; ,&#34;rgb(0, 0, 255)&#34; ,&#34;rgb(0, 0, 255)&#34; ,&#34;rgb(255, 0, 255)&#34; ,&#34;rgb(255, 0, 255)&#34;]'></script>
+            <script type="text/javascript" src="/js/mouse-click.js" content='[&quot;Sunny&quot;, &quot;💖&quot;, &quot;Sunny&quot;, &quot;🧡&quot;, &quot;Sunny&quot;, &quot;💛&quot;, &quot;Sunny&quot; , &quot;💚&quot;, &quot;Sunny&quot;, &quot;💙&quot;, &quot;Sunny&quot;, &quot;💜&quot;, &quot;Sunny&quot;, &quot;😍&quot;]' color='[&quot;rgb(255, 0, 0)&quot; ,&quot;rgb(255, 0, 0)&quot; ,&quot;rgb(255, 125, 0)&quot; ,&quot;rgb(255, 125, 0)&quot; ,&quot;rgb(255, 255, 0)&quot; ,&quot;rgb(255, 255, 0)&quot; ,&quot;rgb(0, 255, 0)&quot; ,&quot;rgb(0, 255, 0)&quot; ,&quot;rgb(0, 255, 255)&quot; ,&quot;rgb(0, 255, 255)&quot; ,&quot;rgb(0, 0, 255)&quot; ,&quot;rgb(0, 0, 255)&quot; ,&quot;rgb(255, 0, 255)&quot; ,&quot;rgb(255, 0, 255)&quot;]'></script>
         
 
         <!-- background effects end -->
@@ -688,6 +766,21 @@
     
         <script src="/js/ribbonDynamic.js"></script>
     
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 </body>
 
 </html>
