@@ -180,13 +180,6 @@
 
                         
                         	<li>
-                          	  <a href="/about/">About Tan</a>
-                        	</li>
-                        
-                    
-
-                        
-                        	<li>
                           	  <a href="/archive/">Archives</a>
                         	</li>
                         
@@ -198,6 +191,13 @@
                         
                         	<li>
                           	  <a href="/tags/">Tags</a>
+                        	</li>
+                        
+                    
+
+                        
+                        	<li>
+                          	  <a href="/about/">About Tan</a>
                         	</li>
                         
                     
@@ -428,7 +428,7 @@
 </ul>
 <h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4><p>Mask技术在UniST模型中的应用，是其自监督预训练的核心，通过模拟数据缺失场景，提升模型的学习效果、鲁棒性和泛化能力，使得模型能够在多种复杂的时空预测任务中表现出色。</p>
 <h3 id="Prompt-Tuning-运行"><a href="#Prompt-Tuning-运行" class="headerlink" title="Prompt-Tuning 运行"></a>Prompt-Tuning 运行</h3><p>cd src/</p>
-<p>python main.py —mode prompting —device_id 2 —machine machine —task short —size middle   —prompt_ST 1  —pred_len 6 —his_len 6  —num_memory_spatial 512 —num_memory_temporal 512  —prompt_content ‘s_p_c’  —dataset Cellular    —lr 3e-4 —used_data ‘single’ —file_load_path  ./experiments/Pretrain_Dataset_Cellular<em>BikeNYC</em>TaxiNYC2<em>TaxiNYC</em>BikeNYC2<em>Crowd</em>TrafficHZ<em>TrafficJN</em>TrafficCD<em>TrafficTJ</em>TrafficNJ<em>TrafficZZ</em>TrafficSH*TDrive_Task_short_FewRatio_0.5/model_save/model_best</p>
+<p>nohup python main.py —mode prompting —device_id 2 —machine machine —task short —size middle   —prompt_ST 1  —pred_len 6 —his_len 6  —num_memory_spatial 512 —num_memory_temporal 512  —prompt_content ‘s_p_c’  —dataset Cellular    —lr 3e-4 —used_data ‘single’ —file_load_path  ./experiments/Pretrain_Dataset_Cellular<em>BikeNYC</em>TaxiNYC2<em>TaxiNYC</em>BikeNYC2<em>Crowd</em>TrafficHZ<em>TrafficJN</em>TrafficCD<em>TrafficTJ</em>TrafficNJ<em>TrafficZZ</em>TrafficSH*TDrive_Task_short_FewRatio_0.5/model_save/model_best &gt; prompt.log 2&gt;&amp;1 &amp;</p>
 <h3 id="SummaryWriter-使用"><a href="#SummaryWriter-使用" class="headerlink" title="SummaryWriter 使用"></a>SummaryWriter 使用</h3>
                 
                 <hr>
