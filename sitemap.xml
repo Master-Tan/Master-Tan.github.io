@@ -2,6 +2,20 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://master-tan.github.io/tags/index.html</loc>
+    
+    <lastmod>2024-09-18T05:35:50.554Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://master-tan.github.io/about/index.html</loc>
+    
+    <lastmod>2024-09-18T03:45:07.677Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://master-tan.github.io/2024/08/30/%25E5%25A4%25A7%25E5%259B%259B%25E4%25B8%258B%25E6%2580%25BB%25E7%25BB%2593/</loc>
     
     <lastmod>2024-09-13T20:05:34.267Z</lastmod>
@@ -145,13 +159,6 @@
     <loc>https://master-tan.github.io/2023/07/13/RLHF%25E5%25AD%25A6%25E4%25B9%25A0%25E7%25AC%2594%25E8%25AE%25B0/</loc>
     
     <lastmod>2023-07-17T23:02:20.026Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://master-tan.github.io/about/index.html</loc>
-    
-    <lastmod>2023-07-17T19:55:01.851Z</lastmod>
     
   </url>
   
@@ -607,13 +614,6 @@
     <loc>https://master-tan.github.io/tanlide/index%2520-%2520%25E5%258E%259F.html</loc>
     
     <lastmod>2021-12-08T03:35:26.290Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://master-tan.github.io/tags/index.html</loc>
-    
-    <lastmod>2021-12-07T08:49:10.474Z</lastmod>
     
   </url>
   
