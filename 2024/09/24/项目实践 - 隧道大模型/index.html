@@ -1,0 +1,824 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="baidu-site-verification" content="093lY4ziMu" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="description" content="Tan&#39;s Blog">
+    <meta name="keyword"  content="Hello world">
+    <link rel="shortcut icon" href="/img/ironman-draw.png">
+    <!-- Place this tag in your head or just before your close body tag. -->
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+    <!--<link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>-->
+    <title>
+        
+          项目实践 - 隧道大模型 - Tan&#39;s Blog
+        
+    </title>
+
+    <link rel="canonical" href="https://master-tan.github.io/2024/09/24/项目实践 - 隧道大模型/">
+
+    <!-- Bootstrap Core CSS -->
+    
+<link rel="stylesheet" href="/css/bootstrap.min.css">
+
+
+    <!-- Custom CSS --> 
+    
+        
+<link rel="stylesheet" href="/css/dusign-light.css">
+
+        
+<link rel="stylesheet" href="/css/dusign-common-light.css">
+
+        
+<link rel="stylesheet" href="/css/font-awesome.css">
+
+        
+<link rel="stylesheet" href="/css/toc.css">
+
+        <!-- background effects end -->
+    
+    
+    <!-- Pygments Highlight CSS -->
+    
+<link rel="stylesheet" href="/css/highlight.css">
+
+
+    
+<link rel="stylesheet" href="/css/widget.css">
+
+
+    
+<link rel="stylesheet" href="/css/rocket.css">
+
+
+    
+<link rel="stylesheet" href="/css/signature.css">
+
+
+    
+<link rel="stylesheet" href="/css/fonts.googleapis.css">
+
+
+    <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.3.0/css/font-awesome.min.css">
+
+    <!-- photography -->
+    
+<link rel="stylesheet" href="/css/photography.css">
+
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+
+    <!-- background effects start -->
+    
+    <!-- background effects end -->
+
+	<!-- Modified by Yu-Hsuan Yen -->
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        
+            
+                background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('../../../../img/default.jpg')
+                /*post*/
+            
+        
+    }
+    
+</style>
+
+<header class="intro-header" >
+    <!-- Signature -->
+    <div id="signature">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                
+                    <div class="post-heading">
+                        <div class="tags">
+                            
+                        </div>
+                        <h1>项目实践 - 隧道大模型</h1>
+                        <h2 class="subheading"></h2>
+                        <span class="meta">
+                            Posted by Tan on
+                            2024-09-24
+                        </span>
+
+	       
+                            <div class="blank_box"></div>
+                            <span class="meta">
+                                 <span class="post-count">3.5k</span> Words
+                            </span>
+                            <div class="blank_box"></div>
+                            <!-- 不蒜子统计 start -->
+                            <span class="meta">
+                                Viewed <span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span> Times
+                            </span>
+                            <!-- 不蒜子统计 end -->
+                        
+
+                    </div>
+                
+
+                </div>
+            </div>
+        </div>      
+    </div>
+
+    
+    <div class="waveWrapper">
+        <div class="wave wave_before" style="background-image: url('/img/wave-light.png')"></div>
+        <div class="wave wave_after" style="background-image: url('/img/wave-light.png')"></div>
+    </div>
+    
+</header>
+
+	
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Tan&#39;s Blog</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+
+                    
+
+                        
+                    
+
+                        
+                        	<li>
+                          	  <a href="/about/">About Tan</a>
+                        	</li>
+                        
+                    
+
+                        
+                        	<li>
+                          	  <a href="/archive/">Archives</a>
+                        	</li>
+                        
+                    
+
+                        
+                    
+
+                        
+                        	<li>
+                          	  <a href="/tags/">Tags</a>
+                        	</li>
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+
+                        
+                    
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+    <!-- Main Content -->
+    <!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+            <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <h2 id="论文查询"><a href="#论文查询" class="headerlink" title="论文查询"></a>论文查询</h2><p>搜一些“盾构”相关的论文，比如知网的博士论文，高引用论文，谷歌学术高引用论文</p>
+<h3 id="论文"><a href="#论文" class="headerlink" title="论文"></a>论文</h3><h4 id="盾构隧道施工与分析"><a href="#盾构隧道施工与分析" class="headerlink" title="盾构隧道施工与分析"></a>盾构隧道施工与分析</h4><ul>
+<li><p>Three-dimensional numerical study of long-term settlement induced in shield tunneling<br>盾构隧道施工长期沉降三维数值研究<br><a href="https://doi.org/10.1016/j.tust.2019.02.021" target="_blank" rel="noopener">https://doi.org/10.1016/j.tust.2019.02.021</a></p>
+<ul>
+<li>使用PLAXIS 3D进行了一系列有限元分析</li>
+<li>基于台北大众运输系统的典型盾构隧道案例。</li>
+<li>评估了软土和硬化土的小应变模型对长期沉降的影响。</li>
+<li>采用软土蠕变模型评估土壤蠕变行为对长期沉降的影响。</li>
+<li>考虑土壤蠕变行为后，计算的沉降与现场测量数据相符；而不考虑蠕变时，计算的沉降明显低于现场测量。</li>
+</ul>
+</li>
+<li><p>Present status and technology of shield tunneling method in Japan<br>日本盾构法施工的现状及技术<br><a href="https://doi.org/10.1016/S0886-7798(03)00040-3" target="_blank" rel="noopener">https://doi.org/10.1016/S0886-7798(03)00040-3</a></p>
+<ul>
+<li>日本在更严苛条件下建设隧道的需求增加，需开发新技术。</li>
+<li>现有设计技术无法有效反映施工技术，传统方法仍被广泛使用。</li>
+<li>强调盾构法在施工和设计之间的平衡进展，呼吁设计技术的创新。</li>
+<li>概述当前盾构隧道技术、现场行为及设计改进的必要性。</li>
+</ul>
+</li>
+<li><p>Shield tunneling and environment protection in Shanghai soft ground<br>上海软土地区盾构施工与环境保护<br><a href="https://doi.org/10.1016/j.tust.2008.12.005" target="_blank" rel="noopener">https://doi.org/10.1016/j.tust.2008.12.005</a></p>
+<ul>
+<li>地铁建设风险：关注大规模地铁建设对城市区域风险控制和环境保护的影响。</li>
+<li>案例研究：分析三种方法：上方建筑穿越盾构（SCBA）、上方盾构隧道（SCTA）和下方盾构隧道（SCTB），基于上海软土的实际项目。</li>
+<li>风险因素：研究与敏感建筑和现有地铁相关的风险，以及地面变形的预测。</li>
+<li>控制措施：强调对地面体积损失比（GVLR）的严格规定和增强监测以降低建设风险的重要性。</li>
+<li>盾构机性能：建议改善盾构机的灵活性和性能，以应对地质和环境挑战。</li>
+</ul>
+</li>
+<li><p>Analysis of shield tunnel<br>盾构隧道分析<br><a href="https://doi.org/10.1002/nag.327" target="_blank" rel="noopener">https://doi.org/10.1002/nag.327</a></p>
+<ul>
+<li>提出了一种二维有限元模型，用于分析盾构隧道</li>
+</ul>
+</li>
+<li><p>Shield Tunnel Construction in Centrifuge<br>离心机盾构隧道施工<br><a href="https://doi.org/10.1061/(ASCE)1090-0241(1999)125:4(289" target="_blank" rel="noopener">https://doi.org/10.1061/(ASCE)1090-0241(1999)125:4(289</a>)</p>
+</li>
+<li><p>Mechanical Behavior Monitoring and Load Inversion Analysis of Large-Diameter Underwater Shield Tunnel during Construction<br>大直径水下盾构隧道施工力学行为监测与荷载反演分析<br><a href="https://doi.org/10.3390/s24041310" target="_blank" rel="noopener">https://doi.org/10.3390/s24041310</a></p>
+<ul>
+<li>提出了基于贝叶斯-遗传算法的水土压力估算模型</li>
+</ul>
+</li>
+<li><p>Effects of above-crossing tunnelling on the existing shield tunnels<br>上穿隧道对既有盾构隧道的影响<br><a href="https://doi.org/10.1016/j.tust.2016.05.002" target="_blank" rel="noopener">https://doi.org/10.1016/j.tust.2016.05.002</a></p>
+<ul>
+<li>提出了一种用于评估既有盾构隧道在上穿越施工过程中响应的简化分析方法。</li>
+<li>既有盾构隧道被视为位于温克勒地基上的连续欧拉-伯努利梁。</li>
+<li>采用两阶段分析方法来分析隧穿上方和隧穿之间的相互作用。</li>
+<li>通过中国选定的三个案例验证了所提方法的适用性。</li>
+</ul>
+</li>
+<li><p>Face Stability Analysis for a Shield Tunnel in Anisotropic Sands<br>各向异性砂土中盾构隧道开挖面稳定性分析<br><a href="https://doi.org/10.1061/(ASCE)GM.1943-5622.0001666" target="_blank" rel="noopener">https://doi.org/10.1061/(ASCE)GM.1943-5622.0001666</a></p>
+</li>
+<li><p>Dynamics research on grouping characteristics of a shield tunneling machine’s thrust system<br>盾构机推进系统分组特性动力学研究<br><a href="https://doi.org/10.1016/j.autcon.2016.12.004" target="_blank" rel="noopener">https://doi.org/10.1016/j.autcon.2016.12.004</a></p>
+<ul>
+<li>STM 分组方法及性能分析综述</li>
+<li>建立盾构机推进系统动力学模型</li>
+<li>混合土体中STM开挖过程切削荷载分析</li>
+<li>比较不同分组类型中的推力系统的性能</li>
+<li>提出一种选择最佳分组的方法</li>
+</ul>
+</li>
+</ul>
+<h4 id="AI在盾构隧道中的应用-—-Prediction"><a href="#AI在盾构隧道中的应用-—-Prediction" class="headerlink" title="AI在盾构隧道中的应用 — Prediction"></a>AI在盾构隧道中的应用 — Prediction</h4><ul>
+<li><p>SBD-K-medoids-based long-term settlement analysis of shield tunnel<br>基于SBD-K-medoids的盾构隧道长期沉降分析<br><a href="https://doi.org/10.1016/j.trgeo.2023.101053" target="_blank" rel="noopener">https://doi.org/10.1016/j.trgeo.2023.101053</a></p>
+<ul>
+<li>提出了一种SBD-K-medoids聚类算法来加速聚类过程。</li>
+<li>通过假设检验验证了所提算法的聚类精度和效率。</li>
+<li>提出了盾构隧道运营期沉降分析的系统方法。</li>
+<li>用新指标ITSS来描述盾构隧道的长期纵向沉降。</li>
+<li>通过上海地铁10号线实例证明了该方法的合理性和工程实践价值。</li>
+</ul>
+</li>
+<li><p>Deep learning technologies for shield tunneling: Challenges and opportunities<br>盾构隧道施工的深度学习技术：挑战与机遇<br><a href="https://doi.org/10.1016/j.autcon.2023.104982" target="_blank" rel="noopener">https://doi.org/10.1016/j.autcon.2023.104982</a></p>
+<ul>
+<li>对盾构隧道深度学习技术相关研究进行了严格审查和定性分析。</li>
+<li>总结并列出了盾构隧道施工中典型的监测数据类型和三种主要应用场景。</li>
+<li>分析了盾构隧道施工的深度学习模型的性能和相关挑战。</li>
+<li>提出了盾构隧道深度学习模型针对现有挑战的未来研究机会。</li>
+</ul>
+</li>
+<li><p>Modelling the performance of EPB shield tunnelling using machine and deep learning algorithms<br>使用机器和深度学习算法对 EPB 盾构隧道性能进行建模<br><a href="https://doi.org/10.1016/j.gsf.2021.101177" target="_blank" rel="noopener">https://doi.org/10.1016/j.gsf.2021.101177</a></p>
+<ul>
+<li>基于智能模型的集成框架。</li>
+<li>关于前进速度的一个经验公式。</li>
+<li>智能模型与实证方法的比较。</li>
+<li>操作变量之间的敏感性分析。</li>
+</ul>
+</li>
+<li><p>Prediction of Disc Cutter Life During Shield Tunneling with AI via the Incorporation of a Genetic Algorithm into a GMDH-Type Neural Network<br>通过将遗传算法融入 GMDH 型神经网络，利用人工智能预测盾构掘进过程中的盘式刀具寿命<br><a href="https://doi.org/10.1016/j.eng.2020.02.016" target="_blank" rel="noopener">https://doi.org/10.1016/j.eng.2020.02.016</a></p>
+</li>
+<li><p>Prediction of lining upward movement during shield tunneling using machine learning algorithms and field monitoring data<br>使用机器学习算法和现场监测数据预测盾构隧道施工期间衬砌向上移动<br><a href="https://doi.org/10.1016/j.trgeo.2023.101002" target="_blank" rel="noopener">https://doi.org/10.1016/j.trgeo.2023.101002</a></p>
+</li>
+<li><p>Dynamic prediction of mechanized shield tunneling performance<br>机械化盾构掘进性能的动态预测<br><a href="https://doi.org/10.1016/j.autcon.2021.103958" target="_blank" rel="noopener">https://doi.org/10.1016/j.autcon.2021.103958</a></p>
+<ul>
+<li>Bi-LSTM用于预测隧道掘进机的性能。</li>
+<li>提出了一种动态调节模型来预测前进速度和扭矩。</li>
+<li>对提出的动态调节模型进行了验证。</li>
+</ul>
+</li>
+<li><p>A critical evaluation of machine learning and deep learning in shield-ground interaction prediction<br>机器学习与深度学习在盾构-地面相互作用预测中的批判性评估<br><a href="https://doi.org/10.1016/j.tust.2020.103593" target="_blank" rel="noopener">https://doi.org/10.1016/j.tust.2020.103593</a></p>
+<ul>
+<li>提出了从原始数据收集到基于AI算法的模型开发的标准流程图。</li>
+<li>利用AI算法模拟盾构机与地面的相互作用。</li>
+<li>研究机器学习和深度学习算法的应用范围。</li>
+</ul>
+</li>
+<li><p>Predictive control of slurry pressure balance in shield tunneling using diagonal recurrent neural network and evolved particle swarm optimization<br>使用对角递归神经网络和进化粒子群优化算法对盾构隧道泥水压力平衡进行预测控制<br><a href="https://doi.org/10.1016/j.autcon.2019.102928" target="_blank" rel="noopener">https://doi.org/10.1016/j.autcon.2019.102928</a></p>
+<ul>
+<li>提出了一种盾构隧道施工泥水压力平衡的MPC系统。</li>
+<li>分析了用于泥浆压力预测的DRNN的输入特征。</li>
+<li>开发基于定期监督和变异的 PSO 来训练 DRNN。</li>
+<li>建立了多步预测控制器及相关的抗延迟PSO。</li>
+<li>MPC系统的性能在我国望京铁路隧道中得到验证。</li>
+</ul>
+</li>
+<li><p>Dynamic prediction for attitude and position in shield tunneling: A deep learning method<br>盾构隧道施工姿态与位置动态预测：一种深度学习方法<br><a href="https://doi.org/10.1016/j.autcon.2019.102840" target="_blank" rel="noopener">https://doi.org/10.1016/j.autcon.2019.102840</a></p>
+<ul>
+<li>提出了一种盾构机姿态位置预测的新方法。</li>
+<li>为预测任务构建了一个由小波变换、CNN 和 LSTM 组成的混合深度学习模型。</li>
+<li>对国内最大跨江隧道现场数据进行检验。</li>
+<li>并与其他三个模型进行了预测结果的比较及潜在的实用价值。</li>
+</ul>
+</li>
+<li><p>Unsupervised spectral clustering for shield tunneling machine monitoring data with complex network theory<br>Unsupervised spectral clustering for shield tunneling machine monitoring data with complex network theory<br><a href="https://doi.org/10.1016/j.autcon.2019.102924" target="_blank" rel="noopener">https://doi.org/10.1016/j.autcon.2019.102924</a></p>
+<ul>
+<li>提出了一种对盾构机监测数据进行无监督分类的系统方法。</li>
+<li>利用盾构机监测数据复杂的网络拓扑结构，构建谱聚类的相似度矩阵。</li>
+<li>该方法在武汉地铁四号线越江盾构隧道工程中得到了验证。</li>
+<li>分类结果对盾构隧道施工机械性能和地质风险评估具有潜在价值。</li>
+</ul>
+</li>
+<li><p>Prediction of geological conditions for a tunnel boring machine using big operational data<br>利用大运行数据预测隧道掘进机的地质状况<br><a href="https://doi.org/10.1016/j.autcon.2018.12.022" target="_blank" rel="noopener">https://doi.org/10.1016/j.autcon.2018.12.022</a></p>
+<ul>
+<li>开发了一种基于大型 TBM 运行数据来检测、描述和预测地质条件的程序。</li>
+<li>采用BIRCH算法对大操作数据进行压缩，以处理动态增长的流数据。</li>
+<li>利用20%的运行数据训练的预测模型可以发现岩体类型，平均精度为84.4%。</li>
+<li>设计了不同的训练和测试数据集来测试所开发程序的预测能力。</li>
+</ul>
+</li>
+<li><p>A support vector regression model for predicting tunnel boring machine penetration rates<br>预测隧道掘进机穿透率的支持向量回归模型<br><a href="https://doi.org/10.1016/j.ijrmms.2014.09.012" target="_blank" rel="noopener">https://doi.org/10.1016/j.ijrmms.2014.09.012</a></p>
+<ul>
+<li>采用SVR算法预测TBM的掘进速度。</li>
+<li>使用与皇后区隧道有关的真实数据集来测试所提出的模型。</li>
+<li>同时考虑了岩石工程特性和机器特性。</li>
+<li>渗透率的观测值与预测值之间的 R2 为0.95 。</li>
+</ul>
+</li>
+<li><p>Prediction of geological conditions for a tunnel boring machine using big operational data<br>利用大运行数据预测隧道掘进机的地质状况<br><a href="https://doi.org/10.1016/j.autcon.2018.12.022" target="_blank" rel="noopener">https://doi.org/10.1016/j.autcon.2018.12.022</a></p>
+<ul>
+<li>开发了一种基于大型 TBM 运行数据来检测、描述和预测地质条件的程序。</li>
+<li>采用BIRCH算法对大操作数据进行压缩，以处理动态增长的流数据。</li>
+<li>利用20%的运行数据训练的预测模型可以发现岩体类型，平均精度为84.4%。</li>
+<li>设计了不同的训练和测试数据集来测试所开发程序的预测能力。</li>
+</ul>
+</li>
+<li><p>Advanced prediction of tunnel boring machine performance based on big data<br>基于大数据的隧道掘进机性能高级预测<br><a href="https://doi.org/10.1016/j.gsf.2020.02.011" target="_blank" rel="noopener">https://doi.org/10.1016/j.gsf.2020.02.011</a></p>
+<ul>
+<li>基于中国引黄—松水引水工程TBM施工大数据库开发的机器学习模型。</li>
+<li>通过TBM掘进上升期的数据预测稳定期的总推力和刀盘扭矩。</li>
+<li>TBM性能的变化优于经典的理论CSM模型。</li>
+<li>讨论了数据效率和数据缺陷，并解决了最重要的参数。</li>
+</ul>
+</li>
+<li><p>A case study of TBM performance prediction using a Chinese rock mass classification system – Hydropower Classification (HC) method<br>使用中国岩体分类系统进行 TBM 性能预测的案例研究 - 水电分类（HC）方法</p>
+<ul>
+<li>提高了撑靴式TBM现场贯入指数（FPI ）的计算精度。</li>
+<li>基于中国岩体分类系统，开发了TBM性能预测的经验模型。</li>
+<li>采用三种不同的多元回归分析方法来解决多重共线性问题。</li>
+</ul>
+</li>
+<li><p>Recurrent neural networks for real-time prediction of TBM operating parameters<br>用于实时预测 TBM 运行参数的循环神经网络<br><a href="https://doi.org/10.1016/j.autcon.2018.11.013" target="_blank" rel="noopener">https://doi.org/10.1016/j.autcon.2018.11.013</a></p>
+<ul>
+<li>循环神经网络（RNN）用于开发 TBM 运行参数的实时预测。</li>
+<li>基于现场数据，基于RNN的预测器可以生成下一周期TBM运行参数的预测值。</li>
+<li>基于 RNN 的预测器在 TBM 运行参数的实时预测方面优于经典回归模型。</li>
+</ul>
+</li>
+<li><p>Predictive control of slurry pressure balance in shield tunneling using diagonal recurrent neural network and evolved particle swarm optimization<br>使用对角递归神经网络和进化粒子群优化算法对盾构隧道泥水压力平衡进行预测控制<br><a href="https://doi.org/10.1016/j.autcon.2019.102928" target="_blank" rel="noopener">https://doi.org/10.1016/j.autcon.2019.102928</a></p>
+<ul>
+<li>提出了一种盾构隧道施工泥水压力平衡的MPC系统。</li>
+<li>分析了用于泥浆压力预测的DRNN的输入特征。</li>
+<li>开发基于定期监督和变异的 PSO 来训练 DRNN。</li>
+<li>建立了多步预测控制器及相关的抗延迟PSO。</li>
+<li>MPC系统的性能在我国望京铁路隧道中得到验证。</li>
+</ul>
+</li>
+<li><p>Dynamic prediction for attitude and position in shield tunneling: A deep learning method<br>盾构隧道施工姿态与位置动态预测：一种深度学习方法<br><a href="https://doi.org/10.1016/j.autcon.2019.102840" target="_blank" rel="noopener">https://doi.org/10.1016/j.autcon.2019.102840</a></p>
+<ul>
+<li>提出了一种盾构机姿态位置预测的新方法。</li>
+<li>为预测任务构建了一个由小波变换、CNN 和 LSTM 组成的混合深度学习模型。</li>
+<li>对国内最大跨江隧道现场数据进行检验。</li>
+<li>并与其他三个模型进行了预测结果的比较及潜在的实用价值。</li>
+</ul>
+</li>
+<li><p>Unsupervised spectral clustering for shield tunneling machine monitoring data with complex network theory<br>基于复杂网络理论的盾构机监测数据的无监督谱聚类<br><a href="https://doi.org/10.1016/j.autcon.2019.102924" target="_blank" rel="noopener">https://doi.org/10.1016/j.autcon.2019.102924</a></p>
+<ul>
+<li>提出了一种对盾构机监测数据进行无监督分类的系统方法。</li>
+<li>利用盾构机监测数据复杂的网络拓扑结构，构建谱聚类的相似度矩阵。</li>
+<li>该方法在武汉地铁四号线越江盾构隧道工程中得到了验证。</li>
+<li>分类结果对盾构隧道施工机械性能和地质风险评估具有潜在价值。</li>
+</ul>
+</li>
+<li><p>A new fuzzy c-means clustering-based time series segmentation approach and its application on tunnel boring machine analysis<br>一种新的基于模糊 c 均值聚类的时间序列分割方法及其在隧道掘进机分析中的应用<br><a href="https://doi.org/10.1016/j.ymssp.2019.106279" target="_blank" rel="noopener">https://doi.org/10.1016/j.ymssp.2019.106279</a></p>
+<ul>
+<li>提出了一种基于模糊c均值算法的时间序列分割方法。</li>
+<li>提出了一种决策方法来确定适当的段数。</li>
+<li>所提出的方法在TBM时间序列中有着良好的应用前景。</li>
+</ul>
+</li>
+<li><p>基于深度学习的超大直径盾构姿态预测研究<br><a href="https://doi.org/10.11817/j.issn.1672-7207.2024.04.019" target="_blank" rel="noopener">https://doi.org/10.11817/j.issn.1672-7207.2024.04.019</a></p>
+</li>
+<li><p>使用CNN(卷积神经网络)-LSTM(长短期记忆)联合神经网络预测盾构隧道施工引起的地面沉降<br><a href="http://dx.chinadoi.cn/10.16037/j.1007-869x.2024.06.031" target="_blank" rel="noopener">http://dx.chinadoi.cn/10.16037/j.1007-869x.2024.06.031</a></p>
+</li>
+</ul>
+<hr>
+
+                
+                <hr>
+                <!-- Pager -->
+                <ul class="pager">
+                    
+                    
+                    <li class="next">
+                        <a href="/2024/08/30/大四下总结/" data-toggle="tooltip" data-placement="top" title="大四下总结">Next Post &rarr;
+		<br>
+		<span><font size="2" face="Calibri" color="grey">大四下总结</font></span>
+	        </a>
+                    </li>
+                    
+                </ul>
+
+                <!-- tip start -->
+                
+
+                
+                <div class="comment_notes">
+                    <p>
+                        by Tan
+                    </p>
+                </div>
+                
+                <!-- tip end -->
+
+                <!-- Music start-->
+                
+                <!-- Music end -->
+
+                <!-- Sharing -->
+                
+                <!-- Sharing -->
+
+                <!-- gitment start -->
+                
+                <!-- gitment end -->
+
+                <!-- 来必力City版安装代码 -->
+                
+                <!-- City版安装代码已完成 -->
+
+                <!-- disqus comment start -->
+                
+                <!-- disqus comment end -->
+            </div>
+            
+            <!-- Tabe of Content -->
+            <!-- Table of Contents -->
+
+    
+      
+        <aside id="sidebar">
+          <div id="toc" class="toc-article">
+          <strong class="toc-title">Contents</strong>
+          
+            
+              <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#论文查询"><span class="toc-nav-text">论文查询</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#论文"><span class="toc-nav-text">论文</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#盾构隧道施工与分析"><span class="toc-nav-text">盾构隧道施工与分析</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#AI在盾构隧道中的应用-—-Prediction"><span class="toc-nav-text">AI在盾构隧道中的应用 — Prediction</span></a></li></ol></li></ol></li></ol>
+            
+          
+          </div>
+        </aside>
+      
+    
+
+                
+            <!-- Sidebar Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                       
+                    </div>
+                </section>
+                
+
+            </div>
+			
+			<div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+				
+				<br>
+				<br>
+
+				<script src="https://utteranc.es/client.js"
+						repo="Master-Tan/Master-Tan.github.io"
+						issue-term="pathname"
+						label="Comment"
+						theme="github-light"
+						crossorigin="anonymous"
+						async>
+				</script>
+			</div>
+        </div>
+    </div>
+</article>
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("https://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'hover',
+          placement: 'left',
+          icon: 'ℬ'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+
+
+<style  type="text/css">
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
+
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+
+                
+                    <li>
+                        <a target="_blank"  href="https://github.com/Master-Tan">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+                    <li>
+                        <a target="_blank" href="https://twitter.com/None">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+                    <li>
+                        <a target="_blank" href="https://www.facebook.com/None">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                
+
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; Tan 2024 | Powered by 
+                    <a href="https://github.com/Master-Tan/Master-Tan.github.io" target="_blank" rel="noopener">
+                        <i>Tan's Blog</i>
+                    </a>
+                </p>
+            </div>
+        </div>
+    </div>
+
+</footer>
+
+<!-- jQuery -->
+
+<script src="/js/jquery.min.js"></script>
+
+
+<!-- Bootstrap Core JavaScript -->
+
+<script src="/js/bootstrap.min.js"></script>
+
+
+<!-- Custom Theme JavaScript -->
+
+<script src="/js/hux-blog.min.js"></script>
+
+
+<!-- Search -->
+
+<script src="/js/search.js"></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("https://master-tan.github.io/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("https://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+<script>
+    // dynamic User by Hux
+    var _gaId = 'UA-XXXXXXXX-X';
+    var _gaDomain = 'yoursite';
+
+    // Originial
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', _gaId, _gaDomain);
+    ga('send', 'pageview');
+</script>
+
+
+
+
+<!-- Baidu Tongji -->
+
+
+<!-- Search -->
+
+    <script type="text/javascript">      
+        var search_path = "search.xml";
+        if (search_path.length == 0) {
+            search_path = "search.xml";
+        }
+    var path = "/" + search_path;
+    searchFunc(path, 'local-search-input', 'local-search-result');
+    </script>
+
+
+<!-- busuanzi -->
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+
+	<a id="rocket" href="#top" class=""></a>
+	<script type="text/javascript" src="/js/totop.js?v=1.0.0" async=""></script>
+    <script type="text/javascript" src="/js/toc.js?v=1.0.0" async=""></script>
+
+    
+        <!-- background effects line -->
+        
+
+        
+            <script type="text/javascript" src="/js/mouse-click.js" content='[&quot;Sunny&quot;, &quot;💖&quot;, &quot;Sunny&quot;, &quot;🧡&quot;, &quot;Sunny&quot;, &quot;💛&quot;, &quot;Sunny&quot; , &quot;💚&quot;, &quot;Sunny&quot;, &quot;💙&quot;, &quot;Sunny&quot;, &quot;💜&quot;, &quot;Sunny&quot;, &quot;😍&quot;]' color='[&quot;rgb(255, 0, 0)&quot; ,&quot;rgb(255, 0, 0)&quot; ,&quot;rgb(255, 125, 0)&quot; ,&quot;rgb(255, 125, 0)&quot; ,&quot;rgb(255, 255, 0)&quot; ,&quot;rgb(255, 255, 0)&quot; ,&quot;rgb(0, 255, 0)&quot; ,&quot;rgb(0, 255, 0)&quot; ,&quot;rgb(0, 255, 255)&quot; ,&quot;rgb(0, 255, 255)&quot; ,&quot;rgb(0, 0, 255)&quot; ,&quot;rgb(0, 0, 255)&quot; ,&quot;rgb(255, 0, 255)&quot; ,&quot;rgb(255, 0, 255)&quot;]'></script>
+        
+
+        <!-- background effects end -->
+    
+
+    <!--<script size="50" alpha='0.3' zIndex="-999" src="/js/ribbonStatic.js"></script>-->
+    
+        <script src="/js/ribbonDynamic.js"></script>
+    
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+
+</html>
