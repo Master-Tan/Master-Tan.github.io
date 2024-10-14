@@ -119,7 +119,7 @@
 	       
                             <div class="blank_box"></div>
                             <span class="meta">
-                                 <span class="post-count">3.5k</span> Words
+                                 <span class="post-count">4.8k</span> Words
                             </span>
                             <div class="blank_box"></div>
                             <!-- 不蒜子统计 start -->
@@ -179,19 +179,12 @@
                     
 
                         
-                    
-
-                        
-                        	<li>
-                          	  <a href="/archive/">Archives</a>
-                        	</li>
-                        
-                    
-
-                        
                         	<li>
                           	  <a href="/about/">About Tan</a>
                         	</li>
+                        
+                    
+
                         
                     
 
@@ -205,6 +198,13 @@
                         
                     
 
+                        
+                    
+
+                        
+                        	<li>
+                          	  <a href="/archive/">Archives</a>
+                        	</li>
                         
                     
 
@@ -474,6 +474,70 @@
 </li>
 </ul>
 <hr>
+<h2 id="PDF-提取文字-amp-图片"><a href="#PDF-提取文字-amp-图片" class="headerlink" title="PDF 提取文字 &amp; 图片"></a>PDF 提取文字 &amp; 图片</h2><h3 id="要求"><a href="#要求" class="headerlink" title="要求"></a>要求</h3><p>1.对于pdf标准文件，读取文字以及图片进行存储，但涉及到图片标题的提取或图附近文字的提取，就是最终目的是给图加描述便于语言大模型检索，比如有的图是有标题的那题目就能做为图的描述，或者没有标题的情况下需要上下文来描述这张图<br>2.对于图片形式的pdf，需要提取图中的文字和图</p>
+<h3 id="设计"><a href="#设计" class="headerlink" title="设计"></a>设计</h3><p>使用PyMuPDF，给出对应能完成两点要求的完整项目代码。<br>对于以上两点的PDF，均在项目中的一个专门存放pdf的目录中.<br>项目程序首先：需要识别出每一个属于哪种PDF<br>对两类PDF进行对应要求的操作：</p>
+<ul>
+<li>对于pdf标准文件，读取文字以及图片进行存储</li>
+<li>对于图片形式的pdf，需要使用OCR提取图中的文字和图<br>文字和图均结果存储在一个单独的目录中，并由输入的pdf名称决定输出的目录名称、项目、项目文件名称</li>
+</ul>
+<ul>
+<li>pdf文件都是中英混合的</li>
+</ul>
+<h3 id="项目结构"><a href="#项目结构" class="headerlink" title="项目结构"></a>项目结构</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">pdf_processor&#x2F;</span><br><span class="line">│</span><br><span class="line">├── input_pdfs&#x2F;          # 存放输入PDF文件</span><br><span class="line">│   ├── example_standard.pdf</span><br><span class="line">│   └── example_image.pdf</span><br><span class="line">│</span><br><span class="line">├── output&#x2F;              # 存放输出结果</span><br><span class="line">│</span><br><span class="line">├── 。。。.py     # 主程序</span><br><span class="line">├── 。。。.py     # 其他程序</span><br><span class="line">├── 。。。</span><br><span class="line">│</span><br><span class="line">└── requirements.txt     # 依赖文件</span><br></pre></td></tr></table></figure>
+<h3 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h3><p>图片型PDF要从中分辨出哪里是图片，哪里是文字，然后再进行文字识别，这个过程如何实现？图片的提取又如何实现？</p>
+<ol>
+<li>没有图就从上下文来描述这张图</li>
+</ol>
+<ul>
+<li>思路：如果图片没有明确的标题，则使用图片附近的上下文文字生成图片描述。</li>
+<li>对于每个页面的图片，提取页面中图片前后的文字（可以限制一定范围，比如图片前后 200 个字符），作为图片的上下文。</li>
+<li>如果有明确的标题或文字说明，可以使用它们；否则，使用上下文信息生成图片的描述。</li>
+</ul>
+<ol>
+<li>图片PDF的图片识别和截取</li>
+</ol>
+<ul>
+<li>思路：图片形式的 PDF 通常每一页都是一整张图片，需要通过图像处理技术来识别出页面中的图片区域。对于这种情况，结合 pytesseract 提取文字，以及 OpenCV 等图像处理库进行图片的分割和保存。</li>
+</ul>
+<h3 id="调研进展汇报-PDF-文字与图片提取方法"><a href="#调研进展汇报-PDF-文字与图片提取方法" class="headerlink" title="调研进展汇报 - PDF 文字与图片提取方法"></a>调研进展汇报 - PDF 文字与图片提取方法</h3><p>我们目前对PDF文件的处理进行了初步调研，重点围绕如何从标准PDF和图片形式的PDF中提取文字和图片，并为图像添加适合大模型检索的描述。我们调研了以下几种方法，未来的处理方案也初步有了方向。</p>
+<hr>
+<h4 id="1-PDF标准文件的处理："><a href="#1-PDF标准文件的处理：" class="headerlink" title="1. PDF标准文件的处理："></a>1. <strong>PDF标准文件的处理</strong>：</h4><ul>
+<li><p><strong>工具：PyMuPDF</strong><br>PyMuPDF 是一个非常高效的库，可以方便地从PDF中提取文字和图片。它能识别PDF页面中的各个元素（文字、图片、表格等），并支持从PDF的元数据中提取出每幅图片旁边的文本，用来生成图像的描述。</p>
+</li>
+<li><p><strong>思路：</strong></p>
+<ul>
+<li>通过PyMuPDF读取PDF内容，识别出每一张图片，并提取图片周围的文字作为其描述。</li>
+<li>如果图片本身带有标题或说明，我们直接使用这些作为描述；否则，从上下文（图片前后文字）中生成描述。</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h4 id="2-图片形式的PDF处理："><a href="#2-图片形式的PDF处理：" class="headerlink" title="2. 图片形式的PDF处理："></a>2. <strong>图片形式的PDF处理</strong>：</h4><ul>
+<li><p><strong>工具：Tesseract OCR + OpenCV</strong><br>对于扫描或图片形式的PDF，文本无法直接提取。这种情况下，我们使用Tesseract进行OCR（光学字符识别），将图像中的文字内容提取出来。OpenCV则用来检测和分割图片，确保能准确识别页面中的图片区域。</p>
+</li>
+<li><p><strong>思路：</strong></p>
+<ul>
+<li>首先通过图像处理技术识别出页面中的图片区域。</li>
+<li>使用Tesseract提取图片中的文字，并将图片区域存储起来。</li>
+<li>对识别出的文字和图片区域进行整理，结合上下文描述生成图像的详细描述。</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 id="未来方向"><a href="#未来方向" class="headerlink" title="未来方向"></a>未来方向</h3><p>接下来的工作会基于初期调研，重点优化以下几个方面：</p>
+<ul>
+<li><strong>提高图片周围文字提取的准确性</strong>，特别是在混合中英文、公式的场景中。</li>
+<li><strong>改进OCR技术在复杂PDF页面的表现</strong>，确保能更好地处理图片形式的PDF文件中的混合内容。</li>
+</ul>
+<h3 id="问题-1"><a href="#问题-1" class="headerlink" title="问题"></a>问题</h3><ul>
+<li>Tesseract OCR 识别图片中的文字，但是图片中的文字可能是中文、英文、数字、符号等，且识别的准确率欠佳</li>
+<li>公式无法识别</li>
+<li>OpenCV可以提取图片型PDF中的图片，但是图片分割有时候有问题</li>
+<li>表（table）无法提取，会被识别成文字</li>
+<li>中文路径会导致各式各样的问题</li>
+<li>效率：TesseractOCR ；准确率：PaddleOCR</li>
+<li>识别双列形式图片型PDF期刊论文时，会将两列的文字识别成一列</li>
+</ul>
 
                 
                 <hr>
@@ -533,7 +597,7 @@
           <strong class="toc-title">Contents</strong>
           
             
-              <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#论文查询"><span class="toc-nav-text">论文查询</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#论文"><span class="toc-nav-text">论文</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#盾构隧道施工与分析"><span class="toc-nav-text">盾构隧道施工与分析</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#AI在盾构隧道中的应用-—-Prediction"><span class="toc-nav-text">AI在盾构隧道中的应用 — Prediction</span></a></li></ol></li></ol></li></ol>
+              <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#论文查询"><span class="toc-nav-text">论文查询</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#论文"><span class="toc-nav-text">论文</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#盾构隧道施工与分析"><span class="toc-nav-text">盾构隧道施工与分析</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#AI在盾构隧道中的应用-—-Prediction"><span class="toc-nav-text">AI在盾构隧道中的应用 — Prediction</span></a></li></ol></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#PDF-提取文字-amp-图片"><span class="toc-nav-text">PDF 提取文字 &amp; 图片</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#要求"><span class="toc-nav-text">要求</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#设计"><span class="toc-nav-text">设计</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#项目结构"><span class="toc-nav-text">项目结构</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#问题"><span class="toc-nav-text">问题</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#调研进展汇报-PDF-文字与图片提取方法"><span class="toc-nav-text">调研进展汇报 - PDF 文字与图片提取方法</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#1-PDF标准文件的处理："><span class="toc-nav-text">1. PDF标准文件的处理：</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#2-图片形式的PDF处理："><span class="toc-nav-text">2. 图片形式的PDF处理：</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#未来方向"><span class="toc-nav-text">未来方向</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#问题-1"><span class="toc-nav-text">问题</span></a></li></ol></li></ol>
             
           
           </div>
