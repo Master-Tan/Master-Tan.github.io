@@ -119,7 +119,7 @@
 	       
                             <div class="blank_box"></div>
                             <span class="meta">
-                                 <span class="post-count">4.8k</span> Words
+                                 <span class="post-count">6.3k</span> Words
                             </span>
                             <div class="blank_box"></div>
                             <!-- 不蒜子统计 start -->
@@ -186,6 +186,13 @@
                     
 
                         
+                        	<li>
+                          	  <a href="/archive/">Archives</a>
+                        	</li>
+                        
+                    
+
+                        
                     
 
                         
@@ -198,13 +205,6 @@
                         
                     
 
-                        
-                    
-
-                        
-                        	<li>
-                          	  <a href="/archive/">Archives</a>
-                        	</li>
                         
                     
 
@@ -538,11 +538,78 @@
 <li>效率：TesseractOCR ；准确率：PaddleOCR</li>
 <li>识别双列形式图片型PDF期刊论文时，会将两列的文字识别成一列</li>
 </ul>
+<hr>
+<h2 id="RAG（Retrieval-augmented-Generation，检索增强生成）"><a href="#RAG（Retrieval-augmented-Generation，检索增强生成）" class="headerlink" title="RAG（Retrieval-augmented Generation，检索增强生成）"></a>RAG（Retrieval-augmented Generation，检索增强生成）</h2><h3 id="只需要其中的检索-匹配步骤"><a href="#只需要其中的检索-匹配步骤" class="headerlink" title="只需要其中的检索/匹配步骤"></a>只需要其中的检索/匹配步骤</h3><p>在RAG模型中，使用神经检索器处理输入问题的具体步骤包括以下几个关键部分：</p>
+<ul>
+<li><p>输入问题的处理：将输入问题转换为向量表示，通常通过嵌入（embedding）层实现。</p>
+</li>
+<li><p>段落检索：利用神经检索器从非参数记忆（如维基百科索引）中找到与输入问题相关的段落。这通常涉及计算输入问题与存储段落之间的相似度。</p>
+</li>
+<li><p>输入序列的构建：将输入问题及其对应的检索段落组合在一起，形成一个完整的输入序列，用于后续的生成模型。</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line">import torch</span><br><span class="line">from transformers import AutoTokenizer, AutoModel</span><br><span class="line"></span><br><span class="line"># 初始化tokenizer和模型</span><br><span class="line">tokenizer &#x3D; AutoTokenizer.from_pretrained(&#39;bert-base-uncased&#39;)</span><br><span class="line">model &#x3D; AutoModel.from_pretrained(&#39;bert-base-uncased&#39;)</span><br><span class="line"></span><br><span class="line">def retrieve_paragraphs(query, memory_index, top_k&#x3D;5):</span><br><span class="line">    # 假设memory_index是一个段落列表</span><br><span class="line">    # 这里使用简化的相似度计算方式</span><br><span class="line">    query_embedding &#x3D; model(**tokenizer(query, return_tensors&#x3D;&#39;pt&#39;)).last_hidden_state.mean(dim&#x3D;1)</span><br><span class="line">    </span><br><span class="line">    # 计算与每个段落的相似度</span><br><span class="line">    similarities &#x3D; []</span><br><span class="line">    for paragraph in memory_index:</span><br><span class="line">        paragraph_embedding &#x3D; model(**tokenizer(paragraph, return_tensors&#x3D;&#39;pt&#39;)).last_hidden_state.mean(dim&#x3D;1)</span><br><span class="line">        similarity &#x3D; torch.cosine_similarity(query_embedding, paragraph_embedding)</span><br><span class="line">        similarities.append(similarity.item())</span><br><span class="line">    </span><br><span class="line">    # 返回top_k相似的段落</span><br><span class="line">    top_indices &#x3D; sorted(range(len(similarities)), key&#x3D;lambda i: similarities[i], reverse&#x3D;True)[:top_k]</span><br><span class="line">    return [memory_index[i] for i in top_indices]</span><br><span class="line"></span><br><span class="line">def combine_input(query, retrieved_paragraphs):</span><br><span class="line">    # 将问题与检索段落结合</span><br><span class="line">    combined_input &#x3D; f&quot;Question: &#123;query&#125;\nContext: &#123;&#39; &#39;.join(retrieved_paragraphs)&#125;&quot;</span><br><span class="line">    return combined_input</span><br><span class="line"></span><br><span class="line"># 示例用法</span><br><span class="line">input_question &#x3D; &quot;What is the capital of France?&quot;</span><br><span class="line">memory_index &#x3D; [</span><br><span class="line">    &quot;The capital of France is Paris.&quot;,</span><br><span class="line">    &quot;Berlin is the capital of Germany.&quot;,</span><br><span class="line">    &quot;Madrid is the capital of Spain.&quot;,</span><br><span class="line">    &quot;Rome is the capital of Italy.&quot;,</span><br><span class="line">    &quot;Lisbon is the capital of Portugal.&quot;</span><br><span class="line">]</span><br><span class="line"></span><br><span class="line"># 检索相关段落</span><br><span class="line">retrieved_paragraphs &#x3D; retrieve_paragraphs(input_question, memory_index)</span><br><span class="line"></span><br><span class="line"># 组合输入</span><br><span class="line">final_input &#x3D; combine_input(input_question, retrieved_paragraphs)</span><br><span class="line">print(final_input)</span><br></pre></td></tr></table></figure>
+<p>代码说明：</p>
+<ul>
+<li><p>初始化模型和tokenizer：使用预训练的BERT模型来获取输入问题和段落的向量表示。</p>
+</li>
+<li><p>段落检索函数：retrieve_paragraphs函数计算输入问题与所有段落的相似度，并返回最相关的段落。</p>
+</li>
+<li><p>输入序列构建：combine_input函数将问题和检索到的段落结合成一个输入序列。</p>
+</li>
+</ul>
+<p>非参数记忆：使用上述搜索的盾构论文进行构建</p>
+<h2 id="部署-RAGFlow"><a href="#部署-RAGFlow" class="headerlink" title="部署 RAGFlow"></a>部署 RAGFlow</h2><h3 id="docker-换源"><a href="#docker-换源" class="headerlink" title="docker 换源"></a>docker 换源</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo vi /etc/docker/daemon.json</span><br></pre></td></tr></table></figure>
+<p>添加：<br><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">"registry-mirrors"</span> :</span><br><span class="line">  [</span><br><span class="line">  <span class="string">"https://docker.m.daocloud.io"</span>,</span><br><span class="line">  <span class="string">"https://noohub.ru"</span>,</span><br><span class="line">  <span class="string">"https://huecker.io"</span>,</span><br><span class="line">  <span class="string">"https://dockerhub.timeweb.cloud"</span>,</span><br><span class="line">  <span class="string">"https://docker.rainbond.cc"</span></span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl restart docker</span><br></pre></td></tr></table></figure>
+<h3 id="安装python3-12"><a href="#安装python3-12" class="headerlink" title="安装python3.12"></a>安装python3.12</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 安装构建所需的依赖</span></span><br><span class="line">sudo apt install -y build-essential checkinstall</span><br><span class="line">sudo apt install -y libreadline-gplv2-dev libncursesw5-dev libssl-dev libsqlite3-dev tk-dev libgdbm-dev libc6-dev libbz2-dev</span><br><span class="line"></span><br><span class="line"><span class="comment"># 下载 Python 3.12 源码</span></span><br><span class="line">wget https://www.python.org/ftp/python/3.12.0/Python-3.12.0.tgz</span><br><span class="line">tar -xzf Python-3.12.0.tgz</span><br><span class="line"><span class="built_in">cd</span> Python-3.12.0</span><br><span class="line"></span><br><span class="line"><span class="comment"># 编译和安装</span></span><br><span class="line">./configure --<span class="built_in">enable</span>-optimizations</span><br><span class="line">make -j $(nproc)</span><br><span class="line">sudo make altinstall  <span class="comment"># 使用 altinstall 防止覆盖系统的 python 版本</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 设置 Python 3.12 为默认版本</span></span><br><span class="line">sudo update-alternatives --install /usr/bin/python3 python3 /usr/<span class="built_in">local</span>/bin/python3.12 2</span><br><span class="line">sudo update-alternatives --config python3</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 把pip3.12设置为默认</span></span><br><span class="line">sudo update-alternatives --install /usr/bin/pip3 pip3 /usr/<span class="built_in">local</span>/bin/pip3.12 2</span><br><span class="line">sudo update-alternatives --config pip3</span><br></pre></td></tr></table></figure>
+<h3 id="安装poerty"><a href="#安装poerty" class="headerlink" title="安装poerty"></a>安装poerty</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo pip install -i https://pypi.tuna.tsinghua.edu.cn/simple poetry</span><br></pre></td></tr></table></figure>
+<h4 id="poetry-安装环境"><a href="#poetry-安装环境" class="headerlink" title="poetry 安装环境"></a>poetry 安装环境</h4><p>~/.local/bin/poetry install —sync —no-root # install RAGFlow dependent python modules  作用：</p>
+<p>命令 ~/.local/bin/poetry install —sync —no-root 的作用是使用 Poetry 工具来安装 Python 项目所需的依赖模块。具体来说，它的功能如下：</p>
+<ul>
+<li><p>安装依赖： Poetry 会根据项目根目录中的 pyproject.toml 文件中的依赖定义，自动安装所有所需的 Python 包。</p>
+</li>
+<li><p>—sync 选项： 使用 —sync 选项时，Poetry 将确保虚拟环境中的依赖与 pyproject.toml 和 poetry.lock 文件中的定义一致。如果有不一致的地方，Poetry 会进行同步，添加或删除依赖，以确保环境的一致性。</p>
+</li>
+<li><p>—no-root 选项： 使用 —no-root 选项意味着在安装依赖时不会安装当前项目本身（即不会将项目作为一个包安装）。这在你只想安装依赖而不需要将项目本身作为一个可安装的包时特别有用。</p>
+</li>
+</ul>
+<h4 id="pyproject-toml-文件"><a href="#pyproject-toml-文件" class="headerlink" title="pyproject.toml 文件"></a>pyproject.toml 文件</h4><p>这是一个 pyproject.toml 文件的示例，它是 Poetry 工具用来管理 Python 项目的依赖和配置的主要文件。以下是每个部分的作用：</p>
+<p>[tool.poetry]<br>这个部分定义了项目的基本信息。</p>
+<ul>
+<li>name: 项目的名称。</li>
+<li>version: 项目的版本号。</li>
+<li>description: 项目的描述，可以是一个简短的介绍。</li>
+<li>authors: 项目的作者信息。</li>
+<li>license: 项目使用的许可证，可以是链接或许可证名称。</li>
+<li>readme: README 文件的路径，用于描述项目。</li>
+<li>package-mode: 指定是否允许打包项目（通常在开发阶段设置为 false）。</li>
+</ul>
+<p>[tool.poetry.dependencies]<br>这个部分定义了项目的依赖关系。每一行表示一个依赖的包和它的版本要求。</p>
+<p>python: 指定支持的 Python 版本范围，这里表示需要 Python 3.12 到 3.13 之间的版本。<br>其他依赖项（如 datrie, akshare 等）表示该项目所需的包和它们的版本限制。<br>[tool.poetry.group.full]<br>这个部分用于定义依赖组。可以将某些依赖项归为一组，以便在需要时安装。</p>
+<p>optional: 表示该组依赖是可选的。<br>[tool.poetry.group.full.dependencies]<br>这个部分列出了属于 full 组的可选依赖项，这些通常是额外功能的依赖，比如深度学习或自然语言处理库（如 torch 和 transformers）。</p>
+<p>[build-system]<br>这个部分定义了构建系统的信息。</p>
+<p>requires: 指定构建项目所需的包，这里使用 poetry-core。<br>build-backend: 指定用于构建项目的后端，这里使用 poetry.core.masonry.api。</p>
+<h4 id="添加清华源"><a href="#添加清华源" class="headerlink" title="添加清华源"></a>添加清华源</h4><p>法一：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[tool.poetry.source]</span><br><span class="line">name = <span class="string">"pypi"</span></span><br><span class="line">url = <span class="string">"https://pypi.tuna.tsinghua.edu.cn/simple"</span></span><br><span class="line">default = <span class="literal">true</span></span><br></pre></td></tr></table></figure></p>
+<ul>
+<li>name: 自定义源的名称。</li>
+<li>url: 指定源的 URL。</li>
+<li>default: 如果设置为 true，Poetry 将在查找依赖时首先查找这个源。</li>
+</ul>
+<p>法二：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 添加自定义源</span></span><br><span class="line">~/.<span class="built_in">local</span>/bin/poetry config repositories.thu https://pypi.tuna.tsinghua.edu.cn/simple</span><br></pre></td></tr></table></figure></p>
+<h3 id="Q"><a href="#Q" class="headerlink" title="Q"></a>Q</h3><p>连不上外网 -&gt; 无法使用OpenAI的API</p>
 
                 
                 <hr>
                 <!-- Pager -->
                 <ul class="pager">
+                    
+                    <li class="previous">
+                        <a href="/2024/10/21/就业准备/" data-toggle="tooltip" data-placement="top" title="就业准备">&larr; Previous Post
+		<br>
+		<span><font size="2" face="Calibri" color="grey">就业准备</font></span>
+	       </a>
+                    </li>
                     
                     
                     <li class="next">
@@ -597,7 +664,7 @@
           <strong class="toc-title">Contents</strong>
           
             
-              <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#论文查询"><span class="toc-nav-text">论文查询</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#论文"><span class="toc-nav-text">论文</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#盾构隧道施工与分析"><span class="toc-nav-text">盾构隧道施工与分析</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#AI在盾构隧道中的应用-—-Prediction"><span class="toc-nav-text">AI在盾构隧道中的应用 — Prediction</span></a></li></ol></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#PDF-提取文字-amp-图片"><span class="toc-nav-text">PDF 提取文字 &amp; 图片</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#要求"><span class="toc-nav-text">要求</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#设计"><span class="toc-nav-text">设计</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#项目结构"><span class="toc-nav-text">项目结构</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#问题"><span class="toc-nav-text">问题</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#调研进展汇报-PDF-文字与图片提取方法"><span class="toc-nav-text">调研进展汇报 - PDF 文字与图片提取方法</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#1-PDF标准文件的处理："><span class="toc-nav-text">1. PDF标准文件的处理：</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#2-图片形式的PDF处理："><span class="toc-nav-text">2. 图片形式的PDF处理：</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#未来方向"><span class="toc-nav-text">未来方向</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#问题-1"><span class="toc-nav-text">问题</span></a></li></ol></li></ol>
+              <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#论文查询"><span class="toc-nav-text">论文查询</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#论文"><span class="toc-nav-text">论文</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#盾构隧道施工与分析"><span class="toc-nav-text">盾构隧道施工与分析</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#AI在盾构隧道中的应用-—-Prediction"><span class="toc-nav-text">AI在盾构隧道中的应用 — Prediction</span></a></li></ol></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#PDF-提取文字-amp-图片"><span class="toc-nav-text">PDF 提取文字 &amp; 图片</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#要求"><span class="toc-nav-text">要求</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#设计"><span class="toc-nav-text">设计</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#项目结构"><span class="toc-nav-text">项目结构</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#问题"><span class="toc-nav-text">问题</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#调研进展汇报-PDF-文字与图片提取方法"><span class="toc-nav-text">调研进展汇报 - PDF 文字与图片提取方法</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#1-PDF标准文件的处理："><span class="toc-nav-text">1. PDF标准文件的处理：</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#2-图片形式的PDF处理："><span class="toc-nav-text">2. 图片形式的PDF处理：</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#未来方向"><span class="toc-nav-text">未来方向</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#问题-1"><span class="toc-nav-text">问题</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#RAG（Retrieval-augmented-Generation，检索增强生成）"><span class="toc-nav-text">RAG（Retrieval-augmented Generation，检索增强生成）</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#只需要其中的检索-匹配步骤"><span class="toc-nav-text">只需要其中的检索&#x2F;匹配步骤</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#部署-RAGFlow"><span class="toc-nav-text">部署 RAGFlow</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#docker-换源"><span class="toc-nav-text">docker 换源</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#安装python3-12"><span class="toc-nav-text">安装python3.12</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#安装poerty"><span class="toc-nav-text">安装poerty</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#poetry-安装环境"><span class="toc-nav-text">poetry 安装环境</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#pyproject-toml-文件"><span class="toc-nav-text">pyproject.toml 文件</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#添加清华源"><span class="toc-nav-text">添加清华源</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#Q"><span class="toc-nav-text">Q</span></a></li></ol></li></ol>
             
           
           </div>
