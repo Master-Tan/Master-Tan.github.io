@@ -189,6 +189,9 @@
                     
 
                         
+                    
+
+                        
                         	<li>
                           	  <a href="/archive/">Archives</a>
                         	</li>
@@ -196,18 +199,15 @@
                     
 
                         
+                    
+
+                        
+                    
+
+                        
                         	<li>
                           	  <a href="/tags/">Tags</a>
                         	</li>
-                        
-                    
-
-                        
-                    
-
-                        
-                    
-
                         
                     
                     
@@ -292,7 +292,7 @@
 <li><p>解决方案</p>
 <ul>
 <li>安装OpenSSL 1.1.1<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">cd /usr/local/src/</span><br><span class="line">sudo wget https://www.openssl.org/source/openssl-1.1.1u.tar.gz</span><br><span class="line">sudo tar -zxf openssl-1.1.1u.tar.gz</span><br><span class="line">cd openssl-1.1.1u</span><br><span class="line">sudo ./config --prefix=/usr/local/openssl --openssldir=/usr/local/openssl shared zlib</span><br><span class="line">sudo make</span><br><span class="line">sudo make install</span><br></pre></td></tr></table></figure></li>
-<li>重新编译 Python<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">./configure --with-openssl=/path/to/new/openssl --prefix=/usr/local/python39</span><br><span class="line">sudo make</span><br><span class="line">sudo make altinstall</span><br></pre></td></tr></table></figure>
+<li>重新编译 Python<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">export LD_LIBRARY_PATH=/path/to/new/openssl/lib:$LD_LIBRARY_PATH</span><br><span class="line">./configure --with-openssl=/path/to/new/openssl --prefix=/usr/local/python39</span><br><span class="line">sudo make</span><br><span class="line">sudo make altinstall</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
 </li>
@@ -821,7 +821,7 @@
 
                 </ul>
                 <p class="copyright text-muted">
-                    Copyright &copy; Tan 2024 | Powered by 
+                    Copyright &copy; Tan 2025 | Powered by 
                     <a href="https://github.com/Master-Tan/Master-Tan.github.io" target="_blank" rel="noopener">
                         <i>Tan's Blog</i>
                     </a>

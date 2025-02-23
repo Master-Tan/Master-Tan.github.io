@@ -191,6 +191,9 @@
                     
 
                         
+                    
+
+                        
                         	<li>
                           	  <a href="/archive/">Archives</a>
                         	</li>
@@ -198,18 +201,15 @@
                     
 
                         
+                    
+
+                        
+                    
+
+                        
                         	<li>
                           	  <a href="/tags/">Tags</a>
                         	</li>
-                        
-                    
-
-                        
-                    
-
-                        
-                    
-
                         
                     
                     
@@ -1060,10 +1060,70 @@
 </ul>
 <h3 id="【機器學習2021】生成式對抗網路-Generative-Adversarial-Network-GAN-二-–-理論介紹與WGAN"><a href="#【機器學習2021】生成式對抗網路-Generative-Adversarial-Network-GAN-二-–-理論介紹與WGAN" class="headerlink" title="【機器學習2021】生成式對抗網路 (Generative Adversarial Network, GAN) (二) – 理論介紹與WGAN"></a>【機器學習2021】生成式對抗網路 (Generative Adversarial Network, GAN) (二) – 理論介紹與WGAN</h3><p>目标： </p>
 <ul>
-<li>Normal Distribution -&gt; Generator -&gt; $P_G$ </li>
+<li>Normal Distribution（常规分布） -&gt; Generator -&gt; $P_G$ （复杂分布）</li>
 <li>真实的分布 $P<em>{data}$ 和 $P</em>{G}$ 越接近越好</li>
-<li>使用 Divergence： $G^* = \arg \min<em>G Div(P</em>{data} || P_G)$</li>
+<li>使用 Divergence（差异、相似度）： $G^* = \arg \min<em>G Div(P</em>{data} || P_G)$</li>
 </ul>
+<p>GAN的问题：如何定义与计算 Divergence</p>
+<p>解决方法：从 $P<em>{data}$ 和 $P</em>{G}$ 中采样（sample）出一些数据，</p>
+<ul>
+<li>$P_{data}$ 的采样：直接从数据集中采样</li>
+<li>$P<em>{G}$ 的采样：从 Normal Distribution 中采样出一些数据，然后输入到 Generator 中，得到 $P</em>{G}$ 的采样</li>
+</ul>
+<p>Discriminator：混合 $P<em>{data}$ 和 $P</em>{G}$ 的采样，然后训练一个 Discriminator，训练目标：让 Discriminator 能够区分 $P<em>{data}$ 和 $P</em>{G}$ 的采样</p>
+<script type="math/tex; mode=display">
+  Training:  D^{*}=\arg \max _{D} V(D, G) \\
+  Objective \ Function \ for \ D : \\
+  \ \ \ \ \ \ \ V(G, D)=E_{y \sim P_{\text {data }}}[\log D(y)]+E_{y \sim P_{G}}[\log (1-D(y))]</script><p>Objective Function 有其他的写法，这个写法的含义是训练一个分类器（Classifier）， $\max _{D} V(D, G)$ 就等同于最小话cross entropy</p>
+<p>Discriminator ：a binary classifier</p>
+<p>$\max _{D} V(D, G)$ ：与 JS Divergence 相关 （Jensen-Shannon Divergence），训练后最大的Objective Function值与 Divergence 有关</p>
+<p>把 $Div(P<em>{data} || P_G)$ 替换为 $\max </em>{D} V(D, G)$，因此 $G^* = \arg \min<em>G \max </em>{D} V(D, G)$</p>
+<p>求解步骤：</p>
+<ul>
+<li>Initialize generator G and discriminator D</li>
+<li>In each iteration:<ul>
+<li>Step 1: Fix generator G, and update discriminator D</li>
+<li>Step 2: Fix discriminator D, and update generator G</li>
+</ul>
+</li>
+</ul>
+<p>$D<em>{f}(P</em>{data} || P_G)$ 可以不是这个 divergence，可以是其他的 divergence，如：Wasserstein Distance, KL Divergence, 等等，不同的 divergence 需要设计不同的 objective function</p>
+<p>$G^* = \arg \min<em>G \max </em>{D} V(D, G)$ 形式复杂，因此不是很好 train</p>
+<p>JS Divergence 的问题：</p>
+<ul>
+<li>在大多数情况下，$P_{data}$ 和 $P_G$ 是几乎不重叠的</li>
+<li>原因：<ol>
+<li>$P_{data}$ 和 $P_G$ 均为低维向量在高维空间中的分布，几乎不可能重叠</li>
+<li>$P_{data}$ 和 $P_G$ 均为采样出来的数据，几乎不可能重叠</li>
+</ol>
+</li>
+<li>JS Divergence 对于不重叠的分布算出来结果均为 log(2) （常数），因此均为 log(2) 时无法进一步区分两个分布的好坏程度，进而在训练时无法优化</li>
+<li>由于采样样本少导致 Classifier 正确率几乎100%，因此不知道训练时 generator 的效果如何</li>
+</ul>
+<p>Wasserstein Distance：</p>
+<ul>
+<li>原理：两个分布之间的距离，是 $P<em>G$ 转变为 $P</em>{data}$ 的最小运输成本（最小运输距离）</li>
+<li>可以解决 JS Divergence 不能区分不重叠分布的问题</li>
+<li>优点：可以提供训练方向</li>
+</ul>
+<p>计算公式：</p>
+<script type="math/tex; mode=display">
+  \max _{D \in 1-\text { Lipschitz }}\left\{E_{y \sim P_{\text {data }}}[D(y)]-E_{y \sim P_{G}}[D(y)]\right\}</script><p>D:足够平滑的函数</p>
+<ul>
+<li>如果没有约束，则 D 的训练就不会收敛</li>
+</ul>
+<p>Original GAN ：weight</p>
+<ul>
+<li>强制参数 w 位于 -c, c 之间，c 为常数，在参数更新时，如果超出 -c, c 之间，就把参数强制拉回 -c, c 之间 </li>
+</ul>
+<p>Improved GAN ：Gradient Penalty</p>
+<p>Spectral Normalization GAN ：Spectral Normalization -&gt; 是目前最好的方法</p>
+<p>但 GAN 依旧是难以训练的。</p>
+<p>Generator 和 Discriminator 是相互进步的，但只要有一者出现问题，两者都会停滞，所以训练时的Hyperparameter的调整是十分困难的</p>
+<p>最困难：使用GAN生成语句<br>token：使用什么作文产生的句子的单位<br>在Decoder做出微调时，token的得分会有细微变化，但得分最大的token可能并没有改变，因此生成的句子可能并没有改变，所以无法梯度下降，也就是无法继续训练</p>
+<p>不能梯度下降（Gradient Descent）的问题 -&gt; 当做强化学习（Reinforcement Learning）来解决，但是会变得更难以训练</p>
+<p>ScratchGAN：从头开始训练的GAN<br>通常，生成器是根据其他方法学习到的模型进行微调的。<br>然而，有了足够且大量的超参数调整和技巧，ScrachGAN可以从头开始训练。</p>
+<p>更多的生成式模型（Generative Model）：VAE，flow-based model。。。</p>
 <hr>
 <h2 id="Recent-Advance-of-Self-supervised-learning-for-NLP"><a href="#Recent-Advance-of-Self-supervised-learning-for-NLP" class="headerlink" title="Recent Advance of Self-supervised learning for NLP"></a>Recent Advance of Self-supervised learning for NLP</h2><hr>
 <h2 id="Lecture-7-Self-supervised-learning-for-Speech-and-Image"><a href="#Lecture-7-Self-supervised-learning-for-Speech-and-Image" class="headerlink" title="Lecture 7:Self-supervised learning for Speech and Image"></a>Lecture 7:Self-supervised learning for Speech and Image</h2><hr>
@@ -1284,7 +1344,7 @@
 
                 </ul>
                 <p class="copyright text-muted">
-                    Copyright &copy; Tan 2024 | Powered by 
+                    Copyright &copy; Tan 2025 | Powered by 
                     <a href="https://github.com/Master-Tan/Master-Tan.github.io" target="_blank" rel="noopener">
                         <i>Tan's Blog</i>
                     </a>
