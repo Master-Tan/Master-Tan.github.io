@@ -16,11 +16,11 @@
     <!--<link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>-->
     <title>
         
-          OO - P5 - Tan&#39;s Blog
+          DeepSeek 部署 - Tan&#39;s Blog
         
     </title>
 
-    <link rel="canonical" href="https://master-tan.github.io/2022/04/02/OO - P5/">
+    <link rel="canonical" href="https://master-tan.github.io/2025/02/20/DeepSeek - 部署/">
 
     <!-- Bootstrap Core CSS -->
     
@@ -108,20 +108,18 @@
                     <div class="post-heading">
                         <div class="tags">
                             
-                              <a class="tag" href="/tags/#OO" title="OO">OO</a>
-                            
                         </div>
-                        <h1>OO - P5</h1>
-                        <h2 class="subheading">OO 第二单元第一次作业</h2>
+                        <h1>DeepSeek 部署</h1>
+                        <h2 class="subheading"></h2>
                         <span class="meta">
                             Posted by Tan on
-                            2022-04-02
+                            2025-02-20
                         </span>
 
 	       
                             <div class="blank_box"></div>
                             <span class="meta">
-                                 <span class="post-count">1.6k</span> Words
+                                 <span class="post-count">712</span> Words
                             </span>
                             <div class="blank_box"></div>
                             <!-- 不蒜子统计 start -->
@@ -263,132 +261,37 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <h1 id="面向对象设计与构造第二单元第一次作业"><a href="#面向对象设计与构造第二单元第一次作业" class="headerlink" title="面向对象设计与构造第二单元第一次作业"></a>面向对象设计与构造第二单元第一次作业</h1><h4 id="多线程实时电梯系统"><a href="#多线程实时电梯系统" class="headerlink" title="多线程实时电梯系统"></a>多线程实时电梯系统</h4><p><br></p>
-<hr>
-<h3 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h3><p><a href="../OO - P5 - Question">题目链接</a></p>
-<p><br></p>
-<hr>
-<h3 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h3><ul>
-<li><p>在本单元我们的任务为设计并实现一个多线程电梯，并且构造策略实现接送乘客于出发地和目的地<br><br></p>
-</li>
-<li><p>本单元为多线程的应用，对每一个有可能线程不安全的变量或者方法，都要通过加锁构造为 <code>线程安全</code><br><br></p>
-</li>
-<li><p>使用 <code>生产者-消费者</code> 模式，与 <code>乘客-电梯</code> 相对应<br><br></p>
-</li>
-<li><p>使用 <code>策略类—电梯类</code> 分离模式，让电梯的运行与策略分离，并且电梯作为线程类，在其自身的 <code>run</code> 方法中保证输出的正确性<br><br></p>
-</li>
-<li><p>应用工厂模式，电梯捎带策略类均实现 <code>DecisionMaker</code> 接口，以实现在策略之间的转换<br><br></p>
-</li>
-</ul>
-<hr>
-<h3 id="基本思路"><a href="#基本思路" class="headerlink" title="基本思路"></a>基本思路</h3><ul>
-<li><p>输入：乘客输入经过 <code>InputThread</code> 类进入请求池，由于请求进入请求池的前后顺序无要求，并且请求之间互不影响，因此此过程并不会产生线程安全问题<br><br></p>
-</li>
-<li><p>输出：电梯或乘客在执行动作的时候需要调用 <code>OutputThread</code> 类的一个 <strong>静态的</strong> <strong>加锁的</strong> 方法来输出，因为官方所给的输出包是线程不安全的，在同时调用的时候会由于线程的冲突而导致输出时间戳 <strong>有可能不递增</strong> ，所以需要在此类把官方输出方法加锁使其线程安全<br><br></p>
-</li>
-<li><p>控制器：本程序的控制器起到开始时的建立请求池实例，建立所有电梯线程实例并开始线程，结束时的通知程序中止作用（并不起调度作用），相当于使程序开始和结束的控制者<br><br></p>
-</li>
-<li><p>策略：接受当前电梯的状态和请求池中的请求，然后对电梯返回一种 <strong>策略</strong> （注意可能并不会真正执行），由于对每个电梯都有一个专门的策略类实例，所以这种一对一传输并不会产生线程安全问题</p>
-<p>（LOOK算法）其思想如下：</p>
-<ul>
-<li><p>如果电梯没人</p>
-<ul>
-<li><p>如果没请求，则等待</p>
-</li>
-<li><p>如果有请求，沿原方向前进（原来是等待则沿另一个方向前进）</p>
-</li>
-</ul>
-</li>
-<li><p>如果电梯有人</p>
-<ul>
-<li><p>判断当前是否需要开门</p>
-</li>
-<li><p>如果不用开门，则沿原方向前进</p>
-</li>
-</ul>
-</li>
-</ul>
-<p><font size="1"> 虽然不知道原理是啥，但是学长都是这么用的（逃） </font><br><br></p>
-</li>
-<li><p>请求池操作：该类相当于 <code>生产者-消费者</code> 模型中的 <code>托盘</code>，由于该对象被多线程同时访问 / 修改，所以该类中的所有 <strong>修改请求池</strong> 的方法均应该加上<strong>同一个</strong>锁，以此来保证线程安全<br><br></p>
-</li>
-<li><p>电梯：每一个电梯都是一个单独的线程，电梯之间互不干扰，电梯的行动完全由其对应的策略类决定，并且在其 <code>run()</code> 方法中保证电梯的正确性，并且加入了回退机制以实现 <code>&quot;电梯空等后接第一个人时可以实现一次跃迁节省一次电梯移动时间&quot;</code> 以及 <code>&quot;电梯的关门和移动未完成时，如果有新的客人请求可以直接让电梯受理&quot;</code> 的功能<br><br></p>
-</li>
-<li><p>程序结束：在 <code>InputThread</code>类判断到输入截止之后，输入线程终止，并且将调用控制器的 <code>close()</code> 方法，进而调用请求池的 <code>close()</code> 方法，请求池将所有电梯的 <code>isClose</code> 置位，并且唤醒所有线程，然后电梯在载完请求池中该栋以及当前在电梯中的所有客人后 <code>break</code> 出 <code>while(true)</code> 循环，电梯线程终止，所有电梯线程终止后，程序正常结束<br><br></p>
-</li>
-</ul>
-<hr>
-<h3 id="具体实现"><a href="#具体实现" class="headerlink" title="具体实现"></a>具体实现</h3><h4 id="总UML类图："><a href="#总UML类图：" class="headerlink" title="总UML类图："></a>总UML类图：</h4><p><img src="MainClass.png"/></p>
-<ul>
-<li><h4 id="读入处理类-InputThread"><a href="#读入处理类-InputThread" class="headerlink" title="读入处理类 InputThread"></a>读入处理类 <code>InputThread</code></h4><p><img src="1.png"/>  </p>
-<ul>
-<li>开启官方包的输入线程，获得输入的请求，并将每一个输入请求传递到<code>Controller</code> 类中</li>
-<li>在官方包传出终止信号时，调用 <code>Controller</code> 的 <code>close</code> 方法<br><br></li>
-</ul>
-</li>
-<li><h4 id="输出处理类-OutputThread"><a href="#输出处理类-OutputThread" class="headerlink" title="输出处理类 OutputThread"></a>输出处理类 <code>OutputThread</code></h4><p><img src="2.png"/>  </p>
-<ul>
-<li>用一个 <code>synchronized</code> 的 <code>static</code> 方法，对官方给的线程不安全的输出方法 <code>TimableOutput.println()</code> 进行封装，使其成为线程安全的静态方法 <code>OutputThread.println()</code> （即调用时不会出现时间戳不递增的情况）<br><br></li>
-</ul>
-</li>
-<li><h4 id="控制器类-Controller"><a href="#控制器类-Controller" class="headerlink" title="控制器类 Controller"></a>控制器类 <code>Controller</code></h4><p><img src="3.png"/>  </p>
-<ul>
-<li>创建请求池类（ <code>RequestPool</code> 类）的实例</li>
-<li>创建所有电梯线程（ <code>Elevator</code> 类）并开始运行（处于可接客状态）</li>
-<li>为每一个电梯创建一个决策者实例 <code>DecisionMaker</code></li>
-<li>在接收到读入处理类 （ <code>InputThread</code> 类）的 <code>close</code> 请求后，调用请求池类（ <code>RequestPool</code> 类 ）的 <code>close</code> 方法通知其进入停止状态<br><br></li>
-</ul>
-</li>
-<li><h4 id="请求池类-RequestPool"><a href="#请求池类-RequestPool" class="headerlink" title="请求池类 RequestPool"></a>请求池类 <code>RequestPool</code></h4><p><img src="4.png"/>  </p>
-<ul>
-<li>线程安全类，采用了 <code>ReentrantLock</code> 锁，所有对请求池读 / 写的方法均上锁，以保证线程安全</li>
-<li>实现向请求池添加请求 <code>addRequest</code> ，从请求池删除（获得）请求 <code>removeRequest</code> ，查询当前请求池中所有请求 <code>getAllRequest</code></li>
-<li>储存所有的电梯信息</li>
-<li>在添加请求时，唤醒 <strong>所有</strong> 电梯中正在 <code>await</code> 的线程，达到实时判断乘客的效果</li>
-<li>控制器（ <code>Controller</code> 类）传入关闭方法时，将本类的 <code>isClose</code> 置 <code>1</code> ，并且将 <strong>所有</strong> 电梯的 <code>isClose</code> 置 <code>1</code></li>
-</ul>
-</li>
-<li><h4 id="电梯类-Elevator"><a href="#电梯类-Elevator" class="headerlink" title="电梯类 Elevator"></a>电梯类 <code>Elevator</code></h4><p><img src="5.png"/>  </p>
-<ul>
-<li>重写 <code>run()</code> 方法，实现顺序执行 <code>下客-&gt;上客-&gt;关门-&gt;运行一层</code> 的流程，其中每一步均有是否执行的判断条件，只有满足条件才会执行，顺序执行保证了电梯的正确性</li>
-<li>每次下客前和关门前均调用自身对应的决策类的 <code>ask</code> 方法，使决策类根据此时电梯状态和请求池状态更新自身行为，然后访问决策类的方法获得电梯下一步的行动 <strong>建议</strong> （接那些人以及向哪一层移动/空等）</li>
-<li>关门和移动等待时间为电梯上一次 <strong>任意</strong> 操作（ <code>开门/关门/移动</code> ）的系统时间与此时系统时间的差值（保证电梯距上次输出 <code>400ms</code> 即可）<br><br></li>
-</ul>
-</li>
-<li><h4 id="决策类接口-DecisionMaker"><a href="#决策类接口-DecisionMaker" class="headerlink" title="决策类接口 DecisionMaker"></a>决策类接口 <code>DecisionMaker</code></h4><p>  <img src="6.png"/>  </p>
-<ul>
-<li><p>定义了 <code>4</code> 个方法</p>
-<ul>
-<li><p><code>ask()</code> 方法：调用时重新计算当前建议  </p>
-</li>
-<li><p><code>whoToPickUp()</code> 方法：返回需要载客的建议  </p>
-</li>
-<li><p><code>whoToPutDown()</code> 方法：返回需要下客的建议  </p>
-</li>
-<li><p><code>nextDirection()</code> 方法：返回下一步电梯行动方向 / 是否空等的建议  </p>
-</li>
-</ul>
-<p><br></p>
-<ul>
-<li><h5 id="Look策略类-LookDecisionMaker"><a href="#Look策略类-LookDecisionMaker" class="headerlink" title="Look策略类 LookDecisionMaker"></a>Look策略类 <code>LookDecisionMaker</code></h5><img src="7.png"/>  </li>
-</ul>
-</li>
-<li><p>实现了 <code>LOOK</code> 算法</p>
-</li>
-<li>重写了 <code>DecisionMaker</code> 接口的 <code>4</code> 个方法</li>
-</ul>
-</li>
-</ul>
-<p><br></p>
-<hr>
-<p>易错点： </p>
-<ol>
-<li>死锁</li>
-<li>轮询</li>
-<li>超载</li>
-<li>超时</li>
-<li>……</li>
-</ol>
+                <h3 id="模型部署位置"><a href="#模型部署位置" class="headerlink" title="模型部署位置"></a>模型部署位置</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">root@4cecd517e66d:/workspace# ollama serve --help</span><br><span class="line">Start ollama</span><br><span class="line"></span><br><span class="line">Usage:</span><br><span class="line">  ollama serve [flags]</span><br><span class="line"></span><br><span class="line">Aliases:</span><br><span class="line">  serve, start</span><br><span class="line"></span><br><span class="line">Flags:</span><br><span class="line">  -h, --help   help for serve</span><br><span class="line"></span><br><span class="line">Environment Variables:</span><br><span class="line">      OLLAMA_DEBUG               Show additional debug information (e.g. OLLAMA_DEBUG=1)</span><br><span class="line">      OLLAMA_HOST                IP Address for the ollama server (default 127.0.0.1:11434)</span><br><span class="line">      OLLAMA_KEEP_ALIVE          The duration that models stay loaded in memory (default "5m")</span><br><span class="line">      OLLAMA_MAX_LOADED_MODELS   Maximum number of loaded models per GPU</span><br><span class="line">      OLLAMA_MAX_QUEUE           Maximum number of queued requests</span><br><span class="line">      OLLAMA_MODELS              The path to the models directory</span><br><span class="line">      OLLAMA_NUM_PARALLEL        Maximum number of parallel requests</span><br><span class="line">      OLLAMA_NOPRUNE             Do not prune model blobs on startup</span><br><span class="line">      OLLAMA_ORIGINS             A comma separated list of allowed origins</span><br><span class="line">      OLLAMA_SCHED_SPREAD        Always schedule model across all GPUs</span><br><span class="line"></span><br><span class="line">      OLLAMA_FLASH_ATTENTION     Enabled flash attention</span><br><span class="line">      OLLAMA_KV_CACHE_TYPE       Quantization type for the K/V cache (default: f16)</span><br><span class="line">      OLLAMA_LLM_LIBRARY         Set LLM library to bypass autodetection</span><br><span class="line">      OLLAMA_GPU_OVERHEAD        Reserve a portion of VRAM per GPU (bytes)</span><br><span class="line">      OLLAMA_LOAD_TIMEOUT        How long to allow model loads to stall before giving up (default "5m")</span><br></pre></td></tr></table></figure>
+<p>如果您按照自述文件所述以自动方式安装了 ollama：<br>打开 systemd 文件</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> sudo nano /etc/systemd/system/ollama.service</span></span><br></pre></td></tr></table></figure>
+<p>在[Service]下添加 Environment=”OLLAMA_MODELS=/your/desired/path”</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">[Service] </span><br><span class="line">ExecStart=$BINDIR/ollama serve </span><br><span class="line">User=ollama </span><br><span class="line">Group=ollama </span><br><span class="line">Restart=always </span><br><span class="line">RestartSec=3 </span><br><span class="line">Environment="PATH=$PATH" </span><br><span class="line">Environment="OLLAMA_MODELS=/your/desired/path" #您将添加此行</span><br></pre></td></tr></table></figure>
+<p>按CTRL+X然后按Y然后按 Enter</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">systemctl daemon-reload</span><br><span class="line">systemctl restart ollama</span><br></pre></td></tr></table></figure>
+<p>或者：<br>您所要做的就是在运行 ollama 之前设置环境变量 OLLAMA_MODELS。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">export OLLAMA_MODELS=/workspace/ollama/models</span><br><span class="line">echo $OLLAMA_MODELS</span><br></pre></td></tr></table></figure>
+<h3 id="GPU-选择"><a href="#GPU-选择" class="headerlink" title="GPU 选择"></a>GPU 选择</h3><p>如果您的系统中有多块 NVIDIA GPU，并且想要限制 Ollama 使用子集，则可以将其设置CUDA_VISIBLE_DEVICES为以逗号分隔的 GPU 列表。可以使用数字 ID，但顺序可能会有所不同，因此 UUID 更可靠。您可以通过运行来发现 GPU 的 UUID。nvidia-smi -L如果您想忽略 GPU 并强制使用 CPU，请使用无效的 GPU ID（例如“-1”）<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">export CUDA_VISIBLE_DEVICES=GPU-dd8aa6f3-b29f-6158-51bf-ddb94b6954ea,GPU-10caa885-bf51-4c17-a876-1d14a8928f15,GPU-6b47013b-03b0-b397-9449-c59e78c1bb16</span><br><span class="line">echo $CUDA_VISIBLE_DEVICES</span><br></pre></td></tr></table></figure></p>
+<p>ssh root@10.3.3.107 -p 5233</p>
+<p>export OLLAMA_MODELS=/workspace/ollama/models<br>export CUDA_VISIBLE_DEVICES=GPU-dd8aa6f3-b29f-6158-51bf-ddb94b6954ea,GPU-10caa885-bf51-4c17-a876-1d14a8928f15,GPU-6b47013b-03b0-b397-9449-c59e78c1bb16<br>nohup ollama serve &gt; /workspace/ollama.log 2&gt;&amp;1 &amp;</p>
+<p>查看 GPU 的 UUID<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nvidia-smi -L</span><br></pre></td></tr></table></figure></p>
+<p><a href="https://github.com/infiniflow/ragflow/blob/main/docs/guides/deploy_local_llm.mdx" target="_blank" rel="noopener">https://github.com/infiniflow/ragflow/blob/main/docs/guides/deploy_local_llm.mdx</a>  </p>
+<h3 id="服务器-Q"><a href="#服务器-Q" class="headerlink" title="服务器 Q"></a>服务器 Q</h3><p>netstat -tunlp</p>
+<p>hostname -I</p>
+<p>curl ifconfig.me</p>
+<p>lsof -i</p>
+<p>cat /proc/1/cgroup</p>
+<h3 id="tips"><a href="#tips" class="headerlink" title="tips"></a>tips</h3><p>sudo service docker start</p>
+<p>cd /workspace/ragflow/<br>source .venv/bin/activate<br>export PYTHONPATH=$(pwd)<br>export HF_ENDPOINT=<a href="https://hf-mirror.com" target="_blank" rel="noopener">https://hf-mirror.com</a><br>docker compose -f docker/docker-compose-base.yml up -d<br>bash docker/entrypoint.sh</p>
+<p>npm run dev &gt; dev-output.log 2&gt;&amp;1 &amp;<br>echo $! &gt; dev-pid.txt</p>
+<p>nohup bash docker/entrypoint.sh &gt; docker/output.log 2&gt;&amp;1 &amp; echo $! &gt; docker/pid.txt</p>
+<p>sudo docker exec -d ollama ollama run deepseek-r1:32b<br>“-d”: 后台运行</p>
+<h3 id="后台运行"><a href="#后台运行" class="headerlink" title="后台运行"></a>后台运行</h3><p>安装 screen（如果容器中没有）：<br>apt update &amp;&amp; apt install screen</p>
+<p>启动一个新的 screen 会话：<br>screen -S dev-session</p>
+<p>在 screen 会话中运行 npm run dev：<br>npm run dev</p>
+<p>按下 Ctrl+A，然后按 D 分离会话。即使终端关闭，进程也会继续运行。</p>
+<p>重新连接到会话：<br>screen -r dev-session</p>
+<p>screen -S ollama-session<br>export OLLAMA_MODELS=/workspace/ollama/models<br>export CUDA_VISIBLE_DEVICES=GPU-dd8aa6f3-b29f-6158-51bf-ddb94b6954ea,GPU-10caa885-bf51-4c17-a876-1d14a8928f15,GPU-6b47013b-03b0-b397-9449-c59e78c1bb16<br>ollama serve<br>按下 Ctrl+A，然后按 D 分离会话。即使终端关闭，进程也会继续运行。<br>重新连接到会话<br>screen -r ollama-session</p>
+<p>删除会话<br>screen -X -S ollama-session quit</p>
 
                 
                 <hr>
@@ -396,17 +299,17 @@
                 <ul class="pager">
                     
                     <li class="previous">
-                        <a href="/2022/04/02/OO - P5 - Question/" data-toggle="tooltip" data-placement="top" title="OO - P5 - Question">&larr; Previous Post
+                        <a href="/2025/02/24/研一上总结/" data-toggle="tooltip" data-placement="top" title="研一上总结">&larr; Previous Post
 		<br>
-		<span><font size="2" face="Calibri" color="grey">OO - P5 - Question</font></span>
+		<span><font size="2" face="Calibri" color="grey">研一上总结</font></span>
 	       </a>
                     </li>
                     
                     
                     <li class="next">
-                        <a href="/2022/03/22/OO - 第一单元总结 - Requirement/" data-toggle="tooltip" data-placement="top" title="OO - 第一单元总结 - Requirement">Next Post &rarr;
+                        <a href="/2024/10/21/就业准备/" data-toggle="tooltip" data-placement="top" title="就业准备">Next Post &rarr;
 		<br>
-		<span><font size="2" face="Calibri" color="grey">OO - 第一单元总结 - Requirement</font></span>
+		<span><font size="2" face="Calibri" color="grey">就业准备</font></span>
 	        </a>
                     </li>
                     
@@ -455,7 +358,7 @@
           <strong class="toc-title">Contents</strong>
           
             
-              <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#面向对象设计与构造第二单元第一次作业"><span class="toc-nav-text">面向对象设计与构造第二单元第一次作业</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#多线程实时电梯系统"><span class="toc-nav-text">多线程实时电梯系统</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#题目"><span class="toc-nav-text">题目</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#分析"><span class="toc-nav-text">分析</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#基本思路"><span class="toc-nav-text">基本思路</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#具体实现"><span class="toc-nav-text">具体实现</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#总UML类图："><span class="toc-nav-text">总UML类图：</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#读入处理类-InputThread"><span class="toc-nav-text">读入处理类 InputThread</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#输出处理类-OutputThread"><span class="toc-nav-text">输出处理类 OutputThread</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#控制器类-Controller"><span class="toc-nav-text">控制器类 Controller</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#请求池类-RequestPool"><span class="toc-nav-text">请求池类 RequestPool</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#电梯类-Elevator"><span class="toc-nav-text">电梯类 Elevator</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#决策类接口-DecisionMaker"><span class="toc-nav-text">决策类接口 DecisionMaker</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#Look策略类-LookDecisionMaker"><span class="toc-nav-text">Look策略类 LookDecisionMaker</span></a></li></ol></li></ol></li></ol></li></ol></li></ol>
+              <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#模型部署位置"><span class="toc-nav-text">模型部署位置</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#GPU-选择"><span class="toc-nav-text">GPU 选择</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#服务器-Q"><span class="toc-nav-text">服务器 Q</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#tips"><span class="toc-nav-text">tips</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#后台运行"><span class="toc-nav-text">后台运行</span></a></li></ol>
             
           
           </div>
@@ -477,8 +380,6 @@
                     <h5><a href="/tags/">FEATURED TAGS</a></h5>
                     <div class="tags">
                        
-                          <a class="tag" href="/tags/#OO" title="OO">OO</a>
-                        
                     </div>
                 </section>
                 

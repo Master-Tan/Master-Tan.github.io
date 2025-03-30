@@ -119,7 +119,7 @@
 	       
                             <div class="blank_box"></div>
                             <span class="meta">
-                                 <span class="post-count">4.1k</span> Words
+                                 <span class="post-count">5.2k</span> Words
                             </span>
                             <div class="blank_box"></div>
                             <!-- 不蒜子统计 start -->
@@ -187,7 +187,7 @@
 
                         
                         	<li>
-                          	  <a href="/archive/">Archives</a>
+                          	  <a href="/tags/">Tags</a>
                         	</li>
                         
                     
@@ -197,7 +197,7 @@
 
                         
                         	<li>
-                          	  <a href="/tags/">Tags</a>
+                          	  <a href="/archive/">Archives</a>
                         	</li>
                         
                     
@@ -344,8 +344,106 @@
 <ul>
 <li>Spark是一个用于大规模数据处理的快速通用计算引擎。它提供了一个高级别的API，用于在内存中高效地执行大规模数据处理。它还可以在Hadoop集群上运行。它可以访问HDFS、HBase、Cassandra等数据源。  </li>
 </ul>
+<h3 id="面试题目-2"><a href="#面试题目-2" class="headerlink" title="面试题目"></a>面试题目</h3><ul>
+<li>自我介绍</li>
+<li>基于图神经网络的非匀质离散元颗粒运动过程模拟及预测项目，请用抽象的语言形容一下你解决了什么问题<ul>
+<li>抽象的来说，图的结点和边分别是什么<ul>
+<li>粒子与粒子之间的边代表什么关系，是只有一种关系还是多种关系</li>
+<li>目标是预测每一个结点开裂的概念吗？</li>
+<li>每个时间步一张图，是在预测下一张图是什么样的吗</li>
+<li>使用前六步预测下一步，是如何刻画前六步的时序性是怎么去刻画的？</li>
+<li>最终图神经网络的选型是哪个模型？</li>
+<li>说一下GNN模型的模型结构？</li>
+<li>信息是怎么传播和更新的？</li>
+<li>项目使用的是GNN但是目前图神经网格在向GCN发展，有没有考虑过使用GCN？</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>RAG项目<ul>
+<li>基座模型是？</li>
+<li>项目基于deepseek-r1具体做了哪些工作？</li>
+<li>肯定是先做了一版出来发现效果不符合预期，然后再做分块工作，你们是觉得效果哪里不符合预期呢，为什么会想到调整分块？</li>
+<li>是基于施工日志做一个chat系统吗，为什么要选用有推理能力的r1?其它非推理的模型应该也能很好的解决这个问题</li>
+<li>回到分块，为什么需要专门去做一个分块器，目前开源的都有吧？</li>
+<li>为什么不直接基于deepseek-r1做LoRA微调呢，为什么选择对分块中的embedding模型做微调？</li>
+<li>deepseek-r1原理你了解过吗</li>
+<li>deepseek-r1，SFT+RL分别要达成什么目标，SFT之后的模型具有什么样的能力，没有RL的话模型缺失了什么能力？</li>
+<li>deepseek-r1，RL的具体过程你了解吗</li>
+<li>模型微调，LoRA的原理？</li>
+<li>低秩分解的原理是？为什么会想到使用低秩分解？</li>
+<li>为什么采用低秩分解也能达到不错的效果？</li>
+<li>微调后的参数怎么和原来的参数合并</li>
+<li>参数合并之后会影响推理速度吗</li>
+</ul>
+</li>
+<li>脑筋急转弯：<ul>
+<li>给你一个能够计时6min和8min的砂漏，如何计时10min？</li>
+</ul>
+</li>
+<li>代码题：<ul>
+<li>Leetcode mid，二维dp，64. 最小路径和</li>
+</ul>
+</li>
+</ul>
+<h3 id="二面题目"><a href="#二面题目" class="headerlink" title="二面题目"></a>二面题目</h3><ul>
+<li>自我介绍</li>
+<li>看你简历上写了熟悉大模型微微调等，那你能说一下pre-train，post-train，sft的区别吗<ul>
+<li>post-train，sft都是属于后训练，他们俩有啥细微区别？</li>
+<li>后续的RL这块，和SFT的区别？</li>
+</ul>
+</li>
+<li>微调方面，通常用的是LoRA和p-tuning，你能说一下这两个方法的区别吗</li>
+<li>那你觉得微调和全参数微调，哪个比较好？</li>
+<li>看你做的项目，那个RAG的，具体说一下，具体解决了什么问题，使用了大模型之后，为什么能解决它？<ul>
+<li>这些问题适合大模型去解决吗？资料中出错率较少吧？更多是检索问题吗？</li>
+</ul>
+</li>
+<li>脑筋急转弯：<ul>
+<li>一个人射击20次，命中4次，其中三次是连续命中，但没有4次连续命中，问这个人射击情况共有多少种？</li>
+</ul>
+</li>
+<li>代码题：<ul>
+<li>求一个int值a，按二进制表示1的个数?</li>
+</ul>
+</li>
+<li>最后一个问题：你如何看待互联网加班这种现象？</li>
+<li>实习时间，预计进场实习时间</li>
+</ul>
 <h2 id="2025-3-27"><a href="#2025-3-27" class="headerlink" title="2025.3.27"></a>2025.3.27</h2><p>小红书 C++开发实习生-搜推工程</p>
 <p>1、深度参与小红书社区搜索/推荐业务，满足产品、算法对于核心引擎或者基础平台的功能需求<br>2、抽象通用的业务开发框架与组件，提升业务支持效率，将现有技术逐步平台化和产品化<br>3、参与搜索引擎、推荐引擎、模型预测、向量检索等基础系统、平台的设计、研发及调优工作，提升效率降低成本<br>4、 对搜推&amp;cvnlp类模型推理服务进行性能优化，并支持业务的大模型相关探索<br>任职资格<br>1、2024年9月1日至2025年8月30日期间毕业，统招本科及以上学历；<br>2、基础功底扎实，精通C/C++、Java等至少一门编程语言，具有良好的编程和工程实现能力<br>3、有算法Serving服务开发，算法服务性能优化（如结合GPU/FPGA等的优化经验）优先</p>
+<h3 id="面试题目-3"><a href="#面试题目-3" class="headerlink" title="面试题目"></a>面试题目</h3><ul>
+<li>自我介绍</li>
+<li>C++的结构体对齐原理，规则？</li>
+<li>使用的C++是什么</li>
+<li>C++的智能指针知道吗，他是线程安全的吗？</li>
+<li>判断一个数据结构是否是线程安全的，怎么判断？</li>
+<li>使用线程池完成生产者-消费者的一个类，怎么实现？<ul>
+<li>描述一下代码</li>
+</ul>
+</li>
+<li>C++的unorder_map和map有什么区别<ul>
+<li>他们的数据结构有什么区别？</li>
+<li>他们的查找复杂度</li>
+<li>红黑树的实现原理</li>
+</ul>
+</li>
+<li>python的全局解释器锁是什么？</li>
+<li>flask后端怎么保持后端并发能力足够强？</li>
+<li>数学题：求圆上任取三个点组成锐角三角形的概率</li>
+<li>Transformer结构？<ul>
+<li>Self-attention结构？</li>
+</ul>
+</li>
+<li>反问：这个岗位需要什么技能！？<ul>
+<li>编程语言基础要求高，c++/python有大型项目，10000行+</li>
+<li>多线程/锁深入了解</li>
+<li>数据结构原理/底层结构清楚</li>
+<li>对于机器学习比较了解，Transformer结构，Transformer架构变种，怎么去优化，优化的手法</li>
+<li>项目经验</li>
+</ul>
+</li>
+</ul>
 
                 
                 <hr>
@@ -412,7 +510,7 @@
           <strong class="toc-title">Contents</strong>
           
             
-              <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#自我介绍："><span class="toc-nav-text">自我介绍：</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#2024-7-23-面试记录"><span class="toc-nav-text">2024.7.23 面试记录</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#面试题目："><span class="toc-nav-text">面试题目：</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#2024-11-14-面试记录"><span class="toc-nav-text">2024.11.14 面试记录</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#面试题目"><span class="toc-nav-text">面试题目</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#2025-3-19"><span class="toc-nav-text">2025.3.19</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#自我介绍：-1"><span class="toc-nav-text">自我介绍：</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#项目准备"><span class="toc-nav-text">项目准备</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#面试题目-1"><span class="toc-nav-text">面试题目</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#2025-3-25"><span class="toc-nav-text">2025.3.25</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#准备"><span class="toc-nav-text">准备</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#2025-3-27"><span class="toc-nav-text">2025.3.27</span></a>
+              <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#自我介绍："><span class="toc-nav-text">自我介绍：</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#2024-7-23-面试记录"><span class="toc-nav-text">2024.7.23 面试记录</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#面试题目："><span class="toc-nav-text">面试题目：</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#2024-11-14-面试记录"><span class="toc-nav-text">2024.11.14 面试记录</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#面试题目"><span class="toc-nav-text">面试题目</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#2025-3-19"><span class="toc-nav-text">2025.3.19</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#自我介绍：-1"><span class="toc-nav-text">自我介绍：</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#项目准备"><span class="toc-nav-text">项目准备</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#面试题目-1"><span class="toc-nav-text">面试题目</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#2025-3-25"><span class="toc-nav-text">2025.3.25</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#准备"><span class="toc-nav-text">准备</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#面试题目-2"><span class="toc-nav-text">面试题目</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#二面题目"><span class="toc-nav-text">二面题目</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#2025-3-27"><span class="toc-nav-text">2025.3.27</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#面试题目-3"><span class="toc-nav-text">面试题目</span></a></li></ol>
             
           
           </div>
