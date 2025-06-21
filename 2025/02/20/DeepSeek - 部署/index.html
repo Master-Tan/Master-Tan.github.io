@@ -119,7 +119,7 @@
 	       
                             <div class="blank_box"></div>
                             <span class="meta">
-                                 <span class="post-count">712</span> Words
+                                 <span class="post-count">1k</span> Words
                             </span>
                             <div class="blank_box"></div>
                             <!-- 不蒜子统计 start -->
@@ -179,6 +179,9 @@
                     
 
                         
+                    
+
+                        
                         	<li>
                           	  <a href="/about/">About Tan</a>
                         	</li>
@@ -196,9 +199,6 @@
                         	<li>
                           	  <a href="/tags/">Tags</a>
                         	</li>
-                        
-                    
-
                         
                     
 
@@ -281,7 +281,7 @@
 <p>lsof -i</p>
 <p>cat /proc/1/cgroup</p>
 <h3 id="tips"><a href="#tips" class="headerlink" title="tips"></a>tips</h3><p>sudo service docker start</p>
-<p>cd /workspace/ragflow/<br>source .venv/bin/activate<br>export PYTHONPATH=$(pwd)<br>export HF_ENDPOINT=<a href="https://hf-mirror.com" target="_blank" rel="noopener">https://hf-mirror.com</a><br>docker compose -f docker/docker-compose-base.yml up -d<br>bash docker/entrypoint.sh</p>
+<p>cd /workspace/ragflow/<br>source .venv/bin/activate<br>export PYTHONPATH=$(pwd)<br>export HF_ENDPOINT=<a href="https://hf-mirror.com" target="_blank" rel="noopener">https://hf-mirror.com</a><br>sudo docker compose -f docker/docker-compose-base.yml up -d<br>bash docker/entrypoint.sh</p>
 <p>npm run dev &gt; dev-output.log 2&gt;&amp;1 &amp;<br>echo $! &gt; dev-pid.txt</p>
 <p>nohup bash docker/entrypoint.sh &gt; docker/output.log 2&gt;&amp;1 &amp; echo $! &gt; docker/pid.txt</p>
 <p>sudo docker exec -d ollama ollama run deepseek-r1:32b<br>“-d”: 后台运行</p>
@@ -292,6 +292,15 @@
 <p>重新连接到会话：<br>screen -r dev-session</p>
 <p>screen -S ollama-session<br>export OLLAMA_MODELS=/workspace/ollama/models<br>export CUDA_VISIBLE_DEVICES=GPU-dd8aa6f3-b29f-6158-51bf-ddb94b6954ea,GPU-10caa885-bf51-4c17-a876-1d14a8928f15,GPU-6b47013b-03b0-b397-9449-c59e78c1bb16<br>ollama serve<br>按下 Ctrl+A，然后按 D 分离会话。即使终端关闭，进程也会继续运行。<br>重新连接到会话<br>screen -r ollama-session</p>
 <p>删除会话<br>screen -X -S ollama-session quit</p>
+<p>screen -S docker-session</p>
+<h3 id="重装ollama"><a href="#重装ollama" class="headerlink" title="重装ollama"></a>重装ollama</h3><p>彻底卸载 Ollama</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"># 停止服务</span><br><span class="line">sudo systemctl stop ollama</span><br><span class="line"></span><br><span class="line"># 删除服务文件</span><br><span class="line">sudo rm &#x2F;etc&#x2F;systemd&#x2F;system&#x2F;ollama.service</span><br><span class="line"></span><br><span class="line"># 删除二进制文件</span><br><span class="line">sudo rm &#x2F;usr&#x2F;local&#x2F;bin&#x2F;ollama</span><br><span class="line"></span><br><span class="line"># 删除数据目录（谨慎操作，会清除所有模型！）</span><br><span class="line">sudo rm -rf &#x2F;usr&#x2F;share&#x2F;ollama  # 默认数据目录</span><br><span class="line">rm -rf ~&#x2F;.ollama               # 用户数据目录（如果存在）</span><br><span class="line"></span><br><span class="line"># 删除用户（如果存在）</span><br><span class="line">sudo userdel ollama 2&gt;&#x2F;dev&#x2F;null</span><br></pre></td></tr></table></figure>
+<p>重新安装ollama</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -fsSL https:&#x2F;&#x2F;ollama.com&#x2F;install.sh | sh</span><br></pre></td></tr></table></figure>
+<p>配置ollama</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">sudo tee &#x2F;etc&#x2F;systemd&#x2F;system&#x2F;ollama.service &lt;&lt;EOF</span><br><span class="line">[Unit]</span><br><span class="line">Description&#x3D;Ollama Service</span><br><span class="line">After&#x3D;network-online.target</span><br><span class="line"></span><br><span class="line">[Service]</span><br><span class="line">ExecStart&#x3D;&#x2F;usr&#x2F;local&#x2F;bin&#x2F;ollama serve</span><br><span class="line">User&#x3D;tld  # 替换为你的用户名，或使用 ollama（需先创建用户）</span><br><span class="line">Group&#x3D;tld</span><br><span class="line">Restart&#x3D;always</span><br><span class="line">RestartSec&#x3D;3</span><br><span class="line">Environment&#x3D;&quot;OLLAMA_MODELS&#x3D;&#x2F;home&#x2F;tld&#x2F;.ollama&quot;  # 指定数据目录</span><br><span class="line">Environment&#x3D;&quot;OLLAMA_HOST&#x3D;0.0.0.0:11434&quot;  # 监听所有网络接口</span><br><span class="line"></span><br><span class="line">[Install]</span><br><span class="line">WantedBy&#x3D;default.target</span><br><span class="line">EOF</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">mkdir -p ~/.ollama</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">sudo chown -R tld:tld ~/.ollama</span><br><span class="line"></span><br><span class="line">sudo systemctl daemon-reload</span><br><span class="line"></span><br><span class="line">sudo systemctl start ollama</span><br><span class="line">sudo systemctl enable ollama  # 设置开机自启</span><br><span class="line"></span><br><span class="line">sudo systemctl status ollama</span><br></pre></td></tr></table></figure>
+<p><a href="https://blog.csdn.net/Python_cocola/article/details/146551772?utm_medium=distribute.pc_relevant.none-task-blog-2~default~baidujs_baidulandingword~default-5-146551772-blog-147087724.235^v43^pc_blog_bottom_relevance_base1&amp;spm=1001.2101.3001.4242.4&amp;utm_relevant_index=7" target="_blank" rel="noopener">Dify+RAGFlow打造企业级智能知识库：PDF表格秒变结构化数据，检索精准度暴增</a></p>
 
                 
                 <hr>
@@ -358,7 +367,7 @@
           <strong class="toc-title">Contents</strong>
           
             
-              <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#模型部署位置"><span class="toc-nav-text">模型部署位置</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#GPU-选择"><span class="toc-nav-text">GPU 选择</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#服务器-Q"><span class="toc-nav-text">服务器 Q</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#tips"><span class="toc-nav-text">tips</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#后台运行"><span class="toc-nav-text">后台运行</span></a></li></ol>
+              <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#模型部署位置"><span class="toc-nav-text">模型部署位置</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#GPU-选择"><span class="toc-nav-text">GPU 选择</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#服务器-Q"><span class="toc-nav-text">服务器 Q</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#tips"><span class="toc-nav-text">tips</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#后台运行"><span class="toc-nav-text">后台运行</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#重装ollama"><span class="toc-nav-text">重装ollama</span></a></li></ol>
             
           
           </div>
